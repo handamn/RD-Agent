@@ -23,9 +23,13 @@ try:
         EC.element_to_be_clickable((By.CSS_SELECTOR, 'button[data-period="3Y"]'))
     )
     
+    # Ambil nilai dari elemen <div> di dalam tombol
+    button_text = button_3Y.find_element(By.CSS_SELECTOR, '.reksa-border-button-period-box').text
+    print(f"Tombol yang diklik memiliki teks: {button_text}")
+    
     # Klik tombol
     button_3Y.click()
-    print("Tombol 3Y berhasil diklik!")
+    print(f"Tombol {button_text} berhasil diklik!")
     
     # Tunggu sebentar untuk memastikan data diperbarui
     time.sleep(2)
@@ -35,12 +39,12 @@ try:
         data_element = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
         )
-        print("Data setelah klik tombol 3Y:", data_element.text)
+        print(f"Data setelah klik tombol {button_text}:", data_element.text)
     except Exception as e:
         print(f"Gagal mengambil data setelah klik tombol: {e}")
     
 except Exception as e:
-    print(f"Gagal mengklik tombol 3Y: {e}")
+    print(f"Gagal mengklik tombol: {e}")
 
 # Tutup browser
 driver.quit()
