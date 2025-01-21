@@ -17,7 +17,7 @@ url = 'https://bibit.id/reksadana/RD66/avrist-ada-kas-mutiara'  # Ganti dengan U
 driver.get(url)
 
 # List data-period yang akan diuji
-data_periods = ['1D', '1M', '3M', 'YTD', '1Y', '3Y', '5Y', 'All']
+data_periods = ['1D', '1M', '3M', 'YTD', '1Y', '3Y', '5Y', 'ALL']
 
 # Loop untuk menguji setiap tombol
 for period in data_periods:
@@ -38,14 +38,6 @@ for period in data_periods:
         # Tunggu sebentar untuk memastikan data diperbarui
         time.sleep(2)
         
-        # Ambil data yang muncul setelah tombol diklik (opsional)
-        try:
-            data_element = WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
-            )
-            print(f"Data setelah klik tombol {button_text}:", data_element.text)
-        except Exception as e:
-            print(f"Gagal mengambil data setelah klik tombol {button_text}: {e}")
         
     except Exception as e:
         print(f"Gagal mengklik tombol dengan data-period={period}: {e}")
