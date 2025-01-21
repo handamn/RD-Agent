@@ -15,8 +15,12 @@ driver = webdriver.Chrome(service=service, options=options)
 url = 'https://bibit.id/reksadana/RD66/avrist-ada-kas-mutiara'  # Ganti dengan URL yang sesuai
 driver.get(url)
 
+
 # Tunggu hingga halaman sepenuhnya dimuat
 time.sleep(5)  # Sesuaikan waktu tunggu sesuai kebutuhan
+
+data_periods = ['1D', '1M', '3M', 'YTD', '1Y', '3Y', '5Y', 'ALL']
+
 
 # Temukan elemen grafik (contoh: elemen dengan tag <svg> atau <canvas>)
 graph_element = driver.find_element(By.TAG_NAME, 'svg')  # Gunakan By.TAG_NAME untuk mencari elemen
