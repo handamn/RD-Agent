@@ -16,26 +16,39 @@ driver = webdriver.Chrome(service=service, options=options)
 url = 'https://bibit.id/reksadana/RD66/avrist-ada-kas-mutiara'  # Ganti dengan URL yang sesuai
 driver.get(url)
 
-# Tunggu hingga tombol muncul dan bisa diklik
-try:
-    # Menunggu tombol dengan data-period="3Y" muncul
-    button_3Y = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.CSS_SELECTOR, 'button[data-period="3Y"]'))
-    )
-    
-    # Ambil nilai dari elemen <div> di dalam tombol
-    button_text = button_3Y.find_element(By.CSS_SELECTOR, '.reksa-border-button-period-box').text
-    print(f"Tombol yang diklik memiliki teks: {button_text}")
-    
-    # Klik tombol
-    button_3Y.click()
-    print(f"Tombol {button_text} berhasil diklik!")
-    
-    # Tunggu sebentar untuk memastikan data diperbarui
-    time.sleep(2)
-    
-except Exception as e:
-    print(f"Gagal mengklik tombol: {e}")
+# List data-period yang akan diuji
+data_periods = ['1D', '1M', '3M', 'YTD', '1Y', '3Y', '5Y', 'All']
+
+# Loop untuk menguji setiap tombol
+for period in data_periods:
+    try:
+        # Menunggu tombol dengan data-period tertentu muncul
+        button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]'))
+        )
+        
+        # Ambil nilai dari elemen <div> di dalam tombol
+        button_text = button.find_element(By.CSS_SELECTOR, '.reksa-border-button-period-box').text
+        print(f"Tombol yang diklik memiliki teks: {button_text}")
+        
+        # Klik tombol
+        button.click()
+        print(f"Tombol {button_text} berhasil diklik!")
+        
+        # Tunggu sebentar untuk memastikan data diperbarui
+        time.sleep(2)
+        
+        # Ambil data yang muncul setelah tombol diklik (opsional)
+        try:
+            data_element = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
+            )
+            print(f"Data setelah klik tombol {button_text}:", data_element.text)
+        except Exception as e:
+            print(f"Gagal mengambil data setelah klik tombol {button_text}: {e}")
+        
+    except Exception as e:
+        print(f"Gagal mengklik tombol dengan data-period={period}: {e}")
 
 # Tutup browser
 driver.quit()
