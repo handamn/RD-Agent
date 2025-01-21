@@ -20,8 +20,12 @@ driver.get(url)
 try:
     # Menunggu tombol dengan class tertentu muncul
     button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.CSS_SELECTOR, 'reksa-border-button-period'))
+        EC.element_to_be_clickable((By.CSS_SELECTOR, '.reksa-border-button-period-box'))
     )
+    
+    # Ambil nilai (teks) dari tombol sebelum diklik
+    button_value = button.text
+    print(f"Nilai tombol sebelum diklik: {button_value}")
     
     # Klik tombol
     button.click()
@@ -30,8 +34,12 @@ try:
     # Tunggu sebentar untuk melihat efek klik (opsional)
     time.sleep(2)
     
+    # Ambil nilai (teks) dari tombol setelah diklik (jika berubah)
+    button_value_after_click = button.text
+    print(f"Nilai tombol setelah diklik: {button_value_after_click}")
+    
 except Exception as e:
-    print(f"Gagal mengklik tombol: {e}")
+    print(f"Gagal mengklik tombol atau mengambil nilai: {e}")
 
 # Tutup browser
 driver.quit()
