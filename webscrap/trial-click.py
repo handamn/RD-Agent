@@ -34,15 +34,6 @@ try:
     # Tunggu sebentar untuk memastikan data diperbarui
     time.sleep(2)
     
-    # Ambil data yang muncul setelah tombol diklik
-    try:
-        data_element = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
-        )
-        print(f"Data setelah klik tombol {button_text}:", data_element.text)
-    except Exception as e:
-        print(f"Gagal mengambil data setelah klik tombol: {e}")
-    
 except Exception as e:
     print(f"Gagal mengklik tombol: {e}")
 
