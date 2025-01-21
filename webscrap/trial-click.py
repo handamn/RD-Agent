@@ -18,28 +18,29 @@ driver.get(url)
 
 # Tunggu hingga tombol muncul dan bisa diklik
 try:
-    # Menunggu tombol dengan class tertentu muncul
-    button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.CSS_SELECTOR, '.reksa-border-button-period-box'))
+    # Menunggu tombol dengan data-period="3Y" muncul
+    button_3Y = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, 'button[data-period="3Y"]'))
     )
     
-    # Ambil nilai (teks) dari tombol sebelum diklik
-    button_value = button.text
-    print(f"Nilai tombol sebelum diklik: {button_value}")
-    
     # Klik tombol
-    button.click()
-    print("Tombol berhasil diklik!")
+    button_3Y.click()
+    print("Tombol 3Y berhasil diklik!")
     
-    # Tunggu sebentar untuk melihat efek klik (opsional)
+    # Tunggu sebentar untuk memastikan data diperbarui
     time.sleep(2)
     
-    # Ambil nilai (teks) dari tombol setelah diklik (jika berubah)
-    button_value_after_click = button.text
-    print(f"Nilai tombol setelah diklik: {button_value_after_click}")
+    # Ambil data yang muncul setelah tombol diklik
+    try:
+        data_element = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
+        )
+        print("Data setelah klik tombol 3Y:", data_element.text)
+    except Exception as e:
+        print(f"Gagal mengambil data setelah klik tombol: {e}")
     
 except Exception as e:
-    print(f"Gagal mengklik tombol atau mengambil nilai: {e}")
+    print(f"Gagal mengklik tombol 3Y: {e}")
 
 # Tutup browser
 driver.quit()
