@@ -9,6 +9,9 @@ start_time = time.time()
 
 options = webdriver.ChromeOptions()
 options.add_argument('--disable-gpu')
+options.add_argument('--disable-dev-shm-usage')
+options.add_argument('--no-sandbox')
+options.add_argument('--headless')  # Run in background
 service = webdriver.chrome.service.Service()
 driver = webdriver.Chrome(service=service, options=options)
 
@@ -29,7 +32,7 @@ for period in data_periods:
         button.click()
         print(f"Tombol {button_text} berhasil diklik!")
 
-        time.sleep(5)
+        time.sleep(2)
 
         graph_element = driver.find_element(By.TAG_NAME, 'svg')
 
@@ -44,7 +47,7 @@ for period in data_periods:
         for offset in range(start_offset, start_offset + graph_width, 5):
             # Geser kursor ke posisi tertentu
             actions.move_to_element_with_offset(graph_element, offset, 0).perform()
-            time.sleep(1)
+            time.sleep(0.5)
 
             updated_data = WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
