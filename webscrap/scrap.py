@@ -18,7 +18,7 @@ driver = webdriver.Chrome(service=service, options=options)
 url = 'https://bibit.id/reksadana/RD66/avrist-ada-kas-mutiara'
 driver.get(url)
 
-data_periods = ['1M', '3M', 'YTD', '1Y', '3Y', '5Y', 'ALL']
+data_periods = ['5Y']
 
 for period in data_periods:
     try:
@@ -44,7 +44,11 @@ for period in data_periods:
 
         actions = ActionChains(driver)
 
+        hitung = 1
+
         for offset in range(start_offset, start_offset + graph_width, 5):
+            print(hitung)
+            
             # Geser kursor ke posisi tertentu
             actions.move_to_element_with_offset(graph_element, offset, 0).perform()
             time.sleep(0.5)
@@ -58,7 +62,10 @@ for period in data_periods:
             ).text
 
             print(f"Data setelah pergeseran {offset} piksel -- tanggal {tanggal_navdate} : {updated_data}")
-    
+            
+            hitung+=1
+
+
     except Exception as e:
         print(f"Gagal mengklik tombol dengan data-period={period}: {e}")
 
@@ -72,3 +79,7 @@ print("====")
 print(durasi)
 print("====")
 print()
+
+
+
+
