@@ -16,44 +16,64 @@ url = 'https://bibit.id/reksadana/RD66/avrist-ada-kas-mutiara'  # Ganti dengan U
 driver.get(url)
 
 
-# Tunggu hingga halaman sepenuhnya dimuat
-time.sleep(5)  # Sesuaikan waktu tunggu sesuai kebutuhan
+# List data-period yang akan diuji
+data_periods = ['1M', '3M', 'YTD', '1Y', '3Y', '5Y', 'ALL']
 
-menu_tahun = []
+# Loop untuk menguji setiap tombol
+for period in data_periods:
+    try:
+        button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]'))
+        )
 
-# Temukan elemen grafik (contoh: elemen dengan tag <svg> atau <canvas>)
-graph_element = driver.find_element(By.TAG_NAME, 'svg')  # Gunakan By.TAG_NAME untuk mencari elemen
+        button_text = button.find_element(By.CSS_SELECTOR, '.reksa-border-button-period-box').text
+        print(f"Tombol yang diklik memiliki teks: {button_text}")
+        
+        button.click()
+        print(f"Tombol {button_text} berhasil diklik!")
+        
+        # time.sleep(2)
 
-# Dapatkan lebar grafik
-graph_width = graph_element.size['width']
+        # Tunggu hingga halaman sepenuhnya dimuat
+        time.sleep(5)  # Sesuaikan waktu tunggu sesuai kebutuhan
 
-# Konversi lebar grafik ke integer
-graph_width = int(graph_width)
 
-# Hitung titik awal (paling kiri)
-start_offset = -graph_width // 2  # Titik paling kiri relatif terhadap titik tengah
+        # Temukan elemen grafik (contoh: elemen dengan tag <svg> atau <canvas>)
+        graph_element = driver.find_element(By.TAG_NAME, 'svg')  # Gunakan By.TAG_NAME untuk mencari elemen
 
-# Buat objek ActionChains untuk mensimulasikan interaksi
-actions = ActionChains(driver)
+        # Dapatkan lebar grafik
+        graph_width = graph_element.size['width']
 
-# Loop untuk menggeser kursor dari kiri ke kanan dengan langkah 5 piksel
-for offset in range(start_offset, start_offset + graph_width, 5):
-    # Geser kursor ke posisi tertentu
-    actions.move_to_element_with_offset(graph_element, offset, 0).perform()
-    time.sleep(1)  # Tunggu sebentar setelah pergeseran
+        # Konversi lebar grafik ke integer
+        graph_width = int(graph_width)
 
-    # Ambil data yang diperbarui (elemen pertama)
-    updated_data = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
-    ).text
+        # Hitung titik awal (paling kiri)
+        start_offset = -graph_width // 2  # Titik paling kiri relatif terhadap titik tengah
 
-    # Ambil tanggal dari elemen dengan class 'navDate' (elemen kedua)
-    tanggal_navdate = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))
-    ).text
+        # Buat objek ActionChains untuk mensimulasikan interaksi
+        actions = ActionChains(driver)
 
-    # Cetak hasilnya
-    print(f"Data setelah pergeseran {offset} piksel -- tanggal {tanggal_navdate} : {updated_data}")
+        # Loop untuk menggeser kursor dari kiri ke kanan dengan langkah 5 piksel
+        for offset in range(start_offset, start_offset + graph_width, 5):
+            # Geser kursor ke posisi tertentu
+            actions.move_to_element_with_offset(graph_element, offset, 0).perform()
+            time.sleep(1)  # Tunggu sebentar setelah pergeseran
+
+            # Ambil data yang diperbarui (elemen pertama)
+            updated_data = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
+            ).text
+
+            # Ambil tanggal dari elemen dengan class 'navDate' (elemen kedua)
+            tanggal_navdate = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))
+            ).text
+
+            # Cetak hasilnya
+            print(f"Data setelah pergeseran {offset} piksel -- tanggal {tanggal_navdate} : {updated_data}")
     
+    except Exception as e:
+        print(f"Gagal mengklik tombol dengan data-period={period}: {e}")
+
 # Tutup browser
 driver.quit()

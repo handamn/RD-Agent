@@ -17,7 +17,7 @@ url = 'https://bibit.id/reksadana/RD66/avrist-ada-kas-mutiara'  # Ganti dengan U
 driver.get(url)
 
 # List data-period yang akan diuji
-data_periods = ['1D', '1M', '3M', 'YTD', '1Y', '3Y', '5Y', 'ALL']
+data_periods = ['1M', '3M', 'YTD', '1Y', '3Y', '5Y', 'ALL']
 
 # Loop untuk menguji setiap tombol
 for period in data_periods:
