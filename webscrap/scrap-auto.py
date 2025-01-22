@@ -33,8 +33,12 @@ async def scrape_period(page, period):
         graph = await page.query_selector('svg')
         box = await graph.bounding_box()
         graph_width = int(box['width'])
-        start_offset = -graph_width // 2
-        end_offset = start_offset + graph_width
+        
+        # Sesuaikan rentang offset secara manual
+        start_offset = -509  # Sesuaikan dengan script sequence
+        end_offset = 506     # Sesuaikan dengan script sequence
+        
+        print(f"Graph width: {graph_width}, Start offset: {start_offset}, End offset: {end_offset}")
         
         # Loop melalui offset grafik
         for offset in range(start_offset, end_offset, 5):
