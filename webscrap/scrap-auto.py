@@ -44,8 +44,16 @@ async def scrape_period(page, period):
         for offset in range(start_offset, end_offset, 5):
             for retry in range(max_retries):
                 try:
+                    # Nonaktifkan pointer-events pada elemen yang menghalangi
+                    await page.evaluate("""
+                        () => {
+                            const htmlElement = document.querySelector('html');
+                            htmlElement.style.pointerEvents = 'none';
+                        }
+                    """)
+                    
                     # Hover pada posisi tertentu
-                    await graph.hover(position={'x': offset + graph_width/2, 'y': box['height']/2})
+                    await graph.hover(position={'x': offset + graph_width/2, 'y': box['height']/2}, force=True)
                     
                     # Tunggu data diperbarui setelah hover
                     await page.wait_for_function("""
@@ -74,6 +82,14 @@ async def scrape_period(page, period):
                 except Exception as e:
                     print(f"Retry {retry + 1} for offset {offset}: {e}")
                     await asyncio.sleep(1)  # Tunggu sebelum retry
+                finally:
+                    # Kembalikan pointer-events ke default
+                    await page.evaluate("""
+                        () => {
+                            const htmlElement = document.querySelector('html');
+                            htmlElement.style.pointerEvents = 'auto';
+                        }
+                    """)
             else:
                 print(f"Gagal mengambil data untuk offset {offset} setelah {max_retries} retry.")
             
