@@ -8,8 +8,7 @@ import time
 from multiprocessing import Process, Manager
 import csv
 import os
-import logging
-from tqdm import tqdm
+
 
 def convert_to_number(value):
     # Jika nilai mengandung 'K' (ribuan)
@@ -97,10 +96,10 @@ def scrape_data(url, period, result_list, pixel):
         )
 
         button_text = button.find_element(By.CSS_SELECTOR, '.reksa-border-button-period-box').text
-        logging.info(f"Tombol yang diklik memiliki teks: {button_text}")
+        print(f"Tombol yang diklik memiliki teks: {button_text}")
         
         button.click()
-        logging.info(f"Tombol {button_text} berhasil diklik!")
+        print(f"Tombol {button_text} berhasil diklik!")
 
         time.sleep(2)
 
@@ -115,7 +114,7 @@ def scrape_data(url, period, result_list, pixel):
         period_data = []  # List untuk menyimpan data per periode
 
         for offset in range(start_offset, start_offset + graph_width, pixel):
-            logging.info(f"Period {period} - Iterasi {hitung}")
+            print(f"Period {period} - Iterasi {hitung}")
             
             actions.move_to_element_with_offset(graph_element, offset, 0).perform()
             time.sleep(0.1)
@@ -128,7 +127,7 @@ def scrape_data(url, period, result_list, pixel):
                 EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))
             ).text
 
-            logging.info(f"Period {period} - Data setelah pergeseran {offset} piksel -- tanggal {tanggal_navdate} : {updated_data}")
+            print(f"Period {period} - Data setelah pergeseran {offset} piksel -- tanggal {tanggal_navdate} : {updated_data}")
             
             # Simpan data ke dalam list period_data (hanya Tanggal dan Data)
             period_data.append({
@@ -142,42 +141,33 @@ def scrape_data(url, period, result_list, pixel):
         result_list.append(period_data)
 
     except Exception as e:
-        logging.error(f"Gagal mengklik tombol dengan data-period={period}: {e}")
+        print(f"Gagal mengklik tombol dengan data-period={period}: {e}")
     finally:
         driver.quit()
 
 if __name__ == "__main__":
-    # Setup logging
-    logging.basicConfig(
-        filename='scraping.log',
-        level=logging.INFO,
-        format='%(asctime)s - %(levelname)s - %(message)s'
-    )
-
     start_time = time.time()
 
     # List URL yang akan di-scrap
     urls = [
         ['RD13', 'https://bibit.id/reksadana/RD13/'],
-        ['RD66', 'https://bibit.id/reksadana/RD66/'],
+        # ['RD66', 'https://bibit.id/reksadana/RD66/'],
         # Tambahkan URL lain di sini
     ]
 
     pixel = 2
     data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
 
-    # Progress bar untuk setiap URL
-    for url_data in tqdm(urls, desc="Scraping URLs", unit="URL"):
+    for url_data in urls:
         kode = url_data[0]  # Ambil kode dari indeks ke-0
         url = url_data[1]   # Ambil URL dari indeks ke-1
-        logging.info(f"\nMemulai scraping untuk URL: {url} (Kode: {kode})")
+        print(f"\nMemulai scraping untuk URL: {url} (Kode: {kode})")
 
         processes = []
         manager = Manager()
         result_list = manager.list()  # List shared antar proses
 
-        # Progress bar untuk setiap periode
-        for period in tqdm(data_periods, desc=f"Scraping {kode}", unit="Period", leave=False):
+        for period in data_periods:
             p = Process(target=scrape_data, args=(url, period, result_list, pixel))
             processes.append(p)
             p.start()
@@ -213,7 +203,7 @@ if __name__ == "__main__":
             try:
                 data_number = convert_to_number(data_str)
             except ValueError:
-                logging.error(f"Gagal mengonversi data: {data_str}")
+                print(f"Gagal mengonversi data: {data_str}")
                 continue  # Lewati data yang tidak valid
 
             formatted_data.append({
@@ -221,10 +211,10 @@ if __name__ == "__main__":
                 'data': data_number
             })
 
-        # Cetak hasil akhir ke log
-        logging.info("\nHasil akhir (Tanpa Duplikat, Diurutkan dari Tanggal Terlama):")
+        # Cetak hasil akhir
+        print("\nHasil akhir (Tanpa Duplikat, Diurutkan dari Tanggal Terlama):")
         for entry in formatted_data:
-            logging.info(f"Tanggal: {entry['tanggal']}, Data: {entry['data']}")
+            print(f"Tanggal: {entry['tanggal']}, Data: {entry['data']}")
 
         # Simpan ke CSV
         # Gunakan kode sebagai nama file CSV
@@ -235,10 +225,12 @@ if __name__ == "__main__":
             for entry in formatted_data:
                 writer.writerow(entry)
 
-        logging.info(f"\nData telah disimpan ke {csv_file}")
+        print(f"\nData telah disimpan ke {csv_file}")
 
     end_time = time.time()
     durasi = end_time - start_time
-    logging.info("\n====")
-    logging.info(f"Total waktu eksekusi: {durasi} detik")
-    logging.info("====")
+    print()
+    print("====")
+    print(f"Total waktu eksekusi: {durasi} detik")
+    print("====")
+    print()
