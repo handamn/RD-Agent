@@ -1,155 +1,140 @@
-import asyncio
-from playwright.async_api import async_playwright
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from concurrent.futures import ThreadPoolExecutor
 import time
-from datetime import datetime
-import csv
+import asyncio
+import aiohttp
 
-async def wait_for_chart_load(page):
-    """
-    Menunggu grafik dan elemen terkait sepenuhnya dimuat.
-    """
-    await page.wait_for_selector('svg', state='visible', timeout=10000)
-    await page.wait_for_selector('.reksa-value-head-nav', state='visible', timeout=10000)
-    await page.wait_for_selector('.navDate', state='visible', timeout=10000)
-    await asyncio.sleep(1)  # Tunggu animasi selesai
-
-async def scrape_period(page, period):
-    """
-    Scrape data untuk satu periode tertentu.
-    """
-    start_time = time.time()
-    data_points = []
-    max_retries = 3  # Jumlah maksimal retry jika terjadi error
-    
-    try:
-        # Klik tombol periode
-        button = await page.wait_for_selector(f'button[data-period="{period}"]', state='visible', timeout=10000)
-        await button.click()
+class BibitScraper:
+    def __init__(self):
+        self.options = webdriver.ChromeOptions()
+        self.options.add_argument('--disable-gpu')
+        self.options.add_argument('--disable-dev-shm-usage')
+        self.options.add_argument('--no-sandbox')
+        self.options.add_argument('--headless')
+        self.options.add_argument('--disable-images')  # Disable image loading
+        self.options.add_argument('--disable-javascript-harmony-shipping')
+        self.options.add_experimental_option('excludeSwitches', ['enable-logging'])
         
-        # Tunggu grafik dimuat
-        await wait_for_chart_load(page)
+        # Add performance preferences
+        self.options.add_experimental_option('prefs', {
+            'profile.default_content_setting_values': {
+                'cookies': 2,
+                'images': 2,
+                'javascript': 1,
+                'plugins': 2,
+                'popups': 2,
+                'geolocation': 2,
+                'notifications': 2,
+                'auto_select_certificate': 2,
+                'fullscreen': 2,
+                'mouselock': 2,
+                'mixed_script': 2,
+                'media_stream': 2,
+                'media_stream_mic': 2,
+                'media_stream_camera': 2,
+                'protocol_handlers': 2,
+                'ppapi_broker': 2,
+                'automatic_downloads': 2,
+                'midi_sysex': 2,
+                'push_messaging': 2,
+                'ssl_cert_decisions': 2,
+                'metro_switch_to_desktop': 2,
+                'protected_media_identifier': 2,
+                'app_banner': 2,
+                'site_engagement': 2,
+                'durable_storage': 2
+            }
+        })
         
-        # Dapatkan dimensi grafik
-        graph = await page.query_selector('svg')
-        box = await graph.bounding_box()
-        graph_width = int(box['width'])
+        self.service = webdriver.chrome.service.Service()
+        self.driver = None
         
-        # Sesuaikan rentang offset secara manual
-        start_offset = -509  # Sesuaikan dengan script sequence
-        end_offset = 506     # Sesuaikan dengan script sequence
+    async def setup(self):
+        self.driver = webdriver.Chrome(service=self.service, options=self.options)
+        self.driver.set_page_load_timeout(10)
+        self.wait = WebDriverWait(self.driver, 5)
         
-        print(f"Graph width: {graph_width}, Start offset: {start_offset}, End offset: {end_offset}")
-        
-        # Loop melalui offset grafik
-        for offset in range(start_offset, end_offset, 5):
-            for retry in range(max_retries):
-                try:
-                    # Nonaktifkan pointer-events pada elemen yang menghalangi
-                    await page.evaluate("""
-                        () => {
-                            const htmlElement = document.querySelector('html');
-                            htmlElement.style.pointerEvents = 'none';
-                        }
-                    """)
-                    
-                    # Hover pada posisi tertentu
-                    await graph.hover(position={'x': offset + graph_width/2, 'y': box['height']/2}, force=True)
-                    
-                    # Tunggu data diperbarui setelah hover
-                    await page.wait_for_function("""
-                        () => {
-                            const nav = document.querySelector('.reksa-value-head-nav');
-                            const date = document.querySelector('.navDate');
-                            return nav && date && nav.textContent && date.textContent;
-                        }
-                    """, timeout=5000)
-                    
-                    # Ambil nilai dan tanggal
-                    value = await page.locator('.reksa-value-head-nav').text_content()
-                    date = await page.locator('.navDate').text_content()
-                    
-                    # Simpan data
-                    data_points.append({
-                        'period': period,
-                        'date': date,
-                        'value': value,
-                        'offset': offset
-                    })
-                    
-                    # Log hasil scraping
-                    print(f"Period {period} - Offset {offset}: {date} = {value}")
-                    break  # Keluar dari retry loop jika berhasil
-                except Exception as e:
-                    print(f"Retry {retry + 1} for offset {offset}: {e}")
-                    await asyncio.sleep(1)  # Tunggu sebelum retry
-                finally:
-                    # Kembalikan pointer-events ke default
-                    await page.evaluate("""
-                        () => {
-                            const htmlElement = document.querySelector('html');
-                            htmlElement.style.pointerEvents = 'auto';
-                        }
-                    """)
-            else:
-                print(f"Gagal mengambil data untuk offset {offset} setelah {max_retries} retry.")
+    def get_graph_data(self, period, offset, graph_element):
+        try:
+            actions = ActionChains(self.driver)
+            actions.move_to_element_with_offset(graph_element, offset, 0).perform()
             
-            # Tunggu sebentar sebelum melanjutkan ke offset berikutnya
-            await asyncio.sleep(0.2)
-            
-    except Exception as e:
-        print(f"Error in period {period}: {e}")
-    finally:
-        # Hitung durasi dan simpan data ke CSV
-        duration = time.time() - start_time
-        save_to_csv(data_points, period)
-        return period, duration, len(data_points)
+            updated_data = self.wait.until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
+            ).text
 
-def save_to_csv(data_points, period):
-    """
-    Simpan data ke file CSV.
-    """
-    filename = f'data_{period}_{datetime.now().strftime("%Y%m%d_%H%M%S")}.csv'
-    with open(filename, 'w', newline='', encoding='utf-8') as file:
-        writer = csv.DictWriter(file, fieldnames=['period', 'date', 'value', 'offset'])
-        writer.writeheader()
-        writer.writerows(data_points)
+            tanggal_navdate = self.wait.until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))
+            ).text
+
+            return {
+                'period': period,
+                'offset': offset,
+                'date': tanggal_navdate,
+                'value': updated_data
+            }
+        except Exception as e:
+            return None
+
+    async def scrape_period(self, period):
+        try:
+            button = self.wait.until(
+                EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]'))
+            )
+            button.click()
+            
+            # Reduced sleep time
+            time.sleep(0.5)
+            
+            graph_element = self.driver.find_element(By.TAG_NAME, 'svg')
+            graph_width = int(graph_element.size['width'])
+            start_offset = -graph_width // 2
+            
+            # Use ThreadPoolExecutor for parallel processing of graph points
+            with ThreadPoolExecutor(max_workers=4) as executor:
+                futures = []
+                for offset in range(start_offset, start_offset + graph_width, 10):  # Increased step size
+                    futures.append(
+                        executor.submit(self.get_graph_data, period, offset, graph_element)
+                    )
+                
+                results = [future.result() for future in futures if future.result() is not None]
+                return results
+                
+        except Exception as e:
+            print(f"Error scraping period {period}: {e}")
+            return []
+
+    async def scrape_all(self, url):
+        await self.setup()
+        self.driver.get(url)
+        
+        data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
+        all_results = []
+        
+        for period in data_periods:
+            results = await self.scrape_period(period)
+            all_results.extend(results)
+        
+        self.driver.quit()
+        return all_results
 
 async def main():
-    """
-    Fungsi utama untuk menjalankan scraping secara parallel.
-    """
-    total_start = time.time()
+    start_time = time.time()
     
-    async with async_playwright() as p:
-        # Buka browser dan context
-        browser = await p.chromium.launch()
-        context = await browser.new_context()
-        
-        # Daftar periode yang akan di-scrape
-        periods = ['5Y']  # Anda bisa menambahkan periode lain seperti '3Y', '1Y', dll.
-        
-        # Buka halaman untuk setiap periode
-        pages = [await context.new_page() for _ in range(len(periods))]
-        for i, page in enumerate(pages):
-            await page.goto('https://bibit.id/reksadana/RD66/avrist-ada-kas-mutiara')
-            await wait_for_chart_load(page)
-            print(f"Halaman untuk periode {periods[i]} siap.")
-        
-        # Scrape data untuk setiap periode secara parallel
-        tasks = [scrape_period(pages[i], period) for i, period in enumerate(periods)]
-        results = await asyncio.gather(*tasks)
-        
-        # Tutup halaman dan browser
-        for page in pages:
-            await page.close()
-        await browser.close()
-
-    # Hitung total durasi dan tampilkan ringkasan
-    total_duration = time.time() - total_start
-    print("\nPerformance Summary:")
-    print(f"Total execution time: {total_duration:.2f} seconds")
-    for period, duration, count in results:
-        print(f"{period}: {duration:.2f} seconds, {count} data points collected")
+    scraper = BibitScraper()
+    results = await scraper.scrape_all('https://bibit.id/reksadana/RD66/avrist-ada-kas-mutiara')
+    
+    end_time = time.time()
+    duration = end_time - start_time
+    
+    print(f"Scraped {len(results)} data points")
+    print(f"Duration: {duration:.2f} seconds")
+    return results
 
 if __name__ == "__main__":
     asyncio.run(main())
