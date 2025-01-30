@@ -67,6 +67,19 @@ def parse_tanggal(tanggal_str):
     tanggal_full = f"{hari} {bulan_en} 20{tahun}"
     return datetime.strptime(tanggal_full, "%d %B %Y")
 
+
+def convert_to_number(value):
+    # Jika nilai mengandung 'K' (ribuan)
+    if 'K' in value:
+        return float(value.replace('K', '')) * 1000
+    # Jika nilai mengandung 'M' (jutaan)
+    elif 'M' in value:
+        return float(value.replace('M', '')) * 1000000
+    # Jika tidak ada huruf, langsung konversi ke float
+    else:
+        return float(value.replace(',', ''))  # Hapus koma jika ada
+
+
 def scrape_data(url, period, result_list, pixel):
     options = webdriver.ChromeOptions()
     options.add_argument('--disable-gpu')
@@ -138,16 +151,18 @@ if __name__ == "__main__":
 
     # List URL yang akan di-scrap
     urls = [
-        'https://bibit.id/reksadana/RD13/',
-        'https://bibit.id/reksadana/RD66/',
+        ['RD13', 'https://bibit.id/reksadana/RD13/'],
+        ['RD66', 'https://bibit.id/reksadana/RD66/'],
         # Tambahkan URL lain di sini
     ]
 
-    pixel = 2
+    pixel = 50
     data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
 
-    for url in urls:
-        print(f"\nMemulai scraping untuk URL: {url}")
+    for url_data in urls:
+        kode = url_data[0]  # Ambil kode dari indeks ke-0
+        url = url_data[1]   # Ambil URL dari indeks ke-1
+        print(f"\nMemulai scraping untuk URL: {url} (Kode: {kode})")
 
         processes = []
         manager = Manager()
@@ -184,9 +199,17 @@ if __name__ == "__main__":
             tanggal_obj = parse_tanggal(entry['tanggal'])
             tanggal_str = tanggal_obj.strftime("%Y-%m-%d")  # Format tanggal ke YYYY-MM-DD
             data_str = entry['data'].replace('Rp', '').strip()  # Hapus "Rp" dan spasi
+            
+            # Konversi data ke angka biasa
+            try:
+                data_number = convert_to_number(data_str)
+            except ValueError:
+                print(f"Gagal mengonversi data: {data_str}")
+                continue  # Lewati data yang tidak valid
+
             formatted_data.append({
                 'tanggal': tanggal_str,
-                'data': data_str
+                'data': data_number
             })
 
         # Cetak hasil akhir
@@ -195,8 +218,8 @@ if __name__ == "__main__":
             print(f"Tanggal: {entry['tanggal']}, Data: {entry['data']}")
 
         # Simpan ke CSV
-        # Buat nama file berdasarkan URL
-        csv_file = os.path.basename(url) + '.csv'
+        # Gunakan kode sebagai nama file CSV
+        csv_file = f"{kode}.csv"
         with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
             writer = csv.DictWriter(file, fieldnames=['tanggal', 'data'])
             writer.writeheader()
