@@ -151,12 +151,33 @@ if __name__ == "__main__":
 
     # List URL yang akan di-scrap
     urls = [
-        ['RD13', 'https://bibit.id/reksadana/RD13/'],
-        ['RD66', 'https://bibit.id/reksadana/RD66/'],
-        # Tambahkan URL lain di sini
+        ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],
+        ['Avrist Ada Kas Mutiara', 'https://bibit.id/reksadana/RD66'],
+        ['Avrist Ada Saham Blue Safir Kelas A','https://bibit.id/reksadana/RD68'],
+        ['Avrist IDX30','https://bibit.id/reksadana/RD82'],
+        ['Avrist Prime Bond Fund','https://bibit.id/reksadana/RD83'],
+        ['Bahana Dana Likuid Kelas G','https://bibit.id/reksadana/RD124'],
+        ['Bahana Likuid Plus','https://bibit.id/reksadana/RD140'],
+        ['Bahana Likuid Syariah Kelas G','https://bibit.id/reksadana/RD3595'],
+        ['Bahana MES Syariah Fund Kelas G','https://bibit.id/reksadana/RD1721'],
+        ['Bahana Pendapatan Tetap Makara Prima kelas G','https://bibit.id/reksadana/RD841'],
+        ['Bahana Primavera 99 Kelas G','https://bibit.id/reksadana/RD3672'],
+        ['Batavia Dana Kas Maxima','https://bibit.id/reksadana/RD205'],
+        ['Batavia Dana Likuid','https://bibit.id/reksadana/RD206'],
+        ['Batavia Dana Obligasi Ultima','https://bibit.id/reksadana/RD214'],
+        ['Batavia Dana Saham','https://bibit.id/reksadana/RD216'],
+        ['Batavia Dana Saham Syariah','https://bibit.id/reksadana/RD218'],
+        ['Batavia Index PEFINDO I-Grade','https://bibit.id/reksadana/RD6323'],
+        ['Batavia Obligasi Platinum Plus','https://bibit.id/reksadana/RD223'],
+        ['Batavia Technology Sharia Equity USD','https://bibit.id/reksadana/RD4183'],
+        ['BNI-AM Dana Lancar Syariah','https://bibit.id/reksadana/RD322'],
+        ['BNI-AM Dana Likuid Kelas A','https://bibit.id/reksadana/RD323'],
+        ['BNI-AM Dana Pendapatan Tetap Makara Investasi','https://bibit.id/reksadana/RD1409'],
+
+
     ]
 
-    pixel = 50
+    pixel = 5
     data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
 
     for url_data in urls:
@@ -219,7 +240,7 @@ if __name__ == "__main__":
 
         # Simpan ke CSV
         # Gunakan kode sebagai nama file CSV
-        csv_file = f"{kode}.csv"
+        csv_file = f"database/{kode}.csv"
         with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
             writer = csv.DictWriter(file, fieldnames=['tanggal', 'data'])
             writer.writeheader()
