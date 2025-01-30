@@ -1,10 +1,10 @@
-from datetime import date
+from datetime import date, timedelta
 import pandas as pd
 
 
 today = date.today()
 
-today_a = date(2026, 12, 11) 
+today_a = date(2029, 6, 30) 
  
 
 mydate = date(1996, 12, 11)
@@ -33,3 +33,35 @@ else :
 
 
 print(value)
+
+from datetime import timedelta
+
+pengurangan = today_a - date_database
+
+# Jika pengurangan negatif, langsung cetak dan hentikan proses
+if pengurangan < timedelta(0):
+    print("tidak proses")
+else:
+    # Daftar periode berdasarkan hari
+    period_map = [
+        (30, ['1M']),
+        (90, ['1M', '3M']),
+        (365, ['1M', '3M', 'YTD']),
+        (1095, ['1M', '3M', 'YTD', '3Y']),
+        (1825, ['1M', '3M', 'YTD', '3Y', '5Y']),
+    ]
+
+    # Default jika lebih dari 5 tahun
+    data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
+
+    # Loop untuk mencari rentang yang sesuai
+    for days, periods in period_map:
+        if pengurangan <= timedelta(days=days):
+            data_periods = periods
+            break  # Stop loop setelah menemukan rentang yang sesuai
+
+    # Cetak hasil
+    print(pengurangan)
+    print(data_periods)
+
+
