@@ -92,11 +92,15 @@ if __name__ == "__main__":
         p.join()
 
     # Cetak hasil di akhir
-    print("\nHasil akhir:")
-    for period_data in result_list:
-        print(f"\nData untuk periode {period_data[0]['period']}:")
-        for data in period_data:
-            print(f"Offset: {data['offset']}, Tanggal: {data['tanggal']}, Data: {data['data']}")
+    # print("\nHasil akhir:")
+    # for period_data in result_list:
+    #     print(f"\nData untuk periode {period_data[0]['period']}:")
+    #     for data in period_data:
+    #         print(f"Offset: {data['offset']}, Tanggal: {data['tanggal']}, Data: {data['data']}")
+
+    print()
+    print(type(result_list))
+    print()
 
     end_time = time.time()
     durasi = end_time - start_time
