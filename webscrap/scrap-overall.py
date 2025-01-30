@@ -57,10 +57,8 @@ def scrape_data(period, result_list):
 
             print(f"Period {period} - Data setelah pergeseran {offset} piksel -- tanggal {tanggal_navdate} : {updated_data}")
             
-            # Simpan data ke dalam list period_data
+            # Simpan data ke dalam list period_data (hanya Tanggal dan Data)
             period_data.append({
-                'period': period,
-                'offset': offset,
                 'tanggal': tanggal_navdate,
                 'data': updated_data
             })
@@ -91,16 +89,35 @@ if __name__ == "__main__":
     for p in processes:
         p.join()
 
-    # Cetak hasil di akhir
+    
+    # print hasil raw
     # print("\nHasil akhir:")
     # for period_data in result_list:
     #     print(f"\nData untuk periode {period_data[0]['period']}:")
     #     for data in period_data:
     #         print(f"Offset: {data['offset']}, Tanggal: {data['tanggal']}, Data: {data['data']}")
 
-    print()
-    print(type(result_list))
-    print()
+    # Gabungkan semua data dari result_list menjadi satu list
+    combined_data = []
+    for period_data in result_list:
+        combined_data.extend(period_data)
+
+    # Hapus duplikat berdasarkan Tanggal dan Data
+    unique_data = []
+    seen = set()  # Untuk melacak data yang sudah diproses
+    for entry in combined_data:
+        key = (entry['tanggal'], entry['data'])  # Gunakan tuple (Tanggal, Data) sebagai kunci
+        if key not in seen:
+            seen.add(key)
+            unique_data.append(entry)
+
+    # Urutkan data berdasarkan Tanggal (dari terlama ke terbaru)
+    sorted_data = sorted(unique_data, key=lambda x: x['tanggal'])
+
+    # Cetak hasil akhir
+    print("\nHasil akhir (Tanpa Duplikat, Diurutkan dari Tanggal Terlama):")
+    for entry in sorted_data:
+        print(f"Tanggal: {entry['tanggal']}, Data: {entry['data']}")
 
     end_time = time.time()
     durasi = end_time - start_time
