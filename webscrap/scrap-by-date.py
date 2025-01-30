@@ -4,27 +4,30 @@ import pandas as pd
 
 today = date.today()
  
-print(today)
 
 mydate = date(1996, 12, 11)
 
-print(mydate)
 
-if today >= mydate :
-    print("ya")
-
-else :
-    print("no")
 
 csv_file ="database\ABF Indonesia Bond Index Fund.csv"
 
 df = pd.read_csv(csv_file)
-adam = df.iloc[-1].tolist()
-adam_a = adam[0]
-adam_b = adam_a.replace("-", ", ")
-print(adam_b)
+latest_data = df.iloc[-1].tolist()
 
-date_from = date(adam_b)
+latest_data_date = latest_data[0]
+latest_data_value = latest_data[-1]
 
-print(date_from)
-print(type(date_from))
+LD_years, LD_months, LD_dates = latest_data_date.split("-")
+
+date_database = date(int(LD_years), int(LD_months), int(LD_dates))
+
+
+
+if date_database >= mydate :
+    value = True
+
+else :
+    value = False
+
+
+print(value)
