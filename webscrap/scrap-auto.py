@@ -3,138 +3,217 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from concurrent.futures import ThreadPoolExecutor
+from selenium.common.exceptions import *
 import time
-import asyncio
-import aiohttp
+import logging
+import traceback
 
 class BibitScraper:
     def __init__(self):
         self.options = webdriver.ChromeOptions()
-        self.options.add_argument('--disable-gpu')
-        self.options.add_argument('--disable-dev-shm-usage')
+        # Basic options
+        self.options.add_argument('--headless=new')  # Using new headless mode
         self.options.add_argument('--no-sandbox')
-        self.options.add_argument('--headless')
-        self.options.add_argument('--disable-images')  # Disable image loading
-        self.options.add_argument('--disable-javascript-harmony-shipping')
-        self.options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        self.options.add_argument('--disable-dev-shm-usage')
         
-        # Add performance preferences
-        self.options.add_experimental_option('prefs', {
-            'profile.default_content_setting_values': {
-                'cookies': 2,
-                'images': 2,
-                'javascript': 1,
-                'plugins': 2,
-                'popups': 2,
-                'geolocation': 2,
-                'notifications': 2,
-                'auto_select_certificate': 2,
-                'fullscreen': 2,
-                'mouselock': 2,
-                'mixed_script': 2,
-                'media_stream': 2,
-                'media_stream_mic': 2,
-                'media_stream_camera': 2,
-                'protocol_handlers': 2,
-                'ppapi_broker': 2,
-                'automatic_downloads': 2,
-                'midi_sysex': 2,
-                'push_messaging': 2,
-                'ssl_cert_decisions': 2,
-                'metro_switch_to_desktop': 2,
-                'protected_media_identifier': 2,
-                'app_banner': 2,
-                'site_engagement': 2,
-                'durable_storage': 2
-            }
-        })
+        # Performance options
+        self.options.add_argument('--disable-gpu')
+        self.options.add_argument('--disable-software-rasterizer')
+        self.options.add_argument('--disable-extensions')
         
-        self.service = webdriver.chrome.service.Service()
+        # Memory options
+        self.options.add_argument('--disable-application-cache')
+        self.options.add_argument('--disable-features=NetworkService')
+        
+        # Window options
+        self.options.add_argument('--window-size=1920,1080')
+        self.options.add_argument("--hide-scrollbars")
+        
+        # Additional stability options
+        self.options.add_argument('--ignore-certificate-errors')
+        self.options.add_argument('--disable-popup-blocking')
+        self.options.add_argument('--disable-notifications')
+        
         self.driver = None
-        
-    async def setup(self):
-        self.driver = webdriver.Chrome(service=self.service, options=self.options)
-        self.driver.set_page_load_timeout(10)
-        self.wait = WebDriverWait(self.driver, 5)
-        
-    def get_graph_data(self, period, offset, graph_element):
+        self.wait = None
+
+    def safe_click(self, element, max_attempts=3):
+        """Safely click an element with multiple attempts and methods."""
+        for attempt in range(max_attempts):
+            try:
+                # Try different click methods
+                if attempt == 0:
+                    element.click()
+                elif attempt == 1:
+                    ActionChains(self.driver).move_to_element(element).click().perform()
+                else:
+                    self.driver.execute_script("arguments[0].click();", element)
+                return True
+            except Exception as e:
+                if attempt == max_attempts - 1:
+                    logging.error(f"Failed to click element after {max_attempts} attempts: {str(e)}")
+                    return False
+                time.sleep(1)
+        return False
+
+    def initialize_driver(self):
+        """Initialize the webdriver with proper error handling."""
         try:
-            actions = ActionChains(self.driver)
-            actions.move_to_element_with_offset(graph_element, offset, 0).perform()
+            if self.driver:
+                self.driver.quit()
             
-            updated_data = self.wait.until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
-            ).text
-
-            tanggal_navdate = self.wait.until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))
-            ).text
-
-            return {
-                'period': period,
-                'offset': offset,
-                'date': tanggal_navdate,
-                'value': updated_data
-            }
+            self.driver = webdriver.Chrome(options=self.options)
+            self.driver.set_page_load_timeout(30)
+            self.wait = WebDriverWait(self.driver, 15)
+            return True
         except Exception as e:
+            logging.error(f"Failed to initialize driver: {str(e)}")
+            return False
+
+    def get_element_safely(self, by, selector, timeout=10, retries=3):
+        """Safely get an element with retries."""
+        for attempt in range(retries):
+            try:
+                element = WebDriverWait(self.driver, timeout).until(
+                    EC.presence_of_element_located((by, selector))
+                )
+                return element
+            except Exception as e:
+                if attempt == retries - 1:
+                    logging.error(f"Failed to find element {selector} after {retries} attempts: {str(e)}")
+                    return None
+                time.sleep(1)
+        return None
+
+    def get_graph_data_point(self, graph_element, offset):
+        """Get a single data point from the graph."""
+        try:
+            # Move to element
+            actions = ActionChains(self.driver)
+            actions.move_to_element_with_offset(graph_element, offset, 0)
+            actions.perform()
+            
+            # Small wait for tooltip to update
+            time.sleep(0.2)
+            
+            # Get data
+            value = self.get_element_safely(
+                By.CSS_SELECTOR, 
+                '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'
+            )
+            date = self.get_element_safely(By.CSS_SELECTOR, '.navDate')
+            
+            if value and date:
+                return {
+                    'value': value.text,
+                    'date': date.text
+                }
+            return None
+            
+        except Exception as e:
+            logging.debug(f"Failed to get data point at offset {offset}: {str(e)}")
             return None
 
-    async def scrape_period(self, period):
+    def scrape_period(self, period):
+        """Scrape data for a specific period."""
         try:
-            button = self.wait.until(
-                EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]'))
+            logging.info(f"Starting to scrape period: {period}")
+            
+            # Find and click period button
+            button = self.get_element_safely(
+                By.CSS_SELECTOR,
+                f'button[data-period="{period}"]',
+                timeout=15
             )
-            button.click()
             
-            # Reduced sleep time
-            time.sleep(0.5)
-            
-            graph_element = self.driver.find_element(By.TAG_NAME, 'svg')
-            graph_width = int(graph_element.size['width'])
-            start_offset = -graph_width // 2
-            
-            # Use ThreadPoolExecutor for parallel processing of graph points
-            with ThreadPoolExecutor(max_workers=4) as executor:
-                futures = []
-                for offset in range(start_offset, start_offset + graph_width, 10):  # Increased step size
-                    futures.append(
-                        executor.submit(self.get_graph_data, period, offset, graph_element)
-                    )
+            if not button:
+                logging.error(f"Could not find button for period {period}")
+                return []
                 
-                results = [future.result() for future in futures if future.result() is not None]
-                return results
-                
+            # Scroll into view and click
+            self.driver.execute_script("arguments[0].scrollIntoView(true);", button)
+            time.sleep(1)
+            
+            if not self.safe_click(button):
+                logging.error(f"Failed to click button for period {period}")
+                return []
+            
+            # Wait for graph to update
+            time.sleep(2)
+            
+            # Get graph element
+            graph = self.get_element_safely(By.TAG_NAME, 'svg', timeout=15)
+            if not graph:
+                logging.error("Could not find graph element")
+                return []
+            
+            # Calculate points to sample
+            width = int(graph.size['width'])
+            start_offset = -width // 2
+            step = 20  # Increased step size for stability
+            
+            results = []
+            for offset in range(start_offset, start_offset + width, step):
+                data = self.get_graph_data_point(graph, offset)
+                if data:
+                    data['period'] = period
+                    data['offset'] = offset
+                    results.append(data)
+            
+            logging.info(f"Successfully collected {len(results)} points for period {period}")
+            return results
+            
         except Exception as e:
-            print(f"Error scraping period {period}: {e}")
+            logging.error(f"Error in scrape_period for {period}: {str(e)}\n{traceback.format_exc()}")
             return []
 
-    async def scrape_all(self, url):
-        await self.setup()
-        self.driver.get(url)
-        
-        data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
-        all_results = []
-        
-        for period in data_periods:
-            results = await self.scrape_period(period)
-            all_results.extend(results)
-        
-        self.driver.quit()
-        return all_results
+    def scrape(self, url):
+        """Main scraping function."""
+        if not self.initialize_driver():
+            return []
+            
+        try:
+            logging.info(f"Navigating to {url}")
+            self.driver.get(url)
+            time.sleep(3)  # Wait for initial page load
+            
+            data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
+            all_results = []
+            
+            for period in data_periods:
+                results = self.scrape_period(period)
+                all_results.extend(results)
+                time.sleep(1)  # Break between periods
+                
+            return all_results
+            
+        except Exception as e:
+            logging.error(f"Scraping failed: {str(e)}\n{traceback.format_exc()}")
+            return []
+        finally:
+            if self.driver:
+                self.driver.quit()
 
-async def main():
+def main():
+    # Setup logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s'
+    )
+    
     start_time = time.time()
     
     scraper = BibitScraper()
-    results = await scraper.scrape_all('https://bibit.id/reksadana/RD66/avrist-ada-kas-mutiara')
+    results = scraper.scrape('https://bibit.id/reksadana/RD66/avrist-ada-kas-mutiara')
     
     end_time = time.time()
     duration = end_time - start_time
     
-    print(f"Scraped {len(results)} data points")
+    print(f"\nResults:")
+    print(f"Total data points: {len(results)}")
     print(f"Duration: {duration:.2f} seconds")
+    
     return results
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    results = main()
