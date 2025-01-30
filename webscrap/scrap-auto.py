@@ -4,191 +4,200 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import *
-from bs4 import BeautifulSoup
 import time
 import logging
 import traceback
 from datetime import datetime
-from concurrent.futures import ThreadPoolExecutor
-import concurrent.futures
 
-class HybridScraper:
+class BibitScraper:
     def __init__(self):
         self.options = webdriver.ChromeOptions()
         # Basic options
         self.options.add_argument('--headless=new')
         self.options.add_argument('--no-sandbox')
         self.options.add_argument('--disable-dev-shm-usage')
+        
+        # Performance options
         self.options.add_argument('--disable-gpu')
-        self.options.add_argument('--window-size=1920,1080')
-        
-        # Performance optimizations
-        self.options.add_argument('--disable-javascript-harmony-shipping')
-        self.options.add_argument('--disable-features=NetworkService')
-        self.options.add_argument('--disable-dev-tools')
-        self.options.add_argument('--dns-prefetch-disable')
-        self.options.add_argument('--disable-browser-side-navigation')
-        
-        # Memory optimizations
+        self.options.add_argument('--disable-software-rasterizer')
         self.options.add_argument('--disable-extensions')
+        
+        # Memory options
         self.options.add_argument('--disable-application-cache')
-        self.options.add_argument('--aggressive-cache-discard')
-        self.options.add_argument('--disable-cache')
+        self.options.add_argument('--disable-features=NetworkService')
+        
+        # Window options
+        self.options.add_argument('--window-size=1920,1080')
+        self.options.add_argument("--hide-scrollbars")
+        
+        # Additional stability options
+        self.options.add_argument('--ignore-certificate-errors')
+        self.options.add_argument('--disable-popup-blocking')
+        self.options.add_argument('--disable-notifications')
         
         self.driver = None
         self.wait = None
-        self.current_period = None
-        self.data_cache = {}
+
+    def safe_click(self, element, max_attempts=3):
+        for attempt in range(max_attempts):
+            try:
+                if attempt == 0:
+                    element.click()
+                elif attempt == 1:
+                    ActionChains(self.driver).move_to_element(element).click().perform()
+                else:
+                    self.driver.execute_script("arguments[0].click();", element)
+                return True
+            except Exception as e:
+                if attempt == max_attempts - 1:
+                    logging.error(f"Failed to click element after {max_attempts} attempts: {str(e)}")
+                    return False
+                time.sleep(1)
+        return False
 
     def initialize_driver(self):
-        if self.driver:
-            self.driver.quit()
-        self.driver = webdriver.Chrome(options=self.options)
-        self.driver.set_page_load_timeout(30)
-        self.wait = WebDriverWait(self.driver, 10)
-        return True
-
-    def parse_tooltip_data(self, html_content):
-        """Parse tooltip data using BeautifulSoup"""
         try:
-            soup = BeautifulSoup(html_content, 'html.parser')
-            value_element = soup.select_one('.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL')
-            date_element = soup.select_one('.navDate')
+            if self.driver:
+                self.driver.quit()
             
-            if value_element and date_element:
-                return {
-                    'value': value_element.text.replace('Rp', '').strip(),
-                    'date': date_element.text.strip()
-                }
-            return None
+            self.driver = webdriver.Chrome(options=self.options)
+            self.driver.set_page_load_timeout(30)
+            self.wait = WebDriverWait(self.driver, 15)
+            return True
         except Exception as e:
-            logging.debug(f"Failed to parse tooltip: {str(e)}")
-            return None
+            logging.error(f"Failed to initialize driver: {str(e)}")
+            return False
 
-    def get_data_point(self, graph_element, offset):
-        """Get single data point with optimized parsing"""
+    def get_element_safely(self, by, selector, timeout=10, retries=3):
+        for attempt in range(retries):
+            try:
+                element = WebDriverWait(self.driver, timeout).until(
+                    EC.presence_of_element_located((by, selector))
+                )
+                return element
+            except Exception as e:
+                if attempt == retries - 1:
+                    logging.error(f"Failed to find element {selector} after {retries} attempts: {str(e)}")
+                    return None
+                time.sleep(1)
+        return None
+
+    def get_graph_data_point(self, graph_element, offset):
         try:
             actions = ActionChains(self.driver)
             actions.move_to_element_with_offset(graph_element, offset, 0)
             actions.perform()
             
-            # Minimal wait
-            time.sleep(0.1)
+            time.sleep(0.2)
             
-            # Get tooltip content directly from DOM
-            tooltip_html = self.driver.find_element(By.CSS_SELECTOR, '.ChartHead_chart-head__RXkYG').get_attribute('innerHTML')
+            value = self.get_element_safely(
+                By.CSS_SELECTOR, 
+                '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'
+            )
+            date = self.get_element_safely(By.CSS_SELECTOR, '.navDate')
             
-            data = self.parse_tooltip_data(tooltip_html)
-            if data:
-                data['offset'] = offset
-                data['period'] = self.current_period
-                return data
+            if value and date:
+                return {
+                    'value': value.text.replace('Rp', '').strip(),
+                    'date': date.text
+                }
             return None
             
         except Exception as e:
             logging.debug(f"Failed to get data point at offset {offset}: {str(e)}")
             return None
 
-    def process_data_chunk(self, graph_element, offsets):
-        """Process a chunk of offsets in parallel"""
-        results = []
-        for offset in offsets:
-            data = self.get_data_point(graph_element, offset)
-            if data:
-                results.append(data)
-        return results
-
-    def scrape_period(self, period):
-        """Scrape data for a period using parallel processing"""
-        try:
-            self.current_period = period
-            logging.info(f"Processing period: {period}")
-            
-            # Click period button
-            button = self.wait.until(
-                EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]'))
-            )
-            self.driver.execute_script("arguments[0].click();", button)
-            time.sleep(1)  # Wait for graph update
-            
-            # Get graph element
-            graph = self.wait.until(
-                EC.presence_of_element_located((By.TAG_NAME, 'svg'))
-            )
-            
-            width = int(graph.size['width'])
-            start_offset = -width // 2
-            offsets = range(start_offset, start_offset + width, 5)  # 5 pixel steps as requested
-            
-            # Split offsets into chunks for parallel processing
-            chunk_size = 20
-            offset_chunks = [list(offsets[i:i + chunk_size]) for i in range(0, len(offsets), chunk_size)]
-            
-            results = []
-            with ThreadPoolExecutor(max_workers=4) as executor:
-                futures = []
-                for chunk in offset_chunks:
-                    future = executor.submit(self.process_data_chunk, graph, chunk)
-                    futures.append(future)
-                
-                for future in concurrent.futures.as_completed(futures):
-                    chunk_results = future.result()
-                    results.extend(chunk_results)
-            
-            # Sort results by date
-            results.sort(key=lambda x: datetime.strptime(x['date'], '%d %b %Y'))
-            
-            # Cache results
-            self.data_cache[period] = results
-            
-            # Print results
-            self.print_period_data(results, period)
-            
-            return results
-            
-        except Exception as e:
-            logging.error(f"Error in period {period}: {str(e)}")
-            return []
-
-    def print_period_data(self, results, period):
-        """Print formatted data for a period"""
+    def print_period_summary(self, results, period):
         if not results:
-            print(f"\nNo data for period: {period}")
+            print(f"\nNo data found for period {period}")
             return
             
         print(f"\nPeriod: {period}")
-        print("-" * 60)
-        print(f"{'Date':<20} {'Value':>15} {'Offset':>10}")
-        print("-" * 60)
+        print("-" * 50)
+        print(f"{'Date':<20} {'Value':>15}")
+        print("-" * 50)
         
-        for result in sorted(results, key=lambda x: datetime.strptime(x['date'], '%d %b %Y')):
-            print(f"{result['date']:<20} {result['value']:>15} {result['offset']:>10}")
+        for result in results:
+            print(f"{result['date']:<20} {result['value']:>15}")
         
-        print("-" * 60)
-        print(f"Total points: {len(results)}")
+        print("-" * 50)
+        print(f"Total data points for {period}: {len(results)}")
+
+    def scrape_period(self, period):
+        try:
+            logging.info(f"Starting to scrape period: {period}")
+            
+            button = self.get_element_safely(
+                By.CSS_SELECTOR,
+                f'button[data-period="{period}"]',
+                timeout=15
+            )
+            
+            if not button:
+                logging.error(f"Could not find button for period {period}")
+                return []
+                
+            self.driver.execute_script("arguments[0].scrollIntoView(true);", button)
+            time.sleep(1)
+            
+            if not self.safe_click(button):
+                logging.error(f"Failed to click button for period {period}")
+                return []
+            
+            time.sleep(2)
+            
+            graph = self.get_element_safely(By.TAG_NAME, 'svg', timeout=15)
+            if not graph:
+                logging.error("Could not find graph element")
+                return []
+            
+            width = int(graph.size['width'])
+            start_offset = -width // 2
+            step = 5
+            
+            results = []
+            for offset in range(start_offset, start_offset + width, step):
+                data = self.get_graph_data_point(graph, offset)
+                if data:
+                    data['period'] = period
+                    data['offset'] = offset
+                    results.append(data)
+            
+            # Print results for this period
+            self.print_period_summary(results, period)
+            
+            logging.info(f"Successfully collected {len(results)} points for period {period}")
+            return results
+            
+        except Exception as e:
+            logging.error(f"Error in scrape_period for {period}: {str(e)}\n{traceback.format_exc()}")
+            return []
 
     def scrape(self, url):
-        """Main scraping function with optimized workflow"""
+        if not self.initialize_driver():
+            return []
+            
         try:
-            self.initialize_driver()
-            print(f"\nStarting scrape at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+            print(f"\nStarting scraping at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
             print(f"URL: {url}")
-            print("=" * 60)
+            print("=" * 50)
             
+            logging.info(f"Navigating to {url}")
             self.driver.get(url)
-            time.sleep(2)  # Initial load
+            time.sleep(3)
             
-            periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
+            data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
             all_results = []
             
-            for period in periods:
+            for period in data_periods:
                 results = self.scrape_period(period)
                 all_results.extend(results)
-            
+                time.sleep(1)
+                
             return all_results
             
         except Exception as e:
-            logging.error(f"Scraping failed: {str(e)}")
+            logging.error(f"Scraping failed: {str(e)}\n{traceback.format_exc()}")
             return []
         finally:
             if self.driver:
@@ -202,18 +211,18 @@ def main():
     
     start_time = time.time()
     
-    scraper = HybridScraper()
+    scraper = BibitScraper()
     results = scraper.scrape('https://bibit.id/reksadana/RD66/avrist-ada-kas-mutiara')
     
     end_time = time.time()
     duration = end_time - start_time
     
-    print("\nScraping Summary")
-    print("=" * 60)
+    print("\nScraping Summary:")
+    print("=" * 50)
     print(f"Total data points: {len(results)}")
     print(f"Duration: {duration:.2f} seconds")
-    print(f"Speed: {len(results)/duration:.2f} points/second")
-    print("=" * 60)
+    print(f"Average time per data point: {(duration/len(results) if results else 0):.2f} seconds")
+    print("=" * 50)
     
     return results
 
