@@ -1,13 +1,21 @@
+import csv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
-from multiprocessing import Process, Queue
-import csv
+from multiprocessing import Process, Lock
 
-def scrape_data(period, queue):
+# Fungsi untuk menulis data ke CSV
+def write_to_csv(data, lock):
+    with lock:
+        with open('output.csv', mode='a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(data)
+
+# Fungsi untuk scraping data
+def scrape_data(period, lock):
     options = webdriver.ChromeOptions()
     options.add_argument('--disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
@@ -38,9 +46,11 @@ def scrape_data(period, queue):
         start_offset = -graph_width // 2
 
         actions = ActionChains(driver)
-        data = []
+        hitung = 1
 
         for offset in range(start_offset, start_offset + graph_width, 5):
+            print(f"Period {period} - Iterasi {hitung}")
+            
             actions.move_to_element_with_offset(graph_element, offset, 0).perform()
             time.sleep(0.1)
 
@@ -53,59 +63,42 @@ def scrape_data(period, queue):
             ).text
 
             print(f"Period {period} - Data setelah pergeseran {offset} piksel -- tanggal {tanggal_navdate} : {updated_data}")
-            data.append(updated_data)
+            
+            # Simpan data ke CSV
+            data_row = [hitung, period, updated_data, tanggal_navdate]
+            write_to_csv(data_row, lock)
+            
+            hitung += 1
 
     except Exception as e:
         print(f"Gagal mengklik tombol dengan data-period={period}: {e}")
     finally:
         driver.quit()
-        queue.put((period, data))  # Kirim data ke proses utama
 
 if __name__ == "__main__":
     start_time = time.time()
 
+    # Inisialisasi file CSV dengan header
+    with open('output.csv', mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['Pergeseran ke', 'Periode', 'Nilai', 'Tanggal'])  # Header
+
     data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
     processes = []
-    queue = Queue()  # Untuk mengumpulkan data dari proses
+    lock = Lock()  # Lock untuk menghindari race condition saat menulis ke CSV
 
     for period in data_periods:
-        p = Process(target=scrape_data, args=(period, queue))
+        p = Process(target=scrape_data, args=(period, lock))
         processes.append(p)
         p.start()
 
     for p in processes:
         p.join()
 
-    # Kumpulkan semua data dari queue
-    results = {}
-    while not queue.empty():
-        period, data = queue.get()
-        results[period] = data
-
-    # Simpan data ke CSV
-    with open('output.csv', 'w', newline='') as csvfile:
-        writer = csv.writer(csvfile)
-        
-        # Header CSV
-        header = ['Pergeseran ke'] + data_periods
-        writer.writerow(header)
-        
-        # Data CSV
-        max_length = max(len(results[period]) for period in data_periods)
-        for i in range(max_length):
-            row = [i + 1]  # Nomor pergeseran
-            for period in data_periods:
-                if i < len(results[period]):
-                    row.append(results[period][i])
-                else:
-                    row.append('')  # Kosongkan jika data tidak ada
-            writer.writerow(row)
-
     end_time = time.time()
     durasi = end_time - start_time
     print()
     print("====")
     print(f"Total waktu eksekusi: {durasi} detik")
-    print("Data telah disimpan ke output.csv")
     print("====")
     print()
