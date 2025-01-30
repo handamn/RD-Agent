@@ -65,7 +65,7 @@ def parse_tanggal(tanggal_str):
     tanggal_full = f"{hari} {bulan_en} 20{tahun}"
     return datetime.strptime(tanggal_full, "%d %B %Y")
 
-def scrape_data(period, result_list):
+def scrape_data(url_rd , period, result_list, pergeseran_piksel):
     options = webdriver.ChromeOptions()
     options.add_argument('--disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
@@ -74,8 +74,7 @@ def scrape_data(period, result_list):
     service = webdriver.chrome.service.Service()
     driver = webdriver.Chrome(service=service, options=options)
 
-    url = 'https://bibit.id/reksadana/RD66/avrist-ada-kas-mutiara'
-    driver.get(url)
+    driver.get(url_rd)
 
     try:
         button = WebDriverWait(driver, 10).until(
@@ -100,7 +99,7 @@ def scrape_data(period, result_list):
 
         period_data = []  # List untuk menyimpan data per periode
 
-        for offset in range(start_offset, start_offset + graph_width, 5):
+        for offset in range(start_offset, start_offset + graph_width, pergeseran_piksel):
             print(f"Period {period} - Iterasi {hitung}")
             
             actions.move_to_element_with_offset(graph_element, offset, 0).perform()
@@ -135,13 +134,17 @@ def scrape_data(period, result_list):
 if __name__ == "__main__":
     start_time = time.time()
 
+    pergeseran_piksel = 2
+    url_rd = 'https://bibit.id/reksadana/RD66/avrist-ada-kas-mutiara'
+
     data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
     processes = []
     manager = Manager()
     result_list = manager.list()  # List shared antar proses
+    
 
     for period in data_periods:
-        p = Process(target=scrape_data, args=(period, result_list))
+        p = Process(target=scrape_data, args=(url_rd, period, result_list, pergeseran_piksel))
         processes.append(p)
         p.start()
 
@@ -177,6 +180,8 @@ if __name__ == "__main__":
     print(f"Total waktu eksekusi: {durasi} detik")
     print("====")
     print()
+
+    print(sorted_data)
 
 
     # print hasil raw
