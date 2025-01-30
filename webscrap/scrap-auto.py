@@ -7,12 +7,13 @@ from selenium.common.exceptions import *
 import time
 import logging
 import traceback
+from datetime import datetime
 
 class BibitScraper:
     def __init__(self):
         self.options = webdriver.ChromeOptions()
         # Basic options
-        self.options.add_argument('--headless=new')  # Using new headless mode
+        self.options.add_argument('--headless=new')
         self.options.add_argument('--no-sandbox')
         self.options.add_argument('--disable-dev-shm-usage')
         
@@ -38,10 +39,8 @@ class BibitScraper:
         self.wait = None
 
     def safe_click(self, element, max_attempts=3):
-        """Safely click an element with multiple attempts and methods."""
         for attempt in range(max_attempts):
             try:
-                # Try different click methods
                 if attempt == 0:
                     element.click()
                 elif attempt == 1:
@@ -57,7 +56,6 @@ class BibitScraper:
         return False
 
     def initialize_driver(self):
-        """Initialize the webdriver with proper error handling."""
         try:
             if self.driver:
                 self.driver.quit()
@@ -71,7 +69,6 @@ class BibitScraper:
             return False
 
     def get_element_safely(self, by, selector, timeout=10, retries=3):
-        """Safely get an element with retries."""
         for attempt in range(retries):
             try:
                 element = WebDriverWait(self.driver, timeout).until(
@@ -86,17 +83,13 @@ class BibitScraper:
         return None
 
     def get_graph_data_point(self, graph_element, offset):
-        """Get a single data point from the graph."""
         try:
-            # Move to element
             actions = ActionChains(self.driver)
             actions.move_to_element_with_offset(graph_element, offset, 0)
             actions.perform()
             
-            # Small wait for tooltip to update
             time.sleep(0.2)
             
-            # Get data
             value = self.get_element_safely(
                 By.CSS_SELECTOR, 
                 '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'
@@ -105,7 +98,7 @@ class BibitScraper:
             
             if value and date:
                 return {
-                    'value': value.text,
+                    'value': value.text.replace('Rp', '').strip(),
                     'date': date.text
                 }
             return None
@@ -114,12 +107,26 @@ class BibitScraper:
             logging.debug(f"Failed to get data point at offset {offset}: {str(e)}")
             return None
 
+    def print_period_summary(self, results, period):
+        if not results:
+            print(f"\nNo data found for period {period}")
+            return
+            
+        print(f"\nPeriod: {period}")
+        print("-" * 50)
+        print(f"{'Date':<20} {'Value':>15}")
+        print("-" * 50)
+        
+        for result in results:
+            print(f"{result['date']:<20} {result['value']:>15}")
+        
+        print("-" * 50)
+        print(f"Total data points for {period}: {len(results)}")
+
     def scrape_period(self, period):
-        """Scrape data for a specific period."""
         try:
             logging.info(f"Starting to scrape period: {period}")
             
-            # Find and click period button
             button = self.get_element_safely(
                 By.CSS_SELECTOR,
                 f'button[data-period="{period}"]',
@@ -130,7 +137,6 @@ class BibitScraper:
                 logging.error(f"Could not find button for period {period}")
                 return []
                 
-            # Scroll into view and click
             self.driver.execute_script("arguments[0].scrollIntoView(true);", button)
             time.sleep(1)
             
@@ -138,19 +144,16 @@ class BibitScraper:
                 logging.error(f"Failed to click button for period {period}")
                 return []
             
-            # Wait for graph to update
             time.sleep(2)
             
-            # Get graph element
             graph = self.get_element_safely(By.TAG_NAME, 'svg', timeout=15)
             if not graph:
                 logging.error("Could not find graph element")
                 return []
             
-            # Calculate points to sample
             width = int(graph.size['width'])
             start_offset = -width // 2
-            step = 20  # Increased step size for stability
+            step = 5
             
             results = []
             for offset in range(start_offset, start_offset + width, step):
@@ -160,6 +163,9 @@ class BibitScraper:
                     data['offset'] = offset
                     results.append(data)
             
+            # Print results for this period
+            self.print_period_summary(results, period)
+            
             logging.info(f"Successfully collected {len(results)} points for period {period}")
             return results
             
@@ -168,14 +174,17 @@ class BibitScraper:
             return []
 
     def scrape(self, url):
-        """Main scraping function."""
         if not self.initialize_driver():
             return []
             
         try:
+            print(f"\nStarting scraping at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+            print(f"URL: {url}")
+            print("=" * 50)
+            
             logging.info(f"Navigating to {url}")
             self.driver.get(url)
-            time.sleep(3)  # Wait for initial page load
+            time.sleep(3)
             
             data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
             all_results = []
@@ -183,7 +192,7 @@ class BibitScraper:
             for period in data_periods:
                 results = self.scrape_period(period)
                 all_results.extend(results)
-                time.sleep(1)  # Break between periods
+                time.sleep(1)
                 
             return all_results
             
@@ -195,7 +204,6 @@ class BibitScraper:
                 self.driver.quit()
 
 def main():
-    # Setup logging
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s - %(levelname)s - %(message)s'
@@ -209,9 +217,12 @@ def main():
     end_time = time.time()
     duration = end_time - start_time
     
-    print(f"\nResults:")
+    print("\nScraping Summary:")
+    print("=" * 50)
     print(f"Total data points: {len(results)}")
     print(f"Duration: {duration:.2f} seconds")
+    print(f"Average time per data point: {(duration/len(results) if results else 0):.2f} seconds")
+    print("=" * 50)
     
     return results
 
