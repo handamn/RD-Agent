@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 from multiprocessing import Process, Manager
+import csv
 
 # Fungsi untuk mengubah format tanggal dari "ddmmmyy" ke objek datetime
 def parse_tanggal(tanggal_str):
@@ -65,7 +66,7 @@ def parse_tanggal(tanggal_str):
     tanggal_full = f"{hari} {bulan_en} 20{tahun}"
     return datetime.strptime(tanggal_full, "%d %B %Y")
 
-def scrape_data(url_rd , period, result_list, pergeseran_piksel):
+def scrape_data(url, period, result_list, pixel):
     options = webdriver.ChromeOptions()
     options.add_argument('--disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
@@ -74,7 +75,7 @@ def scrape_data(url_rd , period, result_list, pergeseran_piksel):
     service = webdriver.chrome.service.Service()
     driver = webdriver.Chrome(service=service, options=options)
 
-    driver.get(url_rd)
+    driver.get(url)
 
     try:
         button = WebDriverWait(driver, 10).until(
@@ -99,7 +100,7 @@ def scrape_data(url_rd , period, result_list, pergeseran_piksel):
 
         period_data = []  # List untuk menyimpan data per periode
 
-        for offset in range(start_offset, start_offset + graph_width, pergeseran_piksel):
+        for offset in range(start_offset, start_offset + graph_width, pixel):
             print(f"Period {period} - Iterasi {hitung}")
             
             actions.move_to_element_with_offset(graph_element, offset, 0).perform()
@@ -134,17 +135,15 @@ def scrape_data(url_rd , period, result_list, pergeseran_piksel):
 if __name__ == "__main__":
     start_time = time.time()
 
-    pergeseran_piksel = 2
-    url_rd = 'https://bibit.id/reksadana/RD66/avrist-ada-kas-mutiara'
-
+    url = 'https://bibit.id/reksadana/RD66/avrist-ada-kas-mutiara'
+    pixel = 2
     data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
     processes = []
     manager = Manager()
     result_list = manager.list()  # List shared antar proses
-    
 
     for period in data_periods:
-        p = Process(target=scrape_data, args=(url_rd, period, result_list, pergeseran_piksel))
+        p = Process(target=scrape_data, args=(url, period, result_list, pixel))
         processes.append(p)
         p.start()
 
@@ -168,10 +167,31 @@ if __name__ == "__main__":
     # Ubah format tanggal dan urutkan data berdasarkan Tanggal (dari terlama ke terbaru)
     sorted_data = sorted(unique_data, key=lambda x: parse_tanggal(x['tanggal']))
 
+    # Format ulang tanggal dan data
+    formatted_data = []
+    for entry in sorted_data:
+        tanggal_obj = parse_tanggal(entry['tanggal'])
+        tanggal_str = tanggal_obj.strftime("%Y-%m-%d")  # Format tanggal ke YYYY-MM-DD
+        data_str = entry['data'].replace('Rp', '').strip()  # Hapus "Rp" dan spasi
+        formatted_data.append({
+            'tanggal': tanggal_str,
+            'data': data_str
+        })
+
     # Cetak hasil akhir
     print("\nHasil akhir (Tanpa Duplikat, Diurutkan dari Tanggal Terlama):")
-    for entry in sorted_data:
+    for entry in formatted_data:
         print(f"Tanggal: {entry['tanggal']}, Data: {entry['data']}")
+
+    # Simpan ke CSV
+    csv_file = 'ada_kas_mutiara.csv'
+    with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
+        writer = csv.DictWriter(file, fieldnames=['tanggal', 'data'])
+        writer.writeheader()
+        for entry in formatted_data:
+            writer.writerow(entry)
+
+    print(f"\nData telah disimpan ke {csv_file}")
 
     end_time = time.time()
     durasi = end_time - start_time
@@ -180,8 +200,6 @@ if __name__ == "__main__":
     print(f"Total waktu eksekusi: {durasi} detik")
     print("====")
     print()
-
-    print(sorted_data)
 
 
     # print hasil raw
