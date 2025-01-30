@@ -238,7 +238,7 @@ if __name__ == "__main__":
 
         # Simpan ke CSV
         # Gunakan kode sebagai nama file CSV
-        csv_file = f"{kode}.csv"
+        csv_file = f"database/{kode}.csv"
         with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
             writer = csv.DictWriter(file, fieldnames=['tanggal', 'data'])
             writer.writeheader()
