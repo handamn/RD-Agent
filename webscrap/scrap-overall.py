@@ -1,3 +1,4 @@
+from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
@@ -5,6 +6,64 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 from multiprocessing import Process, Manager
+
+# Fungsi untuk mengubah format tanggal dari "ddmmmyy" ke objek datetime
+def parse_tanggal(tanggal_str):
+    # Kamus untuk memetakan singkatan bulan ke nama bulan dalam bahasa Indonesia
+    bulan_map_id = {
+        'Jan': 'Januari',
+        'Feb': 'Februari',
+        'Mar': 'Maret',
+        'Apr': 'April',
+        'Mei': 'Mei',
+        'Jun': 'Juni',
+        'Jul': 'Juli',
+        'Agt': 'Agustus',
+        'Sep': 'September',
+        'Okt': 'Oktober',
+        'Nov': 'November',
+        'Des': 'Desember'
+    }
+
+    # Kamus untuk memetakan nama bulan dalam bahasa Indonesia ke bahasa Inggris
+    bulan_map_en = {
+        'Januari': 'January',
+        'Februari': 'February',
+        'Maret': 'March',
+        'April': 'April',
+        'Mei': 'May',
+        'Juni': 'June',
+        'Juli': 'July',
+        'Agustus': 'August',
+        'September': 'September',
+        'Oktober': 'October',
+        'November': 'November',
+        'Desember': 'December'
+    }
+
+    # Pisahkan tanggal, bulan, dan tahun
+    parts = tanggal_str.split()
+    if len(parts) != 3:
+        raise ValueError(f"Format tanggal tidak valid: {tanggal_str}")
+
+    hari = parts[0]
+    bulan_singkat = parts[1]
+    tahun = parts[2]
+
+    # Ubah singkatan bulan ke nama bulan dalam bahasa Indonesia
+    if bulan_singkat not in bulan_map_id:
+        raise ValueError(f"Bulan tidak valid: {bulan_singkat}")
+    bulan_id = bulan_map_id[bulan_singkat]
+
+    # Ubah nama bulan dalam bahasa Indonesia ke bahasa Inggris
+    if bulan_id not in bulan_map_en:
+        raise ValueError(f"Bulan tidak valid: {bulan_id}")
+    bulan_en = bulan_map_en[bulan_id]
+
+    # Gabungkan menjadi format yang bisa dipahami oleh datetime
+    # Misalnya: "1 Agt 24" -> "1 August 2024"
+    tanggal_full = f"{hari} {bulan_en} 20{tahun}"
+    return datetime.strptime(tanggal_full, "%d %B %Y")
 
 def scrape_data(period, result_list):
     options = webdriver.ChromeOptions()
@@ -89,14 +148,6 @@ if __name__ == "__main__":
     for p in processes:
         p.join()
 
-    
-    # print hasil raw
-    # print("\nHasil akhir:")
-    # for period_data in result_list:
-    #     print(f"\nData untuk periode {period_data[0]['period']}:")
-    #     for data in period_data:
-    #         print(f"Offset: {data['offset']}, Tanggal: {data['tanggal']}, Data: {data['data']}")
-
     # Gabungkan semua data dari result_list menjadi satu list
     combined_data = []
     for period_data in result_list:
@@ -111,8 +162,8 @@ if __name__ == "__main__":
             seen.add(key)
             unique_data.append(entry)
 
-    # Urutkan data berdasarkan Tanggal (dari terlama ke terbaru)
-    sorted_data = sorted(unique_data, key=lambda x: x['tanggal'])
+    # Ubah format tanggal dan urutkan data berdasarkan Tanggal (dari terlama ke terbaru)
+    sorted_data = sorted(unique_data, key=lambda x: parse_tanggal(x['tanggal']))
 
     # Cetak hasil akhir
     print("\nHasil akhir (Tanpa Duplikat, Diurutkan dari Tanggal Terlama):")
@@ -126,3 +177,11 @@ if __name__ == "__main__":
     print(f"Total waktu eksekusi: {durasi} detik")
     print("====")
     print()
+
+
+    # print hasil raw
+    # print("\nHasil akhir:")
+    # for period_data in result_list:
+    #     print(f"\nData untuk periode {period_data[0]['period']}:")
+    #     for data in period_data:
+    #         print(f"Offset: {data['offset']}, Tanggal: {data['tanggal']}, Data: {data['data']}")
