@@ -5,9 +5,24 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
-from multiprocessing import Process, Manager
 import csv
 import os
+import logging
+from multiprocessing import Process, Manager
+from tqdm import tqdm
+from itertools import cycle
+
+# Konfigurasi logging
+log_file = "scraping.log"
+logging.basicConfig(
+    filename=log_file,
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S"
+)
+
+# Simbol animasi untuk progress bar
+symbols = cycle(['⣾', '⣷', '⣯', '⣟', '⡿', '⢿', '⣻', '⣽'])
 
 # Fungsi untuk mengubah format tanggal dari "ddmmmyy" ke objek datetime
 def parse_tanggal(tanggal_str):
@@ -80,71 +95,53 @@ def convert_to_number(value):
         return float(value.replace(',', ''))  # Hapus koma jika ada
 
 
-def scrape_data(url, period, result_list, pixel):
+def scrape_data(url, period, result_list, pixel, progress_bar):
     options = webdriver.ChromeOptions()
     options.add_argument('--disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--no-sandbox')
-    options.add_argument('--headless')  # Run in background
+    options.add_argument('--headless')
     service = webdriver.chrome.service.Service()
     driver = webdriver.Chrome(service=service, options=options)
-
     driver.get(url)
 
     try:
         button = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]'))
         )
-
         button_text = button.find_element(By.CSS_SELECTOR, '.reksa-border-button-period-box').text
-        print(f"Tombol yang diklik memiliki teks: {button_text}")
-        
+        logging.info(f"Klik tombol: {button_text} di {url} (Periode: {period})")
         button.click()
-        print(f"Tombol {button_text} berhasil diklik!")
-
         time.sleep(2)
 
         graph_element = driver.find_element(By.TAG_NAME, 'svg')
-        graph_width = graph_element.size['width']
-        graph_width = int(graph_width)
+        graph_width = int(graph_element.size['width'])
         start_offset = -graph_width // 2
-
         actions = ActionChains(driver)
-        hitung = 1
-
-        period_data = []  # List untuk menyimpan data per periode
+        period_data = []
 
         for offset in range(start_offset, start_offset + graph_width, pixel):
-            print(f"Period {period} - Iterasi {hitung}")
-            
             actions.move_to_element_with_offset(graph_element, offset, 0).perform()
             time.sleep(0.1)
 
             updated_data = WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
+                EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav'))
             ).text
-
             tanggal_navdate = WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))
             ).text
 
-            print(f"Period {period} - Data setelah pergeseran {offset} piksel -- tanggal {tanggal_navdate} : {updated_data}")
-            
-            # Simpan data ke dalam list period_data (hanya Tanggal dan Data)
-            period_data.append({
-                'tanggal': tanggal_navdate,
-                'data': updated_data
-            })
-            
-            hitung += 1
+            logging.info(f"{url} [{period}] - {tanggal_navdate}: {updated_data}")
+            period_data.append({'tanggal': tanggal_navdate, 'data': updated_data})
 
-        # Simpan hasil periode ke dalam result_list
+            progress_bar.update(1)
+
         result_list.append(period_data)
-
     except Exception as e:
-        print(f"Gagal mengklik tombol dengan data-period={period}: {e}")
+        logging.error(f"Error scraping {url} [{period}]: {e}")
     finally:
         driver.quit()
+        progress_bar.update(1)
 
 if __name__ == "__main__":
     start_time = time.time()
@@ -179,23 +176,22 @@ if __name__ == "__main__":
 
     pixel = 5
     data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
-
-    for url_data in urls:
-        kode = url_data[0]  # Ambil kode dari indeks ke-0
-        url = url_data[1]   # Ambil URL dari indeks ke-1
-        print(f"\nMemulai scraping untuk URL: {url} (Kode: {kode})")
-
-        processes = []
+    total_tasks = len(urls) * len(data_periods)
+    
+    with tqdm(total=total_tasks, bar_format="{l_bar}{bar} {n_fmt}/{total_fmt} [{elapsed}] {postfix}") as progress_bar:
         manager = Manager()
-        result_list = manager.list()  # List shared antar proses
-
-        for period in data_periods:
-            p = Process(target=scrape_data, args=(url, period, result_list, pixel))
-            processes.append(p)
-            p.start()
-
+        result_list = manager.list()
+        processes = []
+        for url_data in urls:
+            kode, url = url_data
+            logging.info(f"Memulai scraping: {url} ({kode})")
+            for period in data_periods:
+                p = Process(target=scrape_data, args=(url, period, result_list, pixel, progress_bar))
+                processes.append(p)
+                p.start()
         for p in processes:
             p.join()
+    
 
         # Gabungkan semua data dari result_list menjadi satu list
         combined_data = []
