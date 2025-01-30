@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 from multiprocessing import Process, Manager
 import csv
+import os
 
 # Fungsi untuk mengubah format tanggal dari "ddmmmyy" ke objek datetime
 def parse_tanggal(tanggal_str):
@@ -135,63 +136,74 @@ def scrape_data(url, period, result_list, pixel):
 if __name__ == "__main__":
     start_time = time.time()
 
-    url = 'https://bibit.id/reksadana/RD66/avrist-ada-kas-mutiara'
+    # List URL yang akan di-scrap
+    urls = [
+        'https://bibit.id/reksadana/RD13/',
+        'https://bibit.id/reksadana/RD66/',
+        # Tambahkan URL lain di sini
+    ]
+
     pixel = 2
     data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
-    processes = []
-    manager = Manager()
-    result_list = manager.list()  # List shared antar proses
 
-    for period in data_periods:
-        p = Process(target=scrape_data, args=(url, period, result_list, pixel))
-        processes.append(p)
-        p.start()
+    for url in urls:
+        print(f"\nMemulai scraping untuk URL: {url}")
 
-    for p in processes:
-        p.join()
+        processes = []
+        manager = Manager()
+        result_list = manager.list()  # List shared antar proses
 
-    # Gabungkan semua data dari result_list menjadi satu list
-    combined_data = []
-    for period_data in result_list:
-        combined_data.extend(period_data)
+        for period in data_periods:
+            p = Process(target=scrape_data, args=(url, period, result_list, pixel))
+            processes.append(p)
+            p.start()
 
-    # Hapus duplikat berdasarkan Tanggal dan Data
-    unique_data = []
-    seen = set()  # Untuk melacak data yang sudah diproses
-    for entry in combined_data:
-        key = (entry['tanggal'], entry['data'])  # Gunakan tuple (Tanggal, Data) sebagai kunci
-        if key not in seen:
-            seen.add(key)
-            unique_data.append(entry)
+        for p in processes:
+            p.join()
 
-    # Ubah format tanggal dan urutkan data berdasarkan Tanggal (dari terlama ke terbaru)
-    sorted_data = sorted(unique_data, key=lambda x: parse_tanggal(x['tanggal']))
+        # Gabungkan semua data dari result_list menjadi satu list
+        combined_data = []
+        for period_data in result_list:
+            combined_data.extend(period_data)
 
-    # Format ulang tanggal dan data
-    formatted_data = []
-    for entry in sorted_data:
-        tanggal_obj = parse_tanggal(entry['tanggal'])
-        tanggal_str = tanggal_obj.strftime("%Y-%m-%d")  # Format tanggal ke YYYY-MM-DD
-        data_str = entry['data'].replace('Rp', '').strip()  # Hapus "Rp" dan spasi
-        formatted_data.append({
-            'tanggal': tanggal_str,
-            'data': data_str
-        })
+        # Hapus duplikat berdasarkan Tanggal dan Data
+        unique_data = []
+        seen = set()  # Untuk melacak data yang sudah diproses
+        for entry in combined_data:
+            key = (entry['tanggal'], entry['data'])  # Gunakan tuple (Tanggal, Data) sebagai kunci
+            if key not in seen:
+                seen.add(key)
+                unique_data.append(entry)
 
-    # Cetak hasil akhir
-    print("\nHasil akhir (Tanpa Duplikat, Diurutkan dari Tanggal Terlama):")
-    for entry in formatted_data:
-        print(f"Tanggal: {entry['tanggal']}, Data: {entry['data']}")
+        # Ubah format tanggal dan urutkan data berdasarkan Tanggal (dari terlama ke terbaru)
+        sorted_data = sorted(unique_data, key=lambda x: parse_tanggal(x['tanggal']))
 
-    # Simpan ke CSV
-    csv_file = 'ada_kas_mutiara.csv'
-    with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
-        writer = csv.DictWriter(file, fieldnames=['tanggal', 'data'])
-        writer.writeheader()
+        # Format ulang tanggal dan data
+        formatted_data = []
+        for entry in sorted_data:
+            tanggal_obj = parse_tanggal(entry['tanggal'])
+            tanggal_str = tanggal_obj.strftime("%Y-%m-%d")  # Format tanggal ke YYYY-MM-DD
+            data_str = entry['data'].replace('Rp', '').strip()  # Hapus "Rp" dan spasi
+            formatted_data.append({
+                'tanggal': tanggal_str,
+                'data': data_str
+            })
+
+        # Cetak hasil akhir
+        print("\nHasil akhir (Tanpa Duplikat, Diurutkan dari Tanggal Terlama):")
         for entry in formatted_data:
-            writer.writerow(entry)
+            print(f"Tanggal: {entry['tanggal']}, Data: {entry['data']}")
 
-    print(f"\nData telah disimpan ke {csv_file}")
+        # Simpan ke CSV
+        # Buat nama file berdasarkan URL
+        csv_file = os.path.basename(url) + '.csv'
+        with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
+            writer = csv.DictWriter(file, fieldnames=['tanggal', 'data'])
+            writer.writeheader()
+            for entry in formatted_data:
+                writer.writerow(entry)
+
+        print(f"\nData telah disimpan ke {csv_file}")
 
     end_time = time.time()
     durasi = end_time - start_time
