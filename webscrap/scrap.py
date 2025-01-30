@@ -20,7 +20,7 @@ driver = webdriver.Chrome(service=service, options=options)
 url = 'https://bibit.id/reksadana/RD66/avrist-ada-kas-mutiara'
 driver.get(url)
 
-data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
+data_periods = ['ALL']
 
 for period in data_periods:
     try:
