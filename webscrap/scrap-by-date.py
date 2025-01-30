@@ -3,6 +3,8 @@ import pandas as pd
 
 
 today = date.today()
+
+today_a = date(2026, 12, 11) 
  
 
 mydate = date(1996, 12, 11)
@@ -23,7 +25,7 @@ date_database = date(int(LD_years), int(LD_months), int(LD_dates))
 
 
 
-if date_database >= mydate :
+if date_database <= mydate :
     value = True
 
 else :
