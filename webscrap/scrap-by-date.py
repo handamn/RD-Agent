@@ -202,6 +202,7 @@ if __name__ == "__main__":
             if pengurangan <= timedelta(days=days):
                 data_periods = periods
                 break  # Stop loop setelah menemukan rentang yang sesuai
+    #############################
 
 
     pixel = 2
@@ -210,6 +211,47 @@ if __name__ == "__main__":
     for url_data in urls:
         kode = url_data[0]
         url = url_data[1]
+
+        ######### PERBEDAAN #########
+        # csv name
+        csv_file = f"database/{kode}.csv"
+
+        # csv process
+        df = pd.read_csv(csv_file)
+        latest_data = df.iloc[-1].tolist()
+
+        latest_data_date = latest_data[0]
+        latest_data_value = latest_data[-1]
+
+        LD_years, LD_months, LD_dates = latest_data_date.split("-")
+        date_database = date(int(LD_years), int(LD_months), int(LD_dates))
+
+        # operasi penentuan periode
+        pengurangan = today_a - date_database
+
+        # Jika pengurangan negatif, langsung cetak dan hentikan proses
+        if pengurangan < timedelta(0):
+            print("tidak proses")
+        else:
+            # Daftar periode berdasarkan hari
+            period_map = [
+                (30, ['1M']),
+                (90, ['1M', '3M']),
+                (365, ['1M', '3M', 'YTD']),
+                (1095, ['1M', '3M', 'YTD', '3Y']),
+                (1825, ['1M', '3M', 'YTD', '3Y', '5Y']),
+            ]
+
+            # Default jika lebih dari 5 tahun
+            data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
+
+            # Loop untuk mencari rentang yang sesuai
+            for days, periods in period_map:
+                if pengurangan <= timedelta(days=days):
+                    data_periods = periods
+                    break  # Stop loop setelah menemukan rentang yang sesuai
+        #############################
+        
         
         print_header(f"Memulai Scraping Data: {kode}")
         print(f"URL: {url}")
@@ -262,9 +304,9 @@ if __name__ == "__main__":
             print(f"Tanggal: {entry['tanggal']}, Data: {entry['data']}")
         print("...")  # Menandakan masih ada data lainnya
 
-        csv_file = f"database/{kode}.csv"
-        file_exists = os.path.exists(csv_file)
         
+        file_exists = os.path.exists(csv_file)
+
         # Jika file belum ada, buat baru dengan header dan semua data
         if not file_exists:
             with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
