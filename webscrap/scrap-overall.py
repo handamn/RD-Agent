@@ -336,13 +336,53 @@ if __name__ == "__main__":
         print("...")  # Menandakan masih ada data lainnya
 
         csv_file = f"database/{kode}.csv"
-        with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
-            writer = csv.DictWriter(file, fieldnames=['tanggal', 'data'])
-            writer.writeheader()
-            for entry in formatted_data:
-                writer.writerow(entry)
+        file_exists = os.path.exists(csv_file)
+        
+        # Jika file belum ada, buat baru dengan header dan semua data
+        if not file_exists:
+            with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
+                writer = csv.DictWriter(file, fieldnames=['tanggal', 'data'])
+                writer.writeheader()
+                for entry in formatted_data:
+                    writer.writerow(entry)
+            print(f"\n[INFO] File baru dibuat: {csv_file}")
+            print(f"[INFO] {len(formatted_data)} data berhasil disimpan")
+        else:
+            # Baca data existing dari CSV
+            existing_data = []
+            with open(csv_file, mode='r', encoding='utf-8') as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    existing_data.append({
+                        'tanggal': row['tanggal'],
+                        'data': float(row['data'])  # Konversi ke float untuk konsistensi
+                    })
 
-        print(f"\n[INFO] Data telah disimpan ke {csv_file}")
+            # Identifikasi data baru yang unik
+            new_unique_data = []
+            duplicate_count = 0
+            
+            for new_entry in formatted_data:
+                is_duplicate = False
+                for existing_entry in existing_data:
+                    if (new_entry['tanggal'] == existing_entry['tanggal'] and 
+                        float(new_entry['data']) == float(existing_entry['data'])):
+                        duplicate_count += 1
+                        is_duplicate = True
+                        break
+                if not is_duplicate:
+                    new_unique_data.append(new_entry)
+
+            # Append data unik ke CSV
+            if new_unique_data:
+                with open(csv_file, mode='a', newline='', encoding='utf-8') as file:
+                    writer = csv.DictWriter(file, fieldnames=['tanggal', 'data'])
+                    for entry in new_unique_data:
+                        writer.writerow(entry)
+                print(f"\n[INFO] {len(new_unique_data)} data baru ditambahkan ke {csv_file}")
+
+                print(f"\n[INFO] Data telah disimpan ke {csv_file}")
+                
 
     end_time = time.time()
     durasi = end_time - start_time
