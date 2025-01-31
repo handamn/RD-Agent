@@ -1,18 +1,17 @@
 from datetime import date, timedelta
 import pandas as pd
+from datetime import timedelta
 
 
+# Package tanggal setting
 today = date.today()
+today_a = date(2025, 2, 15) 
 
-today_a = date(2029, 6, 30) 
- 
-
-mydate = date(1996, 12, 11)
-
-
-
+# csv name
 csv_file ="database\ABF Indonesia Bond Index Fund.csv"
 
+
+# csv process
 df = pd.read_csv(csv_file)
 latest_data = df.iloc[-1].tolist()
 
@@ -20,22 +19,10 @@ latest_data_date = latest_data[0]
 latest_data_value = latest_data[-1]
 
 LD_years, LD_months, LD_dates = latest_data_date.split("-")
-
 date_database = date(int(LD_years), int(LD_months), int(LD_dates))
 
 
-
-if date_database <= mydate :
-    value = True
-
-else :
-    value = False
-
-
-print(value)
-
-from datetime import timedelta
-
+# operasi penentuan periode
 pengurangan = today_a - date_database
 
 # Jika pengurangan negatif, langsung cetak dan hentikan proses
@@ -60,8 +47,8 @@ else:
             data_periods = periods
             break  # Stop loop setelah menemukan rentang yang sesuai
 
-    # Cetak hasil
-    print(pengurangan)
-    print(data_periods)
+# Cetak hasil
+print(pengurangan)
+print(data_periods)
 
 
