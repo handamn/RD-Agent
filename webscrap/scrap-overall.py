@@ -8,6 +8,34 @@ import time
 from multiprocessing import Process, Manager
 import csv
 import os
+from datetime import datetime
+import logging
+from rich.console import Console
+from rich.logging import RichHandler
+from rich.progress import track
+from rich import print as rprint
+
+# Initialize Rich console
+console = Console()
+
+# Configure logging with Rich
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(message)s",
+    handlers=[RichHandler(rich_tracebacks=True)]
+)
+
+logger = logging.getLogger("scraper")
+
+def print_section_header(text):
+    console.print(f"\n[bold blue]{'='*20} {text} {'='*20}[/bold blue]")
+
+def print_progress(period, iteration, total, date, value):
+    console.print(f"[green]Period {period:<4}[/green] | "
+                 f"[yellow]Progress: {iteration}/{total}[/yellow] | "
+                 f"[cyan]Date: {date}[/cyan] | "
+                 f"[magenta]Value: {value}[/magenta]")
+
 
 
 def convert_to_number(value):
@@ -84,7 +112,7 @@ def scrape_data(url, period, result_list, pixel):
     options.add_argument('--disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--no-sandbox')
-    options.add_argument('--headless')  # Run in background
+    options.add_argument('--headless')
     service = webdriver.chrome.service.Service()
     driver = webdriver.Chrome(service=service, options=options)
 
@@ -96,25 +124,23 @@ def scrape_data(url, period, result_list, pixel):
         )
 
         button_text = button.find_element(By.CSS_SELECTOR, '.reksa-border-button-period-box').text
-        print(f"Tombol yang diklik memiliki teks: {button_text}")
+        logger.info(f"[bold green]✓[/bold green] Clicking button: {button_text}")
         
         button.click()
-        print(f"Tombol {button_text} berhasil diklik!")
-
         time.sleep(2)
 
         graph_element = driver.find_element(By.TAG_NAME, 'svg')
-        graph_width = graph_element.size['width']
-        graph_width = int(graph_width)
+        graph_width = int(graph_element.size['width'])
         start_offset = -graph_width // 2
 
         actions = ActionChains(driver)
-        hitung = 1
+        period_data = []
+        total_iterations = (abs(start_offset) + graph_width) // pixel
 
-        period_data = []  # List untuk menyimpan data per periode
+        print_section_header(f"Scraping Period: {period}")
 
         for offset in range(start_offset, start_offset + graph_width, pixel):
-            print(f"Period {period} - Iterasi {hitung}")
+            current_iteration = (offset - start_offset) // pixel + 1
             
             actions.move_to_element_with_offset(graph_element, offset, 0).perform()
             time.sleep(0.1)
@@ -127,23 +153,21 @@ def scrape_data(url, period, result_list, pixel):
                 EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))
             ).text
 
-            print(f"Period {period} - Data setelah pergeseran {offset} piksel -- tanggal {tanggal_navdate} : {updated_data}")
+            print_progress(period, current_iteration, total_iterations, tanggal_navdate, updated_data)
             
-            # Simpan data ke dalam list period_data (hanya Tanggal dan Data)
             period_data.append({
                 'tanggal': tanggal_navdate,
                 'data': updated_data
             })
-            
-            hitung += 1
 
-        # Simpan hasil periode ke dalam result_list
         result_list.append(period_data)
 
     except Exception as e:
-        print(f"Gagal mengklik tombol dengan data-period={period}: {e}")
+        logger.error(f"[bold red]✗[/bold red] Error scraping period {period}: {str(e)}")
     finally:
         driver.quit()
+
+
 
 if __name__ == "__main__":
     start_time = time.time()
@@ -282,13 +306,15 @@ if __name__ == "__main__":
     data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
 
     for url_data in urls:
-        kode = url_data[0]  # Ambil kode dari indeks ke-0
-        url = url_data[1]   # Ambil URL dari indeks ke-1
-        print(f"\nMemulai scraping untuk URL: {url} (Kode: {kode})")
+        kode = url_data[0]
+        url = url_data[1]
+        
+        print_section_header(f"Starting Scraping for {kode}")
+        logger.info(f"URL: {url}")
 
         processes = []
         manager = Manager()
-        result_list = manager.list()  # List shared antar proses
+        result_list = manager.list()
 
         for period in data_periods:
             p = Process(target=scrape_data, args=(url, period, result_list, pixel))
@@ -349,11 +375,10 @@ if __name__ == "__main__":
                 writer.writerow(entry)
 
         print(f"\nData telah disimpan ke {csv_file}")
+        logger.info(f"[bold green]✓[/bold green] Data saved successfully to database/{kode}.csv")
 
     end_time = time.time()
     durasi = end_time - start_time
-    print()
-    print("====")
-    print(f"Total waktu eksekusi: {durasi} detik")
-    print("====")
-    print()
+    
+    print_section_header("Summary")
+    console.print(f"[bold green]Total execution time:[/bold green] {durasi:.2f} seconds")
