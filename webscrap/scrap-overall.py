@@ -9,49 +9,33 @@ from multiprocessing import Process, Manager
 import csv
 import os
 from datetime import datetime
-import logging
-from rich.console import Console
-from rich.logging import RichHandler
-from rich.progress import track
-from rich import print as rprint
 
-# Initialize Rich console
-console = Console()
+def print_header(text, char="="):
+    """Print a header with consistent formatting"""
+    line = char * 80
+    print(f"\n{line}")
+    print(f"{text.center(80)}")
+    print(f"{line}\n")
 
-# Configure logging with Rich
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(message)s",
-    handlers=[RichHandler(rich_tracebacks=True)]
-)
+def print_subheader(text, char="-"):
+    """Print a subheader with consistent formatting"""
+    print(f"\n{char * 40} {text} {char * 40}\n")
 
-logger = logging.getLogger("scraper")
-
-def print_section_header(text):
-    console.print(f"\n[bold blue]{'='*20} {text} {'='*20}[/bold blue]")
-
-def print_progress(period, iteration, total, date, value):
-    console.print(f"[green]Period {period:<4}[/green] | "
-                 f"[yellow]Progress: {iteration}/{total}[/yellow] | "
-                 f"[cyan]Date: {date}[/cyan] | "
-                 f"[magenta]Value: {value}[/magenta]")
-
-
+def print_progress(period, iteration, date, value):
+    """Print progress with consistent formatting"""
+    print(f"Period: {period:<4} | Iteration: {iteration:<4} | Date: {date:<10} | Value: {value}")
 
 def convert_to_number(value):
-    # Jika nilai mengandung 'K' (ribuan)
+    # Existing convert_to_number function remains the same
     if 'K' in value:
         return float(value.replace('K', '')) * 1000
-    # Jika nilai mengandung 'M' (jutaan)
     elif 'M' in value:
         return float(value.replace('M', '')) * 1000000
-    # Jika tidak ada huruf, langsung konversi ke float
     else:
-        return float(value.replace(',', ''))  # Hapus koma jika ada
+        return float(value.replace(',', ''))
 
-# Fungsi untuk mengubah format tanggal dari "ddmmmyy" ke objek datetime
 def parse_tanggal(tanggal_str):
-    # Kamus untuk memetakan singkatan bulan ke nama bulan dalam bahasa Indonesia
+    # Existing parse_tanggal function remains the same
     bulan_map_id = {
         'Jan': 'Januari',
         'Feb': 'Februari',
@@ -67,7 +51,6 @@ def parse_tanggal(tanggal_str):
         'Des': 'Desember'
     }
 
-    # Kamus untuk memetakan nama bulan dalam bahasa Indonesia ke bahasa Inggris
     bulan_map_en = {
         'Januari': 'January',
         'Februari': 'February',
@@ -83,7 +66,6 @@ def parse_tanggal(tanggal_str):
         'Desember': 'December'
     }
 
-    # Pisahkan tanggal, bulan, dan tahun
     parts = tanggal_str.split()
     if len(parts) != 3:
         raise ValueError(f"Format tanggal tidak valid: {tanggal_str}")
@@ -92,18 +74,14 @@ def parse_tanggal(tanggal_str):
     bulan_singkat = parts[1]
     tahun = parts[2]
 
-    # Ubah singkatan bulan ke nama bulan dalam bahasa Indonesia
     if bulan_singkat not in bulan_map_id:
         raise ValueError(f"Bulan tidak valid: {bulan_singkat}")
     bulan_id = bulan_map_id[bulan_singkat]
 
-    # Ubah nama bulan dalam bahasa Indonesia ke bahasa Inggris
     if bulan_id not in bulan_map_en:
         raise ValueError(f"Bulan tidak valid: {bulan_id}")
     bulan_en = bulan_map_en[bulan_id]
 
-    # Gabungkan menjadi format yang bisa dipahami oleh datetime
-    # Misalnya: "1 Agt 24" -> "1 August 2024"
     tanggal_full = f"{hari} {bulan_en} 20{tahun}"
     return datetime.strptime(tanggal_full, "%d %B %Y")
 
@@ -124,7 +102,7 @@ def scrape_data(url, period, result_list, pixel):
         )
 
         button_text = button.find_element(By.CSS_SELECTOR, '.reksa-border-button-period-box').text
-        logger.info(f"[bold green]✓[/bold green] Clicking button: {button_text}")
+        print(f"[INFO] Memulai scraping untuk periode: {button_text}")
         
         button.click()
         time.sleep(2)
@@ -135,9 +113,8 @@ def scrape_data(url, period, result_list, pixel):
 
         actions = ActionChains(driver)
         period_data = []
-        total_iterations = (abs(start_offset) + graph_width) // pixel
 
-        print_section_header(f"Scraping Period: {period}")
+        print_subheader(f"Mengambil data periode {period}")
 
         for offset in range(start_offset, start_offset + graph_width, pixel):
             current_iteration = (offset - start_offset) // pixel + 1
@@ -153,7 +130,7 @@ def scrape_data(url, period, result_list, pixel):
                 EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))
             ).text
 
-            print_progress(period, current_iteration, total_iterations, tanggal_navdate, updated_data)
+            print_progress(period, current_iteration, tanggal_navdate, updated_data)
             
             period_data.append({
                 'tanggal': tanggal_navdate,
@@ -163,11 +140,9 @@ def scrape_data(url, period, result_list, pixel):
         result_list.append(period_data)
 
     except Exception as e:
-        logger.error(f"[bold red]✗[/bold red] Error scraping period {period}: {str(e)}")
+        print(f"[ERROR] Gagal mengambil data untuk periode {period}: {str(e)}")
     finally:
         driver.quit()
-
-
 
 if __name__ == "__main__":
     start_time = time.time()
@@ -309,8 +284,8 @@ if __name__ == "__main__":
         kode = url_data[0]
         url = url_data[1]
         
-        print_section_header(f"Starting Scraping for {kode}")
-        logger.info(f"URL: {url}")
+        print_header(f"Memulai Scraping Data: {kode}")
+        print(f"URL: {url}")
 
         processes = []
         manager = Manager()
@@ -324,49 +299,42 @@ if __name__ == "__main__":
         for p in processes:
             p.join()
 
-        # Gabungkan semua data dari result_list menjadi satu list
+        print_subheader("Memproses hasil scraping")
+        
         combined_data = []
         for period_data in result_list:
             combined_data.extend(period_data)
 
-        # Hapus duplikat berdasarkan Tanggal dan Data
         unique_data = []
-        seen = set()  # Untuk melacak data yang sudah diproses
+        seen = set()
         for entry in combined_data:
-            key = (entry['tanggal'], entry['data'])  # Gunakan tuple (Tanggal, Data) sebagai kunci
+            key = (entry['tanggal'], entry['data'])
             if key not in seen:
                 seen.add(key)
                 unique_data.append(entry)
 
-        # Ubah format tanggal dan urutkan data berdasarkan Tanggal (dari terlama ke terbaru)
         sorted_data = sorted(unique_data, key=lambda x: parse_tanggal(x['tanggal']))
 
-        # Format ulang tanggal dan data
         formatted_data = []
         for entry in sorted_data:
             tanggal_obj = parse_tanggal(entry['tanggal'])
-            tanggal_str = tanggal_obj.strftime("%Y-%m-%d")  # Format tanggal ke YYYY-MM-DD
-            data_str = entry['data'].replace('Rp', '').strip()  # Hapus "Rp" dan spasi
+            tanggal_str = tanggal_obj.strftime("%Y-%m-%d")
+            data_str = entry['data'].replace('Rp', '').strip()
             
-            # Konversi data ke angka biasa
             try:
                 data_number = convert_to_number(data_str)
-            except ValueError:
-                print(f"Gagal mengonversi data: {data_str}")
-                continue  # Lewati data yang tidak valid
+                formatted_data.append({
+                    'tanggal': tanggal_str,
+                    'data': data_number
+                })
+            except ValueError as e:
+                print(f"[ERROR] Gagal mengonversi data: {data_str}")
 
-            formatted_data.append({
-                'tanggal': tanggal_str,
-                'data': data_number
-            })
-
-        # Cetak hasil akhir
         print("\nHasil akhir (Tanpa Duplikat, Diurutkan dari Tanggal Terlama):")
-        for entry in formatted_data:
+        for entry in formatted_data[:5]:  # Hanya tampilkan 5 data pertama
             print(f"Tanggal: {entry['tanggal']}, Data: {entry['data']}")
+        print("...")  # Menandakan masih ada data lainnya
 
-        # Simpan ke CSV
-        # Gunakan kode sebagai nama file CSV
         csv_file = f"database/{kode}.csv"
         with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
             writer = csv.DictWriter(file, fieldnames=['tanggal', 'data'])
@@ -374,11 +342,10 @@ if __name__ == "__main__":
             for entry in formatted_data:
                 writer.writerow(entry)
 
-        print(f"\nData telah disimpan ke {csv_file}")
-        logger.info(f"[bold green]✓[/bold green] Data saved successfully to database/{kode}.csv")
+        print(f"\n[INFO] Data telah disimpan ke {csv_file}")
 
     end_time = time.time()
     durasi = end_time - start_time
     
-    print_section_header("Summary")
-    console.print(f"[bold green]Total execution time:[/bold green] {durasi:.2f} seconds")
+    print_header("Ringkasan Eksekusi")
+    print(f"Total waktu eksekusi: {durasi:.2f} detik")
