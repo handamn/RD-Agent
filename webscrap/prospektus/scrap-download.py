@@ -6,95 +6,95 @@ import time
 import os
 import glob
 
-def setup_chrome_driver():
-    chrome_options = webdriver.ChromeOptions()
-    
-    # Tambahkan opsi headless
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--disable-gpu')
-    
-    # Tentukan direktori download
-    download_dir = os.path.join(os.getcwd(), "downloads")
-    if not os.path.exists(download_dir):
-        os.makedirs(download_dir)
-    
-    # Atur preferensi download
-    prefs = {
-        "download.default_directory": download_dir,
-        "download.prompt_for_download": False,
-        "download.directory_upgrade": True,
-        "plugins.always_open_pdf_externally": True
-    }
-    chrome_options.add_experimental_option("prefs", prefs)
-    
-    return webdriver.Chrome(options=chrome_options), download_dir
-
-def wait_for_download(download_dir, timeout=60):
-    """Menunggu sampai file selesai didownload"""
-    seconds = 0
-    dl_wait = True
-    while dl_wait and seconds < timeout:
-        time.sleep(1)
-        dl_wait = False
-        files = os.listdir(download_dir)
-        for fname in files:
-            if fname.endswith('.crdownload'):
-                dl_wait = True
-        seconds += 1
-    return seconds < timeout
-
-def rename_latest_pdf(download_dir, new_name):
-    """Rename file PDF terakhir yang didownload"""
-    # Cari file PDF terbaru di folder download
-    list_of_files = glob.glob(os.path.join(download_dir, '*.pdf'))
-    if not list_of_files:
-        print("Tidak ada file PDF ditemukan")
-        return False
+class ProspektusDownloader:
+    def __init__(self, download_folder="downloads"):
+        """
+        Inisialisasi downloader dengan lokasi folder yang dapat dikustomisasi
         
-    latest_file = max(list_of_files, key=os.path.getctime)
+        Parameters:
+        download_folder (str): Nama folder untuk menyimpan file yang diunduh
+        """
+        self.download_dir = os.path.join(os.getcwd(), download_folder)
+        if not os.path.exists(self.download_dir):
+            os.makedirs(self.download_dir)
     
-    # Buat path untuk nama file baru
-    new_path = os.path.join(download_dir, f"{new_name}.pdf")
+    def _setup_driver(self):
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--disable-gpu')
+        
+        prefs = {
+            "download.default_directory": self.download_dir,
+            "download.prompt_for_download": False,
+            "download.directory_upgrade": True,
+            "plugins.always_open_pdf_externally": True
+        }
+        chrome_options.add_experimental_option("prefs", prefs)
+        return webdriver.Chrome(options=chrome_options)
     
-    # Rename file
-    try:
+    def _wait_for_download(self, timeout=60):
+        seconds = 0
+        while seconds < timeout:
+            time.sleep(1)
+            files = os.listdir(self.download_dir)
+            if not any(fname.endswith('.crdownload') for fname in files):
+                return True
+            seconds += 1
+        return False
+    
+    def _rename_latest_pdf(self, new_name):
+        list_of_files = glob.glob(os.path.join(self.download_dir, '*.pdf'))
+        if not list_of_files:
+            raise Exception("Tidak ada file PDF ditemukan")
+        latest_file = max(list_of_files, key=os.path.getctime)
+        new_path = os.path.join(self.download_dir, f"{new_name}.pdf")
         os.rename(latest_file, new_path)
-        print(f"File berhasil direname menjadi: {new_name}.pdf")
-        return True
-    except Exception as e:
-        print(f"Error saat rename file: {str(e)}")
-        return False
-
-def download_pdf(new_filename="Prospektus_Bahana_Likuid_Syariah"):
-    driver, download_dir = setup_chrome_driver()
-    try:
-        print("Membuka halaman web...")
-        driver.get("https://bibit.id/reksadana/RD83/avrist-prime-bond-fund")
+    
+    def download(self, url, new_filename, button_class="DetailProductStyle_detail-produk-button__zk419"):
+        """
+        Fungsi utama untuk mengunduh dan rename file
         
-        print("Menunggu button muncul...")
-        button = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.CLASS_NAME, "DetailProductStyle_detail-produk-button__zk419"))
-        )
+        Parameters:
+        url (str): URL halaman web yang berisi button download
+        new_filename (str): Nama baru untuk file yang diunduh (tanpa ekstensi .pdf)
+        button_class (str): Class name dari button yang akan diklik
         
-        print("Mengklik button download...")
-        button.click()
-        
-        # Tunggu sampai file selesai didownload
-        print("Menunggu download selesai...")
-        if wait_for_download(download_dir):
-            print("Download selesai")
-            # Tunggu sebentar untuk memastikan file sudah benar-benar tersimpan
+        Returns:
+        tuple: (bool, str) - (Success status, Message)
+        """
+        driver = self._setup_driver()
+        try:
+            driver.get(url)
+            button = WebDriverWait(driver, 10).until(
+                EC.element_to_be_clickable((By.CLASS_NAME, button_class))
+            )
+            button.click()
+            
+            if not self._wait_for_download():
+                raise Exception("Download timeout")
+                
             time.sleep(2)
-            # Rename file
-            rename_latest_pdf(download_dir, new_filename)
-        else:
-            print("Download timeout atau gagal")
-        
-    except Exception as e:
-        print(f"Terjadi error: {str(e)}")
-    finally:
-        driver.quit()
+            self._rename_latest_pdf(new_filename)
+            
+            return True, f"File berhasil didownload dan direname menjadi {new_filename}.pdf"
+            
+        except Exception as e:
+            return False, f"Error: {str(e)}"
+            
+        finally:
+            driver.quit()
 
-if __name__ == "__main__":
-    # Anda bisa mengubah nama file sesuai keinginan
-    download_pdf("ganteng")
+# Buat instance dengan folder kustom
+downloader = ProspektusDownloader(download_folder="my_downloads")
+
+# Download file
+success, message = downloader.download(
+    url="https://bibit.id/reksadana/RD3595/bahana-likuid-syariah-kelas-g",
+    new_filename="Prospektus_Baru"
+)
+
+# Cek hasil
+if success:
+    print(message)
+else:
+    print(f"Gagal: {message}")
