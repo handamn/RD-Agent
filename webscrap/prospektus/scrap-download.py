@@ -84,6 +84,9 @@ class ProspektusDownloader:
         finally:
             driver.quit()
 
+
+
+
 # Buat instance dengan folder kustom
 downloader = ProspektusDownloader(download_folder="my_downloads")
 
