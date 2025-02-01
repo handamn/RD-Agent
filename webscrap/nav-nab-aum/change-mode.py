@@ -1,29 +1,37 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait  # ← Perbaikan di sini
+from selenium.webdriver.support import expected_conditions as EC
 import time
 
-# Inisialisasi WebDriver (misalnya, Chrome)
+
+# Inisialisasi WebDriver (pastikan path chromedriver sudah benar)
 driver = webdriver.Chrome()
-# Buka halaman web
-driver.get('https://bibit.id/reksadana/RD1721/bahana-mes-syariah-fund-kelas-g')
 
-# Tunggu hingga halaman selesai dimuat
-time.sleep(5)  # Anda bisa mengganti ini dengan WebDriverWait untuk lebih presisi
+# 1️⃣ **Buka Halaman Web**
+driver.get("https://bibit.id/reksadana/RD1721/bahana-mes-syariah-fund-kelas-g")
 
-# Temukan elemen "AUM" menggunakan selector CSS atau XPath
-aum_element = driver.find_element(By.CSS_SELECTOR, '.navigator .selected-menu')
-
-# Klik elemen "AUM"
-aum_element.click()
-
-# Tunggu beberapa detik untuk memastikan tindakan selesai
+# Tunggu hingga halaman termuat
 time.sleep(3)
 
-# Lakukan scraping setelah mengklik
-# Contoh: Ambil konten dari halaman
-# content = driver.page_source
-# print(content)
+# 2️⃣ **Pastikan Elemen "AUM" Muncul Sebelum Diklik**
+try:
+    wait = WebDriverWait(driver, 10)  # Tunggu maksimal 10 detik
+    aum_button = wait.until(
+        EC.element_to_be_clickable((By.XPATH, "//div[contains(@class, 'menu') and text()='AUM (Assets Under Management)']"))
+    )
+    print("Elemen AUM ditemukan dan bisa diklik.")
 
-# Tutup browser
-driver.quit()
+    # 3️⃣ **Gunakan Metode Klik Pertama (Normal .click())**
+    try:
+        aum_button.click()
+        print("Klik berhasil dengan metode .click()")
+    except Exception as e:
+        print(f"Gagal dengan .click(): {e}")
+
+    # Tunggu beberapa detik agar halaman berubah setelah klik
+    time.sleep(10)
+finally:
+    # 7️⃣ **Tutup Browser**
+    driver.quit()
