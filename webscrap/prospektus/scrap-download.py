@@ -10,7 +10,7 @@ def setup_chrome_driver():
     chrome_options = webdriver.ChromeOptions()
     
     # Tentukan direktori download (ganti dengan path yang Anda inginkan)
-    download_dir = os.path.join(os.getcwd(), "downloads")
+    download_dir = os.path.join(os.getcwd(), "database")
     if not os.path.exists(download_dir):
         os.makedirs(download_dir)
     
