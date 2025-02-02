@@ -174,7 +174,6 @@ def scrape_mode_data(url, period, mode, pixel, max_retries=3):
 
 def process_and_save_data(kode, mode1_data, mode2_data):
     """Process and save data from both modes"""
-    # Convert and sort data from both modes
     processed_data = {}
     
     # Process mode1 data
@@ -186,7 +185,7 @@ def process_and_save_data(kode, mode1_data, mode2_data):
             data_number = convert_to_number(data_str)
             
             if tanggal_str not in processed_data:
-                processed_data[tanggal_str] = {'mode1': None, 'mode2': None}
+                processed_data[tanggal_str] = {'mode1': 'NA', 'mode2': 'NA'}  # Default NA
             processed_data[tanggal_str]['mode1'] = data_number
         except ValueError as e:
             print(f"[ERROR] Failed to convert mode1 data: {data_str}")
@@ -200,7 +199,7 @@ def process_and_save_data(kode, mode1_data, mode2_data):
             data_number = convert_to_number(data_str)
             
             if tanggal_str not in processed_data:
-                processed_data[tanggal_str] = {'mode1': None, 'mode2': None}
+                processed_data[tanggal_str] = {'mode1': 'NA', 'mode2': 'NA'}  # Default NA
             processed_data[tanggal_str]['mode2'] = data_number
         except ValueError as e:
             print(f"[ERROR] Failed to convert mode2 data: {data_str}")
@@ -212,12 +211,11 @@ def process_and_save_data(kode, mode1_data, mode2_data):
     csv_data = []
     for date in sorted_dates:
         entry = processed_data[date]
-        if entry['mode1'] is not None or entry['mode2'] is not None:
-            csv_data.append({
-                'tanggal': date,
-                'mode1': entry['mode1'],
-                'mode2': entry['mode2']
-            })
+        csv_data.append({
+            'tanggal': date,
+            'mode1': entry['mode1'],
+            'mode2': entry['mode2']
+        })
 
     # Save to CSV
     csv_file = f"database/{kode}.csv"
@@ -225,9 +223,6 @@ def process_and_save_data(kode, mode1_data, mode2_data):
         writer = csv.DictWriter(file, fieldnames=['tanggal', 'mode1', 'mode2'])
         writer.writeheader()
         writer.writerows(csv_data)
-
-    print(f"\n[INFO] Data saved to {csv_file}")
-    print(f"[INFO] Total records: {len(csv_data)}")
 
 def main():
     start_time = time.time()
