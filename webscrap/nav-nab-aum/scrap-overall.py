@@ -90,9 +90,9 @@ def parse_tanggal(tanggal_str):
 def scrape_data(url, period, result_list, pixel, max_retries=3):
     """
     Fungsi untuk melakukan scraping data berdasarkan periode tertentu.
-    - Menangani error 'stale element reference' dengan `staleness_of`
-    - Memastikan tombol periode terlihat sebelum diklik (`scrollIntoView`)
-    - Menerapkan retry mechanism jika terjadi kegagalan
+    - Menangani 'stale element reference' dengan cara yang lebih adaptif.
+    - Mencoba kembali (retry) hingga data berhasil diambil.
+    - Menunggu elemen benar-benar siap sebelum berinteraksi.
     """
 
     retry_count = 0
@@ -109,23 +109,18 @@ def scrape_data(url, period, result_list, pixel, max_retries=3):
             driver = webdriver.Chrome(service=service, options=options)
 
             driver.get(url)
-
             wait = WebDriverWait(driver, 10)
 
-            # Cari tombol periode
+            # Tunggu tombol periode muncul dan bisa diklik
             button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]')))
 
-            # Tunggu elemen lama menjadi tidak valid sebelum klik
-            wait.until(staleness_of(button))
+            print(f"[INFO] Memulai scraping untuk periode: {period}")
 
-            # Pastikan tombol terlihat sebelum diklik
-            driver.execute_script("arguments[0].scrollIntoView();", button)
-            time.sleep(1)  # Beri waktu agar halaman merespons
-            
+            # Klik tombol periode
             button.click()
-            time.sleep(2)  # Tunggu halaman reload
+            time.sleep(2)  # Tunggu perubahan halaman
 
-            # Cari elemen grafik
+            # Tunggu elemen grafik muncul sebelum mulai scraping
             graph_element = wait.until(EC.presence_of_element_located((By.TAG_NAME, 'svg')))
             graph_width = int(graph_element.size['width'])
             start_offset = -graph_width // 2
@@ -136,12 +131,10 @@ def scrape_data(url, period, result_list, pixel, max_retries=3):
             print_subheader(f"Mengambil data periode {period}")
 
             for offset in range(start_offset, start_offset + graph_width, pixel):
-                current_iteration = (offset - start_offset) // pixel + 1
-                
                 actions.move_to_element_with_offset(graph_element, offset, 0).perform()
                 time.sleep(0.1)
 
-                # Ambil nilai harga reksa dana
+                # Ambil data harga reksa dana
                 updated_data = wait.until(
                     EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
                 ).text
@@ -151,14 +144,14 @@ def scrape_data(url, period, result_list, pixel, max_retries=3):
                     EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))
                 ).text
 
-                print_progress(period, current_iteration, tanggal_navdate, updated_data)
+                print_progress(period, offset // pixel + 1, tanggal_navdate, updated_data)
 
                 period_data.append({
                     'tanggal': tanggal_navdate,
                     'data': updated_data
                 })
 
-            # Tambahkan hasil ke dalam list jika berhasil
+            # Jika ada data, simpan ke result_list
             if period_data:
                 result_list.append(period_data)
                 success = True
@@ -168,7 +161,15 @@ def scrape_data(url, period, result_list, pixel, max_retries=3):
         except Exception as e:
             retry_count += 1
             print(f"[WARNING] Gagal mengambil data untuk periode {period}. Percobaan {retry_count}/{max_retries}. Error: {e}")
-            time.sleep(3)  # Tunggu sebelum mencoba ulang
+
+            # Jika gagal, coba refresh halaman sebelum mencoba ulang
+            if retry_count < max_retries:
+                time.sleep(3)  # Tunggu sebelum mencoba lagi
+                try:
+                    driver.refresh()
+                    time.sleep(2)  # Tunggu halaman reload
+                except:
+                    pass
 
         finally:
             try:
