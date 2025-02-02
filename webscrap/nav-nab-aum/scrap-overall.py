@@ -36,6 +36,31 @@ def convert_to_number(value):
     else:
         return float(value)
 
+def parse_tanggal(tanggal_str):
+    """Convert Indonesian date format (e.g., '31 Jan 25') to datetime object"""
+    bulan_map = {
+        'Jan': 'January', 'Feb': 'February', 'Mar': 'March',
+        'Apr': 'April', 'Mei': 'May', 'Jun': 'June',
+        'Jul': 'July', 'Agt': 'August', 'Sep': 'September',
+        'Okt': 'October', 'Nov': 'November', 'Des': 'December'
+    }
+
+    parts = tanggal_str.split()
+    if len(parts) != 3:
+        raise ValueError(f"Format tanggal tidak valid: {tanggal_str}")
+
+    hari = parts[0]
+    bulan_singkat = parts[1]
+    tahun = "20" + parts[2]  # Ubah '25' menjadi '2025', '22' jadi '2022'
+
+    if bulan_singkat not in bulan_map:
+        raise ValueError(f"Bulan tidak valid: {bulan_singkat}")
+
+    bulan_en = bulan_map[bulan_singkat]
+    tanggal_full = f"{hari} {bulan_en} {tahun}"
+
+    return datetime.strptime(tanggal_full, "%d %B %Y")
+
 def switch_to_aum_mode(driver, wait):
     """Switch to AUM mode"""
     try:
@@ -68,17 +93,14 @@ def scrape_mode_data(url, period, mode, pixel, max_retries=3):
 
             driver.get(url)
 
-            # Switch to AUM mode if needed
             if mode == "AUM":
                 if not switch_to_aum_mode(driver, wait):
                     raise Exception("Failed to switch to AUM mode")
 
-            # Click period button
             button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]')))
             button.click()
             time.sleep(2)
 
-            # Get graph element
             graph_element = wait.until(EC.presence_of_element_located((By.TAG_NAME, 'svg')))
             graph_width = int(graph_element.size['width'])
             start_offset = -graph_width // 2
@@ -90,7 +112,7 @@ def scrape_mode_data(url, period, mode, pixel, max_retries=3):
                 time.sleep(0.1)
 
                 updated_data = wait.until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
+                    EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav'))
                 ).text
 
                 tanggal_navdate = wait.until(
@@ -99,10 +121,7 @@ def scrape_mode_data(url, period, mode, pixel, max_retries=3):
 
                 print_progress(mode, period, offset // pixel + 1, tanggal_navdate, updated_data)
 
-                period_data.append({
-                    'tanggal': tanggal_navdate,
-                    'data': updated_data
-                })
+                period_data.append({'tanggal': tanggal_navdate, 'data': updated_data})
 
             if period_data:
                 success = True
@@ -145,37 +164,31 @@ def process_and_save_data(kode, mode1_data, mode2_data):
     """Process and save data"""
     processed_data = {}
 
-    # Merge mode1 & mode2 data
-    for data_list, mode in [(mode1_data, 'mode1'), (mode2_data, 'mode2')]:
+    for data_list, mode in [(mode1_data, 'NAV'), (mode2_data, 'AUM')]:
         for entry in data_list:
             try:
-                tanggal_obj = datetime.strptime(entry['tanggal'], "%d %B %Y")
+                tanggal_obj = parse_tanggal(entry['tanggal'])
                 tanggal_str = tanggal_obj.strftime("%Y-%m-%d")
                 data_number = convert_to_number(entry['data'].replace('Rp', '').strip())
 
                 if tanggal_str not in processed_data:
-                    processed_data[tanggal_str] = {'mode1': 'NA', 'mode2': 'NA'}
+                    processed_data[tanggal_str] = {'NAV': 'NA', 'AUM': 'NA'}
                 processed_data[tanggal_str][mode] = data_number
             except Exception as e:
                 print(f"[ERROR] Data conversion failed: {e}")
 
-    # Save to CSV
     os.makedirs("database", exist_ok=True)
-    csv_file = f"database/{kode}.csv"
-    with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
-        writer = csv.DictWriter(file, fieldnames=['tanggal', 'mode1', 'mode2'])
+    with open(f"database/{kode}.csv", 'w', newline='', encoding='utf-8') as file:
+        writer = csv.DictWriter(file, fieldnames=['tanggal', 'NAV', 'AUM'])
         writer.writeheader()
-        writer.writerows([{'tanggal': date, 'mode1': data['mode1'], 'mode2': data['mode2']} for date, data in sorted(processed_data.items())])
+        writer.writerows([{'tanggal': date, 'NAV': data['NAV'], 'AUM': data['AUM']} for date, data in sorted(processed_data.items())])
 
 # =========================== Main Function ===========================
 
 def main():
-    start_time = time.time()
-
-    urls = [
-        ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],
-    ]
-
+    urls = [['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],
+            ['Avrist Ada Kas Mutiara', 'https://bibit.id/reksadana/RD66'],
+            ['Avrist Ada Saham Blue Safir Kelas A','https://bibit.id/reksadana/RD68'],]
     pixel = 200
 
     for kode, url in urls:
@@ -185,9 +198,6 @@ def main():
         mode2_data = scrape_all_periods(url, "AUM", pixel)
 
         process_and_save_data(kode, mode1_data, mode2_data)
-
-    print_header("Execution Summary")
-    print(f"Total execution time: {time.time() - start_time:.2f} seconds")
 
 if __name__ == "__main__":
     main()
