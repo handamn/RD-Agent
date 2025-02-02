@@ -9,14 +9,14 @@ import csv
 import os
 from datetime import datetime
 
-# =========================== Utility Functions ===========================
+# =========================== Logging Function ===========================
 
-def print_header(text, char="="):
-    """Print a header with consistent formatting"""
-    line = char * 80
-    print(f"\n{line}")
-    print(f"{text.center(80)}")
-    print(f"{line}\n")
+def log_info(message, status="INFO"):
+    """Print logs with a consistent format"""
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"[{timestamp}] [{status}] {message}")
+
+# =========================== Utility Functions ===========================
 
 def convert_to_number(value):
     """Convert formatted numbers to float"""
@@ -65,16 +65,21 @@ def scrape_mode_data(url, period, mode, pixel):
     period_data = []
 
     try:
+        log_info(f"Memulai scraping {period} ({mode}) untuk {url}...")
+
         options = webdriver.ChromeOptions()
         options.add_argument('--headless')
         driver = webdriver.Chrome(options=options)
         wait = WebDriverWait(driver, 10)
 
         driver.get(url)
+        log_info(f"Berhasil membuka URL {url}")
 
         # Klik tombol periode
         button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]')))
         button.click()
+        log_info(f"Berhasil memilih periode {period}")
+
         time.sleep(2)
 
         # Ambil elemen grafik
@@ -93,22 +98,31 @@ def scrape_mode_data(url, period, mode, pixel):
 
             period_data.append({'tanggal': tanggal_navdate, 'data': updated_data})
 
+        total_data = len(period_data)
+        log_info(f"Scraping {period} ({mode}) selesai, total data: {total_data}")
+
+        # ✅ Menampilkan beberapa contoh data untuk verifikasi
+        if total_data > 0:
+            preview_data = period_data[:3] + period_data[-3:] if total_data > 6 else period_data
+            log_info(f"Contoh data {period} ({mode}): " + ", ".join([f"{d['tanggal']}: {d['data']}" for d in preview_data]))
+
     except Exception as e:
-        print(f"[ERROR] Scraping failed for {period} in {mode} mode: {e}")
+        log_info(f"Scraping gagal untuk {period} ({mode}): {e}", "ERROR")
 
     finally:
         driver.quit()
 
     duration = time.time() - start_time
-    print(f"[INFO] Scraping {period} ({mode}) selesai dalam {duration:.2f} detik.")
+    log_info(f"Scraping {period} ({mode}) selesai dalam {duration:.2f} detik.")
     return period_data
+
 
 # =========================== Parallel Scraping with Threads ===========================
 
 def scrape_all_periods(url, mode, pixel, data_periods):
     """Run scraping in parallel for all periods using threads"""
     max_workers = min(len(data_periods), 4)  # Maksimal 4 thread agar tidak overload
-    print(f"[INFO] Scraping {mode} dengan {max_workers} thread...")
+    log_info(f"Scraping {mode} dimulai dengan {max_workers} thread...")
     
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = {executor.submit(scrape_mode_data, url, period, mode, pixel): period for period in data_periods}
@@ -119,7 +133,7 @@ def scrape_all_periods(url, mode, pixel, data_periods):
                 result = future.result()
                 results.extend(result)
             except Exception as e:
-                print(f"[ERROR] Scraping error: {e}")
+                log_info(f"Scraping error: {e}", "ERROR")
 
         return results
 
@@ -127,29 +141,26 @@ def scrape_all_periods(url, mode, pixel, data_periods):
 
 def main():
     urls = [
-        ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],
-          # Contoh jika ingin menambah URL lain
+        ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],  # Contoh URL tambahan
     ]
     data_periods = ['3Y', '5Y']
     pixel = 200
 
     total_start_time = time.time()
+    log_info("===== Mulai scraping seluruh data =====")
 
     for kode, url in urls:
         url_start_time = time.time()
-        print_header(f"Scraping {kode}")
+        log_info(f"Mulai scraping untuk {kode}")
 
         mode1_data = scrape_all_periods(url, "Default", pixel, data_periods)
         mode2_data = scrape_all_periods(url, "AUM", pixel, data_periods)
 
-        # Simpan hasil ke file (implementasi disesuaikan)
-        # process_and_save_data(kode, mode1_data, mode2_data)
-
         url_duration = time.time() - url_start_time
-        print(f"[INFO] Scraping {kode} selesai dalam {url_duration:.2f} detik.\n")
+        log_info(f"Scraping {kode} selesai dalam {url_duration:.2f} detik.")
 
     total_duration = time.time() - total_start_time
-    print_header(f"Total waktu eksekusi: {total_duration:.2f} detik.")
+    log_info(f"===== Semua scraping selesai dalam {total_duration:.2f} detik =====")
 
 if __name__ == "__main__":
     main()
