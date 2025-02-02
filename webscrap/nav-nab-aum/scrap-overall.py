@@ -9,12 +9,20 @@ import csv
 import os
 from datetime import datetime
 
+# =========================== CONFIGURATIONS ===========================
+DEBUG_MODE = False  # Ubah ke True untuk melihat log setiap titik kursor
+LOG_FILE = "scraping_log.log"  # File log untuk menyimpan hasil log
+
 # =========================== Logging Function ===========================
 
 def log_info(message, status="INFO"):
-    """Print logs with a consistent format"""
+    """Write logs to a file with a consistent format"""
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    print(f"[{timestamp}] [{status}] {message}")
+    log_message = f"[{timestamp}] [{status}] {message}\n"
+    
+    # Simpan log ke file
+    with open(LOG_FILE, "a", encoding="utf-8") as log_file:
+        log_file.write(log_message)
 
 # =========================== Utility Functions ===========================
 
@@ -79,7 +87,6 @@ def scrape_mode_data(url, period, mode, pixel):
         button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]')))
         button.click()
         log_info(f"Berhasil memilih periode {period}")
-
         time.sleep(2)
 
         # Ambil elemen grafik
@@ -98,13 +105,10 @@ def scrape_mode_data(url, period, mode, pixel):
 
             period_data.append({'tanggal': tanggal_navdate, 'data': updated_data})
 
-        total_data = len(period_data)
-        log_info(f"Scraping {period} ({mode}) selesai, total data: {total_data}")
+            if DEBUG_MODE:
+                log_info(f"Kursor pada offset {offset} | Tanggal: {tanggal_navdate} | Data: {updated_data}", "DEBUG")
 
-        # ✅ Menampilkan beberapa contoh data untuk verifikasi
-        if total_data > 0:
-            preview_data = period_data[:3] + period_data[-3:] if total_data > 6 else period_data
-            log_info(f"Contoh data {period} ({mode}): " + ", ".join([f"{d['tanggal']}: {d['data']}" for d in preview_data]))
+        log_info(f"Scraping {period} ({mode}) selesai, total data: {len(period_data)}")
 
     except Exception as e:
         log_info(f"Scraping gagal untuk {period} ({mode}): {e}", "ERROR")
@@ -123,7 +127,7 @@ def scrape_all_periods(url, mode, pixel, data_periods):
     """Run scraping in parallel for all periods using threads"""
     max_workers = min(len(data_periods), 4)  # Maksimal 4 thread agar tidak overload
     log_info(f"Scraping {mode} dimulai dengan {max_workers} thread...")
-    
+
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = {executor.submit(scrape_mode_data, url, period, mode, pixel): period for period in data_periods}
         results = []
@@ -141,7 +145,8 @@ def scrape_all_periods(url, mode, pixel, data_periods):
 
 def main():
     urls = [
-        ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],  # Contoh URL tambahan
+        ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],
+        # ['Mandiri Investa Cerdas', 'https://bibit.id/reksadana/RD14']  # Contoh URL tambahan
     ]
     data_periods = ['3Y', '5Y']
     pixel = 200
