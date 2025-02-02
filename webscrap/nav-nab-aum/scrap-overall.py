@@ -72,77 +72,6 @@ def parse_tanggal(tanggal_str):
     tanggal_full = f"{hari} {bulan_en} 20{tahun}"
     return datetime.strptime(tanggal_full, "%d %B %Y")
 
-def try_click_period_button(driver, wait, period, max_attempts=3):
-    """
-    Mencoba berbagai metode untuk mengklik button periode.
-    Returns:
-        bool: True jika berhasil, False jika gagal
-    """
-    for attempt in range(max_attempts):
-        try:
-            print(f"[INFO] Mencoba klik button periode {period} (Percobaan {attempt + 1})")
-            
-            # Metode 1: Klik standar dengan explicit wait
-            try:
-                button = wait.until(EC.element_to_be_clickable(
-                    (By.CSS_SELECTOR, f'button[data-period="{period}"]')
-                ))
-                button.click()
-                print(f"[SUCCESS] Berhasil klik button periode {period} dengan metode standar")
-                return True
-            except Exception as e:
-                print(f"[WARNING] Gagal klik dengan metode standar: {e}")
-
-            # Metode 2: Klik dengan JavaScript
-            try:
-                button = driver.find_element(By.CSS_SELECTOR, f'button[data-period="{period}"]')
-                driver.execute_script("arguments[0].click();", button)
-                print(f"[SUCCESS] Berhasil klik button periode {period} dengan JavaScript")
-                return True
-            except Exception as e:
-                print(f"[WARNING] Gagal klik dengan JavaScript: {e}")
-
-            # Metode 3: Klik dengan ActionChains
-            try:
-                button = driver.find_element(By.CSS_SELECTOR, f'button[data-period="{period}"]')
-                ActionChains(driver).move_to_element(button).click().perform()
-                print(f"[SUCCESS] Berhasil klik button periode {period} dengan ActionChains")
-                return True
-            except Exception as e:
-                print(f"[WARNING] Gagal klik dengan ActionChains: {e}")
-
-            # Metode 4: Scroll ke button dulu baru klik
-            try:
-                button = driver.find_element(By.CSS_SELECTOR, f'button[data-period="{period}"]')
-                driver.execute_script("arguments[0].scrollIntoView(true);", button)
-                time.sleep(1)  # Tunggu scroll selesai
-                button.click()
-                print(f"[SUCCESS] Berhasil klik button periode {period} setelah scroll")
-                return True
-            except Exception as e:
-                print(f"[WARNING] Gagal klik setelah scroll: {e}")
-
-            # Jika semua metode gagal, tunggu sebentar sebelum mencoba lagi
-            time.sleep(2)
-            
-        except Exception as e:
-            print(f"[ERROR] Gagal mencoba semua metode klik untuk periode {period}: {e}")
-            
-            if attempt < max_attempts - 1:
-                print(f"Menunggu sebelum mencoba lagi...")
-                time.sleep(3)
-                try:
-                    driver.refresh()
-                    time.sleep(2)
-                except:
-                    pass
-            else:
-                print(f"[ERROR] Gagal klik button periode {period} setelah {max_attempts} percobaan")
-                return False
-
-    return False
-
-
 def switch_to_aum_mode(driver, wait):
     """Switch to AUM mode"""
     try:
@@ -158,27 +87,13 @@ def switch_to_aum_mode(driver, wait):
         return False
 
 def scrape_mode_data(url, period, mode, pixel, max_retries=3):
-    """
-    Fungsi untuk scraping data berdasarkan mode (Default/AUM) dan periode tertentu.
-    
-    Args:
-        url (str): URL halaman web untuk di-scrape
-        period (str): Periode waktu ('ALL', '1M', '3M', 'YTD', '3Y', '5Y')
-        mode (str): Mode data ('Default' atau 'AUM')
-        pixel (int): Jarak perpindahan pointer untuk mengambil data
-        max_retries (int): Jumlah maksimal percobaan jika terjadi error
-        
-    Returns:
-        list: List of dictionaries containing scraped data
-    """
+    """Scrape data for a specific mode and period"""
     retry_count = 0
     success = False
     period_data = []
 
     while retry_count < max_retries and not success:
-        driver = None
         try:
-            # Setup webdriver
             options = webdriver.ChromeOptions()
             options.add_argument('--disable-gpu')
             options.add_argument('--disable-dev-shm-usage')
@@ -186,102 +101,74 @@ def scrape_mode_data(url, period, mode, pixel, max_retries=3):
             options.add_argument('--headless')
             service = webdriver.chrome.service.Service()
             driver = webdriver.Chrome(service=service, options=options)
+
+            driver.get(url)
             wait = WebDriverWait(driver, 10)
 
-            # Load page
-            print(f"[INFO] Mengakses URL: {url}")
-            driver.get(url)
-            time.sleep(3)  # Tunggu halaman load sempurna
-
-            # Switch ke mode AUM jika diperlukan
+            # Switch to AUM mode if needed
             if mode == "AUM":
-                try:
-                    print("[INFO] Beralih ke mode AUM...")
-                    aum_button = wait.until(
-                        EC.element_to_be_clickable((By.XPATH, "//div[contains(@class, 'menu') and contains(text(), 'AUM')]"))
-                    )
-                    aum_button.click()
-                    time.sleep(3)  # Tunggu perpindahan mode
-                    print("[SUCCESS] Berhasil beralih ke mode AUM")
-                except Exception as e:
-                    raise Exception(f"Gagal beralih ke mode AUM: {e}")
+                if not switch_to_aum_mode(driver, wait):
+                    raise Exception("Failed to switch to AUM mode")
 
-            # Klik button periode dengan penanganan error yang lebih baik
-            print(f"[INFO] Mencoba mengklik button periode {period}")
-            if not try_click_period_button(driver, wait, period):
-                raise Exception(f"Gagal mengklik button periode {period} setelah semua percobaan")
-            
-            # Tunggu grafik muncul
-            print("[INFO] Menunggu grafik muncul...")
+            # Click period button
+            button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]')))
+            print(f"[INFO] Starting scraping for period {period} in {mode} mode")
+            button.click()
+            time.sleep(2)
+
+            # Get graph element
             graph_element = wait.until(EC.presence_of_element_located((By.TAG_NAME, 'svg')))
             graph_width = int(graph_element.size['width'])
             start_offset = -graph_width // 2
 
-            # Setup action chains untuk hover
             actions = ActionChains(driver)
-            
-            print_subheader(f"Mengumpulkan data untuk mode {mode}, periode {period}")
 
-            # Loop through graph points
+            print_subheader(f"Collecting data for {mode} mode, period {period}")
+
             for offset in range(start_offset, start_offset + graph_width, pixel):
-                try:
-                    # Hover ke titik data
-                    actions.move_to_element_with_offset(graph_element, offset, 0).perform()
-                    time.sleep(0.1)
+                actions.move_to_element_with_offset(graph_element, offset, 0).perform()
+                time.sleep(0.1)
 
-                    # Ambil data dengan explicit wait
-                    data_element = wait.until(
-                        EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
-                    )
-                    updated_data = data_element.text
+                updated_data = wait.until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
+                ).text
 
-                    date_element = wait.until(
-                        EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))
-                    )
-                    tanggal_navdate = date_element.text
+                tanggal_navdate = wait.until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))
+                ).text
 
-                    print_progress(mode, period, offset // pixel + 1, tanggal_navdate, updated_data)
+                print_progress(mode, period, offset // pixel + 1, tanggal_navdate, updated_data)
 
-                    period_data.append({
-                        'tanggal': tanggal_navdate,
-                        'data': updated_data
-                    })
+                period_data.append({
+                    'tanggal': tanggal_navdate,
+                    'data': updated_data
+                })
 
-                except Exception as e:
-                    print(f"[WARNING] Gagal mengambil data pada offset {offset}: {e}")
-                    continue  # Lanjut ke titik berikutnya jika gagal
-
-            # Verifikasi data yang terkumpul
             if period_data:
                 success = True
-                print(f"[SUCCESS] Berhasil mengumpulkan {len(period_data)} data points")
             else:
-                raise Exception(f"Tidak ada data yang terkumpul untuk periode {period} dalam mode {mode}")
+                raise Exception(f"No data found for period {period} in {mode} mode")
 
         except Exception as e:
             retry_count += 1
-            print(f"[WARNING] Gagal mengambil data untuk periode {period} dalam mode {mode}. "
-                  f"Percobaan {retry_count}/{max_retries}. Error: {e}")
+            print(f"[WARNING] Failed to get data for period {period} in {mode} mode. Attempt {retry_count}/{max_retries}. Error: {e}")
 
             if retry_count < max_retries:
-                print("Menunggu sebelum mencoba lagi...")
                 time.sleep(3)
-                if driver:
-                    try:
-                        driver.refresh()
-                        time.sleep(2)
-                    except:
-                        pass
-            else:
-                print(f"[ERROR] Gagal mengambil data untuk periode {period} dalam mode {mode} "
-                      f"setelah {max_retries} percobaan.")
-
-        finally:
-            if driver:
                 try:
-                    driver.quit()
+                    driver.refresh()
+                    time.sleep(2)
                 except:
                     pass
+
+        finally:
+            try:
+                driver.quit()
+            except:
+                pass
+
+    if not success:
+        print(f"[ERROR] Failed to get data for period {period} in {mode} mode after {max_retries} attempts.")
 
     return period_data
 
@@ -349,8 +236,8 @@ def main():
         ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],
     ]
 
-    pixel = 2
-    data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y']
+    pixel = 200
+    data_periods = ['3Y', '5Y']
 
     for url_data in urls:
         kode = url_data[0]
