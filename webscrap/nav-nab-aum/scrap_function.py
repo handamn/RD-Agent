@@ -1,6 +1,3 @@
-from datetime import date, timedelta
-import pandas as pd
-
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -12,7 +9,7 @@ from multiprocessing import Process, Manager
 import csv
 import os
 from datetime import datetime
-
+# from selenium.webdriver.support.expected_conditions import staleness_of
 
 def print_header(text, char="="):
     """Print a header with consistent formatting"""
@@ -89,61 +86,96 @@ def parse_tanggal(tanggal_str):
     tanggal_full = f"{hari} {bulan_en} 20{tahun}"
     return datetime.strptime(tanggal_full, "%d %B %Y")
 
-def scrape_data(url, period, result_list, pixel):
-    options = webdriver.ChromeOptions()
-    options.add_argument('--disable-gpu')
-    options.add_argument('--disable-dev-shm-usage')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--headless')
-    service = webdriver.chrome.service.Service()
-    driver = webdriver.Chrome(service=service, options=options)
 
-    driver.get(url)
+def scrape_data(url, period, result_list, pixel, max_retries=3):
+    """
+    Fungsi untuk melakukan scraping data berdasarkan periode tertentu.
+    - Menangani 'stale element reference' dengan cara yang lebih adaptif.
+    - Mencoba kembali (retry) hingga data berhasil diambil.
+    - Menunggu elemen benar-benar siap sebelum berinteraksi.
+    """
 
-    try:
-        button = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]'))
-        )
+    retry_count = 0
+    success = False
 
-        button_text = button.find_element(By.CSS_SELECTOR, '.reksa-border-button-period-box').text
-        print(f"[INFO] Memulai scraping untuk periode: {button_text}")
-        
-        button.click()
-        time.sleep(2)
+    while retry_count < max_retries and not success:
+        try:
+            options = webdriver.ChromeOptions()
+            options.add_argument('--disable-gpu')
+            options.add_argument('--disable-dev-shm-usage')
+            options.add_argument('--no-sandbox')
+            options.add_argument('--headless')
+            service = webdriver.chrome.service.Service()
+            driver = webdriver.Chrome(service=service, options=options)
 
-        graph_element = driver.find_element(By.TAG_NAME, 'svg')
-        graph_width = int(graph_element.size['width'])
-        start_offset = -graph_width // 2
+            driver.get(url)
+            wait = WebDriverWait(driver, 10)
 
-        actions = ActionChains(driver)
-        period_data = []
+            # Tunggu tombol periode muncul dan bisa diklik
+            button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]')))
 
-        print_subheader(f"Mengambil data periode {period}")
+            print(f"[INFO] Memulai scraping untuk periode: {period}")
 
-        for offset in range(start_offset, start_offset + graph_width, pixel):
-            current_iteration = (offset - start_offset) // pixel + 1
-            
-            actions.move_to_element_with_offset(graph_element, offset, 0).perform()
-            time.sleep(0.1)
+            # Klik tombol periode
+            button.click()
+            time.sleep(2)  # Tunggu perubahan halaman
 
-            updated_data = WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
-            ).text
+            # Tunggu elemen grafik muncul sebelum mulai scraping
+            graph_element = wait.until(EC.presence_of_element_located((By.TAG_NAME, 'svg')))
+            graph_width = int(graph_element.size['width'])
+            start_offset = -graph_width // 2
 
-            tanggal_navdate = WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))
-            ).text
+            actions = ActionChains(driver)
+            period_data = []
 
-            print_progress(period, current_iteration, tanggal_navdate, updated_data)
-            
-            period_data.append({
-                'tanggal': tanggal_navdate,
-                'data': updated_data
-            })
+            print_subheader(f"Mengambil data periode {period}")
 
-        result_list.append(period_data)
+            for offset in range(start_offset, start_offset + graph_width, pixel):
+                actions.move_to_element_with_offset(graph_element, offset, 0).perform()
+                time.sleep(0.1)
 
-    except Exception as e:
-        print(f"[ERROR] Gagal mengambil data untuk periode {period}: {str(e)}")
-    finally:
-        driver.quit()
+                # Ambil data harga reksa dana
+                updated_data = wait.until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
+                ).text
+
+                # Ambil tanggal
+                tanggal_navdate = wait.until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))
+                ).text
+
+                print_progress(period, offset // pixel + 1, tanggal_navdate, updated_data)
+
+                period_data.append({
+                    'tanggal': tanggal_navdate,
+                    'data': updated_data
+                })
+
+            # Jika ada data, simpan ke result_list
+            if period_data:
+                result_list.append(period_data)
+                success = True
+            else:
+                raise Exception(f"Tidak ada data yang ditemukan untuk periode {period}")
+
+        except Exception as e:
+            retry_count += 1
+            print(f"[WARNING] Gagal mengambil data untuk periode {period}. Percobaan {retry_count}/{max_retries}. Error: {e}")
+
+            # Jika gagal, coba refresh halaman sebelum mencoba ulang
+            if retry_count < max_retries:
+                time.sleep(3)  # Tunggu sebelum mencoba lagi
+                try:
+                    driver.refresh()
+                    time.sleep(2)  # Tunggu halaman reload
+                except:
+                    pass
+
+        finally:
+            try:
+                driver.quit()
+            except:
+                pass  # Abaikan error jika driver sudah tertutup
+
+    if not success:
+        print(f"[ERROR] Gagal mengambil data untuk periode {period} setelah {max_retries} percobaan.")
