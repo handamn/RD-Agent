@@ -5,10 +5,9 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
-from multiprocessing import Process, Manager
 import csv
 import os
-from datetime import datetime
+from multiprocessing import Process, Manager
 
 def print_header(text, char="="):
     """Print a header with consistent formatting"""
@@ -224,41 +223,54 @@ def process_and_save_data(kode, mode1_data, mode2_data):
         writer.writeheader()
         writer.writerows(csv_data)
 
+def scrape_url(url_data, pixel, data_periods):
+    """Function to scrape data for a single URL"""
+    kode, url = url_data
+    print_header(f"Starting Data Collection: {kode}")
+    print(f"URL: {url}")
+
+    # Collect data for both modes
+    mode1_data = []
+    mode2_data = []
+
+    # Scrape Mode 1 (Default mode)
+    print_header("Collecting Mode 1 (Default) Data")
+    for period in data_periods:
+        period_data = scrape_mode_data(url, period, "Default", pixel)
+        mode1_data.extend(period_data)
+
+    # Scrape Mode 2 (AUM mode)
+    print_header("Collecting Mode 2 (AUM) Data")
+    for period in data_periods:
+        period_data = scrape_mode_data(url, period, "AUM", pixel)
+        mode2_data.extend(period_data)
+
+    # Process and save combined data
+    process_and_save_data(kode, mode1_data, mode2_data)
+
 def main():
     start_time = time.time()
 
     urls = [
         ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],
+        # Tambahkan URL lainnya di sini
     ]
 
     pixel = 200
     data_periods = ['3Y', '5Y']
 
+    # Create a list to hold process objects
+    processes = []
+
+    # Start a process for each URL
     for url_data in urls:
-        kode = url_data[0]
-        url = url_data[1]
-        
-        print_header(f"Starting Data Collection: {kode}")
-        print(f"URL: {url}")
+        process = Process(target=scrape_url, args=(url_data, pixel, data_periods))
+        processes.append(process)
+        process.start()
 
-        # Collect data for both modes
-        mode1_data = []
-        mode2_data = []
-
-        # Scrape Mode 1 (Default mode)
-        print_header("Collecting Mode 1 (Default) Data")
-        for period in data_periods:
-            period_data = scrape_mode_data(url, period, "Default", pixel)
-            mode1_data.extend(period_data)
-
-        # Scrape Mode 2 (AUM mode)
-        print_header("Collecting Mode 2 (AUM) Data")
-        for period in data_periods:
-            period_data = scrape_mode_data(url, period, "AUM", pixel)
-            mode2_data.extend(period_data)
-
-        # Process and save combined data
-        process_and_save_data(kode, mode1_data, mode2_data)
+    # Wait for all processes to complete
+    for process in processes:
+        process.join()
 
     end_time = time.time()
     duration = end_time - start_time
