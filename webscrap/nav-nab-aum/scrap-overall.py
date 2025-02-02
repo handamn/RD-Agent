@@ -27,13 +27,19 @@ def print_progress(period, iteration, date, value):
     print(f"Period: {period:<4} | Iteration: {iteration:<4} | Date: {date:<10} | Value: {value}")
 
 def convert_to_number(value):
-    # Existing convert_to_number function remains the same
+    # Menghilangkan koma agar bisa dikonversi ke float
+    value = value.replace(',', '')
+
     if 'K' in value:
-        return float(value.replace('K', '')) * 1000
+        return float(value.replace('K', '')) * 1_000
     elif 'M' in value:
-        return float(value.replace('M', '')) * 1000000
+        return float(value.replace('M', '')) * 1_000_000
+    elif 'B' in value:
+        return float(value.replace('B', '')) * 1_000_000_000
+    elif 'T' in value:
+        return float(value.replace('T', '')) * 1_000_000_000_000
     else:
-        return float(value.replace(',', ''))
+        return float(value)
 
 def parse_tanggal(tanggal_str):
     # Existing parse_tanggal function remains the same
@@ -87,12 +93,108 @@ def parse_tanggal(tanggal_str):
     return datetime.strptime(tanggal_full, "%d %B %Y")
 
 
+# def scrape_data(url, period, result_list, pixel, max_retries=3):
+#     """
+#     Fungsi untuk melakukan scraping data berdasarkan periode tertentu.
+#     - Menangani 'stale element reference' dengan cara yang lebih adaptif.
+#     - Mencoba kembali (retry) hingga data berhasil diambil.
+#     - Menunggu elemen benar-benar siap sebelum berinteraksi.
+#     """
+
+#     retry_count = 0
+#     success = False
+
+#     while retry_count < max_retries and not success:
+#         try:
+#             options = webdriver.ChromeOptions()
+#             options.add_argument('--disable-gpu')
+#             options.add_argument('--disable-dev-shm-usage')
+#             options.add_argument('--no-sandbox')
+#             options.add_argument('--headless')
+#             service = webdriver.chrome.service.Service()
+#             driver = webdriver.Chrome(service=service, options=options)
+
+#             #########
+#             driver.get(url)
+#             wait = WebDriverWait(driver, 10)
+
+#             # Tunggu tombol periode muncul dan bisa diklik
+#             button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]')))
+
+#             print(f"[INFO] Memulai scraping untuk periode: {period}")
+
+#             # Klik tombol periode
+#             button.click()
+#             time.sleep(2)  # Tunggu perubahan halaman
+
+#             # Tunggu elemen grafik muncul sebelum mulai scraping
+#             graph_element = wait.until(EC.presence_of_element_located((By.TAG_NAME, 'svg')))
+#             graph_width = int(graph_element.size['width'])
+#             start_offset = -graph_width // 2
+
+#             actions = ActionChains(driver)
+#             period_data = []
+
+#             print_subheader(f"Mengambil data periode {period}")
+
+#             for offset in range(start_offset, start_offset + graph_width, pixel):
+#                 actions.move_to_element_with_offset(graph_element, offset, 0).perform()
+#                 time.sleep(0.1)
+
+#                 # Ambil data harga reksa dana
+#                 updated_data = wait.until(
+#                     EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
+#                 ).text
+
+#                 # Ambil tanggal
+#                 tanggal_navdate = wait.until(
+#                     EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))
+#                 ).text
+
+#                 print_progress(period, offset // pixel + 1, tanggal_navdate, updated_data)
+
+#                 period_data.append({
+#                     'tanggal': tanggal_navdate,
+#                     'data': updated_data
+#                 })
+
+#             # Jika ada data, simpan ke result_list
+#             if period_data:
+#                 result_list.append(period_data)
+#                 success = True
+#             else:
+#                 raise Exception(f"Tidak ada data yang ditemukan untuk periode {period}")
+
+#         except Exception as e:
+#             retry_count += 1
+#             print(f"[WARNING] Gagal mengambil data untuk periode {period}. Percobaan {retry_count}/{max_retries}. Error: {e}")
+
+#             # Jika gagal, coba refresh halaman sebelum mencoba ulang
+#             if retry_count < max_retries:
+#                 time.sleep(3)  # Tunggu sebelum mencoba lagi
+#                 try:
+#                     driver.refresh()
+#                     time.sleep(2)  # Tunggu halaman reload
+#                 except:
+#                     pass
+
+#         finally:
+#             try:
+#                 driver.quit()
+#             except:
+#                 pass  # Abaikan error jika driver sudah tertutup
+
+#     if not success:
+#         print(f"[ERROR] Gagal mengambil data untuk periode {period} setelah {max_retries} percobaan.")
+
+
+
 def scrape_data(url, period, result_list, pixel, max_retries=3):
     """
-    Fungsi untuk melakukan scraping data berdasarkan periode tertentu.
-    - Menangani 'stale element reference' dengan cara yang lebih adaptif.
-    - Mencoba kembali (retry) hingga data berhasil diambil.
-    - Menunggu elemen benar-benar siap sebelum berinteraksi.
+    Fungsi scraping yang ditingkatkan:
+    - Klik tombol "AUM" sebelum mulai scraping.
+    - Menangani error 'stale element reference'.
+    - Retry mechanism untuk memastikan data berhasil diambil.
     """
 
     retry_count = 0
@@ -108,20 +210,35 @@ def scrape_data(url, period, result_list, pixel, max_retries=3):
             service = webdriver.chrome.service.Service()
             driver = webdriver.Chrome(service=service, options=options)
 
-            #########
             driver.get(url)
             wait = WebDriverWait(driver, 10)
 
-            # Tunggu tombol periode muncul dan bisa diklik
-            button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]')))
+            # 🔹 Coba Klik Tombol "AUM" Sebelum Scraping
+            try:
+                aum_button = wait.until(
+                    EC.element_to_be_clickable((By.XPATH, "//div[contains(@class, 'menu') and contains(text(), 'AUM')]"))
+                )
+                print("[INFO] Tombol 'AUM' ditemukan, mencoba klik...")
 
+                try:
+                    aum_button.click()
+                    print("[INFO] Klik 'AUM' berhasil dengan metode .click()")
+                except Exception as e:
+                    print(f"[WARNING] Klik 'AUM' gagal dengan .click(), mencoba metode JavaScript: {e}")
+                    driver.execute_script("arguments[0].click();", aum_button)
+
+                time.sleep(5)  # 🔹 Tunggu halaman merespons setelah klik "AUM"
+            except Exception as e:
+                print(f"[WARNING] Tombol 'AUM' tidak ditemukan atau tidak bisa diklik: {e}")
+
+            # 🔹 Klik Tombol Periode (ALL, 1M, 3M, YTD, 3Y, 5Y)
+            button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]')))
             print(f"[INFO] Memulai scraping untuk periode: {period}")
 
-            # Klik tombol periode
             button.click()
             time.sleep(2)  # Tunggu perubahan halaman
 
-            # Tunggu elemen grafik muncul sebelum mulai scraping
+            # 🔹 Tunggu elemen grafik muncul sebelum mulai scraping
             graph_element = wait.until(EC.presence_of_element_located((By.TAG_NAME, 'svg')))
             graph_width = int(graph_element.size['width'])
             start_offset = -graph_width // 2
@@ -152,7 +269,7 @@ def scrape_data(url, period, result_list, pixel, max_retries=3):
                     'data': updated_data
                 })
 
-            # Jika ada data, simpan ke result_list
+            # 🔹 Jika data berhasil diambil, simpan ke result_list
             if period_data:
                 result_list.append(period_data)
                 success = True
@@ -163,7 +280,7 @@ def scrape_data(url, period, result_list, pixel, max_retries=3):
             retry_count += 1
             print(f"[WARNING] Gagal mengambil data untuk periode {period}. Percobaan {retry_count}/{max_retries}. Error: {e}")
 
-            # Jika gagal, coba refresh halaman sebelum mencoba ulang
+            # 🔹 Jika gagal, coba refresh halaman sebelum mencoba ulang
             if retry_count < max_retries:
                 time.sleep(3)  # Tunggu sebelum mencoba lagi
                 try:
