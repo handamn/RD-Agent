@@ -10,8 +10,16 @@ import os
 from datetime import datetime
 
 # =========================== CONFIGURATIONS ===========================
-DEBUG_MODE = False  # Ubah ke True untuk melihat log setiap titik kursor
-LOG_FILE = "scraping_log.log"  # File log untuk menyimpan hasil log
+DEBUG_MODE = True  # Ubah ke True untuk melihat log setiap titik kursor
+LOG_DIR = "logs"  # Folder untuk menyimpan log files
+
+# Buat folder logs jika belum ada
+if not os.path.exists(LOG_DIR):
+    os.makedirs(LOG_DIR)
+
+# Membuat nama file log dengan timestamp
+log_filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "_scraping_log.log"
+LOG_FILE = os.path.join(LOG_DIR, log_filename)  # Lokasi file log dengan timestamp
 
 # =========================== Logging Function ===========================
 
