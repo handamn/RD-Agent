@@ -108,55 +108,81 @@ def scrape_data(url, period, result_list, pixel, max_retries=3):
             service = webdriver.chrome.service.Service()
             driver = webdriver.Chrome(service=service, options=options)
 
-            driver.get(url)
-            wait = WebDriverWait(driver, 10)
+            #########
 
-            # Tunggu tombol periode muncul dan bisa diklik
-            button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]')))
+            try:
+                wait = WebDriverWait(driver, 10)  # Tunggu maksimal 10 detik
+                aum_button = wait.until(
+                    EC.element_to_be_clickable((By.XPATH, "//div[contains(@class, 'menu') and contains(text(), 'AUM')]"))
+                )
+                print("Elemen AUM ditemukan dan bisa diklik.")
 
-            print(f"[INFO] Memulai scraping untuk periode: {period}")
+                # Klik dengan metode normal
+                try:
+                    aum_button.click()
+                    print("Klik berhasil dengan metode .click()")
 
-            # Klik tombol periode
-            button.click()
-            time.sleep(2)  # Tunggu perubahan halaman
+                    driver.get(url)
+                    wait = WebDriverWait(driver, 10)
 
-            # Tunggu elemen grafik muncul sebelum mulai scraping
-            graph_element = wait.until(EC.presence_of_element_located((By.TAG_NAME, 'svg')))
-            graph_width = int(graph_element.size['width'])
-            start_offset = -graph_width // 2
+                    # Tunggu tombol periode muncul dan bisa diklik
+                    button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]')))
 
-            actions = ActionChains(driver)
-            period_data = []
+                    print(f"[INFO] Memulai scraping untuk periode: {period}")
 
-            print_subheader(f"Mengambil data periode {period}")
+                    # Klik tombol periode
+                    button.click()
+                    time.sleep(2)  # Tunggu perubahan halaman
 
-            for offset in range(start_offset, start_offset + graph_width, pixel):
-                actions.move_to_element_with_offset(graph_element, offset, 0).perform()
-                time.sleep(0.1)
+                    # Tunggu elemen grafik muncul sebelum mulai scraping
+                    graph_element = wait.until(EC.presence_of_element_located((By.TAG_NAME, 'svg')))
+                    graph_width = int(graph_element.size['width'])
+                    start_offset = -graph_width // 2
 
-                # Ambil data harga reksa dana
-                updated_data = wait.until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
-                ).text
+                    actions = ActionChains(driver)
+                    period_data = []
 
-                # Ambil tanggal
-                tanggal_navdate = wait.until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))
-                ).text
+                    print_subheader(f"Mengambil data periode {period}")
 
-                print_progress(period, offset // pixel + 1, tanggal_navdate, updated_data)
+                    for offset in range(start_offset, start_offset + graph_width, pixel):
+                        actions.move_to_element_with_offset(graph_element, offset, 0).perform()
+                        time.sleep(0.1)
 
-                period_data.append({
-                    'tanggal': tanggal_navdate,
-                    'data': updated_data
-                })
+                        # Ambil data harga reksa dana
+                        updated_data = wait.until(
+                            EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
+                        ).text
 
-            # Jika ada data, simpan ke result_list
-            if period_data:
-                result_list.append(period_data)
-                success = True
-            else:
-                raise Exception(f"Tidak ada data yang ditemukan untuk periode {period}")
+                        # Ambil tanggal
+                        tanggal_navdate = wait.until(
+                            EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))
+                        ).text
+
+                        print_progress(period, offset // pixel + 1, tanggal_navdate, updated_data)
+
+                        period_data.append({
+                            'tanggal': tanggal_navdate,
+                            'data': updated_data
+                        })
+
+                    # Jika ada data, simpan ke result_list
+                    if period_data:
+                        result_list.append(period_data)
+                        success = True
+                    else:
+                        raise Exception(f"Tidak ada data yang ditemukan untuk periode {period}")
+                    
+
+                except Exception as e:
+                    print(f"Gagal dengan .click(): {e}")
+            
+            except Exception as e:
+                    print(f"Gagal dengan .click(): {e}")
+
+
+
+            
+            #########
 
         except Exception as e:
             retry_count += 1
