@@ -91,11 +91,6 @@ class ProspektusDownloader:
 # Buat instance dengan folder kustom
 downloader = ProspektusDownloader(download_folder="my_downloads")
 
-# Download file
-# success, message = downloader.download(
-#     urls="https://bibit.id/reksadana/RD3595/bahana-likuid-syariah-kelas-g",
-#     new_filename="Prospektus_Baru"
-# )
 
 urls = [
     ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],
