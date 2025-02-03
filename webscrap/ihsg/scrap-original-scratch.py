@@ -3,23 +3,26 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 import time
+import random
 
-# Ganti dengan path ke WebDriver Anda
-# driver_path = 'path/to/chromedriver'
-
-# Ganti dengan URL target
-url = 'https://id.investing.com/indices/idx-composite'
+# Konfigurasi Chrome Options
+chrome_options = Options()
+chrome_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+chrome_options.add_experimental_option("useAutomationExtension", False)
 
 # Inisialisasi WebDriver
-driver = webdriver.Chrome()
-driver.get(url)
+driver = webdriver.Chrome(options=chrome_options)
+driver.get('https://id.investing.com/indices/idx-composite')
 
 # Tunggu hingga halaman selesai memuat
 time.sleep(10)  # Sesuaikan waktu tunggu jika diperlukan
 
 # Temukan elemen grafik (ganti dengan selector yang sesuai)
-chart_element = driver.find_element(By.CSS_SELECTOR, 'selector_grafik')
+chart_element = driver.find_element(By.CSS_SELECTOR, 'div.chart-container')  # Ganti dengan selector yang benar
 
 # Dapatkan ukuran dan posisi grafik
 chart_location = chart_element.location
@@ -34,7 +37,7 @@ actions = ActionChains(driver)
 actions.move_to_element_with_offset(chart_element, chart_size['width'] / 2, chart_size['height'] / 2).perform()
 
 # Tunggu hingga tabel muncul
-time.sleep(2)  # Sesuaikan waktu tunggu jika diperlukan
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'table.hu-tooltip')))
 
 # Ambil data dari tabel
 tooltip_table = driver.find_element(By.CSS_SELECTOR, 'table.hu-tooltip')
