@@ -150,10 +150,10 @@ class Scraper:
                 data_number = self.convert_to_number(entry['data'].replace('Rp', '').strip())
 
                 if tanggal_str not in processed_data:
-                    processed_data[tanggal_str] = {'mode1': 'NA', 'mode2': 'NA'}
-                processed_data[tanggal_str]['mode1'] = data_number
+                    processed_data[tanggal_str] = {'NAV': 'NA', 'AUM': 'NA'}
+                processed_data[tanggal_str]['NAV'] = data_number
             except ValueError as e:
-                self.logger.log_info(f"[ERROR] Gagal mengonversi data mode1: {entry['data']}", "ERROR")
+                self.logger.log_info(f"[ERROR] Gagal mengonversi data NAV: {entry['data']}", "ERROR")
 
         for entry in mode2_data:
             try:
@@ -162,23 +162,23 @@ class Scraper:
                 data_number = self.convert_to_number(entry['data'].replace('Rp', '').strip())
 
                 if tanggal_str not in processed_data:
-                    processed_data[tanggal_str] = {'mode1': 'NA', 'mode2': 'NA'}
-                processed_data[tanggal_str]['mode2'] = data_number
+                    processed_data[tanggal_str] = {'NAV': 'NA', 'AUM': 'NA'}
+                processed_data[tanggal_str]['AUM'] = data_number
             except ValueError as e:
-                self.logger.log_info(f"[ERROR] Gagal mengonversi data mode2: {entry['data']}", "ERROR")
+                self.logger.log_info(f"[ERROR] Gagal mengonversi data AUM: {entry['data']}", "ERROR")
 
         sorted_dates = sorted(processed_data.keys())
 
         csv_file = os.path.join(self.database_dir, f"{kode}.csv")
         with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
-            writer = csv.DictWriter(file, fieldnames=['tanggal', 'mode1', 'mode2'])
+            writer = csv.DictWriter(file, fieldnames=['tanggal', 'NAV', 'AUM'])
             writer.writeheader()
 
             for date in sorted_dates:
                 writer.writerow({
                     'tanggal': date,
-                    'mode1': processed_data[date]['mode1'],
-                    'mode2': processed_data[date]['mode2']
+                    'NAV': processed_data[date]['NAV'],
+                    'AUM': processed_data[date]['AUM']
                 })
 
         self.logger.log_info(f"Data {kode} berhasil disimpan ke {csv_file}")
