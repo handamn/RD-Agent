@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import csv
 
 class Logger:
     """Logger untuk mencatat aktivitas scraping dan downloading ke file log yang sama."""
@@ -31,6 +32,8 @@ class Scraper:
         self.pixel = pixel
         self.logger = logger  # Gunakan logger eksternal
         self.debug_mode = debug_mode
+        self.database_dir = "database"  # Folder penyimpanan CSV
+        os.makedirs(self.database_dir, exist_ok=True)  # Buat folder jika belum ada
 
     def scrape_mode_data(self, url, period, mode):
         """Scrape data untuk mode dan periode tertentu."""
@@ -103,8 +106,44 @@ class Scraper:
 
             return results
 
+    def save_to_csv(self, kode, mode1_data, mode2_data):
+        """Menyimpan data hasil scraping ke dalam file CSV."""
+        csv_file = os.path.join(self.database_dir, f"{kode}.csv")
+        processed_data = {}
+
+        # Proses data untuk mode1
+        for entry in mode1_data:
+            tanggal = entry['tanggal']
+            if tanggal not in processed_data:
+                processed_data[tanggal] = {'mode1': 'NA', 'mode2': 'NA'}
+            processed_data[tanggal]['mode1'] = entry['data']
+
+        # Proses data untuk mode2
+        for entry in mode2_data:
+            tanggal = entry['tanggal']
+            if tanggal not in processed_data:
+                processed_data[tanggal] = {'mode1': 'NA', 'mode2': 'NA'}
+            processed_data[tanggal]['mode2'] = entry['data']
+
+        # Urutkan berdasarkan tanggal
+        sorted_dates = sorted(processed_data.keys())
+
+        # Simpan ke CSV
+        with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
+            writer = csv.DictWriter(file, fieldnames=['tanggal', 'mode1', 'mode2'])
+            writer.writeheader()
+
+            for date in sorted_dates:
+                writer.writerow({
+                    'tanggal': date,
+                    'mode1': processed_data[date]['mode1'],
+                    'mode2': processed_data[date]['mode2']
+                })
+
+        self.logger.log_info(f"Data {kode} berhasil disimpan ke {csv_file}")
+
     def run(self):
-        """Menjalankan scraping untuk semua URL."""
+        """Menjalankan scraping untuk semua URL dan menyimpan hasil ke CSV."""
         total_start_time = time.time()
         self.logger.log_info("===== Mulai scraping seluruh data =====")
 
@@ -114,6 +153,9 @@ class Scraper:
 
             mode1_data = self.scrape_all_periods(url, "Default")
             mode2_data = self.scrape_all_periods(url, "AUM")
+
+            # Simpan ke CSV
+            self.save_to_csv(kode, mode1_data, mode2_data)
 
             url_duration = time.time() - url_start_time
             self.logger.log_info(f"Scraping {kode} selesai dalam {url_duration:.2f} detik.")
