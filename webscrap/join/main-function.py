@@ -126,7 +126,7 @@ class Scraper:
                 period_data.append({'tanggal': tanggal_navdate, 'data': updated_data})
 
                 if self.debug_mode:
-                    self.logger.log_info(f"Kursor {offset} | Tanggal: {tanggal_navdate} | Data: {updated_data}", "DEBUG")
+                    self.logger.log_info(f"Mode {mode} | Periode {period} | Kursor {offset} | Tanggal: {tanggal_navdate} | Data: {updated_data}", "DEBUG")
 
             self.logger.log_info(f"Scraping {period} ({mode}) selesai, total data: {len(period_data)}")
 
@@ -316,7 +316,7 @@ urls = [
 
 
 data_periods = ['3Y', '5Y']
-pixel = 2
+pixel = 200
 
 # Membuat scraper instance dan menjalankan scraping
 scraper = Scraper(urls, data_periods, pixel, logger, debug_mode=True)
