@@ -1,0 +1,26 @@
+[2025-02-03 15:34:05] [INFO] ===== Mulai scraping seluruh data =====
+[2025-02-03 15:34:05] [INFO] Mulai scraping untuk ABF Indonesia Bond Index Fund
+[2025-02-03 15:34:05] [INFO] Memulai scraping 3Y (Default) untuk https://bibit.id/reksadana/RD13...
+[2025-02-03 15:34:10] [INFO] Berhasil membuka URL https://bibit.id/reksadana/RD13
+[2025-02-03 15:34:10] [INFO] Berhasil memilih periode 3Y
+[2025-02-03 15:34:12] [DEBUG] Kursor -455 | Tanggal: 31 Jan 25 | Data: Rp54.24K
+[2025-02-03 15:34:12] [DEBUG] Kursor -255 | Tanggal: 15 Sep 22 | Data: Rp47.20K
+[2025-02-03 15:34:13] [DEBUG] Kursor -55 | Tanggal: 25 Mei 23 | Data: Rp50.56K
+[2025-02-03 15:34:13] [DEBUG] Kursor 145 | Tanggal: 1 Feb 24 | Data: Rp52.33K
+[2025-02-03 15:34:14] [DEBUG] Kursor 345 | Tanggal: 10 Okt 24 | Data: Rp54.18K
+[2025-02-03 15:34:14] [INFO] Scraping 3Y (Default) selesai, total data: 5
+[2025-02-03 15:34:16] [INFO] Scraping 3Y (Default) selesai dalam 10.34 detik.
+[2025-02-03 15:34:16] [INFO] Memulai scraping 3Y (AUM) untuk https://bibit.id/reksadana/RD13...
+[2025-02-03 15:34:20] [INFO] Berhasil membuka URL https://bibit.id/reksadana/RD13
+[2025-02-03 15:34:20] [INFO] [INFO] Beralih ke mode AUM...
+[2025-02-03 15:34:24] [INFO] Berhasil memilih periode 3Y
+[2025-02-03 15:34:26] [DEBUG] Kursor -455 | Tanggal: 1 Des 24 | Data: Rp6.52T
+[2025-02-03 15:34:26] [DEBUG] Kursor -255 | Tanggal: 1 Agt 22 | Data: Rp4.86T
+[2025-02-03 15:34:27] [DEBUG] Kursor -55 | Tanggal: 1 Apr 23 | Data: Rp5.10T
+[2025-02-03 15:34:27] [DEBUG] Kursor 145 | Tanggal: 1 Jan 24 | Data: Rp6.52T
+[2025-02-03 15:34:28] [DEBUG] Kursor 345 | Tanggal: 1 Sep 24 | Data: Rp6.62T
+[2025-02-03 15:34:28] [INFO] Scraping 3Y (AUM) selesai, total data: 5
+[2025-02-03 15:34:30] [INFO] Scraping 3Y (AUM) selesai dalam 13.83 detik.
+[2025-02-03 15:34:30] [INFO] Data ABF Indonesia Bond Index Fund berhasil disimpan ke database\ABF Indonesia Bond Index Fund.csv
+[2025-02-03 15:34:30] [INFO] Scraping ABF Indonesia Bond Index Fund selesai dalam 24.18 detik.
+[2025-02-03 15:34:30] [INFO] ===== Semua scraping selesai dalam 24.18 detik =====
