@@ -50,39 +50,40 @@ class ProspektusDownloader:
         new_path = os.path.join(self.download_dir, f"{new_name}.pdf")
         os.rename(latest_file, new_path)
     
-    def download(self, url, new_filename, button_class="DetailProductStyle_detail-produk-button__zk419"):
+    def download(self, urls, button_class="DetailProductStyle_detail-produk-button__zk419"):
         """
         Fungsi utama untuk mengunduh dan rename file
         
         Parameters:
-        url (str): URL halaman web yang berisi button download
-        new_filename (str): Nama baru untuk file yang diunduh (tanpa ekstensi .pdf)
+        urls (list): Judul dan URL halaman web yang berisi button download
         button_class (str): Class name dari button yang akan diklik
         
         Returns:
         tuple: (bool, str) - (Success status, Message)
         """
         driver = self._setup_driver()
-        try:
-            driver.get(url)
-            button = WebDriverWait(driver, 10).until(
-                EC.element_to_be_clickable((By.CLASS_NAME, button_class))
-            )
-            button.click()
-            
-            if not self._wait_for_download():
-                raise Exception("Download timeout")
+
+        for kode, url in urls:
+            try:
+                driver.get(url)
+                button = WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable((By.CLASS_NAME, button_class))
+                )
+                button.click()
                 
-            time.sleep(2)
-            self._rename_latest_pdf(new_filename)
-            
-            return True, f"File berhasil didownload dan direname menjadi {new_filename}.pdf"
-            
-        except Exception as e:
-            return False, f"Error: {str(e)}"
-            
-        finally:
-            driver.quit()
+                if not self._wait_for_download():
+                    raise Exception("Download timeout")
+                    
+                time.sleep(2)
+                self._rename_latest_pdf(kode)
+                
+                return True, f"File berhasil didownload dan direname menjadi {kode}.pdf"
+                
+            except Exception as e:
+                return False, f"Error: {str(e)}"
+                
+            finally:
+                driver.quit()
 
 
 
@@ -91,10 +92,17 @@ class ProspektusDownloader:
 downloader = ProspektusDownloader(download_folder="my_downloads")
 
 # Download file
-success, message = downloader.download(
-    url="https://bibit.id/reksadana/RD3595/bahana-likuid-syariah-kelas-g",
-    new_filename="Prospektus_Baru"
-)
+# success, message = downloader.download(
+#     urls="https://bibit.id/reksadana/RD3595/bahana-likuid-syariah-kelas-g",
+#     new_filename="Prospektus_Baru"
+# )
+
+urls = [
+    ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],
+    # ['Mandiri Investa Cerdas', 'https://bibit.id/reksadana/RD14']  # Bisa ditambahkan jika perlu
+]
+
+success, message = downloader.download(urls)
 
 # Cek hasil
 if success:
