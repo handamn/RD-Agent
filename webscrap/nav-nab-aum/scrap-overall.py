@@ -1,179 +1,134 @@
+import os
+import time
+from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
-import csv
-import os
-from datetime import datetime
 
-# =========================== CONFIGURATIONS ===========================
-DEBUG_MODE = True  # Ubah ke True untuk melihat log setiap titik kursor
-LOG_DIR = "logs"  # Folder untuk menyimpan log files
+class Scraper:
+    def __init__(self, urls, data_periods, pixel, debug_mode=False):
+        """Inisialisasi scraper dengan daftar URL, periode, pixel, dan mode debug."""
+        self.urls = urls
+        self.data_periods = data_periods
+        self.pixel = pixel
+        self.debug_mode = debug_mode
 
-# Buat folder logs jika belum ada
-if not os.path.exists(LOG_DIR):
-    os.makedirs(LOG_DIR)
+        # Konfigurasi logging
+        self.log_dir = "logs"
+        os.makedirs(self.log_dir, exist_ok=True)
+        log_filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "_scraping_log.log"
+        self.LOG_FILE = os.path.join(self.log_dir, log_filename)
 
-# Membuat nama file log dengan timestamp
-log_filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "_scraping_log.log"
-LOG_FILE = os.path.join(LOG_DIR, log_filename)  # Lokasi file log dengan timestamp
+    def log_info(self, message, status="INFO"):
+        """Menyimpan log ke file dengan format timestamp."""
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        log_message = f"[{timestamp}] [{status}] {message}\n"
 
-# =========================== Logging Function ===========================
+        with open(self.LOG_FILE, "a", encoding="utf-8") as log_file:
+            log_file.write(log_message)
 
-def log_info(message, status="INFO"):
-    """Write logs to a file with a consistent format"""
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    log_message = f"[{timestamp}] [{status}] {message}\n"
-    
-    # Simpan log ke file
-    with open(LOG_FILE, "a", encoding="utf-8") as log_file:
-        log_file.write(log_message)
+    def scrape_mode_data(self, url, period, mode):
+        """Scrape data untuk mode dan periode tertentu."""
+        start_time = time.time()
+        period_data = []
 
-# =========================== Utility Functions ===========================
+        try:
+            self.log_info(f"Memulai scraping {period} ({mode}) untuk {url}...")
 
-def convert_to_number(value):
-    """Convert formatted numbers to float"""
-    value = value.replace(',', '')
-    if 'K' in value:
-        return float(value.replace('K', '')) * 1_000
-    elif 'M' in value:
-        return float(value.replace('M', '')) * 1_000_000
-    elif 'B' in value:
-        return float(value.replace('B', '')) * 1_000_000_000
-    elif 'T' in value:
-        return float(value.replace('T', '')) * 1_000_000_000_000
-    else:
-        return float(value)
+            options = webdriver.ChromeOptions()
+            options.add_argument('--headless')
+            driver = webdriver.Chrome(options=options)
+            wait = WebDriverWait(driver, 10)
 
-def parse_tanggal(tanggal_str):
-    """Convert Indonesian date format (e.g., '31 Jan 25') to datetime object"""
-    bulan_map = {
-        'Jan': 'January', 'Feb': 'February', 'Mar': 'March',
-        'Apr': 'April', 'Mei': 'May', 'Jun': 'June',
-        'Jul': 'July', 'Agt': 'August', 'Sep': 'September',
-        'Okt': 'October', 'Nov': 'November', 'Des': 'December'
-    }
+            driver.get(url)
+            self.log_info(f"Berhasil membuka URL {url}")
 
-    parts = tanggal_str.split()
-    if len(parts) != 3:
-        raise ValueError(f"Format tanggal tidak valid: {tanggal_str}")
+            # Klik tombol periode
+            button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]')))
+            button.click()
+            self.log_info(f"Berhasil memilih periode {period}")
+            time.sleep(2)
 
-    hari = parts[0]
-    bulan_singkat = parts[1]
-    tahun = "20" + parts[2]
+            # Ambil elemen grafik
+            graph_element = wait.until(EC.presence_of_element_located((By.TAG_NAME, 'svg')))
+            graph_width = int(graph_element.size['width'])
+            start_offset = -graph_width // 2
 
-    if bulan_singkat not in bulan_map:
-        raise ValueError(f"Bulan tidak valid: {bulan_singkat}")
+            actions = ActionChains(driver)
 
-    bulan_en = bulan_map[bulan_singkat]
-    tanggal_full = f"{hari} {bulan_en} {tahun}"
+            for offset in range(start_offset, start_offset + graph_width, self.pixel):
+                actions.move_to_element_with_offset(graph_element, offset, 0).perform()
+                time.sleep(0.1)
 
-    return datetime.strptime(tanggal_full, "%d %B %Y")
+                updated_data = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav'))).text
+                tanggal_navdate = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))).text
 
-# =========================== Scraping Function ===========================
+                period_data.append({'tanggal': tanggal_navdate, 'data': updated_data})
 
-def scrape_mode_data(url, period, mode, pixel):
-    """Scrape data for a specific mode and period"""
-    start_time = time.time()
-    period_data = []
+                if self.debug_mode:
+                    self.log_info(f"Kursor pada offset {offset} | Tanggal: {tanggal_navdate} | Data: {updated_data}", "DEBUG")
 
-    try:
-        log_info(f"Memulai scraping {period} ({mode}) untuk {url}...")
+            self.log_info(f"Scraping {period} ({mode}) selesai, total data: {len(period_data)}")
 
-        options = webdriver.ChromeOptions()
-        options.add_argument('--headless')
-        driver = webdriver.Chrome(options=options)
-        wait = WebDriverWait(driver, 10)
+        except Exception as e:
+            self.log_info(f"Scraping gagal untuk {period} ({mode}): {e}", "ERROR")
 
-        driver.get(url)
-        log_info(f"Berhasil membuka URL {url}")
+        finally:
+            driver.quit()
 
-        # Klik tombol periode
-        button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]')))
-        button.click()
-        log_info(f"Berhasil memilih periode {period}")
-        time.sleep(2)
+        duration = time.time() - start_time
+        self.log_info(f"Scraping {period} ({mode}) selesai dalam {duration:.2f} detik.")
+        return period_data
 
-        # Ambil elemen grafik
-        graph_element = wait.until(EC.presence_of_element_located((By.TAG_NAME, 'svg')))
-        graph_width = int(graph_element.size['width'])
-        start_offset = -graph_width // 2
+    def scrape_all_periods(self, url, mode):
+        """Menjalankan scraping secara paralel untuk semua periode dalam satu mode."""
+        max_workers = min(len(self.data_periods), 4)
+        self.log_info(f"Scraping {mode} dimulai dengan {max_workers} thread...")
 
-        actions = ActionChains(driver)
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            futures = {executor.submit(self.scrape_mode_data, url, period, mode): period for period in self.data_periods}
+            results = []
 
-        for offset in range(start_offset, start_offset + graph_width, pixel):
-            actions.move_to_element_with_offset(graph_element, offset, 0).perform()
-            time.sleep(0.1)
+            for future in as_completed(futures):
+                try:
+                    result = future.result()
+                    results.extend(result)
+                except Exception as e:
+                    self.log_info(f"Scraping error: {e}", "ERROR")
 
-            updated_data = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav'))).text
-            tanggal_navdate = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))).text
+            return results
 
-            period_data.append({'tanggal': tanggal_navdate, 'data': updated_data})
+    def run(self):
+        """Menjalankan scraping untuk semua URL."""
+        total_start_time = time.time()
+        self.log_info("===== Mulai scraping seluruh data =====")
 
-            if DEBUG_MODE:
-                log_info(f"Kursor pada offset {offset} | Tanggal: {tanggal_navdate} | Data: {updated_data}", "DEBUG")
+        for kode, url in self.urls:
+            url_start_time = time.time()
+            self.log_info(f"Mulai scraping untuk {kode}")
 
-        log_info(f"Scraping {period} ({mode}) selesai, total data: {len(period_data)}")
+            mode1_data = self.scrape_all_periods(url, "Default")
+            mode2_data = self.scrape_all_periods(url, "AUM")
 
-    except Exception as e:
-        log_info(f"Scraping gagal untuk {period} ({mode}): {e}", "ERROR")
+            url_duration = time.time() - url_start_time
+            self.log_info(f"Scraping {kode} selesai dalam {url_duration:.2f} detik.")
 
-    finally:
-        driver.quit()
-
-    duration = time.time() - start_time
-    log_info(f"Scraping {period} ({mode}) selesai dalam {duration:.2f} detik.")
-    return period_data
+        total_duration = time.time() - total_start_time
+        self.log_info(f"===== Semua scraping selesai dalam {total_duration:.2f} detik =====")
 
 
-# =========================== Parallel Scraping with Threads ===========================
+### Menggunakan class
+urls = [
+    ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],
+    # ['Mandiri Investa Cerdas', 'https://bibit.id/reksadana/RD14']  # Bisa ditambahkan jika perlu
+]
 
-def scrape_all_periods(url, mode, pixel, data_periods):
-    """Run scraping in parallel for all periods using threads"""
-    max_workers = min(len(data_periods), 4)  # Maksimal 4 thread agar tidak overload
-    log_info(f"Scraping {mode} dimulai dengan {max_workers} thread...")
+data_periods = ['3Y', '5Y']
+pixel = 200
 
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = {executor.submit(scrape_mode_data, url, period, mode, pixel): period for period in data_periods}
-        results = []
-
-        for future in as_completed(futures):
-            try:
-                result = future.result()
-                results.extend(result)
-            except Exception as e:
-                log_info(f"Scraping error: {e}", "ERROR")
-
-        return results
-
-# =========================== Main Function ===========================
-
-def main():
-    urls = [
-        ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],
-        # ['Mandiri Investa Cerdas', 'https://bibit.id/reksadana/RD14']  # Contoh URL tambahan
-    ]
-    data_periods = ['3Y', '5Y']
-    pixel = 200
-
-    total_start_time = time.time()
-    log_info("===== Mulai scraping seluruh data =====")
-
-    for kode, url in urls:
-        url_start_time = time.time()
-        log_info(f"Mulai scraping untuk {kode}")
-
-        mode1_data = scrape_all_periods(url, "Default", pixel, data_periods)
-        mode2_data = scrape_all_periods(url, "AUM", pixel, data_periods)
-
-        url_duration = time.time() - url_start_time
-        log_info(f"Scraping {kode} selesai dalam {url_duration:.2f} detik.")
-
-    total_duration = time.time() - total_start_time
-    log_info(f"===== Semua scraping selesai dalam {total_duration:.2f} detik =====")
-
-if __name__ == "__main__":
-    main()
+# Membuat scraper instance dan menjalankan scraping
+scraper = Scraper(urls, data_periods, pixel, debug_mode=False)
+scraper.run()
