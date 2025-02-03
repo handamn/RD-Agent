@@ -190,18 +190,29 @@ class Scraper:
 
         for kode, url in self.urls:
             url_start_time = time.time()
-            self.logger.log_info(f"Mulai scraping untuk {kode}")
+            self.logger.log_info(f"Mulai scraping untuk {kode} (Total {len(self.data_periods)} periode)")
 
-            mode1_data = self.scrape_mode_data(url, "3Y", "Default")
-            mode2_data = self.scrape_mode_data(url, "3Y", "AUM")
+            all_mode1_data = []
+            all_mode2_data = []
 
-            self.process_and_save_data(kode, mode1_data, mode2_data)
+            for period in self.data_periods:
+                self.logger.log_info(f"Scraping {kode} untuk periode {period}...")
+
+                mode1_data = self.scrape_mode_data(url, period, "Default")
+                mode2_data = self.scrape_mode_data(url, period, "AUM")
+
+                all_mode1_data.extend(mode1_data)
+                all_mode2_data.extend(mode2_data)
+
+            # Proses & simpan setelah semua periode selesai
+            self.process_and_save_data(kode, all_mode1_data, all_mode2_data)
 
             url_duration = time.time() - url_start_time
             self.logger.log_info(f"Scraping {kode} selesai dalam {url_duration:.2f} detik.")
 
         total_duration = time.time() - total_start_time
         self.logger.log_info(f"===== Semua scraping selesai dalam {total_duration:.2f} detik =====")
+
 
 
 logger = Logger()
