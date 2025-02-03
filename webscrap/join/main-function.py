@@ -199,3 +199,18 @@ class ProspektusDownloader:
         finally:
             driver.quit()
 
+
+urls = [
+    ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],
+    # ['Mandiri Investa Cerdas', 'https://bibit.id/reksadana/RD14']  # Bisa ditambahkan jika perlu
+]
+
+data_periods = ['3Y', '5Y']
+pixel = 200
+
+# Membuat scraper instance dan menjalankan scraping
+scraper = Scraper(urls, data_periods, pixel, debug_mode=True)
+scraper.run()
+
+# downloader = ProspektusDownloader(download_folder="my_downloads")
+# downloader.download(url=urls, new_filename=)

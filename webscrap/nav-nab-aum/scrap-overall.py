@@ -8,19 +8,12 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-class Scraper:
-    def __init__(self, urls, data_periods, pixel, debug_mode=False):
-        """Inisialisasi scraper dengan daftar URL, periode, pixel, dan mode debug."""
-        self.urls = urls
-        self.data_periods = data_periods
-        self.pixel = pixel
-        self.debug_mode = debug_mode
-
-        # Konfigurasi logging
-        self.log_dir = "logs"
-        os.makedirs(self.log_dir, exist_ok=True)
-        log_filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "_scraping_log.log"
-        self.LOG_FILE = os.path.join(self.log_dir, log_filename)
+class Logger:
+    """Logger untuk mencatat aktivitas scraping dan downloading ke file log yang sama."""
+    def __init__(self, log_dir="logs"):
+        os.makedirs(log_dir, exist_ok=True)
+        log_filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "_scrapping.log"
+        self.LOG_FILE = os.path.join(log_dir, log_filename)
 
     def log_info(self, message, status="INFO"):
         """Menyimpan log ke file dengan format timestamp."""
@@ -30,13 +23,22 @@ class Scraper:
         with open(self.LOG_FILE, "a", encoding="utf-8") as log_file:
             log_file.write(log_message)
 
+class Scraper:
+    def __init__(self, urls, data_periods, pixel, logger, debug_mode=False):
+        """Inisialisasi scraper dengan daftar URL, periode, pixel, dan logger eksternal."""
+        self.urls = urls
+        self.data_periods = data_periods
+        self.pixel = pixel
+        self.logger = logger  # Gunakan logger eksternal
+        self.debug_mode = debug_mode
+
     def scrape_mode_data(self, url, period, mode):
         """Scrape data untuk mode dan periode tertentu."""
         start_time = time.time()
         period_data = []
 
         try:
-            self.log_info(f"Memulai scraping {period} ({mode}) untuk {url}...")
+            self.logger.log_info(f"Memulai scraping {period} ({mode}) untuk {url}...")
 
             options = webdriver.ChromeOptions()
             options.add_argument('--headless')
@@ -44,12 +46,12 @@ class Scraper:
             wait = WebDriverWait(driver, 10)
 
             driver.get(url)
-            self.log_info(f"Berhasil membuka URL {url}")
+            self.logger.log_info(f"Berhasil membuka URL {url}")
 
             # Klik tombol periode
             button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]')))
             button.click()
-            self.log_info(f"Berhasil memilih periode {period}")
+            self.logger.log_info(f"Berhasil memilih periode {period}")
             time.sleep(2)
 
             # Ambil elemen grafik
@@ -69,24 +71,24 @@ class Scraper:
                 period_data.append({'tanggal': tanggal_navdate, 'data': updated_data})
 
                 if self.debug_mode:
-                    self.log_info(f"Kursor pada offset {offset} | Tanggal: {tanggal_navdate} | Data: {updated_data}", "DEBUG")
+                    self.logger.log_info(f"Kursor pada offset {offset} | Tanggal: {tanggal_navdate} | Data: {updated_data}", "DEBUG")
 
-            self.log_info(f"Scraping {period} ({mode}) selesai, total data: {len(period_data)}")
+            self.logger.log_info(f"Scraping {period} ({mode}) selesai, total data: {len(period_data)}")
 
         except Exception as e:
-            self.log_info(f"Scraping gagal untuk {period} ({mode}): {e}", "ERROR")
+            self.logger.log_info(f"Scraping gagal untuk {period} ({mode}): {e}", "ERROR")
 
         finally:
             driver.quit()
 
         duration = time.time() - start_time
-        self.log_info(f"Scraping {period} ({mode}) selesai dalam {duration:.2f} detik.")
+        self.logger.log_info(f"Scraping {period} ({mode}) selesai dalam {duration:.2f} detik.")
         return period_data
 
     def scrape_all_periods(self, url, mode):
         """Menjalankan scraping secara paralel untuk semua periode dalam satu mode."""
         max_workers = min(len(self.data_periods), 4)
-        self.log_info(f"Scraping {mode} dimulai dengan {max_workers} thread...")
+        self.logger.log_info(f"Scraping {mode} dimulai dengan {max_workers} thread...")
 
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             futures = {executor.submit(self.scrape_mode_data, url, period, mode): period for period in self.data_periods}
@@ -97,28 +99,31 @@ class Scraper:
                     result = future.result()
                     results.extend(result)
                 except Exception as e:
-                    self.log_info(f"Scraping error: {e}", "ERROR")
+                    self.logger.log_info(f"Scraping error: {e}", "ERROR")
 
             return results
 
     def run(self):
         """Menjalankan scraping untuk semua URL."""
         total_start_time = time.time()
-        self.log_info("===== Mulai scraping seluruh data =====")
+        self.logger.log_info("===== Mulai scraping seluruh data =====")
 
         for kode, url in self.urls:
             url_start_time = time.time()
-            self.log_info(f"Mulai scraping untuk {kode}")
+            self.logger.log_info(f"Mulai scraping untuk {kode}")
 
             mode1_data = self.scrape_all_periods(url, "Default")
             mode2_data = self.scrape_all_periods(url, "AUM")
 
             url_duration = time.time() - url_start_time
-            self.log_info(f"Scraping {kode} selesai dalam {url_duration:.2f} detik.")
+            self.logger.log_info(f"Scraping {kode} selesai dalam {url_duration:.2f} detik.")
 
         total_duration = time.time() - total_start_time
-        self.log_info(f"===== Semua scraping selesai dalam {total_duration:.2f} detik =====")
+        self.logger.log_info(f"===== Semua scraping selesai dalam {total_duration:.2f} detik =====")
 
+
+
+logger = Logger()
 
 ### Menggunakan class
 urls = [
@@ -130,5 +135,5 @@ data_periods = ['3Y', '5Y']
 pixel = 200
 
 # Membuat scraper instance dan menjalankan scraping
-scraper = Scraper(urls, data_periods, pixel, debug_mode=True)
+scraper = Scraper(urls, data_periods, pixel, logger, debug_mode=True)
 scraper.run()
