@@ -306,7 +306,7 @@ urls = [
 
 
 data_periods = ['3Y', '5Y']
-pixel = 200
+pixel = 2
 
 # Membuat scraper instance dan menjalankan scraping
 scraper = Scraper(urls, data_periods, pixel, logger, debug_mode=True)
