@@ -1,77 +1,61 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 
-start_time = time.time()
-
-options = webdriver.ChromeOptions()
-options.add_argument('--disable-gpu')
-options.add_argument('--disable-dev-shm-usage')
-options.add_argument('--no-sandbox')
-options.add_argument('--headless')  # Run in background
-options.add_argument('--disable-extensions')
-options.add_argument('--disable-software-rasterizer')
-service = webdriver.chrome.service.Service()
-driver = webdriver.Chrome(service=service, options=options)
-
-url = 'https://bibit.id/reksadana/RD66/avrist-ada-kas-mutiara'
-driver.get(url)
-
-data_periods = ['1 Bulan']
-
-for period in data_periods:
+def scrape_chart_data(url):
+    # Konfigurasi Chrome Options
+    chrome_options = Options()
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    
+    # Inisialisasi WebDriver
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    
     try:
-        button = WebDriverWait(driver, 5).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[overview-chart-time-frame-button="{period}"]'))
-        )
-
-        button_text = button.find_element(By.CSS_SELECTOR, '.reksa-border-button-period-box').text
-        print(f"Tombol yang diklik memiliki teks: {button_text}")
+        # Buka halaman web
+        driver.get(url)
+        time.sleep(50)  # Tunggu halaman dimuat
         
-        button.click()
-        print(f"Tombol {button_text} berhasil diklik!")
-
-        time.sleep(1)  # Kurangi waktu tunggu
-
-        graph_element = driver.find_element(By.TAG_NAME, 'svg')
-        graph_width = graph_element.size['width']
-        graph_width = int(graph_width)
-        start_offset = -graph_width // 2
-
+        # Temukan elemen grafik (sesuaikan dengan selector yang tepat)
+        chart = driver.find_element(By.CSS_SELECTOR, "selector-grafik-anda")
+        
+        # Gerakkan kursor ke tengah grafik
         actions = ActionChains(driver)
-        hitung = 1
-
-        for offset in range(start_offset, start_offset + graph_width, 5):
-            print(hitung)
-            
-            actions.move_to_element_with_offset(graph_element, offset, 0).perform()
-            time.sleep(0.1)  # Kurangi waktu tunggu
-
-            updated_data = WebDriverWait(driver, 5).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, '.reksa-value-head-nav.ChartHead_reksa-value-head-nav__LCCdL'))
-            ).text
-
-            tanggal_navdate = WebDriverWait(driver, 5).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, '.navDate'))
-            ).text
-
-            print(f"Data setelah pergeseran {offset} piksel -- tanggal {tanggal_navdate} : {updated_data}")
-            
-            hitung += 1
-
+        actions.move_to_element(chart).perform()
+        time.sleep(2)  # Tunggu tooltip muncul
+        
+        # Ambil data tooltip
+        tooltip = driver.find_element(By.CLASS_NAME, "hu-tooltip")
+        
+        # Ekstrak nilai-nilai spesifik
+        values = tooltip.find_elements(By.CLASS_NAME, "hu-tooltip-value")
+        
+        # Simpan data dalam dictionary
+        chart_data = {
+            "datetime": values[0].text,
+            "close": values[1].text,
+            "open": values[2].text,
+            "high": values[3].text,
+            "low": values[4].text,
+            "volume": values[5].text
+        }
+        
+        return chart_data
+    
     except Exception as e:
-        print(f"Gagal mengklik tombol dengan data-period={period}: {e}")
+        print(f"Terjadi kesalahan: {e}")
+        return None
+    
+    finally:
+        driver.quit()
 
-driver.quit()
-
-end_time = time.time()
-
-durasi = end_time - start_time
-print()
-print("====")
-print(durasi)
-print("====")
-print()
+# Contoh penggunaan
+url = "https://id.investing.com/indices/idx-composite"
+data = scrape_chart_data(url)
+if data:
+    print(data)
