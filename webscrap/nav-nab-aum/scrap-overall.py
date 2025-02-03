@@ -130,5 +130,5 @@ data_periods = ['3Y', '5Y']
 pixel = 200
 
 # Membuat scraper instance dan menjalankan scraping
-scraper = Scraper(urls, data_periods, pixel, debug_mode=False)
+scraper = Scraper(urls, data_periods, pixel, debug_mode=True)
 scraper.run()
