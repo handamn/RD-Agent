@@ -1,61 +1,55 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 
-def scrape_chart_data(url):
-    # Konfigurasi Chrome Options
-    chrome_options = Options()
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    
-    # Inisialisasi WebDriver
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=chrome_options)
-    
-    try:
-        # Buka halaman web
-        driver.get(url)
-        time.sleep(50)  # Tunggu halaman dimuat
-        
-        # Temukan elemen grafik (sesuaikan dengan selector yang tepat)
-        chart = driver.find_element(By.CSS_SELECTOR, "selector-grafik-anda")
-        
-        # Gerakkan kursor ke tengah grafik
-        actions = ActionChains(driver)
-        actions.move_to_element(chart).perform()
-        time.sleep(2)  # Tunggu tooltip muncul
-        
-        # Ambil data tooltip
-        tooltip = driver.find_element(By.CLASS_NAME, "hu-tooltip")
-        
-        # Ekstrak nilai-nilai spesifik
-        values = tooltip.find_elements(By.CLASS_NAME, "hu-tooltip-value")
-        
-        # Simpan data dalam dictionary
-        chart_data = {
-            "datetime": values[0].text,
-            "close": values[1].text,
-            "open": values[2].text,
-            "high": values[3].text,
-            "low": values[4].text,
-            "volume": values[5].text
-        }
-        
-        return chart_data
-    
-    except Exception as e:
-        print(f"Terjadi kesalahan: {e}")
-        return None
-    
-    finally:
-        driver.quit()
+# Ganti dengan path ke WebDriver Anda
+# driver_path = 'path/to/chromedriver'
 
-# Contoh penggunaan
-url = "https://id.investing.com/indices/idx-composite"
-data = scrape_chart_data(url)
-if data:
-    print(data)
+# Ganti dengan URL target
+url = 'https://id.investing.com/indices/idx-composite'
+
+# Inisialisasi WebDriver
+driver = webdriver.Chrome()
+driver.get(url)
+
+# Tunggu hingga halaman selesai memuat
+time.sleep(10)  # Sesuaikan waktu tunggu jika diperlukan
+
+# Temukan elemen grafik (ganti dengan selector yang sesuai)
+chart_element = driver.find_element(By.CSS_SELECTOR, 'selector_grafik')
+
+# Dapatkan ukuran dan posisi grafik
+chart_location = chart_element.location
+chart_size = chart_element.size
+
+# Hitung posisi tengah grafik
+center_x = chart_location['x'] + chart_size['width'] / 2
+center_y = chart_location['y'] + chart_size['height'] / 2
+
+# Arahkan kursor ke tengah grafik
+actions = ActionChains(driver)
+actions.move_to_element_with_offset(chart_element, chart_size['width'] / 2, chart_size['height'] / 2).perform()
+
+# Tunggu hingga tabel muncul
+time.sleep(2)  # Sesuaikan waktu tunggu jika diperlukan
+
+# Ambil data dari tabel
+tooltip_table = driver.find_element(By.CSS_SELECTOR, 'table.hu-tooltip')
+rows = tooltip_table.find_elements(By.TAG_NAME, 'tr')
+
+data = {}
+for row in rows:
+    cells = row.find_elements(By.TAG_NAME, 'td')
+    if len(cells) == 2:
+        key = cells[0].text
+        value = cells[1].text
+        data[key] = value
+
+# Cetak data yang diambil
+print(data)
+
+# Tutup browser
+driver.quit()
