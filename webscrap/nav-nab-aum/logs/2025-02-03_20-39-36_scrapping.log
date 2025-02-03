@@ -1,0 +1,72 @@
+[2025-02-03 20:39:36] [INFO] ===== Mulai scraping seluruh data =====
+[2025-02-03 20:39:36] [INFO] Mulai scraping untuk ABF Indonesia Bond Index Fund (Total 2 periode)
+[2025-02-03 20:39:36] [INFO] Memulai scraping 3Y (Default) untuk https://bibit.id/reksadana/RD13...
+[2025-02-03 20:39:36] [INFO] Memulai scraping 3Y (AUM) untuk https://bibit.id/reksadana/RD13...
+[2025-02-03 20:39:36] [INFO] Memulai scraping 5Y (Default) untuk https://bibit.id/reksadana/RD13...
+[2025-02-03 20:39:40] [INFO] Berhasil membuka URL https://bibit.id/reksadana/RD13
+[2025-02-03 20:39:41] [INFO] Berhasil membuka URL https://bibit.id/reksadana/RD13
+[2025-02-03 20:39:42] [INFO] Berhasil membuka URL https://bibit.id/reksadana/RD13
+[2025-02-03 20:39:43] [ERROR] Scraping gagal untuk 5Y (Default): Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=132.0.6834.160); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF6D4CF02F5+28725]
+	(No symbol) [0x00007FF6D4C52AE0]
+	(No symbol) [0x00007FF6D4AE510A]
+	(No symbol) [0x00007FF6D4AEBD70]
+	(No symbol) [0x00007FF6D4AEEDF8]
+	(No symbol) [0x00007FF6D4B81460]
+	(No symbol) [0x00007FF6D4B5FFAA]
+	(No symbol) [0x00007FF6D4B80181]
+	(No symbol) [0x00007FF6D4B5FD53]
+	(No symbol) [0x00007FF6D4B2A0E3]
+	(No symbol) [0x00007FF6D4B2B471]
+	GetHandleVerifier [0x00007FF6D501F30D+3366989]
+	GetHandleVerifier [0x00007FF6D50312F0+3440688]
+	GetHandleVerifier [0x00007FF6D50278FD+3401277]
+	GetHandleVerifier [0x00007FF6D4DBAAAB+858091]
+	(No symbol) [0x00007FF6D4C5E74F]
+	(No symbol) [0x00007FF6D4C5A304]
+	(No symbol) [0x00007FF6D4C5A49D]
+	(No symbol) [0x00007FF6D4C48B69]
+	BaseThreadInitThunk [0x00007FFEC796E8D7+23]
+	RtlUserThreadStart [0x00007FFEC7BDFBCC+44]
+
+[2025-02-03 20:39:43] [INFO] [INFO] Beralih ke mode AUM...
+[2025-02-03 20:39:46] [INFO] Berhasil memilih periode 3Y.
+[2025-02-03 20:39:49] [DEBUG] [DEBUG] Mode Default | Periode 3Y | Kursor -509 | Tanggal: 3 Feb 25 | Data: Rp54.17K
+[2025-02-03 20:39:49] [DEBUG] [DEBUG] Mode Default | Periode 3Y | Kursor -309 | Tanggal: 23 Agt 22 | Data: Rp47.14K
+[2025-02-03 20:39:50] [INFO] Berhasil memilih periode 3Y.
+[2025-02-03 20:39:50] [DEBUG] [DEBUG] Mode Default | Periode 3Y | Kursor -109 | Tanggal: 5 Apr 23 | Data: Rp49.54K
+[2025-02-03 20:39:50] [INFO] Scraping 5Y (Default) selesai dalam 14.73 detik.
+[2025-02-03 20:39:50] [INFO] Memulai scraping 5Y (AUM) untuk https://bibit.id/reksadana/RD13...
+[2025-02-03 20:39:50] [INFO] Scraping ABF Indonesia Bond Index Fund untuk 5Y (Default) selesai.
+[2025-02-03 20:39:50] [DEBUG] [DEBUG] Mode Default | Periode 3Y | Kursor 91 | Tanggal: 15 Nov 23 | Data: Rp50.90K
+[2025-02-03 20:39:51] [DEBUG] [DEBUG] Mode Default | Periode 3Y | Kursor 291 | Tanggal: 26 Jun 24 | Data: Rp52.36K
+[2025-02-03 20:39:51] [DEBUG] [DEBUG] Mode Default | Periode 3Y | Kursor 491 | Tanggal: 3 Feb 25 | Data: Rp54.17K
+[2025-02-03 20:39:51] [INFO] Scraping 3Y (Default) selesai, total data: 6
+[2025-02-03 20:39:52] [DEBUG] [DEBUG] Mode AUM | Periode 3Y | Kursor -509 | Tanggal: 1 Des 24 | Data: Rp6.52T
+[2025-02-03 20:39:53] [DEBUG] [DEBUG] Mode AUM | Periode 3Y | Kursor -309 | Tanggal: 1 Jul 22 | Data: Rp5.00T
+[2025-02-03 20:39:53] [DEBUG] [DEBUG] Mode AUM | Periode 3Y | Kursor -109 | Tanggal: 1 Feb 23 | Data: Rp4.88T
+[2025-02-03 20:39:54] [INFO] Berhasil membuka URL https://bibit.id/reksadana/RD13
+[2025-02-03 20:39:54] [INFO] Scraping 3Y (Default) selesai dalam 18.09 detik.
+[2025-02-03 20:39:54] [INFO] Scraping ABF Indonesia Bond Index Fund untuk 3Y (Default) selesai.
+[2025-02-03 20:39:54] [DEBUG] [DEBUG] Mode AUM | Periode 3Y | Kursor 91 | Tanggal: 1 Okt 23 | Data: Rp6.56T
+[2025-02-03 20:39:54] [DEBUG] [DEBUG] Mode AUM | Periode 3Y | Kursor 291 | Tanggal: 1 Mei 24 | Data: Rp6.58T
+[2025-02-03 20:39:55] [DEBUG] [DEBUG] Mode AUM | Periode 3Y | Kursor 491 | Tanggal: 1 Des 24 | Data: Rp6.52T
+[2025-02-03 20:39:55] [INFO] Scraping 3Y (AUM) selesai, total data: 6
+[2025-02-03 20:39:55] [INFO] [INFO] Beralih ke mode AUM...
+[2025-02-03 20:39:57] [INFO] Scraping 3Y (AUM) selesai dalam 21.73 detik.
+[2025-02-03 20:39:57] [INFO] Scraping ABF Indonesia Bond Index Fund untuk 3Y (AUM) selesai.
+[2025-02-03 20:39:59] [INFO] Berhasil memilih periode 5Y.
+[2025-02-03 20:40:01] [DEBUG] [DEBUG] Mode AUM | Periode 5Y | Kursor -509 | Tanggal: 1 Des 24 | Data: Rp6.52T
+[2025-02-03 20:40:02] [DEBUG] [DEBUG] Mode AUM | Periode 5Y | Kursor -309 | Tanggal: 1 Nov 20 | Data: Rp4.42T
+[2025-02-03 20:40:02] [DEBUG] [DEBUG] Mode AUM | Periode 5Y | Kursor -109 | Tanggal: 1 Des 21 | Data: Rp4.95T
+[2025-02-03 20:40:02] [DEBUG] [DEBUG] Mode AUM | Periode 5Y | Kursor 91 | Tanggal: 1 Des 22 | Data: Rp4.83T
+[2025-02-03 20:40:03] [DEBUG] [DEBUG] Mode AUM | Periode 5Y | Kursor 291 | Tanggal: 1 Des 23 | Data: Rp6.47T
+[2025-02-03 20:40:03] [DEBUG] [DEBUG] Mode AUM | Periode 5Y | Kursor 491 | Tanggal: 1 Des 24 | Data: Rp6.52T
+[2025-02-03 20:40:03] [INFO] Scraping 5Y (AUM) selesai, total data: 6
+[2025-02-03 20:40:07] [INFO] Scraping 5Y (AUM) selesai dalam 17.13 detik.
+[2025-02-03 20:40:07] [INFO] Scraping ABF Indonesia Bond Index Fund untuk 5Y (AUM) selesai.
+[2025-02-03 20:40:07] [INFO] Data ABF Indonesia Bond Index Fund berhasil disimpan ke database\ABF Indonesia Bond Index Fund.csv
+[2025-02-03 20:40:07] [INFO] Scraping ABF Indonesia Bond Index Fund selesai dalam 31.86 detik.
+[2025-02-03 20:40:07] [INFO] ===== Semua scraping selesai dalam 31.86 detik =====
