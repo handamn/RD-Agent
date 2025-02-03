@@ -105,11 +105,30 @@ class Scraper:
                 if not self.switch_to_aum_mode(driver, wait):
                     raise Exception("Gagal mengaktifkan mode AUM")
 
+            # Ambil semua tombol periode yang tersedia di halaman
+            available_buttons = driver.find_elements(By.CSS_SELECTOR, 'button[data-period]')
+            available_periods = [btn.get_attribute("data-period") for btn in available_buttons]
+
+            # Filter periode yang benar-benar tersedia
+            valid_periods = [p for p in self.data_periods if p in available_periods]
+
+            # Log jika ada periode yang tidak tersedia
+            missing_periods = [p for p in self.data_periods if p not in available_periods]
+            if missing_periods:
+                self.logger.log_info(f"[WARNING] Periode berikut tidak ditemukan di halaman ini: {missing_periods}", "WARNING")
+
+            # Jalankan scraping hanya jika periode yang diminta tersedia
+            if period not in valid_periods:
+                self.logger.log_info(f"[WARNING] Periode {period} tidak tersedia, skipping...", "WARNING")
+                return period_data  # Return kosong karena tidak bisa lanjut
+
+            # Klik tombol periode jika tersedia
             button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'button[data-period="{period}"]')))
             button.click()
-            self.logger.log_info(f"Berhasil memilih periode {period}")
+            self.logger.log_info(f"Berhasil memilih periode {period}.")
             time.sleep(2)
 
+            # Mulai scraping grafik
             graph_element = wait.until(EC.presence_of_element_located((By.TAG_NAME, 'svg')))
             graph_width = int(graph_element.size['width'])
             start_offset = -graph_width // 2
@@ -126,7 +145,10 @@ class Scraper:
                 period_data.append({'tanggal': tanggal_navdate, 'data': updated_data})
 
                 if self.debug_mode:
-                    self.logger.log_info(f"Mode {mode} | Periode {period} | Kursor {offset} | Tanggal: {tanggal_navdate} | Data: {updated_data}", "DEBUG")
+                    self.logger.log_info(
+                        f"[DEBUG] Mode {mode} | Periode {period} | Kursor {offset} | Tanggal: {tanggal_navdate} | Data: {updated_data}", 
+                        "DEBUG"
+                    )
 
             self.logger.log_info(f"Scraping {period} ({mode}) selesai, total data: {len(period_data)}")
 
@@ -315,7 +337,7 @@ urls = [
 ]
 
 
-data_periods = ['1M', '3M', 'YTD', '1Y', '3Y', '5Y']
+data_periods = ['1M', '3M', 'YTD', '1Y', '3Y', '5Y', '10Y', 'ALL']
 pixel = 2
 
 # Membuat scraper instance dan menjalankan scraping
