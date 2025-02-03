@@ -185,7 +185,7 @@ class Scraper:
         self.logger.log_info(f"Data {kode} berhasil disimpan ke {csv_file}")
 
     def run(self):
-        """Menjalankan scraping untuk semua URL dan menyimpan hasil ke CSV."""
+        """Menjalankan scraping untuk semua URL dan menyimpan hasil ke CSV dengan multithreading pada periode."""
         total_start_time = time.time()
         self.logger.log_info("===== Mulai scraping seluruh data =====")
 
@@ -196,14 +196,24 @@ class Scraper:
             all_mode1_data = []
             all_mode2_data = []
 
-            for period in self.data_periods:
-                self.logger.log_info(f"Scraping {kode} untuk periode {period}...")
+            # Menjalankan scraping setiap periode secara paralel
+            with ThreadPoolExecutor(max_workers=6) as executor:  # 3 worker threads, bisa disesuaikan
+                futures = {executor.submit(self.scrape_mode_data, url, period, mode): (period, mode)
+                        for period in self.data_periods for mode in ["Default", "AUM"]}
 
-                mode1_data = self.scrape_mode_data(url, period, "Default")
-                mode2_data = self.scrape_mode_data(url, period, "AUM")
-
-                all_mode1_data.extend(mode1_data)
-                all_mode2_data.extend(mode2_data)
+                for future in as_completed(futures):
+                    period, mode = futures[future]
+                    try:
+                        data = future.result()
+                        if mode == "Default":
+                            all_mode1_data.extend(data)
+                        else:
+                            all_mode2_data.extend(data)
+                        
+                        self.logger.log_info(f"Scraping {kode} untuk {period} ({mode}) selesai.")
+                    
+                    except Exception as e:
+                        self.logger.log_info(f"[ERROR] Scraping gagal untuk {kode} ({period}, {mode}): {e}", "ERROR")
 
             # Proses & simpan setelah semua periode selesai
             self.process_and_save_data(kode, all_mode1_data, all_mode2_data)
