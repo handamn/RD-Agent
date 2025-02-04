@@ -5,13 +5,22 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 
 # Variable
 url = "https://finance.yahoo.com/quote/%5EJKSE/history/"  # Ganti dengan URL yang sesuai
-pilih_tahun = "3M"  # Ganti dengan tahun yang ingin dipilih
+pilih_tahun = "5D"  # Ganti dengan tahun yang ingin dipilih
 
 # Inisialisasi WebDriver (Pastikan Anda sudah menginstall driver yang sesuai, misalnya ChromeDriver)
-driver = webdriver.Chrome()
+
+chrome_options = Options()
+chrome_options.add_argument("--log-level=3")  # Nonaktifkan logging
+chrome_options.add_argument("--ignore-certificate-errors")  # Abaikan error SSL
+chrome_options.add_argument("--disable-extensions")
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--headless")  # Jika Anda tidak perlu melihat browser
+driver = webdriver.Chrome(service=Service(), options=chrome_options)
 
 try:
     # 1. Load web
