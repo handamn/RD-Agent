@@ -58,6 +58,8 @@ class WebScraper:
                 # 10. Ganti "-" dengan NaN
                 df.replace("-", np.nan, inplace=True)
 
+                df = df.drop(0).reset_index(drop=True)
+
                 # 11. Simpan ke CSV
                 df.to_csv("output_with_header.csv", index=False)
                 print("Data telah disimpan ke output_with_header.csv")
