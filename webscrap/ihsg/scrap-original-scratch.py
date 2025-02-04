@@ -75,7 +75,7 @@ class WebScraper:
             self.driver.quit()
 
 # Contoh penggunaan
-url = "https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE"  # Ganti dengan URL yang sesuai
+url = "https://finance.yahoo.com/quote/%5EJKLQ45/history/"  # Ganti dengan URL yang sesuai
 pilih_tahun = "5D"  # Ganti dengan tahun yang ingin dipilih
 
 scraper = WebScraper(url, pilih_tahun)
