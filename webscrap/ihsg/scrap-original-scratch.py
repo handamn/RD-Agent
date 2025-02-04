@@ -61,8 +61,8 @@ class WebScraper:
                 df = df.drop(0).reset_index(drop=True)
 
                 # 11. Simpan ke CSV
-                df.to_csv("output_with_header.csv", index=False)
-                print("Data telah disimpan ke output_with_header.csv")
+                df.to_csv(f"{self.url.split('/')[-2]}_output_with_header.csv", index=False)
+                print(f"Data telah disimpan ke {self.url.split('/')[-2]}_output_with_header.csv")
 
                 # 12. Print DataFrame
                 print(df)
@@ -74,16 +74,17 @@ class WebScraper:
             # Tutup browser
             self.driver.quit()
 
-# Contoh penggunaan
-url = "https://finance.yahoo.com/quote/%5EJKSE/history/"  # Ganti dengan URL yang sesuai
-# https://finance.yahoo.com/quote/%5EJKLQ45/history/
+# Daftar URL yang akan di-scrape
+urls = [
+    ['IHSG', 'https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE'],
+    ['LQ45', 'https://finance.yahoo.com/quote/%5EJKLQ45/history/'],
+]
+
+# Tahun yang ingin dipilih
 pilih_tahun = "5D"  # Ganti dengan tahun yang ingin dipilih
 
-scraper = WebScraper(url, pilih_tahun)
-scraper.scrape_data()
-
-
-# urls = [
-#         ['IHSG', 'https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE'],
-#         ['LQ45', 'https://finance.yahoo.com/quote/%5EJKLQ45/history/'],
-# ]
+# Loop melalui daftar URL dan lakukan scraping untuk setiap URL
+for name, url in urls:
+    print(f"Scraping data untuk {name}...")
+    scraper = WebScraper(url, pilih_tahun)
+    scraper.scrape_data()
