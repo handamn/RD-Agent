@@ -1,58 +1,64 @@
+import time
 from selenium import webdriver
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.options import Options
-import time
-import random
+import pandas as pd
 
-# Konfigurasi Chrome Options
-chrome_options = Options()
-chrome_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
-chrome_options.add_argument("--disable-blink-features=AutomationControlled")
-chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
-chrome_options.add_experimental_option("useAutomationExtension", False)
+# Variable
+url = "https://finance.yahoo.com/quote/%5EJKSE/history/"  # Ganti dengan URL yang sesuai
+pilih_tahun = "3M"  # Ganti dengan tahun yang ingin dipilih
 
-# Inisialisasi WebDriver
-driver = webdriver.Chrome(options=chrome_options)
-driver.get('https://id.investing.com/indices/idx-composite')
+# Inisialisasi WebDriver (Pastikan Anda sudah menginstall driver yang sesuai, misalnya ChromeDriver)
+driver = webdriver.Chrome()
 
-# Tunggu hingga halaman selesai memuat
-time.sleep(10)  # Sesuaikan waktu tunggu jika diperlukan
+try:
+    # 1. Load web
+    driver.get(url)
+    time.sleep(5)  # Tunggu beberapa detik untuk memastikan halaman terload sepenuhnya
 
-# Temukan elemen grafik (ganti dengan selector yang sesuai)
-chart_element = driver.find_element(By.CSS_SELECTOR, 'div.chart-container')  # Ganti dengan selector yang benar
+    # 2. Klik button dengan class tertentu
+    button = driver.find_element(By.CSS_SELECTOR, ".tertiary-btn.fin-size-small.menuBtn.rounded.yf-15mk0m")
+    button.click()
+    time.sleep(2)  # Tunggu dialog box terbuka
 
-# Dapatkan ukuran dan posisi grafik
-chart_location = chart_element.location
-chart_size = chart_element.size
+    # 3. Tunggu dialog box terbuka
+    WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, ".dialog-container.menu-surface-dialog.modal.yf-9a5vow"))
+    )
 
-# Hitung posisi tengah grafik
-center_x = chart_location['x'] + chart_size['width'] / 2
-center_y = chart_location['y'] + chart_size['height'] / 2
+    # 4. Ambil value dari button yang ada di dalam dialog box
+    buttons = driver.find_elements(By.CSS_SELECTOR, ".quickpicks.yf-1th5n0r .tertiary-btn.fin-size-small.tw-w-full.tw-justify-center.rounded.yf-15mk0m")
+    values = [button.text for button in buttons]
 
-# Arahkan kursor ke tengah grafik
-actions = ActionChains(driver)
-actions.move_to_element_with_offset(chart_element, chart_size['width'] / 2, chart_size['height'] / 2).perform()
+    # 5. Cocokkan value dengan input variable pilih_tahun
+    if pilih_tahun in values:
+        # 6. Klik button yang sesuai
+        index = values.index(pilih_tahun)
+        buttons[index].click()
+        time.sleep(2)  # Tunggu proses selesai
 
-# Tunggu hingga tabel muncul
-WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'table.hu-tooltip')))
+        # 7. Ambil data dari table
+        table = driver.find_element(By.CSS_SELECTOR, ".table.yf-1jecxey.noDl")
+        rows = table.find_elements(By.TAG_NAME, "tr")
+        data = []
+        for row in rows:
+            cols = row.find_elements(By.TAG_NAME, "td")
+            cols = [col.text for col in cols]
+            data.append(cols)
 
-# Ambil data dari tabel
-tooltip_table = driver.find_element(By.CSS_SELECTOR, 'table.hu-tooltip')
-rows = tooltip_table.find_elements(By.TAG_NAME, 'tr')
+        # 8. Simpan data ke CSV
+        df = pd.DataFrame(data)
+        df.to_csv("output.csv", index=False)
+        print("Data telah disimpan ke output.csv")
 
-data = {}
-for row in rows:
-    cells = row.find_elements(By.TAG_NAME, 'td')
-    if len(cells) == 2:
-        key = cells[0].text
-        value = cells[1].text
-        data[key] = value
+        # Print data
+        print(df)
 
-# Cetak data yang diambil
-print(data)
+    else:
+        print(f"Tahun {pilih_tahun} tidak ditemukan.")
 
-# Tutup browser
-driver.quit()
+finally:
+    # Tutup browser
+    driver.quit()
