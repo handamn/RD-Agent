@@ -7,9 +7,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 class WebScraper:
-    def __init__(self, url, pilih_tahun):
+    def __init__(self, url, pilih_tahun, name):
         self.url = url
         self.pilih_tahun = pilih_tahun
+        self.name = name  # Menyimpan nama indeks (elemen pertama dari sub-list)
         self.driver = webdriver.Chrome()  # Inisialisasi WebDriver
 
     def scrape_data(self):
@@ -60,15 +61,16 @@ class WebScraper:
 
                 df = df.drop(0).reset_index(drop=True)
 
-                # 11. Simpan ke CSV
-                df.to_csv(f"{self.url.split('/')[-2]}_output_with_header.csv", index=False)
-                print(f"Data telah disimpan ke {self.url.split('/')[-2]}_output_with_header.csv")
+                # 11. Simpan ke CSV dengan nama sesuai indeks pertama dari sub-list
+                filename = f"database/{self.name}.csv"
+                df.to_csv(filename, index=False)
+                print(f"Data telah disimpan ke {filename}")
 
                 # 12. Print DataFrame
                 print(df)
 
             else:
-                print(f"Tahun {self.pilih_tahun} tidak ditemukan.")
+                print(f"Tahun {self.pilih_tahun} tidak ditemukan untuk {self.name}.")
 
         finally:
             # Tutup browser
@@ -78,6 +80,7 @@ class WebScraper:
 urls = [
     ['IHSG', 'https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE'],
     ['LQ45', 'https://finance.yahoo.com/quote/%5EJKLQ45/history/'],
+    # Tambahkan lebih banyak URL di sini jika diperlukan
 ]
 
 # Tahun yang ingin dipilih
@@ -86,5 +89,5 @@ pilih_tahun = "5D"  # Ganti dengan tahun yang ingin dipilih
 # Loop melalui daftar URL dan lakukan scraping untuk setiap URL
 for name, url in urls:
     print(f"Scraping data untuk {name}...")
-    scraper = WebScraper(url, pilih_tahun)
+    scraper = WebScraper(url, pilih_tahun, name)  # Kirim nama indeks ke class
     scraper.scrape_data()
