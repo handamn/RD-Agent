@@ -5,6 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from datetime import datetime
 
 class WebScraper:
     def __init__(self, url, pilih_tahun, name):
@@ -60,6 +61,8 @@ class WebScraper:
                 df.replace("-", np.nan, inplace=True)
 
                 df = df.drop(0).reset_index(drop=True)
+                df['Date'] = pd.to_datetime(df['Date'], format='%b %d, %Y')
+                df['Date'] = df['Date'].dt.date
 
                 # 11. Simpan ke CSV dengan nama sesuai indeks pertama dari sub-list
                 filename = f"database/{self.name}.csv"
@@ -68,6 +71,7 @@ class WebScraper:
 
                 # 12. Print DataFrame
                 print(df)
+
 
             else:
                 print(f"Tahun {self.pilih_tahun} tidak ditemukan untuk {self.name}.")
@@ -84,7 +88,7 @@ urls = [
 ]
 
 # Tahun yang ingin dipilih
-pilih_tahun = "5D"  # Ganti dengan tahun yang ingin dipilih
+pilih_tahun = "1Y"  # Ganti dengan tahun yang ingin dipilih
 
 # Loop melalui daftar URL dan lakukan scraping untuk setiap URL
 for name, url in urls:
