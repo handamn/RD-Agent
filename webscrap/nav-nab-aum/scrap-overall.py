@@ -36,18 +36,38 @@ class Scraper:
         os.makedirs(self.database_dir, exist_ok=True)
 
     def convert_to_number(self, value):
-        """Mengonversi string nilai dengan format K, M, B, T menjadi angka float."""
-        value = value.replace(',', '')
-        if 'K' in value:
-            return float(value.replace('K', '')) * 1_000
-        elif 'M' in value:
-            return float(value.replace('M', '')) * 1_000_000
-        elif 'B' in value:
-            return float(value.replace('B', '')) * 1_000_000_000
-        elif 'T' in value:
-            return float(value.replace('T', '')) * 1_000_000_000_000
-        else:
-            return float(value)
+        """Mengonversi nilai dengan format K, M, B, T dan menangani mata uang ($ dan Rp)."""
+        value = value.replace(',', '').strip()
+
+        # Tangani mata uang
+        is_dollar = value.startswith('$')
+        is_rupiah = value.startswith('Rp')
+        
+        if is_dollar or is_rupiah:
+            value = value[1:].strip()  # Hapus simbol pertama ($ atau Rp)
+
+        try:
+            if 'K' in value:
+                result = float(value.replace('K', '')) * 1_000
+            elif 'M' in value:
+                result = float(value.replace('M', '')) * 1_000_000
+            elif 'B' in value:
+                result = float(value.replace('B', '')) * 1_000_000_000
+            elif 'T' in value:
+                result = float(value.replace('T', '')) * 1_000_000_000_000
+            else:
+                result = float(value)
+
+            # Log jika dalam USD
+            if is_dollar:
+                self.logger.log_info(f"[INFO] Data dalam USD: ${result}", "INFO")
+
+            return result
+
+        except ValueError:
+            self.logger.log_info(f"[ERROR] Gagal mengonversi data NAV: {value}", "ERROR")
+            return None
+
 
     def parse_tanggal(self, tanggal_str):
         """Mengonversi tanggal dalam format Indonesia ke format datetime Python."""
@@ -170,24 +190,24 @@ class Scraper:
             try:
                 tanggal_obj = self.parse_tanggal(entry['tanggal'])
                 tanggal_str = tanggal_obj.strftime("%Y-%m-%d")
-                data_number = self.convert_to_number(entry['data'].replace('Rp', '').strip())
+                data_number = self.convert_to_number(entry['data'])  # Langsung panggil tanpa replace()
 
                 if tanggal_str not in processed_data:
                     processed_data[tanggal_str] = {'NAV': 'NA', 'AUM': 'NA'}
                 processed_data[tanggal_str]['NAV'] = data_number
-            except ValueError as e:
+            except ValueError:
                 self.logger.log_info(f"[ERROR] Gagal mengonversi data NAV: {entry['data']}", "ERROR")
 
         for entry in mode2_data:
             try:
                 tanggal_obj = self.parse_tanggal(entry['tanggal'])
                 tanggal_str = tanggal_obj.strftime("%Y-%m-%d")
-                data_number = self.convert_to_number(entry['data'].replace('Rp', '').strip())
+                data_number = self.convert_to_number(entry['data'])  # Langsung panggil tanpa replace()
 
                 if tanggal_str not in processed_data:
                     processed_data[tanggal_str] = {'NAV': 'NA', 'AUM': 'NA'}
                 processed_data[tanggal_str]['AUM'] = data_number
-            except ValueError as e:
+            except ValueError:
                 self.logger.log_info(f"[ERROR] Gagal mengonversi data AUM: {entry['data']}", "ERROR")
 
         sorted_dates = sorted(processed_data.keys())
@@ -205,6 +225,7 @@ class Scraper:
                 })
 
         self.logger.log_info(f"Data {kode} berhasil disimpan ke {csv_file}")
+
 
     def run(self):
         """Menjalankan scraping untuk semua URL dan menyimpan hasil ke CSV dengan multithreading pada periode."""
@@ -252,11 +273,11 @@ logger = Logger()
 
 ### Menggunakan class
 urls = [
-    ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],
+    ['Batavia Technology Sharia Equity USD','https://bibit.id/reksadana/RD4183'],
     # ['Mandiri Investa Cerdas', 'https://bibit.id/reksadana/RD14']  # Bisa ditambahkan jika perlu
 ]
 
-data_periods = ['3Y', '5Y']
+data_periods = ['3M', '1Y']
 pixel = 200
 
 # Membuat scraper instance dan menjalankan scraping
