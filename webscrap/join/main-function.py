@@ -244,7 +244,7 @@ class Scraper:
             all_mode2_data = []
 
             # Menjalankan scraping setiap periode secara paralel
-            with ThreadPoolExecutor(max_workers=3) as executor:  # 3 worker threads, bisa disesuaikan
+            with ThreadPoolExecutor(max_workers=10) as executor:  # 3 worker threads, bisa disesuaikan
                 futures = {executor.submit(self.scrape_mode_data, url, period, mode): (period, mode)
                         for period in self.data_periods for mode in ["Default", "AUM"]}
 
