@@ -10,9 +10,10 @@ from datetime import datetime
 from selenium.webdriver.chrome.options import Options
 
 class WebScraper:
-    def __init__(self, urls, pilih_tahun):
+    def __init__(self, urls, pilih_tahun, mode_csv):
         self.urls = urls
         self.pilih_tahun = pilih_tahun
+        self.mode_csv = mode_csv
         options = Options()
         options.add_argument("--headless")
         options.add_argument("--disable-gpu")
@@ -65,7 +66,7 @@ class WebScraper:
                 df['Date'] = df['Date'].dt.date
                 
                 filename = f"database/{name}.csv"
-                with open(filename, mode='w', newline='', encoding='utf-8') as file:
+                with open(filename, mode=self.mode_csv, newline='', encoding='utf-8') as file:
                     writer = csv.DictWriter(file, fieldnames=df.columns)
                     writer.writeheader()
                     for _, row in df.iterrows():
@@ -83,7 +84,7 @@ urls = [
     ['LQ45', 'https://finance.yahoo.com/quote/%5EJKLQ45/history/']
 ]
 
-pilih_tahun = "Max"
+pilih_tahun = "5D"
 
-scraper = WebScraper(urls, pilih_tahun)
+scraper = WebScraper(urls, pilih_tahun, 'w')
 scraper.scrape_data()
