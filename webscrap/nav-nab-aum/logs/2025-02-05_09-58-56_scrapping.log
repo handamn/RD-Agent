@@ -1,0 +1,51 @@
+[2025-02-05 09:58:56] [INFO] ===== Mulai scraping seluruh data =====
+[2025-02-05 09:58:56] [INFO] Mulai scraping untuk Batavia Technology Sharia Equity USD (Total 2 periode)
+[2025-02-05 09:58:56] [INFO] Memulai scraping 3M (Default) untuk https://bibit.id/reksadana/RD4183...
+[2025-02-05 09:58:56] [INFO] Memulai scraping 3M (AUM) untuk https://bibit.id/reksadana/RD4183...
+[2025-02-05 09:58:56] [INFO] Memulai scraping 1Y (Default) untuk https://bibit.id/reksadana/RD4183...
+[2025-02-05 09:59:00] [INFO] Berhasil membuka URL https://bibit.id/reksadana/RD4183
+[2025-02-05 09:59:00] [INFO] Berhasil memilih periode 1Y.
+[2025-02-05 09:59:02] [DEBUG] [DEBUG] Mode Default | Periode 1Y | Kursor -455 | Tanggal: 3 Feb 25 | Data: $1.17
+[2025-02-05 09:59:03] [DEBUG] [DEBUG] Mode Default | Periode 1Y | Kursor -255 | Tanggal: 18 Apr 24 | Data: $1.04
+[2025-02-05 09:59:03] [DEBUG] [DEBUG] Mode Default | Periode 1Y | Kursor -55 | Tanggal: 12 Jul 24 | Data: $1.17
+[2025-02-05 09:59:03] [DEBUG] [DEBUG] Mode Default | Periode 1Y | Kursor 145 | Tanggal: 4 Okt 24 | Data: $1.14
+[2025-02-05 09:59:04] [DEBUG] [DEBUG] Mode Default | Periode 1Y | Kursor 345 | Tanggal: 30 Des 24 | Data: $1.17
+[2025-02-05 09:59:04] [INFO] Scraping 1Y (Default) selesai, total data: 5
+[2025-02-05 09:59:04] [INFO] Berhasil membuka URL https://bibit.id/reksadana/RD4183
+[2025-02-05 09:59:04] [INFO] [INFO] Beralih ke mode AUM...
+[2025-02-05 09:59:04] [INFO] Berhasil membuka URL https://bibit.id/reksadana/RD4183
+[2025-02-05 09:59:04] [INFO] Berhasil memilih periode 3M.
+[2025-02-05 09:59:06] [INFO] Scraping 1Y (Default) selesai dalam 9.87 detik.
+[2025-02-05 09:59:06] [INFO] Memulai scraping 1Y (AUM) untuk https://bibit.id/reksadana/RD4183...
+[2025-02-05 09:59:06] [INFO] Scraping Batavia Technology Sharia Equity USD untuk 1Y (Default) selesai.
+[2025-02-05 09:59:06] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -455 | Tanggal: 3 Feb 25 | Data: $1.17
+[2025-02-05 09:59:07] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -255 | Tanggal: 21 Nov 24 | Data: $1.17
+[2025-02-05 09:59:07] [INFO] Berhasil memilih periode 3M.
+[2025-02-05 09:59:07] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -55 | Tanggal: 13 Des 24 | Data: $1.20
+[2025-02-05 09:59:07] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 145 | Tanggal: 3 Jan 25 | Data: $1.19
+[2025-02-05 09:59:08] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 345 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-05 09:59:08] [INFO] Scraping 3M (Default) selesai, total data: 5
+[2025-02-05 09:59:09] [INFO] Berhasil membuka URL https://bibit.id/reksadana/RD4183
+[2025-02-05 09:59:09] [INFO] [INFO] Beralih ke mode AUM...
+[2025-02-05 09:59:09] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -455 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-05 09:59:10] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -255 | Tanggal: 1 Okt 24 | Data: $76.09M
+[2025-02-05 09:59:10] [INFO] Scraping 3M (Default) selesai dalam 14.00 detik.
+[2025-02-05 09:59:10] [INFO] Scraping Batavia Technology Sharia Equity USD untuk 3M (Default) selesai.
+[2025-02-05 09:59:10] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -55 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-05 09:59:10] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 145 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-05 09:59:11] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 345 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-05 09:59:11] [INFO] Scraping 3M (AUM) selesai, total data: 5
+[2025-02-05 09:59:12] [INFO] Berhasil memilih periode 1Y.
+[2025-02-05 09:59:13] [INFO] Scraping 3M (AUM) selesai dalam 17.01 detik.
+[2025-02-05 09:59:13] [INFO] Scraping Batavia Technology Sharia Equity USD untuk 3M (AUM) selesai.
+[2025-02-05 09:59:15] [DEBUG] [DEBUG] Mode AUM | Periode 1Y | Kursor -455 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-05 09:59:15] [DEBUG] [DEBUG] Mode AUM | Periode 1Y | Kursor -255 | Tanggal: 1 Mar 24 | Data: $63.29M
+[2025-02-05 09:59:15] [DEBUG] [DEBUG] Mode AUM | Periode 1Y | Kursor -55 | Tanggal: 31 Mei 24 | Data: $49.18M
+[2025-02-05 09:59:16] [DEBUG] [DEBUG] Mode AUM | Periode 1Y | Kursor 145 | Tanggal: 1 Agt 24 | Data: $90.01M
+[2025-02-05 09:59:16] [DEBUG] [DEBUG] Mode AUM | Periode 1Y | Kursor 345 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-05 09:59:16] [INFO] Scraping 1Y (AUM) selesai, total data: 5
+[2025-02-05 09:59:18] [INFO] Scraping 1Y (AUM) selesai dalam 12.43 detik.
+[2025-02-05 09:59:18] [INFO] Scraping Batavia Technology Sharia Equity USD untuk 1Y (AUM) selesai.
+[2025-02-05 09:59:18] [INFO] Data Batavia Technology Sharia Equity USD berhasil disimpan ke database\Batavia Technology Sharia Equity USD.csv
+[2025-02-05 09:59:18] [INFO] Scraping Batavia Technology Sharia Equity USD selesai dalam 22.30 detik.
+[2025-02-05 09:59:18] [INFO] ===== Semua scraping selesai dalam 22.30 detik =====

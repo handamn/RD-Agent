@@ -36,37 +36,37 @@ class Scraper:
         os.makedirs(self.database_dir, exist_ok=True)
 
     def convert_to_number(self, value):
-        """Mengonversi nilai dengan format K, M, B, T dan menangani mata uang ($ dan Rp)."""
+        """Mengonversi string nilai dengan format K, M, B, T menjadi angka float dan mengembalikan jenis mata uang."""
         value = value.replace(',', '').strip()
 
-        # Tangani mata uang
-        is_dollar = value.startswith('$')
-        is_rupiah = value.startswith('Rp')
-        
-        if is_dollar or is_rupiah:
-            value = value[1:].strip()  # Hapus simbol pertama ($ atau Rp)
+        if value.startswith('Rp'):
+            currency = 'IDR'
+            value = value.replace('Rp', '').strip()
+        elif value.startswith('$'):
+            currency = 'USD'
+            value = value.replace('$', '').strip()
+        else:
+            currency = 'UNKNOWN'  # Jika format tidak dikenali
+
+        multiplier = 1
+        if 'K' in value:
+            value = value.replace('K', '')
+            multiplier = 1_000
+        elif 'M' in value:
+            value = value.replace('M', '')
+            multiplier = 1_000_000
+        elif 'B' in value:
+            value = value.replace('B', '')
+            multiplier = 1_000_000_000
+        elif 'T' in value:
+            value = value.replace('T', '')
+            multiplier = 1_000_000_000_000
 
         try:
-            if 'K' in value:
-                result = float(value.replace('K', '')) * 1_000
-            elif 'M' in value:
-                result = float(value.replace('M', '')) * 1_000_000
-            elif 'B' in value:
-                result = float(value.replace('B', '')) * 1_000_000_000
-            elif 'T' in value:
-                result = float(value.replace('T', '')) * 1_000_000_000_000
-            else:
-                result = float(value)
-
-            # Log jika dalam USD
-            if is_dollar:
-                self.logger.log_info(f"[INFO] Data dalam USD: ${result}", "INFO")
-
-            return result
-
+            return float(value) * multiplier, currency
         except ValueError:
-            self.logger.log_info(f"[ERROR] Gagal mengonversi data NAV: {value}", "ERROR")
-            return None
+            raise ValueError(f"Format angka tidak valid: {value}")
+
 
 
     def parse_tanggal(self, tanggal_str):
@@ -100,7 +100,7 @@ class Scraper:
             time.sleep(3)  # Menunggu perubahan tampilan
             return True
         except Exception as e:
-            self.logger.log_info(f"[ERROR] Gagal beralih ke mode AUM: {e}", "ERROR")
+            self.logger.log_info(f"Gagal beralih ke mode AUM: {e}", "ERROR")
             return False
 
     def scrape_mode_data(self, url, period, mode):
@@ -134,11 +134,11 @@ class Scraper:
             # Log jika ada periode yang tidak tersedia
             missing_periods = [p for p in self.data_periods if p not in available_periods]
             if missing_periods:
-                self.logger.log_info(f"[WARNING] Periode berikut tidak ditemukan di halaman ini: {missing_periods}", "WARNING")
+                self.logger.log_info(f"Periode berikut tidak ditemukan di halaman ini: {missing_periods}", "WARNING")
 
             # Jalankan scraping hanya jika periode yang diminta tersedia
             if period not in valid_periods:
-                self.logger.log_info(f"[WARNING] Periode {period} tidak tersedia, skipping...", "WARNING")
+                self.logger.log_info(f"Periode {period} tidak tersedia, skipping...", "WARNING")
                 return period_data  # Return kosong karena tidak bisa lanjut
 
             # Klik tombol periode jika tersedia
@@ -183,17 +183,17 @@ class Scraper:
 
 
     def process_and_save_data(self, kode, mode1_data, mode2_data):
-        """Memproses dan menyimpan data hasil scraping ke dalam CSV."""
+        """Memproses dan menyimpan data hasil scraping ke dalam CSV, termasuk informasi mata uang."""
         processed_data = {}
 
         for entry in mode1_data:
             try:
                 tanggal_obj = self.parse_tanggal(entry['tanggal'])
                 tanggal_str = tanggal_obj.strftime("%Y-%m-%d")
-                data_number = self.convert_to_number(entry['data'])  # Langsung panggil tanpa replace()
+                data_number, currency = self.convert_to_number(entry['data'])  # Dapatkan nilai + mata uang
 
                 if tanggal_str not in processed_data:
-                    processed_data[tanggal_str] = {'NAV': 'NA', 'AUM': 'NA'}
+                    processed_data[tanggal_str] = {'NAV': 'NA', 'AUM': 'NA', 'currency': currency}
                 processed_data[tanggal_str]['NAV'] = data_number
             except ValueError:
                 self.logger.log_info(f"[ERROR] Gagal mengonversi data NAV: {entry['data']}", "ERROR")
@@ -202,10 +202,10 @@ class Scraper:
             try:
                 tanggal_obj = self.parse_tanggal(entry['tanggal'])
                 tanggal_str = tanggal_obj.strftime("%Y-%m-%d")
-                data_number = self.convert_to_number(entry['data'])  # Langsung panggil tanpa replace()
+                data_number, currency = self.convert_to_number(entry['data'])  # Dapatkan nilai + mata uang
 
                 if tanggal_str not in processed_data:
-                    processed_data[tanggal_str] = {'NAV': 'NA', 'AUM': 'NA'}
+                    processed_data[tanggal_str] = {'NAV': 'NA', 'AUM': 'NA', 'currency': currency}
                 processed_data[tanggal_str]['AUM'] = data_number
             except ValueError:
                 self.logger.log_info(f"[ERROR] Gagal mengonversi data AUM: {entry['data']}", "ERROR")
@@ -214,17 +214,19 @@ class Scraper:
 
         csv_file = os.path.join(self.database_dir, f"{kode}.csv")
         with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
-            writer = csv.DictWriter(file, fieldnames=['tanggal', 'NAV', 'AUM'])
+            writer = csv.DictWriter(file, fieldnames=['tanggal', 'NAV', 'AUM', 'currency'])
             writer.writeheader()
 
             for date in sorted_dates:
                 writer.writerow({
                     'tanggal': date,
                     'NAV': processed_data[date]['NAV'],
-                    'AUM': processed_data[date]['AUM']
+                    'AUM': processed_data[date]['AUM'],
+                    'currency': processed_data[date]['currency']
                 })
 
         self.logger.log_info(f"Data {kode} berhasil disimpan ke {csv_file}")
+
 
 
     def run(self):
