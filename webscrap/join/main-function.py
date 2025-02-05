@@ -25,6 +25,7 @@ class Logger:
         with open(self.LOG_FILE, "a", encoding="utf-8") as log_file:
             log_file.write(log_message)
 
+
 class Scraper:
     def __init__(self, urls, data_periods, pixel, logger, debug_mode=False):
         """Inisialisasi scraper dengan daftar URL, periode, pixel, dan logger eksternal."""
@@ -37,18 +38,38 @@ class Scraper:
         os.makedirs(self.database_dir, exist_ok=True)
 
     def convert_to_number(self, value):
-        """Mengonversi string nilai dengan format K, M, B, T menjadi angka float."""
-        value = value.replace(',', '')
-        if 'K' in value:
-            return float(value.replace('K', '')) * 1_000
-        elif 'M' in value:
-            return float(value.replace('M', '')) * 1_000_000
-        elif 'B' in value:
-            return float(value.replace('B', '')) * 1_000_000_000
-        elif 'T' in value:
-            return float(value.replace('T', '')) * 1_000_000_000_000
+        """Mengonversi string nilai dengan format K, M, B, T menjadi angka float dan mengembalikan jenis mata uang."""
+        value = value.replace(',', '').strip()
+
+        if value.startswith('Rp'):
+            currency = 'IDR'
+            value = value.replace('Rp', '').strip()
+        elif value.startswith('$'):
+            currency = 'USD'
+            value = value.replace('$', '').strip()
         else:
-            return float(value)
+            currency = 'UNKNOWN'  # Jika format tidak dikenali
+
+        multiplier = 1
+        if 'K' in value:
+            value = value.replace('K', '')
+            multiplier = 1_000
+        elif 'M' in value:
+            value = value.replace('M', '')
+            multiplier = 1_000_000
+        elif 'B' in value:
+            value = value.replace('B', '')
+            multiplier = 1_000_000_000
+        elif 'T' in value:
+            value = value.replace('T', '')
+            multiplier = 1_000_000_000_000
+
+        try:
+            return float(value) * multiplier, currency
+        except ValueError:
+            raise ValueError(f"Format angka tidak valid: {value}")
+
+
 
     def parse_tanggal(self, tanggal_str):
         """Mengonversi tanggal dalam format Indonesia ke format datetime Python."""
@@ -81,7 +102,7 @@ class Scraper:
             time.sleep(3)  # Menunggu perubahan tampilan
             return True
         except Exception as e:
-            self.logger.log_info(f"[ERROR] Gagal beralih ke mode AUM: {e}", "ERROR")
+            self.logger.log_info(f"Gagal beralih ke mode AUM: {e}", "ERROR")
             return False
 
     def scrape_mode_data(self, url, period, mode):
@@ -115,11 +136,11 @@ class Scraper:
             # Log jika ada periode yang tidak tersedia
             missing_periods = [p for p in self.data_periods if p not in available_periods]
             if missing_periods:
-                self.logger.log_info(f"[WARNING] Periode berikut tidak ditemukan di halaman ini: {missing_periods}", "WARNING")
+                self.logger.log_info(f"Periode berikut tidak ditemukan di halaman ini: {missing_periods}", "WARNING")
 
             # Jalankan scraping hanya jika periode yang diminta tersedia
             if period not in valid_periods:
-                self.logger.log_info(f"[WARNING] Periode {period} tidak tersedia, skipping...", "WARNING")
+                self.logger.log_info(f"Periode {period} tidak tersedia, skipping...", "WARNING")
                 return period_data  # Return kosong karena tidak bisa lanjut
 
             # Klik tombol periode jika tersedia
@@ -146,7 +167,7 @@ class Scraper:
 
                 if self.debug_mode:
                     self.logger.log_info(
-                        f"Mode {mode} | Periode {period} | Kursor {offset} | Tanggal: {tanggal_navdate} | Data: {updated_data}", 
+                        f"[DEBUG] Mode {mode} | Periode {period} | Kursor {offset} | Tanggal: {tanggal_navdate} | Data: {updated_data}", 
                         "DEBUG"
                     )
 
@@ -162,49 +183,53 @@ class Scraper:
         self.logger.log_info(f"Scraping {period} ({mode}) selesai dalam {duration:.2f} detik.")
         return period_data
 
+
     def process_and_save_data(self, kode, mode1_data, mode2_data):
-        """Memproses dan menyimpan data hasil scraping ke dalam CSV."""
+        """Memproses dan menyimpan data hasil scraping ke dalam CSV, termasuk informasi mata uang."""
         processed_data = {}
 
         for entry in mode1_data:
             try:
                 tanggal_obj = self.parse_tanggal(entry['tanggal'])
                 tanggal_str = tanggal_obj.strftime("%Y-%m-%d")
-                data_number = self.convert_to_number(entry['data'].replace('Rp', '').strip())
+                data_number, currency = self.convert_to_number(entry['data'])  # Dapatkan nilai + mata uang
 
                 if tanggal_str not in processed_data:
-                    processed_data[tanggal_str] = {'NAV': 'NA', 'AUM': 'NA'}
+                    processed_data[tanggal_str] = {'NAV': 'NA', 'AUM': 'NA', 'currency': currency}
                 processed_data[tanggal_str]['NAV'] = data_number
-            except ValueError as e:
+            except ValueError:
                 self.logger.log_info(f"[ERROR] Gagal mengonversi data NAV: {entry['data']}", "ERROR")
 
         for entry in mode2_data:
             try:
                 tanggal_obj = self.parse_tanggal(entry['tanggal'])
                 tanggal_str = tanggal_obj.strftime("%Y-%m-%d")
-                data_number = self.convert_to_number(entry['data'].replace('Rp', '').strip())
+                data_number, currency = self.convert_to_number(entry['data'])  # Dapatkan nilai + mata uang
 
                 if tanggal_str not in processed_data:
-                    processed_data[tanggal_str] = {'NAV': 'NA', 'AUM': 'NA'}
+                    processed_data[tanggal_str] = {'NAV': 'NA', 'AUM': 'NA', 'currency': currency}
                 processed_data[tanggal_str]['AUM'] = data_number
-            except ValueError as e:
+            except ValueError:
                 self.logger.log_info(f"[ERROR] Gagal mengonversi data AUM: {entry['data']}", "ERROR")
 
         sorted_dates = sorted(processed_data.keys())
 
         csv_file = os.path.join(self.database_dir, f"{kode}.csv")
         with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
-            writer = csv.DictWriter(file, fieldnames=['tanggal', 'NAV', 'AUM'])
+            writer = csv.DictWriter(file, fieldnames=['tanggal', 'NAV', 'AUM', 'currency'])
             writer.writeheader()
 
             for date in sorted_dates:
                 writer.writerow({
                     'tanggal': date,
                     'NAV': processed_data[date]['NAV'],
-                    'AUM': processed_data[date]['AUM']
+                    'AUM': processed_data[date]['AUM'],
+                    'currency': processed_data[date]['currency']
                 })
 
         self.logger.log_info(f"Data {kode} berhasil disimpan ke {csv_file}")
+
+
 
     def run(self):
         """Menjalankan scraping untuk semua URL dan menyimpan hasil ke CSV dengan multithreading pada periode."""
@@ -219,7 +244,7 @@ class Scraper:
             all_mode2_data = []
 
             # Menjalankan scraping setiap periode secara paralel
-            with ThreadPoolExecutor(max_workers=7) as executor:  # 3 worker threads, bisa disesuaikan
+            with ThreadPoolExecutor(max_workers=3) as executor:  # 3 worker threads, bisa disesuaikan
                 futures = {executor.submit(self.scrape_mode_data, url, period, mode): (period, mode)
                         for period in self.data_periods for mode in ["Default", "AUM"]}
 
@@ -245,6 +270,8 @@ class Scraper:
 
         total_duration = time.time() - total_start_time
         self.logger.log_info(f"===== Semua scraping selesai dalam {total_duration:.2f} detik =====")
+
+
 
 class ProspektusDownloader:
     def __init__(self, logger, download_folder="downloads"):
@@ -333,100 +360,100 @@ logger = Logger()
 
 
 urls = [
-        # ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],
-        # ['Avrist Ada Kas Mutiara', 'https://bibit.id/reksadana/RD66'],
-        # ['Avrist Ada Saham Blue Safir Kelas A','https://bibit.id/reksadana/RD68'],
-        # ['Avrist IDX30','https://bibit.id/reksadana/RD82'],
-        # ['Avrist Prime Bond Fund','https://bibit.id/reksadana/RD83'],
-        # ['Bahana Dana Likuid Kelas G','https://bibit.id/reksadana/RD124'],
-        # ['Bahana Likuid Plus','https://bibit.id/reksadana/RD140'],
-        # ['Bahana Likuid Syariah Kelas G','https://bibit.id/reksadana/RD3595'],
-        # ['Bahana MES Syariah Fund Kelas G','https://bibit.id/reksadana/RD1721'],
-        # ['Bahana Pendapatan Tetap Makara Prima kelas G','https://bibit.id/reksadana/RD841'],
-        # ['Bahana Primavera 99 Kelas G','https://bibit.id/reksadana/RD3672'],
-        # ['Batavia Dana Kas Maxima','https://bibit.id/reksadana/RD205'],
-        # ['Batavia Dana Likuid','https://bibit.id/reksadana/RD206'],
-        # ['Batavia Dana Obligasi Ultima','https://bibit.id/reksadana/RD214'],
-        # ['Batavia Dana Saham','https://bibit.id/reksadana/RD216'],
-        # ['Batavia Dana Saham Syariah','https://bibit.id/reksadana/RD218'],
-        # ['Batavia Index PEFINDO I-Grade','https://bibit.id/reksadana/RD6323'],
-        # ['Batavia Obligasi Platinum Plus','https://bibit.id/reksadana/RD223'],
+        ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],
+        ['Avrist Ada Kas Mutiara', 'https://bibit.id/reksadana/RD66'],
+        ['Avrist Ada Saham Blue Safir Kelas A','https://bibit.id/reksadana/RD68'],
+        ['Avrist IDX30','https://bibit.id/reksadana/RD82'],
+        ['Avrist Prime Bond Fund','https://bibit.id/reksadana/RD83'],
+        ['Bahana Dana Likuid Kelas G','https://bibit.id/reksadana/RD124'],
+        ['Bahana Likuid Plus','https://bibit.id/reksadana/RD140'],
+        ['Bahana Likuid Syariah Kelas G','https://bibit.id/reksadana/RD3595'],
+        ['Bahana MES Syariah Fund Kelas G','https://bibit.id/reksadana/RD1721'],
+        ['Bahana Pendapatan Tetap Makara Prima kelas G','https://bibit.id/reksadana/RD841'],
+        ['Bahana Primavera 99 Kelas G','https://bibit.id/reksadana/RD3672'],
+        ['Batavia Dana Kas Maxima','https://bibit.id/reksadana/RD205'],
+        ['Batavia Dana Likuid','https://bibit.id/reksadana/RD206'],
+        ['Batavia Dana Obligasi Ultima','https://bibit.id/reksadana/RD214'],
+        ['Batavia Dana Saham','https://bibit.id/reksadana/RD216'],
+        ['Batavia Dana Saham Syariah','https://bibit.id/reksadana/RD218'],
+        ['Batavia Index PEFINDO I-Grade','https://bibit.id/reksadana/RD6323'],
+        ['Batavia Obligasi Platinum Plus','https://bibit.id/reksadana/RD223'],
         ['Batavia Technology Sharia Equity USD','https://bibit.id/reksadana/RD4183'],
-        # ['BNI-AM Dana Lancar Syariah','https://bibit.id/reksadana/RD322'],
-        # ['BNI-AM Dana Likuid Kelas A','https://bibit.id/reksadana/RD323'],
-        # ['BNI-AM Dana Pendapatan Tetap Makara Investasi','https://bibit.id/reksadana/RD1409'],
-        # ['BNI-AM Dana Pendapatan Tetap Syariah Ardhani','https://bibit.id/reksadana/RD332'],
-        # ['BNI-AM Dana Saham Inspiring Equity Fund','https://bibit.id/reksadana/RD334'],
-        # ['BNI-AM IDX PEFINDO Prime Bank Kelas R1','https://bibit.id/reksadana/RD6522'],
-        # ['BNI-AM Indeks IDX30','https://bibit.id/reksadana/RD337'],
-        # ['BNI-AM ITB Harmoni','https://bibit.id/reksadana/RD781'],
-        # ['BNI-AM PEFINDO I-Grade Kelas R1','https://bibit.id/reksadana/RD6520'],
-        # ['BNI-AM Short Duration Bonds Index Kelas R1','https://bibit.id/reksadana/RD5638'],
-        # ['BNI-AM SRI KEHATI Kelas R1','https://bibit.id/reksadana/RD6502'],
+        ['BNI-AM Dana Lancar Syariah','https://bibit.id/reksadana/RD322'],
+        ['BNI-AM Dana Likuid Kelas A','https://bibit.id/reksadana/RD323'],
+        ['BNI-AM Dana Pendapatan Tetap Makara Investasi','https://bibit.id/reksadana/RD1409'],
+        ['BNI-AM Dana Pendapatan Tetap Syariah Ardhani','https://bibit.id/reksadana/RD332'],
+        ['BNI-AM Dana Saham Inspiring Equity Fund','https://bibit.id/reksadana/RD334'],
+        ['BNI-AM IDX PEFINDO Prime Bank Kelas R1','https://bibit.id/reksadana/RD6522'],
+        ['BNI-AM Indeks IDX30','https://bibit.id/reksadana/RD337'],
+        ['BNI-AM ITB Harmoni','https://bibit.id/reksadana/RD781'],
+        ['BNI-AM PEFINDO I-Grade Kelas R1','https://bibit.id/reksadana/RD6520'],
+        ['BNI-AM Short Duration Bonds Index Kelas R1','https://bibit.id/reksadana/RD5638'],
+        ['BNI-AM SRI KEHATI Kelas R1','https://bibit.id/reksadana/RD6502'],
         ['BNP Paribas Cakra Syariah USD Kelas RK1','https://bibit.id/reksadana/RD1725'],
-        # ['BNP Paribas Ekuitas','https://bibit.id/reksadana/RD409'],
+        ['BNP Paribas Ekuitas','https://bibit.id/reksadana/RD409'],
         ['BNP Paribas Greater China Equity Syariah USD','https://bibit.id/reksadana/RD3531'],
-        # ['BNP Paribas Infrastruktur Plus','https://bibit.id/reksadana/RD412'],
-        # ['BNP Paribas Pesona','https://bibit.id/reksadana/RD423'],
-        # ['BNP Paribas Pesona Syariah','https://bibit.id/reksadana/RD424'],
-        # ['BNP Paribas Prima II Kelas RK1','https://bibit.id/reksadana/RD3542'],
+        ['BNP Paribas Infrastruktur Plus','https://bibit.id/reksadana/RD412'],
+        ['BNP Paribas Pesona','https://bibit.id/reksadana/RD423'],
+        ['BNP Paribas Pesona Syariah','https://bibit.id/reksadana/RD424'],
+        ['BNP Paribas Prima II Kelas RK1','https://bibit.id/reksadana/RD3542'],
         ['BNP Paribas Prima USD Kelas RK1','https://bibit.id/reksadana/RD426'],
-        # ['BNP Paribas Rupiah Plus','https://bibit.id/reksadana/RD429'],
-        # ['BNP Paribas Solaris','https://bibit.id/reksadana/RD431'],
-        # ['BNP Paribas SRI KEHATI','https://bibit.id/reksadana/RD1911'],
-        # ['BNP Paribas Sukuk Negara Kelas RK1','https://bibit.id/reksadana/RD6524'],
-        # ['BRI Indeks Syariah','https://bibit.id/reksadana/RD562'],
-        # ['BRI Mawar Konsumer 10 Kelas A','https://bibit.id/reksadana/RD569'],
-        # ['BRI Melati Pendapatan Utama','https://bibit.id/reksadana/RD578'],
-        # ['BRI MSCI Indonesia ESG Screened Kelas A','https://bibit.id/reksadana/RD5643'],
-        # ['BRI Seruni Pasar Uang II Kelas A','https://bibit.id/reksadana/RD618'],
-        # ['BRI Seruni Pasar Uang III','https://bibit.id/reksadana/RD619'],
-        # ['BRI Seruni Pasar Uang Syariah','https://bibit.id/reksadana/RD620'],
-        # ['Danamas Pasti','https://bibit.id/reksadana/RD553'],
-        # ['Danamas Rupiah Plus','https://bibit.id/reksadana/RD555'],
-        # ['Danamas Stabil','https://bibit.id/reksadana/RD556'],
-        # ['Eastspring IDR Fixed Income Fund Kelas A','https://bibit.id/reksadana/RD3447'],
-        # ['Eastspring IDX ESG Leaders Plus Kelas A','https://bibit.id/reksadana/RD4256'],
-        # ['Eastspring Investments Cash Reserve Kelas A','https://bibit.id/reksadana/RD3448'],
-        # ['Eastspring Investments Value Discovery Kelas A','https://bibit.id/reksadana/RD3509'],
-        # ['Eastspring Investments Yield Discovery Kelas A','https://bibit.id/reksadana/RD3510'],
-        # ['Eastspring Syariah Fixed Income Amanah Kelas A','https://bibit.id/reksadana/RD3487'],
+        ['BNP Paribas Rupiah Plus','https://bibit.id/reksadana/RD429'],
+        ['BNP Paribas Solaris','https://bibit.id/reksadana/RD431'],
+        ['BNP Paribas SRI KEHATI','https://bibit.id/reksadana/RD1911'],
+        ['BNP Paribas Sukuk Negara Kelas RK1','https://bibit.id/reksadana/RD6524'],
+        ['BRI Indeks Syariah','https://bibit.id/reksadana/RD562'],
+        ['BRI Mawar Konsumer 10 Kelas A','https://bibit.id/reksadana/RD569'],
+        ['BRI Melati Pendapatan Utama','https://bibit.id/reksadana/RD578'],
+        ['BRI MSCI Indonesia ESG Screened Kelas A','https://bibit.id/reksadana/RD5643'],
+        ['BRI Seruni Pasar Uang II Kelas A','https://bibit.id/reksadana/RD618'],
+        ['BRI Seruni Pasar Uang III','https://bibit.id/reksadana/RD619'],
+        ['BRI Seruni Pasar Uang Syariah','https://bibit.id/reksadana/RD620'],
+        ['Danamas Pasti','https://bibit.id/reksadana/RD553'],
+        ['Danamas Rupiah Plus','https://bibit.id/reksadana/RD555'],
+        ['Danamas Stabil','https://bibit.id/reksadana/RD556'],
+        ['Eastspring IDR Fixed Income Fund Kelas A','https://bibit.id/reksadana/RD3447'],
+        ['Eastspring IDX ESG Leaders Plus Kelas A','https://bibit.id/reksadana/RD4256'],
+        ['Eastspring Investments Cash Reserve Kelas A','https://bibit.id/reksadana/RD3448'],
+        ['Eastspring Investments Value Discovery Kelas A','https://bibit.id/reksadana/RD3509'],
+        ['Eastspring Investments Yield Discovery Kelas A','https://bibit.id/reksadana/RD3510'],
+        ['Eastspring Syariah Fixed Income Amanah Kelas A','https://bibit.id/reksadana/RD3487'],
         ['Eastspring Syariah Greater China Equity USD Kelas A','https://bibit.id/reksadana/RD3702'],
-        # ['Eastspring Syariah Money Market Khazanah Kelas A','https://bibit.id/reksadana/RD3449'],
-        # ['Grow Dana Optima Kas Utama','https://bibit.id/reksadana/RD8808'],
-        # ['Grow Obligasi Optima Dinamis Kelas O','https://bibit.id/reksadana/RD8807'],
-        # ['Grow Saham Indonesia Plus Kelas O','https://bibit.id/reksadana/RD6651'],
-        # ['Grow SRI KEHATI Kelas O','https://bibit.id/reksadana/RD6649'],
-        # ['Jarvis Balanced Fund','https://bibit.id/reksadana/RD3191'],
-        # ['Jarvis Money Market Fund','https://bibit.id/reksadana/RD2046'],
-        # ['Majoris Pasar Uang Indonesia','https://bibit.id/reksadana/RD831'],
-        # ['Majoris Pasar Uang Syariah Indonesia','https://bibit.id/reksadana/RD832'],
-        # ['Majoris Saham Alokasi Dinamik Indonesia','https://bibit.id/reksadana/RD833'],
-        # ['Majoris Sukuk Negara Indonesia','https://bibit.id/reksadana/RD838'],
-        # ['Mandiri Indeks FTSE Indonesia ESG Kelas A','https://bibit.id/reksadana/RD4221'],
-        # ['Mandiri Investa Atraktif-Syariah','https://bibit.id/reksadana/RD853'],
-        # ['Mandiri Investa Dana Syariah Kelas A','https://bibit.id/reksadana/RD860'],
-        # ['Mandiri Investa Dana Utama Kelas D','https://bibit.id/reksadana/RD6639'],
-        # ['Mandiri Investa Pasar Uang Kelas A','https://bibit.id/reksadana/RD870'],
-        # ['Mandiri Investa Syariah Berimbang','https://bibit.id/reksadana/RD872'],
-        # ['Mandiri Pasar Uang Syariah Ekstra','https://bibit.id/reksadana/RD3173'],
-        # ['Manulife Dana Kas II Kelas A','https://bibit.id/reksadana/RD983'],
-        # ['Manulife Dana Kas Syariah','https://bibit.id/reksadana/RD984'],
-        # ['Manulife Dana Saham Kelas A','https://bibit.id/reksadana/RD985'],
-        # ['Manulife Obligasi Negara Indonesia II Kelas A','https://bibit.id/reksadana/RD994'],
-        # ['Manulife Obligasi Unggulan Kelas A','https://bibit.id/reksadana/RD3206'],
-        # ['Manulife Saham Andalan','https://bibit.id/reksadana/RD998'],
-        # ['Manulife Syariah Sektoral Amanah Kelas A','https://bibit.id/reksadana/RD1001'],
+        ['Eastspring Syariah Money Market Khazanah Kelas A','https://bibit.id/reksadana/RD3449'],
+        ['Grow Dana Optima Kas Utama','https://bibit.id/reksadana/RD8808'],
+        ['Grow Obligasi Optima Dinamis Kelas O','https://bibit.id/reksadana/RD8807'],
+        ['Grow Saham Indonesia Plus Kelas O','https://bibit.id/reksadana/RD6651'],
+        ['Grow SRI KEHATI Kelas O','https://bibit.id/reksadana/RD6649'],
+        ['Jarvis Balanced Fund','https://bibit.id/reksadana/RD3191'],
+        ['Jarvis Money Market Fund','https://bibit.id/reksadana/RD2046'],
+        ['Majoris Pasar Uang Indonesia','https://bibit.id/reksadana/RD831'],
+        ['Majoris Pasar Uang Syariah Indonesia','https://bibit.id/reksadana/RD832'],
+        ['Majoris Saham Alokasi Dinamik Indonesia','https://bibit.id/reksadana/RD833'],
+        ['Majoris Sukuk Negara Indonesia','https://bibit.id/reksadana/RD838'],
+        ['Mandiri Indeks FTSE Indonesia ESG Kelas A','https://bibit.id/reksadana/RD4221'],
+        ['Mandiri Investa Atraktif-Syariah','https://bibit.id/reksadana/RD853'],
+        ['Mandiri Investa Dana Syariah Kelas A','https://bibit.id/reksadana/RD860'],
+        ['Mandiri Investa Dana Utama Kelas D','https://bibit.id/reksadana/RD6639'],
+        ['Mandiri Investa Pasar Uang Kelas A','https://bibit.id/reksadana/RD870'],
+        ['Mandiri Investa Syariah Berimbang','https://bibit.id/reksadana/RD872'],
+        ['Mandiri Pasar Uang Syariah Ekstra','https://bibit.id/reksadana/RD3173'],
+        ['Manulife Dana Kas II Kelas A','https://bibit.id/reksadana/RD983'],
+        ['Manulife Dana Kas Syariah','https://bibit.id/reksadana/RD984'],
+        ['Manulife Dana Saham Kelas A','https://bibit.id/reksadana/RD985'],
+        ['Manulife Obligasi Negara Indonesia II Kelas A','https://bibit.id/reksadana/RD994'],
+        ['Manulife Obligasi Unggulan Kelas A','https://bibit.id/reksadana/RD3206'],
+        ['Manulife Saham Andalan','https://bibit.id/reksadana/RD998'],
+        ['Manulife Syariah Sektoral Amanah Kelas A','https://bibit.id/reksadana/RD1001'],
         ['Manulife USD Fixed Income Kelas A','https://bibit.id/reksadana/RD1003'],
-        # ['Principal Cash Fund','https://bibit.id/reksadana/RD479'],
-        # ['Principal Index IDX30 Kelas O','https://bibit.id/reksadana/RD707'],
-        # ['Principal Islamic Equity Growth Syariah','https://bibit.id/reksadana/RD487'],
-        # ['Schroder 90 Plus Equity Fund','https://bibit.id/reksadana/RD1538'],
-        # ['Schroder Dana Andalan II','https://bibit.id/reksadana/RD1539'],
-        # ['Schroder Dana Istimewa','https://bibit.id/reksadana/RD1541'],
-        # ['Schroder Dana Likuid','https://bibit.id/reksadana/RD1543'],
-        # ['Schroder Dana Likuid Syariah','https://bibit.id/reksadana/RD3454'],
-        # ['Schroder Dana Mantap Plus II','https://bibit.id/reksadana/RD1544'],
+        ['Principal Cash Fund','https://bibit.id/reksadana/RD479'],
+        ['Principal Index IDX30 Kelas O','https://bibit.id/reksadana/RD707'],
+        ['Principal Islamic Equity Growth Syariah','https://bibit.id/reksadana/RD487'],
+        ['Schroder 90 Plus Equity Fund','https://bibit.id/reksadana/RD1538'],
+        ['Schroder Dana Andalan II','https://bibit.id/reksadana/RD1539'],
+        ['Schroder Dana Istimewa','https://bibit.id/reksadana/RD1541'],
+        ['Schroder Dana Likuid','https://bibit.id/reksadana/RD1543'],
+        ['Schroder Dana Likuid Syariah','https://bibit.id/reksadana/RD3454'],
+        ['Schroder Dana Mantap Plus II','https://bibit.id/reksadana/RD1544'],
         ['Schroder Dana Prestasi','https://bibit.id/reksadana/RD1547'],
         ['Schroder Dana Prestasi Plus','https://bibit.id/reksadana/RD1548'],
         ['Schroder Dynamic Balanced Fund','https://bibit.id/reksadana/RD1551'],
