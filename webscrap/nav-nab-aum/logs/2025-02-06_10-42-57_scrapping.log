@@ -1,0 +1,320 @@
+[2025-02-06 10:42:57] [INFO] ===== Mulai scraping seluruh data =====
+[2025-02-06 10:42:57] [INFO] Mulai scraping untuk Batavia Technology Sharia Equity USD (Total 3 periode)
+[2025-02-06 10:42:57] [INFO] Memulai scraping 1M (Default) untuk https://bibit.id/reksadana/RD4183...
+[2025-02-06 10:42:57] [INFO] Memulai scraping 1M (AUM) untuk https://bibit.id/reksadana/RD4183...
+[2025-02-06 10:42:57] [INFO] Memulai scraping 3M (Default) untuk https://bibit.id/reksadana/RD4183...
+[2025-02-06 10:43:04] [INFO] Berhasil membuka URL https://bibit.id/reksadana/RD4183
+[2025-02-06 10:43:04] [INFO] [INFO] Beralih ke mode AUM...
+[2025-02-06 10:43:05] [INFO] Berhasil membuka URL https://bibit.id/reksadana/RD4183
+[2025-02-06 10:43:05] [INFO] Berhasil memilih periode 1M.
+[2025-02-06 10:43:05] [INFO] Berhasil membuka URL https://bibit.id/reksadana/RD4183
+[2025-02-06 10:43:05] [INFO] Berhasil memilih periode 3M.
+[2025-02-06 10:43:07] [INFO] Berhasil memilih periode 1M.
+[2025-02-06 10:43:08] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -455 | Tanggal: 4 Feb 25 | Data: $1.18
+[2025-02-06 10:43:08] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -455 | Tanggal: 4 Feb 25 | Data: $1.18
+[2025-02-06 10:43:08] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -435 | Tanggal: 3 Jan 25 | Data: $1.19
+[2025-02-06 10:43:08] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -435 | Tanggal: 4 Nov 24 | Data: $1.13
+[2025-02-06 10:43:08] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -415 | Tanggal: 6 Jan 25 | Data: $1.21
+[2025-02-06 10:43:08] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -415 | Tanggal: 7 Nov 24 | Data: $1.19
+[2025-02-06 10:43:09] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -395 | Tanggal: 6 Jan 25 | Data: $1.21
+[2025-02-06 10:43:09] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -395 | Tanggal: 11 Nov 24 | Data: $1.17
+[2025-02-06 10:43:09] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -375 | Tanggal: 6 Jan 25 | Data: $1.21
+[2025-02-06 10:43:09] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -375 | Tanggal: 11 Nov 24 | Data: $1.17
+[2025-02-06 10:43:09] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -355 | Tanggal: 6 Jan 25 | Data: $1.21
+[2025-02-06 10:43:10] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -355 | Tanggal: 13 Nov 24 | Data: $1.17
+[2025-02-06 10:43:10] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -455 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:10] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -335 | Tanggal: 7 Jan 25 | Data: $1.17
+[2025-02-06 10:43:10] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -335 | Tanggal: 15 Nov 24 | Data: $1.14
+[2025-02-06 10:43:10] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -435 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-06 10:43:10] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -315 | Tanggal: 8 Jan 25 | Data: $1.18
+[2025-02-06 10:43:10] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -315 | Tanggal: 18 Nov 24 | Data: $1.15
+[2025-02-06 10:43:11] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -415 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:11] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -295 | Tanggal: 9 Jan 25 | Data: $1.18
+[2025-02-06 10:43:11] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -295 | Tanggal: 19 Nov 24 | Data: $1.16
+[2025-02-06 10:43:11] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -395 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:11] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -275 | Tanggal: 9 Jan 25 | Data: $1.18
+[2025-02-06 10:43:11] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -275 | Tanggal: 21 Nov 24 | Data: $1.17
+[2025-02-06 10:43:11] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -375 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:11] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -255 | Tanggal: 10 Jan 25 | Data: $1.16
+[2025-02-06 10:43:11] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -255 | Tanggal: 25 Nov 24 | Data: $1.17
+[2025-02-06 10:43:12] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -355 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:12] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -235 | Tanggal: 13 Jan 25 | Data: $1.16
+[2025-02-06 10:43:12] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -235 | Tanggal: 26 Nov 24 | Data: $1.17
+[2025-02-06 10:43:12] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -335 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:12] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -215 | Tanggal: 13 Jan 25 | Data: $1.16
+[2025-02-06 10:43:12] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -215 | Tanggal: 28 Nov 24 | Data: $1.15
+[2025-02-06 10:43:12] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -315 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:12] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -195 | Tanggal: 13 Jan 25 | Data: $1.16
+[2025-02-06 10:43:13] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -195 | Tanggal: 2 Des 24 | Data: $1.18
+[2025-02-06 10:43:13] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -295 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:13] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -175 | Tanggal: 13 Jan 25 | Data: $1.16
+[2025-02-06 10:43:13] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -175 | Tanggal: 2 Des 24 | Data: $1.18
+[2025-02-06 10:43:13] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -275 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:13] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -155 | Tanggal: 14 Jan 25 | Data: $1.16
+[2025-02-06 10:43:13] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -155 | Tanggal: 4 Des 24 | Data: $1.22
+[2025-02-06 10:43:14] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -255 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:14] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -135 | Tanggal: 15 Jan 25 | Data: $1.19
+[2025-02-06 10:43:14] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -135 | Tanggal: 6 Des 24 | Data: $1.21
+[2025-02-06 10:43:14] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -235 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:14] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -115 | Tanggal: 15 Jan 25 | Data: $1.19
+[2025-02-06 10:43:14] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -115 | Tanggal: 9 Des 24 | Data: $1.20
+[2025-02-06 10:43:14] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -215 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:14] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -95 | Tanggal: 16 Jan 25 | Data: $1.18
+[2025-02-06 10:43:15] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -95 | Tanggal: 10 Des 24 | Data: $1.18
+[2025-02-06 10:43:15] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -195 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:15] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -75 | Tanggal: 17 Jan 25 | Data: $1.20
+[2025-02-06 10:43:15] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -75 | Tanggal: 13 Des 24 | Data: $1.20
+[2025-02-06 10:43:15] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -175 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:15] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -55 | Tanggal: 17 Jan 25 | Data: $1.20
+[2025-02-06 10:43:15] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -55 | Tanggal: 16 Des 24 | Data: $1.22
+[2025-02-06 10:43:16] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -155 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:16] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -35 | Tanggal: 20 Jan 25 | Data: $1.20
+[2025-02-06 10:43:16] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -35 | Tanggal: 17 Des 24 | Data: $1.21
+[2025-02-06 10:43:16] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -135 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:16] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor -15 | Tanggal: 20 Jan 25 | Data: $1.20
+[2025-02-06 10:43:16] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor -15 | Tanggal: 19 Des 24 | Data: $1.17
+[2025-02-06 10:43:16] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -115 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:16] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 5 | Tanggal: 20 Jan 25 | Data: $1.20
+[2025-02-06 10:43:16] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 5 | Tanggal: 23 Des 24 | Data: $1.20
+[2025-02-06 10:43:17] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -95 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:17] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 25 | Tanggal: 20 Jan 25 | Data: $1.20
+[2025-02-06 10:43:17] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 25 | Tanggal: 23 Des 24 | Data: $1.20
+[2025-02-06 10:43:17] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -75 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:17] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 45 | Tanggal: 21 Jan 25 | Data: $1.21
+[2025-02-06 10:43:17] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 45 | Tanggal: 27 Des 24 | Data: $1.18
+[2025-02-06 10:43:17] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -55 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:17] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 65 | Tanggal: 22 Jan 25 | Data: $1.24
+[2025-02-06 10:43:18] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 65 | Tanggal: 27 Des 24 | Data: $1.18
+[2025-02-06 10:43:18] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -35 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:18] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 85 | Tanggal: 23 Jan 25 | Data: $1.23
+[2025-02-06 10:43:18] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 85 | Tanggal: 30 Des 24 | Data: $1.17
+[2025-02-06 10:43:18] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor -15 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:18] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 105 | Tanggal: 23 Jan 25 | Data: $1.23
+[2025-02-06 10:43:18] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 105 | Tanggal: 2 Jan 25 | Data: $1.17
+[2025-02-06 10:43:19] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 5 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:19] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 125 | Tanggal: 24 Jan 25 | Data: $1.22
+[2025-02-06 10:43:19] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 125 | Tanggal: 3 Jan 25 | Data: $1.19
+[2025-02-06 10:43:19] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 145 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-06 10:43:19] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 25 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:19] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 145 | Tanggal: 6 Jan 25 | Data: $1.21
+[2025-02-06 10:43:19] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 165 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-06 10:43:19] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 45 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:19] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 165 | Tanggal: 7 Jan 25 | Data: $1.17
+[2025-02-06 10:43:20] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 185 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-06 10:43:20] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 65 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:20] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 185 | Tanggal: 9 Jan 25 | Data: $1.18
+[2025-02-06 10:43:20] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 205 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-06 10:43:20] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 85 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:20] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 205 | Tanggal: 13 Jan 25 | Data: $1.16
+[2025-02-06 10:43:21] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 225 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-06 10:43:21] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 105 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:21] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 225 | Tanggal: 13 Jan 25 | Data: $1.16
+[2025-02-06 10:43:21] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 245 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-06 10:43:21] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 125 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:21] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 245 | Tanggal: 15 Jan 25 | Data: $1.19
+[2025-02-06 10:43:21] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 265 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-06 10:43:21] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 145 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:21] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 265 | Tanggal: 20 Jan 25 | Data: $1.20
+[2025-02-06 10:43:22] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 285 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-06 10:43:22] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 165 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:22] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 285 | Tanggal: 20 Jan 25 | Data: $1.20
+[2025-02-06 10:43:22] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 305 | Tanggal: 31 Jan 25 | Data: $1.18
+[2025-02-06 10:43:22] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 185 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:22] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 305 | Tanggal: 22 Jan 25 | Data: $1.24
+[2025-02-06 10:43:22] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 325 | Tanggal: 31 Jan 25 | Data: $1.18
+[2025-02-06 10:43:22] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 205 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:23] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 325 | Tanggal: 24 Jan 25 | Data: $1.22
+[2025-02-06 10:43:23] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 345 | Tanggal: 3 Feb 25 | Data: $1.17
+[2025-02-06 10:43:23] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 225 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:23] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 345 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-06 10:43:23] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 365 | Tanggal: 3 Feb 25 | Data: $1.17
+[2025-02-06 10:43:23] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 245 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:23] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 365 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-06 10:43:24] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 385 | Tanggal: 3 Feb 25 | Data: $1.17
+[2025-02-06 10:43:24] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 265 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:24] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 385 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-06 10:43:24] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 405 | Tanggal: 3 Feb 25 | Data: $1.17
+[2025-02-06 10:43:24] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 285 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:24] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 405 | Tanggal: 3 Feb 25 | Data: $1.17
+[2025-02-06 10:43:24] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 425 | Tanggal: 4 Feb 25 | Data: $1.18
+[2025-02-06 10:43:24] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 305 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:24] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 425 | Tanggal: 3 Feb 25 | Data: $1.17
+[2025-02-06 10:43:25] [DEBUG] [DEBUG] Mode Default | Periode 1M | Kursor 445 | Tanggal: 4 Feb 25 | Data: $1.18
+[2025-02-06 10:43:25] [INFO] Scraping 1M (Default) selesai, total data: 46
+[2025-02-06 10:43:25] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 325 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:25] [DEBUG] [DEBUG] Mode Default | Periode 3M | Kursor 445 | Tanggal: 4 Feb 25 | Data: $1.18
+[2025-02-06 10:43:25] [INFO] Scraping 3M (Default) selesai, total data: 46
+[2025-02-06 10:43:25] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 345 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:26] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 365 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:26] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 385 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:26] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 405 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:27] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 425 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:27] [INFO] Scraping 1M (Default) selesai dalam 30.13 detik.
+[2025-02-06 10:43:27] [INFO] Memulai scraping 3M (AUM) untuk https://bibit.id/reksadana/RD4183...
+[2025-02-06 10:43:27] [INFO] Scraping Batavia Technology Sharia Equity USD untuk 1M (Default) selesai.
+[2025-02-06 10:43:27] [INFO] Scraping 3M (Default) selesai dalam 30.23 detik.
+[2025-02-06 10:43:27] [INFO] Memulai scraping YTD (Default) untuk https://bibit.id/reksadana/RD4183...
+[2025-02-06 10:43:27] [INFO] Scraping Batavia Technology Sharia Equity USD untuk 3M (Default) selesai.
+[2025-02-06 10:43:27] [DEBUG] [DEBUG] Mode AUM | Periode 1M | Kursor 445 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:27] [INFO] Scraping 1M (AUM) selesai, total data: 46
+[2025-02-06 10:43:29] [INFO] Scraping 1M (AUM) selesai dalam 32.48 detik.
+[2025-02-06 10:43:29] [INFO] Memulai scraping YTD (AUM) untuk https://bibit.id/reksadana/RD4183...
+[2025-02-06 10:43:29] [INFO] Scraping Batavia Technology Sharia Equity USD untuk 1M (AUM) selesai.
+[2025-02-06 10:43:33] [INFO] Berhasil membuka URL https://bibit.id/reksadana/RD4183
+[2025-02-06 10:43:33] [INFO] [INFO] Beralih ke mode AUM...
+[2025-02-06 10:43:34] [INFO] Berhasil membuka URL https://bibit.id/reksadana/RD4183
+[2025-02-06 10:43:34] [INFO] Berhasil memilih periode YTD.
+[2025-02-06 10:43:36] [INFO] Berhasil memilih periode 3M.
+[2025-02-06 10:43:37] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -455 | Tanggal: 4 Feb 25 | Data: $1.18
+[2025-02-06 10:43:37] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -435 | Tanggal: 30 Des 24 | Data: $1.17
+[2025-02-06 10:43:37] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -415 | Tanggal: 2 Jan 25 | Data: $1.17
+[2025-02-06 10:43:38] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -395 | Tanggal: 2 Jan 25 | Data: $1.17
+[2025-02-06 10:43:38] [INFO] Berhasil membuka URL https://bibit.id/reksadana/RD4183
+[2025-02-06 10:43:38] [INFO] [INFO] Beralih ke mode AUM...
+[2025-02-06 10:43:38] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -375 | Tanggal: 2 Jan 25 | Data: $1.17
+[2025-02-06 10:43:38] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -355 | Tanggal: 3 Jan 25 | Data: $1.19
+[2025-02-06 10:43:39] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -455 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:39] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -335 | Tanggal: 6 Jan 25 | Data: $1.21
+[2025-02-06 10:43:39] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -435 | Tanggal: 1 Sep 24 | Data: $92.21M
+[2025-02-06 10:43:39] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -315 | Tanggal: 6 Jan 25 | Data: $1.21
+[2025-02-06 10:43:39] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -415 | Tanggal: 1 Okt 24 | Data: $76.09M
+[2025-02-06 10:43:40] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -295 | Tanggal: 6 Jan 25 | Data: $1.21
+[2025-02-06 10:43:40] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -395 | Tanggal: 1 Okt 24 | Data: $76.09M
+[2025-02-06 10:43:40] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -275 | Tanggal: 6 Jan 25 | Data: $1.21
+[2025-02-06 10:43:40] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -375 | Tanggal: 1 Okt 24 | Data: $76.09M
+[2025-02-06 10:43:40] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -255 | Tanggal: 7 Jan 25 | Data: $1.17
+[2025-02-06 10:43:41] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -355 | Tanggal: 1 Okt 24 | Data: $76.09M
+[2025-02-06 10:43:41] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -235 | Tanggal: 8 Jan 25 | Data: $1.18
+[2025-02-06 10:43:41] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -335 | Tanggal: 1 Okt 24 | Data: $76.09M
+[2025-02-06 10:43:41] [INFO] Berhasil memilih periode YTD.
+[2025-02-06 10:43:41] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -215 | Tanggal: 9 Jan 25 | Data: $1.18
+[2025-02-06 10:43:41] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -315 | Tanggal: 1 Okt 24 | Data: $76.09M
+[2025-02-06 10:43:42] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -195 | Tanggal: 9 Jan 25 | Data: $1.18
+[2025-02-06 10:43:42] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -295 | Tanggal: 1 Okt 24 | Data: $76.09M
+[2025-02-06 10:43:42] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -175 | Tanggal: 10 Jan 25 | Data: $1.16
+[2025-02-06 10:43:42] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -275 | Tanggal: 1 Okt 24 | Data: $76.09M
+[2025-02-06 10:43:42] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -155 | Tanggal: 13 Jan 25 | Data: $1.16
+[2025-02-06 10:43:43] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -255 | Tanggal: 1 Okt 24 | Data: $76.09M
+[2025-02-06 10:43:43] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -135 | Tanggal: 13 Jan 25 | Data: $1.16
+[2025-02-06 10:43:43] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -235 | Tanggal: 1 Okt 24 | Data: $76.09M
+[2025-02-06 10:43:43] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -115 | Tanggal: 13 Jan 25 | Data: $1.16
+[2025-02-06 10:43:43] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -215 | Tanggal: 1 Okt 24 | Data: $76.09M
+[2025-02-06 10:43:43] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -455 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:43] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -95 | Tanggal: 14 Jan 25 | Data: $1.16
+[2025-02-06 10:43:44] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -195 | Tanggal: 1 Okt 24 | Data: $76.09M
+[2025-02-06 10:43:44] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -435 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-06 10:43:44] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -75 | Tanggal: 14 Jan 25 | Data: $1.16
+[2025-02-06 10:43:44] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -175 | Tanggal: 1 Okt 24 | Data: $76.09M
+[2025-02-06 10:43:44] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -415 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:44] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -55 | Tanggal: 15 Jan 25 | Data: $1.19
+[2025-02-06 10:43:44] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -155 | Tanggal: 1 Okt 24 | Data: $76.09M
+[2025-02-06 10:43:45] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -395 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:45] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -35 | Tanggal: 16 Jan 25 | Data: $1.18
+[2025-02-06 10:43:45] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -135 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-06 10:43:45] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -375 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:45] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor -15 | Tanggal: 17 Jan 25 | Data: $1.20
+[2025-02-06 10:43:45] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -115 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-06 10:43:45] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -355 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:45] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 5 | Tanggal: 20 Jan 25 | Data: $1.20
+[2025-02-06 10:43:46] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -95 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-06 10:43:46] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -335 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:46] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 25 | Tanggal: 20 Jan 25 | Data: $1.20
+[2025-02-06 10:43:46] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -75 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-06 10:43:46] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -315 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:46] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 45 | Tanggal: 20 Jan 25 | Data: $1.20
+[2025-02-06 10:43:46] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -55 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-06 10:43:46] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -295 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:47] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 65 | Tanggal: 20 Jan 25 | Data: $1.20
+[2025-02-06 10:43:47] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -35 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-06 10:43:47] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -275 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:47] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 85 | Tanggal: 21 Jan 25 | Data: $1.21
+[2025-02-06 10:43:47] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor -15 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-06 10:43:47] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -255 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:47] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 105 | Tanggal: 22 Jan 25 | Data: $1.24
+[2025-02-06 10:43:48] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 5 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-06 10:43:48] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -235 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:48] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 125 | Tanggal: 23 Jan 25 | Data: $1.23
+[2025-02-06 10:43:48] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 25 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-06 10:43:48] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -215 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:48] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 145 | Tanggal: 23 Jan 25 | Data: $1.23
+[2025-02-06 10:43:48] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 45 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-06 10:43:48] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -195 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:48] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 165 | Tanggal: 24 Jan 25 | Data: $1.22
+[2025-02-06 10:43:49] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 65 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-06 10:43:49] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -175 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:49] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 185 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-06 10:43:49] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 85 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-06 10:43:49] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -155 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:49] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 205 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-06 10:43:49] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 105 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-06 10:43:50] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -135 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:50] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 225 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-06 10:43:50] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 125 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-06 10:43:50] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -115 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:50] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 245 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-06 10:43:50] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 145 | Tanggal: 1 Nov 24 | Data: $81.08M
+[2025-02-06 10:43:50] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -95 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:50] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 265 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-06 10:43:51] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 165 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:51] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -75 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:51] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 285 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-06 10:43:51] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 185 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:51] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -55 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:51] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 305 | Tanggal: 30 Jan 25 | Data: $1.17
+[2025-02-06 10:43:51] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 205 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:51] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -35 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:51] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 325 | Tanggal: 31 Jan 25 | Data: $1.18
+[2025-02-06 10:43:52] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 225 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:52] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor -15 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:52] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 345 | Tanggal: 3 Feb 25 | Data: $1.17
+[2025-02-06 10:43:52] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 245 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:52] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 5 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:52] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 365 | Tanggal: 3 Feb 25 | Data: $1.17
+[2025-02-06 10:43:52] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 265 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:53] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 25 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:53] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 385 | Tanggal: 3 Feb 25 | Data: $1.17
+[2025-02-06 10:43:53] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 285 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:53] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 45 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:53] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 405 | Tanggal: 3 Feb 25 | Data: $1.17
+[2025-02-06 10:43:53] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 305 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:53] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 65 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:53] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 425 | Tanggal: 4 Feb 25 | Data: $1.18
+[2025-02-06 10:43:54] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 325 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:54] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 85 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:54] [DEBUG] [DEBUG] Mode Default | Periode YTD | Kursor 445 | Tanggal: 4 Feb 25 | Data: $1.18
+[2025-02-06 10:43:54] [INFO] Scraping YTD (Default) selesai, total data: 46
+[2025-02-06 10:43:54] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 345 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:54] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 105 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:54] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 365 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:55] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 125 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:55] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 385 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:55] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 145 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:55] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 405 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:55] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 165 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:56] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 425 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:56] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 185 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:56] [INFO] Scraping YTD (Default) selesai dalam 28.92 detik.
+[2025-02-06 10:43:56] [INFO] Scraping Batavia Technology Sharia Equity USD untuk YTD (Default) selesai.
+[2025-02-06 10:43:56] [DEBUG] [DEBUG] Mode AUM | Periode 3M | Kursor 445 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:56] [INFO] Scraping 3M (AUM) selesai, total data: 46
+[2025-02-06 10:43:56] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 205 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:56] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 225 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:57] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 245 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:57] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 265 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:58] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 285 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:58] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 305 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:58] [INFO] Scraping 3M (AUM) selesai dalam 31.22 detik.
+[2025-02-06 10:43:58] [INFO] Scraping Batavia Technology Sharia Equity USD untuk 3M (AUM) selesai.
+[2025-02-06 10:43:58] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 325 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:59] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 345 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:43:59] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 365 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:44:00] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 385 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:44:00] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 405 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:44:00] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 425 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:44:01] [DEBUG] [DEBUG] Mode AUM | Periode YTD | Kursor 445 | Tanggal: 1 Des 24 | Data: $95.93M
+[2025-02-06 10:44:01] [INFO] Scraping YTD (AUM) selesai, total data: 46
+[2025-02-06 10:44:03] [INFO] Scraping YTD (AUM) selesai dalam 33.65 detik.
+[2025-02-06 10:44:03] [INFO] Scraping Batavia Technology Sharia Equity USD untuk YTD (AUM) selesai.
+[2025-02-06 10:44:03] [INFO] Data Batavia Technology Sharia Equity USD berhasil diperbarui dan disimpan ke database\Batavia Technology Sharia Equity USD.csv
+[2025-02-06 10:44:03] [INFO] Scraping Batavia Technology Sharia Equity USD selesai dalam 66.13 detik.
+[2025-02-06 10:44:03] [INFO] ===== Semua scraping selesai dalam 66.14 detik =====
