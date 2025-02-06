@@ -69,28 +69,36 @@ class WebScraper:
                 df = df[::-1]
                 
                 filename = f"database/{name}.csv"
-                with open(filename, mode=self.mode_csv, newline='', encoding='utf-8') as file:
-                    writer = csv.DictWriter(file, fieldnames=df.columns)
-                    writer.writeheader()
-                    for _, row in df.iterrows():
-                        writer.writerow(row.to_dict())
                 
-                print(f"Data telah disimpan ke {filename}")
+                # Cek apakah file CSV sudah ada
+                if os.path.exists(filename):
+                    # Baca file CSV yang ada
+                    existing_df = pd.read_csv(filename)
+                    existing_df['Date'] = pd.to_datetime(existing_df['Date']).dt.date
+                    
+                    # Gabungkan data baru dengan yang ada dan hapus duplikat berdasarkan tanggal
+                    combined_df = pd.concat([existing_df, df])
+                    combined_df = combined_df.drop_duplicates(subset=['Date'], keep='first')
+                    
+                    # Urutkan berdasarkan tanggal
+                    combined_df = combined_df.sort_values('Date')
+                    
+                    # Simpan kembali ke CSV
+                    combined_df.to_csv(filename, index=False)
+                    print(f"Data telah diperbarui di {filename}")
+                    print(f"Jumlah data baru yang ditambahkan: {len(df) - len(existing_df)}")
+                else:
+                    # Jika file belum ada, buat file baru
+                    df.to_csv(filename, index=False)
+                    print(f"File baru dibuat: {filename}")
+                    print(f"Jumlah data yang disimpan: {len(df)}")
+                
                 print(df)
             else:
                 print(f"Tahun {self.pilih_tahun} tidak ditemukan untuk {name}.")
         except Exception as e:
             print(f"Error saat scraping {name}: {e}")
 
-# urls = [
-#     ['IHSG', 'https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE'],
-#     ['LQ45', 'https://finance.yahoo.com/quote/%5EJKLQ45/history/']
-# ]
-
-# pilih_tahun = "Max"
-
-# scraper = WebScraper(urls, pilih_tahun, 'w')
-# scraper.scrape_data()
 
 today = date.today()
 today_request = date(2025, 2, 10)
