@@ -183,9 +183,12 @@ class Scraper:
 
 
     def process_and_save_data(self, kode, mode1_data, mode2_data):
-        """Memproses dan menyimpan data hasil scraping ke dalam CSV, termasuk informasi mata uang."""
+        """Memproses dan menyimpan data hasil scraping ke dalam CSV, termasuk informasi mata uang.
+        Memastikan tidak ada duplikasi sebelum menyimpan data baru."""
+        
         processed_data = {}
 
+        # Proses data baru dari mode1_data (NAV)
         for entry in mode1_data:
             try:
                 tanggal_obj = self.parse_tanggal(entry['tanggal'])
@@ -198,6 +201,7 @@ class Scraper:
             except ValueError:
                 self.logger.log_info(f"[ERROR] Gagal mengonversi data NAV: {entry['data']}", "ERROR")
 
+        # Proses data baru dari mode2_data (AUM)
         for entry in mode2_data:
             try:
                 tanggal_obj = self.parse_tanggal(entry['tanggal'])
@@ -210,9 +214,43 @@ class Scraper:
             except ValueError:
                 self.logger.log_info(f"[ERROR] Gagal mengonversi data AUM: {entry['data']}", "ERROR")
 
-        sorted_dates = sorted(processed_data.keys())
-
         csv_file = os.path.join(self.database_dir, f"{kode}.csv")
+        
+        # Jika file sudah ada, baca data yang sudah tersimpan
+        if os.path.exists(csv_file):
+            existing_data = {}
+
+            with open(csv_file, mode='r', newline='', encoding='utf-8') as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    tanggal = row['tanggal']
+                    existing_data[tanggal] = {
+                        'NAV': row['NAV'],
+                        'AUM': row['AUM'],
+                        'currency': row['currency']
+                    }
+
+            # Gabungkan data lama dengan data baru tanpa duplikasi
+            for tanggal, values in processed_data.items():
+                if tanggal in existing_data:
+                    # Jika tanggal sudah ada, update hanya jika data baru lebih lengkap
+                    if values['NAV'] != 'NA':
+                        existing_data[tanggal]['NAV'] = values['NAV']
+                    if values['AUM'] != 'NA':
+                        existing_data[tanggal]['AUM'] = values['AUM']
+                    # Pastikan currency tetap konsisten (ambil dari yang ada)
+                    if existing_data[tanggal]['currency'] == 'NA':
+                        existing_data[tanggal]['currency'] = values['currency']
+                else:
+                    existing_data[tanggal] = values  # Tambahkan data baru
+
+        else:
+            existing_data = processed_data  # Tidak ada file, langsung gunakan data baru
+
+        # Urutkan data berdasarkan tanggal sebelum menyimpan kembali
+        sorted_dates = sorted(existing_data.keys())
+
+        # Simpan data ke dalam CSV
         with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
             writer = csv.DictWriter(file, fieldnames=['tanggal', 'NAV', 'AUM', 'currency'])
             writer.writeheader()
@@ -220,12 +258,12 @@ class Scraper:
             for date in sorted_dates:
                 writer.writerow({
                     'tanggal': date,
-                    'NAV': processed_data[date]['NAV'],
-                    'AUM': processed_data[date]['AUM'],
-                    'currency': processed_data[date]['currency']
+                    'NAV': existing_data[date]['NAV'],
+                    'AUM': existing_data[date]['AUM'],
+                    'currency': existing_data[date]['currency']
                 })
 
-        self.logger.log_info(f"Data {kode} berhasil disimpan ke {csv_file}")
+        self.logger.log_info(f"Data {kode} berhasil diperbarui dan disimpan ke {csv_file}")
 
 
 
@@ -280,7 +318,7 @@ urls = [
 ]
 
 data_periods = ['3M', '1Y']
-pixel = 200
+pixel = 20
 
 # Membuat scraper instance dan menjalankan scraping
 scraper = Scraper(urls, data_periods, pixel, logger, debug_mode=True)
