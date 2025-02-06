@@ -10,6 +10,7 @@ from datetime import datetime
 from selenium.webdriver.chrome.options import Options
 import time
 from datetime import date, timedelta
+import os
 
 class WebScraper:
     def __init__(self, urls, pilih_tahun, mode_csv):
@@ -116,13 +117,11 @@ for kode, url in urls:
     latest_data_date = latest_data[0]
     latest_data_value = latest_data[-1]
 
-    print(latest_data_date)
 
     LD_years, LD_months, LD_dates = latest_data_date.split("-")
     date_database = date(int(LD_years), int(LD_months), int(LD_dates))
 
     delta_date = today_request - date_database
-    print(delta_date)
 
     if delta_date < timedelta(0):
             print("tidak proses")
@@ -145,8 +144,6 @@ for kode, url in urls:
             if delta_date <= timedelta(days=days):
                 data_periods = periods
                 break  # Stop loop setelah menemukan rentang yang sesuai
-
-print(data_periods)
 
 scraper = WebScraper(urls, data_periods, 'w')
 scraper.scrape_data()
