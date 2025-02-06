@@ -81,31 +81,33 @@ class ProspektusDownloader:
         urls (list): List berisi judul dan URL halaman web yang berisi button download.
         button_class (str): Class name dari button yang akan diklik.
         """
-        driver = self._setup_driver()
+        driver = self._setup_driver()  # Inisialisasi driver sekali
 
-        for kode, url in urls:
-            try:
-                self.logger.log_info(f"Memulai download prospektus untuk {kode} dari {url}")
-                driver.get(url)
+        try:
+            for kode, url in urls:
+                try:
+                    self.logger.log_info(f"Memulai download prospektus untuk {kode} dari {url}")
+                    driver.get(url)
 
-                button = WebDriverWait(driver, 10).until(
-                    EC.element_to_be_clickable((By.CLASS_NAME, button_class))
-                )
-                button.click()
+                    button = WebDriverWait(driver, 10).until(
+                        EC.element_to_be_clickable((By.CLASS_NAME, button_class))
+                    )
+                    button.click()
 
-                if not self._wait_for_download():
-                    raise Exception("Download timeout")
+                    if not self._wait_for_download():
+                        raise Exception("Download timeout")
 
-                time.sleep(2)
-                self._rename_latest_pdf(kode)
+                    time.sleep(2)
+                    self._rename_latest_pdf(kode)
 
-                self.logger.log_info(f"Download prospektus {kode} berhasil.")
+                    self.logger.log_info(f"Download prospektus {kode} berhasil.")
 
-            except Exception as e:
-                self.logger.log_info(f"Error saat download {kode}: {str(e)}", "ERROR")
+                except Exception as e:
+                    self.logger.log_info(f"Error saat download {kode}: {str(e)}", "ERROR")
+                    continue  # Lanjutkan ke iterasi berikutnya jika terjadi error
 
-            finally:
-                driver.quit()
+        finally:
+            driver.quit()
 
 
 
