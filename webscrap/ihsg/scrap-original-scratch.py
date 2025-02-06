@@ -64,6 +64,7 @@ class WebScraper:
                 df = df.drop(0).reset_index(drop=True)
                 df['Date'] = pd.to_datetime(df['Date'], format='%b %d, %Y', errors='coerce')
                 df['Date'] = df['Date'].dt.date
+                df = df[::-1]
                 
                 filename = f"database/{name}.csv"
                 with open(filename, mode=self.mode_csv, newline='', encoding='utf-8') as file:
@@ -84,7 +85,7 @@ urls = [
     ['LQ45', 'https://finance.yahoo.com/quote/%5EJKLQ45/history/']
 ]
 
-pilih_tahun = "5D"
+pilih_tahun = "Max"
 
 scraper = WebScraper(urls, pilih_tahun, 'w')
 scraper.scrape_data()
