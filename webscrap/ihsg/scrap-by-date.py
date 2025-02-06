@@ -96,5 +96,49 @@ today = date.today()
 today_request = date(2025, 2, 10)
 
 urls = [
-    ['Batavia Technology Sharia Equity USD','https://bibit.id/reksadana/RD4183'],
+    ['IHSG', 'https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE'],
+    ['LQ45', 'https://finance.yahoo.com/quote/%5EJKLQ45/history/']
 ]
+
+for kode, url in urls:
+    csv_file_recent = f"database/{kode}.csv"
+    df = pd.read_csv(csv_file_recent)
+    latest_data = df.iloc[-1].tolist()
+
+    latest_data_date = latest_data[0]
+    latest_data_value = latest_data[-1]
+
+    print(latest_data_date)
+
+    LD_years, LD_months, LD_dates = latest_data_date.split("-")
+    date_database = date(int(LD_years), int(LD_months), int(LD_dates))
+
+    delta_date = today_request - date_database
+    print(delta_date)
+
+    if delta_date < timedelta(0):
+            print("tidak proses")
+    else:
+        # Daftar periode berdasarkan hari
+        period_map = [
+            (1, '1D'),
+            (5, '5D'),
+            (90, '3M'),
+            (180, '6M'),
+            (360, '1Y'),
+            (1800, '5Y')
+        ]
+
+        # Default jika lebih dari 5 tahun
+        data_periods = 'Max'
+        
+        # Loop untuk mencari rentang yang sesuai
+        for days, periods in period_map:
+            if delta_date <= timedelta(days=days):
+                data_periods = periods
+                break  # Stop loop setelah menemukan rentang yang sesuai
+
+print(data_periods)
+
+scraper = WebScraper(urls, data_periods, 'w')
+scraper.scrape_data()
