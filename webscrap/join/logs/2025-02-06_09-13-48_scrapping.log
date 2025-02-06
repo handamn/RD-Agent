@@ -1,0 +1,8 @@
+[2025-02-06 09:13:49] [INFO] Memulai download prospektus untuk Avrist IDX30 dari https://bibit.id/reksadana/RD82
+[2025-02-06 09:13:51] [INFO] Menunggu proses download selesai di E:\belajar-RAG\RD-Agent\webscrap\join\downloads...
+[2025-02-06 09:13:52] [INFO] Download selesai.
+[2025-02-06 09:13:54] [INFO] File E:\belajar-RAG\RD-Agent\webscrap\join\downloads\PROSPEKTUS_REKSA_DANA_INDEKS_AVRIST_IDX30_2024.pdf berhasil diubah menjadi E:\belajar-RAG\RD-Agent\webscrap\join\downloads\Avrist IDX30.pdf
+[2025-02-06 09:13:54] [INFO] Download prospektus Avrist IDX30 berhasil.
+[2025-02-06 09:13:56] [INFO] Memulai download prospektus untuk Avrist Prime Bond Fund dari https://bibit.id/reksadana/RD83
+[2025-02-06 09:14:13] [ERROR] Error saat download Avrist Prime Bond Fund: HTTPConnectionPool(host='localhost', port=52842): Max retries exceeded with url: /session/a986f6efbb4935b158ff2fb6ea867230/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001E1D62045B0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+[2025-02-06 09:14:33] [INFO] Memulai download prospektus untuk Bahana Dana Likuid Kelas G dari https://bibit.id/reksadana/RD124
