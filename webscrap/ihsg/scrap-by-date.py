@@ -88,6 +88,11 @@ class WebScraper:
                     
                     # Simpan kembali ke CSV
                     combined_df.to_csv(filename, index=False)
+                    print()
+                    print("---")
+                    print(combined_df)
+                    print("---")
+                    print()
                     print(f"Data telah diperbarui di {filename}")
                     print(f"Jumlah data baru yang ditambahkan atau diperbarui: {len(combined_df) - len(existing_df)}")
                 else:
