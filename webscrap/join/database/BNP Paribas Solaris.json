@@ -1,0 +1,10511 @@
+{
+  "benchmark_name": "BNP Paribas Solaris",
+  "historical_data": [
+    {
+      "date": "2008-05-23",
+      "nav": null,
+      "aum": 36920.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-05-26",
+      "nav": 1082.98,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-06-04",
+      "nav": null,
+      "aum": 104680.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-06-06",
+      "nav": 1089.55,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-06-17",
+      "nav": null,
+      "aum": 165110.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-06-18",
+      "nav": 1071.43,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-06-30",
+      "nav": null,
+      "aum": 231780.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-07-01",
+      "nav": 1078.28,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-07-11",
+      "nav": null,
+      "aum": 255740.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-07-14",
+      "nav": 1030.27,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-07-24",
+      "nav": null,
+      "aum": 264470.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-07-28",
+      "nav": 999.28,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-08-05",
+      "nav": null,
+      "aum": 261606.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-08-07",
+      "nav": 955.45,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-08-19",
+      "nav": null,
+      "aum": 247750.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-08-20",
+      "nav": 903.35,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-09-01",
+      "nav": 957.83,
+      "aum": 264100.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-09-11",
+      "nav": null,
+      "aum": 215540.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-09-15",
+      "nav": 730.07,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-09-24",
+      "nav": null,
+      "aum": 209090.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-09-26",
+      "nav": 762.1,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-10-06",
+      "nav": null,
+      "aum": 168530.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-10-08",
+      "nav": 550.66,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-10-20",
+      "nav": null,
+      "aum": 141880.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-10-21",
+      "nav": 547.17,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-10-31",
+      "nav": null,
+      "aum": 118440.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-11-03",
+      "nav": 525.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-11-12",
+      "nav": null,
+      "aum": 127980.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-11-17",
+      "nav": 476.24,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-11-24",
+      "nav": null,
+      "aum": 107820.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-11-27",
+      "nav": 457.7,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-12-09",
+      "nav": null,
+      "aum": 117390.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-12-10",
+      "nav": 501.28,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-12-19",
+      "nav": null,
+      "aum": 130220.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2008-12-22",
+      "nav": 513.05,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-01-05",
+      "nav": 556.31,
+      "aum": 137920.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-01-13",
+      "nav": null,
+      "aum": 135610.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-01-16",
+      "nav": 527.38,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-01-27",
+      "nav": null,
+      "aum": 126847.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-01-29",
+      "nav": 512.31,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-02-09",
+      "nav": null,
+      "aum": 130200.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-02-10",
+      "nav": 524.62,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-02-19",
+      "nav": null,
+      "aum": 130910.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-02-23",
+      "nav": 524.08,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-03-03",
+      "nav": null,
+      "aum": 123730.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-03-10",
+      "nav": 512.41,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-03-16",
+      "nav": null,
+      "aum": 124270.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-03-20",
+      "nav": 516.64,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-03-31",
+      "nav": null,
+      "aum": 134280.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-04-01",
+      "nav": 568.49,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-04-13",
+      "nav": null,
+      "aum": 153600.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-04-14",
+      "nav": 653.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-04-22",
+      "nav": null,
+      "aum": 166500.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-04-27",
+      "nav": 670.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-05-04",
+      "nav": null,
+      "aum": 191350.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-05-11",
+      "nav": 863.72,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-05-18",
+      "nav": null,
+      "aum": 236280.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-05-22",
+      "nav": 904.46,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-05-29",
+      "nav": null,
+      "aum": 266200.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-06-03",
+      "nav": 973.31,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-06-10",
+      "nav": null,
+      "aum": 311660.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-06-15",
+      "nav": 981.43,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-06-23",
+      "nav": null,
+      "aum": 286096.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-06-29",
+      "nav": 974.15,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-07-06",
+      "nav": null,
+      "aum": 314510.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-07-10",
+      "nav": 968.79,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-07-17",
+      "nav": null,
+      "aum": 326550.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-07-23",
+      "nav": 1022.59,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-07-30",
+      "nav": null,
+      "aum": 351760.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-08-04",
+      "nav": 1132.55,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-08-11",
+      "nav": null,
+      "aum": 322300.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-08-18",
+      "nav": 1145.12,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-08-24",
+      "nav": null,
+      "aum": 352420.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-08-31",
+      "nav": 1129.11,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-09-07",
+      "nav": null,
+      "aum": 359910.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-09-11",
+      "nav": 1161.59,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-09-17",
+      "nav": null,
+      "aum": 369250.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-09-24",
+      "nav": 1181.18,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-09-30",
+      "nav": null,
+      "aum": 377930.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-10-06",
+      "nav": 1199.17,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-10-12",
+      "nav": null,
+      "aum": 369090.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-10-19",
+      "nav": 1215.11,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-10-26",
+      "nav": null,
+      "aum": 385540.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-11-02",
+      "nav": 1129.82,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-11-06",
+      "nav": null,
+      "aum": 394530.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-11-12",
+      "nav": 1147.95,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-11-18",
+      "nav": null,
+      "aum": 405169.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-11-25",
+      "nav": 1167.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-11-30",
+      "nav": null,
+      "aum": 380920.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-12-07",
+      "nav": 1157.35,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-12-14",
+      "nav": null,
+      "aum": 379930.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-12-21",
+      "nav": 1119.35,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2009-12-28",
+      "nav": null,
+      "aum": 357940.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-01-04",
+      "nav": 1191.27,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-01-06",
+      "nav": null,
+      "aum": 371710.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-01-14",
+      "nav": 1275.46,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-01-19",
+      "nav": null,
+      "aum": 348130.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-01-26",
+      "nav": 1230.02,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-02-01",
+      "nav": null,
+      "aum": 383570.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-02-08",
+      "nav": 1180.12,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-02-15",
+      "nav": null,
+      "aum": 439230.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-02-22",
+      "nav": 1219.11,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-02-25",
+      "nav": null,
+      "aum": 469350.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-03-05",
+      "nav": 1234.84,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-03-09",
+      "nav": null,
+      "aum": 491530.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-03-17",
+      "nav": 1320.58,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-03-22",
+      "nav": null,
+      "aum": 469320.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-03-30",
+      "nav": 1338.95,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-04-05",
+      "nav": null,
+      "aum": 570000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-04-12",
+      "nav": 1385.69,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-04-15",
+      "nav": null,
+      "aum": 620000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-04-26",
+      "nav": 1425.24,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-04-28",
+      "nav": null,
+      "aum": 690000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-05-06",
+      "nav": 1338.31,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-05-10",
+      "nav": null,
+      "aum": 780000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-05-19",
+      "nav": 1287.6,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-05-24",
+      "nav": null,
+      "aum": 780000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-06-01",
+      "nav": 1270.55,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-06-04",
+      "nav": null,
+      "aum": 889507.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-06-14",
+      "nav": 1301.89,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-06-16",
+      "nav": null,
+      "aum": 900000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-06-25",
+      "nav": 1339.91,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-06-29",
+      "nav": null,
+      "aum": 850000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-07-08",
+      "nav": 1335.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-07-13",
+      "nav": null,
+      "aum": 880000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-07-20",
+      "nav": 1358.3,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-07-23",
+      "nav": null,
+      "aum": 840000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-08-02",
+      "nav": 1403.32,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-08-05",
+      "nav": null,
+      "aum": 750000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-08-16",
+      "nav": 1398.27,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-08-18",
+      "nav": null,
+      "aum": 740000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-08-27",
+      "nav": 1438.83,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-08-30",
+      "nav": null,
+      "aum": 700000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-09-15",
+      "nav": 1535.5,
+      "aum": 690000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-09-21",
+      "nav": 1539.92,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-09-23",
+      "nav": null,
+      "aum": 660000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-10-04",
+      "nav": 1630.36,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-10-06",
+      "nav": null,
+      "aum": 680000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-10-18",
+      "nav": 1659.94,
+      "aum": 700000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-10-28",
+      "nav": 1686.72,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-11-01",
+      "nav": null,
+      "aum": 750000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-11-10",
+      "nav": 1730.16,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-11-12",
+      "nav": null,
+      "aum": 780000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-11-22",
+      "nav": 1706.34,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-11-24",
+      "nav": null,
+      "aum": 780000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-12-06",
+      "nav": 1728.98,
+      "aum": 830000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-12-17",
+      "nav": 1641.56,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-12-20",
+      "nav": null,
+      "aum": 870000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2010-12-30",
+      "nav": 1714.43,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-01-03",
+      "nav": null,
+      "aum": 960000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-01-11",
+      "nav": 1607.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-01-12",
+      "nav": null,
+      "aum": 1001430.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-01-24",
+      "nav": 1539.85,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-01-25",
+      "nav": null,
+      "aum": 1029021.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-02-07",
+      "nav": 1583.58,
+      "aum": 1060584.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-02-18",
+      "nav": 1584.45,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-02-21",
+      "nav": null,
+      "aum": 1083793.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-03-02",
+      "nav": 1564.12,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-03-03",
+      "nav": null,
+      "aum": 1087397.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-03-15",
+      "nav": 1583.16,
+      "aum": 1101338.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-03-28",
+      "nav": 1637.39,
+      "aum": 1133925.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-04-11",
+      "nav": 1692.86,
+      "aum": 1166060.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-04-21",
+      "nav": 1716.56,
+      "aum": 1241619.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-05-04",
+      "nav": 1721.88,
+      "aum": 1253833.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-05-16",
+      "nav": 1723.39,
+      "aum": 1332226.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-05-30",
+      "nav": 1725.17,
+      "aum": 1418709.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-06-10",
+      "nav": 1703.45,
+      "aum": 1413701.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-06-22",
+      "nav": null,
+      "aum": 1447640.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-06-23",
+      "nav": 1704.81,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-07-05",
+      "nav": 1736.1,
+      "aum": 1445072.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-07-18",
+      "nav": 1769.49,
+      "aum": 1397164.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-07-29",
+      "nav": null,
+      "aum": 1302707.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-08-01",
+      "nav": 1881.55,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-08-11",
+      "nav": null,
+      "aum": 1219539.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-08-12",
+      "nav": 1750.88,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-08-23",
+      "nav": null,
+      "aum": 1235361.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-08-24",
+      "nav": 1728.45,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-09-05",
+      "nav": null,
+      "aum": 1236923.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-09-06",
+      "nav": 1731.13,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-09-19",
+      "nav": 1666.82,
+      "aum": 1187866.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-09-29",
+      "nav": null,
+      "aum": 1100308.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-10-03",
+      "nav": 1434.28,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-10-11",
+      "nav": null,
+      "aum": 1074521.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-10-13",
+      "nav": 1586.14,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-10-24",
+      "nav": null,
+      "aum": 1154251.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-10-26",
+      "nav": 1629.16,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-11-07",
+      "nav": 1641.19,
+      "aum": 1165934.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-11-18",
+      "nav": null,
+      "aum": 1133761.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-11-21",
+      "nav": 1575.19,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-11-30",
+      "nav": null,
+      "aum": 1097271.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-12-02",
+      "nav": 1607.22,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-12-12",
+      "nav": null,
+      "aum": 1112518.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-12-15",
+      "nav": 1587.58,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2011-12-27",
+      "nav": 1609.3,
+      "aum": 1095575.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-01-06",
+      "nav": null,
+      "aum": 1096341.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-01-09",
+      "nav": 1657.3,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-01-18",
+      "nav": null,
+      "aum": 1090785.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-01-24",
+      "nav": 1707.01,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-01-31",
+      "nav": null,
+      "aum": 1052671.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-02-03",
+      "nav": 1754.43,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-02-13",
+      "nav": null,
+      "aum": 1068787.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-02-15",
+      "nav": 1763.04,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-02-24",
+      "nav": null,
+      "aum": 1056918.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-02-28",
+      "nav": 1752.37,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-03-08",
+      "nav": null,
+      "aum": 1222137.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-03-12",
+      "nav": 1796.72,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-03-20",
+      "nav": null,
+      "aum": 1089438.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-03-26",
+      "nav": 1815.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-04-02",
+      "nav": null,
+      "aum": 1120378.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-04-05",
+      "nav": 1865.82,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-04-16",
+      "nav": null,
+      "aum": 1123667.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-04-18",
+      "nav": 1892.75,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-04-26",
+      "nav": null,
+      "aum": 1229421.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-04-30",
+      "nav": 1914.79,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-05-09",
+      "nav": null,
+      "aum": 1339880.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-05-14",
+      "nav": 1851.72,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-05-21",
+      "nav": null,
+      "aum": 1349412.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-05-25",
+      "nav": 1793.14,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-06-04",
+      "nav": null,
+      "aum": 1370831.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-06-07",
+      "nav": 1754.21,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-06-15",
+      "nav": null,
+      "aum": 1481412.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-06-19",
+      "nav": 1766.13,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-06-27",
+      "nav": null,
+      "aum": 1566218.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-07-02",
+      "nav": 1830.99,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-07-09",
+      "nav": null,
+      "aum": 1413016.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-07-16",
+      "nav": 1857.6,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-07-23",
+      "nav": null,
+      "aum": 1355985.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-07-27",
+      "nav": 1851.7,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-08-03",
+      "nav": null,
+      "aum": 1426576.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-08-08",
+      "nav": 1839.89,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-08-16",
+      "nav": null,
+      "aum": 1397250.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-08-23",
+      "nav": 1857.16,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-08-28",
+      "nav": null,
+      "aum": 1402385.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-09-03",
+      "nav": 1815.93,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-09-10",
+      "nav": null,
+      "aum": 1797932.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-09-17",
+      "nav": 1884.43,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-09-24",
+      "nav": null,
+      "aum": 1846013.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-09-27",
+      "nav": 1884.85,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-10-04",
+      "nav": null,
+      "aum": 2143664.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-10-09",
+      "nav": 1893.43,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-10-16",
+      "nav": null,
+      "aum": 2047776.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-10-22",
+      "nav": 1951.73,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-10-29",
+      "nav": null,
+      "aum": 2460167.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-11-05",
+      "nav": 1949.09,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-11-12",
+      "nav": null,
+      "aum": 3198180.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-11-19",
+      "nav": 1950.1,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-11-22",
+      "nav": null,
+      "aum": 3367385.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-11-28",
+      "nav": 1958.25,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-12-05",
+      "nav": null,
+      "aum": 3856475.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-12-11",
+      "nav": 1993.41,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-12-17",
+      "nav": null,
+      "aum": 3781544.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-12-26",
+      "nav": 1985.96,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2012-12-31",
+      "nav": null,
+      "aum": 4188019.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-01-07",
+      "nav": 2025.8,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-01-11",
+      "nav": null,
+      "aum": 3684924.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-01-17",
+      "nav": 2014.06,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-01-23",
+      "nav": null,
+      "aum": 3610828.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-01-30",
+      "nav": 2030.37,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-02-05",
+      "nav": null,
+      "aum": 3540575.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-02-11",
+      "nav": 2033.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-02-18",
+      "nav": null,
+      "aum": 3500416.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-02-25",
+      "nav": 2103.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-03-01",
+      "nav": null,
+      "aum": 3448496.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-03-08",
+      "nav": 2224.76,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-03-14",
+      "nav": null,
+      "aum": 3415038.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-03-21",
+      "nav": 2214.75,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-03-26",
+      "nav": null,
+      "aum": 3344588.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-04-02",
+      "nav": 2278.39,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-04-08",
+      "nav": null,
+      "aum": 3752047.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-04-15",
+      "nav": 2241.68,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-04-22",
+      "nav": null,
+      "aum": 3439183.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-04-29",
+      "nav": 2307.38,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-05-02",
+      "nav": null,
+      "aum": 3644326.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-05-10",
+      "nav": 2353.4,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-05-15",
+      "nav": null,
+      "aum": 3754289.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-05-22",
+      "nav": 2411.59,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-05-27",
+      "nav": null,
+      "aum": 3492862.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-06-04",
+      "nav": 2353.75,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-06-10",
+      "nav": null,
+      "aum": 4017746.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-06-17",
+      "nav": 2256.67,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-06-21",
+      "nav": null,
+      "aum": 4286300.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-07-01",
+      "nav": 2219.5,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-07-03",
+      "nav": null,
+      "aum": 4302047.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-07-11",
+      "nav": 2068.56,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-07-15",
+      "nav": null,
+      "aum": 4286100.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-07-24",
+      "nav": 2104.17,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-07-29",
+      "nav": null,
+      "aum": 4235501.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-08-12",
+      "nav": 2045.45,
+      "aum": 4215608.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-08-19",
+      "nav": 1931.01,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-08-22",
+      "nav": null,
+      "aum": 3830698.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-08-30",
+      "nav": 1858.76,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-09-03",
+      "nav": null,
+      "aum": 3774815.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-09-12",
+      "nav": 1906.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-09-16",
+      "nav": null,
+      "aum": 4056191.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-09-24",
+      "nav": 1940.54,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-09-30",
+      "nav": null,
+      "aum": 3855981.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-10-07",
+      "nav": 1883.92,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-10-10",
+      "nav": null,
+      "aum": 3904304.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-10-21",
+      "nav": 1982.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-10-22",
+      "nav": null,
+      "aum": 3880817.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-11-01",
+      "nav": 1921.45,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-11-04",
+      "nav": null,
+      "aum": 3705595.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-11-13",
+      "nav": 1852.45,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-11-18",
+      "nav": null,
+      "aum": 3629383.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-11-26",
+      "nav": 1839.5,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-11-28",
+      "nav": null,
+      "aum": 3525728.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-12-09",
+      "nav": 1834.54,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-12-11",
+      "nav": null,
+      "aum": 3515818.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2013-12-23",
+      "nav": 1805.18,
+      "aum": 3392858.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-01-02",
+      "nav": 1854.81,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-01-06",
+      "nav": null,
+      "aum": 3381684.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-01-15",
+      "nav": 1915.2,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-01-17",
+      "nav": null,
+      "aum": 3540498.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-01-27",
+      "nav": 1861.88,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-01-29",
+      "nav": null,
+      "aum": 3476547.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-02-10",
+      "nav": 1926.04,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-02-11",
+      "nav": null,
+      "aum": 3480723.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-02-21",
+      "nav": 2012.9,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-02-24",
+      "nav": null,
+      "aum": 3560929.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-03-06",
+      "nav": 2051.49,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-03-07",
+      "nav": null,
+      "aum": 3583589.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-03-18",
+      "nav": 2119.93,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-03-20",
+      "nav": null,
+      "aum": 3416963.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-04-01",
+      "nav": 2133.72,
+      "aum": 3540302.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-04-14",
+      "nav": 2112.31,
+      "aum": 3433621.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-04-25",
+      "nav": 2129.03,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-04-28",
+      "nav": null,
+      "aum": 3359231.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-05-07",
+      "nav": 2117.34,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-05-08",
+      "nav": null,
+      "aum": 3385638.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-05-20",
+      "nav": 2130.41,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-05-21",
+      "nav": null,
+      "aum": 3387648.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-06-02",
+      "nav": 2144.2,
+      "aum": 3385170.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-06-16",
+      "nav": 2156.09,
+      "aum": 3368948.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-06-26",
+      "nav": 2131.25,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-06-27",
+      "nav": null,
+      "aum": 3289688.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-07-10",
+      "nav": 2249.69,
+      "aum": 3444546.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-07-21",
+      "nav": 2270.54,
+      "aum": 3213039.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-08-04",
+      "nav": 2257.07,
+      "aum": 3135987.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-08-15",
+      "nav": 2286.9,
+      "aum": 3191119.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-08-27",
+      "nav": null,
+      "aum": 2826267.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-08-28",
+      "nav": 2289.66,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-09-09",
+      "nav": 2286.6,
+      "aum": 2820628.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-09-22",
+      "nav": 2290.2,
+      "aum": 2253964.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-10-06",
+      "nav": 2191.72,
+      "aum": 1994178.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-10-16",
+      "nav": null,
+      "aum": 1984264.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-10-17",
+      "nav": 2220.37,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-10-28",
+      "nav": null,
+      "aum": 1982393.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-10-29",
+      "nav": 2220.5,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-11-10",
+      "nav": null,
+      "aum": 1761672.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-11-11",
+      "nav": 2198.03,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-11-24",
+      "nav": 2277.39,
+      "aum": 1781416.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-12-04",
+      "nav": null,
+      "aum": 1727152.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-12-08",
+      "nav": 2286.17,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-12-17",
+      "nav": null,
+      "aum": 1633432.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-12-18",
+      "nav": 2255.9,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2014-12-29",
+      "nav": null,
+      "aum": 1661979.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-01-02",
+      "nav": 2315.43,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-01-12",
+      "nav": 2291.53,
+      "aum": 1613327.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-01-23",
+      "nav": null,
+      "aum": 1599102.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-01-26",
+      "nav": 2280.13,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-01-27",
+      "nav": null,
+      "aum": 1492845.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-02-03",
+      "nav": null,
+      "aum": 1479777.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-02-04",
+      "nav": null,
+      "aum": 1465713.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-02-06",
+      "nav": 2321.14,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-02-09",
+      "nav": 2318.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-02-11",
+      "nav": null,
+      "aum": 1365499.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-02-16",
+      "nav": 2275.7,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-02-17",
+      "nav": null,
+      "aum": 1334361.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-02-18",
+      "nav": null,
+      "aum": 1348458.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-02-20",
+      "nav": 2312.65,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-02-24",
+      "nav": 2321.45,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-02-25",
+      "nav": null,
+      "aum": 1332990.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-03-02",
+      "nav": null,
+      "aum": 1333751.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-03-03",
+      "nav": 2348.03,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-03-05",
+      "nav": null,
+      "aum": 1294705.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-03-11",
+      "nav": 2286.79,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-03-12",
+      "nav": null,
+      "aum": 1245120.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-03-13",
+      "nav": null,
+      "aum": 1238689.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-03-16",
+      "nav": 2274.27,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-03-18",
+      "nav": 2276.79,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-03-20",
+      "nav": null,
+      "aum": 1220467.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-03-26",
+      "nav": 2236.84,
+      "aum": 1098264.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-03-27",
+      "nav": null,
+      "aum": 1108485.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-03-30",
+      "nav": 2266.21,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-04-02",
+      "nav": 2283.86,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-04-06",
+      "nav": null,
+      "aum": 1110697.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-04-07",
+      "nav": null,
+      "aum": 1120323.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-04-10",
+      "nav": 2285.78,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-04-13",
+      "nav": null,
+      "aum": 1072019.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-04-17",
+      "nav": 2249.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-04-20",
+      "nav": null,
+      "aum": 1052892.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-04-22",
+      "nav": 2248.36,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-04-27",
+      "nav": 2159.61,
+      "aum": 990000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-05-04",
+      "nav": 2100.5,
+      "aum": 962908.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-05-05",
+      "nav": 2089.8,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-05-11",
+      "nav": 2101.69,
+      "aum": 960000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-05-15",
+      "nav": null,
+      "aum": 970000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-05-18",
+      "nav": 2129.22,
+      "aum": 970000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-05-25",
+      "nav": 2146.64,
+      "aum": 960000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-05-26",
+      "nav": null,
+      "aum": 960000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-06-01",
+      "nav": 2127.17,
+      "aum": 950000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-06-08",
+      "nav": null,
+      "aum": 910000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-06-09",
+      "nav": 1991.63,
+      "aum": 890000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-06-11",
+      "nav": 2000.61,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-06-16",
+      "nav": 1952.63,
+      "aum": 870000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-06-22",
+      "nav": null,
+      "aum": 880000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-06-23",
+      "nav": null,
+      "aum": 870000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-06-24",
+      "nav": 1992.01,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-07-01",
+      "nav": 1944.93,
+      "aum": 850000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-07-03",
+      "nav": null,
+      "aum": 880000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-07-06",
+      "nav": 1965.77,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-07-08",
+      "nav": 1955.65,
+      "aum": 860000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-07-15",
+      "nav": null,
+      "aum": 860000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-07-22",
+      "nav": 1976.76,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-07-23",
+      "nav": 1974.25,
+      "aum": 860000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-07-27",
+      "nav": null,
+      "aum": 840000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-07-30",
+      "nav": null,
+      "aum": 820000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-07-31",
+      "nav": 1912.61,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-08-06",
+      "nav": null,
+      "aum": 825025.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-08-07",
+      "nav": 1879.5,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-08-10",
+      "nav": null,
+      "aum": 810000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-08-13",
+      "nav": 1799.56,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-08-14",
+      "nav": null,
+      "aum": 780000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-08-18",
+      "nav": 1770.0,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-08-21",
+      "nav": null,
+      "aum": 730000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-08-24",
+      "nav": 1590.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-08-25",
+      "nav": 1597.31,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-08-31",
+      "nav": 1695.25,
+      "aum": 730000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-09-02",
+      "nav": null,
+      "aum": 710000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-09-07",
+      "nav": 1621.05,
+      "aum": 700000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-09-14",
+      "nav": 1642.18,
+      "aum": 710000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-09-15",
+      "nav": null,
+      "aum": 700000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-09-21",
+      "nav": 1649.55,
+      "aum": 710000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-09-28",
+      "nav": null,
+      "aum": 680000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-09-29",
+      "nav": 1587.74,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-10-02",
+      "nav": 1614.02,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-10-05",
+      "nav": null,
+      "aum": 720000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-10-06",
+      "nav": 1683.91,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-10-09",
+      "nav": null,
+      "aum": 750000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-10-12",
+      "nav": null,
+      "aum": 760000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-10-15",
+      "nav": 1735.46,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-10-19",
+      "nav": null,
+      "aum": 760000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-10-21",
+      "nav": 1785.27,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-10-22",
+      "nav": null,
+      "aum": 770000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-10-27",
+      "nav": 1811.27,
+      "aum": 780000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-10-29",
+      "nav": 1741.9,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-11-03",
+      "nav": null,
+      "aum": 757752.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-11-05",
+      "nav": 1792.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-11-09",
+      "nav": 1750.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-11-10",
+      "nav": null,
+      "aum": 740000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-11-13",
+      "nav": 1734.84,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-11-16",
+      "nav": null,
+      "aum": 740000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-11-18",
+      "nav": null,
+      "aum": 750000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-11-20",
+      "nav": 1787.89,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-11-23",
+      "nav": 1779.3,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-11-25",
+      "nav": null,
+      "aum": 750000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-11-27",
+      "nav": 1760.16,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-11-30",
+      "nav": null,
+      "aum": 730000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-12-02",
+      "nav": null,
+      "aum": 740000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-12-03",
+      "nav": 1747.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-12-07",
+      "nav": 1745.39,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-12-10",
+      "nav": null,
+      "aum": 720000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-12-14",
+      "nav": 1674.88,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-12-16",
+      "nav": 1710.55,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-12-17",
+      "nav": null,
+      "aum": 730000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-12-21",
+      "nav": 1731.22,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-12-23",
+      "nav": null,
+      "aum": 730000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2015-12-28",
+      "nav": 1769.67,
+      "aum": 740000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-01-04",
+      "nav": 1750.62,
+      "aum": 730000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-01-08",
+      "nav": null,
+      "aum": 740000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-01-11",
+      "nav": 1748.1,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-01-18",
+      "nav": null,
+      "aum": 730000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-01-19",
+      "nav": 1760.06,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-01-22",
+      "nav": 1729.75,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-01-25",
+      "nav": null,
+      "aum": 720000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-01-26",
+      "nav": 1730.94,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-02-03",
+      "nav": 1759.11,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-02-04",
+      "nav": 1784.43,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-02-10",
+      "nav": 1803.11,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-02-16",
+      "nav": 1809.62,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-02-18",
+      "nav": 1828.68,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-02-19",
+      "nav": null,
+      "aum": 1794.68,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-02-22",
+      "nav": null,
+      "aum": 1799.99,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-02-23",
+      "nav": null,
+      "aum": 1772.96,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-02-25",
+      "nav": 1773.51,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-02-29",
+      "nav": 1811.83,
+      "aum": 1811.83,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-03-04",
+      "nav": 1865.48,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-03-07",
+      "nav": null,
+      "aum": 1865.83,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-03-11",
+      "nav": 1865.59,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-03-14",
+      "nav": 1895.21,
+      "aum": 1895.21,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-03-18",
+      "nav": null,
+      "aum": 1907.3,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-03-21",
+      "nav": 1907.79,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-03-22",
+      "nav": null,
+      "aum": 1905.82,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-03-28",
+      "nav": 1871.06,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-03-29",
+      "nav": null,
+      "aum": 1871.75,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-03-31",
+      "nav": null,
+      "aum": 1902.53,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-04-04",
+      "nav": 1904.0,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-04-06",
+      "nav": 1908.0,
+      "aum": 1908.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-04-11",
+      "nav": 1880.11,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-04-12",
+      "nav": null,
+      "aum": 1895.89,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-04-13",
+      "nav": null,
+      "aum": 1908.56,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-04-18",
+      "nav": 1904.82,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-04-19",
+      "nav": 1916.58,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-04-20",
+      "nav": null,
+      "aum": 1926.5,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-04-25",
+      "nav": 1919.9,
+      "aum": 1919.9,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-04-28",
+      "nav": null,
+      "aum": 1903.95,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-05-02",
+      "nav": 1886.25,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-05-09",
+      "nav": null,
+      "aum": 1856.77,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-05-10",
+      "nav": 1861.22,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-05-12",
+      "nav": null,
+      "aum": 1873.56,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-05-16",
+      "nav": 1857.77,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-05-17",
+      "nav": 1856.48,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-05-19",
+      "nav": null,
+      "aum": 1846.85,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-05-20",
+      "nav": null,
+      "aum": 1849.81,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-05-25",
+      "nav": 1872.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-05-26",
+      "nav": 1874.55,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-05-27",
+      "nav": null,
+      "aum": 1886.84,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-05-31",
+      "nav": null,
+      "aum": 1887.55,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-06-01",
+      "nav": 1888.55,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-06-06",
+      "nav": null,
+      "aum": 1913.65,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-06-08",
+      "nav": 1922.35,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-06-09",
+      "nav": 1911.03,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-06-13",
+      "nav": null,
+      "aum": 1891.42,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-06-16",
+      "nav": 1893.46,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-06-20",
+      "nav": 1930.74,
+      "aum": 1930.74,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-06-24",
+      "nav": 1926.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-06-27",
+      "nav": null,
+      "aum": 1937.28,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-07-01",
+      "nav": 1958.23,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-07-11",
+      "nav": 1994.45,
+      "aum": 1994.45,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-07-15",
+      "nav": 2020.18,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-07-18",
+      "nav": 2033.47,
+      "aum": 2033.47,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-07-20",
+      "nav": null,
+      "aum": 2071.68,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-07-25",
+      "nav": 2063.9,
+      "aum": 2063.9,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-07-28",
+      "nav": 2112.74,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-08-01",
+      "nav": 2122.8,
+      "aum": 2122.8,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-08-08",
+      "nav": 2162.59,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-08-09",
+      "nav": 2159.76,
+      "aum": 2159.76,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-08-15",
+      "nav": 2106.66,
+      "aum": 2106.66,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-08-16",
+      "nav": null,
+      "aum": 2132.54,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-08-22",
+      "nav": 2134.76,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-08-23",
+      "nav": 2131.23,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-08-24",
+      "nav": null,
+      "aum": 2117.1,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-08-26",
+      "nav": null,
+      "aum": 2118.79,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-08-30",
+      "nav": 2068.12,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-08-31",
+      "nav": null,
+      "aum": 2085.39,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-09-05",
+      "nav": 2078.06,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-09-06",
+      "nav": 2076.11,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-09-07",
+      "nav": null,
+      "aum": 2077.94,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-09-14",
+      "nav": 1974.8,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-09-15",
+      "nav": null,
+      "aum": 2018.15,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-09-16",
+      "nav": 2008.43,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-09-20",
+      "nav": null,
+      "aum": 2021.27,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-09-21",
+      "nav": 2051.38,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-09-22",
+      "nav": null,
+      "aum": 2060.14,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-09-28",
+      "nav": 2075.36,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-09-29",
+      "nav": 2084.47,
+      "aum": 2084.47,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-10-03",
+      "nav": null,
+      "aum": 2089.67,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-10-06",
+      "nav": 2077.87,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-10-07",
+      "nav": null,
+      "aum": 2065.49,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-10-10",
+      "nav": 2057.16,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-10-14",
+      "nav": 2073.72,
+      "aum": 2073.72,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-10-21",
+      "nav": 2076.67,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-10-24",
+      "nav": 2092.15,
+      "aum": 2092.15,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-10-27",
+      "nav": null,
+      "aum": 2086.4,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-10-31",
+      "nav": 2085.82,
+      "aum": 2085.82,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-11-04",
+      "nav": 2040.77,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-11-07",
+      "nav": 2058.58,
+      "aum": 2058.58,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-11-08",
+      "nav": null,
+      "aum": 2088.22,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-11-14",
+      "nav": 1951.01,
+      "aum": 1951.01,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-11-17",
+      "nav": 1967.26,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-11-21",
+      "nav": 1938.75,
+      "aum": 1938.75,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-11-28",
+      "nav": 1919.53,
+      "aum": 1919.53,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-11-29",
+      "nav": 1938.39,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-12-05",
+      "nav": 1992.76,
+      "aum": 1992.76,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-12-13",
+      "nav": 2010.51,
+      "aum": 2010.51,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-12-15",
+      "nav": null,
+      "aum": 1988.88,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-12-19",
+      "nav": null,
+      "aum": 1956.93,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-12-20",
+      "nav": 1940.77,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-12-27",
+      "nav": 1924.89,
+      "aum": 1924.89,
+      "currency": "IDR"
+    },
+    {
+      "date": "2016-12-28",
+      "nav": 1968.24,
+      "aum": 1968.24,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-01-03",
+      "nav": null,
+      "aum": 1995.12,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-01-04",
+      "nav": 2000.63,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-01-06",
+      "nav": 2022.49,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-01-09",
+      "nav": null,
+      "aum": 2008.92,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-01-11",
+      "nav": null,
+      "aum": 2005.41,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-01-12",
+      "nav": 2006.81,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-01-18",
+      "nav": 1996.0,
+      "aum": 1996.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-01-19",
+      "nav": 2006.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-01-23",
+      "nav": null,
+      "aum": 1985.29,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-01-25",
+      "nav": null,
+      "aum": 2000.67,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-01-26",
+      "nav": 2007.35,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-01-31",
+      "nav": 2004.8,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-02-02",
+      "nav": null,
+      "aum": 2024.31,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-02-03",
+      "nav": 2034.4,
+      "aum": 2034.4,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-02-09",
+      "nav": null,
+      "aum": 2053.91,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-02-10",
+      "nav": 2062.07,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-02-13",
+      "nav": 2075.45,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-02-16",
+      "nav": null,
+      "aum": 2071.89,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-02-20",
+      "nav": 2063.48,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-02-24",
+      "nav": null,
+      "aum": 2082.56,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-02-27",
+      "nav": 2068.29,
+      "aum": 2068.29,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-03-03",
+      "nav": null,
+      "aum": 2051.54,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-03-06",
+      "nav": 2054.76,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-03-09",
+      "nav": 2046.44,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-03-10",
+      "nav": null,
+      "aum": 2039.17,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-03-13",
+      "nav": 2044.4,
+      "aum": 2044.4,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-03-20",
+      "nav": 2085.04,
+      "aum": 2085.04,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-03-22",
+      "nav": 2088.93,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-03-24",
+      "nav": null,
+      "aum": 2097.91,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-03-27",
+      "nav": 2083.64,
+      "aum": 2083.64,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-04-03",
+      "nav": 2107.12,
+      "aum": 2107.12,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-04-04",
+      "nav": 2125.31,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-04-06",
+      "nav": null,
+      "aum": 2122.63,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-04-10",
+      "nav": null,
+      "aum": 2110.47,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-04-11",
+      "nav": 2110.62,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-04-17",
+      "nav": 2090.83,
+      "aum": 2090.83,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-04-18",
+      "nav": null,
+      "aum": 2100.06,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-04-20",
+      "nav": 2095.75,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-04-25",
+      "nav": null,
+      "aum": 2126.86,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-04-26",
+      "nav": 2148.43,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-04-28",
+      "nav": 2150.53,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-05-02",
+      "nav": null,
+      "aum": 2139.21,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-05-04",
+      "nav": 2133.68,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-05-08",
+      "nav": null,
+      "aum": 2154.26,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-05-12",
+      "nav": 2133.97,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-05-15",
+      "nav": null,
+      "aum": 2135.13,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-05-16",
+      "nav": null,
+      "aum": 2117.09,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-05-19",
+      "nav": 2167.66,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-05-23",
+      "nav": 2129.2,
+      "aum": 2129.2,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-05-26",
+      "nav": 2126.26,
+      "aum": 2126.26,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-05-31",
+      "nav": null,
+      "aum": 2140.3,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-06-02",
+      "nav": 2140.83,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-06-05",
+      "nav": 2143.74,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-06-06",
+      "nav": null,
+      "aum": 2132.57,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-06-07",
+      "nav": null,
+      "aum": 2136.14,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-06-12",
+      "nav": 2141.1,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-06-14",
+      "nav": null,
+      "aum": 2171.69,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-06-19",
+      "nav": 2146.48,
+      "aum": 2146.48,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-06-22",
+      "nav": null,
+      "aum": 2168.11,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-07-03",
+      "nav": 2192.39,
+      "aum": 2192.39,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-07-06",
+      "nav": null,
+      "aum": 2168.77,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-07-10",
+      "nav": 2137.99,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-07-12",
+      "nav": 2157.41,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-07-13",
+      "nav": null,
+      "aum": 2162.19,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-07-14",
+      "nav": null,
+      "aum": 2158.19,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-07-17",
+      "nav": 2161.36,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-07-21",
+      "nav": null,
+      "aum": 2145.54,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-07-25",
+      "nav": 2160.37,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-07-26",
+      "nav": null,
+      "aum": 2150.33,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-07-28",
+      "nav": null,
+      "aum": 2170.7,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-08-01",
+      "nav": 2162.75,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-08-07",
+      "nav": 2139.35,
+      "aum": 2139.35,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-08-09",
+      "nav": 2166.82,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-08-14",
+      "nav": null,
+      "aum": 2161.58,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-08-16",
+      "nav": 2184.71,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-08-21",
+      "nav": 2181.64,
+      "aum": 2181.64,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-08-24",
+      "nav": 2186.23,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-08-28",
+      "nav": null,
+      "aum": 2192.87,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-08-31",
+      "nav": 2173.84,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-09-04",
+      "nav": null,
+      "aum": 2150.61,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-09-08",
+      "nav": 2160.54,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-09-11",
+      "nav": null,
+      "aum": 2156.22,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-09-13",
+      "nav": 2144.77,
+      "aum": 2144.77,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-09-15",
+      "nav": 2156.93,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-09-18",
+      "nav": null,
+      "aum": 2155.01,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-09-25",
+      "nav": 2151.23,
+      "aum": 2151.23,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-09-26",
+      "nav": null,
+      "aum": 2141.65,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-10-02",
+      "nav": 2139.81,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-10-03",
+      "nav": null,
+      "aum": 2146.29,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-10-09",
+      "nav": 2147.56,
+      "aum": 2147.56,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-10-10",
+      "nav": null,
+      "aum": 2150.37,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-10-16",
+      "nav": 2156.27,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-10-17",
+      "nav": null,
+      "aum": 2158.09,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-10-20",
+      "nav": 2128.67,
+      "aum": 2128.67,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-10-23",
+      "nav": 2129.0,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-10-25",
+      "nav": null,
+      "aum": 2149.72,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-10-30",
+      "nav": 2137.49,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-11-01",
+      "nav": null,
+      "aum": 520000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-11-02",
+      "nav": 2167.66,
+      "aum": 2167.66,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-11-06",
+      "nav": 2177.88,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-11-09",
+      "nav": null,
+      "aum": 2164.25,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-11-14",
+      "nav": 2146.68,
+      "aum": 2146.68,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-11-16",
+      "nav": null,
+      "aum": 2156.57,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-11-21",
+      "nav": 2141.21,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-11-23",
+      "nav": null,
+      "aum": 2149.78,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-11-27",
+      "nav": 2145.08,
+      "aum": 2145.08,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-11-29",
+      "nav": 2152.99,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-12-01",
+      "nav": null,
+      "aum": 520000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-12-06",
+      "nav": 2136.53,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-12-08",
+      "nav": null,
+      "aum": 2139.45,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-12-11",
+      "nav": 2126.69,
+      "aum": 2126.69,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-12-14",
+      "nav": 2160.04,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-12-15",
+      "nav": null,
+      "aum": 2158.53,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-12-21",
+      "nav": 2160.54,
+      "aum": 2160.54,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-12-22",
+      "nav": 2166.54,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-12-27",
+      "nav": null,
+      "aum": 2184.55,
+      "currency": "IDR"
+    },
+    {
+      "date": "2017-12-29",
+      "nav": 2208.62,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-01-01",
+      "nav": null,
+      "aum": 560000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-01-03",
+      "nav": 2177.92,
+      "aum": 2177.92,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-01-05",
+      "nav": 2223.51,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-01-08",
+      "nav": null,
+      "aum": 2238.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-01-15",
+      "nav": 2236.84,
+      "aum": 2236.84,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-01-16",
+      "nav": 2258.49,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-01-22",
+      "nav": 2290.28,
+      "aum": 2290.28,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-01-29",
+      "nav": 2366.18,
+      "aum": 2366.18,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-02-05",
+      "nav": 2333.84,
+      "aum": 2333.84,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-02-09",
+      "nav": null,
+      "aum": 2293.48,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-02-12",
+      "nav": 2298.66,
+      "aum": 2298.66,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-02-19",
+      "nav": 2365.06,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-02-20",
+      "nav": null,
+      "aum": 2349.06,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-02-21",
+      "nav": null,
+      "aum": 2347.2,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-02-22",
+      "nav": 2333.13,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-02-27",
+      "nav": 2346.36,
+      "aum": 2346.36,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-03-05",
+      "nav": null,
+      "aum": 2342.24,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-03-06",
+      "nav": 2326.88,
+      "aum": 2326.88,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-03-07",
+      "nav": 2282.21,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-03-13",
+      "nav": 2295.46,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-03-14",
+      "nav": null,
+      "aum": 2272.84,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-03-19",
+      "nav": 2227.72,
+      "aum": 2227.72,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-03-21",
+      "nav": 2244.45,
+      "aum": 2244.45,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-03-28",
+      "nav": 2199.57,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-03-29",
+      "nav": null,
+      "aum": 2213.45,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-04-01",
+      "nav": null,
+      "aum": 650000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-04-02",
+      "nav": 2236.2,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-04-05",
+      "nav": 2231.32,
+      "aum": 2231.32,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-04-11",
+      "nav": null,
+      "aum": 2297.42,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-04-12",
+      "nav": 2287.49,
+      "aum": 2287.49,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-04-13",
+      "nav": 2279.65,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-04-20",
+      "nav": 2324.3,
+      "aum": 2324.3,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-04-24",
+      "nav": null,
+      "aum": 2302.57,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-04-26",
+      "nav": 2185.45,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-04-27",
+      "nav": 2185.06,
+      "aum": 2185.06,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-05-04",
+      "nav": null,
+      "aum": 2145.44,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-05-07",
+      "nav": 2169.26,
+      "aum": 2169.26,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-05-08",
+      "nav": 2127.88,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-05-14",
+      "nav": 2190.62,
+      "aum": 2190.62,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-05-21",
+      "nav": 2149.47,
+      "aum": 2149.47,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-05-28",
+      "nav": 2290.37,
+      "aum": 2290.37,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-05-31",
+      "nav": null,
+      "aum": 2262.08,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-06-04",
+      "nav": 2298.11,
+      "aum": 2298.11,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-06-20",
+      "nav": 2274.75,
+      "aum": 2274.75,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-06-25",
+      "nav": null,
+      "aum": 2260.79,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-06-26",
+      "nav": 2245.34,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-06-27",
+      "nav": 2223.45,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-07-02",
+      "nav": null,
+      "aum": 2192.12,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-07-04",
+      "nav": 2165.4,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-07-09",
+      "nav": null,
+      "aum": 2190.11,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-07-10",
+      "nav": 2217.95,
+      "aum": 2217.95,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-07-11",
+      "nav": 2219.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-07-17",
+      "nav": null,
+      "aum": 2216.61,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-07-19",
+      "nav": 2234.84,
+      "aum": 2234.84,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-07-23",
+      "nav": 2230.79,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-07-24",
+      "nav": null,
+      "aum": 2231.31,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-07-26",
+      "nav": 2243.02,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-08-01",
+      "nav": null,
+      "aum": 580000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-08-02",
+      "nav": 2266.5,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-08-06",
+      "nav": 2292.6,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-08-08",
+      "nav": null,
+      "aum": 2309.04,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-08-10",
+      "nav": 2308.36,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-08-13",
+      "nav": null,
+      "aum": 2216.21,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-08-16",
+      "nav": 2160.99,
+      "aum": 2160.99,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-08-20",
+      "nav": 2203.9,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-08-23",
+      "nav": null,
+      "aum": 2240.4,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-08-27",
+      "nav": 2252.14,
+      "aum": 2252.14,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-08-29",
+      "nav": 2255.5,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-08-30",
+      "nav": null,
+      "aum": 2238.41,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-09-03",
+      "nav": 2203.44,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-09-07",
+      "nav": null,
+      "aum": 2134.14,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-09-10",
+      "nav": 2123.92,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-09-14",
+      "nav": null,
+      "aum": 2170.87,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-09-17",
+      "nav": 2136.17,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-09-19",
+      "nav": null,
+      "aum": 2153.38,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-09-21",
+      "nav": null,
+      "aum": 2187.45,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-09-24",
+      "nav": 2154.03,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-10-01",
+      "nav": 2184.31,
+      "aum": 610000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-10-05",
+      "nav": 2117.25,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-10-09",
+      "nav": 2127.34,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-10-16",
+      "nav": 2098.89,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-10-18",
+      "nav": 2130.87,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-10-24",
+      "nav": 2074.76,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-10-30",
+      "nav": 2076.88,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-10-31",
+      "nav": 2100.8,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-11-01",
+      "nav": null,
+      "aum": 510000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-11-08",
+      "nav": 2160.53,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-11-12",
+      "nav": 2096.72,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-11-15",
+      "nav": 2154.76,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-11-23",
+      "nav": 2175.74,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-11-26",
+      "nav": 2179.39,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-11-30",
+      "nav": 2197.85,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-12-01",
+      "nav": null,
+      "aum": 540000000000.00006,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-12-07",
+      "nav": 2224.16,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-12-10",
+      "nav": 2211.67,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-12-17",
+      "nav": 2209.04,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-12-19",
+      "nav": 2234.21,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2018-12-26",
+      "nav": 2200.0,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-01-01",
+      "nav": null,
+      "aum": 600000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-01-02",
+      "nav": 2225.86,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-01-07",
+      "nav": 2278.77,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-01-14",
+      "nav": 2297.39,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-01-21",
+      "nav": 2347.57,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-01-28",
+      "nav": 2391.24,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-01-29",
+      "nav": 2376.12,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-02-01",
+      "nav": null,
+      "aum": 630000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-02-06",
+      "nav": 2430.74,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-02-07",
+      "nav": 2417.13,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-02-13",
+      "nav": 2379.57,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-02-20",
+      "nav": 2422.12,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-02-28",
+      "nav": 2396.59,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-03-01",
+      "nav": null,
+      "aum": 690000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-03-04",
+      "nav": 2420.78,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-03-08",
+      "nav": 2374.85,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-03-15",
+      "nav": 2410.87,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-03-18",
+      "nav": 2417.27,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-03-22",
+      "nav": 2425.49,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-03-29",
+      "nav": 2382.25,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-04-01",
+      "nav": 2381.31,
+      "aum": 670000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-04-08",
+      "nav": 2363.54,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-04-11",
+      "nav": 2362.14,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-04-15",
+      "nav": 2366.96,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-04-22",
+      "nav": 2366.59,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-04-23",
+      "nav": 2394.82,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-04-29",
+      "nav": 2390.16,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-05-01",
+      "nav": null,
+      "aum": 580000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-05-06",
+      "nav": 2294.89,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-05-13",
+      "nav": 2237.64,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-05-20",
+      "nav": 2156.21,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-05-21",
+      "nav": 2177.23,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-05-28",
+      "nav": 2208.24,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-05-31",
+      "nav": 2277.56,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-06-01",
+      "nav": null,
+      "aum": 560000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-06-10",
+      "nav": 2314.75,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-06-12",
+      "nav": 2315.22,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-06-20",
+      "nav": 2353.85,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-06-25",
+      "nav": 2332.76,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-06-27",
+      "nav": 2354.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-07-01",
+      "nav": null,
+      "aum": 550000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-07-05",
+      "nav": 2363.54,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-07-08",
+      "nav": 2349.48,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-07-12",
+      "nav": 2363.25,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-07-22",
+      "nav": 2371.27,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-07-29",
+      "nav": 2342.22,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-08-01",
+      "nav": 2359.16,
+      "aum": 510000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-08-05",
+      "nav": 2282.12,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-08-12",
+      "nav": 2307.79,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-08-14",
+      "nav": 2321.35,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-08-19",
+      "nav": 2320.74,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-08-26",
+      "nav": 2292.35,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-09-01",
+      "nav": null,
+      "aum": 483610000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-09-03",
+      "nav": 2277.46,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-09-09",
+      "nav": 2301.73,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-09-10",
+      "nav": 2305.51,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-09-18",
+      "nav": 2292.02,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-09-20",
+      "nav": 2279.63,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-09-25",
+      "nav": 2235.97,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-10-01",
+      "nav": null,
+      "aum": 466970000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-10-02",
+      "nav": 2196.49,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-10-03",
+      "nav": 2202.02,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-10-10",
+      "nav": 2195.38,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-10-15",
+      "nav": 2239.01,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-10-17",
+      "nav": 2242.62,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-10-25",
+      "nav": 2274.34,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-10-28",
+      "nav": 2277.08,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-11-01",
+      "nav": 2227.37,
+      "aum": 431510000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-11-11",
+      "nav": 2188.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-11-18",
+      "nav": 2172.77,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-11-22",
+      "nav": 2160.6,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-11-25",
+      "nav": 2146.53,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-12-01",
+      "nav": null,
+      "aum": 447220000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-12-02",
+      "nav": 2144.78,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-12-04",
+      "nav": 2127.69,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-12-09",
+      "nav": 2176.55,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-12-16",
+      "nav": 2184.08,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-12-17",
+      "nav": 2186.65,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-12-26",
+      "nav": 2207.95,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2019-12-30",
+      "nav": 2200.04,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-01-01",
+      "nav": null,
+      "aum": 395330000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-01-02",
+      "nav": 2197.36,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-01-08",
+      "nav": 2164.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-01-13",
+      "nav": 2188.61,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-01-15",
+      "nav": 2160.56,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-01-23",
+      "nav": 2138.65,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-01-30",
+      "nav": 2056.89,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-02-01",
+      "nav": null,
+      "aum": 354490000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-02-05",
+      "nav": 2045.69,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-02-06",
+      "nav": 2056.03,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-02-07",
+      "nav": 2057.95,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-02-10",
+      "nav": 2033.76,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-02-14",
+      "nav": 1994.47,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-02-17",
+      "nav": 1998.89,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-02-18",
+      "nav": 2012.09,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-02-21",
+      "nav": 1999.3,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-02-24",
+      "nav": 1960.03,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-02-25",
+      "nav": 1965.77,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-03-01",
+      "nav": null,
+      "aum": 262840000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-03-02",
+      "nav": 1802.05,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-03-04",
+      "nav": 1911.9,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-03-09",
+      "nav": 1674.84,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-03-11",
+      "nav": 1665.69,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-03-13",
+      "nav": 1560.36,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-03-16",
+      "nav": 1467.4,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-03-19",
+      "nav": 1225.1,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-03-23",
+      "nav": 1178.69,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-03-26",
+      "nav": 1311.49,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-03-30",
+      "nav": 1343.27,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-04-01",
+      "nav": null,
+      "aum": 284420000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-04-03",
+      "nav": 1437.0,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-04-06",
+      "nav": 1513.2,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-04-07",
+      "nav": 1502.9,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-04-13",
+      "nav": 1454.24,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-04-14",
+      "nav": 1493.43,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-04-20",
+      "nav": 1470.57,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-04-21",
+      "nav": 1441.68,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-04-22",
+      "nav": 1458.02,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-04-27",
+      "nav": 1437.97,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-04-29",
+      "nav": 1474.68,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-05-01",
+      "nav": null,
+      "aum": 284940000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-05-04",
+      "nav": 1490.8,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-05-06",
+      "nav": 1498.13,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-05-11",
+      "nav": 1529.68,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-05-14",
+      "nav": 1467.71,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-05-15",
+      "nav": 1468.56,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-05-18",
+      "nav": 1479.3,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-05-26",
+      "nav": 1505.2,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-05-27",
+      "nav": 1503.51,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-05-29",
+      "nav": 1536.39,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-06-01",
+      "nav": null,
+      "aum": 306780000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-06-02",
+      "nav": 1593.91,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-06-05",
+      "nav": 1641.9,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-06-09",
+      "nav": 1694.77,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-06-15",
+      "nav": 1617.16,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-06-17",
+      "nav": 1700.77,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-06-22",
+      "nav": 1686.54,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-06-24",
+      "nav": 1692.99,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-06-29",
+      "nav": 1656.12,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-07-01",
+      "nav": null,
+      "aum": 313870000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-07-02",
+      "nav": 1674.2,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-07-06",
+      "nav": 1701.61,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-07-09",
+      "nav": 1709.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-07-13",
+      "nav": 1723.5,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-07-16",
+      "nav": 1725.98,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-07-20",
+      "nav": 1723.8,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-07-24",
+      "nav": 1749.49,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-07-27",
+      "nav": 1779.77,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-07-28",
+      "nav": 1761.65,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-07-29",
+      "nav": 1768.27,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-08-01",
+      "nav": null,
+      "aum": 385140000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-08-03",
+      "nav": 1699.21,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-08-04",
+      "nav": 1735.85,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-08-10",
+      "nav": 1842.5,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-08-11",
+      "nav": 1840.03,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-08-12",
+      "nav": 1834.06,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-08-18",
+      "nav": 1864.54,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-08-19",
+      "nav": 1854.36,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-08-24",
+      "nav": 1838.75,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-08-26",
+      "nav": 1859.37,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-08-27",
+      "nav": 1856.35,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-08-31",
+      "nav": 1824.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-09-01",
+      "nav": null,
+      "aum": 321360000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-09-03",
+      "nav": 1836.15,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-09-04",
+      "nav": 1817.43,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-09-07",
+      "nav": 1817.9,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-09-10",
+      "nav": 1676.88,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-09-11",
+      "nav": 1728.25,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-09-14",
+      "nav": 1783.59,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-09-17",
+      "nav": 1727.58,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-09-18",
+      "nav": 1738.07,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-09-22",
+      "nav": 1680.57,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-09-25",
+      "nav": 1648.46,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-09-29",
+      "nav": 1637.13,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-10-01",
+      "nav": null,
+      "aum": 346810000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-10-05",
+      "nav": 1655.36,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-10-07",
+      "nav": 1669.31,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-10-12",
+      "nav": 1718.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-10-14",
+      "nav": 1796.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-10-19",
+      "nav": 1776.22,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-10-22",
+      "nav": 1758.99,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-10-26",
+      "nav": 1755.57,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-11-01",
+      "nav": null,
+      "aum": 365790000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-11-02",
+      "nav": 1755.98,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-11-05",
+      "nav": 1788.56,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-11-06",
+      "nav": 1818.5,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-11-09",
+      "nav": 1855.16,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-11-13",
+      "nav": 1925.89,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-11-16",
+      "nav": 1961.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-11-17",
+      "nav": 1970.86,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-11-18",
+      "nav": 1986.47,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-11-23",
+      "nav": 2023.9,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-11-24",
+      "nav": 2032.65,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-11-30",
+      "nav": 2018.79,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-12-01",
+      "nav": 2052.29,
+      "aum": 680000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-12-02",
+      "nav": 2127.44,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-12-07",
+      "nav": 2193.14,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-12-10",
+      "nav": 2179.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-12-14",
+      "nav": 2225.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-12-16",
+      "nav": 2301.6,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-12-17",
+      "nav": 2367.58,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-12-21",
+      "nav": 2469.68,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2020-12-28",
+      "nav": 2414.95,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-01-01",
+      "nav": null,
+      "aum": 920000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-01-04",
+      "nav": 2450.08,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-01-07",
+      "nav": 2556.14,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-01-08",
+      "nav": 2582.05,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-01-12",
+      "nav": 2603.6,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-01-15",
+      "nav": 2685.53,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-01-18",
+      "nav": 2621.1,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-01-19",
+      "nav": 2522.74,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-01-25",
+      "nav": 2461.32,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-01-27",
+      "nav": 2406.45,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-02-01",
+      "nav": 2447.1,
+      "aum": 1010000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-02-03",
+      "nav": 2336.93,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-02-08",
+      "nav": 2494.26,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-02-11",
+      "nav": 2483.04,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-02-15",
+      "nav": 2535.59,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-02-18",
+      "nav": 2492.55,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-02-22",
+      "nav": 2537.25,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-02-26",
+      "nav": 2449.06,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-03-01",
+      "nav": 2496.99,
+      "aum": 1090000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-03-05",
+      "nav": 2328.37,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-03-09",
+      "nav": 2287.08,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-03-10",
+      "nav": 2304.76,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-03-15",
+      "nav": 2351.48,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-03-16",
+      "nav": 2326.86,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-03-22",
+      "nav": 2309.34,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-03-23",
+      "nav": 2273.09,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-03-24",
+      "nav": 2228.83,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-03-29",
+      "nav": 2255.2,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-03-31",
+      "nav": 2150.95,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-04-01",
+      "nav": null,
+      "aum": 1130000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-04-05",
+      "nav": 2150.9,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-04-07",
+      "nav": 2196.53,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-04-08",
+      "nav": 2213.11,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-04-12",
+      "nav": 2107.39,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-04-15",
+      "nav": 2161.88,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-04-19",
+      "nav": 2162.09,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-04-22",
+      "nav": 2141.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-04-23",
+      "nav": 2142.81,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-04-27",
+      "nav": 2169.55,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-04-29",
+      "nav": 2203.21,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-04-30",
+      "nav": 2187.39,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-05-01",
+      "nav": null,
+      "aum": 1150000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-05-04",
+      "nav": 2181.32,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-05-07",
+      "nav": 2178.67,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-05-10",
+      "nav": 2242.59,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-05-11",
+      "nav": 2233.24,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-05-17",
+      "nav": 2159.53,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-05-19",
+      "nav": 2155.39,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-05-24",
+      "nav": 2086.11,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-05-27",
+      "nav": 2116.21,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-05-31",
+      "nav": 2129.75,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-06-01",
+      "nav": null,
+      "aum": 1030000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-06-03",
+      "nav": 2211.6,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-06-07",
+      "nav": 2171.74,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-06-10",
+      "nav": 2183.43,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-06-14",
+      "nav": 2187.01,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-06-18",
+      "nav": 2096.92,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-06-21",
+      "nav": 2095.59,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-06-22",
+      "nav": 2133.91,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-06-25",
+      "nav": 2074.15,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-06-29",
+      "nav": 2028.94,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-07-01",
+      "nav": 2034.81,
+      "aum": 1010000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-07-05",
+      "nav": 2050.17,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-07-06",
+      "nav": 2116.11,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-07-07",
+      "nav": 2090.21,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-07-12",
+      "nav": 2099.27,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-07-13",
+      "nav": 2049.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-07-14",
+      "nav": 2058.77,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-07-19",
+      "nav": 2075.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-07-21",
+      "nav": 2061.04,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-07-22",
+      "nav": 2099.69,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-07-26",
+      "nav": 2112.87,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-07-29",
+      "nav": 2134.41,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-08-01",
+      "nav": null,
+      "aum": 910000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-08-02",
+      "nav": 2129.72,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-08-05",
+      "nav": 2069.25,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-08-09",
+      "nav": 2055.87,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-08-13",
+      "nav": 2068.15,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-08-18",
+      "nav": 1995.8,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-08-20",
+      "nav": 1967.99,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-08-24",
+      "nav": 1988.69,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-08-27",
+      "nav": 1956.16,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-08-30",
+      "nav": 2008.6,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-09-01",
+      "nav": 2004.08,
+      "aum": 920000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-09-06",
+      "nav": 2041.93,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-09-08",
+      "nav": 2007.37,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-09-13",
+      "nav": 2032.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-09-14",
+      "nav": 2053.31,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-09-16",
+      "nav": 2060.98,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-09-20",
+      "nav": 2034.78,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-09-23",
+      "nav": 2076.1,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-09-27",
+      "nav": 2070.78,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-10-01",
+      "nav": 2124.58,
+      "aum": 860000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-10-04",
+      "nav": 2190.14,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-10-08",
+      "nav": 2181.58,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-10-11",
+      "nav": 2178.05,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-10-12",
+      "nav": 2177.13,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-10-15",
+      "nav": 2205.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-10-19",
+      "nav": 2198.46,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-10-21",
+      "nav": 2191.81,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-10-25",
+      "nav": 2193.19,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-10-26",
+      "nav": 2206.6,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-10-27",
+      "nav": 2165.0,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-11-01",
+      "nav": 2148.4,
+      "aum": 770000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-11-03",
+      "nav": 2141.79,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-11-08",
+      "nav": 2156.53,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-11-10",
+      "nav": 2159.31,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-11-11",
+      "nav": 2159.65,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-11-15",
+      "nav": 2159.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-11-18",
+      "nav": 2192.53,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-11-22",
+      "nav": 2202.76,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-11-25",
+      "nav": 2204.23,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-11-26",
+      "nav": 2113.76,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-11-29",
+      "nav": 2127.54,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-12-01",
+      "nav": null,
+      "aum": 750000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-12-03",
+      "nav": 2103.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-12-07",
+      "nav": 2132.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-12-10",
+      "nav": 2145.62,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-12-13",
+      "nav": 2141.36,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-12-14",
+      "nav": 2126.28,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-12-20",
+      "nav": 2088.41,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-12-22",
+      "nav": 2091.18,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-12-23",
+      "nav": 2090.98,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-12-27",
+      "nav": 2107.97,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2021-12-29",
+      "nav": 2116.72,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-01-01",
+      "nav": null,
+      "aum": 690000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-01-03",
+      "nav": 2127.49,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-01-04",
+      "nav": 2116.0,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-01-06",
+      "nav": 2066.78,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-01-10",
+      "nav": 2079.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-01-13",
+      "nav": 2067.59,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-01-17",
+      "nav": 2047.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-01-21",
+      "nav": 2076.95,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-01-24",
+      "nav": 2042.28,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-01-28",
+      "nav": 2033.37,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-01-31",
+      "nav": 2025.31,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-02-01",
+      "nav": null,
+      "aum": 680000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-02-02",
+      "nav": 2034.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-02-07",
+      "nav": 2039.24,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-02-08",
+      "nav": 2032.47,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-02-10",
+      "nav": 2029.89,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-02-11",
+      "nav": 2027.13,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-02-14",
+      "nav": 2025.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-02-15",
+      "nav": 2040.82,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-02-16",
+      "nav": 2055.6,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-02-17",
+      "nav": 2053.73,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-02-21",
+      "nav": 2084.58,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-02-22",
+      "nav": 2066.38,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-02-23",
+      "nav": 2084.67,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-02-24",
+      "nav": 2095.05,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-03-01",
+      "nav": 2095.64,
+      "aum": 640000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-03-02",
+      "nav": 2107.58,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-03-04",
+      "nav": 2170.44,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-03-07",
+      "nav": 2210.18,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-03-08",
+      "nav": 2175.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-03-09",
+      "nav": 2186.06,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-03-10",
+      "nav": 2157.92,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-03-14",
+      "nav": 2121.5,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-03-16",
+      "nav": 2107.68,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-03-17",
+      "nav": 2129.6,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-03-18",
+      "nav": 2120.64,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-03-21",
+      "nav": 2137.09,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-03-23",
+      "nav": 2177.62,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-03-25",
+      "nav": 2209.46,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-03-28",
+      "nav": 2226.62,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-03-29",
+      "nav": 2200.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-04-01",
+      "nav": null,
+      "aum": 640000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-04-04",
+      "nav": 2214.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-04-05",
+      "nav": 2240.7,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-04-07",
+      "nav": 2238.03,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-04-11",
+      "nav": 2251.23,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-04-12",
+      "nav": 2258.49,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-04-13",
+      "nav": 2312.16,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-04-14",
+      "nav": 2329.24,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-04-18",
+      "nav": 2362.13,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-04-19",
+      "nav": 2330.07,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-04-20",
+      "nav": 2327.26,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-04-21",
+      "nav": 2299.84,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-04-25",
+      "nav": 2225.67,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-04-27",
+      "nav": 2223.24,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-04-28",
+      "nav": 2248.78,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-05-01",
+      "nav": null,
+      "aum": 610000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-05-09",
+      "nav": 2171.54,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-05-11",
+      "nav": 2101.55,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-05-13",
+      "nav": 2069.75,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-05-17",
+      "nav": 2136.16,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-05-18",
+      "nav": 2139.19,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-05-20",
+      "nav": 2188.12,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-05-23",
+      "nav": 2143.07,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-05-24",
+      "nav": 2162.78,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-05-27",
+      "nav": 2158.12,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-05-30",
+      "nav": 2166.03,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-05-31",
+      "nav": 2200.22,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-06-01",
+      "nav": null,
+      "aum": 560000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-06-02",
+      "nav": 2186.72,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-06-03",
+      "nav": 2198.48,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-06-06",
+      "nav": 2200.23,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-06-07",
+      "nav": 2225.51,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-06-08",
+      "nav": 2208.78,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-06-09",
+      "nav": 2206.41,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-06-13",
+      "nav": 2047.01,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-06-14",
+      "nav": 2053.41,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-06-15",
+      "nav": 2009.66,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-06-16",
+      "nav": 2040.06,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-06-20",
+      "nav": 1974.91,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-06-22",
+      "nav": 1995.97,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-06-23",
+      "nav": 1980.65,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-06-27",
+      "nav": 1970.35,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-06-28",
+      "nav": 1989.34,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-06-29",
+      "nav": 1963.1,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-06-30",
+      "nav": 1921.99,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-07-01",
+      "nav": null,
+      "aum": 500000000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-07-04",
+      "nav": 1827.23,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-07-06",
+      "nav": 1851.14,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-07-07",
+      "nav": 1850.88,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-07-08",
+      "nav": 1866.26,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-07-11",
+      "nav": 1868.57,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-07-12",
+      "nav": 1882.31,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-07-13",
+      "nav": 1860.25,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-07-15",
+      "nav": 1830.7,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-07-18",
+      "nav": 1833.92,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-07-19",
+      "nav": 1879.79,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-07-20",
+      "nav": 1929.61,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-07-22",
+      "nav": 1952.35,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-07-25",
+      "nav": 1940.98,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-07-26",
+      "nav": 1959.41,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-07-27",
+      "nav": 1982.8,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-07-29",
+      "nav": 2007.46,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-08-01",
+      "nav": 2025.43,
+      "aum": 487200000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-08-02",
+      "nav": 1998.86,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-08-03",
+      "nav": 2027.59,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-08-04",
+      "nav": 2018.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-08-05",
+      "nav": 2019.36,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-08-08",
+      "nav": 2027.83,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-08-09",
+      "nav": 2027.95,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-08-10",
+      "nav": 2023.05,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-08-11",
+      "nav": 2054.17,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-08-15",
+      "nav": 2034.79,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-08-18",
+      "nav": 2007.84,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-08-22",
+      "nav": 1947.64,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-08-24",
+      "nav": 1996.23,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-08-25",
+      "nav": 2001.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-08-29",
+      "nav": 2004.19,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-08-30",
+      "nav": 2011.35,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-08-31",
+      "nav": 1990.92,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-09-01",
+      "nav": null,
+      "aum": 384600000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-09-02",
+      "nav": 1967.62,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-09-05",
+      "nav": 2010.08,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-09-06",
+      "nav": 2042.08,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-09-07",
+      "nav": 1999.81,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-09-09",
+      "nav": 1990.01,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-09-12",
+      "nav": 2001.34,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-09-13",
+      "nav": 2038.24,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-09-14",
+      "nav": 2049.45,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-09-16",
+      "nav": 2032.49,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-09-19",
+      "nav": 2024.77,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-09-20",
+      "nav": 2011.98,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-09-21",
+      "nav": 2012.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-09-23",
+      "nav": 2025.77,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-09-26",
+      "nav": 1991.9,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-09-27",
+      "nav": 1999.27,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-09-28",
+      "nav": 1968.7,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-09-29",
+      "nav": 1957.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-10-01",
+      "nav": null,
+      "aum": 358040000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-10-03",
+      "nav": 1956.58,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-10-04",
+      "nav": 1976.76,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-10-05",
+      "nav": 1976.83,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-10-06",
+      "nav": 1978.39,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-10-10",
+      "nav": 1962.31,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-10-12",
+      "nav": 1966.79,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-10-13",
+      "nav": 1965.64,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-10-17",
+      "nav": 1931.5,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-10-19",
+      "nav": 1929.15,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-10-20",
+      "nav": 1969.95,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-10-21",
+      "nav": 1963.7,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-10-24",
+      "nav": 1986.37,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-10-26",
+      "nav": 1989.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-10-27",
+      "nav": 2007.56,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-10-28",
+      "nav": 1987.32,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-10-31",
+      "nav": 2008.2,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-11-01",
+      "nav": 1997.29,
+      "aum": 336060000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-11-02",
+      "nav": 1997.57,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-11-04",
+      "nav": 2013.37,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-11-07",
+      "nav": 2012.48,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-11-08",
+      "nav": 1995.96,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-11-09",
+      "nav": 1997.55,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-11-11",
+      "nav": 2003.78,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-11-14",
+      "nav": 1985.86,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-11-15",
+      "nav": 1982.48,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-11-16",
+      "nav": 1953.16,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-11-18",
+      "nav": 1944.55,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-11-21",
+      "nav": 1944.69,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-11-22",
+      "nav": 1947.65,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-11-23",
+      "nav": 1959.5,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-11-24",
+      "nav": 1968.57,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-11-25",
+      "nav": 1955.51,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-11-28",
+      "nav": 1952.16,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-11-29",
+      "nav": 1976.5,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-12-01",
+      "nav": 2011.07,
+      "aum": 313520000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-12-05",
+      "nav": 1989.47,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-12-06",
+      "nav": 1947.66,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-12-08",
+      "nav": 1954.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-12-12",
+      "nav": 1956.19,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-12-15",
+      "nav": 1958.18,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-12-16",
+      "nav": 1959.36,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-12-19",
+      "nav": 1948.3,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-12-20",
+      "nav": 1928.31,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-12-21",
+      "nav": 1919.27,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-12-23",
+      "nav": 1915.64,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-12-26",
+      "nav": 1912.78,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-12-27",
+      "nav": 1910.73,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-12-28",
+      "nav": 1904.89,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2022-12-30",
+      "nav": 1902.72,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-01",
+      "nav": null,
+      "aum": 315060000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-02",
+      "nav": 1899.91,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-03",
+      "nav": 1914.14,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-04",
+      "nav": 1886.46,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-06",
+      "nav": 1846.26,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-09",
+      "nav": 1862.61,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-10",
+      "nav": 1855.57,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-11",
+      "nav": 1847.74,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-13",
+      "nav": 1875.9,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-16",
+      "nav": 1880.36,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-17",
+      "nav": 1893.5,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-18",
+      "nav": 1889.98,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-19",
+      "nav": 1918.46,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-24",
+      "nav": 1922.78,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-25",
+      "nav": 1911.53,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-26",
+      "nav": 1926.08,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-27",
+      "nav": 1930.62,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-30",
+      "nav": 1921.41,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-01-31",
+      "nav": 1924.44,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-02-01",
+      "nav": null,
+      "aum": 326960000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-02-02",
+      "nav": 1950.14,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-02-06",
+      "nav": 1951.65,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-02-08",
+      "nav": 1956.8,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-02-09",
+      "nav": 1948.7,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-02-10",
+      "nav": 1962.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-02-13",
+      "nav": 1966.54,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-02-15",
+      "nav": 1960.76,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-02-17",
+      "nav": 1950.43,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-02-20",
+      "nav": 1949.16,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-02-21",
+      "nav": 1954.31,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-02-22",
+      "nav": 1929.87,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-02-24",
+      "nav": 1935.24,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-02-27",
+      "nav": 1933.63,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-02-28",
+      "nav": 1936.04,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-03-01",
+      "nav": 1934.15,
+      "aum": 293680000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-03-03",
+      "nav": 1935.17,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-03-06",
+      "nav": 1922.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-03-07",
+      "nav": 1912.67,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-03-08",
+      "nav": 1905.36,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-03-10",
+      "nav": 1900.72,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-03-13",
+      "nav": 1881.44,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-03-14",
+      "nav": 1845.22,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-03-15",
+      "nav": 1824.08,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-03-16",
+      "nav": 1782.3,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-03-20",
+      "nav": 1781.6,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-03-21",
+      "nav": 1802.5,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-03-24",
+      "nav": 1836.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-03-27",
+      "nav": 1833.4,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-03-28",
+      "nav": 1866.58,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-03-30",
+      "nav": 1872.28,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-04-01",
+      "nav": null,
+      "aum": 257050000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-04-03",
+      "nav": 1878.15,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-04-06",
+      "nav": 1856.07,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-04-10",
+      "nav": 1852.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-04-12",
+      "nav": 1860.53,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-04-14",
+      "nav": 1855.98,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-04-17",
+      "nav": 1840.57,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-04-18",
+      "nav": 1842.19,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-04-26",
+      "nav": 1851.41,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-04-28",
+      "nav": 1866.82,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-05-01",
+      "nav": null,
+      "aum": 256260000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-05-02",
+      "nav": 1839.7,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-05-03",
+      "nav": 1826.08,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-05-05",
+      "nav": 1825.57,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-05-08",
+      "nav": 1848.76,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-05-09",
+      "nav": 1871.24,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-05-10",
+      "nav": 1868.17,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-05-12",
+      "nav": 1859.63,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-05-15",
+      "nav": 1857.92,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-05-16",
+      "nav": 1845.69,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-05-17",
+      "nav": 1849.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-05-19",
+      "nav": 1857.64,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-05-22",
+      "nav": 1871.49,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-05-23",
+      "nav": 1865.88,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-05-25",
+      "nav": 1869.67,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-05-29",
+      "nav": 1867.73,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-06-01",
+      "nav": null,
+      "aum": 288030000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-06-05",
+      "nav": 1865.49,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-06-07",
+      "nav": 1904.71,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-06-09",
+      "nav": 1928.22,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-06-12",
+      "nav": 1932.53,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-06-13",
+      "nav": 1915.15,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-06-14",
+      "nav": 1918.82,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-06-16",
+      "nav": 1909.82,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-06-19",
+      "nav": 1901.51,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-06-20",
+      "nav": 1876.74,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-06-21",
+      "nav": 1909.58,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-06-23",
+      "nav": 1890.86,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-06-26",
+      "nav": 1893.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-07-01",
+      "nav": null,
+      "aum": 267710000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-07-03",
+      "nav": 1901.36,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-07-04",
+      "nav": 1906.36,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-07-05",
+      "nav": 1913.86,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-07-07",
+      "nav": 1928.24,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-07-10",
+      "nav": 1926.4,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-07-11",
+      "nav": 1944.24,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-07-13",
+      "nav": 1939.02,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-07-17",
+      "nav": 1948.36,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-07-18",
+      "nav": 1936.5,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-07-20",
+      "nav": 1952.62,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-07-21",
+      "nav": 1960.39,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-07-24",
+      "nav": 1961.66,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-07-27",
+      "nav": 1943.07,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-07-28",
+      "nav": 1954.82,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-07-31",
+      "nav": 1972.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-08-01",
+      "nav": 1952.21,
+      "aum": 240590000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-08-02",
+      "nav": 1945.01,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-08-04",
+      "nav": 1967.35,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-08-07",
+      "nav": 1965.69,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-08-08",
+      "nav": 1974.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-08-09",
+      "nav": 1977.95,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-08-11",
+      "nav": 1979.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-08-14",
+      "nav": 1993.97,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-08-15",
+      "nav": 2003.48,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-08-16",
+      "nav": 2004.32,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-08-18",
+      "nav": 1984.7,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-08-21",
+      "nav": 1969.44,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-08-22",
+      "nav": 1978.62,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-08-23",
+      "nav": 1978.03,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-08-25",
+      "nav": 1970.03,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-08-28",
+      "nav": 1978.49,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-08-29",
+      "nav": 1986.81,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-08-30",
+      "nav": 1993.17,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-09-01",
+      "nav": 1997.2,
+      "aum": 252360000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-09-04",
+      "nav": 2005.97,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-09-05",
+      "nav": 1994.72,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-09-06",
+      "nav": 2004.53,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-09-07",
+      "nav": 1976.31,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-09-11",
+      "nav": 1996.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-09-12",
+      "nav": 1997.2,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-09-14",
+      "nav": 2007.87,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-09-18",
+      "nav": 1983.44,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-09-19",
+      "nav": 1995.79,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-09-21",
+      "nav": 1979.66,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-09-22",
+      "nav": 1995.93,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-09-25",
+      "nav": 1992.89,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-09-26",
+      "nav": 1960.1,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-09-29",
+      "nav": 1965.46,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-10-01",
+      "nav": null,
+      "aum": 256900000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-10-02",
+      "nav": 1956.47,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-10-03",
+      "nav": 1929.62,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-10-04",
+      "nav": 1883.74,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-10-06",
+      "nav": 1894.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-10-09",
+      "nav": 1913.65,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-10-11",
+      "nav": 1921.72,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-10-13",
+      "nav": 1890.96,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-10-16",
+      "nav": 1890.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-10-18",
+      "nav": 1918.11,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-10-20",
+      "nav": 1877.25,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-10-23",
+      "nav": 1830.68,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-10-24",
+      "nav": 1852.74,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-10-26",
+      "nav": 1807.04,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-10-27",
+      "nav": 1817.62,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-10-30",
+      "nav": 1780.65,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-10-31",
+      "nav": 1790.41,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-11-01",
+      "nav": null,
+      "aum": 238510000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-11-02",
+      "nav": 1764.9,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-11-06",
+      "nav": 1808.7,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-11-07",
+      "nav": 1778.99,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-11-09",
+      "nav": 1784.74,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-11-10",
+      "nav": 1766.2,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-11-13",
+      "nav": 1780.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-11-14",
+      "nav": 1785.07,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-11-16",
+      "nav": 1803.67,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-11-17",
+      "nav": 1792.6,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-11-20",
+      "nav": 1788.03,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-11-21",
+      "nav": 1797.59,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-11-23",
+      "nav": 1800.74,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-11-24",
+      "nav": 1805.19,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-11-27",
+      "nav": 1815.04,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-11-28",
+      "nav": 1818.79,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-11-29",
+      "nav": 1828.51,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-12-01",
+      "nav": null,
+      "aum": 235750000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-12-04",
+      "nav": 1802.7,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-12-05",
+      "nav": 1801.13,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-12-06",
+      "nav": 1787.77,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-12-08",
+      "nav": 1777.95,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-12-11",
+      "nav": 1755.21,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-12-12",
+      "nav": 1773.51,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-12-13",
+      "nav": 1746.95,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-12-15",
+      "nav": 1787.06,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-12-18",
+      "nav": 1768.26,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-12-19",
+      "nav": 1786.44,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-12-20",
+      "nav": 1805.97,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-12-21",
+      "nav": 1798.39,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-12-22",
+      "nav": 1808.38,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-12-27",
+      "nav": 1822.21,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2023-12-28",
+      "nav": 1826.4,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-01-01",
+      "nav": null,
+      "aum": 241410000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-01-02",
+      "nav": 1850.02,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-01-04",
+      "nav": 1868.86,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-01-05",
+      "nav": 1860.56,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-01-08",
+      "nav": 1855.87,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-01-10",
+      "nav": 1871.98,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-01-11",
+      "nav": 1882.09,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-01-12",
+      "nav": 1885.66,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-01-15",
+      "nav": 1893.13,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-01-16",
+      "nav": 1897.11,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-01-18",
+      "nav": 1884.8,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-01-19",
+      "nav": 1886.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-01-23",
+      "nav": 1883.62,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-01-24",
+      "nav": 1864.01,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-01-26",
+      "nav": 1857.18,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-01-29",
+      "nav": 1854.24,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-01-31",
+      "nav": 1855.07,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-02-01",
+      "nav": null,
+      "aum": 227360000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-02-02",
+      "nav": 1848.08,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-02-05",
+      "nav": 1835.13,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-02-06",
+      "nav": 1841.55,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-02-07",
+      "nav": 1841.79,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-02-12",
+      "nav": 1852.58,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-02-13",
+      "nav": 1847.18,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-02-15",
+      "nav": 1872.16,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-02-16",
+      "nav": 1849.65,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-02-19",
+      "nav": 1817.05,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-02-20",
+      "nav": 1824.0,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-02-21",
+      "nav": 1837.11,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-02-22",
+      "nav": 1862.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-02-23",
+      "nav": 1861.95,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-02-26",
+      "nav": 1844.96,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-02-27",
+      "nav": 1851.72,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-02-28",
+      "nav": 1860.58,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-02-29",
+      "nav": 1868.91,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-03-01",
+      "nav": 1886.49,
+      "aum": 223940000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-03-04",
+      "nav": 1887.3,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-03-05",
+      "nav": 1882.56,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-03-06",
+      "nav": 1871.71,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-03-07",
+      "nav": 1870.54,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-03-08",
+      "nav": 1860.34,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-03-13",
+      "nav": 1882.78,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-03-14",
+      "nav": 1889.14,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-03-15",
+      "nav": 1877.92,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-03-18",
+      "nav": 1882.4,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-03-19",
+      "nav": 1882.32,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-03-20",
+      "nav": 1887.03,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-03-21",
+      "nav": 1894.72,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-03-22",
+      "nav": 1887.57,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-03-25",
+      "nav": 1897.46,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-03-26",
+      "nav": 1903.48,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-03-27",
+      "nav": 1898.64,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-03-28",
+      "nav": 1888.68,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-04-01",
+      "nav": 1878.49,
+      "aum": 241650000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-04-03",
+      "nav": 1897.41,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-04-04",
+      "nav": 1923.47,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-04-05",
+      "nav": 1919.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-04-16",
+      "nav": 1913.28,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-04-17",
+      "nav": 1881.39,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-04-18",
+      "nav": 1882.69,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-04-19",
+      "nav": 1882.17,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-04-22",
+      "nav": 1889.26,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-04-23",
+      "nav": 1897.94,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-04-24",
+      "nav": 1895.8,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-04-25",
+      "nav": 1870.55,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-04-26",
+      "nav": 1843.01,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-04-29",
+      "nav": 1881.68,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-04-30",
+      "nav": 1876.68,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-01",
+      "nav": null,
+      "aum": 242860000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-02",
+      "nav": 1852.63,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-03",
+      "nav": 1869.13,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-06",
+      "nav": 1880.81,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-07",
+      "nav": 1899.58,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-08",
+      "nav": 1908.5,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-13",
+      "nav": 1919.59,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-14",
+      "nav": 1914.97,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-15",
+      "nav": 1916.13,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-16",
+      "nav": 1912.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-17",
+      "nav": 1932.83,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-20",
+      "nav": 1945.14,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-21",
+      "nav": 1922.01,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-22",
+      "nav": 1917.48,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-27",
+      "nav": 1900.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-28",
+      "nav": 1918.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-29",
+      "nav": 1909.62,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-30",
+      "nav": 1895.48,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-05-31",
+      "nav": 1872.0,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-01",
+      "nav": null,
+      "aum": 226710000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-03",
+      "nav": 1880.54,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-04",
+      "nav": 1879.03,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-05",
+      "nav": 1847.5,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-06",
+      "nav": 1875.34,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-07",
+      "nav": 1879.63,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-10",
+      "nav": 1870.97,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-11",
+      "nav": 1860.7,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-12",
+      "nav": 1832.15,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-13",
+      "nav": 1837.41,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-14",
+      "nav": 1813.58,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-19",
+      "nav": 1796.68,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-20",
+      "nav": 1801.3,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-21",
+      "nav": 1832.1,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-24",
+      "nav": 1823.93,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-25",
+      "nav": 1818.89,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-26",
+      "nav": 1837.99,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-27",
+      "nav": 1847.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-06-28",
+      "nav": 1854.7,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-01",
+      "nav": 1865.15,
+      "aum": 232510000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-02",
+      "nav": 1861.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-03",
+      "nav": 1863.62,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-04",
+      "nav": 1867.81,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-05",
+      "nav": 1872.29,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-08",
+      "nav": 1879.12,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-09",
+      "nav": 1880.89,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-10",
+      "nav": 1876.78,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-11",
+      "nav": 1886.14,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-12",
+      "nav": 1881.12,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-15",
+      "nav": 1858.65,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-16",
+      "nav": 1869.32,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-17",
+      "nav": 1875.96,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-18",
+      "nav": 1886.88,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-19",
+      "nav": 1870.05,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-22",
+      "nav": 1872.34,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-23",
+      "nav": 1871.28,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-24",
+      "nav": 1852.84,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-25",
+      "nav": 1848.48,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-26",
+      "nav": 1865.38,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-29",
+      "nav": 1873.91,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-30",
+      "nav": 1872.64,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-07-31",
+      "nav": 1873.77,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-01",
+      "nav": 1889.34,
+      "aum": 191350000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-02",
+      "nav": 1888.87,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-05",
+      "nav": 1825.22,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-06",
+      "nav": 1845.87,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-07",
+      "nav": 1851.6,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-08",
+      "nav": 1832.67,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-09",
+      "nav": 1850.59,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-12",
+      "nav": 1866.78,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-13",
+      "nav": 1879.63,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-14",
+      "nav": 1900.96,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-15",
+      "nav": 1885.68,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-16",
+      "nav": 1882.55,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-20",
+      "nav": 1903.54,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-21",
+      "nav": 1894.14,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-22",
+      "nav": 1875.78,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-23",
+      "nav": 1892.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-26",
+      "nav": 1904.98,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-27",
+      "nav": 1902.71,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-28",
+      "nav": 1909.06,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-29",
+      "nav": 1894.31,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-08-30",
+      "nav": 1895.35,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-01",
+      "nav": null,
+      "aum": 171180000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-02",
+      "nav": 1899.13,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-03",
+      "nav": 1887.01,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-04",
+      "nav": 1883.2,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-05",
+      "nav": 1899.43,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-06",
+      "nav": 1896.71,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-09",
+      "nav": 1881.15,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-10",
+      "nav": 1912.14,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-11",
+      "nav": 1905.07,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-12",
+      "nav": 1914.58,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-13",
+      "nav": 1903.65,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-17",
+      "nav": 1918.33,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-18",
+      "nav": 1915.83,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-19",
+      "nav": 1937.52,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-20",
+      "nav": 1942.59,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-23",
+      "nav": 1949.41,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-24",
+      "nav": 1953.39,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-25",
+      "nav": 1944.21,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-26",
+      "nav": 1953.51,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-27",
+      "nav": 1952.11,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-09-30",
+      "nav": 1933.23,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-01",
+      "nav": 1939.38,
+      "aum": 173170000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-02",
+      "nav": 1907.12,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-03",
+      "nav": 1903.21,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-07",
+      "nav": 1896.13,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-08",
+      "nav": 1902.53,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-09",
+      "nav": 1889.38,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-10",
+      "nav": 1888.26,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-11",
+      "nav": 1913.27,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-14",
+      "nav": 1908.24,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-15",
+      "nav": 1920.89,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-16",
+      "nav": 1929.82,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-17",
+      "nav": 1931.05,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-18",
+      "nav": 1927.66,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-21",
+      "nav": 1929.68,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-22",
+      "nav": 1928.08,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-23",
+      "nav": 1926.62,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-24",
+      "nav": 1912.43,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-25",
+      "nav": 1892.81,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-28",
+      "nav": 1877.39,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-29",
+      "nav": 1884.94,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-30",
+      "nav": 1880.41,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-10-31",
+      "nav": 1915.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-01",
+      "nav": 1868.52,
+      "aum": 152750000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-04",
+      "nav": 1851.86,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-05",
+      "nav": 1854.8,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-06",
+      "nav": 1808.6,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-07",
+      "nav": 1808.19,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-08",
+      "nav": 1793.87,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-11",
+      "nav": 1764.34,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-12",
+      "nav": 1776.75,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-13",
+      "nav": 1764.49,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-14",
+      "nav": 1749.66,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-15",
+      "nav": 1748.21,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-18",
+      "nav": 1734.66,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-19",
+      "nav": 1774.34,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-20",
+      "nav": 1768.47,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-21",
+      "nav": 1762.38,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-22",
+      "nav": 1768.96,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-25",
+      "nav": 1786.54,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-26",
+      "nav": 1778.85,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-28",
+      "nav": 1778.99,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-11-29",
+      "nav": 1776.56,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-01",
+      "nav": null,
+      "aum": 145040000000.0,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-02",
+      "nav": 1743.6,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-03",
+      "nav": 1771.15,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-04",
+      "nav": 1791.81,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-05",
+      "nav": 1777.51,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-06",
+      "nav": 1781.26,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-09",
+      "nav": 1786.84,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-10",
+      "nav": 1778.51,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-11",
+      "nav": 1783.57,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-12",
+      "nav": 1769.01,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-13",
+      "nav": 1762.64,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-16",
+      "nav": 1744.71,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-17",
+      "nav": 1716.21,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-18",
+      "nav": 1704.96,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-19",
+      "nav": 1674.64,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-20",
+      "nav": 1673.42,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-23",
+      "nav": 1710.78,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-27",
+      "nav": 1720.31,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2024-12-30",
+      "nav": 1743.08,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-01-02",
+      "nav": 1731.68,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-01-03",
+      "nav": 1739.9,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-01-06",
+      "nav": 1724.54,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-01-07",
+      "nav": 1722.39,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-01-08",
+      "nav": 1721.08,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-01-09",
+      "nav": 1712.51,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-01-10",
+      "nav": 1717.18,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-01-13",
+      "nav": 1702.74,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-01-14",
+      "nav": 1710.8,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-01-15",
+      "nav": 1729.55,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-01-16",
+      "nav": 1708.61,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-01-17",
+      "nav": 1702.85,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-01-20",
+      "nav": 1707.95,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-01-21",
+      "nav": 1704.66,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-01-23",
+      "nav": 1699.54,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-01-24",
+      "nav": 1690.96,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-01-30",
+      "nav": 1653.91,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-01-31",
+      "nav": 1654.24,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-02-03",
+      "nav": 1625.46,
+      "aum": null,
+      "currency": "IDR"
+    },
+    {
+      "date": "2025-02-04",
+      "nav": 1624.93,
+      "aum": null,
+      "currency": "IDR"
+    }
+  ]
+}
