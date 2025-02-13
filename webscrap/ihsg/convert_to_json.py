@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import json
 
-kode = "IHSG"
+kode = "LQ45"
 # Baca file CSV
 csv_file = f"database/{kode}.csv"  # Ganti dengan file Anda
 df = pd.read_csv(csv_file)
