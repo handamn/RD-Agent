@@ -2,13 +2,13 @@ import time
 import pandas as pd
 import numpy as np
 import csv
+import json
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime
 from selenium.webdriver.chrome.options import Options
-import time
 from datetime import date, timedelta
 import os
 
@@ -31,6 +31,78 @@ class WebScraper:
                 self._scrape_single_url(name, url)
         finally:
             self.driver.quit()
+
+    def _convert_to_float(self, value):
+        """Convert string number to float, handling commas and invalid values."""
+        try:
+            if pd.isna(value) or value == "-":
+                return None
+            # Remove commas and convert to float
+            return float(value.replace(',', ''))
+        except (ValueError, AttributeError):
+            return None
+
+    def _create_json_data(self, df, name):
+        json_data = {
+            "benchmark_name": name,
+            "historical_data": []
+        }
+        
+        for _, row in df.iterrows():
+            data_point = {
+                "date": str(row['Date']),
+                "open": self._convert_to_float(row['Open']),
+                "high": self._convert_to_float(row['High']),
+                "low": self._convert_to_float(row['Low']),
+                "close": self._convert_to_float(row['Close']),
+                "adj_close": self._convert_to_float(row['Adj Close']),
+                "volume": self._convert_to_float(row['Volume'])
+            }
+            json_data["historical_data"].append(data_point)
+        
+        return json_data
+
+    def _save_data(self, df, name):
+        # Convert numeric columns before saving
+        numeric_columns = ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']
+        for col in numeric_columns:
+            df[col] = df[col].apply(self._convert_to_float)
+
+        # Prepare filenames
+        csv_filename = f"database/{name}.csv"
+        json_filename = f"database/{name}.json"
+        
+        # Handle CSV file
+        if os.path.exists(csv_filename):
+            # Read existing CSV
+            existing_df = pd.read_csv(csv_filename)
+            existing_df['Date'] = pd.to_datetime(existing_df['Date']).dt.date
+            
+            # Combine data
+            combined_df = pd.concat([existing_df, df])
+            combined_df = combined_df.drop_duplicates(subset=['Date'], keep='last')
+            combined_df = combined_df.sort_values('Date')
+            
+            # Save CSV
+            combined_df.to_csv(csv_filename, index=False)
+            print(f"Data telah diperbarui di {csv_filename}")
+            print(f"Jumlah data baru yang ditambahkan atau diperbarui: {len(combined_df) - len(existing_df)}")
+            
+            # Create JSON data from combined DataFrame
+            json_data = self._create_json_data(combined_df, name)
+        else:
+            # Create new CSV
+            df.to_csv(csv_filename, index=False)
+            print(f"File CSV baru dibuat: {csv_filename}")
+            print(f"Jumlah data yang disimpan: {len(df)}")
+            
+            # Create JSON data from new DataFrame
+            json_data = self._create_json_data(df, name)
+        
+        # Save JSON file
+        with open(json_filename, 'w') as f:
+            json.dump(json_data, f, indent=2)
+        print(f"Data JSON telah disimpan di {json_filename}")
 
     def _scrape_single_url(self, name, url):
         try:
@@ -69,32 +141,8 @@ class WebScraper:
                 df['Date'] = df['Date'].dt.date
                 df = df[::-1]
                 
-                filename = f"database/{name}.csv"
-                
-                # Cek apakah file CSV sudah ada
-                if os.path.exists(filename):
-                    # Baca file CSV yang ada
-                    existing_df = pd.read_csv(filename)
-                    existing_df['Date'] = pd.to_datetime(existing_df['Date']).dt.date
-                    
-                    # Gabungkan data baru dengan yang ada
-                    combined_df = pd.concat([existing_df, df])
-                    
-                    # Hapus duplikat berdasarkan tanggal, tetapi simpan yang terbaru (data baru menggantikan yang lama)
-                    combined_df = combined_df.drop_duplicates(subset=['Date'], keep='last')
-                    
-                    # Urutkan berdasarkan tanggal
-                    combined_df = combined_df.sort_values('Date')
-                    
-                    # Simpan kembali ke CSV
-                    combined_df.to_csv(filename, index=False)
-                    print(f"Data telah diperbarui di {filename}")
-                    print(f"Jumlah data baru yang ditambahkan atau diperbarui: {len(combined_df) - len(existing_df)}")
-                else:
-                    # Jika file belum ada, buat file baru
-                    df.to_csv(filename, index=False)
-                    print(f"File baru dibuat: {filename}")
-                    print(f"Jumlah data yang disimpan: {len(df)}")
+                # Save both CSV and JSON
+                self._save_data(df, name)
                 
                 print(df)
             else:
@@ -104,8 +152,6 @@ class WebScraper:
 
 
 today = date.today()
-# today = date(2025, 2, 10)
-
 urls = [
     ['IHSG', 'https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE'],
     ['LQ45', 'https://finance.yahoo.com/quote/%5EJKLQ45/history/']
@@ -113,22 +159,20 @@ urls = [
 
 for kode, url in urls:
     csv_file_recent = f"database/{kode}.csv"
-    df = pd.read_csv(csv_file_recent)
-    latest_data = df.iloc[-1].tolist()
+    
+    if os.path.exists(csv_file_recent):
+        df = pd.read_csv(csv_file_recent)
+        df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+        df = df.dropna(subset=['Date'])
+        latest_data = df.iloc[-1]
+        latest_data_date = latest_data['Date'].date()
 
-    latest_data_date = latest_data[0]
-    latest_data_value = latest_data[-1]
+        delta_date = today - latest_data_date
 
-
-    LD_years, LD_months, LD_dates = latest_data_date.split("-")
-    date_database = date(int(LD_years), int(LD_months), int(LD_dates))
-
-    delta_date = today - date_database
-
-    if delta_date < timedelta(0):
-            print("tidak proses")
-    else:
-        # Daftar periode berdasarkan hari
+        if delta_date < timedelta(0):
+            print("Tidak ada proses pembaruan")
+            continue
+        
         period_map = [
             (1, '1D'),
             (5, '5D'),
@@ -138,14 +182,13 @@ for kode, url in urls:
             (1800, '5Y')
         ]
 
-        # Default jika lebih dari 5 tahun
         data_periods = 'Max'
-        
-        # Loop untuk mencari rentang yang sesuai
         for days, periods in period_map:
             if delta_date <= timedelta(days=days):
                 data_periods = periods
-                break  # Stop loop setelah menemukan rentang yang sesuai
+                break
+    else:
+        data_periods = 'Max'
 
 scraper = WebScraper(urls, data_periods, 'w')
 scraper.scrape_data()
