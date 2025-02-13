@@ -77,9 +77,11 @@ class WebScraper:
                     existing_df = pd.read_csv(filename)
                     existing_df['Date'] = pd.to_datetime(existing_df['Date']).dt.date
                     
-                    # Gabungkan data baru dengan yang ada dan hapus duplikat berdasarkan tanggal
+                    # Gabungkan data baru dengan yang ada
                     combined_df = pd.concat([existing_df, df])
-                    combined_df = combined_df.drop_duplicates(subset=['Date'], keep='first')
+                    
+                    # Hapus duplikat berdasarkan tanggal, tetapi simpan yang terbaru (data baru menggantikan yang lama)
+                    combined_df = combined_df.drop_duplicates(subset=['Date'], keep='last')
                     
                     # Urutkan berdasarkan tanggal
                     combined_df = combined_df.sort_values('Date')
@@ -87,7 +89,7 @@ class WebScraper:
                     # Simpan kembali ke CSV
                     combined_df.to_csv(filename, index=False)
                     print(f"Data telah diperbarui di {filename}")
-                    print(f"Jumlah data baru yang ditambahkan: {len(df) - len(existing_df)}")
+                    print(f"Jumlah data baru yang ditambahkan atau diperbarui: {len(combined_df) - len(existing_df)}")
                 else:
                     # Jika file belum ada, buat file baru
                     df.to_csv(filename, index=False)
@@ -102,7 +104,7 @@ class WebScraper:
 
 
 today = date.today()
-today_request = date(2025, 2, 10)
+# today = date(2025, 2, 10)
 
 urls = [
     ['IHSG', 'https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE'],
@@ -121,7 +123,7 @@ for kode, url in urls:
     LD_years, LD_months, LD_dates = latest_data_date.split("-")
     date_database = date(int(LD_years), int(LD_months), int(LD_dates))
 
-    delta_date = today_request - date_database
+    delta_date = today - date_database
 
     if delta_date < timedelta(0):
             print("tidak proses")

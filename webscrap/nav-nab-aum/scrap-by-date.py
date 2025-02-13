@@ -319,7 +319,7 @@ logger = Logger()
 #################################################################################
 
 today = date.today()
-today_request = date(2025, 2, 10)
+# today_request = date(2025, 2, 10)
 
 urls = [
     ['Batavia Technology Sharia Equity USD','https://bibit.id/reksadana/RD4183'],
