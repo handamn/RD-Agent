@@ -11,6 +11,7 @@ from selenium.webdriver.chrome.options import Options
 import time
 from datetime import date, timedelta
 import os
+import json
 
 class WebScraper:
     def __init__(self, urls, pilih_tahun, mode_csv):
@@ -69,33 +70,84 @@ class WebScraper:
                 df['Date'] = df['Date'].dt.date
                 df = df[::-1]
                 
-                filename = f"database/{name}.csv"
-                
-                # Cek apakah file CSV sudah ada
-                if os.path.exists(filename):
-                    # Baca file CSV yang ada
-                    existing_df = pd.read_csv(filename)
+                # Handle CSV file
+                csv_filename = f"database/{name}.csv"
+                if os.path.exists(csv_filename):
+                    existing_df = pd.read_csv(csv_filename)
                     existing_df['Date'] = pd.to_datetime(existing_df['Date']).dt.date
-                    
-                    # Gabungkan data baru dengan yang ada
                     combined_df = pd.concat([existing_df, df])
-                    
-                    # Hapus duplikat berdasarkan tanggal, tetapi simpan yang terbaru (data baru menggantikan yang lama)
                     combined_df = combined_df.drop_duplicates(subset=['Date'], keep='last')
-                    
-                    # Urutkan berdasarkan tanggal
                     combined_df = combined_df.sort_values('Date')
-                    
-                    # Simpan kembali ke CSV
-                    combined_df.to_csv(filename, index=False)
-                    print(f"Data telah diperbarui di {filename}")
-                    print(f"Jumlah data baru yang ditambahkan atau diperbarui: {len(combined_df) - len(existing_df)}")
+                    combined_df.to_csv(csv_filename, index=False)
+                    print(f"Data CSV telah diperbarui di {csv_filename}")
+                    print(f"Jumlah data CSV baru yang ditambahkan atau diperbarui: {len(combined_df) - len(existing_df)}")
                 else:
-                    # Jika file belum ada, buat file baru
-                    df.to_csv(filename, index=False)
-                    print(f"File baru dibuat: {filename}")
+                    df.to_csv(csv_filename, index=False)
+                    print(f"File CSV baru dibuat: {csv_filename}")
                     print(f"Jumlah data yang disimpan: {len(df)}")
+
+                # Handle JSON file
+                json_filename = f"database/{name}.json"
+                new_json_data = {
+                    "benchmark_name": name,
+                    "historical_data": []
+                }
                 
+                def safe_float_convert(value):
+                    if pd.isna(value):
+                        return None
+                    try:
+                        # Menghapus koma ribuan dan mengonversi ke float
+                        return float(str(value).replace(',', ''))
+                    except (ValueError, TypeError):
+                        try:
+                            # Jika masih error, coba dengan menghapus semua koma
+                            return float(str(value).replace(',', ''))
+                        except (ValueError, TypeError):
+                            return None
+                
+                # Convert DataFrame to JSON structure
+                for _, row in df.iterrows():
+                    json_row = {
+                        "date": str(row['Date']),
+                        "open": safe_float_convert(row['Open']),
+                        "high": safe_float_convert(row['High']),
+                        "low": safe_float_convert(row['Low']),
+                        "close": safe_float_convert(row['Close']),
+                        "adj_close": safe_float_convert(row['Adj Close']),
+                        "volume": safe_float_convert(row['Volume'])
+                    }
+                    new_json_data["historical_data"].append(json_row)
+
+                if os.path.exists(json_filename):
+                    with open(json_filename, 'r') as f:
+                        existing_json = json.load(f)
+                    
+                    # Create a dictionary for quick lookup of existing data
+                    existing_data_dict = {item['date']: item for item in existing_json['historical_data']}
+                    
+                    # Update with new data
+                    for new_item in new_json_data['historical_data']:
+                        existing_data_dict[new_item['date']] = new_item
+                    
+                    # Convert back to list and sort by date
+                    combined_data = list(existing_data_dict.values())
+                    combined_data.sort(key=lambda x: x['date'])
+                    
+                    # Update the JSON structure
+                    existing_json['historical_data'] = combined_data
+                    
+                    with open(json_filename, 'w') as f:
+                        json.dump(existing_json, f, indent=2)
+                    
+                    print(f"Data JSON telah diperbarui di {json_filename}")
+                    print(f"Jumlah data JSON yang diproses: {len(combined_data)}")
+                else:
+                    with open(json_filename, 'w') as f:
+                        json.dump(new_json_data, f, indent=2)
+                    print(f"File JSON baru dibuat: {json_filename}")
+                    print(f"Jumlah data yang disimpan: {len(new_json_data['historical_data'])}")
+
                 print(df)
             else:
                 print(f"Tahun {self.pilih_tahun} tidak ditemukan untuk {name}.")
