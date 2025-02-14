@@ -1,6 +1,6 @@
 from datetime import date, timedelta
 import pandas as pd
-
+import json
 import os
 import time
 from datetime import datetime
@@ -187,7 +187,7 @@ class Scraper:
 
 
     def process_and_save_data(self, kode, mode1_data, mode2_data):
-        """Memproses dan menyimpan data hasil scraping ke dalam CSV, termasuk informasi mata uang.
+        """Memproses dan menyimpan data hasil scraping ke dalam CSV dan JSON, termasuk informasi mata uang.
         Memastikan tidak ada duplikasi sebelum menyimpan data baru."""
         
         processed_data = {}
@@ -197,7 +197,7 @@ class Scraper:
             try:
                 tanggal_obj = self.parse_tanggal(entry['tanggal'])
                 tanggal_str = tanggal_obj.strftime("%Y-%m-%d")
-                data_number, currency = self.convert_to_number(entry['data'])  # Dapatkan nilai + mata uang
+                data_number, currency = self.convert_to_number(entry['data'])
 
                 if tanggal_str not in processed_data:
                     processed_data[tanggal_str] = {'NAV': 'NA', 'AUM': 'NA', 'currency': currency}
@@ -210,7 +210,7 @@ class Scraper:
             try:
                 tanggal_obj = self.parse_tanggal(entry['tanggal'])
                 tanggal_str = tanggal_obj.strftime("%Y-%m-%d")
-                data_number, currency = self.convert_to_number(entry['data'])  # Dapatkan nilai + mata uang
+                data_number, currency = self.convert_to_number(entry['data'])
 
                 if tanggal_str not in processed_data:
                     processed_data[tanggal_str] = {'NAV': 'NA', 'AUM': 'NA', 'currency': currency}
@@ -218,9 +218,9 @@ class Scraper:
             except ValueError:
                 self.logger.log_info(f"[ERROR] Gagal mengonversi data AUM: {entry['data']}", "ERROR")
 
+        # Handle CSV file
         csv_file = os.path.join(self.database_dir, f"{kode}.csv")
         
-        # Jika file sudah ada, baca data yang sudah tersimpan
         if os.path.exists(csv_file):
             existing_data = {}
 
@@ -237,21 +237,18 @@ class Scraper:
             # Gabungkan data lama dengan data baru tanpa duplikasi
             for tanggal, values in processed_data.items():
                 if tanggal in existing_data:
-                    # Jika tanggal sudah ada, update hanya jika data baru lebih lengkap
                     if values['NAV'] != 'NA':
                         existing_data[tanggal]['NAV'] = values['NAV']
                     if values['AUM'] != 'NA':
                         existing_data[tanggal]['AUM'] = values['AUM']
-                    # Pastikan currency tetap konsisten (ambil dari yang ada)
                     if existing_data[tanggal]['currency'] == 'NA':
                         existing_data[tanggal]['currency'] = values['currency']
                 else:
-                    existing_data[tanggal] = values  # Tambahkan data baru
-
+                    existing_data[tanggal] = values
         else:
-            existing_data = processed_data  # Tidak ada file, langsung gunakan data baru
+            existing_data = processed_data
 
-        # Urutkan data berdasarkan tanggal sebelum menyimpan kembali
+        # Urutkan data berdasarkan tanggal
         sorted_dates = sorted(existing_data.keys())
 
         # Simpan data ke dalam CSV
@@ -267,8 +264,67 @@ class Scraper:
                     'currency': existing_data[date]['currency']
                 })
 
-        self.logger.log_info(f"Data {kode} berhasil diperbarui dan disimpan ke {csv_file}")
+        # Handle JSON file
+        json_file = os.path.join(self.database_dir, f"{kode}.json")
+        
+        def convert_value(value):
+            """Konversi nilai untuk format JSON dengan mempertahankan konsistensi None"""
+            if value == 'NA' or value is None:
+                return None
+            try:
+                return float(value) if isinstance(value, (str, int, float)) else None
+            except (ValueError, TypeError):
+                return None
 
+        # Prepare new JSON data
+        new_json_data = {
+            "benchmark_name": kode,
+            "historical_data": []
+        }
+
+        # Convert existing data to JSON format
+        for date in sorted_dates:
+            json_entry = {
+                "date": date,
+                "nav": convert_value(existing_data[date]['NAV']),
+                "aum": convert_value(existing_data[date]['AUM']),
+                "currency": existing_data[date]['currency'] if existing_data[date]['currency'] != 'NA' else None
+            }
+            new_json_data["historical_data"].append(json_entry)
+
+        if os.path.exists(json_file):
+            try:
+                with open(json_file, 'r', encoding='utf-8') as f:
+                    existing_json = json.load(f)
+                    
+                # Create dictionary for quick lookup of existing data
+                existing_data_dict = {
+                    item['date']: item 
+                    for item in existing_json['historical_data']
+                }
+                
+                # Update with new data
+                for new_item in new_json_data['historical_data']:
+                    existing_data_dict[new_item['date']] = new_item
+                
+                # Convert back to list and sort by date
+                combined_data = list(existing_data_dict.values())
+                combined_data.sort(key=lambda x: x['date'])
+                
+                # Update the JSON structure
+                existing_json['historical_data'] = combined_data
+                
+                # Save updated JSON
+                with open(json_file, 'w', encoding='utf-8') as f:
+                    json.dump(existing_json, f, indent=2, ensure_ascii=False)
+            except Exception as e:
+                self.logger.log_info(f"[ERROR] Gagal memperbarui file JSON: {str(e)}", "ERROR")
+        else:
+            # Create new JSON file
+            with open(json_file, 'w', encoding='utf-8') as f:
+                json.dump(new_json_data, f, indent=2, ensure_ascii=False)
+
+        self.logger.log_info(f"Data {kode} berhasil diperbarui dan disimpan ke {csv_file} dan {json_file}")
 
 
     def run(self):
