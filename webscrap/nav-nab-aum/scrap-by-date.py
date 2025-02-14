@@ -203,7 +203,7 @@ class Scraper:
                     processed_data[tanggal_str] = {'NAV': 'NA', 'AUM': 'NA', 'currency': currency}
                 processed_data[tanggal_str]['NAV'] = data_number
             except ValueError:
-                self.logger.log_info(f"[ERROR] Gagal mengonversi data NAV: {entry['data']}", "ERROR")
+                self.logger.log_info(f"Gagal mengonversi data NAV: {entry['data']}", "ERROR")
 
         # Proses data baru dari mode2_data (AUM)
         for entry in mode2_data:
