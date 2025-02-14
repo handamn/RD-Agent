@@ -99,7 +99,7 @@ class Scraper:
             aum_button = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//div[contains(@class, 'menu') and contains(text(), 'AUM')]"))
             )
-            self.logger.log_info("[INFO] Beralih ke mode AUM...")
+            self.logger.log_info("Beralih ke mode AUM...")
             aum_button.click()
             time.sleep(3)  # Menunggu perubahan tampilan
             return True
@@ -169,7 +169,7 @@ class Scraper:
 
                 if self.debug_mode:
                     self.logger.log_info(
-                        f"[DEBUG] Mode {mode} | Periode {period} | Kursor {offset} | Tanggal: {tanggal_navdate} | Data: {updated_data}", 
+                        f"{mode} | Periode {period} | Kursor {offset} | Tanggal: {tanggal_navdate} | Data: {updated_data}", 
                         "DEBUG"
                     )
 
