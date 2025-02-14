@@ -13,38 +13,93 @@ def Agent_CDS():
         ['IHSG', 'https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE'],
         ['LQ45', 'https://finance.yahoo.com/quote/%5EJKLQ45/history/']
     ]
-    
-    scraper = Comparison_Data_Scrapper(urls, 'w')
-    
-    for kode, _ in urls:
-        try:
-            df = pd.read_csv(f"database/comparison/{kode}.csv")
-            latest_date = pd.to_datetime(df.iloc[-1]['Date']).date()
+
+    for kode, url in urls:
+        csv_file_recent = f"database/comparison/{kode}.csv"
+        df = pd.read_csv(csv_file_recent)
+        latest_data = df.iloc[-1].tolist()
+
+        latest_data_date = latest_data[0]
+        latest_data_value = latest_data[-1]
+
+
+        LD_years, LD_months, LD_dates = latest_data_date.split("-")
+        date_database = date(int(LD_years), int(LD_months), int(LD_dates))
+
+        delta_date = today - date_database
+
+        if delta_date < timedelta(0):
+                print("tidak proses")
+        else:
+            # Daftar periode berdasarkan hari
+            period_map = [
+                (1, '1D'),
+                (5, '5D'),
+                (90, '3M'),
+                (180, '6M'),
+                (360, '1Y'),
+                (1800, '5Y')
+            ]
+
+            # Default jika lebih dari 5 tahun
+            data_periods = 'Max'
             
-            period = scraper.determine_scraping_period(latest_date)
-            if period:
-                scraper.scrape_data(period)
-        except Exception as e:
-            scraper.logger.log_info(f"Error processing {kode}: {str(e)}", "ERROR")
+            # Loop untuk mencari rentang yang sesuai
+            for days, periods in period_map:
+                if delta_date <= timedelta(days=days):
+                    data_periods = periods
+                    break  # Stop loop setelah menemukan rentang yang sesuai
+
+    scraper = Comparison_Data_Scrapper(urls, data_periods, 'w')
+    scraper.scrape_data()
 
 
 def Agent_MFDS():
     urls = [
         ['Batavia Technology Sharia Equity USD','https://bibit.id/reksadana/RD4183'],
     ]
+
+    pixel = 20
+
+    # Read csv
+
+    for kode, url in urls:
+        csv_file_recent = f"database/mutual_fund/{kode}.csv"
+        df = pd.read_csv(csv_file_recent)
+        latest_data = df.iloc[-1].tolist()
+
+        latest_data_date = latest_data[0]
+        latest_data_value = latest_data[-1]
+
+        LD_years, LD_months, LD_dates = latest_data_date.split("-")
+        date_database = date(int(LD_years), int(LD_months), int(LD_dates))
+
+        delta_date = today - date_database
+
+        if delta_date < timedelta(0):
+                print("tidak proses")
+        else:
+            # Daftar periode berdasarkan hari
+            period_map = [
+                (30, ['1M']),
+                (90, ['1M', '3M']),
+                (365, ['1M', '3M', 'YTD']),
+                (1095, ['1M', '3M', 'YTD', '3Y']),
+                (1825, ['1M', '3M', 'YTD', '3Y', '5Y']),
+                (3650, ['1M', '3M', 'YTD', '3Y', '5Y', '10Y'])
+            ]
+
+            # Default jika lebih dari 5 tahun
+            data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y', '10Y']
+
+            # Loop untuk mencari rentang yang sesuai
+            for days, periods in period_map:
+                if delta_date <= timedelta(days=days):
+                    data_periods = periods
+                    break  # Stop loop setelah menemukan rentang yang sesuai
     
-    scraper = Mutual_Fund_Data_Scraper(urls, pixel=20, debug_mode=True)
-    
-    for kode, _ in urls:
-        try:
-            df = pd.read_csv(f"database/mutual_fund/{kode}.csv")
-            latest_date = pd.to_datetime(df.iloc[-1]['tanggal']).date()
-            
-            periods = scraper.determine_scraping_period(latest_date)
-            if periods:
-                scraper.run(periods)
-        except Exception as e:
-            scraper.logger.log_info(f"Error processing {kode}: {str(e)}", "ERROR")
+    scraper = Mutual_Fund_Data_Scraper(urls, data_periods, pixel, debug_mode=True)
+    scraper.run()
 
 def Agent_PDS():
     urls = [

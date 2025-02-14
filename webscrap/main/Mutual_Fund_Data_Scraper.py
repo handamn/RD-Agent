@@ -39,39 +39,6 @@ class Mutual_Fund_Data_Scraper:
         self.database_dir = "database/mutual_fund"
         os.makedirs(self.database_dir, exist_ok=True)
 
-    def determine_scraping_period(self, latest_date):
-        """
-        Menentukan periode scraping berdasarkan selisih tanggal
-        Args:
-            latest_date (date): Tanggal data terakhir di database
-        Returns:
-            list: List periode yang sesuai untuk scraping atau None jika tidak perlu scraping
-        """
-        today = date.today()
-        delta_date = today - latest_date
-        
-        if delta_date < timedelta(0):
-            return None
-            
-        period_map = [
-            (30, ['1M']),
-            (90, ['1M', '3M']),
-            (365, ['1M', '3M', 'YTD']),
-            (1095, ['1M', '3M', 'YTD', '3Y']),
-            (1825, ['1M', '3M', 'YTD', '3Y', '5Y']),
-            (3650, ['1M', '3M', 'YTD', '3Y', '5Y', '10Y'])
-        ]
-        
-        # Default untuk >10 tahun
-        data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y', '10Y']
-        
-        for days, periods in period_map:
-            if delta_date <= timedelta(days=days):
-                data_periods = periods
-                break
-                
-        return data_periods
-
     def convert_to_number(self, value):
         """Mengonversi string nilai dengan format K, M, B, T menjadi angka float dan mengembalikan jenis mata uang."""
         value = value.replace(',', '').strip()
