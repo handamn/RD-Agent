@@ -73,6 +73,11 @@ class ProspektusDownloader:
         os.rename(latest_file, new_path)
         self.logger.log_info(f"File {latest_file} berhasil diubah menjadi {new_path}")
 
+    def _file_exists(self, kode):
+        """Memeriksa apakah file prospektus sudah ada di direktori."""
+        expected_file = os.path.join(self.download_dir, f"{kode}.pdf")
+        return os.path.exists(expected_file)
+
     def download(self, urls, button_class="DetailProductStyle_detail-produk-button__zk419"):
         """
         Fungsi utama untuk mengunduh dan rename file.
@@ -86,6 +91,11 @@ class ProspektusDownloader:
         try:
             for kode, url in urls:
                 try:
+                    # Periksa apakah file sudah ada
+                    if self._file_exists(kode):
+                        self.logger.log_info(f"File prospektus {kode}.pdf sudah ada, melewati proses download.")
+                        continue
+
                     self.logger.log_info(f"Memulai download prospektus untuk {kode} dari {url}")
                     driver.get(url)
 
@@ -110,12 +120,8 @@ class ProspektusDownloader:
             driver.quit()
 
 
-
+# Penggunaan
 logger = Logger()  # Buat satu logger untuk semua proses
-
-# Buat instance dengan folder kustom
-# downloader = ProspektusDownloader(download_folder="my_downloads")
-
 
 urls = [
     ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],
