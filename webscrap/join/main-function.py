@@ -498,6 +498,6 @@ pixel = 2
 # scraper = Scraper(urls, data_periods, pixel, logger, debug_mode=False)
 # scraper.run()
 
-downloader = ProspektusDownloader(logger)
-downloader.download(urls)
+# downloader = ProspektusDownloader(logger)
+# downloader.download(urls)
 
