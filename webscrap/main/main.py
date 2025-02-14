@@ -214,7 +214,7 @@ class Mutual_Fund_Data_Scraper:
         self.urls = urls
         self.data_periods = data_periods
         self.pixel = pixel
-        self.logger = logger
+        self.logger = UnifiedLogger()
         self.debug_mode = debug_mode
         self.database_dir = "database"
         os.makedirs(self.database_dir, exist_ok=True)
@@ -546,3 +546,52 @@ class Mutual_Fund_Data_Scraper:
         total_duration = time.time() - total_start_time
         self.logger.log_info(f"===== Semua scraping selesai dalam {total_duration:.2f} detik =====")
 
+
+
+today = date.today()
+# today = date(2025, 2, 10)
+
+urls = [
+    ['IHSG', 'https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE'],
+    ['LQ45', 'https://finance.yahoo.com/quote/%5EJKLQ45/history/']
+]
+
+for kode, url in urls:
+    csv_file_recent = f"database/comparison/{kode}.csv"
+    df = pd.read_csv(csv_file_recent)
+    latest_data = df.iloc[-1].tolist()
+
+    latest_data_date = latest_data[0]
+    latest_data_value = latest_data[-1]
+
+
+    LD_years, LD_months, LD_dates = latest_data_date.split("-")
+    date_database = date(int(LD_years), int(LD_months), int(LD_dates))
+
+    delta_date = today - date_database
+
+    if delta_date < timedelta(0):
+            print("tidak proses")
+    else:
+        # Daftar periode berdasarkan hari
+        period_map = [
+            (1, '1D'),
+            (5, '5D'),
+            (90, '3M'),
+            (180, '6M'),
+            (360, '1Y'),
+            (1800, '5Y')
+        ]
+
+        # Default jika lebih dari 5 tahun
+        data_periods = 'Max'
+        
+        # Loop untuk mencari rentang yang sesuai
+        for days, periods in period_map:
+            if delta_date <= timedelta(days=days):
+                data_periods = periods
+                break  # Stop loop setelah menemukan rentang yang sesuai
+
+
+adam = Comparison_Data_Scrapper(urls, data_periods, 'w')
+adam.scrape_CDS_data()
