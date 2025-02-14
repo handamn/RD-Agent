@@ -50,6 +50,39 @@ class Comparison_Data_Scrapper:
         except Exception as e:
             self.logger.log_info(f"Gagal menginisialisasi Chrome browser: {str(e)}", "ERROR")
             raise
+    
+    def determine_scraping_period(self, latest_date):
+        """
+        Menentukan periode scraping berdasarkan selisih tanggal
+        Args:
+            latest_date (date): Tanggal data terakhir di database
+        Returns:
+            str: Periode yang sesuai untuk scraping ('1D', '5D', dll) atau None jika tidak perlu scraping
+        """
+        today = date.today()
+        delta_date = today - latest_date
+        
+        if delta_date < timedelta(0):
+            return None
+            
+        period_map = [
+            (1, '1D'),
+            (5, '5D'),
+            (90, '3M'),
+            (180, '6M'),
+            (360, '1Y'),
+            (1800, '5Y')
+        ]
+        
+        # Default untuk >5 tahun
+        data_period = 'Max'
+        
+        for days, period in period_map:
+            if delta_date <= timedelta(days=days):
+                data_period = period
+                break
+                
+        return data_period
 
     def scrape_data(self):
         start_time = time.time()
