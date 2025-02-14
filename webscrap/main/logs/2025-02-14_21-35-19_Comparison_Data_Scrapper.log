@@ -1,0 +1,30 @@
+[2025-02-14 21:35:19] [INFO] Inisialisasi Comparison_Data_Scrapper dengan 2 URL dan tahun 1D
+[2025-02-14 21:35:21] [INFO] Browser Chrome berhasil diinisialisasi
+[2025-02-14 21:35:21] [INFO] ===== Memulai proses scraping =====
+[2025-02-14 21:35:21] [INFO] Memulai scraping untuk IHSG dari https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE
+[2025-02-14 21:35:21] [INFO] Mengakses URL: https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE
+[2025-02-14 21:35:32] [INFO] Mencari dan mengklik tombol menu
+[2025-02-14 21:35:35] [INFO] Menunggu dialog menu muncul
+[2025-02-14 21:35:35] [INFO] Opsi tahun yang tersedia: ['1D', '5D', '3M', '6M', 'YTD', '1Y', '5Y', 'Max']
+[2025-02-14 21:35:35] [INFO] Memilih tahun 1D
+[2025-02-14 21:35:37] [INFO] Mengekstrak data tabel
+[2025-02-14 21:35:37] [INFO] Memperbarui file CSV yang ada: database/comparison/IHSG.csv
+[2025-02-14 21:35:41] [INFO] Data CSV diperbarui. 0 baris baru ditambahkan
+[2025-02-14 21:35:41] [INFO] Memproses data untuk format JSON: database/comparison/IHSG.json
+[2025-02-14 21:35:41] [INFO] Memperbarui file JSON yang ada
+[2025-02-14 21:35:42] [INFO] Data JSON diperbarui dengan total 8497 records
+[2025-02-14 21:35:42] [INFO] Scraping selesai untuk IHSG
+[2025-02-14 21:35:42] [INFO] Memulai scraping untuk LQ45 dari https://finance.yahoo.com/quote/%5EJKLQ45/history/
+[2025-02-14 21:35:42] [INFO] Mengakses URL: https://finance.yahoo.com/quote/%5EJKLQ45/history/
+[2025-02-14 21:36:20] [INFO] Mencari dan mengklik tombol menu
+[2025-02-14 21:36:22] [INFO] Menunggu dialog menu muncul
+[2025-02-14 21:36:22] [INFO] Opsi tahun yang tersedia: ['1D', '5D', '3M', '6M', 'YTD', '1Y', '5Y', 'Max']
+[2025-02-14 21:36:22] [INFO] Memilih tahun 1D
+[2025-02-14 21:36:24] [INFO] Mengekstrak data tabel
+[2025-02-14 21:36:24] [INFO] Memperbarui file CSV yang ada: database/comparison/LQ45.csv
+[2025-02-14 21:36:24] [INFO] Data CSV diperbarui. 0 baris baru ditambahkan
+[2025-02-14 21:36:24] [INFO] Memproses data untuk format JSON: database/comparison/LQ45.json
+[2025-02-14 21:36:24] [INFO] Memperbarui file JSON yang ada
+[2025-02-14 21:36:24] [INFO] Data JSON diperbarui dengan total 6805 records
+[2025-02-14 21:36:24] [INFO] Scraping selesai untuk LQ45
+[2025-02-14 21:36:27] [INFO] ===== Proses scraping selesai dalam 66.11 detik =====

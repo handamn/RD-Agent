@@ -123,10 +123,10 @@ class Prospektus_Data_Scrapper:
 # # Penggunaan
 # logger = Logger()  # Buat satu logger untuk semua proses
 
-urls = [
-    ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],
-    # ['Mandiri Investa Cerdas', 'https://bibit.id/reksadana/RD14']  # Bisa ditambahkan jika perlu
-]
+# urls = [
+#     ['ABF Indonesia Bond Index Fund', 'https://bibit.id/reksadana/RD13'],
+#     # ['Mandiri Investa Cerdas', 'https://bibit.id/reksadana/RD14']  # Bisa ditambahkan jika perlu
+# ]
 
-downloader = Prospektus_Data_Scrapper()
-downloader.download(urls)
+# downloader = Prospektus_Data_Scrapper()
+# downloader.download(urls)
