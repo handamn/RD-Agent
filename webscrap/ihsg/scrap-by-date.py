@@ -13,47 +13,87 @@ from datetime import date, timedelta
 import os
 import json
 
+class Logger:
+    """Logger untuk mencatat aktivitas scraping ke file log."""
+    def __init__(self, log_dir="logs"):
+        os.makedirs(log_dir, exist_ok=True)
+        log_filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "_scrapping.log"
+        self.LOG_FILE = os.path.join(log_dir, log_filename)
+
+    def log_info(self, message, status="INFO"):
+        """Menyimpan log ke file dengan format timestamp."""
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        log_message = f"[{timestamp}] [{status}] {message}\n"
+
+        with open(self.LOG_FILE, "a", encoding="utf-8") as log_file:
+            log_file.write(log_message)
+
 class WebScraper:
     def __init__(self, urls, pilih_tahun, mode_csv):
         self.urls = urls
         self.pilih_tahun = pilih_tahun
         self.mode_csv = mode_csv
+        self.logger = Logger()  # Inisialisasi logger
+        
+        # Log konfigurasi awal
+        self.logger.log_info(f"Inisialisasi WebScraper dengan {len(urls)} URL dan tahun {pilih_tahun}")
+        
         options = Options()
         options.add_argument("--headless")
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
         
-        self.driver = webdriver.Chrome(options=options)
+        try:
+            self.driver = webdriver.Chrome(options=options)
+            self.logger.log_info("Browser Chrome berhasil diinisialisasi")
+        except Exception as e:
+            self.logger.log_info(f"Gagal menginisialisasi Chrome browser: {str(e)}", "ERROR")
+            raise
 
     def scrape_data(self):
+        start_time = time.time()
+        self.logger.log_info("===== Memulai proses scraping =====")
+        
         try:
             for name, url in self.urls:
+                self.logger.log_info(f"Memulai scraping untuk {name} dari {url}")
                 self._scrape_single_url(name, url)
+                
+        except Exception as e:
+            self.logger.log_info(f"Error dalam proses scraping utama: {str(e)}", "ERROR")
         finally:
             self.driver.quit()
+            duration = time.time() - start_time
+            self.logger.log_info(f"===== Proses scraping selesai dalam {duration:.2f} detik =====")
 
     def _scrape_single_url(self, name, url):
         try:
+            self.logger.log_info(f"Mengakses URL: {url}")
             self.driver.get(url)
             time.sleep(5)
 
+            self.logger.log_info("Mencari dan mengklik tombol menu")
             button = self.driver.find_element(By.CSS_SELECTOR, ".tertiary-btn.fin-size-small.menuBtn.rounded.yf-15mk0m")
             button.click()
             time.sleep(2)
 
+            self.logger.log_info("Menunggu dialog menu muncul")
             WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, ".dialog-container.menu-surface-dialog.modal.yf-9a5vow"))
             )
 
             buttons = self.driver.find_elements(By.CSS_SELECTOR, ".quickpicks.yf-1th5n0r .tertiary-btn.fin-size-small.tw-w-full.tw-justify-center.rounded.yf-15mk0m")
             values = [button.text for button in buttons]
+            self.logger.log_info(f"Opsi tahun yang tersedia: {values}")
 
             if self.pilih_tahun in values:
                 index = values.index(self.pilih_tahun)
+                self.logger.log_info(f"Memilih tahun {self.pilih_tahun}")
                 buttons[index].click()
                 time.sleep(2)
 
+                self.logger.log_info("Mengekstrak data tabel")
                 headers = [header.text.strip() for header in self.driver.find_elements(By.CSS_SELECTOR, ".table.yf-1jecxey.noDl th")]
                 table = self.driver.find_element(By.CSS_SELECTOR, ".table.yf-1jecxey.noDl")
                 rows = table.find_elements(By.TAG_NAME, "tr")
@@ -73,21 +113,22 @@ class WebScraper:
                 # Handle CSV file
                 csv_filename = f"database/{name}.csv"
                 if os.path.exists(csv_filename):
+                    self.logger.log_info(f"Memperbarui file CSV yang ada: {csv_filename}")
                     existing_df = pd.read_csv(csv_filename)
                     existing_df['Date'] = pd.to_datetime(existing_df['Date']).dt.date
                     combined_df = pd.concat([existing_df, df])
                     combined_df = combined_df.drop_duplicates(subset=['Date'], keep='last')
                     combined_df = combined_df.sort_values('Date')
                     combined_df.to_csv(csv_filename, index=False)
-                    print(f"Data CSV telah diperbarui di {csv_filename}")
-                    print(f"Jumlah data CSV baru yang ditambahkan atau diperbarui: {len(combined_df) - len(existing_df)}")
+                    self.logger.log_info(f"Data CSV diperbarui. {len(combined_df) - len(existing_df)} baris baru ditambahkan")
                 else:
+                    self.logger.log_info(f"Membuat file CSV baru: {csv_filename}")
                     df.to_csv(csv_filename, index=False)
-                    print(f"File CSV baru dibuat: {csv_filename}")
-                    print(f"Jumlah data yang disimpan: {len(df)}")
+                    self.logger.log_info(f"File CSV dibuat dengan {len(df)} baris data")
 
                 # Handle JSON file
                 json_filename = f"database/{name}.json"
+                self.logger.log_info(f"Memproses data untuk format JSON: {json_filename}")
                 new_json_data = {
                     "benchmark_name": name,
                     "historical_data": []
@@ -97,16 +138,13 @@ class WebScraper:
                     if pd.isna(value):
                         return None
                     try:
-                        # Menghapus koma ribuan dan mengonversi ke float
                         return float(str(value).replace(',', ''))
                     except (ValueError, TypeError):
                         try:
-                            # Jika masih error, coba dengan menghapus semua koma
                             return float(str(value).replace(',', ''))
                         except (ValueError, TypeError):
                             return None
                 
-                # Convert DataFrame to JSON structure
                 for _, row in df.iterrows():
                     json_row = {
                         "date": str(row['Date']),
@@ -120,39 +158,36 @@ class WebScraper:
                     new_json_data["historical_data"].append(json_row)
 
                 if os.path.exists(json_filename):
+                    self.logger.log_info("Memperbarui file JSON yang ada")
                     with open(json_filename, 'r') as f:
                         existing_json = json.load(f)
                     
-                    # Create a dictionary for quick lookup of existing data
                     existing_data_dict = {item['date']: item for item in existing_json['historical_data']}
                     
-                    # Update with new data
                     for new_item in new_json_data['historical_data']:
                         existing_data_dict[new_item['date']] = new_item
                     
-                    # Convert back to list and sort by date
                     combined_data = list(existing_data_dict.values())
                     combined_data.sort(key=lambda x: x['date'])
                     
-                    # Update the JSON structure
                     existing_json['historical_data'] = combined_data
                     
                     with open(json_filename, 'w') as f:
                         json.dump(existing_json, f, indent=2)
                     
-                    print(f"Data JSON telah diperbarui di {json_filename}")
-                    print(f"Jumlah data JSON yang diproses: {len(combined_data)}")
+                    self.logger.log_info(f"Data JSON diperbarui dengan total {len(combined_data)} records")
                 else:
+                    self.logger.log_info("Membuat file JSON baru")
                     with open(json_filename, 'w') as f:
                         json.dump(new_json_data, f, indent=2)
-                    print(f"File JSON baru dibuat: {json_filename}")
-                    print(f"Jumlah data yang disimpan: {len(new_json_data['historical_data'])}")
+                    self.logger.log_info(f"File JSON dibuat dengan {len(new_json_data['historical_data'])} records")
 
-                print(df)
+                self.logger.log_info(f"Scraping selesai untuk {name}")
             else:
-                print(f"Tahun {self.pilih_tahun} tidak ditemukan untuk {name}.")
+                self.logger.log_info(f"Tahun {self.pilih_tahun} tidak ditemukan untuk {name}", "WARNING")
         except Exception as e:
-            print(f"Error saat scraping {name}: {e}")
+            self.logger.log_info(f"Error saat scraping {name}: {str(e)}", "ERROR")
+            raise
 
 
 today = date.today()
