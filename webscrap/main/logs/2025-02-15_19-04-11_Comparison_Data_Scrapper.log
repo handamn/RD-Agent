@@ -1,0 +1,11 @@
+[2025-02-15 19:04:11] [INFO] Inisialisasi Comparison_Data_Scrapper dengan 2 URL dan tahun 1D
+[2025-02-15 19:04:15] [INFO] Browser Chrome berhasil diinisialisasi
+[2025-02-15 19:04:15] [INFO] ===== Memulai proses scraping =====
+[2025-02-15 19:04:15] [INFO] Memulai scraping untuk IHSG dari https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE
+[2025-02-15 19:04:15] [INFO] Mengakses URL: https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE
+[2025-02-15 19:04:48] [INFO] Mencari dan mengklik tombol menu
+[2025-02-15 19:04:50] [INFO] Menunggu dialog menu muncul
+[2025-02-15 19:04:51] [INFO] Opsi tahun yang tersedia: ['1D', '5D', '3M', '6M', 'YTD', '1Y', '5Y', 'Max']
+[2025-02-15 19:04:51] [ERROR] Error saat scraping IHSG: 'Comparison_Data_Scrapper' object has no attribute 'pilih_tahun'
+[2025-02-15 19:04:51] [ERROR] Error dalam proses scraping utama: 'Comparison_Data_Scrapper' object has no attribute 'pilih_tahun'
+[2025-02-15 19:04:53] [INFO] ===== Proses scraping selesai dalam 38.32 detik =====

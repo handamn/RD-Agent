@@ -29,16 +29,43 @@ class Logger:
             log_file.write(log_message)
 
 class Mutual_Fund_Data_Scraper:
-    def __init__(self, urls, data_periods, pixel, debug_mode=False):
+    def __init__(self, urls, pixel, debug_mode=False):
         """Inisialisasi scraper dengan daftar URL, periode, pixel, dan logger eksternal."""
         self.urls = urls
-        self.data_periods = data_periods
         self.pixel = pixel
         self.logger = Logger()
         self.debug_mode = debug_mode
         self.database_dir = "database/mutual_fund"
+        self.data_periods = self.determine_period()
         os.makedirs(self.database_dir, exist_ok=True)
 
+    def determine_period(self):
+        today = date.today()
+        csv_file_recent = f"database/mutual_fund/{self.urls[0][0]}.csv"
+        df = pd.read_csv(csv_file_recent)
+        latest_data = df.iloc[-1].tolist()
+        latest_data_date = latest_data[0]
+        LD_years, LD_months, LD_dates = latest_data_date.split("-")
+        date_database = date(int(LD_years), int(LD_months), int(LD_dates))
+        delta_date = today - date_database
+
+        period_map = [
+            (30, ['1M']),
+            (90, ['1M', '3M']),
+            (365, ['1M', '3M', 'YTD']),
+            (1095, ['1M', '3M', 'YTD', '3Y']),
+            (1825, ['1M', '3M', 'YTD', '3Y', '5Y']),
+            (3650, ['1M', '3M', 'YTD', '3Y', '5Y', '10Y'])
+        ]
+
+        data_periods = ['ALL', '1M', '3M', 'YTD', '3Y', '5Y', '10Y']
+        for days, periods in period_map:
+            if delta_date <= timedelta(days=days):
+                data_periods = periods
+                break
+
+        return data_periods
+    
     def convert_to_number(self, value):
         """Mengonversi string nilai dengan format K, M, B, T menjadi angka float dan mengembalikan jenis mata uang."""
         value = value.replace(',', '').strip()

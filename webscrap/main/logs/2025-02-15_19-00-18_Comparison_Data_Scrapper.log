@@ -1,0 +1,5 @@
+[2025-02-15 19:00:18] [INFO] ===== Memulai proses scraping =====
+[2025-02-15 19:00:18] [INFO] Memulai scraping untuk IHSG dari https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE
+[2025-02-15 19:00:18] [INFO] Mengakses URL: https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE
+[2025-02-15 19:00:18] [ERROR] Error saat scraping IHSG: 'Comparison_Data_Scrapper' object has no attribute 'driver'
+[2025-02-15 19:00:18] [ERROR] Error dalam proses scraping utama: 'Comparison_Data_Scrapper' object has no attribute 'driver'

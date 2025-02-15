@@ -29,14 +29,14 @@ class Logger:
             log_file.write(log_message)
 
 class Comparison_Data_Scrapper:
-    def __init__(self, urls, pilih_tahun, mode_csv):
+    def __init__(self, urls, mode_csv):
         self.urls = urls
-        self.pilih_tahun = pilih_tahun
         self.mode_csv = mode_csv
-        self.logger = Logger()  # Inisialisasi logger
+        self.logger = Logger()
+        self.data_periods = self.determine_period()
         
         # Log konfigurasi awal
-        self.logger.log_info(f"Inisialisasi Comparison_Data_Scrapper dengan {len(urls)} URL dan tahun {pilih_tahun}")
+        self.logger.log_info(f"Inisialisasi Comparison_Data_Scrapper dengan {len(urls)} URL dan tahun {self.data_periods}")
         
         options = Options()
         options.add_argument("--headless")
@@ -51,6 +51,33 @@ class Comparison_Data_Scrapper:
             self.logger.log_info(f"Gagal menginisialisasi Chrome browser: {str(e)}", "ERROR")
             raise
 
+    def determine_period(self):
+        today = date.today()
+        csv_file_recent = f"database/comparison/{self.urls[0][0]}.csv"
+        df = pd.read_csv(csv_file_recent)
+        latest_data = df.iloc[-1].tolist()
+        latest_data_date = latest_data[0]
+        LD_years, LD_months, LD_dates = latest_data_date.split("-")
+        date_database = date(int(LD_years), int(LD_months), int(LD_dates))
+        delta_date = today - date_database
+
+        period_map = [
+            (1, '1D'),
+            (5, '5D'),
+            (90, '3M'),
+            (180, '6M'),
+            (360, '1Y'),
+            (1800, '5Y')
+        ]
+
+        data_periods = 'Max'
+        for days, periods in period_map:
+            if delta_date <= timedelta(days=days):
+                data_periods = periods
+                break
+
+        return data_periods
+    
     def scrape_data(self):
         start_time = time.time()
         self.logger.log_info("===== Memulai proses scraping =====")
@@ -87,9 +114,9 @@ class Comparison_Data_Scrapper:
             values = [button.text for button in buttons]
             self.logger.log_info(f"Opsi tahun yang tersedia: {values}")
 
-            if self.pilih_tahun in values:
-                index = values.index(self.pilih_tahun)
-                self.logger.log_info(f"Memilih tahun {self.pilih_tahun}")
+            if self.data_periods in values:
+                index = values.index(self.data_periods)
+                self.logger.log_info(f"Memilih tahun {self.data_periods}")
                 buttons[index].click()
                 time.sleep(2)
 
@@ -184,7 +211,7 @@ class Comparison_Data_Scrapper:
 
                 self.logger.log_info(f"Scraping selesai untuk {name}")
             else:
-                self.logger.log_info(f"Tahun {self.pilih_tahun} tidak ditemukan untuk {name}", "WARNING")
+                self.logger.log_info(f"Tahun {self.data_periods} tidak ditemukan untuk {name}", "WARNING")
         except Exception as e:
             self.logger.log_info(f"Error saat scraping {name}: {str(e)}", "ERROR")
             raise
