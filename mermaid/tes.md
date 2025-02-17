@@ -55,3 +55,64 @@ graph TD;
     Z -->|Next Page| A
 
 ```
+
+
+```mermaid
+graph TD;
+    %% Step 1: Persiapan PDF dan Layout Deteksi
+    A[1.1 🔍 Load PDF] --> B[1.2 📏 Detect Layout]
+
+    %% Step 2: Pemisahan Halaman Berdasarkan Layout
+    B -->|Single Column| C[2.1 Single Column: Split Sections]
+    B -->|Multi Column| D[2.2 Multi Column: Split by Columns]
+
+    %% Step 3: Deteksi Jenis Konten
+    C --> E[3.1 📌 Detect Content Type per Section]
+    D --> E
+    E -->|Text| F[3.2 Teks Biasa]
+    E -->|Table| G[3.3 📌 Detect Table Type]
+    E -->|Image| H[3.4 OCR Teks atau Tabel]
+    
+    %% Step 4: Deteksi Tabel
+    G -->|Normal| I[4.1 Tabel Normal]
+    G -->|Continued| J[4.2 Tabel Berlanjut]
+    G -->|Merged Cell| K[4.3 Tabel Merged Cell]
+    
+    %% Step 5: OCR Teks
+    H -->|Teks| L[5.1 OCR Teks]
+    H -->|Tabel| M[5.2 OCR Tabel]
+
+    %% Step 6: Marking dan Metadata
+    F --> Z[6.1 📌 Mark Page & Save Metadata]
+    I --> Z
+    J --> Z
+    K --> Z
+    L --> Z
+    M --> Z
+
+    Z -->|Next Page| A
+
+```
+
+
+```mermaid
+graph TD
+    A[Mulai Proses] --> B[Step 1: Deteksi Layout & Konten]
+    B --> C[Step 2: Ekstraksi Konten]
+    C --> D[Step 3: Penyempurnaan & Pengolahan Data]
+    D --> E[Step 4: Penyimpanan dan Ekspor Hasil]
+    E --> F[Selesai]
+
+    B -->|Input| G[File PDF]
+    G -->|Output| H[Metadata = Layout, Konten]
+    
+    C -->|Input| H[Metadata]
+    C -->|Output| I[Data Diekstrak = Teks, Tabel, OCR]
+
+    D -->|Input| I[Data Diekstrak]
+    D -->|Output| J[Data Bersih = Teks, Tabel Gabungan]
+
+    E -->|Input| J[Data Bersih]
+    E -->|Output| K[File Output = CSV, Excel, dll]
+
+```
