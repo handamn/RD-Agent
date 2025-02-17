@@ -55,7 +55,7 @@ def process_pdf(pdf_path):
                 print(f"Page {page_num + 1} contains plain text.")
             
             # Simpan metadata atau lakukan proses lebih lanjut
-            print("Metadata:", metadata)
+            print(json.dumps(metadata, indent=4, ensure_ascii=False))
             print("-" * 40)
 
 if __name__ == "__main__":
