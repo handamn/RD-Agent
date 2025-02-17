@@ -18,7 +18,7 @@ def extract_text_from_pdf(pdf_path):
     return extracted_text
 
 if __name__ == "__main__":
-    pdf_file = "ABF Indonesia Bond Index Fund.pdf"  # Ganti dengan path file PDF Anda
+    pdf_file = "studi_kasus/26_OCR_TSHN_TSHM_V2.pdf"  # Ganti dengan path file PDF Anda
     if not os.path.exists(pdf_file):
         print("File PDF tidak ditemukan.")
     else:
