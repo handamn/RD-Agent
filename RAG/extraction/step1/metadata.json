@@ -5,6 +5,21 @@
             {
                 "type": "text",
                 "position": "full"
+            },
+            {
+                "type": "table",
+                "position": "full",
+                "format": "normal"
+            }
+        ],
+        "requires_OCR": false
+    },
+    {
+        "page": 2,
+        "content_blocks": [
+            {
+                "type": "text",
+                "position": "full"
             }
         ],
         "requires_OCR": false

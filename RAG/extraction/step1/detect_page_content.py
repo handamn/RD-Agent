@@ -46,7 +46,9 @@ def detect_page_content(pdf_path):
     return metadata
 
 if __name__ == "__main__":
-    file_name = "1_Teks_Biasa"
+    
+    file_name = "7_Tabel_N_Halaman_Normal_V1"
+
     pdf_path = f"E:/belajar-RAG/RD-Agent/RAG/extraction/studi_kasus/{file_name}.pdf"  # Ganti dengan file PDF yang ingin diproses
     if not os.path.exists(pdf_path):
         print("File PDF tidak ditemukan.")
