@@ -561,3 +561,217 @@ flowchart TB
   E1 --> E2
 
 ```
+
+
+
+```mermaid
+flowchart TB
+  %% Step 1: Load PDF & Layout + Content Detection
+  A1(["Start"])
+  A2[/"Input: File PDF"/]
+  A3["Load PDF"]
+  A4["Extract Text"]
+  A5["Detect Layout & Content"]
+  A6{"Column Layout?"}
+  A7["Single Column"]
+  A8["Multi Column"]
+  A9["Split Sections"]
+  A10[/"Output: Metadata Layout & Content Type"/]
+
+  %% Step 2: Deteksi Tabel atau OCR (Jika Diperlukan)
+  B1{"Has Image Content?"}
+  B2["OCR Processing"]
+  B3{"OCR Result: Table or Text?"}
+  B4["OCR Text"]
+  B5["OCR Table"]
+  
+  %% Step 3: Deteksi Tabel (Untuk Semua Konten, Termasuk OCR & Teks Langsung)
+  C1{"Has Table?"}
+  C2["Detect Table Type"]
+  C3{"Table Type?"}
+  C4["Normal Table"]
+  C5["Merged Table"]
+  C6["Continued Table"]
+  C7[/"Output: Updated Metadata with Table Type"/]
+
+  %% Step 4: Extraction
+  D1["Extract Data Based on Metadata"]
+
+
+  %% Flow
+  A1 --> A2
+  A2 --> A3
+  A3 --> A4
+  A4 --> A5
+  A5 --> A6
+  A6 --"Yes"--> A7
+  A6 --"No"--> A8
+  A8 --> A9
+  A7 --> A9
+  A9 --> A10
+  A10 --> B1
+  B1 --"Yes"--> B2
+  B1 --"No"--> C1
+  B2 --> B3
+  B3 --"Text"--> B4
+  B3 --"Table"--> B5
+  B4 --> C1
+  B5 --> C1
+
+  %% Deteksi Tabel Jika Ada
+  C1 --"Yes"--> C2
+  C1 --"No"--> D1
+  C2 --> C3
+  C3 --"Normal"--> C4
+  C3 --"Merged"--> C5
+  C3 --"Continued"--> C6
+  C4 --> C7
+  C5 --> C7
+  C6 --> C7
+  C7 --> D1
+
+  %% Ekstraksi Data
+  D1 --> D2
+
+
+```
+
+
+```mermaid
+flowchart TB
+
+  %% Step 1: Load & Layout Detection
+  A1(["Start Processing"])
+  A2[/"Input: File PDF"/]
+  A3["Load PDF & Extract Raw Text"]
+  A4{"Has Extractable Text?"}
+  A5["Detect Layout (Single/Multi Column)"]
+  A6["Perform OCR"]
+  A7{"Single or Multi Column?"}
+  A8["Split Sections"]
+  A9["Split by Column"]
+  A10[/"Output: Metadata Layout"/]
+
+  %% Step 2: Content Detection
+  B1["Detect Content Type per Section"]
+  B2{"Content Type?"}
+  B3["Mark as Text"]
+  B4["Detect Table Type"]
+  B5["Detect Image for OCR"]
+  B6{"Table Type?"}
+  B7["Mark as Normal Table"]
+  B8["Mark as Merged Table"]
+  B9["Mark as Continued Table"]
+
+  %% Step 3: OCR Processing
+  C1["Perform OCR on Image Sections"]
+  C2{"OCR Result Type?"}
+  C3["Mark as OCR Text"]
+  C4["Mark as OCR Table"]
+  C5{"OCR Table Type?"}
+  C6["Mark as OCR Normal Table"]
+  C7["Mark as OCR Merged Table"]
+  C8["Mark as OCR Continued Table"]
+  C9[/"Output: (Final Layout) + (Content Type) Metadata"/]
+
+  %% Step 4: Extraction Processing
+  D1(["Start Extraction"])
+  D2[/"Input: Metadata Content Type"/]
+  D3{"Extracting Content Type?"}
+  D4["Extract Text"]
+  D5["Extract Table"]
+  D6["Extract OCR Text"]
+  D7["Extract OCR Table"]
+  
+  %% Table Extraction
+  E1{"Table Type?"}
+  E2["Extract Normal Table"]
+  E3["Extract Merged Table"]
+  E4["Extract Continued Table"]
+
+  %% OCR Table Extraction
+  F1{"OCR Table Type?"}
+  F2["Extract OCR Normal Table"]
+  F3["Extract OCR Merged Table"]
+  F4["Extract OCR Continued Table"]
+
+  %% Step 5: Data Cleaning & Output
+  G1["Data Cleaning & Formatting"]
+  G2[/"Output: JSON, CSV, Database"/]
+  G3(["Finish"])
+
+  %% Step 1: Load & Layout Detection
+  A1 --> A2
+  A2 --> A3
+  A3 --> A4
+  A4 --"Yes"--> A5
+  A4 --"No"--> A6
+  A6 --> A5
+  A5 --> A7
+  A7 --"Single"--> A8
+  A7 --"Multi"--> A9
+  A9 --> A8
+  A8 --> A10
+
+  %% Step 2: Content Detection
+  A10 --> B1
+  B1 --> B2
+  B2 --"Text"--> B3
+  B2 --"Table"--> B4
+  B2 --"Image"--> B5
+
+  %% Step 3: Table & OCR Processing
+  B4 --> B6
+  B6 --"Normal"--> B7
+  B6 --"Merged"--> B8
+  B6 --"Continued"--> B9
+  B5 --> C1
+  C1 --> C2
+  C2 --"Text"--> C3
+  C2 --"Table"--> C4
+  C4 --> C5
+  C5 --"Normal"--> C6
+  C5 --"Merged"--> C7
+  C5 --"Continued"--> C8
+  B3 --> C9
+  B7 --> C9
+  B8 --> C9
+  B9 --> C9
+  C3 --> C9
+  C6 --> C9
+  C7 --> C9
+  C8 --> C9
+
+  %% Step 4: Extraction Processing
+  C9 --> D1
+  D1 --> D2
+  D2 --> D3
+  D3 --"Text"--> D4
+  D3 --"Table"--> D5
+  D3 --"OCR Text"--> D6
+  D3 --"OCR Table"--> D7
+
+  %% Table Extraction
+  D5 --> E1
+  E1 --"Normal"--> E2
+  E1 --"Merged"--> E3
+  E1 --"Continued"--> E4
+  E2 --> G1
+  E3 --> G1
+  E4 --> G1
+
+  %% OCR Table Extraction
+  D7 --> F1
+  F1 --"Normal"--> F2
+  F1 --"Merged"--> F3
+  F1 --"Continued"--> F4
+  F2 --> G1
+  F3 --> G1
+  F4 --> G1
+
+  %% Step 5: Cleaning & Output
+  D4 --> G1
+  D6 --> G1
+  G1 --> G2
+  G2 --> G3
+```
