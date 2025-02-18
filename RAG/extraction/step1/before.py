@@ -1,6 +1,9 @@
 import tempfile
 import os
 from unstructured.partition.pdf import partition_pdf
+from unstructured.partition.pdf import partition_pdf
+# from unstructured.partition.utils import convert_to_isd
+import pytesseract
 import camelot
 import gc
 import shutil
@@ -333,7 +336,10 @@ def process_pdf(filename):
                 filename=filename,
                 strategy="hi_res",
                 infer_table_structure=True,
-                temp_dir=temp_dir
+                temp_dir=temp_dir,
+                use_ocr=True,  # Aktifkan OCR
+                ocr_languages="eng",  # Sesuaikan dengan bahasa dokumen
+                ocr_mode="entire_page"  # Gunakan OCR untuk seluruh halaman
             )
 
             # Inisialisasi variabel untuk menyimpan hasil akhir
