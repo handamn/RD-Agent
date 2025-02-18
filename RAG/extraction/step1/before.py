@@ -10,6 +10,18 @@ import csv
 from dotenv import load_dotenv
 import os
 
+import os
+import gc
+import re
+import csv
+import time
+import shutil
+import tempfile
+import statistics
+from contextlib import contextmanager
+from unstructured.partition.pdf import partition_pdf
+import camelot
+
 load_dotenv()
 
 LANGCHAIN_TRACING_V2 = os.getenv('LANGCHAIN_TRACING_V2')
@@ -17,53 +29,7 @@ LANGCHAIN_ENDPOINT = os.getenv('LANGCHAIN_ENDPOINT')
 LANGCHAIN_API_KEY = os.getenv('LANGCHAIN_API_KEY')
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
-import re
-import statistics
 
-def is_heading(text):
-    """
-    Cek apakah teks adalah heading berdasarkan karakteristiknya.
-    """
-    # Menghilangkan spasi di awal dan akhir
-    cleaned_text = text.strip()
-    
-    # Cek pola heading umum
-    heading_patterns = [
-        r'^BAB\s+[IVXivx0-9]+\s*:?\s*\w+',  # Contoh: "BAB I: Definisi"
-        r'^[0-9]+\.\s*[A-Z]',  # Contoh: "1. Definisi"
-        r'^[A-Z][A-Za-z\s]+(\.|\:)$',  # Heading yang diakhiri dengan titik atau titik dua
-        r'^[IVXivx]+\.\s*[A-Z]'  # Heading dengan angka romawi
-    ]
-    
-    for pattern in heading_patterns:
-        if re.match(pattern, cleaned_text):
-            return True
-    
-    # Cek karakteristik lainnya
-    if len(cleaned_text) < 100 and cleaned_text.isupper():
-        return True
-    
-    # Cek apakah ini merupakan item daftar
-    list_patterns = [
-        r'^[0-9]+\.\s+',  # Contoh: "1. Item"
-        r'^[a-z]\.\s+',   # Contoh: "a. Item"
-        r'^[A-Z]\.\s+',   # Contoh: "A. Item"
-        r'^[-•]\s+'       # Contoh: "- Item" atau "• Item"
-    ]
-    
-    for pattern in list_patterns:
-        if re.match(pattern, cleaned_text) and len(cleaned_text.split()) < 30:
-            return True
-    
-    return False
-
-def contains_multiple_sentences(text):
-    """
-    Cek apakah teks mengandung beberapa kalimat (indikasi paragraf, bukan tabel).
-    """
-    # Hitung jumlah tanda baca yang mengakhiri kalimat
-    sentence_end_count = len(re.findall(r'[.!?][\s)]', text))
-    return sentence_end_count > 1
 
 def convert_to_structured_string(data):
     # Ambil header (kolom) dari data
@@ -205,6 +171,52 @@ def managed_pdf_processing():
                     print(f"Could not remove temporary directory {temp_dir} after {max_attempts} attempts")
                 time.sleep(1)
 
+def is_heading(text):
+    """
+    Cek apakah teks adalah heading berdasarkan karakteristiknya.
+    """
+    # Menghilangkan spasi di awal dan akhir
+    cleaned_text = text.strip()
+    
+    # Cek pola heading umum
+    heading_patterns = [
+        r'^BAB\s+[IVXivx0-9]+\s*:?\s*\w+',  # Contoh: "BAB I: Definisi"
+        r'^BAB\s+[IVXivx0-9]+',  # Contoh: "BAB I"
+        r'^[0-9]+\.\s*[A-Z]',  # Contoh: "1. Definisi"
+        r'^[A-Z][A-Za-z\s]+(\.|\:)$',  # Heading yang diakhiri dengan titik atau titik dua
+        r'^[IVXivx]+\.\s*[A-Z]'  # Heading dengan angka romawi
+    ]
+    
+    for pattern in heading_patterns:
+        if re.match(pattern, cleaned_text):
+            return True
+    
+    # Cek karakteristik lainnya
+    if len(cleaned_text) < 100 and cleaned_text.isupper():
+        return True
+    
+    # Cek apakah ini merupakan item daftar dengan konten pendek
+    list_patterns = [
+        r'^[0-9]+\.\s+\w+$',  # Contoh: "1. Item"
+        r'^[a-z]\.\s+\w+$',   # Contoh: "a. Item"
+        r'^[A-Z]\.\s+\w+$',   # Contoh: "A. Item"
+        r'^[-•]\s+\w+$'       # Contoh: "- Item" atau "• Item"
+    ]
+    
+    for pattern in list_patterns:
+        if re.match(pattern, cleaned_text) and len(cleaned_text.split()) < 5:
+            return True
+    
+    return False
+
+def contains_multiple_sentences(text):
+    """
+    Cek apakah teks mengandung beberapa kalimat (indikasi paragraf, bukan tabel).
+    """
+    # Hitung jumlah tanda baca yang mengakhiri kalimat
+    sentence_end_count = len(re.findall(r'[.!?][\s)]', text))
+    return sentence_end_count > 1
+
 def is_likely_table(text):
     """
     Cek apakah teks kemungkinan adalah tabel dengan memperhatikan pola heading.
@@ -214,10 +226,8 @@ def is_likely_table(text):
         return False
     
     # Cek jika teks dimulai dengan kata "BAB" atau pola heading lainnya
-    heading_patterns = ["BAB", "BAGIAN", "PASAL", "Pasal", "Bab", "Bagian"]
-    for pattern in heading_patterns:
-        if text.strip().startswith(pattern):
-            return False
+    if is_heading(text):
+        return False
     
     # Cek pola seperti tabel (dengan pemisah kolom)
     if "|" in text or "\t" in text:
@@ -246,11 +256,45 @@ def is_likely_table(text):
         # Hitung jumlah kata per baris
         words_per_line = [len(line.split()) for line in lines if line.strip()]
         # Jika jumlah kata konsisten antar baris, mungkin ini tabel
-        if len(set(words_per_line)) < 3 and statistics.mean(words_per_line) > 3:
+        if len(set(words_per_line)) < 3 and len(words_per_line) > 0 and statistics.mean(words_per_line) > 3:
             return True
     
     return False
 
+def validate_table(table_content):
+    """
+    Memvalidasi apakah konten benar-benar tabel.
+    """
+    # Jika kurang dari 2 baris, mungkin bukan tabel
+    if len(table_content) < 2:
+        return False
+    
+    # Jika hanya ada 1 kolom di semua baris, mungkin bukan tabel
+    num_columns = [len(row) for row in table_content]
+    if max(num_columns) < 2:
+        return False
+    
+    # Periksa konsistensi jumlah kolom (indikasi kuat tabel)
+    if len(set(num_columns)) <= 2:  # Izinkan perbedaan kecil
+        return True
+    
+    # Periksa apakah ada konten numerik yang signifikan (ciri tabel data)
+    numeric_cells = 0
+    total_cells = 0
+    
+    for row in table_content:
+        for cell in row:
+            total_cells += 1
+            if isinstance(cell, str):
+                # Cek apakah sel berisi angka atau pola numerik (tanggal, persentase, dll.)
+                if re.search(r'\d+(\.\d+)?%?', cell) or cell.strip().isdigit():
+                    numeric_cells += 1
+    
+    # Jika proporsi sel numerik cukup tinggi, kemungkinan ini tabel data
+    if total_cells > 0 and numeric_cells / total_cells > 0.3:
+        return True
+    
+    return False
 
 from langchain_openai import ChatOpenAI
 from langchain_openai import OpenAIEmbeddings
@@ -289,7 +333,7 @@ prompt = ChatPromptTemplate.from_template(template)
 chain = prompt | model | StrOutputParser()
 
 def process_pdf(filename):
-    """Fungsi utama untuk memproses PDF"""
+    """Fungsi utama untuk memproses PDF dengan deteksi struktur yang lebih baik"""
     with managed_pdf_processing() as temp_dir:
         try:
             # Proses dengan Unstructured untuk mendapatkan semua elemen
@@ -332,7 +376,14 @@ def process_pdf(filename):
                         else:
                             cleaned_text = remove_newlines_and_double_spaces(element.text)
                             if not is_nomor_halaman(cleaned_text):
-                                if is_likely_table(cleaned_text):
+                                # Periksa apakah ini heading atau paragraf sebelum mencoba klasifikasi tabel
+                                if is_heading(cleaned_text):
+                                    urutan_elemen.append("teks")
+                                    hasil_teks.append(cleaned_text)
+                                elif contains_multiple_sentences(cleaned_text):
+                                    urutan_elemen.append("teks")
+                                    hasil_teks.append(cleaned_text)
+                                elif is_likely_table(cleaned_text):
                                     urutan_elemen.append("tabel")
                                     hasil_tabel.append([cleaned_text.split()])  # Simpan sebagai tabel
                                 else:
@@ -342,10 +393,11 @@ def process_pdf(filename):
                 # Ekstrak semua tabel di halaman ini menggunakan Camelot
                 try:
                     tables = camelot.read_pdf(filename, pages=str(page_num))
-                    for table in tables:
-                        cleaned_table = remove_newlines_and_double_spaces_from_table(table.df.values.tolist())
-                        if cleaned_table and len(cleaned_table) > 0:  # Check if table is not empty
-                            hasil_tabel.append(cleaned_table)
+                    if len(tables) > 0:
+                        for table in tables:
+                            cleaned_table = remove_newlines_and_double_spaces_from_table(table.df.values.tolist())
+                            if cleaned_table and len(cleaned_table) > 1:  # Pastikan setidaknya ada 2 baris (header + data)
+                                hasil_tabel.append(cleaned_table)
                     tables._tbls = []
                     del tables
                 except Exception as e:
@@ -426,50 +478,51 @@ def process_pdf(filename):
                     print(f"Error merging tables at index {i}: {e}")
                     i += 1
 
-            # masih harus didefinisikan kembali
+            # Pemrosesan akhir dengan validasi tambahan
             for idx, (jenis, konten) in enumerate(hasil_detail):
                 try:
-                    if jenis == "teks" :
+                    if jenis == "teks":
                         hasil_akhir.append(konten)
 
                     if jenis == "tabel":
+                        # Validasi lanjutan untuk memastikan ini benar-benar tabel
+                        if isinstance(konten, list) and len(konten) == 1 and isinstance(konten[0], list) and len(konten[0]) == 1:
+                            # Ini kemungkinan heading yang salah klasifikasi sebagai tabel (satu baris, satu kolom)
+                            if is_heading(konten[0][0]):
+                                hasil_akhir.append(konten[0][0])  # Tambahkan sebagai teks biasa
+                                continue
+                            
+                        # Validasi struktur tabel
+                        if not validate_table(konten):
+                            # Jika gagal validasi, perlakukan sebagai teks
+                            if isinstance(konten, list) and len(konten) > 0:
+                                teks_gabungan = " ".join([" ".join(row) for row in konten if isinstance(row, list)])
+                                hasil_akhir.append(teks_gabungan)
+                                continue
+
                         normalisasi_tabel = normalize_table(konten)
                         hasil_detail[idx] = ("tabel", normalisasi_tabel)
 
                         prev_content = ""
+                        if idx > 0 and hasil_detail[idx-1][0] == "teks":
+                            prev_content = hasil_detail[idx-1][1]
+                        else:
+                            prev_content = "No previous content"
 
-                        if idx > 0:
-                            prev_content = hasil_detail[idx-1][1] if len(hasil_detail[idx-1]) > 1 else "No previous content"
-
-                        # tambahkan perintah summary tabel
-
-                        # context = f"{prev_content}\n\n{normalisasi_tabel}"
-                        hasil_summary = chain.invoke({"kalimat_konteks": prev_content, "tabel":normalisasi_tabel})
-                        
-                        # Untuk memeriksa hasil llm
-                        # print()
-                        # print("---")
-                        # print(idx)
-                        # print(hasil_summary)
-                        # print("---")
-                        # print()
-
+                        # Proses summary tabel
+                        hasil_summary = chain.invoke({"kalimat_konteks": prev_content, "tabel": normalisasi_tabel})
                         hasil_summary = remove_newlines_and_double_spaces(hasil_summary)
                         hasil_summary = "(START_ACCEESS_DB) " + hasil_summary + " (END_ACCESS_DB)"
-                        
-
-
                         hasil_akhir.append(hasil_summary)
 
                         # Write to CSV
-                        filename = f'tabel_{idx}.csv'
-                        with open(filename, mode='w', newline='', encoding='utf-8') as file:
+                        csv_filename = f'tabel_{idx}.csv'
+                        with open(csv_filename, mode='w', newline='', encoding='utf-8') as file:
                             writer = csv.writer(file)
                             writer.writerows(normalisasi_tabel)
-                        
 
                 except Exception as e:
-                    print(f"Error processing table at index {idx}: {e}")
+                    print(f"Error processing content at index {idx}: {e}")
                     continue
 
             return hasil_detail, hasil_akhir
@@ -484,7 +537,7 @@ def process_pdf(filename):
             gc.collect()
 
 if __name__ == "__main__":
-    filename = "studi_kasus/1_Teks_Biasa.pdf"  # Ganti dengan nama file PDF Anda
+    filename = "studi_kasus/4_Tabel_Satu_Halaman_Normal_V1.pdf"  # Ganti dengan nama file PDF Anda
     detail, hasil = process_pdf(filename)
   
     if hasil:
