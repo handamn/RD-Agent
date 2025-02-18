@@ -535,7 +535,7 @@ def process_pdf(filename):
             gc.collect()
 
 if __name__ == "__main__":
-    filename = "studi_kasus/4_Tabel_Satu_Halaman_Normal_V1.pdf"  # Ganti dengan nama file PDF Anda
+    filename = "studi_kasus/8_Tabel_N_Halaman_Merge_V1.pdf"  # Ganti dengan nama file PDF Anda
     detail, hasil = process_pdf(filename)
   
     if hasil:
