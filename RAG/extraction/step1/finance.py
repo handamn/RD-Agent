@@ -1,5 +1,6 @@
 import pdfplumber
 import pandas as pd
+from tabulate import tabulate
 
 def extract_pdf_content(pdf_path):
     with pdfplumber.open(pdf_path) as pdf:
@@ -16,8 +17,9 @@ def extract_pdf_content(pdf_path):
                 print("\n--- TABLE ---\n")
                 for table in tables:
                     df = pd.DataFrame(table)
-                    print(df.to_string(index=False, header=False))
+                    if not df.empty:
+                        print(tabulate(df, headers='keys', tablefmt='grid', showindex=False))
 
 # Path ke file PDF yang diunggah
-pdf_path = "studi_kasus/8_Tabel_N_Halaman_Merge_V1.pdf"
+pdf_path = "studi_kasus/4_Tabel_Satu_Halaman_Normal_V1.pdf"
 extract_pdf_content(pdf_path)
