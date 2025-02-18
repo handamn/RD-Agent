@@ -1,50 +1,70 @@
 import fitz  # PyMuPDF
+from pdfminer.high_level import extract_text
 import pytesseract
-from pdf2image import convert_from_path
-from unstructured.partition.pdf import partition_pdf
+from PIL import Image
+import io
 
-def load_pdf_extract_text(pdf_path):
-    """Load PDF and try to extract raw text."""
-    doc = fitz.open(pdf_path)
-    text = ""
-    for page in doc:
-        text += page.get_text("text")
-    return text.strip()
+def load_pdf(file_path):
+    """Load PDF and extract raw text."""
+    doc = fitz.open(file_path)
+    return doc
 
-def perform_ocr(pdf_path):
-    """Perform OCR using Tesseract if text extraction fails."""
-    images = convert_from_path(pdf_path)
-    extracted_text = ""
-    for img in images:
-        extracted_text += pytesseract.image_to_string(img, lang="eng")
-    return extracted_text.strip()
+def has_extractable_text(doc):
+    """Check if the PDF has extractable text."""
+    for page_num in range(len(doc)):
+        page = doc.load_page(page_num)
+        text = page.get_text()
+        if text.strip():
+            return True
+    return False
 
-def detect_layout(pdf_path):
-    print("Detecting Layout...")
-    # Pastikan hanya satu parameter yang digunakan
-    elements = partition_pdf(filename=pdf_path)  # Hanya filename, tanpa 'file'
-    # Proses elemen yang diekstrak
-    layout_info = [element.to_dict() for element in elements]
-    return layout_info
+def perform_ocr(page):
+    """Perform OCR on a page."""
+    pix = page.get_pixmap()
+    img = Image.open(io.BytesIO(pix.tobytes()))
+    text = pytesseract.image_to_string(img)
+    return text
 
-def process_pdf(pdf_path):
-    """Main processing function to handle layout detection and text extraction."""
-    print("Loading PDF...")
-    extracted_text = load_pdf_extract_text(pdf_path)
-    
-    if extracted_text:
-        print("Text extracted successfully.")
+def detect_layout(page):
+    """Detect layout (single or multi-column)."""
+    # This is a simplified example. In practice, you might need a more sophisticated approach.
+    text = page.get_text("blocks")
+    if len(text) > 1:
+        return "multi"
+    return "single"
+
+def split_sections(page, layout):
+    """Split sections based on layout."""
+    if layout == "single":
+        return [page.get_text()]
     else:
-        print("No extractable text found, performing OCR...")
-        extracted_text = perform_ocr(pdf_path)
-    
-    print("Detecting Layout...")
-    layout = detect_layout(pdf_path)
-    print(f"Layout detected: {layout}")
-    
-    return {"text": extracted_text, "layout": layout}
+        # Implement multi-column splitting logic here
+        return page.get_text("blocks")
 
-if __name__ == "__main__":
-    pdf_file = "studi_kasus/1_Teks_Biasa.pdf"  # Replace with your PDF path
-    result = process_pdf(pdf_file)
-    print("Final Result:", result)
+def process_pdf(file_path):
+    """Process PDF according to the flowchart."""
+    doc = load_pdf(file_path)
+    metadata = []
+
+    for page_num in range(len(doc)):
+        page = doc.load_page(page_num)
+        if has_extractable_text(doc):
+            layout = detect_layout(page)
+            sections = split_sections(page, layout)
+        else:
+            ocr_text = perform_ocr(page)
+            sections = [ocr_text]
+
+        metadata.append({
+            "page": page_num + 1,
+            "layout": layout,
+            "sections": sections,
+            "extractable": has_extractable_text(doc)
+        })
+
+    return metadata
+
+# Example usage
+file_path = "studi_kasus/1_Teks_Biasa.pdf"
+metadata = process_pdf(file_path)
+print(metadata)
