@@ -2,7 +2,7 @@ from unstructured.partition.pdf import partition_pdf
 
 # File PDF yang akan diekstrak
 pdf_files = [
-    "studi_kasus/4_Tabel_Satu_Halaman_Normal_V2.pdf",
+    "studi_kasus/7_Tabel_N_Halaman_Normal_V1.pdf",
     # "/mnt/data/4_Tabel_Satu_Halaman_Normal_V2.pdf"
 ]
 
