@@ -206,5 +206,5 @@ def preprocess_image_for_ocr(image_path, output_path):
     return output_path
 
 # Contoh penggunaan
-pdf_path = "studi_kasus/8_Tabel_N_Halaman_Merge_V1.pdf"
+pdf_path = "studi_kasus/8_Tabel_N_Halaman_Merge_V4.pdf"
 results = extract_pdf_with_complex_structure(pdf_path)
