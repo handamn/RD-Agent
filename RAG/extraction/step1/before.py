@@ -1,8 +1,6 @@
 import tempfile
 import os
 from unstructured.partition.pdf import partition_pdf
-from unstructured.partition.pdf import partition_pdf
-# from unstructured.partition.utils import convert_to_isd
 import pytesseract
 import camelot
 import gc
@@ -21,17 +19,12 @@ from langchain_core.output_parsers import StrOutputParser
 load_dotenv()
 
 embd = OpenAIEmbeddings(model="text-embedding-3-small")
-
 model = ChatOpenAI(model_name="gpt-4o-mini", temperature=0)
-
-
 
 LANGCHAIN_TRACING_V2 = os.getenv('LANGCHAIN_TRACING_V2')
 LANGCHAIN_ENDPOINT = os.getenv('LANGCHAIN_ENDPOINT')
 LANGCHAIN_API_KEY = os.getenv('LANGCHAIN_API_KEY')
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-
-
 
 def convert_to_structured_string(data):
     # Ambil header (kolom) dari data
@@ -123,14 +116,172 @@ def is_nomor_halaman(teks):
     """
     return teks.strip().isdigit()
 
+def calculate_column_similarity(row1, row2):
+    """
+    Menghitung tingkat kesamaan antara dua baris berdasarkan struktur kolom.
+    """
+    # Jika jumlah kolom berbeda jauh, kemungkinan bukan tabel yang sama
+    if abs(len(row1) - len(row2)) > 2:
+        return 0.0
+    
+    max_cols = max(len(row1), len(row2))
+    min_cols = min(len(row1), len(row2))
+    
+    # Faktor 1: Kesamaan jumlah kolom
+    column_count_similarity = min_cols / max_cols if max_cols > 0 else 0
+    
+    # Faktor 2: Kesamaan tipe data (numerik vs text)
+    data_type_matches = 0
+    checked_columns = min(len(row1), len(row2))
+    
+    for i in range(checked_columns):
+        cell1_is_numeric = bool(re.match(r'^[-+]?\d+(\.\d+)?%?$', row1[i].strip()))
+        cell2_is_numeric = bool(re.match(r'^[-+]?\d+(\.\d+)?%?$', row2[i].strip()))
+        
+        if cell1_is_numeric == cell2_is_numeric:
+            data_type_matches += 1
+    
+    data_type_similarity = data_type_matches / checked_columns if checked_columns > 0 else 0
+    
+    # Faktor 3: Kesamaan panjang nilai dalam kolom
+    length_similarity_scores = []
+    for i in range(checked_columns):
+        len1 = len(row1[i].strip())
+        len2 = len(row2[i].strip())
+        max_len = max(len1, len2)
+        if max_len > 0:
+            length_similarity_scores.append(min(len1, len2) / max_len)
+    
+    avg_length_similarity = (
+        sum(length_similarity_scores) / len(length_similarity_scores)
+        if length_similarity_scores else 0
+    )
+    
+    # Bobot untuk masing-masing faktor
+    weights = {
+        'column_count': 0.4,
+        'data_type': 0.4,
+        'length': 0.2
+    }
+    
+    # Nilai akhir kesamaan (0-1)
+    similarity = (
+        weights['column_count'] * column_count_similarity +
+        weights['data_type'] * data_type_similarity +
+        weights['length'] * avg_length_similarity
+    )
+    
+    return similarity
+
+def is_data_row_not_header(row):
+    """
+    Menentukan apakah baris merupakan baris data (bukan header).
+    """
+    # Cek apakah sebagian besar kolom berisi angka
+    numeric_cells = sum(1 for cell in row if re.match(r'^[-+]?\d+(\.\d+)?%?$', cell.strip()))
+    if numeric_cells > len(row) / 2:
+        return True
+    
+    # Cek apakah baris berisi format yang biasa ada di baris data
+    data_patterns = [
+        r'\d{1,2}/\d{1,2}/\d{2,4}',  # Format tanggal (dd/mm/yyyy)
+        r'\d+\.\d+',                 # Angka desimal
+        r'\d+%',                     # Persentase
+        r'Rp\s*\d+',                 # Format mata uang
+        r'\$\s*\d+'                  # Format mata uang dollar
+    ]
+    
+    for pattern in data_patterns:
+        for cell in row:
+            if re.search(pattern, cell):
+                return True
+    
+    return False
+
+def detect_header_row(table):
+    """
+    Mendeteksi baris yang kemungkinan adalah header tabel.
+    """
+    if not table or len(table) < 2:
+        return None
+    
+    # Periksa 3 baris pertama untuk menemukan header
+    candidate_rows = min(3, len(table))
+    
+    for i in range(candidate_rows):
+        # Ciri-ciri header:
+        # 1. Baris pertama umumnya header
+        # 2. Header biasanya lebih pendek dari data
+        # 3. Header biasanya tidak mengandung angka
+        row = table[i]
+        
+        # Hitung jumlah sel dengan konten non-numerik
+        non_numeric_cells = sum(1 for cell in row if not re.match(r'^[-+]?\d+(\.\d+)?%?$', cell.strip()))
+        
+        # Periksa apakah baris ini memiliki format yang umumnya ada di header
+        is_likely_header = (
+            i == 0 or  # Posisi pertama
+            non_numeric_cells == len(row) or  # Semua sel non-numerik
+            all(len(cell.strip()) < 30 for cell in row)  # Semua sel pendek
+        )
+        
+        if is_likely_header:
+            return i
+    
+    # Default: gunakan baris pertama sebagai header
+    return 0
+
 def gabungkan_tabel(tabel_sebelum, tabel_sesudah):
     """
-    Gabungkan dua tabel jika header-nya sama.
+    Gabungkan dua tabel, bahkan jika header tidak ada di tabel kedua.
     """
-    if tabel_sebelum and tabel_sesudah:
-        if tabel_sebelum[0] == tabel_sesudah[0]:
-            tabel_gabungan = tabel_sebelum + tabel_sesudah[1:]
-            return tabel_gabungan
+    if not tabel_sebelum or not tabel_sesudah:
+        return None
+    
+    # Kasus 1: Kedua tabel memiliki header yang sama (kasus sederhana)
+    if tabel_sebelum[0] == tabel_sesudah[0]:
+        return tabel_sebelum + tabel_sesudah[1:]
+    
+    # Kasus 2: Tabel kedua tidak memiliki header (langsung data)
+    # Deteksi header pada tabel pertama
+    header_idx_first = detect_header_row(tabel_sebelum)
+    if header_idx_first is None:
+        header_idx_first = 0
+    
+    # Periksa apakah baris pertama di tabel kedua terlihat seperti data (bukan header)
+    first_row_second_table = tabel_sesudah[0]
+    if is_data_row_not_header(first_row_second_table):
+        # Hitung kesamaan struktur antara baris data terakhir tabel pertama 
+        # dan baris pertama tabel kedua
+        last_data_row_first_table = tabel_sebelum[-1]
+        similarity = calculate_column_similarity(last_data_row_first_table, first_row_second_table)
+        
+        # Jika kesamaan cukup tinggi, kemungkinan tabel yang sama
+        if similarity > 0.7:
+            # Gabungkan dengan menggunakan header dari tabel pertama
+            header = tabel_sebelum[header_idx_first]
+            
+            # Kasus khusus: Jika jumlah kolom berbeda, sesuaikan
+            if len(header) != len(first_row_second_table):
+                # Jika tabel kedua memiliki kolom lebih sedikit, tambahkan kolom kosong
+                if len(header) > len(first_row_second_table):
+                    tabel_sesudah_adjusted = []
+                    for row in tabel_sesudah:
+                        adjusted_row = row + [''] * (len(header) - len(row))
+                        tabel_sesudah_adjusted.append(adjusted_row)
+                    tabel_sesudah = tabel_sesudah_adjusted
+                # Jika tabel kedua memiliki kolom lebih banyak, potong kelebihan
+                elif len(header) < len(first_row_second_table):
+                    tabel_sesudah_adjusted = []
+                    for row in tabel_sesudah:
+                        adjusted_row = row[:len(header)]
+                        tabel_sesudah_adjusted.append(adjusted_row)
+                    tabel_sesudah = tabel_sesudah_adjusted
+            
+            # Gabungkan data saja dari tabel kedua
+            return tabel_sebelum + tabel_sesudah
+    
+    # Kasus 3: Tabel yang berbeda (tidak bisa digabungkan)
     return None
 
 @contextmanager
@@ -298,8 +449,6 @@ def validate_table(table_content):
     
     return False
 
-
-
 # Template prompt
 template = """
 Anda adalah AI Agent yang bertugas membuat **summary informatif** dari sebuah tabel beserta 1-2 kalimat konteks yang diberikan. Tugas Anda adalah:
@@ -456,7 +605,7 @@ def process_pdf(filename):
                 # Add combined results to final results
                 hasil_detail.extend(hasil_gabungan)
 
-            # Merge tables across pages with proper error handling
+            # Merge tables across pages with enhanced logic
             i = 0
             while i < len(hasil_detail) - 1:
                 try:
@@ -468,6 +617,8 @@ def process_pdf(filename):
                         if tabel_gabungan:
                             hasil_detail[i] = ("tabel", tabel_gabungan)
                             hasil_detail.pop(i + 1)
+                            # Don't increment i here as we need to check if the newly merged table
+                            # can be merged with the next table too
                         else:
                             i += 1
                     else:
@@ -535,7 +686,7 @@ def process_pdf(filename):
             gc.collect()
 
 if __name__ == "__main__":
-    filename = "studi_kasus/7_Tabel_N_Halaman_Normal_V3.pdf"  # Ganti dengan nama file PDF Anda
+    filename = "studi_kasus/7_Tabel_N_Halaman_Normal_V2.pdf"  # Ganti dengan nama file PDF Anda
     detail, hasil = process_pdf(filename)
   
     if hasil:
