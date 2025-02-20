@@ -123,15 +123,284 @@ def is_nomor_halaman(teks):
     """
     return teks.strip().isdigit()
 
+
+
 def gabungkan_tabel(tabel_sebelum, tabel_sesudah):
     """
-    Gabungkan dua tabel jika header-nya sama.
+    Gabungkan dua tabel dengan deteksi lanjutan untuk kasus tanpa header berulang.
     """
-    if tabel_sebelum and tabel_sesudah:
-        if tabel_sebelum[0] == tabel_sesudah[0]:
-            tabel_gabungan = tabel_sebelum + tabel_sesudah[1:]
-            return tabel_gabungan
+    if not tabel_sebelum or not tabel_sesudah:
+        return None
+    
+    # Cek apakah header sama (kasus normal)
+    if tabel_sebelum[0] == tabel_sesudah[0]:
+        return tabel_sebelum + tabel_sesudah[1:]
+    
+    # Kasus header tidak diulang: deteksi berdasarkan jumlah kolom dan tipe data
+    kolom_tabel_sebelum = len(tabel_sebelum[0])
+    kolom_tabel_sesudah = len(tabel_sesudah[0])
+    
+    # Periksa jumlah kolom apakah sama atau mendekati
+    if abs(kolom_tabel_sebelum - kolom_tabel_sesudah) <= 1:
+        # Analisis pola data untuk menentukan apakah ini kelanjutan tabel
+        if is_continuation_by_pattern(tabel_sebelum, tabel_sesudah):
+            # Jika ini adalah kelanjutan, gunakan header dari tabel sebelumnya
+            if kolom_tabel_sebelum == kolom_tabel_sesudah:
+                # Jumlah kolom sama, gabungkan langsung
+                return tabel_sebelum + tabel_sesudah
+            elif kolom_tabel_sebelum > kolom_tabel_sesudah:
+                # Tabel kedua memiliki kolom kurang, padding dengan empty cells
+                padded_table = pad_table(tabel_sesudah, kolom_tabel_sebelum)
+                return tabel_sebelum + padded_table
+            else:
+                # Tabel kedua memiliki kolom lebih, truncate atau sesuaikan
+                truncated_table = truncate_table(tabel_sesudah, kolom_tabel_sebelum)
+                return tabel_sebelum + truncated_table
+    
     return None
+
+def is_continuation_by_pattern(tabel_sebelum, tabel_sesudah):
+    """
+    Menganalisis pola data untuk menentukan apakah tabel kedua adalah kelanjutan dari tabel pertama.
+    """
+    if len(tabel_sebelum) < 2 or len(tabel_sesudah) < 1:
+        return False
+    
+    # Ekstrak beberapa karakteristik untuk analisis
+    # 1. Periksa tipe data pada kolom yang sama
+    data_types_match = check_data_types_compatibility(tabel_sebelum[1:], tabel_sesudah)
+    
+    # 2. Periksa format penomoran atau ID jika ada
+    numbering_continues = check_if_numbering_continues(tabel_sebelum, tabel_sesudah)
+    
+    # 3. Periksa apakah tabel sesudah memiliki header yang berbeda dari data normal
+    has_data_not_header = not looks_like_header(tabel_sesudah[0], tabel_sesudah[1:] if len(tabel_sesudah) > 1 else [])
+    
+    # Buat keputusan berdasarkan kombinasi faktor
+    return (data_types_match and (numbering_continues or has_data_not_header))
+
+def check_data_types_compatibility(rows_sebelum, tabel_sesudah):
+    """
+    Memeriksa kompatibilitas tipe data antara dua tabel.
+    """
+    if not rows_sebelum or not tabel_sesudah:
+        return False
+    
+    num_cols_sebelum = len(rows_sebelum[0]) if rows_sebelum[0] else 0
+    num_cols_sesudah = len(tabel_sesudah[0]) if tabel_sesudah[0] else 0
+    
+    # Jika jumlah kolom sangat berbeda, kemungkinan bukan kelanjutan
+    if abs(num_cols_sebelum - num_cols_sesudah) > 1:
+        return False
+    
+    # Ambil sampel dari tabel sebelum untuk analisis
+    sample_rows_sebelum = rows_sebelum[-min(3, len(rows_sebelum)):]
+    
+    # Hitung pola tipe data (angka, teks, tanggal, dll) untuk setiap kolom
+    patterns_sebelum = analyze_data_patterns(sample_rows_sebelum)
+    
+    # Ambil sampel dari tabel sesudah (asumsikan baris pertama bisa jadi header atau data)
+    sample_rows_sesudah = tabel_sesudah[:min(3, len(tabel_sesudah))]
+    patterns_sesudah = analyze_data_patterns(sample_rows_sesudah)
+    
+    # Bandingkan pola
+    min_cols = min(len(patterns_sebelum), len(patterns_sesudah))
+    matches = sum(1 for i in range(min_cols) if patterns_sebelum[i] == patterns_sesudah[i])
+    match_ratio = matches / min_cols if min_cols > 0 else 0
+    
+    # Hitung setidaknya 60% kolom memiliki pola data yang sama
+    return match_ratio >= 0.6
+
+def analyze_data_patterns(rows):
+    """
+    Menganalisis pola data dari sampel baris.
+    """
+    if not rows or not rows[0]:
+        return []
+    
+    num_cols = len(rows[0])
+    patterns = []
+    
+    for col_idx in range(num_cols):
+        col_values = [row[col_idx] if col_idx < len(row) else "" for row in rows]
+        
+        # Tentukan pola untuk kolom ini
+        num_count = sum(1 for val in col_values if is_numeric(val))
+        date_count = sum(1 for val in col_values if is_date(val))
+        
+        if num_count > len(col_values) / 2:
+            patterns.append("numeric")
+        elif date_count > len(col_values) / 2:
+            patterns.append("date")
+        else:
+            patterns.append("text")
+    
+    return patterns
+
+def is_numeric(value):
+    """
+    Cek apakah nilai adalah angka.
+    """
+    # Hapus format seperti koma dan persen
+    clean_val = value.replace(',', '').replace('%', '').replace(' ', '')
+    try:
+        float(clean_val)
+        return True
+    except (ValueError, TypeError):
+        return False
+
+def is_date(value):
+    """
+    Cek apakah nilai kemungkinan format tanggal.
+    """
+    import re
+    # Pola sederhana untuk tanggal (bisa diperluas)
+    date_patterns = [
+        r'\d{1,2}[/-]\d{1,2}[/-]\d{2,4}',  # dd/mm/yyyy atau dd-mm-yyyy
+        r'\d{1,2}\s+[A-Za-z]{3,}\s+\d{2,4}',  # dd Month yyyy
+        r'\d{2,4}[/-]\d{1,2}[/-]\d{1,2}'  # yyyy/mm/dd atau yyyy-mm-dd
+    ]
+    
+    for pattern in date_patterns:
+        if re.search(pattern, value):
+            return True
+    return False
+
+def check_if_numbering_continues(tabel_sebelum, tabel_sesudah):
+    """
+    Cek apakah ada pola penomoran yang berlanjut antara dua tabel.
+    """
+    if len(tabel_sebelum) < 2 or not tabel_sesudah:
+        return False
+    
+    # Cari kolom yang mungkin berisi nomor urut
+    num_col_idx = find_numbering_column(tabel_sebelum)
+    if num_col_idx is None:
+        return False
+    
+    # Pastikan kolom itu juga ada di tabel sesudah
+    if tabel_sesudah[0] and num_col_idx < len(tabel_sesudah[0]):
+        # Ambil nomor terakhir dari tabel sebelum
+        last_num = extract_number(tabel_sebelum[-1][num_col_idx])
+        # Ambil nomor pertama dari tabel sesudah
+        first_num = extract_number(tabel_sesudah[0][num_col_idx])
+        
+        # Cek apakah nomor berlanjut
+        if last_num is not None and first_num is not None:
+            # Toleransi untuk missing numbers
+            return abs(first_num - last_num) <= 3
+    
+    return False
+
+def find_numbering_column(table):
+    """
+    Mencari kolom yang kemungkinan berisi nomor urut.
+    """
+    if len(table) < 3 or not table[0]:
+        return None
+    
+    num_cols = len(table[0])
+    best_col = None
+    max_numeric_ratio = 0
+    
+    for col_idx in range(num_cols):
+        values = [row[col_idx] if col_idx < len(row) else "" for row in table[1:]]  # Skip header
+        
+        # Hitung berapa yang bisa dikonversi ke angka
+        numeric_values = [extract_number(val) for val in values]
+        valid_nums = [num for num in numeric_values if num is not None]
+        
+        if not valid_nums:
+            continue
+            
+        numeric_ratio = len(valid_nums) / len(values)
+        
+        # Cek apakah ada pola kenaikan
+        is_increasing = all(valid_nums[i] < valid_nums[i+1] for i in range(len(valid_nums)-1))
+        
+        if numeric_ratio > 0.7 and is_increasing and numeric_ratio > max_numeric_ratio:
+            max_numeric_ratio = numeric_ratio
+            best_col = col_idx
+    
+    return best_col
+
+def extract_number(text):
+    """
+    Ekstrak angka dari teks.
+    """
+    import re
+    if not text:
+        return None
+    
+    # Coba ekstrak angka dari berbagai format
+    match = re.search(r'^[.\s]*(\d+)[.\s]*$', text.strip())
+    if match:
+        try:
+            return int(match.group(1))
+        except ValueError:
+            pass
+    return None
+
+def looks_like_header(row, data_rows):
+    """
+    Tentukan apakah baris terlihat seperti header berdasarkan perbedaan format dengan data.
+    """
+    if not row or not data_rows:
+        return False
+    
+    # Cek karakteristik header
+    header_characteristics = [
+        all(cell.strip().istitle() for cell in row if cell.strip()),  # Title case
+        all(len(cell.strip()) < 30 for cell in row if cell.strip()),  # Header biasanya pendek
+        sum(1 for cell in row if cell.strip() and any(char.isupper() for char in cell)) > len(row) / 2  # Banyak huruf kapital
+    ]
+    
+    # Bandingkan dengan data rows
+    data_characteristics = []
+    for data_row in data_rows[:3]:  # Ambil sampel 3 baris data
+        if len(data_row) == len(row):
+            chars = [
+                all(cell.strip().istitle() for cell in data_row if cell.strip()),
+                all(len(cell.strip()) < 30 for cell in data_row if cell.strip()),
+                sum(1 for cell in data_row if cell.strip() and any(char.isupper() for char in cell)) > len(data_row) / 2
+            ]
+            data_characteristics.append(chars)
+    
+    if not data_characteristics:
+        return sum(1 for char in header_characteristics if char) >= 2
+    
+    # Jika karakteristik header berbeda dari karakteristik data
+    header_score = sum(1 for char in header_characteristics if char)
+    data_scores = [sum(1 for char in chars if char) for chars in data_characteristics]
+    avg_data_score = sum(data_scores) / len(data_scores) if data_scores else 0
+    
+    return header_score > avg_data_score + 1
+
+def pad_table(table, target_cols):
+    """
+    Pad table dengan kolom kosong sampai mencapai jumlah kolom target.
+    """
+    if not table:
+        return table
+    
+    result = []
+    for row in table:
+        if len(row) < target_cols:
+            new_row = row + [""] * (target_cols - len(row))
+            result.append(new_row)
+        else:
+            result.append(row)
+    
+    return result
+
+def truncate_table(table, target_cols):
+    """
+    Potong table menjadi jumlah kolom target.
+    """
+    if not table:
+        return table
+    
+    return [row[:target_cols] for row in table]
 
 @contextmanager
 def managed_pdf_processing():
