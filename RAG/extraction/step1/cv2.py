@@ -310,5 +310,5 @@ def preprocess_image_for_ocr(image_path, output_path):
 
 # Example usage
 if __name__ == "__main__":
-    pdf_path = "studi_kasus/4_Tabel_Satu_Halaman_Normal_V1.pdf"
+    pdf_path = "studi_kasus/4_Tabel_Satu_Halaman_Normal_V2.pdf"
     results = extract_pdf_with_content_distinction(pdf_path)
