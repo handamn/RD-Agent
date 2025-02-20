@@ -125,12 +125,36 @@ def is_nomor_halaman(teks):
 
 def gabungkan_tabel(tabel_sebelum, tabel_sesudah):
     """
-    Gabungkan dua tabel jika header-nya sama.
+    Gabungkan dua tabel dengan deteksi lanjutan untuk kasus tanpa header berulang.
     """
-    if tabel_sebelum and tabel_sesudah:
-        if tabel_sebelum[0] == tabel_sesudah[0]:
-            tabel_gabungan = tabel_sebelum + tabel_sesudah[1:]
-            return tabel_gabungan
+    if not tabel_sebelum or not tabel_sesudah:
+        return None
+    
+    # Cek apakah header sama (kasus normal)
+    if tabel_sebelum[0] == tabel_sesudah[0]:
+        return tabel_sebelum + tabel_sesudah[1:]
+    
+    # Kasus header tidak diulang: deteksi berdasarkan jumlah kolom dan tipe data
+    kolom_tabel_sebelum = len(tabel_sebelum[0])
+    kolom_tabel_sesudah = len(tabel_sesudah[0])
+    
+    # Periksa jumlah kolom apakah sama atau mendekati
+    if abs(kolom_tabel_sebelum - kolom_tabel_sesudah) <= 1:
+        # Analisis pola data untuk menentukan apakah ini kelanjutan tabel
+        if is_continuation_by_pattern(tabel_sebelum, tabel_sesudah):
+            # Jika ini adalah kelanjutan, gunakan header dari tabel sebelumnya
+            if kolom_tabel_sebelum == kolom_tabel_sesudah:
+                # Jumlah kolom sama, gabungkan langsung
+                return tabel_sebelum + tabel_sesudah
+            elif kolom_tabel_sebelum > kolom_tabel_sesudah:
+                # Tabel kedua memiliki kolom kurang, padding dengan empty cells
+                padded_table = pad_table(tabel_sesudah, kolom_tabel_sebelum)
+                return tabel_sebelum + padded_table
+            else:
+                # Tabel kedua memiliki kolom lebih, truncate atau sesuaikan
+                truncated_table = truncate_table(tabel_sesudah, kolom_tabel_sebelum)
+                return tabel_sebelum + truncated_table
+    
     return None
 
 @contextmanager
@@ -535,7 +559,7 @@ def process_pdf(filename):
             gc.collect()
 
 if __name__ == "__main__":
-    filename = "studi_kasus/21_OCR_Teks_Biasa.pdf"  # Ganti dengan nama file PDF Anda
+    filename = "studi_kasus/7_Tabel_N_Halaman_Normal_V2.pdf"  # Ganti dengan nama file PDF Anda
     detail, hasil = process_pdf(filename)
   
     if hasil:
