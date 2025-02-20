@@ -22,50 +22,6 @@ def extract_pdf_with_complex_structure(pdf_path, output_folder="extracted_result
         page_width = float(pdf.pages[0].width)
         page_height = float(pdf.pages[0].height)
     
-    # # 1. Ekstraksi dengan pdfplumber
-    # with pdfplumber.open(pdf_path) as pdf:
-    #     for page_num, page in enumerate(pdf.pages, 1):
-    #         print(f"\n=== HALAMAN {page_num} (pdfplumber) ===")
-    #         page_results = {"text": [], "tables": []}
-            
-    #         # Ekstraksi teks
-    #         text = page.extract_text()
-    #         if text:
-    #             page_results["text"].append(text)
-    #             print(f"Teks terdeteksi: {len(text)} karakter")
-            
-    #         # Ekstraksi tabel dengan pdfplumber
-    #         tables = page.extract_tables()
-    #         if tables:
-    #             for idx, table in enumerate(tables, 1):
-    #                 df = pd.DataFrame(table)
-    #                 if not df.empty:
-    #                     page_results["tables"].append(df)
-    #                     print(f"Tabel {idx} terdeteksi dengan {df.shape[0]} baris dan {df.shape[1]} kolom")
-    #                     # Simpan tabel sebagai CSV
-    #                     df.to_csv(f"{output_folder}/page_{page_num}_table_{idx}_pdfplumber.csv", index=False)
-            
-    #         results[f"page_{page_num}"] = page_results
-    
-    # # 2. Ekstraksi dengan camelot (lattice mode)
-    # print("\n=== EKSTRAKSI DENGAN CAMELOT (LATTICE) ===")
-    # try:
-    #     tables_lattice = camelot.read_pdf(pdf_path, pages='all', flavor='lattice')
-    #     if len(tables_lattice) > 0:
-    #         for idx, table in enumerate(tables_lattice, 1):
-    #             page_num = table.page
-    #             print(f"Tabel Lattice {idx} terdeteksi di halaman {page_num} dengan akurasi {table.accuracy}")
-                
-    #             # Simpan tabel sebagai CSV
-    #             table.to_csv(f"{output_folder}/page_{page_num}_table_lattice_{idx}.csv")
-                
-    #             # Tambahkan ke hasil jika belum ada
-    #             page_key = f"page_{page_num}"
-    #             if page_key not in results:
-    #                 results[page_key] = {"text": [], "tables": []}
-    #             results[page_key]["tables"].append(table.df)
-    # except Exception as e:
-    #     print(f"Error dalam ekstraksi camelot lattice: {e}")
     
     # 3. Ekstraksi dengan camelot (stream mode) - FIX: menggunakan koordinat absolut, bukan persentase
     print("\n=== EKSTRAKSI DENGAN CAMELOT (STREAM) ===")
@@ -73,7 +29,7 @@ def extract_pdf_with_complex_structure(pdf_path, output_folder="extracted_result
         # Gunakan koordinat absolut untuk area tabel - seluruh halaman
         table_area = [0, 0, page_width, page_height]
         tables_stream = camelot.read_pdf(pdf_path, pages='all', flavor='stream', 
-                                         table_areas=[','.join(map(str, table_area))])
+                                         )
         
         if len(tables_stream) > 0:
             for idx, table in enumerate(tables_stream, 1):
@@ -206,5 +162,5 @@ def preprocess_image_for_ocr(image_path, output_path):
     return output_path
 
 # Contoh penggunaan
-pdf_path = "studi_kasus/4_Tabel_Satu_Halaman_Normal_V1.pdf"
+pdf_path = "studi_kasus/7_Tabel_N_Halaman_Normal_V1.pdf"
 results = extract_pdf_with_complex_structure(pdf_path)
