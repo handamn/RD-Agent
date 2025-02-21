@@ -10,14 +10,22 @@ def extract_text_from_pdf(pdf_path):
     return text
 
 def extract_tables_from_pdf(pdf_path):
-    tables = camelot.read_pdf(pdf_path, pages='all', strip_text='\n')
-    extracted_tables = []
+    tables = []
+    with pdfplumber.open(pdf_path) as pdf:
+        for page in pdf.pages:
+            extracted_tables = page.extract_tables()
+            for table in extracted_tables:
+                df = pd.DataFrame(table)
+                tables.append(df)
     
-    for table in tables:
-        df = table.df  # Convert to Pandas DataFrame
-        extracted_tables.append(df)
+    # Fallback ke Camelot jika tidak ada tabel yang terdeteksi dengan pdfplumber
+    if not tables:
+        camelot_tables = camelot.read_pdf(pdf_path, pages='all', strip_text='\n')
+        for table in camelot_tables:
+            df = table.df  # Convert to Pandas DataFrame
+            tables.append(df)
     
-    return extracted_tables
+    return tables
 
 def merge_broken_tables(tables):
     merged_tables = []
@@ -27,8 +35,8 @@ def merge_broken_tables(tables):
         if temp_table is None:
             temp_table = table
         else:
-            # If header is similar, append the table
-            if table.iloc[0].equals(temp_table.iloc[0]):
+            # Gabungkan tabel jika memiliki jumlah kolom yang sama
+            if table.shape[1] == temp_table.shape[1]:
                 temp_table = pd.concat([temp_table, table.iloc[1:]], ignore_index=True)
             else:
                 merged_tables.append(temp_table)
@@ -60,6 +68,7 @@ def main(pdf_path):
     for i, table in enumerate(formatted_tables):
         print(f"\nTable {i+1}:")
         print(table.to_string(index=False))
+
 
 if __name__ == "__main__":
     pdf_path = "studi_kasus/7_Tabel_N_Halaman_Normal_V1.pdf"  # Ganti dengan path PDF Anda
