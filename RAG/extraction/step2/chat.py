@@ -29,5 +29,5 @@ def main(pdf_path):
         print(table.text)
 
 if __name__ == "__main__":
-    pdf_path = "studi_kasus/7_Tabel_N_Halaman_Normal_V2.pdf"  # Ganti dengan path PDF Anda
+    pdf_path = "studi_kasus/7_Tabel_N_Halaman_Normal_V1.pdf"  # Ganti dengan path PDF Anda
     main(pdf_path)
