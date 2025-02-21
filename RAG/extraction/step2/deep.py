@@ -30,8 +30,8 @@ def main(pdf_path):
     tables = extract_tables_from_pdf(pdf_path)
     for i, table in enumerate(tables):
         print(f"\nTable {i+1}:")
-        print(table)
+        print(table['KETERANGAN'][:1])
 
 if __name__ == "__main__":
-    pdf_path = "studi_kasus/7_Tabel_N_Halaman_Normal_V2.pdf"
+    pdf_path = "studi_kasus/7_Tabel_N_Halaman_Normal_V1.pdf"
     main(pdf_path)
