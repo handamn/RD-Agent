@@ -9,6 +9,12 @@ def extract_text_from_pdf(pdf_path):
             text += page.extract_text() + "\n"
     return text
 
+def clean_table_data(df):
+    df = df.applymap(lambda x: " ".join(str(x).split()) if pd.notnull(x) else x)  # Hapus newline & whitespace berlebih
+    df = df.dropna(how='all', axis=1)  # Hapus kolom kosong
+    df = df.dropna(how='all', axis=0)  # Hapus baris kosong
+    return df
+
 def extract_tables_from_pdf(pdf_path):
     tables = []
     with pdfplumber.open(pdf_path) as pdf:
@@ -16,6 +22,7 @@ def extract_tables_from_pdf(pdf_path):
             extracted_tables = page.extract_tables()
             for table in extracted_tables:
                 df = pd.DataFrame(table)
+                df = clean_table_data(df)
                 tables.append(df)
     
     # Fallback ke Camelot jika tidak ada tabel yang terdeteksi dengan pdfplumber
@@ -23,6 +30,7 @@ def extract_tables_from_pdf(pdf_path):
         camelot_tables = camelot.read_pdf(pdf_path, pages='all', strip_text='\n')
         for table in camelot_tables:
             df = table.df  # Convert to Pandas DataFrame
+            df = clean_table_data(df)
             tables.append(df)
     
     return tables
@@ -35,7 +43,6 @@ def merge_broken_tables(tables):
         if temp_table is None:
             temp_table = table
         else:
-            # Gabungkan tabel jika memiliki jumlah kolom yang sama
             if table.shape[1] == temp_table.shape[1]:
                 temp_table = pd.concat([temp_table, table.iloc[1:]], ignore_index=True)
             else:
