@@ -47,10 +47,15 @@ def extract_table_from_image(image_path, openai_api_key):
     
     client = openai.OpenAI(api_key=openai_api_key)
     response = client.chat.completions.create(
-        model="gpt-4-turbo-vision",
-        messages=[{"role": "system", "content": "Extract table data from the image."},
-                  {"role": "user", "content": image_data}]
-    )
+    model="gpt-4-turbo",
+    messages=[
+        {"role": "system", "content": "Extract table data from the image."},
+        {"role": "user", "content": [
+            {"type": "image_url", "image_url": f"data:image/png;base64,{image_data}"}
+        ]}
+    ]
+)
+
     return response.choices[0].message.content
 
 def process_pdf(pdf_path, openai_api_key):
