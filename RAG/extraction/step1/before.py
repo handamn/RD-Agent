@@ -267,106 +267,6 @@ def detect_header_row(table):
     # Default: gunakan baris pertama sebagai header
     return 0
 
-# def gabungkan_tabel(tabel_sebelum, tabel_sesudah):
-#     """
-#     Gabungkan dua tabel, bahkan jika header tidak ada di tabel kedua.
-#     """
-#     if not tabel_sebelum or not tabel_sesudah:
-#         return None
-    
-#     # Deteksi header pada tabel pertama
-#     header_idx_first = detect_header_row(tabel_sebelum)
-#     if header_idx_first is None:
-#         header_idx_first = 0
-#     header_first_table = tabel_sebelum[header_idx_first]
-    
-#     # Kasus 1: Kedua tabel memiliki header yang sama (kasus sederhana)
-#     if tabel_sebelum[0] == tabel_sesudah[0]:
-#         return tabel_sebelum + tabel_sesudah[1:]
-    
-#     # Kasus 2: Deteksi tabel yang terpotong antar halaman
-#     if len(tabel_sesudah) > 0:
-#         # Periksa tanda-tanda tabel terpotong
-#         last_row_first_table = tabel_sebelum[-1]
-#         first_row_second_table = tabel_sesudah[0]
-        
-#         # Deteksi pola kalimat terpotong di akhir tabel pertama
-#         is_truncated_text = False
-#         if len(last_row_first_table) > 0:
-#             last_cell = last_row_first_table[-1].strip()
-#             if (last_cell.endswith("dan") or last_cell.endswith("atau") or 
-#                 last_cell.endswith(",") or last_cell.endswith(";") or
-#                 not any(c in ".!?" for c in last_cell)):
-#                 is_truncated_text = True
-        
-#         # Cek apakah baris pertama di tabel kedua adalah data (bukan header)
-#         is_continuation_data = False
-#         if len(first_row_second_table) > 0:
-#             # 1. Cek apakah baris ini terlihat seperti data
-#             is_data_row = is_data_row_not_header(first_row_second_table)
-            
-#             # 2. Cek apakah ada kesamaan struktur dengan tabel sebelumnya
-#             col_similarity = calculate_column_similarity(last_row_first_table, first_row_second_table)
-            
-#             # 3. Cek apakah konten di baris pertama tabel kedua terlihat seperti kelanjutan
-#             first_cell_second_table = first_row_second_table[0].strip() if len(first_row_second_table) > 0 else ""
-#             continuation_indicators = ["Penyertaan", "dan", "atau", "jika", "serta", "dengan", "oleh", "yang", "untuk"]
-#             starts_with_lowercase = first_cell_second_table and first_cell_second_table[0].islower()
-#             starts_with_continuation = any(first_cell_second_table.startswith(ind) for ind in continuation_indicators)
-            
-#             is_continuation_data = (is_data_row or col_similarity > 0.5 or 
-#                                   starts_with_lowercase or starts_with_continuation or
-#                                   is_truncated_text)
-        
-#         # Jika terdeteksi sebagai kelanjutan tabel
-#         if is_continuation_data:
-#             # Sesuaikan jumlah kolom pada tabel kedua jika perlu
-#             tabel_sesudah_adjusted = []
-#             for row in tabel_sesudah:
-#                 # Pastikan jumlah kolom sesuai dengan header
-#                 if len(row) < len(header_first_table):
-#                     # Tambahkan kolom kosong di akhir
-#                     adjusted_row = row + [''] * (len(header_first_table) - len(row))
-#                 elif len(row) > len(header_first_table):
-#                     # Jika kelebihan kolom, periksa apakah bisa digabungkan
-#                     if len(row) <= len(header_first_table) + 2:  # Toleransi maksimal 2 kolom ekstra
-#                         excess_content = ' '.join(row[len(header_first_table):])
-#                         adjusted_row = row[:len(header_first_table)-1] + [row[len(header_first_table)-1] + " " + excess_content]
-#                     else:
-#                         # Jika terlalu banyak kolom ekstra, potong saja
-#                         adjusted_row = row[:len(header_first_table)]
-#                 else:
-#                     adjusted_row = row
-                
-#                 tabel_sesudah_adjusted.append(adjusted_row)
-            
-#             # Gabungkan tabel
-#             return tabel_sebelum + tabel_sesudah_adjusted
-    
-#     # Kasus 3: Coba deteksi berdasarkan konten yang saling melengkapi
-#     if len(tabel_sebelum) > 0 and len(tabel_sesudah) > 0:
-#         # Cek apakah jumlah kolom kurang lebih sama
-#         if abs(len(tabel_sebelum[0]) - len(tabel_sesudah[0])) <= 2:
-#             # Cek apakah tabel kedua memiliki jumlah kolom yang valid dan minimal 1 baris
-#             if len(tabel_sesudah) >= 1 and len(tabel_sesudah[0]) >= 2:
-#                 # Sesuaikan kolom dan gabungkan
-#                 adjusted_second_table = []
-#                 for row in tabel_sesudah:
-#                     if len(row) < len(header_first_table):
-#                         adjusted_row = row + [''] * (len(header_first_table) - len(row))
-#                     elif len(row) > len(header_first_table):
-#                         adjusted_row = row[:len(header_first_table)]
-#                     else:
-#                         adjusted_row = row
-#                     adjusted_second_table.append(adjusted_row)
-                
-#                 # Gabungkan tabel dengan asumsi ini adalah kelanjutan
-#                 return tabel_sebelum + adjusted_second_table
-    
-#     # Kasus 4: Tabel yang berbeda (tidak bisa digabungkan)
-#     return None
-
-
 def gabungkan_tabel(tabel_sebelum, tabel_sesudah):
     """
     Gabungkan dua tabel, bahkan jika header tidak ada di tabel kedua.
@@ -385,22 +285,85 @@ def gabungkan_tabel(tabel_sebelum, tabel_sesudah):
         return tabel_sebelum + tabel_sesudah[1:]
     
     # Kasus 2: Deteksi tabel yang terpotong antar halaman
-    if is_table_continued(tabel_sebelum, tabel_sesudah):
-        # Sesuaikan jumlah kolom pada tabel kedua jika perlu
-        tabel_sesudah_adjusted = []
-        for row in tabel_sesudah:
-            if len(row) < len(header_first_table):
-                adjusted_row = row + [''] * (len(header_first_table) - len(row))
-            elif len(row) > len(header_first_table):
-                adjusted_row = row[:len(header_first_table)]
-            else:
-                adjusted_row = row
-            tabel_sesudah_adjusted.append(adjusted_row)
+    if len(tabel_sesudah) > 0:
+        # Periksa tanda-tanda tabel terpotong
+        last_row_first_table = tabel_sebelum[-1]
+        first_row_second_table = tabel_sesudah[0]
         
-        # Gabungkan tabel
-        return tabel_sebelum + tabel_sesudah_adjusted
+        # Deteksi pola kalimat terpotong di akhir tabel pertama
+        is_truncated_text = False
+        if len(last_row_first_table) > 0:
+            last_cell = last_row_first_table[-1].strip()
+            if (last_cell.endswith("dan") or last_cell.endswith("atau") or 
+                last_cell.endswith(",") or last_cell.endswith(";") or
+                not any(c in ".!?" for c in last_cell)):
+                is_truncated_text = True
+        
+        # Cek apakah baris pertama di tabel kedua adalah data (bukan header)
+        is_continuation_data = False
+        if len(first_row_second_table) > 0:
+            # 1. Cek apakah baris ini terlihat seperti data
+            is_data_row = is_data_row_not_header(first_row_second_table)
+            
+            # 2. Cek apakah ada kesamaan struktur dengan tabel sebelumnya
+            col_similarity = calculate_column_similarity(last_row_first_table, first_row_second_table)
+            
+            # 3. Cek apakah konten di baris pertama tabel kedua terlihat seperti kelanjutan
+            first_cell_second_table = first_row_second_table[0].strip() if len(first_row_second_table) > 0 else ""
+            continuation_indicators = ["Penyertaan", "dan", "atau", "jika", "serta", "dengan", "oleh", "yang", "untuk"]
+            starts_with_lowercase = first_cell_second_table and first_cell_second_table[0].islower()
+            starts_with_continuation = any(first_cell_second_table.startswith(ind) for ind in continuation_indicators)
+            
+            is_continuation_data = (is_data_row or col_similarity > 0.5 or 
+                                  starts_with_lowercase or starts_with_continuation or
+                                  is_truncated_text)
+        
+        # Jika terdeteksi sebagai kelanjutan tabel
+        if is_continuation_data:
+            # Sesuaikan jumlah kolom pada tabel kedua jika perlu
+            tabel_sesudah_adjusted = []
+            for row in tabel_sesudah:
+                # Pastikan jumlah kolom sesuai dengan header
+                if len(row) < len(header_first_table):
+                    # Tambahkan kolom kosong di akhir
+                    adjusted_row = row + [''] * (len(header_first_table) - len(row))
+                elif len(row) > len(header_first_table):
+                    # Jika kelebihan kolom, periksa apakah bisa digabungkan
+                    if len(row) <= len(header_first_table) + 2:  # Toleransi maksimal 2 kolom ekstra
+                        excess_content = ' '.join(row[len(header_first_table):])
+                        adjusted_row = row[:len(header_first_table)-1] + [row[len(header_first_table)-1] + " " + excess_content]
+                    else:
+                        # Jika terlalu banyak kolom ekstra, potong saja
+                        adjusted_row = row[:len(header_first_table)]
+                else:
+                    adjusted_row = row
+                
+                tabel_sesudah_adjusted.append(adjusted_row)
+            
+            # Gabungkan tabel
+            return tabel_sebelum + tabel_sesudah_adjusted
     
-    # Kasus 3: Tabel yang berbeda (tidak bisa digabungkan)
+    # Kasus 3: Coba deteksi berdasarkan konten yang saling melengkapi
+    if len(tabel_sebelum) > 0 and len(tabel_sesudah) > 0:
+        # Cek apakah jumlah kolom kurang lebih sama
+        if abs(len(tabel_sebelum[0]) - len(tabel_sesudah[0])) <= 2:
+            # Cek apakah tabel kedua memiliki jumlah kolom yang valid dan minimal 1 baris
+            if len(tabel_sesudah) >= 1 and len(tabel_sesudah[0]) >= 2:
+                # Sesuaikan kolom dan gabungkan
+                adjusted_second_table = []
+                for row in tabel_sesudah:
+                    if len(row) < len(header_first_table):
+                        adjusted_row = row + [''] * (len(header_first_table) - len(row))
+                    elif len(row) > len(header_first_table):
+                        adjusted_row = row[:len(header_first_table)]
+                    else:
+                        adjusted_row = row
+                    adjusted_second_table.append(adjusted_row)
+                
+                # Gabungkan tabel dengan asumsi ini adalah kelanjutan
+                return tabel_sebelum + adjusted_second_table
+    
+    # Kasus 4: Tabel yang berbeda (tidak bisa digabungkan)
     return None
 
 

@@ -1,180 +1,284 @@
-import fitz
+import fitz  # PyMuPDF
+import numpy as np
+from dataclasses import dataclass
+from typing import List, Tuple, Optional
+import tempfile
 import os
+from PIL import Image
+import json
 from datetime import datetime
-import re
+import shutil
 
-class PDFExtractor:
-    def __init__(self, pdf_path, output_dir):
-        """
-        Inisialisasi PDFExtractor
-        :param pdf_path: Path ke file PDF
-        :param output_dir: Directory untuk menyimpan hasil ekstraksi
-        """
-        self.pdf_path = pdf_path
-        self.output_dir = output_dir
-        self.doc = fitz.open(pdf_path)
-        
-        # Buat directory output jika belum ada
-        os.makedirs(output_dir, exist_ok=True)
-        os.makedirs(os.path.join(output_dir, "tables"), exist_ok=True)
-        os.makedirs(os.path.join(output_dir, "text"), exist_ok=True)
-        
-        # Generate timestamp untuk unique identifier
-        self.timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        
-    def is_table_row(self, line):
-        """
-        Deteksi apakah sebuah baris kemungkinan bagian dari tabel
-        berdasarkan pola spacing dan karakter
-        """
-        # Cek pola spacing yang teratur
-        spaces = [m.start() for m in re.finditer(' {2,}', line)]
-        if len(spaces) >= 2:
-            # Cek apakah jarak antar spasi relatif konsisten
-            gaps = [spaces[i+1] - spaces[i] for i in range(len(spaces)-1)]
-            avg_gap = sum(gaps) / len(gaps)
-            deviation = sum(abs(gap - avg_gap) for gap in gaps) / len(gaps)
-            if deviation < avg_gap * 0.5:  # Toleransi deviasi 50%
-                return True
-        
-        # Cek karakter yang umum dalam tabel
-        table_chars = '|+-═━┃┏┓┗┛┣┫┳┻╋'
-        if any(char in line for char in table_chars):
-            return True
-            
-        return False
+@dataclass
+class TableBoundary:
+    page: int
+    x0: float
+    y0: float
+    x1: float
+    y1: float
+    confidence: float
+
+@dataclass
+class PDFElement:
+    type: str  # 'text' or 'table'
+    content: str
+    page: int
+    bbox: Optional[Tuple[float, float, float, float]] = None
     
-    def detect_table_region(self, page, blocks):
-        """
-        Deteksi region tabel berdasarkan blocks teks dan garis
-        """
-        table_regions = []
-        current_region = None
+class PDFProcessor:
+    def __init__(self, filename: str, output_dir: str = None):
+        self.doc = fitz.open(filename)
         
-        # Dapatkan semua garis di halaman
-        lines = page.get_drawings()
-        horizontal_lines = [l for l in lines if abs(l['rect'][1] - l['rect'][3]) < 2]
-        vertical_lines = [l for l in lines if abs(l['rect'][0] - l['rect'][2]) < 2]
+        # Gunakan nama file PDF (tanpa ekstensi) untuk subfolder
+        base_filename = os.path.splitext(os.path.basename(filename))[0]
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        
+        if output_dir:
+            # Jika output_dir disediakan, buat subfolder dengan nama file dan timestamp
+            self.output_dir = os.path.join(output_dir, f"{base_filename}_{timestamp}")
+            os.makedirs(self.output_dir, exist_ok=True)
+            self.temp_dir = self.output_dir
+        else:
+            # Jika tidak, gunakan direktori temporary
+            self.temp_dir = tempfile.mkdtemp()
+            self.output_dir = self.temp_dir
+            
+        print(f"Gambar tabel akan disimpan di: {self.output_dir}")
+    
+    def _is_likely_table_region(self, text_blocks: List[dict]) -> bool:
+        """Analyze text blocks to determine if they likely form a table structure"""
+        if len(text_blocks) < 2:
+            return False
+            
+        # Check for consistent horizontal alignment
+        x_positions = [block['bbox'][0] for block in text_blocks]
+        x_variance = np.var(x_positions)
+        
+        # Check for consistent vertical spacing
+        y_positions = sorted([block['bbox'][1] for block in text_blocks])
+        y_diffs = np.diff(y_positions)
+        y_spacing_variance = np.var(y_diffs) if len(y_diffs) > 0 else float('inf')
+        
+        # Analyze content characteristics
+        numeric_blocks = sum(1 for block in text_blocks if any(c.isdigit() for c in block['text']))
+        total_blocks = len(text_blocks)
+        
+        return (x_variance < 100 and  # Consistent horizontal alignment
+                y_spacing_variance < 50 and  # Consistent vertical spacing
+                numeric_blocks / total_blocks > 0.2)  # At least 20% contains numbers
+    
+    def _detect_table_boundaries(self, page_idx: int) -> List[TableBoundary]:
+        """Detect potential table regions on a page"""
+        page = self.doc[page_idx]
+        blocks = page.get_text("dict")["blocks"]
+        
+        table_regions = []
+        current_region = []
         
         for block in blocks:
-            block_bbox = fitz.Rect(block[:4])
-            text = block[4]
-            
-            # Cek apakah block berada di antara garis
-            is_between_lines = any(
-                l['rect'][1] <= block_bbox.y0 <= l['rect'][3] or
-                l['rect'][1] <= block_bbox.y1 <= l['rect'][3]
-                for l in horizontal_lines
-            )
-            
-            # Cek apakah teks memiliki pola tabel
-            is_table_text = self.is_table_row(text)
-            
-            if is_between_lines or is_table_text:
-                if current_region is None:
-                    current_region = block_bbox
-                else:
-                    current_region.include_rect(block_bbox)
-            elif current_region is not None:
-                table_regions.append(current_region)
-                current_region = None
-        
-        if current_region is not None:
-            table_regions.append(current_region)
+            if "lines" not in block:
+                continue
+                
+            # Group adjacent blocks that might form a table
+            if current_region and self._is_likely_table_region(current_region):
+                # Calculate region boundaries
+                x0 = min(b['bbox'][0] for b in current_region)
+                y0 = min(b['bbox'][1] for b in current_region)
+                x1 = max(b['bbox'][2] for b in current_region)
+                y1 = max(b['bbox'][3] for b in current_region)
+                
+                table_regions.append(TableBoundary(
+                    page=page_idx,
+                    x0=x0, y0=y0,
+                    x1=x1, y1=y1,
+                    confidence=0.8  # Can be adjusted based on more sophisticated metrics
+                ))
+                
+            current_region = []
         
         return table_regions
     
-    def process_pdf(self):
-        """
-        Proses PDF untuk mengekstrak teks dan tabel
-        """
-        current_table = None
-        table_count = 0
-        text_content = []
+    def _capture_table_image(self, boundary: TableBoundary, table_index: int) -> str:
+        """Capture a table region as an image"""
+        page = self.doc[boundary.page]
         
-        for page_num in range(len(self.doc)):
-            page = self.doc[page_num]
-            blocks = page.get_text("blocks")
-            table_regions = self.detect_table_region(page, blocks)
-            
-            # Tambahkan margin untuk region tabel
-            margin = 20
-            table_regions = [region + (margin, margin, margin, margin) for region in table_regions]
-            
-            # Proses setiap block
-            for block in blocks:
-                block_bbox = fitz.Rect(block[:4])
-                text = block[4]
-                
-                # Cek apakah block berada dalam region tabel
-                is_in_table = any(region.contains(block_bbox) for region in table_regions)
-                
-                if is_in_table:
-                    # Jika menemukan tabel baru
-                    if current_table is None:
-                        table_count += 1
-                        current_table = {
-                            'rect': block_bbox,
-                            'start_page': page_num
-                        }
-                    else:
-                        current_table['rect'].include_rect(block_bbox)
-                else:
-                    # Jika sebelumnya ada tabel yang sedang diproses
-                    if current_table is not None:
-                        self.save_table_screenshot(
-                            current_table['start_page'],
-                            page_num - 1,
-                            current_table['rect'],
-                            table_count
-                        )
-                        current_table = None
-                    
-                    # Simpan teks non-tabel
-                    text_content.append(f"[Halaman {page_num + 1}]\n{text}\n")
-            
-            # Handle tabel di akhir halaman
-            if current_table is not None and page_num == len(self.doc) - 1:
-                self.save_table_screenshot(
-                    current_table['start_page'],
-                    page_num,
-                    current_table['rect'],
-                    table_count
-                )
+        # Convert PDF coordinates to pixels (assuming 300 DPI)
+        dpi = 300
+        zoom = dpi / 72
+        mat = fitz.Matrix(zoom, zoom)
         
-        # Simpan semua teks non-tabel
-        self.save_text_content(text_content)
+        # Get the region as an image
+        pix = page.get_pixmap(matrix=mat, clip=fitz.Rect(
+            boundary.x0, boundary.y0,
+            boundary.x1, boundary.y1
+        ))
         
-    def save_table_screenshot(self, start_page, end_page, rect, table_num):
-        """
-        Simpan screenshot tabel
-        """
-        for page_num in range(start_page, end_page + 1):
-            page = self.doc[page_num]
-            pix = page.get_pixmap(matrix=fitz.Matrix(2, 2))  # 2x scaling for better quality
-            
-            # Generate nama file unik
-            filename = f"table_{self.timestamp}_{table_num}_{page_num-start_page+1}.png"
-            filepath = os.path.join(self.output_dir, "tables", filename)
-            
-            pix.save(filepath)
+        # Save with more informative filename
+        img_filename = f"table_{table_index + 1}_page_{boundary.page + 1}_y{int(boundary.y0)}.png"
+        img_path = os.path.join(self.output_dir, img_filename)
+        pix.save(img_path)
+        
+        return img_path
     
-    def save_text_content(self, text_content):
-        """
-        Simpan konten teks
-        """
-        filename = f"text_{self.timestamp}.txt"
-        filepath = os.path.join(self.output_dir, "text", filename)
+    def _analyze_page_continuity(self, prev_boundary: TableBoundary, next_boundary: TableBoundary) -> bool:
+        """Check if two table regions are likely part of the same table"""
+        # Check if regions are on consecutive pages
+        if next_boundary.page != prev_boundary.page + 1:
+            return False
+            
+        # Check for similar horizontal alignment
+        x_overlap = min(prev_boundary.x1, next_boundary.x1) - max(prev_boundary.x0, next_boundary.x0)
+        x_overlap_ratio = x_overlap / (prev_boundary.x1 - prev_boundary.x0)
         
-        with open(filepath, "w", encoding="utf-8") as f:
-            f.write("\n".join(text_content))
+        # Check if the table starts near the top of the next page
+        page_height = self.doc[next_boundary.page].rect.height
+        starts_near_top = next_boundary.y0 < page_height * 0.2
+        
+        return x_overlap_ratio > 0.7 and starts_near_top
+    
+    def process(self) -> List[PDFElement]:
+        """Process the PDF and extract text and table regions"""
+        elements = []
+        current_table_boundaries = []
+        table_count = 0
+        
+        for page_idx in range(len(self.doc)):
+            page = self.doc[page_idx]
+            
+            # Detect table regions
+            table_boundaries = self._detect_table_boundaries(page_idx)
+            
+            # Process text blocks
+            blocks = page.get_text("dict")["blocks"]
+            current_text = []
+            
+            for block in blocks:
+                if "lines" not in block:
+                    continue
+                    
+                bbox = block["bbox"]
+                
+                # Check if block overlaps with any table region
+                is_in_table = any(
+                    tb.x0 <= bbox[0] <= tb.x1 and tb.y0 <= bbox[1] <= tb.y1
+                    for tb in table_boundaries
+                )
+                
+                if not is_in_table:
+                    text = " ".join(
+                        span["text"] for line in block["lines"]
+                        for span in line["spans"]
+                    )
+                    current_text.append(text)
+            
+            # Add text elements
+            if current_text:
+                elements.append(PDFElement(
+                    type="text",
+                    content="\n".join(current_text),
+                    page=page_idx
+                ))
+            
+            # Process table regions
+            for boundary in table_boundaries:
+                # Check for table continuity
+                if current_table_boundaries and self._analyze_page_continuity(
+                    current_table_boundaries[-1], boundary
+                ):
+                    # Extend existing table
+                    current_table_boundaries.append(boundary)
+                else:
+                    # Process any existing table
+                    if current_table_boundaries:
+                        table_images = [
+                            self._capture_table_image(tb, table_count)
+                            for tb in current_table_boundaries
+                        ]
+                        elements.append(PDFElement(
+                            type="table",
+                            content=json.dumps({
+                                "image_paths": table_images,
+                                "boundaries": [vars(tb) for tb in current_table_boundaries]
+                            }),
+                            page=current_table_boundaries[0].page,
+                            bbox=(
+                                current_table_boundaries[0].x0,
+                                current_table_boundaries[0].y0,
+                                current_table_boundaries[-1].x1,
+                                current_table_boundaries[-1].y1
+                            )
+                        ))
+                        table_count += 1
+                    # Start new table
+                    current_table_boundaries = [boundary]
+        
+        # Process final table if any
+        if current_table_boundaries:
+            table_images = [
+                self._capture_table_image(tb, table_count)
+                for tb in current_table_boundaries
+            ]
+            elements.append(PDFElement(
+                type="table",
+                content=json.dumps({
+                    "image_paths": table_images,
+                    "boundaries": [vars(tb) for tb in current_table_boundaries]
+                }),
+                page=current_table_boundaries[0].page,
+                bbox=(
+                    current_table_boundaries[0].x0,
+                    current_table_boundaries[0].y0,
+                    current_table_boundaries[-1].x1,
+                    current_table_boundaries[-1].y1
+                )
+            ))
+        
+        return elements
+    
+    def __del__(self):
+        """Cleanup when object is destroyed"""
+        self.doc.close()
+        if not self.output_dir:  # Only cleanup if using temporary directory
+            try:
+                shutil.rmtree(self.temp_dir)
+            except:
+                pass
 
-# Contoh penggunaan
-def process_pdf_file(pdf_path, output_dir):
-    extractor = PDFExtractor(pdf_path, output_dir)
-    extractor.process_pdf()
+def process_pdf(filename: str, output_dir: str = None) -> Tuple[List[PDFElement], List[str]]:
+    """
+    Main function to process a PDF file
+    
+    Args:
+        filename (str): Path to the PDF file
+        output_dir (str, optional): Directory to save table images. If None, uses a temporary directory.
+    """
+    processor = PDFProcessor(filename, output_dir)
+    elements = processor.process()
+    
+    # Separate results into text and table paths
+    text_elements = []
+    table_images = []
+    
+    for element in elements:
+        if element.type == "text":
+            text_elements.append(element.content)
+        else:  # table
+            table_data = json.loads(element.content)
+            table_images.extend(table_data["image_paths"])
+    
+    return elements, table_images
 
-
-pdf_path = "studi_kasus/4_Tabel_Satu_Halaman_Normal_V3.pdf"
-output_dir = "result"
-process_pdf_file(pdf_path, output_dir)
+if __name__ == "__main__":
+    filename = "studi_kasus/4_Tabel_Satu_Halaman_Normal_V3.pdf"  # Replace with your PDF file
+    output_dir = "result"     # Replace with your desired output directory
+    
+    elements, table_images = process_pdf(filename, output_dir)
+    
+    print("Found elements:")
+    for element in elements:
+        print(f"Type: {element.type}")
+        if element.type == "text":
+            print(f"Content: {element.content[:100]}...")
+        else:
+            print(f"Table images: {json.loads(element.content)['image_paths']}")
+        print("---")

@@ -2,6 +2,7 @@ import fitz
 import cv2
 import numpy as np
 import os
+import pandas as pd
 
 def deteksi_tabel(halaman):
     """Mendeteksi tabel di halaman PDF."""
@@ -26,9 +27,7 @@ def potong_gambar_tabel(nama_file_pdf, nomor_halaman, koordinat_tabel, folder_ou
     img = np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.height, pix.width, pix.n)
     img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
 
-    # Konversi koordinat ke integer
-    x0, y0, x1, y1 = map(int, koordinat_tabel)
-
+    x0, y0, x1, y1 = koordinat_tabel
     potongan_tabel = img[y0:y1, x0:x1]
 
     nama_file_potongan = f"tabel_halaman_{nomor_halaman + 1}.png"
