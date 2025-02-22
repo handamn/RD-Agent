@@ -175,6 +175,6 @@ def process_pdf_file(pdf_path, output_dir):
     extractor.process_pdf()
 
 
-pdf_path = "studi_kasus/4_Tabel_Satu_Halaman_Normal_V1.pdf"
+pdf_path = "studi_kasus/4_Tabel_Satu_Halaman_Normal_V3.pdf"
 output_dir = "result"
 process_pdf_file(pdf_path, output_dir)
