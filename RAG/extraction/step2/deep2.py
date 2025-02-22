@@ -5,6 +5,8 @@ def extract_tables_from_pdf(pdf_path):
     # Buka file PDF
     with pdfplumber.open(pdf_path) as pdf:
         all_tables = []
+        current_table = []  # Untuk menangani tabel yang terpisah di beberapa halaman
+        header = None  # Untuk menyimpan header tabel
         
         # Iterasi melalui setiap halaman
         for page_num, page in enumerate(pdf.pages):
@@ -17,15 +19,25 @@ def extract_tables_from_pdf(pdf_path):
             
             # Ekstrak tabel dari halaman
             tables = page.extract_tables()
-            for table_num, table in enumerate(tables):
-                print(f"Table {table_num + 1} from page {page_num + 1}:")
+            for table in tables:
+                if not table:
+                    continue
                 
-                # Konversi tabel ke DataFrame pandas
-                df = pd.DataFrame(table[1:], columns=table[0])
-                print(df)
+                # Jika header belum disimpan, simpan header dari tabel pertama
+                if header is None:
+                    header = table[0]
+                    current_table.extend(table[1:])  # Tambahkan baris data setelah header
+                else:
+                    # Jika header sudah ada, tambahkan baris data ke tabel saat ini
+                    current_table.extend(table)
+            
+            # Jika tabel selesai di halaman ini, simpan ke all_tables
+            if current_table:
+                df = pd.DataFrame(current_table, columns=header)
                 all_tables.append(df)
-                print("\n")
-    
+                current_table = []  # Reset tabel saat ini
+                header = None  # Reset header
+        
     return all_tables
 
 # Path ke file PDF Anda
