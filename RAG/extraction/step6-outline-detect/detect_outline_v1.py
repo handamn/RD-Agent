@@ -1,53 +1,52 @@
 import cv2
 import numpy as np
-import fitz  # PyMuPDF
+import pdf2image
+import os
 
-def detect_and_draw_horizontal_lines(image):
-    # Konversi gambar ke grayscale
+def detect_horizontal_lines(image, min_length=100, max_thickness=1):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     
-    # Gunakan Canny edge detection
+    # Gunakan operasi morfologi untuk menghilangkan noise
+    kernel = np.ones((1, 5), np.uint8)
+    gray = cv2.morphologyEx(gray, cv2.MORPH_OPEN, kernel)
+    
     edges = cv2.Canny(gray, 50, 150, apertureSize=3)
+    lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=100, minLineLength=min_length, maxLineGap=5)
+    horizontal_lines = []
     
-    # Gunakan Hough Line Transform untuk mendeteksi garis
-    lines = cv2.HoughLinesP(edges, 1, np.pi/180, threshold=100, minLineLength=100, maxLineGap=10)
-    
-    # Gambar garis horizontal yang terdeteksi dengan warna kuning
     if lines is not None:
         for line in lines:
             x1, y1, x2, y2 = line[0]
-            # Cek apakah garis horizontal (y1 dan y2 hampir sama)
-            if abs(y1 - y2) < 5:
-                cv2.line(image, (x1, y1), (x2, y2), (0, 255, 255), 2)  # Warna kuning (BGR)
+            thickness = abs(y2 - y1)
+            if thickness <= max_thickness and abs(x2 - x1) >= min_length:  # Filter garis berdasarkan ketebalan dan panjang
+                horizontal_lines.append((x1, y1, x2, y2))
     
-    return image, lines is not None
+    return horizontal_lines
 
-def process_pdf(pdf_path, output_folder):
-    # Buka file PDF
-    pdf_document = fitz.open(pdf_path)
+def process_pdf(pdf_path, output_dir="output_images", min_length=100, max_thickness=3):
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
     
-    for page_num in range(len(pdf_document)):
-        page = pdf_document.load_page(page_num)
-        pix = page.get_pixmap()
-        img = np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.h, pix.w, pix.n)
+    images = pdf2image.convert_from_path(pdf_path)
+    
+    for i, img in enumerate(images):
+        image_cv = np.array(img)
+        image_cv = cv2.cvtColor(image_cv, cv2.COLOR_RGB2BGR)
         
-        # Konversi gambar ke format BGR (OpenCV menggunakan BGR)
-        img_bgr = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+        # Tambahkan garis referensi sepanjang 100 piksel di awal gambar
+        cv2.line(image_cv, (50, 50), (150, 50), (0, 0, 255), 2)  # Garis merah sepanjang 100 piksel
         
-        # Deteksi dan gambar garis horizontal
-        img_with_lines, has_lines = detect_and_draw_horizontal_lines(img_bgr)
+        lines = detect_horizontal_lines(image_cv, min_length, max_thickness)
         
-        # Jika ada garis horizontal, simpan gambar
-        if has_lines:
-            output_path = f"{output_folder}/page_{page_num + 1}.png"
-            cv2.imwrite(output_path, cv2.cvtColor(img_with_lines, cv2.COLOR_BGR2RGB))
-            print(f"Garis horizontal terdeteksi pada halaman {page_num + 1}. Gambar disimpan di {output_path}")
-        else:
-            print(f"Tidak ada garis horizontal pada halaman {page_num + 1}")
+        if lines:
+            for x1, y1, x2, y2 in lines:
+                cv2.line(image_cv, (x1, y1), (x2, y2), (0, 255, 255), 2)  # Tambahkan garis kuning
+            
+            output_path = os.path.join(output_dir, f"page_{i+1}.png")
+            cv2.imwrite(output_path, image_cv)
+            print(f"Saved: {output_path}")
 
-# Path ke file PDF dan folder output
-pdf_path = "studi_kasus/8_Tabel_N_Halaman_Merge_V1.pdf"
-output_folder = "output_images"
-
-# Proses PDF
-process_pdf(pdf_path, output_folder)
+################
+if __name__ == "__main__":
+    pdf_file = "studi_kasus/8_Tabel_N_Halaman_Merge_V1.pdf"  # Ganti dengan path PDF Anda
+    process_pdf(pdf_file)
