@@ -45,9 +45,19 @@ def process_pdf(pdf_path, output_dir="output_images", min_length=100, max_thickn
             for idx, (x1, y1, x2, y2) in enumerate(sorted_lines):
                 if idx < 3:  # 3 garis terpanjang
                     color = (255, 255, 0)  # Biru untuk 3 garis terpanjang
+                    font_scale = 1.0  # Ukuran teks lebih besar
+                    thickness = 2
                 else:
                     color = (0, 255, 255)  # Kuning untuk garis lainnya
+                    font_scale = 0.5  # Ukuran teks lebih kecil
+                    thickness = 1
+                
                 cv2.line(image_cv, (x1, y1), (x2, y2), color, 2)
+                
+                # Tambahkan teks peringkat hanya untuk garis 1-3 terpanjang
+                if idx < 3:
+                    text_position = (x2 + 10, y1)
+                    cv2.putText(image_cv, f"{idx+1}", text_position, cv2.FONT_HERSHEY_SIMPLEX, font_scale, (0, 0, 255), thickness, cv2.LINE_AA)
             
             output_path = os.path.join(output_dir, f"page_{i+1}.png")
             cv2.imwrite(output_path, image_cv)
