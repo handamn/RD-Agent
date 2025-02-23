@@ -42,44 +42,31 @@ class PDFProcessor:
             if w > 100 and h > 50:  # Menurunkan minimum height untuk mendeteksi bagian tabel
                 table_boundaries.append((x, y, w, h))
         
-        return table_boundaries
+        return sorted(table_boundaries, key=lambda x: x[1])  # Sort by y-coordinate
 
-    def is_continuation_of_previous_table(self, current_boundary, page_num):
-        """Cek apakah tabel merupakan lanjutan dari halaman sebelumnya"""
-        x, y, w, h = current_boundary
+    def extract_text_blocks(self, page, table_boundaries):
+        """Ekstrak teks dari area non-tabel dengan mempertahankan struktur"""
+        text_blocks = []
+        blocks = page.get_text("blocks")
         
-        # Jika ini adalah awal halaman (y kecil) dan ada tabel sebelumnya
-        if y < 50 and self.previous_table_bottom is not None and page_num > 0:
-            return True
-        return False
-
-    def merge_table_images(self, img1, img2):
-        """Menggabungkan dua gambar tabel secara vertikal"""
-        if img1 is None:
-            return img2
-        if img2 is None:
-            return img1
+        # Konversi koordinat tabel ke format rect untuk pengecekan overlap
+        table_rects = [(b[0], b[1], b[0] + b[2], b[1] + b[3]) for b in table_boundaries]
+        
+        for block in blocks:
+            block_rect = block[:4]  # (x0, y0, x1, y1)
+            is_in_table = False
             
-        # Konversi ke format PIL Image jika perlu
-        if isinstance(img1, np.ndarray):
-            img1 = Image.fromarray(img1)
-        if isinstance(img2, np.ndarray):
-            img2 = Image.fromarray(img2)
+            # Cek apakah block berada dalam area tabel
+            for table_rect in table_rects:
+                if (block_rect[0] < table_rect[2] and block_rect[2] > table_rect[0] and
+                    block_rect[1] < table_rect[3] and block_rect[3] > table_rect[1]):
+                    is_in_table = True
+                    break
             
-        # Sesuaikan lebar gambar
-        if img1.width != img2.width:
-            # Pilih lebar terbesar
-            max_width = max(img1.width, img2.width)
-            # Resize kedua gambar ke lebar yang sama
-            img1 = img1.resize((max_width, int(img1.height * max_width / img1.width)))
-            img2 = img2.resize((max_width, int(img2.height * max_width / img2.width)))
+            if not is_in_table:
+                text_blocks.append(block[4])  # block[4] contains the text
         
-        # Buat gambar baru dengan tinggi gabungan
-        new_img = Image.new('RGB', (img1.width, img1.height + img2.height))
-        new_img.paste(img1, (0, 0))
-        new_img.paste(img2, (0, img1.height))
-        
-        return new_img
+        return text_blocks
 
     def capture_table(self, page, boundary):
         """Mengambil screenshot area tabel"""
@@ -95,7 +82,7 @@ class PDFProcessor:
             self.table_counter += 1
             output_path = os.path.join(self.output_dir, f"table_{self.table_counter}.png")
             self.current_table_image.save(output_path)
-            print(f"Tabel tersimpan: {output_path}")
+            print(f"\nTabel tersimpan: {output_path}")
             self.current_table_image = None
             self.previous_table_bottom = None
 
@@ -103,10 +90,9 @@ class PDFProcessor:
         """Proses utama untuk ekstraksi teks dan tabel"""
         for page_num in range(len(self.doc)):
             page = self.doc[page_num]
-            print(f"\nMemproses halaman {page_num + 1}")
-            
-            # Ekstrak teks dari halaman
-            text = page.get_text()
+            print(f"\n{'='*50}")
+            print(f"Memproses halaman {page_num + 1}")
+            print(f"{'='*50}")
             
             # Konversi halaman ke gambar untuk deteksi tabel
             pix = page.get_pixmap()
@@ -116,34 +102,25 @@ class PDFProcessor:
             # Deteksi tabel
             table_boundaries = self.detect_table_boundaries(img_np)
             
-            if not table_boundaries:
-                # Jika tidak ada tabel di halaman ini, simpan tabel sebelumnya (jika ada)
+            # Ekstrak teks dari area non-tabel
+            text_blocks = self.extract_text_blocks(page, table_boundaries)
+            
+            # Print teks non-tabel
+            if text_blocks:
+                print("\nTeks yang diekstrak:")
+                print("-" * 50)
+                for block in text_blocks:
+                    # Hapus karakter newline berlebih dan whitespace
+                    clean_text = ' '.join(block.split())
+                    if clean_text:
+                        print(clean_text)
+                        print("-" * 50)
+            
+            # Proses tabel yang ditemukan
+            for boundary in table_boundaries:
+                table_img = self.capture_table(page, boundary)
+                self.current_table_image = table_img
                 self.save_current_table()
-                # Print teks jika tidak ada tabel
-                if text.strip():
-                    print("\nTeks yang diekstrak:")
-                    print("-" * 50)
-                    print(text.strip())
-                    print("-" * 50)
-            else:
-                for boundary in table_boundaries:
-                    table_img = self.capture_table(page, boundary)
-                    
-                    if self.is_continuation_of_previous_table(boundary, page_num):
-                        # Gabungkan dengan tabel sebelumnya
-                        self.current_table_image = self.merge_table_images(
-                            self.current_table_image, table_img)
-                    else:
-                        # Simpan tabel sebelumnya jika ada
-                        self.save_current_table()
-                        # Mulai tabel baru
-                        self.current_table_image = table_img
-                    
-                    # Update posisi terakhir tabel
-                    self.previous_table_bottom = boundary[1] + boundary[3]
-        
-        # Simpan tabel terakhir jika ada
-        self.save_current_table()
 
     def close(self):
         """Tutup dokumen PDF"""
