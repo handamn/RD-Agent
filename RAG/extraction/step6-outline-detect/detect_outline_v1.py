@@ -3,7 +3,7 @@ import numpy as np
 import pdf2image
 import os
 
-def detect_horizontal_lines(image, min_length=100, max_thickness=1):
+def detect_horizontal_lines(image, min_length=100, max_thickness=3):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     
     # Gunakan operasi morfologi untuk menghilangkan noise
@@ -39,8 +39,15 @@ def process_pdf(pdf_path, output_dir="output_images", min_length=100, max_thickn
         lines = detect_horizontal_lines(image_cv, min_length, max_thickness)
         
         if lines:
-            for x1, y1, x2, y2 in lines:
-                cv2.line(image_cv, (x1, y1), (x2, y2), (0, 255, 255), 2)  # Tambahkan garis kuning
+            # Urutkan garis berdasarkan panjang dari yang terpanjang ke terpendek
+            sorted_lines = sorted(lines, key=lambda line: abs(line[2] - line[0]), reverse=True)
+            
+            for idx, (x1, y1, x2, y2) in enumerate(sorted_lines):
+                if idx < 3:  # 3 garis terpanjang
+                    color = (255, 255, 0)  # Biru untuk 3 garis terpanjang
+                else:
+                    color = (0, 255, 255)  # Kuning untuk garis lainnya
+                cv2.line(image_cv, (x1, y1), (x2, y2), color, 2)
             
             output_path = os.path.join(output_dir, f"page_{i+1}.png")
             cv2.imwrite(output_path, image_cv)
@@ -49,4 +56,4 @@ def process_pdf(pdf_path, output_dir="output_images", min_length=100, max_thickn
 ################
 if __name__ == "__main__":
     pdf_file = "studi_kasus/8_Tabel_N_Halaman_Merge_V1.pdf"  # Ganti dengan path PDF Anda
-    process_pdf(pdf_file)
+    process_pdf(pdf_file, min_length=100, max_thickness=3)
