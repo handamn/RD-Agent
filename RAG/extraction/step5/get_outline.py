@@ -8,7 +8,7 @@ import os
 class PDFProcessor:
     def __init__(self):
         # Hardcode lokasi PDF dan output
-        self.pdf_path = "studi_kasus/7_Tabel_N_Halaman_Normal_V3.pdf"  # Sesuaikan dengan lokasi PDF Anda
+        self.pdf_path = "studi_kasus/8_Tabel_N_Halaman_Merge_V1.pdf"  # Sesuaikan dengan lokasi PDF Anda
         self.output_dir = "result"  # Sesuaikan dengan lokasi output yang diinginkan
         self.doc = fitz.open(self.pdf_path)
         
