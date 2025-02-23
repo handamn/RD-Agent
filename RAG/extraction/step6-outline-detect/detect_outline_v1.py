@@ -3,7 +3,7 @@ import numpy as np
 import pdf2image
 import os
 
-def detect_horizontal_lines(image, min_length=100, max_thickness=3):
+def detect_horizontal_lines(image, min_length=100, max_thickness=3, header_ratio=0.2, footer_ratio=0.1):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     
     # Gunakan operasi morfologi untuk menghilangkan noise
@@ -15,11 +15,20 @@ def detect_horizontal_lines(image, min_length=100, max_thickness=3):
     horizontal_lines = []
     
     if lines is not None:
+        img_height, img_width = gray.shape
+        header_limit = int(img_height * header_ratio)
+        footer_limit = int(img_height * (1 - footer_ratio))
+        min_valid_length = img_width * 0.5  # Hanya deteksi garis lebih panjang dari 50% lebar halaman
+        
         for line in lines:
             x1, y1, x2, y2 = line[0]
             thickness = abs(y2 - y1)
-            if thickness <= max_thickness and abs(x2 - x1) >= min_length:  # Filter garis berdasarkan ketebalan dan panjang
-                horizontal_lines.append((x1, y1, x2, y2))
+            line_length = abs(x2 - x1)
+            
+            # Abaikan garis di header, footer, atau yang terlalu pendek
+            if thickness <= max_thickness and line_length >= min_valid_length:
+                if header_limit <= y1 <= footer_limit and header_limit <= y2 <= footer_limit:
+                    horizontal_lines.append((x1, y1, x2, y2))
     
     return horizontal_lines
 
@@ -34,7 +43,7 @@ def process_pdf(pdf_path, output_dir="output_images", min_length=100, max_thickn
         image_cv = cv2.cvtColor(image_cv, cv2.COLOR_RGB2BGR)
         
         # Tambahkan garis referensi sepanjang 100 piksel di awal gambar
-        cv2.line(image_cv, (50, 50), (150, 50), (0, 0, 255), 2)  # Garis merah sepanjang 100 piksel
+        # cv2.line(image_cv, (50, 50), (150, 50), (0, 0, 255), 2)  # Garis merah sepanjang 100 piksel
         
         lines = detect_horizontal_lines(image_cv, min_length, max_thickness)
         
@@ -65,5 +74,5 @@ def process_pdf(pdf_path, output_dir="output_images", min_length=100, max_thickn
 
 ################
 if __name__ == "__main__":
-    pdf_file = "studi_kasus/8_Tabel_N_Halaman_Merge_V1.pdf"  # Ganti dengan path PDF Anda
-    process_pdf(pdf_file, min_length=100, max_thickness=3)
+    pdf_file = "studi_kasus/5_Tabel_Satu_Halaman_Merge_V1.pdf"  # Ganti dengan path PDF Anda
+    process_pdf(pdf_file, min_length=100, max_thickness=1)
