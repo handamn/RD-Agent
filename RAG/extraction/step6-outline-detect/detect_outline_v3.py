@@ -7,7 +7,7 @@ def detect_and_highlight_lines(
     pdf_path, 
     output_dir="output", 
     min_line_length=200, 
-    line_thickness=2,
+    line_thickness=2,  # Now controls detection thickness
     header_threshold=50,
     footer_threshold=50
 ):
@@ -19,7 +19,7 @@ def detect_and_highlight_lines(
         pdf_path (str): Path ke file PDF
         output_dir (str): Direktori untuk menyimpan output
         min_line_length (int): Panjang minimum garis yang akan dideteksi
-        line_thickness (int): Ketebalan garis highlight dalam point (pt)
+        line_thickness (int): Ketebalan garis yang akan dideteksi
         header_threshold (float): Ukuran area header yang akan diabaikan (dalam points)
         footer_threshold (float): Ukuran area footer yang akan diabaikan (dalam points)
     """
@@ -61,9 +61,9 @@ def detect_and_highlight_lines(
         
         # Threshold dan deteksi garis
         _, binary = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY_INV)
-        horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (min_line_length, 1))
+        horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (min_line_length, line_thickness))
         detect_horizontal = cv2.morphologyEx(binary, cv2.MORPH_OPEN, horizontal_kernel, iterations=2)
-        horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (20, 1))
+        horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (20, line_thickness))
         detect_horizontal = cv2.dilate(detect_horizontal, horizontal_kernel, iterations=1)
         
         # Temukan kontur
@@ -84,11 +84,11 @@ def detect_and_highlight_lines(
                 
                 # Konversi koordinat kembali ke skala asli
                 x1 = x / zoom
-                y1 = (y / zoom) - (line_thickness / 2)
+                y1 = y / zoom - 0.5  # Minimum highlight thickness (0.5 point)
                 x2 = (x + w) / zoom
-                y2 = (y / zoom) + (line_thickness / 2)
+                y2 = y / zoom + 0.5  # Minimum highlight thickness (0.5 point)
                 
-                # Gambar garis kuning di PDF
+                # Gambar garis kuning di PDF dengan ketebalan minimal
                 rect = fitz.Rect(x1, y1, x2, y2)
                 yellow = (1, 1, 0)
                 dest_page.draw_rect(rect, color=yellow, fill=yellow)
@@ -121,8 +121,8 @@ if __name__ == "__main__":
     detect_and_highlight_lines(
         pdf_path="studi_kasus/ABF Indonesia Bond Index Fund.pdf",
         output_dir="output_images",
-        min_line_length=100,
-        line_thickness=3,
+        min_line_length=50,
+        line_thickness=1,
         header_threshold=100,  # Sesuaikan dengan kebutuhan
         footer_threshold=100   # Sesuaikan dengan kebutuhan
     )
