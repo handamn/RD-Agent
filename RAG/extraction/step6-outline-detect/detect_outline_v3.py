@@ -3,15 +3,25 @@ import numpy as np
 import cv2
 from pathlib import Path
 
-def detect_and_highlight_lines(pdf_path, output_dir="output", min_line_length=200, line_thickness=2):
+def detect_and_highlight_lines(
+    pdf_path, 
+    output_dir="output", 
+    min_line_length=200, 
+    line_thickness=2,
+    header_threshold=50,  # Ukuran area header dalam points
+    footer_threshold=50   # Ukuran area footer dalam points
+):
     """
-    Mendeteksi garis horizontal di PDF dan menghasilkan satu PDF baru dengan garis yang disorot.
+    Mendeteksi garis horizontal di PDF dan menghasilkan satu PDF baru dengan garis yang disorot,
+    mengabaikan garis yang berada di area header dan footer.
     
     Args:
         pdf_path (str): Path ke file PDF
         output_dir (str): Direktori untuk menyimpan output
         min_line_length (int): Panjang minimum garis yang akan dideteksi
         line_thickness (int): Ketebalan garis highlight dalam point (pt)
+        header_threshold (float): Ukuran area header yang akan diabaikan (dalam points)
+        footer_threshold (float): Ukuran area footer yang akan diabaikan (dalam points)
     """
     Path(output_dir).mkdir(parents=True, exist_ok=True)
     
@@ -25,6 +35,13 @@ def detect_and_highlight_lines(pdf_path, output_dir="output", min_line_length=20
     
     for page_num in range(len(src_doc)):
         page = src_doc[page_num]
+        
+        # Get page dimensions
+        page_height = page.rect.height
+        
+        # Define header and footer zones
+        header_zone = (0, header_threshold)
+        footer_zone = (page_height - footer_threshold, page_height)
         
         # Get pixmap untuk deteksi garis
         zoom = 2
@@ -53,6 +70,13 @@ def detect_and_highlight_lines(pdf_path, output_dir="output", min_line_length=20
         has_lines = False
         for contour in contours:
             x, y, w, h = cv2.boundingRect(contour)
+            # Konversi y ke skala PDF
+            y_pdf = y / zoom
+            
+            # Skip jika garis berada di area header atau footer
+            if (y_pdf < header_threshold) or (y_pdf > page_height - footer_threshold):
+                continue
+                
             if w/h > 20 and w > min_line_length:
                 if not has_lines:
                     # Buat halaman baru di PDF tujuan hanya jika belum dibuat
@@ -71,6 +95,8 @@ def detect_and_highlight_lines(pdf_path, output_dir="output", min_line_length=20
                 rect = fitz.Rect(x1, y1, x2, y2)
                 yellow = (1, 1, 0)
                 dest_page.draw_rect(rect, color=yellow, fill=yellow)
+                
+                print(f"Garis terdeteksi di halaman {page_num + 1} pada posisi y: {y_pdf:.2f}")
         
         if has_lines:
             pages_with_lines += 1
@@ -80,6 +106,9 @@ def detect_and_highlight_lines(pdf_path, output_dir="output", min_line_length=20
         output_path = f"{output_dir}/document_with_lines.pdf"
         dest_doc.save(output_path)
         print(f"\nTotal {pages_with_lines} halaman dengan garis horizontal telah disimpan ke {output_path}")
+        print(f"Area yang diabaikan:")
+        print(f"- Header: {header_threshold} points dari atas")
+        print(f"- Footer: {footer_threshold} points dari bawah")
     else:
         print("Tidak ditemukan garis horizontal di dokumen")
     
@@ -91,7 +120,8 @@ if __name__ == "__main__":
     detect_and_highlight_lines(
         pdf_path="studi_kasus/ABF Indonesia Bond Index Fund.pdf",
         output_dir="output_images",
-        min_line_length=50,
+        min_line_length=200,
         line_thickness=1,
-        # max_line_gap=50  # Sesuaikan dengan kebutuhan
+        header_threshold=100,  # Sesuaikan dengan kebutuhan
+        footer_threshold=100   # Sesuaikan dengan kebutuhan
     )
