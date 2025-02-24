@@ -8,12 +8,12 @@ def detect_and_highlight_lines(
     output_dir="output", 
     min_line_length=200, 
     line_thickness=2,
-    header_threshold=50,  # Ukuran area header dalam points
-    footer_threshold=50   # Ukuran area footer dalam points
+    header_threshold=50,
+    footer_threshold=50
 ):
     """
-    Mendeteksi garis horizontal di PDF dan menghasilkan satu PDF baru dengan garis yang disorot,
-    mengabaikan garis yang berada di area header dan footer.
+    Membuat salinan PDF dengan highlight pada garis horizontal yang terdeteksi.
+    Semua halaman akan tetap ada dalam output PDF.
     
     Args:
         pdf_path (str): Path ke file PDF
@@ -31,17 +31,19 @@ def detect_and_highlight_lines(
     # Buat PDF baru untuk output
     dest_doc = fitz.open()
     
-    pages_with_lines = 0
+    pages_with_lines = []
+    total_pages = len(src_doc)
     
-    for page_num in range(len(src_doc)):
+    for page_num in range(total_pages):
         page = src_doc[page_num]
         
         # Get page dimensions
         page_height = page.rect.height
         
-        # Define header and footer zones
-        header_zone = (0, header_threshold)
-        footer_zone = (page_height - footer_threshold, page_height)
+        # Buat halaman baru di PDF tujuan
+        dest_page = dest_doc.new_page(width=page.rect.width, height=page.rect.height)
+        # Salin konten halaman asli ke halaman baru
+        dest_page.show_pdf_page(page.rect, src_doc, page_num)
         
         # Get pixmap untuk deteksi garis
         zoom = 2
@@ -78,12 +80,7 @@ def detect_and_highlight_lines(
                 continue
                 
             if w/h > 20 and w > min_line_length:
-                if not has_lines:
-                    # Buat halaman baru di PDF tujuan hanya jika belum dibuat
-                    dest_page = dest_doc.new_page(width=page.rect.width, height=page.rect.height)
-                    # Salin konten halaman asli ke halaman baru
-                    dest_page.show_pdf_page(page.rect, src_doc, page_num)
-                    has_lines = True
+                has_lines = True
                 
                 # Konversi koordinat kembali ke skala asli
                 x1 = x / zoom
@@ -96,21 +93,25 @@ def detect_and_highlight_lines(
                 yellow = (1, 1, 0)
                 dest_page.draw_rect(rect, color=yellow, fill=yellow)
                 
-                print(f"Garis terdeteksi di halaman {page_num + 1} pada posisi y: {y_pdf:.2f}")
+                print(f"Garis terdeteksi di halaman {page_num + 1} pada posisi y: {y_pdf:.2f} points")
         
         if has_lines:
-            pages_with_lines += 1
-            print(f"Garis horizontal ditemukan di halaman {page_num + 1}")
+            pages_with_lines.append(page_num + 1)
     
-    if pages_with_lines > 0:
-        output_path = f"{output_dir}/document_with_lines.pdf"
-        dest_doc.save(output_path)
-        print(f"\nTotal {pages_with_lines} halaman dengan garis horizontal telah disimpan ke {output_path}")
-        print(f"Area yang diabaikan:")
-        print(f"- Header: {header_threshold} points dari atas")
-        print(f"- Footer: {footer_threshold} points dari bawah")
-    else:
-        print("Tidak ditemukan garis horizontal di dokumen")
+    # Simpan hasil
+    output_path = f"{output_dir}/document_with_lines.pdf"
+    dest_doc.save(output_path)
+    
+    # Print summary
+    print("\nRingkasan deteksi garis horizontal:")
+    print(f"Total halaman dalam dokumen: {total_pages}")
+    print(f"Jumlah halaman yang memiliki garis: {len(pages_with_lines)}")
+    if pages_with_lines:
+        print("Garis horizontal ditemukan di halaman:", ", ".join(map(str, pages_with_lines)))
+    print(f"\nHasil disimpan ke: {output_path}")
+    print(f"Area yang diabaikan:")
+    print(f"- Header: {header_threshold} points dari atas")
+    print(f"- Footer: {footer_threshold} points dari bawah")
     
     dest_doc.close()
     src_doc.close()
@@ -120,8 +121,8 @@ if __name__ == "__main__":
     detect_and_highlight_lines(
         pdf_path="studi_kasus/ABF Indonesia Bond Index Fund.pdf",
         output_dir="output_images",
-        min_line_length=200,
-        line_thickness=1,
+        min_line_length=100,
+        line_thickness=3,
         header_threshold=100,  # Sesuaikan dengan kebutuhan
         footer_threshold=100   # Sesuaikan dengan kebutuhan
     )
