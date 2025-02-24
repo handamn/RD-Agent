@@ -1,37 +1,44 @@
 import pdfplumber
-import camelot
 import pandas as pd
 
 def extract_text_from_pdf(pdf_path):
     text = ""
     with pdfplumber.open(pdf_path) as pdf:
         for page in pdf.pages:
-            text += page.extract_text() + "\n"
+            page_text = page.extract_text()
+            if page_text:
+                text += page_text + "\n"
     return text
 
 def clean_table_data(df):
-    df = df.applymap(lambda x: " ".join(str(x).split()) if pd.notnull(x) else x)  # Hapus newline & whitespace berlebih
+    df = df.applymap(lambda x: " ".join(str(x).split()) if pd.notnull(x) else "")  # Hapus newline & whitespace berlebih
     df = df.dropna(how='all', axis=1)  # Hapus kolom kosong
     df = df.dropna(how='all', axis=0)  # Hapus baris kosong
     return df
 
 def extract_tables_from_pdf(pdf_path):
     tables = []
+    header_detected = None
+    
     with pdfplumber.open(pdf_path) as pdf:
         for page in pdf.pages:
             extracted_tables = page.extract_tables()
             for table in extracted_tables:
                 df = pd.DataFrame(table)
                 df = clean_table_data(df)
+                
+                # Jika tabel kosong, abaikan
+                if df.empty:
+                    continue
+                
+                # Simpan header dari halaman pertama jika tidak berubah
+                if header_detected is None:
+                    header_detected = df.iloc[0].tolist()
+                else:
+                    if df.iloc[0].tolist() == header_detected:
+                        df = df[1:].reset_index(drop=True)
+                
                 tables.append(df)
-    
-    # Fallback ke Camelot jika tidak ada tabel yang terdeteksi dengan pdfplumber
-    if not tables:
-        camelot_tables = camelot.read_pdf(pdf_path, pages='all', strip_text='\n')
-        for table in camelot_tables:
-            df = table.df  # Convert to Pandas DataFrame
-            df = clean_table_data(df)
-            tables.append(df)
     
     return tables
 
@@ -43,6 +50,7 @@ def merge_broken_tables(tables):
         if temp_table is None:
             temp_table = table
         else:
+            # Gabungkan tabel jika jumlah kolomnya sama
             if table.shape[1] == temp_table.shape[1]:
                 temp_table = pd.concat([temp_table, table.iloc[1:]], ignore_index=True)
             else:
