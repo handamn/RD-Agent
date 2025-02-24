@@ -38,6 +38,9 @@ def extract_tables_from_pdf(pdf_path):
                     if df.iloc[0].tolist() == header_detected:
                         df = df[1:].reset_index(drop=True)
                 
+                # Pisahkan isi sel panjang menjadi beberapa kolom jika memungkinkan
+                df = df.applymap(lambda x: x.replace(" - ", "\n") if isinstance(x, str) else x)
+                
                 tables.append(df)
     
     return tables
