@@ -398,33 +398,156 @@ class PDFExtractor:
 
     def call_llm_api(self, images_data: List[Dict]) -> Dict:
         """
-        Panggil API LLM (Google, OpenAI, dll) untuk ekstraksi tabel
+        Panggil API Google Gemini untuk ekstraksi tabel
         """
         print(f"Memanggil API {self.api_provider} untuk ekstraksi tabel...")
         print(f"Jumlah gambar: {len(images_data)}")
         
-        # TODO: Implementasi pemanggilan API yang sebenarnya
-        # Contoh implementasi mock untuk saat ini
+        try:
+            import PIL.Image
+            import google.generativeai as genai
+            from dotenv import load_dotenv
+            
+            # Load environment variables
+            load_dotenv()
+            
+            # Get API key from environment variables
+            GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+            if not GOOGLE_API_KEY:
+                raise ValueError("Google API Key tidak ditemukan. Pastikan variabel GOOGLE_API_KEY ada di file .env")
+            
+            # Configure API key
+            genai.configure(api_key=GOOGLE_API_KEY)
+            
+            # Initialize model
+            model = genai.GenerativeModel('gemini-2.0-flash')
+            
+            # Prepare content for the API call with all images
+            contents = [
+                "Ekstrak semua data tabel dari file PDF berikut dan berikan output dalam format JSON. " 
+                "Berikan struktur data yang terorganisir berdasarkan halaman. "
+                "Untuk setiap tabel, sertakan header kolom dan semua data dalam bentuk array."
+            ]
+            
+            # Add all images to the content
+            for img_data in images_data:
+                contents.append(img_data["pil_image"])
+            
+            # Call the Gemini API
+            response = model.generate_content(contents)
+            
+            # Process the response
+            response_text = response.text
+            print(f"API Response received. Length: {len(response_text)} characters")
+            
+            # Parse the JSON response
+            # Try to extract JSON from the response text if it's not already in JSON format
+            try:
+                # Try to parse the entire response as JSON
+                parsed_result = json.loads(response_text)
+            except json.JSONDecodeError:
+                # If not valid JSON, try to extract JSON part from the text
+                import re
+                json_match = re.search(r'```json\s*([\s\S]*?)\s*```', response_text)
+                if json_match:
+                    try:
+                        parsed_result = json.loads(json_match.group(1))
+                    except json.JSONDecodeError:
+                        print("Tidak dapat memparsing JSON dari respons yang diekstrak")
+                        parsed_result = self._create_fallback_json_structure(response_text, images_data)
+                else:
+                    # Create structured data from text as best as possible
+                    parsed_result = self._create_fallback_json_structure(response_text, images_data)
+            
+            # Structure the result by page
+            result = {}
+            
+            # Check if the response has page-based structure
+            if isinstance(parsed_result, dict) and any(key.startswith('page_') for key in parsed_result.keys()):
+                # The response already has the correct structure
+                result = parsed_result
+            elif isinstance(parsed_result, dict) and 'pages' in parsed_result:
+                # Convert from {'pages': [{...page1...}, {...page2...}]} format to page_N format
+                for i, page_data in enumerate(parsed_result['pages']):
+                    page_num = page_data.get('page_num', i + 1)
+                    result[f'page_{page_num}'] = page_data
+            else:
+                # Create a structured response for each page
+                for i, img_data in enumerate(images_data):
+                    page_num = img_data["page_num"]
+                    result[f'page_{page_num}'] = {
+                        "table_type": "extracted_table",
+                        "extracted_data": parsed_result if isinstance(parsed_result, list) else [parsed_result]
+                    }
+                    
+            return result
+            
+        except ImportError as e:
+            print(f"Error: Modul yang diperlukan tidak tersedia - {e}")
+            print("Pastikan modul google-generativeai, pillow, dan python-dotenv sudah diinstal.")
+            print("Instal dengan: pip install google-generativeai pillow python-dotenv")
+            return self._create_mock_result(images_data)
+            
+        except Exception as e:
+            print(f"Error saat memanggil API Google Gemini: {e}")
+            import traceback
+            traceback.print_exc()
+            # Return mock data as fallback
+            return self._create_mock_result(images_data)
+
+    def _create_fallback_json_structure(self, text, images_data):
+        """
+        Create a structured JSON from unstructured text response
+        """
+        print("Membuat struktur JSON dari teks respons...")
         
-        # Konversi gambar ke base64 jika diperlukan untuk API
-        for img_data in images_data:
-            buffer = io.BytesIO()
-            img_data["pil_image"].save(buffer, format="PNG")
-            img_data["base64"] = base64.b64encode(buffer.getvalue()).decode("utf-8")
+        # Simple parsing logic - can be enhanced
+        lines = text.split('\n')
         
-        # Di sini Anda akan menambahkan kode untuk memanggil API Google Vision atau OpenAI
-        # Yang mengembalikan data tabel terstruktur
+        # Remove empty lines and trim whitespace
+        lines = [line.strip() for line in lines if line.strip()]
         
-        # Contoh format hasil
+        # Create a simple structure
+        extracted_data = []
+        current_item = {}
+        
+        for line in lines:
+            if ':' in line:
+                key, value = line.split(':', 1)
+                current_item[key.strip()] = value.strip()
+            elif line.startswith('- ') or line.startswith('* '):
+                # New list item
+                if current_item and len(current_item) > 0:
+                    extracted_data.append(current_item)
+                    current_item = {}
+                current_item['item'] = line[2:].strip()
+            elif line.startswith('#') or line.startswith('##'):
+                # Heading - start new section
+                if current_item and len(current_item) > 0:
+                    extracted_data.append(current_item)
+                    current_item = {}
+                current_item['heading'] = line.strip('# ')
+        
+        # Add the last item if it exists
+        if current_item and len(current_item) > 0:
+            extracted_data.append(current_item)
+        
+        return extracted_data
+
+    def _create_mock_result(self, images_data):
+        """
+        Create mock result when API call fails
+        """
+        print("Membuat hasil ekstraksi mock sebagai fallback...")
         result = {}
+        
         for img_data in images_data:
             page_num = img_data["page_num"]
             result[f"page_{page_num}"] = {
-                "table_type": "financial_data",
-                "extracted_data": [
-                    {"header": "Contoh Header", "value": "Contoh Nilai"}
-                    # Data tabel yang diekstrak dari API
-                ]
+                "table_type": "unknown",
+                "extraction_status": "failed",
+                "error": "Tidak dapat mengekstrak data menggunakan API. Coba lagi nanti.",
+                "extracted_data": []
             }
         
         return result
@@ -488,9 +611,16 @@ class PDFExtractor:
                     print(f"Tidak dapat menghapus direktori {temp_dir}")
 
 # Contoh penggunaan
+# Add these imports at the top of your file
+# pip install google-generativeai python-dotenv
+
+# Example of a .env file:
+# GOOGLE_API_KEY=your_google_api_key_here
+
+# Example usage with Google Gemini API
 if __name__ == "__main__":
     extractor = PDFExtractor(
-        pdf_path="studi_kasus/Batavia Dana Likuid.pdf",
+        pdf_path="studi_kasus/4_Tabel_Satu_Halaman_Normal_V1.pdf",
         output_dir="output_ekstraksi",
         min_line_length=30,
         line_thickness=1,
@@ -499,15 +629,15 @@ if __name__ == "__main__":
         scan_header_threshold=120,
         scan_footer_threshold=100,
         min_lines_per_page=2,
-        api_provider="google",
-        save_images=True,  # Atur False jika tidak ingin menyimpan gambar
-        draw_line_highlights=False,  # Atur False jika tidak ingin menggambar garis
-        cleanup_temp_files=True  # Atur False jika ingin menyimpan file sementara
+        api_provider="google",  # Using Google Gemini API
+        save_images=True,
+        draw_line_highlights=False,
+        cleanup_temp_files=True
     )
     
     results = extractor.process()
     
-    # Contoh akses hasil
+    # Summary of results
     print("\nRingkasan hasil ekstraksi:")
     print(f"Total halaman: {results['metadata']['total_pages']}")
     print(f"Metode ekstraksi: {results['metadata']['extraction_method']}")
@@ -517,3 +647,10 @@ if __name__ == "__main__":
         print("Grup tabel:")
         for group in results['metadata']['tables']['table_groups']:
             print(f"  - Grup {group['group_id']}: {', '.join(map(str, group['pages']))}")
+            
+    # Display sample of extracted table data
+    for page in results["pages"]:
+        if page["has_table"] and page["table_data"]:
+            print(f"\nContoh data tabel dari halaman {page['page_num']}:")
+            print(json.dumps(page["table_data"], indent=2, ensure_ascii=False)[:500] + "...")
+            break
