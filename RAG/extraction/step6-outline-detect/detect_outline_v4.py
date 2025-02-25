@@ -424,9 +424,95 @@ class PDFExtractor:
             
             # Prepare content for the API call with all images
             contents = [
-                "Ekstrak semua data tabel dari file PDF berikut dan berikan output dalam format JSON. " 
-                "Berikan struktur data yang terorganisir berdasarkan halaman. "
-                "Untuk setiap tabel, sertakan header kolom dan semua data dalam bentuk array."
+                """
+                Anda adalah sistem ahli dalam mengekstrak informasi dari gambar halaman PDF. Gambar yang diberikan adalah potongan halaman PDF dan bisa berisi teks biasa, tabel, dan/atau flowchart.
+                Tugas Anda adalah menganalisis gambar dan mengekstrak informasi yang terkandung di dalamnya dalam format JSON.
+
+                1. **Analisis Konten:** Identifikasi *semua* jenis konten yang ada dalam gambar. Sebuah gambar dapat berisi:
+                    *   Teks biasa (text)
+                    *   Tabel (table)
+                    *   Flowchart (flowchart)
+                    *   Kombinasi dari jenis-jenis konten tersebut
+
+                2. **Ekstraksi Informasi:** Untuk *setiap* jenis konten yang teridentifikasi, lakukan langkah-langkah berikut:
+
+                    *   **Ekstraksi Teks (jika ada):** Ekstrak semua teks yang dapat dibaca dan simpan dalam format berikut:
+                        ```json
+                        {
+                        "type": "text",
+                        "page_number": [Nomor Halaman (jika diketahui, jika tidak, biarkan kosong)],
+                        "text": [
+                            "Baris 1 teks",
+                            "Baris 2 teks",
+                            ...
+                        ]
+                        }
+                        ```
+                        Setiap baris teks harus menjadi elemen terpisah dalam array "text".
+
+                    *   **Ekstraksi Tabel (jika ada):** Ekstrak struktur dan data tabel dan simpan dalam format berikut:
+                        ```json
+                        {
+                        "type": "table",
+                        "page_number": [Nomor Halaman (jika diketahui, jika tidak, biarkan kosong)],
+                        "title": [Judul tabel (jika ada, jika tidak, biarkan kosong)],
+                        "description": [Deskripsi singkat tabel (jika ada, jika tidak, biarkan kosong)],
+                        "headers": [
+                            "Header Kolom 1",
+                            "Header Kolom 2",
+                            ...
+                        ],
+                        "rows": [
+                            {
+                            "Header Kolom 1": "Data baris 1 kolom 1",
+                            "Header Kolom 2": "Data baris 1 kolom 2",
+                            ...
+                            },
+                            {
+                            "Header Kolom 1": "Data baris 2 kolom 1",
+                            "Header Kolom 2": "Data baris 2 kolom 2",
+                            ...
+                            }
+                        ],
+                        "footer": [Catatan kaki tabel (jika ada, jika tidak, biarkan kosong)],
+                        "is_continued": [true jika tabel berlanjut dari halaman sebelumnya atau ke halaman berikutnya, false jika tidak]
+                        }
+                        ```
+                        *   `is_continued`:  **Sangat penting.** Setel ke `true` jika tabel ini adalah kelanjutan dari tabel di halaman sebelumnya, atau jika tabel ini berlanjut ke halaman berikutnya. Setel ke `false` jika ini adalah tabel lengkap dalam satu gambar.
+
+                    *   **Ekstraksi Flowchart (jika ada):** Ekstrak elemen-elemen flowchart dan simpan dalam format berikut:
+                        ```json
+                        {
+                        "type": "flowchart",
+                        "page_number": [Nomor Halaman (jika diketahui, jika tidak, biarkan kosong)],
+                        "title": [Judul flowchart (jika ada, jika tidak, biarkan kosong)],
+                        "structured_data": [
+                            {
+                            "entity": [Nama Entitas],
+                            "input": [Input (jika ada)],
+                            "processes": [
+                                {
+                                "name": [Nama Proses],
+                                "description": [Deskripsi Proses]
+                                }
+                            ],
+                            "description": [Deskripsi Entitas]
+                            }
+                        ],
+                        "narrative": [Ringkasan naratif dari flowchart]
+                        }
+                        ```
+
+                3. **Output:**  Keluarkan *semua* informasi yang diekstraksi sebagai *satu* array JSON. Setiap elemen dalam array mewakili satu bagian konten (teks, tabel, atau flowchart) yang diekstraksi dari gambar. Pastikan JSON tersebut valid dan dapat diurai dengan benar.
+
+                **Instruksi Tambahan:**
+
+                *   Fokus pada akurasi ekstraksi data.
+                *   Jika Anda tidak yakin dengan tipe konten atau bagaimana cara mengekstrak informasi, berikan output JSON dengan bidang yang sesuai sebanyak mungkin dan sertakan catatan di bagian "extraction_notes" (yang belum ada di contoh format, mohon ditambahkan ke semua format data).
+                *   **Prioritaskan deteksi *semua* elemen yang ada di gambar.** Jika gambar berisi teks *dan* tabel, hasilkan *dua* objek JSON terpisah: satu untuk teks, dan satu lagi untuk tabel.
+                *   Jika ada teks di luar tabel atau flowchart, identifikasi apakah teks tersebut merupakan judul/catatan kaki yang terkait dengan tabel/flowchart. Jika ya, gabungkan informasi tersebut ke dalam objek JSON tabel/flowchart yang sesuai. Jika tidak, perlakukan teks tersebut sebagai elemen "text" yang terpisah.
+                *   Jika gambar berisi *sebagian* tabel atau flowchart, usahakan untuk mengekstrak informasi sebanyak mungkin dan gunakan `is_continued: true` pada tabel yang terpotong.
+                """
             ]
             
             # Add all images to the content
@@ -610,14 +696,7 @@ class PDFExtractor:
                 except:
                     print(f"Tidak dapat menghapus direktori {temp_dir}")
 
-# Contoh penggunaan
-# Add these imports at the top of your file
-# pip install google-generativeai python-dotenv
 
-# Example of a .env file:
-# GOOGLE_API_KEY=your_google_api_key_here
-
-# Example usage with Google Gemini API
 if __name__ == "__main__":
     extractor = PDFExtractor(
         pdf_path="studi_kasus/4_Tabel_Satu_Halaman_Normal_V1.pdf",
@@ -630,7 +709,7 @@ if __name__ == "__main__":
         scan_footer_threshold=100,
         min_lines_per_page=2,
         api_provider="google",  # Using Google Gemini API
-        save_images=True,
+        save_images=False,
         draw_line_highlights=False,
         cleanup_temp_files=True
     )
