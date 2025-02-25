@@ -13,18 +13,21 @@ import pytesseract
 
 class PDFExtractor:
     def __init__(
-        self,
-        pdf_path: str,
-        output_dir: str = "output",
-        min_line_length: int = 200,
-        line_thickness: int = 2,
-        header_threshold: float = 50,
-        footer_threshold: float = 50,
-        scan_header_threshold: float = 100,
-        scan_footer_threshold: float = 100,
-        min_lines_per_page: int = 2,
-        api_provider: str = "google"  # 'google', 'openai', dll.
-    ):
+    self,
+    pdf_path: str,
+    output_dir: str = "output",
+    min_line_length: int = 200,
+    line_thickness: int = 2,
+    header_threshold: float = 50,
+    footer_threshold: float = 50,
+    scan_header_threshold: float = 100,
+    scan_footer_threshold: float = 100,
+    min_lines_per_page: int = 2,
+    api_provider: str = "google",
+    save_images: bool = True,  # Opsi untuk menyimpan gambar fisik
+    draw_line_highlights: bool = True,  # Opsi untuk menggambar garis highlight
+    cleanup_temp_files: bool = True  # Opsi untuk membersihkan file sementara
+):
         self.pdf_path = pdf_path
         self.output_dir = output_dir
         self.min_line_length = min_line_length
@@ -35,6 +38,9 @@ class PDFExtractor:
         self.scan_footer_threshold = scan_footer_threshold
         self.min_lines_per_page = min_lines_per_page
         self.api_provider = api_provider
+        self.save_images = save_images
+        self.draw_line_highlights = draw_line_highlights
+        self.cleanup_temp_files = cleanup_temp_files
         
         # Buat direktori output
         Path(output_dir).mkdir(parents=True, exist_ok=True)
@@ -101,6 +107,12 @@ class PDFExtractor:
         
         # Simpan hasil ekstraksi
         self.save_results()
+
+        # Bersihkan file sementara di akhir proses
+        try:
+            self.cleanup()
+        except Exception as e:
+            print(f"Peringatan: Gagal membersihkan file sementara: {e}")
         
         print("\nProses ekstraksi selesai!")
         return self.result
@@ -250,17 +262,18 @@ class PDFExtractor:
         
         # Tentukan apakah halaman memiliki tabel berdasarkan jumlah garis valid
         has_table = len(valid_lines) >= self.min_lines_per_page
-        
+    
         if not has_table:
             print(f"  * Halaman tidak memiliki tabel: jumlah garis valid ({len(valid_lines)}) < minimum ({self.min_lines_per_page})")
         else:
             print(f"  * Halaman memiliki tabel: {len(valid_lines)} garis terdeteksi")
             
-            # Draw lines on debug image if needed
-            for line in valid_lines:
-                x1, y1 = int(line['x_min'] * zoom), int(line['y_position'] * zoom)
-                x2, y2 = int(line['x_max'] * zoom), int(line['y_position'] * zoom)
-                cv2.line(original_img, (x1, y1), (x2, y2), (0, 255, 255), 2)
+            # Draw lines on image only if option is enabled
+            if self.draw_line_highlights:
+                for line in valid_lines:
+                    x1, y1 = int(line['x_min'] * zoom), int(line['y_position'] * zoom)
+                    x2, y2 = int(line['x_max'] * zoom), int(line['y_position'] * zoom)
+                    cv2.line(original_img, (x1, y1), (x2, y2), (0, 255, 255), 2)
         
         return has_table, valid_lines
     
@@ -290,25 +303,31 @@ class PDFExtractor:
                 temp_doc.save(temp_pdf)
                 temp_doc.close()
                 
-                elements = partition_pdf(
-                    filename=temp_pdf,
-                    strategy="hi_res",
-                    infer_table_structure=True,
-                    temp_dir=temp_dir,
-                    use_ocr=True,
-                    ocr_languages="eng",  # Sesuaikan dengan bahasa dokumen
-                    ocr_mode="entire_page"
-                )
-                
-                # Gabungkan semua teks dari elements
-                text = "\n".join([str(element) for element in elements])
-                
-                # Jika teks masih kosong atau terlalu pendek, coba dengan tesseract langsung
-                if len(text.strip()) < 50:
-                    raise Exception("Hasil unstructured terlalu sedikit, coba dengan tesseract")
+                try:
+                    elements = partition_pdf(
+                        filename=temp_pdf,
+                        strategy="hi_res",
+                        infer_table_structure=True,
+                        temp_dir=temp_dir,
+                        use_ocr=True,
+                        ocr_languages="eng",  # Sesuaikan dengan bahasa dokumen
+                        ocr_mode="entire_page"
+                    )
                     
-                return text
-                
+                    # Gabungkan semua teks dari elements
+                    text = "\n".join([str(element) for element in elements])
+                    
+                    # Jika teks masih kosong atau terlalu pendek, coba dengan tesseract langsung
+                    if len(text.strip()) < 50:
+                        raise Exception("Hasil unstructured terlalu sedikit, coba dengan tesseract")
+                        
+                    return text
+                finally:
+                    # Bersihkan file sementara jika opsi diaktifkan
+                    if self.cleanup_temp_files and os.path.exists(temp_pdf):
+                        os.remove(temp_pdf)
+                        print(f"  * File sementara {temp_pdf} dibersihkan")
+                    
             except Exception as e:
                 print(f"  * Gagal menggunakan unstructured: {e}")
                 print(f"  * Mencoba dengan tesseract langsung")
@@ -342,11 +361,18 @@ class PDFExtractor:
                 img_filename = f"table_pages_{group_id}_part{i+1}.png"
                 img_path = os.path.join(self.img_output_dir, img_filename)
                 
-                # Simpan gambar
-                cv2.imwrite(img_path, self.page_images[page_num])
+                # Konversi BGR ke RGB untuk PIL
+                rgb_img = cv2.cvtColor(self.page_images[page_num], cv2.COLOR_BGR2RGB)
+                pil_img = Image.fromarray(rgb_img)
                 
-                # Tambahkan ke daftar gambar
-                pil_img = Image.fromarray(cv2.cvtColor(self.page_images[page_num], cv2.COLOR_BGR2RGB))
+                # Simpan gambar ke disk jika opsi diaktifkan
+                if self.save_images:
+                    cv2.imwrite(img_path, self.page_images[page_num])
+                    print(f"  * Gambar disimpan: {img_path}")
+                else:
+                    # Jika tidak menyimpan, buat path virtual untuk referensi
+                    img_path = f"memory://table_pages_{group_id}_part{i+1}.png"
+                    print(f"  * Gambar dibuffer di memori (tidak disimpan ke disk)")
                 
                 # Simpan data gambar
                 images_data.append({
@@ -369,7 +395,7 @@ class PDFExtractor:
             
             # Update data tabel
             self.result["pages"][page_idx]["table_data"] = api_result.get(f"page_{page_num+1}", {})
-    
+
     def call_llm_api(self, images_data: List[Dict]) -> Dict:
         """
         Panggil API LLM (Google, OpenAI, dll) untuk ekstraksi tabel
@@ -440,6 +466,27 @@ class PDFExtractor:
         
         print(f"\nHasil ekstraksi disimpan ke: {output_json}")
 
+    def cleanup(self):
+        """
+        Membersihkan semua file sementara
+        """
+        if self.cleanup_temp_files:
+            temp_dir = os.path.join(self.output_dir, "temp")
+            if os.path.exists(temp_dir):
+                for file in os.listdir(temp_dir):
+                    file_path = os.path.join(temp_dir, file)
+                    try:
+                        if os.path.isfile(file_path):
+                            os.remove(file_path)
+                    except Exception as e:
+                        print(f"Gagal menghapus file {file_path}: {e}")
+                
+                try:
+                    os.rmdir(temp_dir)
+                    print(f"Direktori sementara {temp_dir} dibersihkan")
+                except:
+                    print(f"Tidak dapat menghapus direktori {temp_dir}")
+
 # Contoh penggunaan
 if __name__ == "__main__":
     extractor = PDFExtractor(
@@ -452,7 +499,10 @@ if __name__ == "__main__":
         scan_header_threshold=120,
         scan_footer_threshold=100,
         min_lines_per_page=2,
-        api_provider="google"
+        api_provider="google",
+        save_images=True,  # Atur False jika tidak ingin menyimpan gambar
+        draw_line_highlights=False,  # Atur False jika tidak ingin menggambar garis
+        cleanup_temp_files=True  # Atur False jika ingin menyimpan file sementara
     )
     
     results = extractor.process()
