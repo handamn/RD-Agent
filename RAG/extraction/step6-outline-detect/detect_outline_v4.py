@@ -699,7 +699,7 @@ class PDFExtractor:
 
 if __name__ == "__main__":
     extractor = PDFExtractor(
-        pdf_path="studi_kasus/7_Tabel_N_Halaman_Normal_V1.pdf",
+        pdf_path="studi_kasus/27_OCR_Tabel_N_Halaman_Normal_V1.pdf",
         output_dir="output_ekstraksi",
         min_line_length=30,
         line_thickness=1,
