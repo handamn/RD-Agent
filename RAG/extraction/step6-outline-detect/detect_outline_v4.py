@@ -699,18 +699,18 @@ class PDFExtractor:
 
 if __name__ == "__main__":
     extractor = PDFExtractor(
-        pdf_path="studi_kasus/tes_send.pdf",
+        pdf_path="studi_kasus/7_Tabel_N_Halaman_Normal_V1.pdf",
         output_dir="output_ekstraksi",
         min_line_length=30,
         line_thickness=1,
-        header_threshold=120,
-        footer_threshold=100,
-        scan_header_threshold=120,
-        scan_footer_threshold=100,
+        header_threshold=50,
+        footer_threshold=50,
+        scan_header_threshold=50,
+        scan_footer_threshold=50,
         min_lines_per_page=2,
         api_provider="google",  # Using Google Gemini API
-        save_images=False,
-        draw_line_highlights=False,
+        save_images=True,
+        draw_line_highlights=True,
         cleanup_temp_files=True
     )
     
