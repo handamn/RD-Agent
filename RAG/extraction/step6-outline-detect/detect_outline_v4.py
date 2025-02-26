@@ -185,7 +185,7 @@ class PDFExtractor:
             "is_scanned": is_scanned,
             "rotation": rotation,
             "has_table": has_table,
-            "lines": lines if has_table else [],
+            # "lines": lines if has_table else [], # dinonaktifkan untuk membersihkan json
             "text": page_text if not has_table else None,
             "table_data": None  # Akan diisi nanti oleh API LLM jika memiliki tabel
         }
@@ -286,7 +286,9 @@ class PDFExtractor:
         if not is_scanned:
             # Untuk dokumen asli, gunakan PyMuPDF
             print(f"- Mengekstrak teks dari dokumen asli")
-            text = page.get_text()
+            text = page.get_text() #PyMuPDF
+            # text = partition_pdf(filename=self.pdf_path, page_number=page_num + 1) #unstrutured
+
             return text
         else:
             # Untuk dokumen hasil scan, gunakan OCR
@@ -699,7 +701,7 @@ class PDFExtractor:
 
 if __name__ == "__main__":
     extractor = PDFExtractor(
-        pdf_path="studi_kasus/27_OCR_Tabel_N_Halaman_Normal_V1.pdf",
+        pdf_path="studi_kasus/1_Teks_Biasa.pdf",
         output_dir="output_ekstraksi",
         min_line_length=30,
         line_thickness=1,
@@ -707,10 +709,10 @@ if __name__ == "__main__":
         footer_threshold=50,
         scan_header_threshold=50,
         scan_footer_threshold=50,
-        min_lines_per_page=2,
+        min_lines_per_page=1,
         api_provider="google",  # Using Google Gemini API
         save_images=True,
-        draw_line_highlights=True,
+        draw_line_highlights=False,
         cleanup_temp_files=True
     )
     
