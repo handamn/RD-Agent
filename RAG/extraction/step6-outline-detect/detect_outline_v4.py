@@ -185,8 +185,7 @@ class PDFExtractor:
             "is_scanned": is_scanned,
             "rotation": rotation,
             "has_table": has_table,
-            # "lines": lines if has_table else [], # dinonaktifkan untuk membersihkan json
-            "text": page_text if not has_table else None,
+            "text": page_text if not has_table else None,  # Teks disimpan sebagai list string
             "table_data": None  # Akan diisi nanti oleh API LLM jika memiliki tabel
         }
     
@@ -277,19 +276,22 @@ class PDFExtractor:
         
         return has_table, valid_lines
     
-    def extract_text_from_page(self, page_num: int, is_scanned: bool) -> str:
+    def extract_text_from_page(self, page_num: int, is_scanned: bool) -> list:
         """
         Ekstrak teks dari halaman PDF berdasarkan jenisnya (scan atau asli)
+        Mengembalikan list string, di mana setiap elemen mewakili satu baris teks.
         """
         page = self.doc[page_num]
         
         if not is_scanned:
             # Untuk dokumen asli, gunakan PyMuPDF
             print(f"- Mengekstrak teks dari dokumen asli")
-            text = page.get_text() #PyMuPDF
-            # text = partition_pdf(filename=self.pdf_path, page_number=page_num + 1) #unstrutured
-
-            return text
+            text = page.get_text("text")  # Menggunakan "text" untuk mendapatkan teks per baris
+            
+            # Split teks menjadi list berdasarkan newline
+            text_lines = text.split('\n')
+            
+            return text_lines
         else:
             # Untuk dokumen hasil scan, gunakan OCR
             print(f"- Mengekstrak teks dari dokumen scan dengan OCR")
@@ -322,8 +324,11 @@ class PDFExtractor:
                     # Jika teks masih kosong atau terlalu pendek, coba dengan tesseract langsung
                     if len(text.strip()) < 50:
                         raise Exception("Hasil unstructured terlalu sedikit, coba dengan tesseract")
-                        
-                    return text
+                    
+                    # Split teks menjadi list berdasarkan newline
+                    text_lines = text.split('\n')
+                    
+                    return text_lines
                 finally:
                     # Bersihkan file sementara jika opsi diaktifkan
                     if self.cleanup_temp_files and os.path.exists(temp_pdf):
@@ -341,7 +346,10 @@ class PDFExtractor:
                 img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
                 text = pytesseract.image_to_string(img, lang='eng')  # Sesuaikan bahasa
                 
-                return text
+                # Split teks menjadi list berdasarkan newline
+                text_lines = text.split('\n')
+                
+                return text_lines
     
     def extract_tables_from_group(self, page_group: List[int]):
         """
