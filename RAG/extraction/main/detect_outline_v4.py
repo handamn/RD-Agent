@@ -536,6 +536,11 @@ class PDFExtractor:
             response_text = response.text
             print(f"API Response received. Length: {len(response_text)} characters")
             
+            print()
+            print("---")
+            print(response_text)
+            print("---")
+            print()
             # Parse the JSON response
             # Try to extract JSON from the response text if it's not already in JSON format
             try:
@@ -715,7 +720,7 @@ class PDFExtractor:
 
 if __name__ == "__main__":
     extractor = PDFExtractor(
-        pdf_path="studi_kasus/tes_send.pdf",
+        pdf_path="studi_kasus/8_Tabel_N_Halaman_Merge_V2.pdf",
         output_dir="output_ekstraksi",
         min_line_length=30,
         line_thickness=1,
@@ -725,7 +730,7 @@ if __name__ == "__main__":
         scan_footer_threshold=50,
         min_lines_per_page=1,
         api_provider="google",  # Using Google Gemini API
-        save_images=False,
+        save_images=True,
         draw_line_highlights=False,
         cleanup_temp_files=True
     )
@@ -737,15 +742,3 @@ if __name__ == "__main__":
     print(f"Total halaman: {results['metadata']['total_pages']}")
     print(f"Metode ekstraksi: {results['metadata']['extraction_method']}")
     
-    # if 'tables' in results['metadata']:
-    #     print(f"Halaman dengan tabel: {results['metadata']['tables']['total_pages_with_tables']}")
-    #     print("Grup tabel:")
-    #     for group in results['metadata']['tables']['table_groups']:
-    #         print(f"  - Grup {group['group_id']}: {', '.join(map(str, group['pages']))}")
-            
-    # # Display sample of extracted table data
-    # for page in results["pages"]:
-    #     if page["has_table"] and page["table_data"]:
-    #         print(f"\nContoh data tabel dari halaman {page['page_num']}:")
-    #         print(json.dumps(page["table_data"], indent=2, ensure_ascii=False)[:500] + "...")
-    #         break
