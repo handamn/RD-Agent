@@ -1,0 +1,257 @@
+{
+  "metadata": {
+    "filename": "V1.pdf",
+    "total_pages": 1,
+    "extraction_method": "table_detection_only",
+    "tables": {
+      "total_pages_with_tables": 1,
+      "table_groups": [
+        {
+          "group_id": "1",
+          "pages": [
+            1
+          ]
+        }
+      ]
+    }
+  },
+  "pages": [
+    {
+      "page_num": 1,
+      "is_scanned": false,
+      "rotation": 0,
+      "has_table": true,
+      "text": null,
+      "table_data": {
+        "table_type": "extracted_table",
+        "extracted_data": [
+          {
+            "type": "text",
+            "page_number": [],
+            "text": [
+              "REKSA DANA AVRIST ADA KAS MUTIARA",
+              "CATATAN ATAS LAPORAN KEUANGAN",
+              "31 Desember 2023",
+              "Dan untuk Tahun yang Berakhir pada Tanggal tersebut",
+              "(Disajikan dalam Rupiah, kecuali dinyatakan lain)",
+              "19. TUJUAN DAN KEBIJAKAN MANAJEMEN RISIKO KEUANGAN (lanjutan)",
+              "Risiko Likuiditas (lanjutan)",
+              "Ikhtisar selisih likuiditas (liquidation gap) antara aset dan liabilitas keuangan Reksa Dana pada tanggal",
+              "31 Desember 2023 dan 2022 berdasarkan arus kas pembayaran kontraktual yang tidak didiskontokan",
+              "adalah sebagai berikut:"
+            ],
+            "extraction_notes": "Extracted introductory and descriptive text."
+          },
+          {
+            "type": "table",
+            "page_number": [],
+            "title": "Ikhtisar selisih likuiditas",
+            "description": "Selisih likuiditas tahun 2023",
+            "headers": [
+              "Aset Keuangan",
+              "Kurang dari\n1 Bulan",
+              "1 Bulan -\n1 Tahun",
+              "Lebih dari\n1 Tahun",
+              "Total"
+            ],
+            "rows": [
+              {
+                "Aset Keuangan": "Portofolio efek",
+                "Kurang dari\n1 Bulan": "36.000.000.000",
+                "1 Bulan -\n1 Tahun": "88.969.836.722",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "124.969.836.722"
+              },
+              {
+                "Aset Keuangan": "Kas",
+                "Kurang dari\n1 Bulan": "3.164.836.431",
+                "1 Bulan -\n1 Tahun": "-",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "3.164.836.431"
+              },
+              {
+                "Aset Keuangan": "Piutang bunga",
+                "Kurang dari\n1 Bulan": "644.152.051",
+                "1 Bulan -\n1 Tahun": "-",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "644.152.051"
+              },
+              {
+                "Aset Keuangan": "Piutang penjualan unit\npenyertaan",
+                "Kurang dari\n1 Bulan": "356.537.678",
+                "1 Bulan -\n1 Tahun": "-",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "356.537.678"
+              },
+              {
+                "Aset Keuangan": "Piutang lain-lain",
+                "Kurang dari\n1 Bulan": "10.063.670.001",
+                "1 Bulan -\n1 Tahun": "-",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "10.063.670.001"
+              },
+              {
+                "Aset Keuangan": "Sub-total",
+                "Kurang dari\n1 Bulan": "50.229.196.161",
+                "1 Bulan -\n1 Tahun": "88.969.836.722",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "139.199.032.883"
+              },
+              {
+                "Aset Keuangan": "Liabilitas Keuangan",
+                "Kurang dari\n1 Bulan": null,
+                "1 Bulan -\n1 Tahun": null,
+                "Lebih dari\n1 Tahun": null,
+                "Total": null
+              },
+              {
+                "Aset Keuangan": "Beban akrual",
+                "Kurang dari\n1 Bulan": "155.876.949",
+                "1 Bulan -\n1 Tahun": "-",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "155.876.949"
+              },
+              {
+                "Aset Keuangan": "Uang muka diterima atas\n pemesanan unit penyertaan",
+                "Kurang dari\n1 Bulan": "2.436.974.499",
+                "1 Bulan -\n1 Tahun": "-",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "2.436.974.499"
+              },
+              {
+                "Aset Keuangan": "Sub-total",
+                "Kurang dari\n1 Bulan": "2.592.851.448",
+                "1 Bulan -\n1 Tahun": "-",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "2.592.851.448"
+              },
+              {
+                "Aset Keuangan": "Selisih Likuiditas",
+                "Kurang dari\n1 Bulan": "47.636.344.713",
+                "1 Bulan -\n1 Tahun": "88.969.836.722",
+                "Lebih dari\n1 Tahun": null,
+                "Total": "136.606.181.435"
+              }
+            ],
+            "footer": [],
+            "is_continued": false,
+            "extraction_notes": "Extracted table data for 2023."
+          },
+          {
+            "type": "table",
+            "page_number": [],
+            "title": "Ikhtisar selisih likuiditas",
+            "description": "Selisih likuiditas tahun 2022",
+            "headers": [
+              "Aset Keuangan",
+              "Kurang dari\n1 Bulan",
+              "1 Bulan -\n1 Tahun",
+              "Lebih dari\n1 Tahun",
+              "Total"
+            ],
+            "rows": [
+              {
+                "Aset Keuangan": "Portofolio efek",
+                "Kurang dari\n1 Bulan": "13.000.000.000",
+                "1 Bulan -\n1 Tahun": "45.280.698.020",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "58.280.698.020"
+              },
+              {
+                "Aset Keuangan": "Kas",
+                "Kurang dari\n1 Bulan": "1.174.887.376",
+                "1 Bulan -\n1 Tahun": "-",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "1.174.887.376"
+              },
+              {
+                "Aset Keuangan": "Piutang bunga",
+                "Kurang dari\n1 Bulan": "396.416.219",
+                "1 Bulan -\n1 Tahun": "-",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "396.416.219"
+              },
+              {
+                "Aset Keuangan": "Piutang penjualan unit\npenyertaan",
+                "Kurang dari\n1 Bulan": "11.680.994",
+                "1 Bulan -\n1 Tahun": "-",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "11.680.994"
+              },
+              {
+                "Aset Keuangan": "Piutang lain-lain",
+                "Kurang dari\n1 Bulan": "14.820.000",
+                "1 Bulan -\n1 Tahun": "-",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "14.820.000"
+              },
+              {
+                "Aset Keuangan": "Sub-total",
+                "Kurang dari\n1 Bulan": "14.597.804.589",
+                "1 Bulan -\n1 Tahun": "45.280.698.020",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "59.878.502.609"
+              },
+              {
+                "Aset Keuangan": "Liabilitas Keuangan",
+                "Kurang dari\n1 Bulan": null,
+                "1 Bulan -\n1 Tahun": null,
+                "Lebih dari\n1 Tahun": null,
+                "Total": null
+              },
+              {
+                "Aset Keuangan": "Beban akrual",
+                "Kurang dari\n1 Bulan": "58.123.105",
+                "1 Bulan -\n1 Tahun": "-",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "58.123.105"
+              },
+              {
+                "Aset Keuangan": "Uang muka diterima atas\n pemesanan unit penyertaan",
+                "Kurang dari\n1 Bulan": "81.212.050",
+                "1 Bulan -\n1 Tahun": "-",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "81.212.050"
+              },
+              {
+                "Aset Keuangan": "Sub-total",
+                "Kurang dari\n1 Bulan": "139.335.155",
+                "1 Bulan -\n1 Tahun": "-",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "139.335.155"
+              },
+              {
+                "Aset Keuangan": "Selisih Likuiditas",
+                "Kurang dari\n1 Bulan": "14.458.469.434",
+                "1 Bulan -\n1 Tahun": "45.280.698.020",
+                "Lebih dari\n1 Tahun": "-",
+                "Total": "59.739.167.454"
+              }
+            ],
+            "footer": [],
+            "is_continued": false,
+            "extraction_notes": "Extracted table data for 2022."
+          },
+          {
+            "type": "text",
+            "page_number": [
+              "23"
+            ],
+            "text": [
+              "Manajemen Risiko Permodalan",
+              "Manajer Investasi dan Bank Kustodian memonitor modal atas dasar nilai aset bersih. Jumlah aset bersih",
+              "dapat berubah secara signifikan secara harian, dimana Reksa Dana bergantung kepada pembelian",
+              "kembali dan penjualan unit penyertaan atas kebijaksanaan dari pemegang unit penyertaan secara",
+              "harian. Tujuan Manajer Investasi dan Bank Kustodian ketika mengelola modal adalah untuk menjaga",
+              "kemampuan Reksa Dana untuk melanjutkan kelangsungan hidup dalam rangka memberikan",
+              "keuntungan bagi pemegang unit penyertaan dan mempertahankan basis modal yang kuat untuk",
+              "mendukung pengembangan kegiatan investasi Reksa Dana secara efisien.",
+              "23"
+            ],
+            "extraction_notes": "Extracted text about Manajemen Risiko Permodalan and page number."
+          }
+        ]
+      }
+    }
+  ]
+}
