@@ -40,7 +40,7 @@ if not mime_type:
 # Prepare content with PDF data
 content = [
     {"mime_type": mime_type, "data": doc_data},
-    "extract all number in this pdf"
+    "in this pdf, there are table. can you extract it and give me an output with json format?"
 ]
 
 # Generate content

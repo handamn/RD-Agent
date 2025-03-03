@@ -462,6 +462,7 @@ class PDFExtractor:
         try:
             import google.generativeai as genai
             from dotenv import load_dotenv
+            import mimetypes
             
             # Load environment variables
             load_dotenv()
@@ -477,23 +478,22 @@ class PDFExtractor:
             # Initialize model
             model = genai.GenerativeModel('gemini-2.0-flash')
             
-            # Untuk menggunakan PDF dengan API Gemini, kita perlu:
-            # 1. Konversi setiap halaman PDF ke gambar (temporari)
-            # 2. Mengirim gambar-gambar tersebut ke API
+            # Determine MIME type
+            mime_type, _ = mimetypes.guess_type(pdf_path)
+            if not mime_type:
+                mime_type = 'application/pdf'  # Default if not detected
             
-            # Buat folder temporari untuk gambar
-            temp_dir = os.path.join(self.output_dir, "temp_api_images")
-            Path(temp_dir).mkdir(parents=True, exist_ok=True)
+            # Read the PDF file
+            with open(pdf_path, "rb") as pdf_file:
+                pdf_data = pdf_file.read()
             
-            # Buka PDF yang sudah di-split
-            pdf_doc = fitz.open(pdf_path)
-            
-            contents = [
+            # Prepare content with PDF and prompt
+            content = [
                 """
-                Anda adalah sistem ahli dalam mengekstrak informasi dari gambar halaman PDF. Gambar yang diberikan adalah potongan halaman PDF dan bisa berisi teks biasa, tabel, dan/atau flowchart.
-                Tugas Anda adalah menganalisis gambar dan mengekstrak informasi yang terkandung di dalamnya dalam format JSON.
+                Anda adalah sistem ahli dalam mengekstrak informasi dari dokumen PDF. Dokumen yang diberikan dapat berisi teks biasa, tabel, dan/atau flowchart.
+                Tugas Anda adalah menganalisis dokumen dan mengekstrak informasi yang terkandung di dalamnya dalam format JSON.
 
-                1. **Analisis Konten:** Identifikasi *semua* jenis konten yang ada dalam gambar. Sebuah gambar dapat berisi:
+                1. **Analisis Konten:** Identifikasi *semua* jenis konten yang ada dalam dokumen. Sebuah dokumen dapat berisi:
                     *   Teks biasa (text)
                     *   Tabel (table)
                     *   Flowchart (flowchart)
@@ -568,44 +568,37 @@ class PDFExtractor:
                         }
                         ```
 
-                3. **Output:**  Keluarkan *semua* informasi yang diekstraksi sebagai *satu* array JSON. Setiap elemen dalam array mewakili satu bagian konten (teks, tabel, atau flowchart) yang diekstraksi dari gambar. Pastikan JSON tersebut valid dan dapat diurai dengan benar.
+                3. **Output:**  Keluarkan *semua* informasi yang diekstraksi sebagai *satu* array JSON. Setiap elemen dalam array mewakili satu bagian konten (teks, tabel, atau flowchart) yang diekstraksi dari dokumen. Pastikan JSON tersebut valid dan dapat diurai dengan benar.
 
                 **Instruksi Tambahan:**
 
                 *   Fokus pada akurasi ekstraksi data.
                 *   Jika Anda tidak yakin dengan tipe konten atau bagaimana cara mengekstrak informasi, berikan output JSON dengan bidang yang sesuai sebanyak mungkin dan sertakan catatan di bagian "extraction_notes" (yang belum ada di contoh format, mohon ditambahkan ke semua format data).
-                *   **Prioritaskan deteksi *semua* elemen yang ada di gambar.** Jika gambar berisi teks *dan* tabel, hasilkan *dua* objek JSON terpisah: satu untuk teks, dan satu lagi untuk tabel.
+                *   **Prioritaskan deteksi *semua* elemen yang ada di dokumen.** Jika dokumen berisi teks *dan* tabel, hasilkan *dua* objek JSON terpisah: satu untuk teks, dan satu lagi untuk tabel.
                 *   Jika ada teks di luar tabel atau flowchart, identifikasi apakah teks tersebut merupakan judul/catatan kaki yang terkait dengan tabel/flowchart. Jika ya, gabungkan informasi tersebut ke dalam objek JSON tabel/flowchart yang sesuai. Jika tidak, perlakukan teks tersebut sebagai elemen "text" yang terpisah.
-                *   Jika gambar berisi *sebagian* tabel atau flowchart, usahakan untuk mengekstrak informasi sebanyak mungkin dan gunakan `is_continued: true` pada tabel yang terpotong.
-                """
+                *   Jika dokumen berisi *sebagian* tabel atau flowchart, usahakan untuk mengekstrak informasi sebanyak mungkin dan gunakan `is_continued: true` pada tabel yang terpotong.
+                """,
+                {"mime_type": mime_type, "data": pdf_data},
+                "Ekstrak semua tabel dan informasi penting dari dokumen PDF ini, berikan output dalam format JSON yang valid."
             ]
-            
-            # Konversi setiap halaman PDF ke gambar dan tambahkan ke contents
-            temp_image_paths = []
-            for i, page in enumerate(pdf_doc):
-                zoom = 2  # Resolusi yang cukup tinggi untuk API
-                mat = fitz.Matrix(zoom, zoom)
-                pix = page.get_pixmap(matrix=mat)
-                
-                # Simpan gambar ke file temporari
-                img_path = os.path.join(temp_dir, f"temp_page_{i}.png")
-                pix.save(img_path)
-                temp_image_paths.append(img_path)
-                
-                # Baca gambar sebagai PIL Image dan tambahkan ke contents
-                from PIL import Image
-                pil_img = Image.open(img_path)
-                contents.append(pil_img)
-            
-            # Panggil API
-            response = model.generate_content(contents)
+
+            # Call the API
+            response = model.generate_content(content)
             
             # Process the response
             response_text = response.text
             print(f"API Response received. Length: {len(response_text)} characters")
+
+            print()
+            print("---")
+            print(len(response_text))
+            print(type(response_text))
+            print("---")
+            print(response_text)
+            print("---")
+            print()
             
             # Parse the JSON response
-            # Sama seperti implementasi call_llm_api yang asli
             try:
                 # Try to parse the entire response as JSON
                 parsed_result = json.loads(response_text)
@@ -644,22 +637,20 @@ class PDFExtractor:
                         "extracted_data": parsed_result if isinstance(parsed_result, list) else [parsed_result]
                     }
                     
-            # Bersihkan file temporari jika diperlukan
-            if self.cleanup_temp_files:
-                for img_path in temp_image_paths:
-                    if os.path.exists(img_path):
-                        os.remove(img_path)
-                
-                # Coba hapus direktori temporari jika kosong
-                try:
-                    os.rmdir(temp_dir)
-                except:
-                    pass  # Abaikan error jika direktori tidak kosong
-            
-            # Tutup dokumen PDF
-            pdf_doc.close()
-                    
             return result
+            
+        except ImportError as e:
+            print(f"Error: Modul yang diperlukan tidak tersedia - {e}")
+            print("Pastikan modul google-generativeai, pillow, dan python-dotenv sudah diinstal.")
+            print("Instal dengan: pip install google-generativeai pillow python-dotenv")
+            return self._create_mock_result(page_group)
+            
+        except Exception as e:
+            print(f"Error saat memanggil API Google Gemini: {e}")
+            import traceback
+            traceback.print_exc()
+            # Return mock data as fallback
+            return self._create_mock_result(page_group)
             
         except ImportError as e:
             print(f"Error: Modul yang diperlukan tidak tersedia - {e}")
@@ -991,7 +982,7 @@ class PDFExtractor:
 
 if __name__ == "__main__":
     extractor = PDFExtractor(
-        pdf_path="studi_kasus/v2.pdf",
+        pdf_path="studi_kasus/v2-cropped.pdf",
         output_dir="output_ekstraksi",
         min_line_length=30,
         line_thickness=1,

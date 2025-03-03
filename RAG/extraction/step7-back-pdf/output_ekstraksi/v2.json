@@ -23,10 +23,27 @@
       "has_table": true,
       "text": null,
       "table_data": {
-        "table_type": "unknown",
-        "extraction_status": "failed",
-        "error": "Tidak dapat mengekstrak data menggunakan API. Coba lagi nanti.",
-        "extracted_data": []
+        "table_type": "extracted_table",
+        "extracted_data": [
+          {
+            "\"type\"": "\"table\",",
+            "\"page_number\"": "[",
+            "\"text\"": "[",
+            "\"extraction_notes\"": "\"Extracted the header and description text related to the table.\"",
+            "\"title\"": "\"PORTOFOLIO EFEK (Lanjutan)\",",
+            "\"description\"": "\"Data Portofolio Efek pada 31 Desember 2022\",",
+            "\"headers\"": "[",
+            "\"rows\"": "[",
+            "\"Nilai Nominal\\n(Rp)\"": "\"15.000.000.000\",",
+            "\"Investasi\"": "\"PT Bank Nationalnobu Tbk.\",",
+            "\"Jatuh Tempo\"": "\"31 Januari 2023\",",
+            "\"Tingkat\\nBunga\\nper tahun\\n(%)\"": "\"5,50\",",
+            "\"Harga\\nPerolehan\\nRata-rata\\n(%)\"": "\"",
+            "\"Biaya Perolehan\\nAmortisasi\\n(Rp)\"": "\"15.000.000.000\",",
+            "\"Rasio Biaya\\nPerolehan\\nTerhadap\\nJumlah\\nInvestasi\\n(%)\"": "\"0,99\",",
+            "\"Peringkat\"": "\"-\""
+          }
+        ]
       },
       "pdf_split_path": "output_ekstraksi\\pdf_splits\\split_v2_1.pdf"
     }
