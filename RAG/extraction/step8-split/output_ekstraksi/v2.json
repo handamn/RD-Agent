@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "filename": "v2.pdf",
+    "total_pages": 1,
+    "extraction_method": "table_detection_only",
+    "tables": {
+      "total_pages_with_tables": 1,
+      "table_groups": [
+        {
+          "group_id": "1",
+          "pages": [
+            1
+          ]
+        }
+      ]
+    }
+  },
+  "pages": [
+    {
+      "page_num": 1,
+      "is_scanned": false,
+      "rotation": 0,
+      "has_table": true,
+      "needs_split": true,
+      "text": null,
+      "table_data": {
+        "top_section": {},
+        "bottom_section": {}
+      }
+    }
+  ]
+}

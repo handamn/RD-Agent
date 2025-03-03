@@ -159,7 +159,7 @@ class PDFExtractor:
             original_img = cv2.rotate(original_img, cv2.ROTATE_180)
         
         # Deteksi garis
-        has_table, lines = self.detect_table_lines(
+        has_table, lines, needs_split = self.detect_table_lines(
             img, 
             original_img, 
             zoom, 
@@ -172,34 +172,49 @@ class PDFExtractor:
         
         # Simpan gambar jika halaman memiliki tabel
         if has_table:
-            self.page_images[page_num] = original_img
+            if needs_split and self.save_images:
+                # Simpan gambar yang dibagi dua
+                height, width = original_img.shape[:2]
+                mid_point = height // 2
+                
+                # Potong gambar menjadi dua bagian
+                top_half = original_img[:mid_point, :]
+                bottom_half = original_img[mid_point:, :]
+                
+                # Simpan kedua bagian gambar dengan nama yang sesuai
+                self.page_images[page_num] = (top_half, bottom_half)
+                print(f"  * Halaman {page_num + 1} dibagi menjadi dua bagian")
+            else:
+                # Simpan gambar tanpa pembagian
+                self.page_images[page_num] = original_img
         
         # Ekstrak teks jika tidak ada tabel terdeteksi
         page_text = None
         if not has_table:
             page_text = self.extract_text_from_page(page_num, is_scanned)
         
-        # Kembalikan data halaman
+        # Kembalikan data halaman dengan informasi pembagian
         return {
             "page_num": page_num + 1,
             "is_scanned": is_scanned,
             "rotation": rotation,
             "has_table": has_table,
+            "needs_split": needs_split if has_table else False,  # Tambahkan informasi pembagian
             "text": page_text if not has_table else None,  # Teks disimpan sebagai list string
             "table_data": None  # Akan diisi nanti oleh API LLM jika memiliki tabel
         }
     
     def detect_table_lines(
-        self, 
-        img: np.ndarray, 
-        original_img: np.ndarray,
-        zoom: int, 
-        page_width: float, 
-        page_height: float,
-        header_threshold: float,
-        footer_threshold: float,
-        rotation: int
-    ) -> Tuple[bool, List[Dict]]:
+    self, 
+    img: np.ndarray, 
+    original_img: np.ndarray,
+    zoom: int, 
+    page_width: float, 
+    page_height: float,
+    header_threshold: float,
+    footer_threshold: float,
+    rotation: int
+) -> Tuple[bool, List[Dict], bool]:  # Added a third return value to indicate split
         """
         Deteksi garis pada gambar dan tentukan apakah halaman memiliki tabel.
         """
@@ -261,11 +276,26 @@ class PDFExtractor:
         
         # Tentukan apakah halaman memiliki tabel berdasarkan jumlah garis valid
         has_table = len(valid_lines) >= self.min_lines_per_page
-    
+        needs_split = False
+
         if not has_table:
             print(f"  * Halaman tidak memiliki tabel: jumlah garis valid ({len(valid_lines)}) < minimum ({self.min_lines_per_page})")
         else:
             print(f"  * Halaman memiliki tabel: {len(valid_lines)} garis terdeteksi")
+            
+            # Periksa jarak antara garis teratas dan terbawah
+            if len(valid_lines) >= 2:
+                # Urutkan garis berdasarkan posisi y
+                sorted_lines = sorted(valid_lines, key=lambda x: x['y_position'])
+                top_line = sorted_lines[0]['y_position']
+                bottom_line = sorted_lines[-1]['y_position']
+                line_distance = bottom_line - top_line
+                
+                # Periksa apakah jarak melebihi setengah panjang dokumen
+                if line_distance > (page_height / 2):
+                    needs_split = True
+                    print(f"  * Jarak antara garis teratas dan terbawah ({line_distance:.2f}) melebihi setengah panjang dokumen ({page_height/2:.2f})")
+                    print(f"  * Halaman akan dibagi menjadi dua bagian")
             
             # Draw lines on image only if option is enabled
             if self.draw_line_highlights:
@@ -274,7 +304,7 @@ class PDFExtractor:
                     x2, y2 = int(line['x_max'] * zoom), int(line['y_position'] * zoom)
                     cv2.line(original_img, (x1, y1), (x2, y2), (0, 255, 255), 2)
         
-        return has_table, valid_lines
+        return has_table, valid_lines, needs_split
     
     def extract_text_from_page(self, page_num: int, is_scanned: bool) -> list:
         """
@@ -368,28 +398,85 @@ class PDFExtractor:
         images_data = []
         for i, page_num in enumerate(page_group):
             if page_num in self.page_images:
-                img_filename = f"table_pages_{group_id}_part{i+1}.png"
-                img_path = os.path.join(self.img_output_dir, img_filename)
-                
-                # Konversi BGR ke RGB untuk PIL
-                rgb_img = cv2.cvtColor(self.page_images[page_num], cv2.COLOR_BGR2RGB)
-                pil_img = Image.fromarray(rgb_img)
-                
-                # Simpan gambar ke disk jika opsi diaktifkan
-                if self.save_images:
-                    cv2.imwrite(img_path, self.page_images[page_num])
-                    print(f"  * Gambar disimpan: {img_path}")
+                # Cek apakah ini adalah tuple (halaman yang dibagi) atau gambar tunggal
+                if isinstance(self.page_images[page_num], tuple):
+                    # Halaman dibagi menjadi dua
+                    top_half, bottom_half = self.page_images[page_num]
+                    
+                    # Proses bagian atas
+                    img_filename_top = f"table_pages_{group_id}_part{i+1}_top.png"
+                    img_path_top = os.path.join(self.img_output_dir, img_filename_top)
+                    
+                    # Konversi BGR ke RGB untuk PIL (bagian atas)
+                    rgb_img_top = cv2.cvtColor(top_half, cv2.COLOR_BGR2RGB)
+                    pil_img_top = Image.fromarray(rgb_img_top)
+                    
+                    # Simpan gambar bagian atas ke disk jika opsi diaktifkan
+                    if self.save_images:
+                        cv2.imwrite(img_path_top, top_half)
+                        print(f"  * Gambar bagian atas disimpan: {img_path_top}")
+                    else:
+                        # Jika tidak menyimpan, buat path virtual untuk referensi
+                        img_path_top = f"memory://table_pages_{group_id}_part{i+1}_top.png"
+                        print(f"  * Gambar bagian atas dibuffer di memori (tidak disimpan ke disk)")
+                    
+                    # Simpan data gambar bagian atas
+                    images_data.append({
+                        "page_num": page_num + 1,
+                        "image_path": img_path_top,
+                        "pil_image": pil_img_top,
+                        "part": "top"
+                    })
+                    
+                    # Proses bagian bawah
+                    img_filename_bottom = f"table_pages_{group_id}_part{i+1}_bottom.png"
+                    img_path_bottom = os.path.join(self.img_output_dir, img_filename_bottom)
+                    
+                    # Konversi BGR ke RGB untuk PIL (bagian bawah)
+                    rgb_img_bottom = cv2.cvtColor(bottom_half, cv2.COLOR_BGR2RGB)
+                    pil_img_bottom = Image.fromarray(rgb_img_bottom)
+                    
+                    # Simpan gambar bagian bawah ke disk jika opsi diaktifkan
+                    if self.save_images:
+                        cv2.imwrite(img_path_bottom, bottom_half)
+                        print(f"  * Gambar bagian bawah disimpan: {img_path_bottom}")
+                    else:
+                        # Jika tidak menyimpan, buat path virtual untuk referensi
+                        img_path_bottom = f"memory://table_pages_{group_id}_part{i+1}_bottom.png"
+                        print(f"  * Gambar bagian bawah dibuffer di memori (tidak disimpan ke disk)")
+                    
+                    # Simpan data gambar bagian bawah
+                    images_data.append({
+                        "page_num": page_num + 1,
+                        "image_path": img_path_bottom,
+                        "pil_image": pil_img_bottom,
+                        "part": "bottom"
+                    })
                 else:
-                    # Jika tidak menyimpan, buat path virtual untuk referensi
-                    img_path = f"memory://table_pages_{group_id}_part{i+1}.png"
-                    print(f"  * Gambar dibuffer di memori (tidak disimpan ke disk)")
-                
-                # Simpan data gambar
-                images_data.append({
-                    "page_num": page_num + 1,
-                    "image_path": img_path,
-                    "pil_image": pil_img
-                })
+                    # Halaman tidak dibagi
+                    img_filename = f"table_pages_{group_id}_part{i+1}.png"
+                    img_path = os.path.join(self.img_output_dir, img_filename)
+                    
+                    # Konversi BGR ke RGB untuk PIL
+                    rgb_img = cv2.cvtColor(self.page_images[page_num], cv2.COLOR_BGR2RGB)
+                    pil_img = Image.fromarray(rgb_img)
+                    
+                    # Simpan gambar ke disk jika opsi diaktifkan
+                    if self.save_images:
+                        cv2.imwrite(img_path, self.page_images[page_num])
+                        print(f"  * Gambar disimpan: {img_path}")
+                    else:
+                        # Jika tidak menyimpan, buat path virtual untuk referensi
+                        img_path = f"memory://table_pages_{group_id}_part{i+1}.png"
+                        print(f"  * Gambar dibuffer di memori (tidak disimpan ke disk)")
+                    
+                    # Simpan data gambar
+                    images_data.append({
+                        "page_num": page_num + 1,
+                        "image_path": img_path,
+                        "pil_image": pil_img,
+                        "part": None
+                    })
         
         # Panggil API LLM
         api_result = self.call_llm_api(images_data)
@@ -404,7 +491,21 @@ class PDFExtractor:
                     break
             
             # Update data tabel
-            self.result["pages"][page_idx]["table_data"] = api_result.get(f"page_{page_num+1}", {})
+            if self.result["pages"][page_idx].get("needs_split", False):
+                # Jika halaman dibagi, kita perlu menggabungkan hasil dari dua bagian
+                top_data = api_result.get(f"page_{page_num+1}_top", {})
+                bottom_data = api_result.get(f"page_{page_num+1}_bottom", {})
+                
+                # Gabungkan hasil dari kedua bagian
+                combined_data = {
+                    "top_section": top_data,
+                    "bottom_section": bottom_data
+                }
+                
+                self.result["pages"][page_idx]["table_data"] = combined_data
+            else:
+                # Halaman tidak dibagi, gunakan hasil seperti biasa
+                self.result["pages"][page_idx]["table_data"] = api_result.get(f"page_{page_num+1}", {})
 
     def call_llm_api(self, images_data: List[Dict]) -> Dict:
         """
@@ -723,7 +824,7 @@ class PDFExtractor:
 
 if __name__ == "__main__":
     extractor = PDFExtractor(
-        pdf_path="studi_kasus/v2-cropped.pdf",
+        pdf_path="studi_kasus/v2.pdf",
         output_dir="output_ekstraksi",
         min_line_length=30,
         line_thickness=1,
