@@ -71,19 +71,21 @@ class PDFExtractor:
         self.current_table_group = []
         self.table_groups = []
         self.pages_with_tables = []
-        self.page_images = {}  # Menyimpan gambar yang sudah diproses
+        # Menyimpan gambar yang sudah diproses (hanya untuk deteksi garis)
+        self.page_images = {}
 
-    def save_pdf_split(self, page_nums: List[int], group_id: str) -> str:
+    def save_pdf_split(self, page_group: List[int], group_id: str) -> str:
         """
         Menyimpan halaman-halaman tertentu dari PDF sebagai file PDF baru.
         
         Args:
-            page_nums: List nomor halaman yang akan disimpan (berbasis indeks 0)
+            page_group: List nomor halaman yang akan disimpan (berbasis indeks 0)
             group_id: Identifier untuk grup halaman
             
         Returns:
-            Path file PDF yang disimpan
+            Path file PDF yang disimpan atau None jika opsi dinonaktifkan
         """
+        # Jika opsi save_pdf_splits dinonaktifkan, kembalikan None
         if not self.save_pdf_splits:
             print(f"  * Opsi save_pdf_splits dinonaktifkan, tidak menyimpan split PDF")
             return None
@@ -96,7 +98,7 @@ class PDFExtractor:
         
         try:
             # Salin halaman yang diinginkan ke dokumen baru
-            for page_num in page_nums:
+            for page_num in page_group:
                 new_doc.insert_pdf(self.doc, from_page=page_num, to_page=page_num)
             
             # Simpan dokumen baru
@@ -401,7 +403,7 @@ class PDFExtractor:
         """
         if not page_group:
             return
-            
+                
         group_start = page_group[0] + 1  # +1 untuk tampilan
         group_end = page_group[-1] + 1
         
@@ -411,52 +413,266 @@ class PDFExtractor:
         # Simpan halaman sebagai split PDF
         pdf_split_path = self.save_pdf_split(page_group, group_id)
         
-        # Persiapkan gambar untuk API
-        images_data = []
-        for i, page_num in enumerate(page_group):
-            if page_num in self.page_images:
-                img_filename = f"table_pages_{group_id}_part{i+1}.png"
-                img_path = os.path.join(self.img_output_dir, img_filename)
-                
-                # Konversi BGR ke RGB untuk PIL
-                rgb_img = cv2.cvtColor(self.page_images[page_num], cv2.COLOR_BGR2RGB)
-                pil_img = Image.fromarray(rgb_img)
-                
-                # Simpan gambar ke disk jika opsi diaktifkan
-                if self.save_images:
-                    cv2.imwrite(img_path, self.page_images[page_num])
-                    print(f"  * Gambar disimpan: {img_path}")
-                else:
-                    # Jika tidak menyimpan, buat path virtual untuk referensi
-                    img_path = f"memory://table_pages_{group_id}_part{i+1}.png"
-                    print(f"  * Gambar dibuffer di memori (tidak disimpan ke disk)")
-                
-                # Simpan data gambar
-                images_data.append({
-                    "page_num": page_num + 1,
-                    "image_path": img_path,
-                    "pil_image": pil_img,
-                    "pdf_split_path": pdf_split_path
-                })
+        # Jika PDF split berhasil disimpan atau dibuat, gunakan API untuk ekstraksi
+        if pdf_split_path:
+            # Jika gambar sudah diproses dan opsi save_images diaktifkan, simpan gambar untuk visualisasi
+            if self.save_images:
+                for i, page_num in enumerate(page_group):
+                    if page_num in self.page_images:
+                        img_filename = f"table_pages_{group_id}_part{i+1}.png"
+                        img_path = os.path.join(self.img_output_dir, img_filename)
+                        cv2.imwrite(img_path, self.page_images[page_num])
+                        print(f"  * Gambar untuk visualisasi disimpan: {img_path}")
         
-        # Panggil API LLM
-        api_result = self.call_llm_api(images_data)
-        
-        # Update hasil untuk setiap halaman dalam grup
-        for page_num in page_group:
-            page_idx = page_num  # Indeks dalam self.result["pages"]
-            # Cari halaman yang sesuai
-            for idx, page_data in enumerate(self.result["pages"]):
-                if page_data["page_num"] == page_num + 1:
-                    page_idx = idx
-                    break
+            # Panggil API LLM dengan PDF split
+            api_result = self.call_llm_api_with_pdf(pdf_split_path, page_group)
             
-            # Update data tabel
-            self.result["pages"][page_idx]["table_data"] = api_result.get(f"page_{page_num+1}", {})
-            
-            # Tambahkan informasi path split PDF jika ada
-            if pdf_split_path:
+            # Update hasil untuk setiap halaman dalam grup
+            for page_num in page_group:
+                page_idx = page_num  # Indeks dalam self.result["pages"]
+                # Cari halaman yang sesuai
+                for idx, page_data in enumerate(self.result["pages"]):
+                    if page_data["page_num"] == page_num + 1:
+                        page_idx = idx
+                        break
+                
+                # Update data tabel
+                self.result["pages"][page_idx]["table_data"] = api_result.get(f"page_{page_num+1}", {})
+                
+                # Tambahkan informasi path split PDF ke hasil
                 self.result["pages"][page_idx]["pdf_split_path"] = pdf_split_path
+        else:
+            print(f"  * Tidak dapat membuat atau menyimpan PDF split untuk halaman {group_id}")
+    
+    def call_llm_api_with_pdf(self, pdf_path: str, page_group: List[int]) -> Dict:
+        """
+        Panggil API dengan file PDF yang sudah di-split
+        
+        Args:
+            pdf_path: Path ke file PDF split
+            page_group: List nomor halaman yang ada dalam PDF split (berbasis indeks 0)
+            
+        Returns:
+            Dict hasil ekstraksi dari API
+        """
+        print(f"Memanggil API {self.api_provider} untuk ekstraksi tabel dari PDF split...")
+        print(f"PDF path: {pdf_path}")
+        print(f"Jumlah halaman: {len(page_group)}")
+        
+        try:
+            import google.generativeai as genai
+            from dotenv import load_dotenv
+            
+            # Load environment variables
+            load_dotenv()
+            
+            # Get API key from environment variables
+            GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+            if not GOOGLE_API_KEY:
+                raise ValueError("Google API Key tidak ditemukan. Pastikan variabel GOOGLE_API_KEY ada di file .env")
+            
+            # Configure API key
+            genai.configure(api_key=GOOGLE_API_KEY)
+            
+            # Initialize model
+            model = genai.GenerativeModel('gemini-2.0-flash')
+            
+            # Untuk menggunakan PDF dengan API Gemini, kita perlu:
+            # 1. Konversi setiap halaman PDF ke gambar (temporari)
+            # 2. Mengirim gambar-gambar tersebut ke API
+            
+            # Buat folder temporari untuk gambar
+            temp_dir = os.path.join(self.output_dir, "temp_api_images")
+            Path(temp_dir).mkdir(parents=True, exist_ok=True)
+            
+            # Buka PDF yang sudah di-split
+            pdf_doc = fitz.open(pdf_path)
+            
+            contents = [
+                """
+                Anda adalah sistem ahli dalam mengekstrak informasi dari gambar halaman PDF. Gambar yang diberikan adalah potongan halaman PDF dan bisa berisi teks biasa, tabel, dan/atau flowchart.
+                Tugas Anda adalah menganalisis gambar dan mengekstrak informasi yang terkandung di dalamnya dalam format JSON.
+
+                1. **Analisis Konten:** Identifikasi *semua* jenis konten yang ada dalam gambar. Sebuah gambar dapat berisi:
+                    *   Teks biasa (text)
+                    *   Tabel (table)
+                    *   Flowchart (flowchart)
+                    *   Kombinasi dari jenis-jenis konten tersebut
+
+                2. **Ekstraksi Informasi:** Untuk *setiap* jenis konten yang teridentifikasi, lakukan langkah-langkah berikut:
+
+                    *   **Ekstraksi Teks (jika ada):** Ekstrak semua teks yang dapat dibaca dan simpan dalam format berikut:
+                        ```json
+                        {
+                        "type": "text",
+                        "page_number": [Nomor Halaman (jika diketahui, jika tidak, biarkan kosong)],
+                        "text": [
+                            "Baris 1 teks",
+                            "Baris 2 teks",
+                            ...
+                        ]
+                        }
+                        ```
+                        Setiap baris teks harus menjadi elemen terpisah dalam array "text".
+
+                    *   **Ekstraksi Tabel (jika ada):** Ekstrak struktur dan data tabel dan simpan dalam format berikut:
+                        ```json
+                        {
+                        "type": "table",
+                        "page_number": [Nomor Halaman (jika diketahui, jika tidak, biarkan kosong)],
+                        "title": [Judul tabel (jika ada, jika tidak, biarkan kosong)],
+                        "description": [Deskripsi singkat tabel (jika ada, jika tidak, biarkan kosong)],
+                        "headers": [
+                            "Header Kolom 1",
+                            "Header Kolom 2",
+                            ...
+                        ],
+                        "rows": [
+                            {
+                            "Header Kolom 1": "Data baris 1 kolom 1",
+                            "Header Kolom 2": "Data baris 1 kolom 2",
+                            ...
+                            },
+                            {
+                            "Header Kolom 1": "Data baris 2 kolom 1",
+                            "Header Kolom 2": "Data baris 2 kolom 2",
+                            ...
+                            }
+                        ],
+                        "footer": [Catatan kaki tabel (jika ada, jika tidak, biarkan kosong)],
+                        "is_continued": [true jika tabel berlanjut dari halaman sebelumnya atau ke halaman berikutnya, false jika tidak]
+                        }
+                        ```
+                        *   `is_continued`:  **Sangat penting.** Setel ke `true` jika tabel ini adalah kelanjutan dari tabel di halaman sebelumnya, atau jika tabel ini berlanjut ke halaman berikutnya. Setel ke `false` jika ini adalah tabel lengkap dalam satu gambar.
+
+                    *   **Ekstraksi Flowchart (jika ada):** Ekstrak elemen-elemen flowchart dan simpan dalam format berikut:
+                        ```json
+                        {
+                        "type": "flowchart",
+                        "page_number": [Nomor Halaman (jika diketahui, jika tidak, biarkan kosong)],
+                        "title": [Judul flowchart (jika ada, jika tidak, biarkan kosong)],
+                        "structured_data": [
+                            {
+                            "entity": [Nama Entitas],
+                            "input": [Input (jika ada)],
+                            "processes": [
+                                {
+                                "name": [Nama Proses],
+                                "description": [Deskripsi Proses]
+                                }
+                            ],
+                            "description": [Deskripsi Entitas]
+                            }
+                        ],
+                        "narrative": [Ringkasan naratif dari flowchart]
+                        }
+                        ```
+
+                3. **Output:**  Keluarkan *semua* informasi yang diekstraksi sebagai *satu* array JSON. Setiap elemen dalam array mewakili satu bagian konten (teks, tabel, atau flowchart) yang diekstraksi dari gambar. Pastikan JSON tersebut valid dan dapat diurai dengan benar.
+
+                **Instruksi Tambahan:**
+
+                *   Fokus pada akurasi ekstraksi data.
+                *   Jika Anda tidak yakin dengan tipe konten atau bagaimana cara mengekstrak informasi, berikan output JSON dengan bidang yang sesuai sebanyak mungkin dan sertakan catatan di bagian "extraction_notes" (yang belum ada di contoh format, mohon ditambahkan ke semua format data).
+                *   **Prioritaskan deteksi *semua* elemen yang ada di gambar.** Jika gambar berisi teks *dan* tabel, hasilkan *dua* objek JSON terpisah: satu untuk teks, dan satu lagi untuk tabel.
+                *   Jika ada teks di luar tabel atau flowchart, identifikasi apakah teks tersebut merupakan judul/catatan kaki yang terkait dengan tabel/flowchart. Jika ya, gabungkan informasi tersebut ke dalam objek JSON tabel/flowchart yang sesuai. Jika tidak, perlakukan teks tersebut sebagai elemen "text" yang terpisah.
+                *   Jika gambar berisi *sebagian* tabel atau flowchart, usahakan untuk mengekstrak informasi sebanyak mungkin dan gunakan `is_continued: true` pada tabel yang terpotong.
+                """
+            ]
+            
+            # Konversi setiap halaman PDF ke gambar dan tambahkan ke contents
+            temp_image_paths = []
+            for i, page in enumerate(pdf_doc):
+                zoom = 2  # Resolusi yang cukup tinggi untuk API
+                mat = fitz.Matrix(zoom, zoom)
+                pix = page.get_pixmap(matrix=mat)
+                
+                # Simpan gambar ke file temporari
+                img_path = os.path.join(temp_dir, f"temp_page_{i}.png")
+                pix.save(img_path)
+                temp_image_paths.append(img_path)
+                
+                # Baca gambar sebagai PIL Image dan tambahkan ke contents
+                from PIL import Image
+                pil_img = Image.open(img_path)
+                contents.append(pil_img)
+            
+            # Panggil API
+            response = model.generate_content(contents)
+            
+            # Process the response
+            response_text = response.text
+            print(f"API Response received. Length: {len(response_text)} characters")
+            
+            # Parse the JSON response
+            # Sama seperti implementasi call_llm_api yang asli
+            try:
+                # Try to parse the entire response as JSON
+                parsed_result = json.loads(response_text)
+            except json.JSONDecodeError:
+                # If not valid JSON, try to extract JSON part from the text
+                import re
+                json_match = re.search(r'```json\s*([\s\S]*?)\s*```', response_text)
+                if json_match:
+                    try:
+                        parsed_result = json.loads(json_match.group(1))
+                    except json.JSONDecodeError:
+                        print("Tidak dapat memparsing JSON dari respons yang diekstrak")
+                        parsed_result = self._create_fallback_json_structure(response_text, page_group)
+                else:
+                    # Create structured data from text as best as possible
+                    parsed_result = self._create_fallback_json_structure(response_text, page_group)
+            
+            # Structure the result by page
+            result = {}
+            
+            # Check if the response has page-based structure
+            if isinstance(parsed_result, dict) and any(key.startswith('page_') for key in parsed_result.keys()):
+                # The response already has the correct structure
+                result = parsed_result
+            elif isinstance(parsed_result, dict) and 'pages' in parsed_result:
+                # Convert from {'pages': [{...page1...}, {...page2...}]} format to page_N format
+                for i, page_data in enumerate(parsed_result['pages']):
+                    page_num = page_data.get('page_num', i + 1)
+                    result[f'page_{page_num}'] = page_data
+            else:
+                # Create a structured response for each page
+                for i, page_num in enumerate(page_group):
+                    actual_page_num = page_num + 1
+                    result[f'page_{actual_page_num}'] = {
+                        "table_type": "extracted_table",
+                        "extracted_data": parsed_result if isinstance(parsed_result, list) else [parsed_result]
+                    }
+                    
+            # Bersihkan file temporari jika diperlukan
+            if self.cleanup_temp_files:
+                for img_path in temp_image_paths:
+                    if os.path.exists(img_path):
+                        os.remove(img_path)
+                
+                # Coba hapus direktori temporari jika kosong
+                try:
+                    os.rmdir(temp_dir)
+                except:
+                    pass  # Abaikan error jika direktori tidak kosong
+            
+            # Tutup dokumen PDF
+            pdf_doc.close()
+                    
+            return result
+            
+        except ImportError as e:
+            print(f"Error: Modul yang diperlukan tidak tersedia - {e}")
+            print("Pastikan modul google-generativeai, pillow, dan python-dotenv sudah diinstal.")
+            print("Instal dengan: pip install google-generativeai pillow python-dotenv")
+            return self._create_mock_result(page_group)
+            
+        except Exception as e:
+            print(f"Error saat memanggil API Google Gemini: {e}")
+            import traceback
+            traceback.print_exc()
+            # Return mock data as fallback
+            return self._create_mock_result(page_group)
 
     def call_llm_api(self, images_data: List[Dict]) -> Dict:
         """
@@ -651,7 +867,7 @@ class PDFExtractor:
             # Return mock data as fallback
             return self._create_mock_result(images_data)
 
-    def _create_fallback_json_structure(self, text, images_data):
+    def _create_fallback_json_structure(self, text, page_group):
         """
         Create a structured JSON from unstructured text response
         """
@@ -690,16 +906,16 @@ class PDFExtractor:
         
         return extracted_data
 
-    def _create_mock_result(self, images_data):
+    def _create_mock_result(self, page_group):
         """
         Create mock result when API call fails
         """
         print("Membuat hasil ekstraksi mock sebagai fallback...")
         result = {}
         
-        for img_data in images_data:
-            page_num = img_data["page_num"]
-            result[f"page_{page_num}"] = {
+        for page_num in page_group:
+            actual_page_num = page_num + 1
+            result[f"page_{actual_page_num}"] = {
                 "table_type": "unknown",
                 "extraction_status": "failed",
                 "error": "Tidak dapat mengekstrak data menggunakan API. Coba lagi nanti.",
@@ -775,7 +991,7 @@ class PDFExtractor:
 
 if __name__ == "__main__":
     extractor = PDFExtractor(
-        pdf_path="studi_kasus/v2-cropped.pdf",
+        pdf_path="studi_kasus/v2.pdf",
         output_dir="output_ekstraksi",
         min_line_length=30,
         line_thickness=1,
