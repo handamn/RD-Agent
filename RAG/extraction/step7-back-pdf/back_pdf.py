@@ -13,21 +13,22 @@ import pytesseract
 
 class PDFExtractor:
     def __init__(
-    self,
-    pdf_path: str,
-    output_dir: str = "output",
-    min_line_length: int = 200,
-    line_thickness: int = 2,
-    header_threshold: float = 50,
-    footer_threshold: float = 50,
-    scan_header_threshold: float = 100,
-    scan_footer_threshold: float = 100,
-    min_lines_per_page: int = 2,
-    api_provider: str = "google",
-    save_images: bool = True,  # Opsi untuk menyimpan gambar fisik
-    draw_line_highlights: bool = True,  # Opsi untuk menggambar garis highlight
-    cleanup_temp_files: bool = True  # Opsi untuk membersihkan file sementara
-):
+        self,
+        pdf_path: str,
+        output_dir: str = "output",
+        min_line_length: int = 200,
+        line_thickness: int = 2,
+        header_threshold: float = 50,
+        footer_threshold: float = 50,
+        scan_header_threshold: float = 100,
+        scan_footer_threshold: float = 100,
+        min_lines_per_page: int = 2,
+        api_provider: str = "google",
+        save_images: bool = True,  # Opsi untuk menyimpan gambar fisik
+        save_pdf_splits: bool = True,  # Opsi untuk menyimpan split PDF
+        draw_line_highlights: bool = True,  # Opsi untuk menggambar garis highlight
+        cleanup_temp_files: bool = True  # Opsi untuk membersihkan file sementara
+    ):
         self.pdf_path = pdf_path
         self.output_dir = output_dir
         self.min_line_length = min_line_length
@@ -39,6 +40,7 @@ class PDFExtractor:
         self.min_lines_per_page = min_lines_per_page
         self.api_provider = api_provider
         self.save_images = save_images
+        self.save_pdf_splits = save_pdf_splits
         self.draw_line_highlights = draw_line_highlights
         self.cleanup_temp_files = cleanup_temp_files
         
@@ -46,6 +48,10 @@ class PDFExtractor:
         Path(output_dir).mkdir(parents=True, exist_ok=True)
         self.img_output_dir = Path(output_dir) / "images"
         self.img_output_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Buat direktori untuk PDF splits
+        self.pdf_output_dir = Path(output_dir) / "pdf_splits"
+        self.pdf_output_dir.mkdir(parents=True, exist_ok=True)
         
         # Inisialisasi objek dokumen
         self.doc = fitz.open(pdf_path)
@@ -66,6 +72,44 @@ class PDFExtractor:
         self.table_groups = []
         self.pages_with_tables = []
         self.page_images = {}  # Menyimpan gambar yang sudah diproses
+
+    def save_pdf_split(self, page_nums: List[int], group_id: str) -> str:
+        """
+        Menyimpan halaman-halaman tertentu dari PDF sebagai file PDF baru.
+        
+        Args:
+            page_nums: List nomor halaman yang akan disimpan (berbasis indeks 0)
+            group_id: Identifier untuk grup halaman
+            
+        Returns:
+            Path file PDF yang disimpan
+        """
+        if not self.save_pdf_splits:
+            print(f"  * Opsi save_pdf_splits dinonaktifkan, tidak menyimpan split PDF")
+            return None
+            
+        output_filename = f"split_{os.path.basename(self.pdf_path).replace('.pdf', '')}_{group_id}.pdf"
+        output_path = os.path.join(self.pdf_output_dir, output_filename)
+        
+        # Buat dokumen baru
+        new_doc = fitz.open()
+        
+        try:
+            # Salin halaman yang diinginkan ke dokumen baru
+            for page_num in page_nums:
+                new_doc.insert_pdf(self.doc, from_page=page_num, to_page=page_num)
+            
+            # Simpan dokumen baru
+            new_doc.save(output_path)
+            print(f"  * PDF split disimpan: {output_path}")
+            
+            return output_path
+        except Exception as e:
+            print(f"  * Error saat menyimpan PDF split: {e}")
+            return None
+        finally:
+            # Tutup dokumen
+            new_doc.close()
     
     def process(self):
         """
@@ -364,6 +408,9 @@ class PDFExtractor:
         group_id = f"{group_start}" if len(page_group) == 1 else f"{group_start}-{group_end}"
         print(f"\nMengekstrak tabel dari halaman {group_id} menggunakan API {self.api_provider}...")
         
+        # Simpan halaman sebagai split PDF
+        pdf_split_path = self.save_pdf_split(page_group, group_id)
+        
         # Persiapkan gambar untuk API
         images_data = []
         for i, page_num in enumerate(page_group):
@@ -388,7 +435,8 @@ class PDFExtractor:
                 images_data.append({
                     "page_num": page_num + 1,
                     "image_path": img_path,
-                    "pil_image": pil_img
+                    "pil_image": pil_img,
+                    "pdf_split_path": pdf_split_path
                 })
         
         # Panggil API LLM
@@ -405,6 +453,10 @@ class PDFExtractor:
             
             # Update data tabel
             self.result["pages"][page_idx]["table_data"] = api_result.get(f"page_{page_num+1}", {})
+            
+            # Tambahkan informasi path split PDF jika ada
+            if pdf_split_path:
+                self.result["pages"][page_idx]["pdf_split_path"] = pdf_split_path
 
     def call_llm_api(self, images_data: List[Dict]) -> Dict:
         """
