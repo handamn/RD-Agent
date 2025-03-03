@@ -723,7 +723,7 @@ class PDFExtractor:
 
 if __name__ == "__main__":
     extractor = PDFExtractor(
-        pdf_path="studi_kasus/v2-cropped.pdf",
+        pdf_path="studi_kasus/v2.pdf",
         output_dir="output_ekstraksi",
         min_line_length=30,
         line_thickness=1,
@@ -734,7 +734,7 @@ if __name__ == "__main__":
         min_lines_per_page=1,
         api_provider="google",  # Using Google Gemini API
         save_images=True,
-        draw_line_highlights=False,
+        draw_line_highlights=True,
         cleanup_temp_files=True
     )
     
