@@ -723,7 +723,7 @@ class PDFExtractor:
 
 if __name__ == "__main__":
     extractor = PDFExtractor(
-        pdf_path="studi_kasus/v2.pdf",
+        pdf_path="studi_kasus/8_Tabel_N_Halaman_Merge_V4.pdf",
         output_dir="output_ekstraksi",
         min_line_length=30,
         line_thickness=1,

@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "filename": "8_Tabel_N_Halaman_Merge_V1.pdf",
+    "total_pages": 2,
+    "extraction_method": "table_detection_only",
+    "tables": {
+      "total_pages_with_tables": 2,
+      "table_groups": [
+        {
+          "group_id": "1-2",
+          "pages": [
+            1,
+            2
+          ]
+        }
+      ]
+    }
+  },
+  "pages": [
+    {
+      "page_num": 1,
+      "is_scanned": false,
+      "rotation": 0,
+      "has_table": true,
+      "text": null,
+      "table_data": {
+        "table_type": "extracted_table",
+        "extracted_data": [
+          {
+            "\"type\"": "\"table\",",
+            "\"page_number\"": "[],",
+            "\"text\"": "[",
+            "\"Akun ini terdiri dari": "\",",
+            "\"extraction_notes\"": "\"Extracted table from the image. This is the continuation of the table on the previous page, and it is the final part of the table, thus",
+            "\"title\"": "null,",
+            "\"description\"": "null,",
+            "\"headers\"": "[",
+            "\"rows\"": "[",
+            "\"Nilai Nominal (Rp)\"": "\"2.130.200.000.000\",",
+            "\"Investasi\"": "\"Jumlah\",",
+            "\"Jatuh Tempo\"": "null,",
+            "\"Tingkat Bunga per tahun (%)\"": "null,",
+            "\"Harga Rata-rata (%)\"": "null,",
+            "\"Biaya Perolehan Amortisasi (Rp)\"": "\"2.130.200.000.000\",",
+            "\"Rasio Biaya Perolehan Terhadap Aset Investasi (%)\"": "\"100,00\",",
+            "\"Peringkat\"": "null",
+            "\"footer\"": "null,",
+            "\"is_continued\"": "false,"
+          }
+        ]
+      }
+    },
+    {
+      "page_num": 2,
+      "is_scanned": false,
+      "rotation": 0,
+      "has_table": true,
+      "text": null,
+      "table_data": {
+        "table_type": "extracted_table",
+        "extracted_data": [
+          {
+            "\"type\"": "\"table\",",
+            "\"page_number\"": "[],",
+            "\"text\"": "[",
+            "\"Akun ini terdiri dari": "\",",
+            "\"extraction_notes\"": "\"Extracted table from the image. This is the continuation of the table on the previous page, and it is the final part of the table, thus",
+            "\"title\"": "null,",
+            "\"description\"": "null,",
+            "\"headers\"": "[",
+            "\"rows\"": "[",
+            "\"Nilai Nominal (Rp)\"": "\"2.130.200.000.000\",",
+            "\"Investasi\"": "\"Jumlah\",",
+            "\"Jatuh Tempo\"": "null,",
+            "\"Tingkat Bunga per tahun (%)\"": "null,",
+            "\"Harga Rata-rata (%)\"": "null,",
+            "\"Biaya Perolehan Amortisasi (Rp)\"": "\"2.130.200.000.000\",",
+            "\"Rasio Biaya Perolehan Terhadap Aset Investasi (%)\"": "\"100,00\",",
+            "\"Peringkat\"": "null",
+            "\"footer\"": "null,",
+            "\"is_continued\"": "false,"
+          }
+        ]
+      }
+    }
+  ]
+}

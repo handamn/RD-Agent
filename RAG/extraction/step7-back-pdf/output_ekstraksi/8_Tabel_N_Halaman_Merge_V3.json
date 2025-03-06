@@ -1,0 +1,89 @@
+{
+  "metadata": {
+    "filename": "8_Tabel_N_Halaman_Merge_V3.pdf",
+    "total_pages": 2,
+    "extraction_method": "table_detection_only",
+    "tables": {
+      "total_pages_with_tables": 2,
+      "table_groups": [
+        {
+          "group_id": "1-2",
+          "pages": [
+            1,
+            2
+          ]
+        }
+      ]
+    }
+  },
+  "pages": [
+    {
+      "page_num": 1,
+      "is_scanned": false,
+      "rotation": 0,
+      "has_table": true,
+      "text": null,
+      "table_data": {
+        "table_type": "extracted_table",
+        "extracted_data": [
+          {
+            "\"type\"": "\"table\",",
+            "\"page_number\"": "[",
+            "\"text\"": "[",
+            "\"extraction_notes\"": "\"Ekstraksi tabel halaman 29 dari dokumen.\"",
+            "\"title\"": "\"31 Desember 2022/December 31, 2022\",",
+            "\"description\"": "null,",
+            "\"headers\"": "[",
+            "\"rows\"": "[",
+            "\"Jenis efek/Type of investments\"": "\"PT Bank Pembangunan\\nDaerah Kepulauan\\nRiau Syariah\",",
+            "\"Nilai nominal/\\nNominal amount\"": "\"5.000.000.000\",",
+            "\"Harga perolehan\\nrata-rata/\\nAverage cost\"": "\"5.000.000.000\",",
+            "\"Nilai wajar/\\nFair value\"": "\"5.000.000.000\",",
+            "\"Tingkat\\nbunga\\n(%) per\\ntahun/\\nInterest\\nrate (%) per\\nannum\"": "\"6,75\",",
+            "\"Level\\nhierarki/\\nHierarchy\\nlevel\"": "null,",
+            "\"Peringkat efek/Credit\\nrating\"": "null,",
+            "\"Jatuh tempo/\\nMaturity date\"": "null,",
+            "\"Persentase\\n(%) terhadap\\ntotal\\nportofolio efek/\\nPercentage\\n(%) of total\\ninvestment\\nportfolios\"": "null",
+            "\"footer\"": "null,",
+            "\"is_continued\"": "true,"
+          }
+        ]
+      },
+      "pdf_split_path": "output_ekstraksi\\pdf_splits\\split_8_Tabel_N_Halaman_Merge_V3_1-2.pdf"
+    },
+    {
+      "page_num": 2,
+      "is_scanned": false,
+      "rotation": 0,
+      "has_table": true,
+      "text": null,
+      "table_data": {
+        "table_type": "extracted_table",
+        "extracted_data": [
+          {
+            "\"type\"": "\"table\",",
+            "\"page_number\"": "[",
+            "\"text\"": "[",
+            "\"extraction_notes\"": "\"Ekstraksi tabel halaman 29 dari dokumen.\"",
+            "\"title\"": "\"31 Desember 2022/December 31, 2022\",",
+            "\"description\"": "null,",
+            "\"headers\"": "[",
+            "\"rows\"": "[",
+            "\"Jenis efek/Type of investments\"": "\"PT Bank Pembangunan\\nDaerah Kepulauan\\nRiau Syariah\",",
+            "\"Nilai nominal/\\nNominal amount\"": "\"5.000.000.000\",",
+            "\"Harga perolehan\\nrata-rata/\\nAverage cost\"": "\"5.000.000.000\",",
+            "\"Nilai wajar/\\nFair value\"": "\"5.000.000.000\",",
+            "\"Tingkat\\nbunga\\n(%) per\\ntahun/\\nInterest\\nrate (%) per\\nannum\"": "\"6,75\",",
+            "\"Level\\nhierarki/\\nHierarchy\\nlevel\"": "null,",
+            "\"Peringkat efek/Credit\\nrating\"": "null,",
+            "\"Jatuh tempo/\\nMaturity date\"": "null,",
+            "\"Persentase\\n(%) terhadap\\ntotal\\nportofolio efek/\\nPercentage\\n(%) of total\\ninvestment\\nportfolios\"": "null",
+            "\"footer\"": "null,",
+            "\"is_continued\"": "true,"
+          }
+        ]
+      },
+      "pdf_split_path": "output_ekstraksi\\pdf_splits\\split_8_Tabel_N_Halaman_Merge_V3_1-2.pdf"
+    }
+  ]
+}
