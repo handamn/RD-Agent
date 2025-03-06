@@ -1,0 +1,211 @@
+{
+  "metadata": {
+    "filename": "V3.pdf",
+    "total_pages": 1,
+    "extraction_method": "table_detection_only",
+    "tables": {
+      "total_pages_with_tables": 1,
+      "table_groups": [
+        {
+          "group_id": "1",
+          "pages": [
+            1
+          ]
+        }
+      ]
+    }
+  },
+  "pages": [
+    {
+      "page_num": 1,
+      "is_scanned": false,
+      "rotation": 0,
+      "has_table": true,
+      "text": null,
+      "table_data": {
+        "table_type": "extracted_table",
+        "extracted_data": [
+          {
+            "type": "text",
+            "page_number": [],
+            "text": [
+              "REKSA DANA BATAVIA DANA KAS MAXΙΜΑ",
+              "CATATAN ATAS LAPORAN KEUANGAN",
+              "(Lanjutan)",
+              "Untuk tahun yang berakhir pada tanggal",
+              "31 Desember 2023",
+              "(Dalam Rupiah, kecuali dinyatakan lain)",
+              "3. PORTOFOLIO EFEK",
+              "Ikhtisar portofolio efek",
+              "Saldo portofolio efek pada tanggal 31 Desember 2023 dan 2022 adalah sebagai",
+              "berikut:",
+              "REKSA DANA BATAVIA DANA KAS MAXΙΜΑ",
+              "NOTES TO THE FINANCIAL STATEMENTS",
+              "(Continued)",
+              "For the years ended",
+              "December 31, 2023",
+              "(Stated in Rupiah, unless otherwise stated)",
+              "3.\tINVESTMENT PORTFOLIOS",
+              "Summary of investment portfolios",
+              "Balance of investment portfolios as at December 31, 2023 and 2022 are as follows:"
+            ],
+            "extraction_notes": "Extracted introductory text and titles."
+          },
+          {
+            "type": "table",
+            "page_number": [],
+            "title": null,
+            "description": null,
+            "headers": [
+              "Jenis efek/Type of investments",
+              "Nilai nominal/Nominal amount",
+              "Harga perolehan rata-rata/Average cost",
+              "Nilai wajar/Fair value",
+              "Tingkat bunga (%) per tahun/Interest rate (%) per annum",
+              "Tingkat hierarki/Hierarchy level",
+              "Jatuh tempo/Maturity date",
+              "Peringkat efek/Credit rating",
+              "Persentase (%) terhadap total portofolio efek/Percentage (%) of total investment portfolios"
+            ],
+            "rows": [
+              {
+                "Jenis efek/Type of investments": "Efek bersifat utang/Debt instruments",
+                "Nilai nominal/Nominal amount": null,
+                "Harga perolehan rata-rata/Average cost": null,
+                "Nilai wajar/Fair value": null,
+                "Tingkat bunga (%) per tahun/Interest rate (%) per annum": null,
+                "Tingkat hierarki/Hierarchy level": null,
+                "Jatuh tempo/Maturity date": null,
+                "Peringkat efek/Credit rating": null,
+                "Persentase (%) terhadap total portofolio efek/Percentage (%) of total investment portfolios": null
+              },
+              {
+                "Jenis efek/Type of investments": "Obligasi pemerintah/Government bonds",
+                "Nilai nominal/Nominal amount": null,
+                "Harga perolehan rata-rata/Average cost": null,
+                "Nilai wajar/Fair value": null,
+                "Tingkat bunga (%) per tahun/Interest rate (%) per annum": null,
+                "Tingkat hierarki/Hierarchy level": null,
+                "Jatuh tempo/Maturity date": null,
+                "Peringkat efek/Credit rating": null,
+                "Persentase (%) terhadap total portofolio efek/Percentage (%) of total investment portfolios": null
+              },
+              {
+                "Jenis efek/Type of investments": "FR0070",
+                "Nilai nominal/Nominal amount": "159.000.000.000",
+                "Harga perolehan rata-rata/Average cost": "162.141.508.494",
+                "Nilai wajar/Fair value": "159.642.956.250",
+                "Tingkat bunga (%) per tahun/Interest rate (%) per annum": "8,375",
+                "Tingkat hierarki/Hierarchy level": "2",
+                "Jatuh tempo/Maturity date": "15 Mar 24",
+                "Peringkat efek/Credit rating": "-",
+                "Persentase (%) terhadap total portofolio efek/Percentage (%) of total investment portfolios": "1,22"
+              },
+              {
+                "Jenis efek/Type of investments": "FR0077",
+                "Nilai nominal/Nominal amount": "146.000.000.000",
+                "Harga perolehan rata-rata/Average cost": "148.592.441.935",
+                "Nilai wajar/Fair value": "146.939.613.660",
+                "Tingkat bunga (%) per tahun/Interest rate (%) per annum": "8,125",
+                "Tingkat hierarki/Hierarchy level": "2",
+                "Jatuh tempo/Maturity date": "15 Mei 24",
+                "Peringkat efek/Credit rating": "-",
+                "Persentase (%) terhadap total portofolio efek/Percentage (%) of total investment portfolios": "1,12"
+              },
+              {
+                "Jenis efek/Type of investments": "ORI019",
+                "Nilai nominal/Nominal amount": "110.100.000.000",
+                "Harga perolehan rata-rata/Average cost": "109.905.084.745",
+                "Nilai wajar/Fair value": "109.990.928.334",
+                "Tingkat bunga (%) per tahun/Interest rate (%) per annum": "5,57",
+                "Tingkat hierarki/Hierarchy level": "2",
+                "Jatuh tempo/Maturity date": "15 Feb 24",
+                "Peringkat efek/Credit rating": "-",
+                "Persentase (%) terhadap total portofolio efek/Percentage (%) of total investment portfolios": "0,84"
+              },
+              {
+                "Jenis efek/Type of investments": "FR0044",
+                "Nilai nominal/Nominal amount": "50.000.000.000",
+                "Harga perolehan rata-rata/Average cost": "51.645.000.000",
+                "Nilai wajar/Fair value": "51.237.503.500",
+                "Tingkat bunga (%) per tahun/Interest rate (%) per annum": "*0,00",
+                "Tingkat hierarki/Hierarchy level": "2",
+                "Jatuh tempo/Maturity date": "15 Sep 24",
+                "Peringkat efek/Credit rating": "-",
+                "Persentase (%) terhadap total portofolio efek/Percentage (%) of total investment portfolios": "0,39"
+              },
+              {
+                "Jenis efek/Type of investments": "Total obligasi pemerintah/\nTotal government bonds",
+                "Nilai nominal/Nominal amount": "465.100.000.000",
+                "Harga perolehan rata-rata/Average cost": "472.284.035.174",
+                "Nilai wajar/Fair value": "467.811.001.744",
+                "Tingkat bunga (%) per tahun/Interest rate (%) per annum": null,
+                "Tingkat hierarki/Hierarchy level": null,
+                "Jatuh tempo/Maturity date": null,
+                "Peringkat efek/Credit rating": null,
+                "Persentase (%) terhadap total portofolio efek/Percentage (%) of total investment portfolios": "3,57"
+              },
+              {
+                "Jenis efek/Type of investments": "Obligasi korporasi/Corporate bonds",
+                "Nilai nominal/Nominal amount": null,
+                "Harga perolehan rata-rata/Average cost": null,
+                "Nilai wajar/Fair value": null,
+                "Tingkat bunga (%) per tahun/Interest rate (%) per annum": null,
+                "Tingkat hierarki/Hierarchy level": null,
+                "Jatuh tempo/Maturity date": null,
+                "Peringkat efek/Credit rating": null,
+                "Persentase (%) terhadap total portofolio efek/Percentage (%) of total investment portfolios": null
+              },
+              {
+                "Jenis efek/Type of investments": "Berkelanjutan III Protelindo Tahap II Tahun 2023\nSeri A",
+                "Nilai nominal/Nominal amount": "668.000.000.000",
+                "Harga perolehan rata-rata/Average cost": "667.985.166.189",
+                "Nilai wajar/Fair value": "666.974.700.160",
+                "Tingkat bunga (%) per tahun/Interest rate (%) per annum": "6,35",
+                "Tingkat hierarki/Hierarchy level": "2",
+                "Jatuh tempo/Maturity date": "31 Mar 24",
+                "Peringkat efek/Credit rating": "AAA(idn)",
+                "Persentase (%) terhadap total portofolio efek/Percentage (%) of total investment portfolios": "5,08"
+              },
+              {
+                "Jenis efek/Type of investments": "Berkelanjutan V Pegadaian Tahap V Tahun 2023\nSeri A",
+                "Nilai nominal/Nominal amount": "510.000.000.000",
+                "Harga perolehan rata-rata/Average cost": "509.838.774.194",
+                "Nilai wajar/Fair value": "508.390.230.900",
+                "Tingkat bunga (%) per tahun/Interest rate (%) per annum": "5,90",
+                "Tingkat hierarki/Hierarchy level": "2",
+                "Jatuh tempo/Maturity date": "4 Sep 24",
+                "Peringkat efek/Credit rating": "idAA",
+                "Persentase (%) terhadap total portofolio efek/Percentage (%) of total investment portfolios": "3,87"
+              },
+              {
+                "Jenis efek/Type of investments": "Total obligasi korporasi (dipindahkan)/\nTotal corporation bonds (brought forward)",
+                "Nilai nominal/Nominal amount": "1.178.000.000.000",
+                "Harga perolehan rata-rata/Average cost": "1.177.823.940.383",
+                "Nilai wajar/Fair value": "1.175.364.931.060",
+                "Tingkat bunga (%) per tahun/Interest rate (%) per annum": null,
+                "Tingkat hierarki/Hierarchy level": null,
+                "Jatuh tempo/Maturity date": null,
+                "Peringkat efek/Credit rating": null,
+                "Persentase (%) terhadap total portofolio efek/Percentage (%) of total investment portfolios": "8,95"
+              }
+            ],
+            "footer": null,
+            "is_continued": false,
+            "extraction_notes": "Extracted table of investment portfolios."
+          },
+          {
+            "type": "text",
+            "page_number": [],
+            "text": [
+              "31 Desember 2023/December 31, 2023",
+              "22"
+            ],
+            "extraction_notes": "Extracted the ending text"
+          }
+        ]
+      },
+      "pdf_split_path": "output_ekstraksi\\pdf_splits\\split_V3_1.pdf"
+    }
+  ]
+}

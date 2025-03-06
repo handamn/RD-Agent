@@ -16,7 +16,9 @@ genai.configure(api_key=GOOGLE_API_KEY)
 
 # Initialize model
 try:
-    model = genai.GenerativeModel('gemini-2.0-flash')  # atau sesuaikan jika gemini-2.0-flash tersedia
+    # Coba beberapa model yang mungkin. Lebih spesifik lebih baik.
+    model_name = 'gemini-2.0-flash'  # Atau model lain yang sesuai
+    model = genai.GenerativeModel(model_name)
 except Exception as e:
     print(f"Error initializing model: {e}")
     exit()
@@ -43,17 +45,52 @@ content = [
     "in this pdf, there are table. can you extract it and give me an output with json format?"
 ]
 
+
+# Hitung Token
+try:
+    token_count = model.count_tokens(content)
+    print(f"Perkiraan jumlah token: {token_count.total_tokens}")
+    # Tambahkan pengecekan batas token di sini, jika perlu.
+    if token_count.total_tokens > 8192:  #Ganti dengan token limit
+        print("Jumlah token melewati batas")
+        exit()
+except Exception as e:
+     print(f"Error calculating token: {e}")
+
+
 # Generate content
 try:
-    response = model.generate_content(content)
+    # Gunakan streaming jika didukung dan sering timeout.
+    # response = model.generate_content(content, stream=True)  # Ubah ke True jika ingin streaming
+    
+    response = model.generate_content(content, stream=True)
+    full_response = ""
+    for chunk in response:
+        full_response += chunk.text
+        print(chunk.text, end="", flush=True)
+    
+    
+    #Jika streaming
+    # for chunk in response:
+    #      print(chunk.text, end="", flush=True) #flush=True agar output tidak di buffer
+    # print()
+
+except genai.APIError as e:
+    print(f"API Error: {e}")  # Tangani error API secara spesifik
+    if e.code == 429:
+        print("Rate limit exceeded.  Implement retry with backoff.")
+    elif e.code == 504:
+        print("Request timed out.  Optimize prompt or use streaming.")
+    # Tambahkan penanganan error lain sesuai kebutuhan.
+    exit()
 except Exception as e:
-    print(f"Error generating content: {e}")
+    print(f"General error generating content: {e}")
     exit()
 
 # Process the response
 try:
-    response_text = response.text
+    response_text = response.text #Kalau tidak streaming
     print(f"API Response received. Length: {len(response_text)} characters")
-    print(response_text)  # Tampilkan hasil
+    print(response_text)
 except Exception as e:
     print(f"Error processing response: {e}")
