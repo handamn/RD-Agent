@@ -1,0 +1,301 @@
+{
+  "metadata": {
+    "filename": "v2-cropped-v1.pdf",
+    "total_pages": 1,
+    "extraction_method": "table_detection_only",
+    "tables": {
+      "total_pages_with_tables": 1,
+      "table_groups": [
+        {
+          "group_id": "1",
+          "pages": [
+            1
+          ]
+        }
+      ]
+    }
+  },
+  "pages": [
+    {
+      "page_num": 1,
+      "is_scanned": false,
+      "rotation": 0,
+      "has_table": true,
+      "text": null,
+      "table_data": {
+        "table_type": "extracted_table",
+        "extracted_data": [
+          {
+            "type": "text",
+            "page_number": [
+              1
+            ],
+            "text": [
+              "REKSA DANA BAHANA LIKUID PLUS",
+              "CATATAN ATAS LAPORAN KEUANGAN",
+              "PADA TANGGAL DAN UNTUK TAHUN YANG BERAKHIR PADA 31 DESEMBER 2023",
+              "(Angka dalam tabel disajikan dalam Rupiah, kecuali dinyatakan lain)",
+              "3. PORTOFOLIO EFEK (Lanjutan)",
+              "31 Desember 2022"
+            ],
+            "extraction_notes": "Teks pembuka dan judul tabel."
+          },
+          {
+            "type": "table",
+            "page_number": [
+              1
+            ],
+            "title": "PORTOFOLIO EFEK (Lanjutan)",
+            "description": "Data investasi instrumen pasar uang pada 31 Desember 2022",
+            "headers": [
+              "Nilai Nominal (Rp)",
+              "Investasi",
+              "Jatuh Tempo",
+              "Tingkat Bunga per tahun (%)",
+              "Harga Perolehan Rata-rata (%)",
+              "Biaya Perolehan Amortisasi (Rp)",
+              "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)",
+              "Peringkat"
+            ],
+            "rows": [
+              {
+                "Nilai Nominal (Rp)": "85.000.000.000",
+                "Investasi": "PT Bank Oke Indonesia Tbk.",
+                "Jatuh Tempo": "07 Maret 2023",
+                "Tingkat Bunga per tahun (%)": "6,00",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "85.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "5,63",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "60.000.000.000",
+                "Investasi": "PT Bank Nationalnobu Tbk.",
+                "Jatuh Tempo": "16 Januari 2023",
+                "Tingkat Bunga per tahun (%)": "6,25",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "60.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "3,98",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "50.000.000.000",
+                "Investasi": "PT Bank MNC Internasional Tbk.",
+                "Jatuh Tempo": "30 Januari 2023",
+                "Tingkat Bunga per tahun (%)": "7,00",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "50.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "3,31",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "50.000.000.000",
+                "Investasi": "PT Bank Muamalat Tbk.",
+                "Jatuh Tempo": "16 Januari 2023",
+                "Tingkat Bunga per tahun (%)": "6,25",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "50.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "3,31",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "50.000.000.000",
+                "Investasi": "PT Bank Pembangunan Daerah Jambi",
+                "Jatuh Tempo": "16 Januari 2023",
+                "Tingkat Bunga per tahun (%)": "6,00",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "50.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "3,31",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "50.000.000.000",
+                "Investasi": "PT Bank Pembangunan Daerah\nSulawesi Selatan &\nSulawesi Barat",
+                "Jatuh Tempo": "16 Januari 2023",
+                "Tingkat Bunga per tahun (%)": "6,25",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "50.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "3,31",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "50.000.000.000",
+                "Investasi": "PT Bank Pembangunan Daerah\nSulawesi Tengah",
+                "Jatuh Tempo": "16 Januari 2023",
+                "Tingkat Bunga per tahun (%)": "6,25",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "50.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "3,31",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "50.000.000.000",
+                "Investasi": "PT Bank Pembangunan Daerah\nSulawesi Utara dan Gorontalo",
+                "Jatuh Tempo": "14 Januari 2023",
+                "Tingkat Bunga per tahun (%)": "6,50",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "50.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "3,31",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "50.000.000.000",
+                "Investasi": "PT Bank Pembangunan Daerah\nSumatera Selatan dan\nBangka Belitung -\nUnit Usaha Syariah",
+                "Jatuh Tempo": "14 Januari 2023",
+                "Tingkat Bunga per tahun (%)": "6,25",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "50.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "3,31",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "50.000.000.000",
+                "Investasi": "PT Bank Sahabat Sampoerna",
+                "Jatuh Tempo": "14 Januari 2023",
+                "Tingkat Bunga per tahun (%)": "6,25",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "50.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "3,31",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "50.000.000.000",
+                "Investasi": "PT Bank Sahabat Sampoerna",
+                "Jatuh Tempo": "16 Januari 2023",
+                "Tingkat Bunga per tahun (%)": "6,25",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "50.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "3,31",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "40.000.000.000",
+                "Investasi": "PT Bank Capital Tbk.",
+                "Jatuh Tempo": "22 Januari 2023",
+                "Tingkat Bunga per tahun (%)": "6,25",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "40.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "2,65",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "40.000.000.000",
+                "Investasi": "PT Bank MNC Internasional Tbk.",
+                "Jatuh Tempo": "14 Januari 2023",
+                "Tingkat Bunga per tahun (%)": "6,50",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "40.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "2,65",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "40.000.000.000",
+                "Investasi": "PT Bank Nagari",
+                "Jatuh Tempo": "14 Januari 2023",
+                "Tingkat Bunga per tahun (%)": "6,25",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "40.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "2,65",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "40.000.000.000",
+                "Investasi": "PT Bank Pembangunan Daerah\nSulawesi Selatan &\nSulawesi Barat",
+                "Jatuh Tempo": "16 Januari 2023",
+                "Tingkat Bunga per tahun (%)": "6,25",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "40.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "2,65",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "33.000.000.000",
+                "Investasi": "PT Bank Nagari",
+                "Jatuh Tempo": "26 Januari 2023",
+                "Tingkat Bunga per tahun (%)": "6,25",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "33.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "2,19",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "30.000.000.000",
+                "Investasi": "PT Bank MNC Internasional Tbk.",
+                "Jatuh Tempo": "22 Maret 2023",
+                "Tingkat Bunga per tahun (%)": "6,75",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "30.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "1,99",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "30.000.000.000",
+                "Investasi": "PT Bank Nagari",
+                "Jatuh Tempo": "09 Januari 2023",
+                "Tingkat Bunga per tahun (%)": "6,00",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "30.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "1,99",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "30.000.000.000",
+                "Investasi": "PT Bank Nationalnobu Tbk.",
+                "Jatuh Tempo": "09 Januari 2023",
+                "Tingkat Bunga per tahun (%)": "6,00",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "30.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "1,99",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "30.000.000.000",
+                "Investasi": "PT Bank Nationalnobu Tbk.",
+                "Jatuh Tempo": "30 Maret 2023",
+                "Tingkat Bunga per tahun (%)": "6,50",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "30.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "1,99",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "30.000.000.000",
+                "Investasi": "PT Bank Pembangunan Daerah\nJawa Barat dan Banten Tbk.",
+                "Jatuh Tempo": "07 Januari 2023",
+                "Tingkat Bunga per tahun (%)": "4,25",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "30.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "1,99",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "30.000.000.000",
+                "Investasi": "PT Bank Pembangunan Daerah\nSulawesi Utara dan Gorontalo",
+                "Jatuh Tempo": "16 Maret 2023",
+                "Tingkat Bunga per tahun (%)": "6,50",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "30.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "1,99",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal (Rp)": "30.000.000.000",
+                "Investasi": "PT Bank Rakyat Indonesia\n(Persero) Tbk.",
+                "Jatuh Tempo": "30 November 2023",
+                "Tingkat Bunga per tahun (%)": "5,75",
+                "Harga Perolehan Rata-rata (%)": "100,00",
+                "Biaya Perolehan Amortisasi (Rp)": "30.000.000.000",
+                "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "1,99",
+                "Peringkat": "-"
+              }
+            ],
+            "footer": [],
+            "is_continued": false,
+            "extraction_notes": "Tabel berisi data portofolio efek. Tidak ada catatan kaki yang terdeteksi."
+          }
+        ]
+      },
+      "pdf_split_path": "output_ekstraksi\\pdf_splits\\split_v2-cropped-v1_1.pdf"
+    }
+  ]
+}

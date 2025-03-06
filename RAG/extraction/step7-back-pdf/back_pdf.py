@@ -982,7 +982,7 @@ class PDFExtractor:
 
 if __name__ == "__main__":
     extractor = PDFExtractor(
-        pdf_path="studi_kasus/V2.pdf",
+        pdf_path="studi_kasus/v2-cropped-v1.pdf",
         output_dir="output_ekstraksi",
         min_line_length=30,
         line_thickness=1,
