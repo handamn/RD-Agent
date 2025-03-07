@@ -1,748 +1,304 @@
 ```json
 [
   {
-    "value": "PT Bank Rakyat Indonesia"
-  },
-  {
-    "value": "(Persero) Tbk."
-  },
-  {
-    "value": "30.000.000.000"
-  },
-  {
-    "value": "30 November 2023"
-  },
-  {
-    "value": "5,75"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "30.000.000.000"
-  },
-  {
-    "value": "1,99"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "PT Bank Rakyat Indonesia"
-  },
-  {
-    "value": "(Persero) Tbk."
-  },
-  {
-    "value": "30.000.000.000"
-  },
-  {
-    "value": "16 Desember 2023"
-  },
-  {
-    "value": "5,75"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "30.000.000.000"
-  },
-  {
-    "value": "1,99"
-  },
-  {
-    "value": "PT Bank Pembangunan Daerah"
-  },
-  {
-    "value": "25.000.000.000"
-  },
-  {
-    "value": "Bengkulu"
-  },
-  {
-    "value": "09 Juni 2023"
-  },
-  {
-    "value": "6,00"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "25.000.000.000"
-  },
-  {
-    "value": "1,66"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "25.000.000.000"
-  },
-  {
-    "value": "PT Bank Sahabat Sampoerna"
-  },
-  {
-    "value": "29 Maret 2023"
-  },
-  {
-    "value": "6,75"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "25.000.000.000"
-  },
-  {
-    "value": "1,66"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "PT Bank Capital Tbk."
-  },
-  {
-    "value": "07 Juni 2023"
-  },
-  {
-    "value": "6,00"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "1,33"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "PT Bank Maspion"
-  },
-  {
-    "value": "20 Januari 2023"
-  },
-  {
-    "value": "6,00"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "1,33"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "PT Bank MNC Internasional Tbk."
-  },
-  {
-    "value": "15 Februari 2023"
-  },
-  {
-    "value": "6,25"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "1,33"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "PT Bank Muamalat Tbk."
-  },
-  {
-    "value": "07 Januari 2023"
-  },
-  {
-    "value": "6,00"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "1,33"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "PT Bank Muamalat Tbk."
-  },
-  {
-    "value": "31 Januari 2023"
-  },
-  {
-    "value": "5,50"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "1,33"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "PT Bank Nagari"
-  },
-  {
-    "value": "19 Januari 2023"
-  },
-  {
-    "value": "6,25"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "1,33"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "PT Bank Neo Commerce Tbk."
-  },
-  {
-    "value": "09 Januari 2023"
-  },
-  {
-    "value": "6,00"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "1,33"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "PT Bank Pembangunan Daerah Jambi"
-  },
-  {
-    "value": "30 Januari 2023"
-  },
-  {
-    "value": "7,00"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "1,33"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "PT Bank Lampung"
-  },
-  {
-    "value": "07 Januari 2023"
-  },
-  {
-    "value": "6,25"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "1,33"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "PT Bank Pembangunan Daerah"
-  },
-  {
-    "value": "Sulawesi Selatan &"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "Sulawesi Barat"
-  },
-  {
-    "value": "04 Januari 2023"
-  },
-  {
-    "value": "3,75"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "1,33"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "PT Bank Pembangunan Daerah"
-  },
-  {
-    "value": "Sulawesi Selatan &"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "Sulawesi Barat"
-  },
-  {
-    "value": "31 Januari 2023"
-  },
-  {
-    "value": "5,25"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "20.000.000.000"
-  },
-  {
-    "value": "1,33"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "PT Bank Rakyat Indonesia"
-  },
-  {
-    "value": "18.000.000.000"
-  },
-  {
-    "value": "(Persero) Tbk."
-  },
-  {
-    "value": "24 Februari 2023"
-  },
-  {
-    "value": "5,50"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "18.000.000.000"
-  },
-  {
-    "value": "1,19"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "15.000.000.000"
-  },
-  {
-    "value": "PT Bank Muamalat Tbk."
-  },
-  {
-    "value": "29 Mei 2023"
-  },
-  {
-    "value": "6,00"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "15.000.000.000"
-  },
-  {
-    "value": "0,99"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "15.000.000.000"
-  },
-  {
-    "value": "PT Bank Nationalnobu Tbk."
-  },
-  {
-    "value": "31 Januari 2023"
-  },
-  {
-    "value": "5,50"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "15.000.000.000"
-  },
-  {
-    "value": "0,99"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "15.000.000.000"
-  },
-  {
-    "value": "PT Bank Pembangunan Daerah"
-  },
-  {
-    "value": "Bengkulu"
-  },
-  {
-    "value": "26 Juni 2023"
-  },
-  {
-    "value": "6,00"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "15.000.000.000"
-  },
-  {
-    "value": "0,99"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "PT Bank Pembangunan Daerah"
-  },
-  {
-    "value": "15.000.000.000"
-  },
-  {
-    "value": "Sulawesi Utara dan Gorontalo"
-  },
-  {
-    "value": "28 Februari 2023"
-  },
-  {
-    "value": "6,00"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "15.000.000.000"
-  },
-  {
-    "value": "0,99"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "PT Bank Pembangunan Daerah"
-  },
-  {
-    "value": "15.000.000.000"
-  },
-  {
-    "value": "Sulawesi Utara dan Gorontalo"
-  },
-  {
-    "value": "08 Januari 2023"
-  },
-  {
-    "value": "6,50"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "15.000.000.000"
-  },
-  {
-    "value": "0,99"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "PT Bank Pembangunan Daerah"
-  },
-  {
-    "value": "15.000.000.000"
-  },
-  {
-    "value": "Sulawesi Utara dan Gorontalo"
-  },
-  {
-    "value": "30 Januari 2023"
-  },
-  {
-    "value": "6,50"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "15.000.000.000"
-  },
-  {
-    "value": "0,99"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "12.000.000.000"
-  },
-  {
-    "value": "PT Bank Oke Indonesia Tbk."
-  },
-  {
-    "value": "09 Maret 2023"
-  },
-  {
-    "value": "6,00"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "12.000.000.000"
-  },
-  {
-    "value": "0,80"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "10.000.000.000"
-  },
-  {
-    "value": "PT Bank Maspion"
-  },
-  {
-    "value": "01 Januari 2023"
-  },
-  {
-    "value": "6,00"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "10.000.000.000"
-  },
-  {
-    "value": "0,66"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "10.000.000.000"
-  },
-  {
-    "value": "PT Bank Muamalat Tbk."
-  },
-  {
-    "value": "22 Januari 2023"
-  },
-  {
-    "value": "6,00"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "10.000.000.000"
-  },
-  {
-    "value": "0,66"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "10.000.000.000"
-  },
-  {
-    "value": "PT Bank Nationalnobu Tbk."
-  },
-  {
-    "value": "21 Maret 2023"
-  },
-  {
-    "value": "6,25"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "10.000.000.000"
-  },
-  {
-    "value": "0,66"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "10.000.000.000"
-  },
-  {
-    "value": "PT Bank Oke Indonesia Tbk."
-  },
-  {
-    "value": "24 Maret 2023"
-  },
-  {
-    "value": "6,25"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "10.000.000.000"
-  },
-  {
-    "value": "0,66"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "PT Bank Pembangunan Daerah"
-  },
-  {
-    "value": "10.000.000.000"
-  },
-  {
-    "value": "Bengkulu"
-  },
-  {
-    "value": "14 Januari 2023"
-  },
-  {
-    "value": "6,00"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "10.000.000.000"
-  },
-  {
-    "value": "0,66"
-  },
-  {
-    "value": "-"
-  },
-  {
-    "value": "PT Bank Pembangunan Daerah"
-  },
-  {
-    "value": "5.000.000.000"
-  },
-  {
-    "value": "Sulawesi Utara dan Gorontalo"
-  },
-  {
-    "value": "26 Maret 2023"
-  },
-  {
-    "value": "6,50"
-  },
-  {
-    "value": "100,00"
-  },
-  {
-    "value": "5.000.000.000"
-  },
-  {
-    "value": "0,33"
-  },
-  {
-    "value": "1.473.000.000.000 Jumlah Instrumen Pasar Uang"
-  },
-  {
-    "value": "1.473.000.000.000"
-  },
-  {
-    "value": "97,62"
-  },
-  {
-    "value": "-"
+    "Column 1": "30.000.000.000",
+    "Column 2": "PT Bank Rakyat Indonesia\n(Persero) Tbk.",
+    "Column 3": "30 November 2023",
+    "Column 4": "5,75",
+    "Column 5": "100,00",
+    "Column 6": "30.000.000.000",
+    "Column 7": "1,99",
+    "Column 8": null
+  },
+  {
+    "Column 1": "30.000.000.000",
+    "Column 2": "PT Bank Rakyat Indonesia\n(Persero) Tbk.",
+    "Column 3": "16 Desember 2023",
+    "Column 4": "5,75",
+    "Column 5": "100,00",
+    "Column 6": "30.000.000.000",
+    "Column 7": "1,99",
+    "Column 8": null
+  },
+  {
+    "Column 1": "25.000.000.000",
+    "Column 2": "PT Bank Pembangunan Daerah\nBengkulu",
+    "Column 3": "09 Juni 2023",
+    "Column 4": "6,00",
+    "Column 5": "100,00",
+    "Column 6": "25.000.000.000",
+    "Column 7": "1,66",
+    "Column 8": null
+  },
+  {
+    "Column 1": "25.000.000.000",
+    "Column 2": "PT Bank Sahabat Sampoerna",
+    "Column 3": "29 Maret 2023",
+    "Column 4": "6,75",
+    "Column 5": "100,00",
+    "Column 6": "25.000.000.000",
+    "Column 7": "1,66",
+    "Column 8": null
+  },
+  {
+    "Column 1": "20.000.000.000",
+    "Column 2": "PT Bank Capital Tbk.",
+    "Column 3": "07 Juni 2023",
+    "Column 4": "6,00",
+    "Column 5": "100,00",
+    "Column 6": "20.000.000.000",
+    "Column 7": "1,33",
+    "Column 8": null
+  },
+  {
+    "Column 1": "20.000.000.000",
+    "Column 2": "PT Bank Maspion",
+    "Column 3": "20 Januari 2023",
+    "Column 4": "6,00",
+    "Column 5": "100,00",
+    "Column 6": "20.000.000.000",
+    "Column 7": "1,33",
+    "Column 8": null
+  },
+  {
+    "Column 1": "20.000.000.000",
+    "Column 2": "PT Bank MNC Internasional Tbk.",
+    "Column 3": "15 Februari 2023",
+    "Column 4": "6,25",
+    "Column 5": "100,00",
+    "Column 6": "20.000.000.000",
+    "Column 7": "1,33",
+    "Column 8": null
+  },
+  {
+    "Column 1": "20.000.000.000",
+    "Column 2": "PT Bank Muamalat Tbk.",
+    "Column 3": "07 Januari 2023",
+    "Column 4": "6,00",
+    "Column 5": "100,00",
+    "Column 6": "20.000.000.000",
+    "Column 7": "1,33",
+    "Column 8": null
+  },
+  {
+    "Column 1": "20.000.000.000",
+    "Column 2": "PT Bank Muamalat Tbk.",
+    "Column 3": "31 Januari 2023",
+    "Column 4": "5,50",
+    "Column 5": "100,00",
+    "Column 6": "20.000.000.000",
+    "Column 7": "1,33",
+    "Column 8": null
+  },
+  {
+    "Column 1": "20.000.000.000",
+    "Column 2": "PT Bank Nagari",
+    "Column 3": "19 Januari 2023",
+    "Column 4": "6,25",
+    "Column 5": "100,00",
+    "Column 6": "20.000.000.000",
+    "Column 7": "1,33",
+    "Column 8": null
+  },
+  {
+    "Column 1": "20.000.000.000",
+    "Column 2": "PT Bank Neo Commerce Tbk.",
+    "Column 3": "09 Januari 2023",
+    "Column 4": "6,00",
+    "Column 5": "100,00",
+    "Column 6": "20.000.000.000",
+    "Column 7": "1,33",
+    "Column 8": null
+  },
+  {
+    "Column 1": "20.000.000.000",
+    "Column 2": "PT Bank Pembangunan Daerah Jambi",
+    "Column 3": "30 Januari 2023",
+    "Column 4": "7,00",
+    "Column 5": "100,00",
+    "Column 6": "20.000.000.000",
+    "Column 7": "1,33",
+    "Column 8": null
+  },
+  {
+    "Column 1": "20.000.000.000",
+    "Column 2": "PT Bank Lampung",
+    "Column 3": "07 Januari 2023",
+    "Column 4": "6,25",
+    "Column 5": "100,00",
+    "Column 6": "20.000.000.000",
+    "Column 7": "1,33",
+    "Column 8": null
+  },
+  {
+    "Column 1": "20.000.000.000",
+    "Column 2": "PT Bank Pembangunan Daerah\nSulawesi Selatan &\nSulawesi Barat",
+    "Column 3": "04 Januari 2023",
+    "Column 4": "3,75",
+    "Column 5": "100,00",
+    "Column 6": "20.000.000.000",
+    "Column 7": "1,33",
+    "Column 8": null
+  },
+  {
+    "Column 1": "20.000.000.000",
+    "Column 2": "PT Bank Pembangunan Daerah\nSulawesi Selatan &\nSulawesi Barat",
+    "Column 3": "31 Januari 2023",
+    "Column 4": "5,25",
+    "Column 5": "100,00",
+    "Column 6": "20.000.000.000",
+    "Column 7": "1,33",
+    "Column 8": null
+  },
+  {
+    "Column 1": "18.000.000.000",
+    "Column 2": "PT Bank Rakyat Indonesia\n(Persero) Tbk.",
+    "Column 3": "24 Februari 2023",
+    "Column 4": "5,50",
+    "Column 5": "100,00",
+    "Column 6": "18.000.000.000",
+    "Column 7": "1,19",
+    "Column 8": null
+  },
+  {
+    "Column 1": "15.000.000.000",
+    "Column 2": "PT Bank Muamalat Tbk.",
+    "Column 3": "29 Mei 2023",
+    "Column 4": "6,00",
+    "Column 5": "100,00",
+    "Column 6": "15.000.000.000",
+    "Column 7": "0,99",
+    "Column 8": null
+  },
+  {
+    "Column 1": "15.000.000.000",
+    "Column 2": "PT Bank Nationalnobu Tbk.",
+    "Column 3": "31 Januari 2023",
+    "Column 4": "5,50",
+    "Column 5": "100,00",
+    "Column 6": "15.000.000.000",
+    "Column 7": "0,99",
+    "Column 8": null
+  },
+  {
+    "Column 1": "15.000.000.000",
+    "Column 2": "PT Bank Pembangunan Daerah\nBengkulu",
+    "Column 3": "26 Juni 2023",
+    "Column 4": "6,00",
+    "Column 5": "100,00",
+    "Column 6": "15.000.000.000",
+    "Column 7": "0,99",
+    "Column 8": null
+  },
+  {
+    "Column 1": "15.000.000.000",
+    "Column 2": "PT Bank Pembangunan Daerah\nSulawesi Utara dan Gorontalo",
+    "Column 3": "28 Februari 2023",
+    "Column 4": "6,00",
+    "Column 5": "100,00",
+    "Column 6": "15.000.000.000",
+    "Column 7": "0,99",
+    "Column 8": null
+  },
+  {
+    "Column 1": "15.000.000.000",
+    "Column 2": "PT Bank Pembangunan Daerah\nSulawesi Utara dan Gorontalo",
+    "Column 3": "08 Januari 2023",
+    "Column 4": "6,50",
+    "Column 5": "100,00",
+    "Column 6": "15.000.000.000",
+    "Column 7": "0,99",
+    "Column 8": null
+  },
+  {
+    "Column 1": "15.000.000.000",
+    "Column 2": "PT Bank Pembangunan Daerah\nSulawesi Utara dan Gorontalo",
+    "Column 3": "30 Januari 2023",
+    "Column 4": "6,50",
+    "Column 5": "100,00",
+    "Column 6": "15.000.000.000",
+    "Column 7": "0,99",
+    "Column 8": null
+  },
+  {
+    "Column 1": "12.000.000.000",
+    "Column 2": "PT Bank Oke Indonesia Tbk.",
+    "Column 3": "09 Maret 2023",
+    "Column 4": "6,00",
+    "Column 5": "100,00",
+    "Column 6": "12.000.000.000",
+    "Column 7": "0,80",
+    "Column 8": null
+  },
+  {
+    "Column 1": "10.000.000.000",
+    "Column 2": "PT Bank Maspion",
+    "Column 3": "01 Januari 2023",
+    "Column 4": "6,00",
+    "Column 5": "100,00",
+    "Column 6": "10.000.000.000",
+    "Column 7": "0,66",
+    "Column 8": null
+  },
+  {
+    "Column 1": "10.000.000.000",
+    "Column 2": "PT Bank Muamalat Tbk.",
+    "Column 3": "22 Januari 2023",
+    "Column 4": "6,00",
+    "Column 5": "100,00",
+    "Column 6": "10.000.000.000",
+    "Column 7": "0,66",
+    "Column 8": null
+  },
+  {
+    "Column 1": "10.000.000.000",
+    "Column 2": "PT Bank Nationalnobu Tbk.",
+    "Column 3": "21 Maret 2023",
+    "Column 4": "6,25",
+    "Column 5": "100,00",
+    "Column 6": "10.000.000.000",
+    "Column 7": "0,66",
+    "Column 8": null
+  },
+  {
+    "Column 1": "10.000.000.000",
+    "Column 2": "PT Bank Oke Indonesia Tbk.",
+    "Column 3": "24 Maret 2023",
+    "Column 4": "6,25",
+    "Column 5": "100,00",
+    "Column 6": "10.000.000.000",
+    "Column 7": "0,66",
+    "Column 8": null
+  },
+  {
+    "Column 1": "10.000.000.000",
+    "Column 2": "PT Bank Pembangunan Daerah\nBengkulu",
+    "Column 3": "14 Januari 2023",
+    "Column 4": "6,00",
+    "Column 5": "100,00",
+    "Column 6": "10.000.000.000",
+    "Column 7": "0,66",
+    "Column 8": null
+  },
+  {
+    "Column 1": "5.000.000.000",
+    "Column 2": "PT Bank Pembangunan Daerah\nSulawesi Utara dan Gorontalo",
+    "Column 3": "26 Maret 2023",
+    "Column 4": "6,50",
+    "Column 5": "100,00",
+    "Column 6": "5.000.000.000",
+    "Column 7": "0,33",
+    "Column 8": null
+  },
+  {
+    "Column 1": "1.473.000.000.000",
+    "Column 2": "Jumlah Instrumen Pasar Uang",
+    "Column 3": null,
+    "Column 4": null,
+    "Column 5": null,
+    "Column 6": "1.473.000.000.000",
+    "Column 7": "97,62",
+    "Column 8": null
   }
 ]
 ```

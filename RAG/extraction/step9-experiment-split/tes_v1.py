@@ -61,21 +61,7 @@ def process_pdf(file_path):
         
         response_text = response.text
         print(response_text)
-        # # Kumpulkan respons dari streaming
-        # full_response = ""
-        # for chunk in response:
-        #     full_response += chunk.text
-        #     print(chunk.text, end="", flush=True)
-        
-        # print("\n")  # Baris baru di akhir output
-        
-        
-        # # Simpan hasil ke file JSON
-        # output_filename = os.path.basename(file_path).replace('.pdf', '.json')
-        # with open(output_filename, 'w', encoding='utf-8') as json_file:
-        #     json_file.write(full_response)
-        
-        # print(f"Hasil disimpan ke file: {output_filename}")
+
         # return full_response
         
     except exceptions.DeadlineExceeded:
@@ -89,21 +75,3 @@ results = {}
 
 for pdf_file in pdf_files:
     result = process_pdf(pdf_file)
-#     if result:
-#         # Mencoba parse hasil sebagai JSON
-#         try:
-#             # Simpan hasil dalam dictionary dengan nama file sebagai key
-#             filename = os.path.basename(pdf_file)
-#             results[filename] = json.loads(result)
-#         except json.JSONDecodeError:
-#             print(f"Warning: Hasil dari {pdf_file} bukan format JSON yang valid")
-#             # Simpan hasil mentah jika bukan JSON valid
-#             results[os.path.basename(pdf_file)] = result
-
-# # Simpan semua hasil ke satu file JSON gabungan
-# try:
-#     with open("all_results.json", 'w', encoding='utf-8') as all_json:
-#         json.dump(results, all_json, indent=2, ensure_ascii=False)
-#     print("\nSemua hasil telah digabung dan disimpan ke all_results.json")
-# except Exception as e:
-#     print(f"Error saat menyimpan file gabungan: {e}")
