@@ -27,9 +27,10 @@ except Exception as e:
 
 # Daftar path file PDF yang ingin diproses
 pdf_files = [
-    "studi_kasus/v2.pdf"
-    # "studi_kasus/v2-cropped-v1.pdf",
+    "studi_kasus/v2-cropped-v1.pdf",
     # "studi_kasus/v2-cropped-v2.pdf",
+    # "studi_kasus/v2-cropped-v3.pdf",
+    # "studi_kasus/v2-cropped-v4.pdf",
     # Tambahkan path file PDF lainnya di sini
 ]
 
@@ -60,9 +61,9 @@ def process_pdf(file_path):
         response = model.generate_content(content, stream=False)
         
         response_text = response.text
-        print(response_text)
+        # print(response_text)
 
-        # return full_response
+        return response_text
         
     except exceptions.DeadlineExceeded:
         print("Error: Permintaan melebihi batas waktu (timeout).")
@@ -70,8 +71,7 @@ def process_pdf(file_path):
         print(f"Error saat memproses file {file_path}: {e}")
         return None
 
-# Proses semua file PDF dan simpan hasilnya
-results = {}
 
 for pdf_file in pdf_files:
     result = process_pdf(pdf_file)
+    print(result)
