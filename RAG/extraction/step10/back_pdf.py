@@ -107,15 +107,14 @@ class PDFExtractor:
                 # Panggil check_large_y_gaps
                 upper_line_coord, lower_line_coord, max_gap = self.check_large_y_gaps(valid_lines, page_height)
             
-                if max_gap > 0:
-                    print()
-                    print(f"  * Halaman {page_num+1} memiliki gap besar: {max_gap} poin")
-                    print(f"    - Garis atas: {upper_line_coord}")
-                    print(f"    - Garis bawah: {lower_line_coord}")
-                    print()
-                    
-                    # Di sini Anda bisa menambahkan logika tambahan berdasarkan gap
-                    # Misalnya, memisahkan halaman berdasarkan gap besar
+                print()
+                print(f"  * Halaman {page_num+1} memiliki gap besar: {max_gap} poin")
+                print(f"    - Garis atas: {upper_line_coord}")
+                print(f"    - Garis bawah: {lower_line_coord}")
+                print()
+                
+                # Di sini Anda bisa menambahkan logika tambahan berdasarkan gap
+                # Misalnya, memisahkan halaman berdasarkan gap besar
 
             
         output_filename = f"split_{os.path.basename(self.pdf_path).replace('.pdf', '')}_{group_id}.pdf"
