@@ -89,6 +89,34 @@ class PDFExtractor:
         if not self.save_pdf_splits:
             print(f"  * Opsi save_pdf_splits dinonaktifkan, tidak menyimpan split PDF")
             return None
+        
+
+        for page_num in page_group:
+            # Cari data halaman yang sesuai
+            page_data = None
+            for p in self.result["pages"]:
+                if p["page_num"] == page_num + 1:
+                    page_data = p
+                    break
+            
+            if page_data and "valid_lines" in page_data:
+                valid_lines = page_data["valid_lines"]
+                page = self.doc[page_num]
+                page_height = page.rect.height
+                
+                # Panggil check_large_y_gaps
+                upper_line_coord, lower_line_coord, max_gap = self.check_large_y_gaps(valid_lines, page_height)
+            
+                if max_gap > 0:
+                    print()
+                    print(f"  * Halaman {page_num+1} memiliki gap besar: {max_gap} poin")
+                    print(f"    - Garis atas: {upper_line_coord}")
+                    print(f"    - Garis bawah: {lower_line_coord}")
+                    print()
+                    
+                    # Di sini Anda bisa menambahkan logika tambahan berdasarkan gap
+                    # Misalnya, memisahkan halaman berdasarkan gap besar
+
             
         output_filename = f"split_{os.path.basename(self.pdf_path).replace('.pdf', '')}_{group_id}.pdf"
         output_path = os.path.join(self.pdf_output_dir, output_filename)
@@ -216,6 +244,7 @@ class PDFExtractor:
             rotation
         )
         
+        
         # Simpan gambar jika halaman memiliki tabel
         if has_table:
             self.page_images[page_num] = original_img
@@ -231,27 +260,32 @@ class PDFExtractor:
             "is_scanned": is_scanned,
             "rotation": rotation,
             "has_table": has_table,
+            "valid_lines": lines,
             "text": page_text if not has_table else None,  # Teks disimpan sebagai list string
             "table_data": None  # Akan diisi nanti oleh API LLM jika memiliki tabel
         }
     
     def check_large_y_gaps(self, valid_lines, page_height):
         if len(valid_lines) < 2:
-            print("Tidak cukup garis untuk diperiksa.")
-            return False
+            return 0,0,0
 
-        # Ambil semua y_positions dan urutkan
-        y_positions = sorted([line['y_position'] for line in valid_lines])
+        y_positions = sorted(set(line['y_position'] for line in valid_lines))
         threshold = page_height / 2
+        max_gap = 0
+        selected_pair = None
 
         for i in range(len(y_positions) - 1):
             gap = y_positions[i + 1] - y_positions[i]
-            if gap > threshold:
-                print(f"TRUE: Jarak antara {y_positions[i]} dan {y_positions[i + 1]} adalah {gap}, melebihi {threshold}")
-                return True
-        
-        print("FALSE: Tidak ada jarak antar garis yang melebihi setengah tinggi halaman.")
-        return False
+            if gap > threshold and gap > max_gap:
+                max_gap = gap
+                selected_pair = (y_positions[i], y_positions[i + 1])
+
+        if selected_pair:
+            upper_line_coord = selected_pair[0]
+            lower_line_coord = selected_pair[1]
+            return upper_line_coord, lower_line_coord, max_gap
+
+        return 0,0,0
     
     def detect_table_lines(
         self, 
@@ -318,15 +352,19 @@ class PDFExtractor:
                 'x_max': x2
             })
         
-        print()
-        self.check_large_y_gaps(valid_lines, page_height)
-        print()
+        # print()
+        # upper_line_coord, lower_line_coord, max_gap = self.check_large_y_gaps(valid_lines, page_height)
+        # print(upper_line_coord)
+        # print(lower_line_coord)
+        # print(max_gap)
+        # print(page_height)
+        # print()
 
-        print()
-        print("----")
-        print(valid_lines)
-        print("----")
-        print()
+        # print()
+        # print("----")
+        # print(valid_lines)
+        # print("----")
+        # print()
 
         print("- Hasil eliminasi:")
         print(f"  * Eliminasi karena panjang < {self.min_line_length}: {eliminated_by_length} garis")
@@ -827,8 +865,8 @@ if __name__ == "__main__":
         scan_footer_threshold=50,
         min_lines_per_page=1,
         api_provider="google",  # Using Google Gemini API
-        save_images=True,
-        draw_line_highlights=True,
+        save_images=False,
+        draw_line_highlights=False,
         cleanup_temp_files=True
     )
     
