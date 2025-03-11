@@ -235,6 +235,24 @@ class PDFExtractor:
             "table_data": None  # Akan diisi nanti oleh API LLM jika memiliki tabel
         }
     
+    def check_large_y_gaps(self, valid_lines, page_height):
+        if len(valid_lines) < 2:
+            print("Tidak cukup garis untuk diperiksa.")
+            return False
+
+        # Ambil semua y_positions dan urutkan
+        y_positions = sorted([line['y_position'] for line in valid_lines])
+        threshold = page_height / 2
+
+        for i in range(len(y_positions) - 1):
+            gap = y_positions[i + 1] - y_positions[i]
+            if gap > threshold:
+                print(f"TRUE: Jarak antara {y_positions[i]} dan {y_positions[i + 1]} adalah {gap}, melebihi {threshold}")
+                return True
+        
+        print("FALSE: Tidak ada jarak antar garis yang melebihi setengah tinggi halaman.")
+        return False
+    
     def detect_table_lines(
         self, 
         img: np.ndarray, 
@@ -300,6 +318,16 @@ class PDFExtractor:
                 'x_max': x2
             })
         
+        print()
+        self.check_large_y_gaps(valid_lines, page_height)
+        print()
+
+        print()
+        print("----")
+        print(valid_lines)
+        print("----")
+        print()
+
         print("- Hasil eliminasi:")
         print(f"  * Eliminasi karena panjang < {self.min_line_length}: {eliminated_by_length} garis")
         print(f"  * Eliminasi karena posisi di header/footer: {eliminated_by_position} garis")
