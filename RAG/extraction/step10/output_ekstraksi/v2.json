@@ -1,0 +1,437 @@
+{
+  "metadata": {
+    "filename": "v2.pdf",
+    "total_pages": 1,
+    "extraction_method": "table_detection_only",
+    "tables": {
+      "total_pages_with_tables": 1,
+      "table_groups": [
+        {
+          "group_id": "1",
+          "pages": [
+            1
+          ]
+        }
+      ]
+    }
+  },
+  "pages": [
+    {
+      "page_num": 1,
+      "is_scanned": false,
+      "rotation": 0,
+      "has_table": true,
+      "valid_lines": [
+        {
+          "y_position": 778.0,
+          "x_min": 67.0,
+          "x_max": 543.5
+        },
+        {
+          "y_position": 737.5,
+          "x_min": 399.5,
+          "x_max": 502.0
+        },
+        {
+          "y_position": 737.0,
+          "x_min": 86.5,
+          "x_max": 149.0
+        },
+        {
+          "y_position": 722.5,
+          "x_min": 399.5,
+          "x_max": 502.0
+        },
+        {
+          "y_position": 722.0,
+          "x_min": 86.5,
+          "x_max": 149.0
+        },
+        {
+          "y_position": 208.0,
+          "x_min": 146.5,
+          "x_max": 220.0
+        },
+        {
+          "y_position": 198.5,
+          "x_min": 86.5,
+          "x_max": 541.0
+        },
+        {
+          "y_position": 142.5,
+          "x_min": 86.5,
+          "x_max": 541.0
+        },
+        {
+          "y_position": 94.0,
+          "x_min": 67.0,
+          "x_max": 543.5
+        }
+      ],
+      "text": null,
+      "table_data": {
+        "table_type": "extracted_table",
+        "extracted_data": [
+          {
+            "type": "text",
+            "page_number": [],
+            "text": [
+              "REKSA DANA BAHANA LIKUID PLUS",
+              "CATATAN ATAS LAPORAN KEUANGAN",
+              "PADA TANGGAL DAN UNTUK TAHUN YANG BERAKHIR PADA 31 DESEMBER 2023",
+              "(Angka dalam tabel disajikan dalam Rupiah, kecuali dinyatakan lain)",
+              "3. PORTOFOLIO EFEK (Lanjutan)",
+              "31 Desember 2022"
+            ],
+            "extraction_notes": "Extracted title and header texts of the table."
+          },
+          {
+            "type": "table",
+            "page_number": [],
+            "title": "PORTOFOLIO EFEK (Lanjutan)",
+            "description": "Portofolio Efek per 31 Desember 2022",
+            "headers": [
+              "Nilai Nominal\n(Rp)",
+              "Investasi\nInstrumen Pasar Uang",
+              "Jatuh Tempo",
+              "Tingkat\nBunga\nper tahun\n(%)",
+              "Harga\nPerolehan\nRata-rata\n(%)",
+              "Biaya Perolehan\nAmortisasi\n(Rp)",
+              "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)",
+              "Peringkat"
+            ],
+            "rows": [
+              {
+                "Nilai Nominal\n(Rp)": "85.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Oke Indonesia Tbk.",
+                "Jatuh Tempo": "07 Maret 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,00",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "85.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "5,63",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "60.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Nationalnobu Tbk.",
+                "Jatuh Tempo": "16 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,25",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "60.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,98",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "50.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank MNC Internasional Tbk.",
+                "Jatuh Tempo": "30 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "7,00",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "50.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,31",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "50.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Muamalat Tbk.",
+                "Jatuh Tempo": "16 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,25",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "50.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,31",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "50.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Pembangunan Daerah Jambi",
+                "Jatuh Tempo": "16 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,00",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "50.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,31",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "50.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Pembangunan Daerah\nSulawesi Selatan &\nSulawesi Barat",
+                "Jatuh Tempo": "16 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,25",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "50.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,31",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "50.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Pembangunan Daerah\nSulawesi Tengah",
+                "Jatuh Tempo": "16 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,25",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "50.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,31",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "50.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Pembangunan Daerah\nSulawesi Utara dan Gorontalo",
+                "Jatuh Tempo": "14 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,50",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "50.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,31",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "50.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Pembangunan Daerah\nSumatera Selatan dan\nBangka Belitung -\nUnit Usaha Syariah",
+                "Jatuh Tempo": "14 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,25",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "50.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,31",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "50.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Sahabat Sampoerna",
+                "Jatuh Tempo": "14 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,25",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "50.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,31",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "50.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Sahabat Sampoerna",
+                "Jatuh Tempo": "16 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,25",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "50.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,31",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "40.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Capital Tbk.",
+                "Jatuh Tempo": "22 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,25",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "40.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "2,65",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "40.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank MNC Internasional Tbk.",
+                "Jatuh Tempo": "14 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,50",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "40.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "2,65",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "40.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Nagari",
+                "Jatuh Tempo": "14 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,25",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "40.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "2,65",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "40.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Pembangunan Daerah\nSulawesi Selatan &\nSulawesi Barat",
+                "Jatuh Tempo": "16 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,25",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "40.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "2,65",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "33.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Nagari",
+                "Jatuh Tempo": "26 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,25",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "33.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "2,19",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "30.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank MNC Internasional Tbk.",
+                "Jatuh Tempo": "22 Maret 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,75",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "30.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,99",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "30.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Nagari",
+                "Jatuh Tempo": "09 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,00",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "30.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,99",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "30.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Nationalnobu Tbk.",
+                "Jatuh Tempo": "09 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,00",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "30.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,99",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "30.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Nationalnobu Tbk.",
+                "Jatuh Tempo": "30 Maret 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,50",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "30.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,99",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "30.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Pembangunan Daerah\nJawa Barat dan Banten Tbk.",
+                "Jatuh Tempo": "07 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "4,25",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "30.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,99",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "30.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Pembangunan Daerah\nSulawesi Utara dan Gorontalo",
+                "Jatuh Tempo": "16 Maret 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,50",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "30.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,99",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "30.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Rakyat Indonesia\n(Persero) Tbk.",
+                "Jatuh Tempo": "30 November 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "5,75",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "30.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,99",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "30.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Rakyat Indonesia\n(Persero) Tbk.",
+                "Jatuh Tempo": "16 Desember 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "5,75",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "30.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,99",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "25.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Pembangunan Daerah\nBengkulu",
+                "Jatuh Tempo": "09 Juni 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,00",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "25.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,66",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "25.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Sahabat Sampoerna",
+                "Jatuh Tempo": "29 Maret 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,75",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "25.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,66",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "20.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Capital Tbk.",
+                "Jatuh Tempo": "07 Juni 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,00",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "20.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,33",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "20.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Maspion",
+                "Jatuh Tempo": "20 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,00",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "20.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,33",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "20.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank MNC Internasional Tbk.",
+                "Jatuh Tempo": "15 Februari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,25",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "20.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,33",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "20.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Muamalat Tbk.",
+                "Jatuh Tempo": "07 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6,00",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "20.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,33",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "20.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Muamalat Tbk.",
+                "Jatuh Tempo": "31 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "5,50",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "20.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,33",
+                "Peringkat": "-"
+              },
+              {
+                "Nilai Nominal\n(Rp)": "30.000.000.000",
+                "Investasi\nInstrumen Pasar Uang": "PT Bank Nagari",
+                "Jatuh Tempo": "10 Januari 2023",
+                "Tingkat\nBunga\nper tahun\n(%)": "6.35",
+                "Harga\nPerolehan\nRata-rata\n(%)": "100.00",
+                "Biaya Perolehan\nAmortisasi\n(Rp)": "20.000.000.000",
+                "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1.33",
+                "Peringkat": "-"
+              }
+            ],
+            "footer": [],
+            "is_continued": false,
+            "extraction_notes": "Extracted the table data. is_continued is set to false as it appears to be the only portion available."
+          }
+        ]
+      },
+      "pdf_split_paths": [
+        "output_ekstraksi\\pdf_splits\\split_v2_1_part1.pdf",
+        "output_ekstraksi\\pdf_splits\\split_v2_1_part2.pdf"
+      ]
+    }
+  ]
+}

@@ -75,38 +75,39 @@ class PDFExtractor:
         self.page_images = {}
 
 
-    def save_pdf_split(self, page_group: List[int], group_id: str, split_index: int = 0) -> str:
+    def save_pdf_split(self, page_group: List[int], group_id: str, split_index: int = 0, quarter_coords_list: List = None) -> List[str]:
         """
         Menyimpan halaman-halaman tertentu dari PDF sebagai file PDF baru.
+        Dapat melakukan multiple split jika quarter_coords_list diberikan.
         
         Args:
             page_group: List nomor halaman yang akan disimpan (berbasis indeks 0)
             group_id: Identifier untuk grup halaman
-            split_index: Indeks split untuk penamaan (jika ada multiple split pada halaman yang sama)
+            split_index: Indeks split untuk penamaan file jika melakukan multiple split
+            quarter_coords_list: List dari quarter_coords untuk multiple split
             
         Returns:
-            Path file PDF yang disimpan atau None jika opsi dinonaktifkan
+            List path file PDF yang disimpan atau [] jika opsi dinonaktifkan
         """
-        # Jika opsi save_pdf_splits dinonaktifkan, kembalikan None
+        # Jika opsi save_pdf_splits dinonaktifkan, kembalikan list kosong
         if not self.save_pdf_splits:
             print(f"  * Opsi save_pdf_splits dinonaktifkan, tidak menyimpan split PDF")
-            return None
+            return []
         
-        # Buat nama file berdasarkan split_index jika ada
-        split_suffix = f"_part{split_index}" if split_index > 0 else ""
-        output_filename = f"split_{os.path.basename(self.pdf_path).replace('.pdf', '')}_{group_id}{split_suffix}.pdf"
-        output_path = os.path.join(self.pdf_output_dir, output_filename)
+        saved_paths = []
         
-        # Cek apakah kita bisa menggunakan alur baru (dengan gap detection)
+        # Cek apakah kita perlu menggunakan alur baru (dengan gap detection)
         use_new_flow = False
-        quarter_coords = []
         
-        # Kita hanya menangani kasus khusus untuk grup halaman tunggal
-        if len(page_group) == 1:
+        # Jika quarter_coords_list diberikan, gunakan itu
+        if quarter_coords_list:
+            use_new_flow = True
+        # Jika tidak, coba deteksi gap seperti sebelumnya
+        elif len(page_group) == 1:
             page_num = page_group[0]
             # Cari data halaman yang sesuai
             page_data = None
-            for p in self.result["pages"]: 
+            for p in self.result["pages"]:
                 if p["page_num"] == page_num + 1:
                     page_data = p
                     break
@@ -120,17 +121,19 @@ class PDFExtractor:
                 upper_line_coord, lower_line_coord, max_gap = self.check_large_y_gaps(valid_lines, page_height)
                 
                 # Jika gap cukup besar, gunakan alur baru
-                # if max_gap > (page_height * 0.1):  # Misalnya, jika gap > 10% dari tinggi halaman
-                use_new_flow = True
-                print(f"\n  * Halaman {page_num+1} memiliki gap besar: {max_gap} poin")
-                print(f"    - Garis atas: {upper_line_coord}")
-                print(f"    - Garis bawah: {lower_line_coord}\n")
-                
-                # Buat koordinat untuk split_and_merge_pdf
-                quarter_coords = [
-                    (0, upper_line_coord),  # Dari atas halaman ke garis atas
-                    (lower_line_coord, page_height)  # Dari garis bawah ke bawah halaman
-                ]
+                if max_gap > (page_height * 0.1):  # Misalnya, jika gap > 10% dari tinggi halaman
+                    use_new_flow = True
+                    print(f"\n  * Halaman {page_num+1} memiliki gap besar: {max_gap} poin")
+                    print(f"    - Garis atas: {upper_line_coord}")
+                    print(f"    - Garis bawah: {lower_line_coord}\n")
+                    
+                    # Buat koordinat untuk split_and_merge_pdf
+                    quarter_coords_list = [
+                        [(0, upper_line_coord/2),  # Dari atas halaman ke garis atas
+                         (upper_line_coord/2, lower_line_coord-upper_line_coord)],  # Dari garis bawah ke bawah halaman
+                        [(0, upper_line_coord),
+                         (lower_line_coord-upper_line_coord, page_height)]
+                    ]
         
         # Jika dapat menggunakan alur baru
         if use_new_flow:
@@ -138,7 +141,7 @@ class PDFExtractor:
                 # Buat PDF sementara dengan halaman yang diinginkan
                 temp_dir = os.path.join(self.output_dir, "temp")
                 Path(temp_dir).mkdir(parents=True, exist_ok=True)
-                temp_pdf = os.path.join(temp_dir, f"temp_{group_id}{split_suffix}.pdf")
+                temp_pdf = os.path.join(temp_dir, f"temp_{group_id}.pdf")
                 
                 # Buat dokumen sementara dengan halaman yang diperlukan
                 temp_doc = fitz.open()
@@ -146,16 +149,27 @@ class PDFExtractor:
                 temp_doc.save(temp_pdf)
                 temp_doc.close()
                 
-                # Panggil fungsi split_and_merge_pdf
-                print(f"  * Menggunakan alur baru dengan split_and_merge_pdf")
-                self.split_and_merge_pdf(temp_pdf, output_path, quarter_coords)
+                # Loop untuk setiap set koordinat jika ada multiple split
+                coords_to_process = quarter_coords_list if quarter_coords_list else [quarter_coords_list[0]]
+                
+                for idx, quarter_coords in enumerate(coords_to_process):
+                    # Buat nama file unik untuk setiap split
+                    split_suffix = f"_part{idx+1}" if len(coords_to_process) > 1 or split_index > 0 else ""
+                    output_filename = f"split_{os.path.basename(self.pdf_path).replace('.pdf', '')}_{group_id}{split_suffix}.pdf"
+                    output_path = os.path.join(self.pdf_output_dir, output_filename)
+                    
+                    # Panggil fungsi split_and_merge_pdf
+                    print(f"  * Menggunakan alur baru dengan split_and_merge_pdf (split {idx+1})")
+                    self.split_and_merge_pdf(temp_pdf, output_path, quarter_coords)
+                    
+                    saved_paths.append(output_path)
+                    print(f"  * PDF split disimpan: {output_path}")
                 
                 # Hapus file sementara jika diperlukan
                 if self.cleanup_temp_files and os.path.exists(temp_pdf):
                     os.remove(temp_pdf)
                 
-                print(f"  * PDF split disimpan: {output_path}")
-                return output_path
+                return saved_paths
                 
             except Exception as e:
                 print(f"  * Error saat menggunakan alur baru: {e}")
@@ -164,6 +178,10 @@ class PDFExtractor:
         
         # Jika tidak menggunakan alur baru, gunakan alur lama
         if not use_new_flow:
+            # Buat nama file
+            output_filename = f"split_{os.path.basename(self.pdf_path).replace('.pdf', '')}_{group_id}.pdf"
+            output_path = os.path.join(self.pdf_output_dir, output_filename)
+            
             # Buat dokumen baru
             new_doc = fitz.open()
             
@@ -176,13 +194,124 @@ class PDFExtractor:
                 new_doc.save(output_path)
                 print(f"  * PDF split disimpan: {output_path}")
                 
-                return output_path
+                saved_paths.append(output_path)
+                return saved_paths
             except Exception as e:
                 print(f"  * Error saat menyimpan PDF split: {e}")
-                return None
+                return []
             finally:
                 # Tutup dokumen
                 new_doc.close()
+
+
+    # def save_pdf_split(self, page_group: List[int], group_id: str, split_index: int = 0) -> str:
+    #     """
+    #     Menyimpan halaman-halaman tertentu dari PDF sebagai file PDF baru.
+        
+    #     Args:
+    #         page_group: List nomor halaman yang akan disimpan (berbasis indeks 0)
+    #         group_id: Identifier untuk grup halaman
+    #         split_index: Indeks split untuk penamaan (jika ada multiple split pada halaman yang sama)
+            
+    #     Returns:
+    #         Path file PDF yang disimpan atau None jika opsi dinonaktifkan
+    #     """
+    #     # Jika opsi save_pdf_splits dinonaktifkan, kembalikan None
+    #     if not self.save_pdf_splits:
+    #         print(f"  * Opsi save_pdf_splits dinonaktifkan, tidak menyimpan split PDF")
+    #         return None
+        
+    #     # Buat nama file berdasarkan split_index jika ada
+    #     split_suffix = f"_part{split_index}" if split_index > 0 else ""
+    #     output_filename = f"split_{os.path.basename(self.pdf_path).replace('.pdf', '')}_{group_id}{split_suffix}.pdf"
+    #     output_path = os.path.join(self.pdf_output_dir, output_filename)
+        
+    #     # Cek apakah kita bisa menggunakan alur baru (dengan gap detection)
+    #     use_new_flow = False
+    #     quarter_coords = []
+        
+    #     # Kita hanya menangani kasus khusus untuk grup halaman tunggal
+    #     if len(page_group) == 1:
+    #         page_num = page_group[0]
+    #         # Cari data halaman yang sesuai
+    #         page_data = None
+    #         for p in self.result["pages"]: 
+    #             if p["page_num"] == page_num + 1:
+    #                 page_data = p
+    #                 break
+            
+    #         if page_data and "valid_lines" in page_data:
+    #             valid_lines = page_data["valid_lines"]
+    #             page = self.doc[page_num]
+    #             page_height = page.rect.height
+                
+    #             # Panggil check_large_y_gaps
+    #             upper_line_coord, lower_line_coord, max_gap = self.check_large_y_gaps(valid_lines, page_height)
+                
+    #             # Jika gap cukup besar, gunakan alur baru
+    #             # if max_gap > (page_height * 0.1):  # Misalnya, jika gap > 10% dari tinggi halaman
+    #             use_new_flow = True
+    #             print(f"\n  * Halaman {page_num+1} memiliki gap besar: {max_gap} poin")
+    #             print(f"    - Garis atas: {upper_line_coord}")
+    #             print(f"    - Garis bawah: {lower_line_coord}\n")
+                
+    #             # Buat koordinat untuk split_and_merge_pdf
+    #             quarter_coords = [
+    #                 (0, upper_line_coord),  # Dari atas halaman ke garis atas
+    #                 (lower_line_coord, page_height)  # Dari garis bawah ke bawah halaman
+    #             ]
+        
+    #     # Jika dapat menggunakan alur baru
+    #     if use_new_flow:
+    #         try:
+    #             # Buat PDF sementara dengan halaman yang diinginkan
+    #             temp_dir = os.path.join(self.output_dir, "temp")
+    #             Path(temp_dir).mkdir(parents=True, exist_ok=True)
+    #             temp_pdf = os.path.join(temp_dir, f"temp_{group_id}{split_suffix}.pdf")
+                
+    #             # Buat dokumen sementara dengan halaman yang diperlukan
+    #             temp_doc = fitz.open()
+    #             temp_doc.insert_pdf(self.doc, from_page=page_group[0], to_page=page_group[0])
+    #             temp_doc.save(temp_pdf)
+    #             temp_doc.close()
+                
+    #             # Panggil fungsi split_and_merge_pdf
+    #             print(f"  * Menggunakan alur baru dengan split_and_merge_pdf")
+    #             self.split_and_merge_pdf(temp_pdf, output_path, quarter_coords)
+                
+    #             # Hapus file sementara jika diperlukan
+    #             if self.cleanup_temp_files and os.path.exists(temp_pdf):
+    #                 os.remove(temp_pdf)
+                
+    #             print(f"  * PDF split disimpan: {output_path}")
+    #             return output_path
+                
+    #         except Exception as e:
+    #             print(f"  * Error saat menggunakan alur baru: {e}")
+    #             print(f"  * Menggunakan alur lama sebagai fallback...")
+    #             use_new_flow = False  # Fallback ke alur lama
+        
+    #     # Jika tidak menggunakan alur baru, gunakan alur lama
+    #     if not use_new_flow:
+    #         # Buat dokumen baru
+    #         new_doc = fitz.open()
+            
+    #         try:
+    #             # Salin halaman yang diinginkan ke dokumen baru
+    #             for page_num in page_group:
+    #                 new_doc.insert_pdf(self.doc, from_page=page_num, to_page=page_num)
+                
+    #             # Simpan dokumen baru
+    #             new_doc.save(output_path)
+    #             print(f"  * PDF split disimpan: {output_path}")
+                
+    #             return output_path
+    #         except Exception as e:
+    #             print(f"  * Error saat menyimpan PDF split: {e}")
+    #             return None
+    #         finally:
+    #             # Tutup dokumen
+    #             new_doc.close()
 
 
     # def save_pdf_split(self, page_group: List[int], group_id: str) -> str:
@@ -746,13 +875,46 @@ class PDFExtractor:
     #     else:
     #         print(f"  * Tidak dapat membuat atau menyimpan PDF split untuk halaman {group_id}")
 
-    def extract_tables_from_group(self, page_group: List[int], split_regions=None):
+
+
+    # def extract_tables_from_group(self, page_group: List[int], split_regions=None):
+    #     """
+    #     Ekstrak tabel dari sekelompok halaman menggunakan API LLM
+        
+    #     Args:
+    #         page_group: List nomor halaman yang akan diproses
+    #         split_regions: Optional dict dengan key=index dan value=quarter_coords untuk multiple splits
+    #     """
+    #     if not page_group:
+    #         return
+                
+    #     group_start = page_group[0] + 1  # +1 untuk tampilan
+    #     group_end = page_group[-1] + 1
+        
+    #     group_id = f"{group_start}" if len(page_group) == 1 else f"{group_start}-{group_end}"
+    #     print(f"\nMengekstrak tabel dari halaman {group_id} menggunakan API {self.api_provider}...")
+        
+    #     # Jika tidak ada split_regions yang diberikan, gunakan default (seluruh halaman)
+    #     if not split_regions:
+    #         # Simpan halaman sebagai split PDF
+    #         pdf_split_path = self.save_pdf_split(page_group, group_id)
+            
+    #         # Proses PDF split
+    #         self._process_pdf_split(pdf_split_path, page_group, group_id)
+    #     else:
+    #         # Proses setiap region split secara terpisah
+    #         for split_idx, quarter_coords in split_regions.items():
+    #             # Override quarter_coords di save_pdf_split dengan memberikan param tambahan
+    #             pdf_split_path = self.save_pdf_split(page_group, group_id, split_idx)
+                
+    #             # Proses PDF split
+    #             self._process_pdf_split(pdf_split_path, page_group, f"{group_id}_part{split_idx}")
+
+
+    def extract_tables_from_group(self, page_group: List[int], quarter_coords_list: List = None):
         """
         Ekstrak tabel dari sekelompok halaman menggunakan API LLM
-        
-        Args:
-            page_group: List nomor halaman yang akan diproses
-            split_regions: Optional dict dengan key=index dan value=quarter_coords untuk multiple splits
+        Dapat melakukan multiple split jika quarter_coords_list diberikan
         """
         if not page_group:
             return
@@ -763,21 +925,56 @@ class PDFExtractor:
         group_id = f"{group_start}" if len(page_group) == 1 else f"{group_start}-{group_end}"
         print(f"\nMengekstrak tabel dari halaman {group_id} menggunakan API {self.api_provider}...")
         
-        # Jika tidak ada split_regions yang diberikan, gunakan default (seluruh halaman)
-        if not split_regions:
-            # Simpan halaman sebagai split PDF
-            pdf_split_path = self.save_pdf_split(page_group, group_id)
-            
-            # Proses PDF split
-            self._process_pdf_split(pdf_split_path, page_group, group_id)
-        else:
-            # Proses setiap region split secara terpisah
-            for split_idx, quarter_coords in split_regions.items():
-                # Override quarter_coords di save_pdf_split dengan memberikan param tambahan
-                pdf_split_path = self.save_pdf_split(page_group, group_id, split_idx)
+        # Simpan halaman sebagai split PDF (mungkin multiple)
+        pdf_split_paths = self.save_pdf_split(page_group, group_id, quarter_coords_list=quarter_coords_list)
+        
+        all_api_results = {}
+        
+        # Jika PDF split berhasil disimpan atau dibuat, gunakan API untuk ekstraksi
+        if pdf_split_paths:
+            # Jika gambar sudah diproses dan opsi save_images diaktifkan, simpan gambar untuk visualisasi
+            if self.save_images:
+                for i, page_num in enumerate(page_group):
+                    if page_num in self.page_images:
+                        img_filename = f"table_pages_{group_id}_part{i+1}.png"
+                        img_path = os.path.join(self.img_output_dir, img_filename)
+                        cv2.imwrite(img_path, self.page_images[page_num])
+                        print(f"  * Gambar untuk visualisasi disimpan: {img_path}")
+        
+            # Panggil API LLM dengan setiap PDF split secara berurutan
+            for idx, pdf_split_path in enumerate(pdf_split_paths):
+                print(f"  * Memproses split PDF {idx+1} dari {len(pdf_split_paths)}: {pdf_split_path}")
                 
-                # Proses PDF split
-                self._process_pdf_split(pdf_split_path, page_group, f"{group_id}_part{split_idx}")
+                # Panggil API LLM dengan PDF split
+                api_result = self.call_llm_api_with_pdf(pdf_split_path, page_group)
+                
+                # Gabungkan hasil
+                for key, value in api_result.items():
+                    if key in all_api_results:
+                        # Jika key sudah ada, tambahkan prefix untuk membedakan
+                        split_key = f"{key}_split{idx+1}"
+                        all_api_results[split_key] = value
+                    else:
+                        all_api_results[key] = value
+            
+            # Update hasil untuk setiap halaman dalam grup
+            for page_num in page_group:
+                page_idx = page_num  # Indeks dalam self.result["pages"]
+                # Cari halaman yang sesuai
+                for idx, page_data in enumerate(self.result["pages"]):
+                    if page_data["page_num"] == page_num + 1:
+                        page_idx = idx
+                        break
+                
+                # Update data tabel
+                page_key = f"page_{page_num+1}"
+                self.result["pages"][page_idx]["table_data"] = all_api_results.get(page_key, {})
+                
+                # Tambahkan informasi path split PDF ke hasil (gunakan list untuk multiple split)
+                self.result["pages"][page_idx]["pdf_split_paths"] = pdf_split_paths
+        else:
+            print(f"  * Tidak dapat membuat atau menyimpan PDF split untuk halaman {group_id}")
+
 
     def _process_pdf_split(self, pdf_split_path, page_group, identifier):
         """
