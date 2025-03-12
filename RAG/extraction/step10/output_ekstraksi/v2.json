@@ -75,7 +75,9 @@
           "extracted_data": [
             {
               "type": "text",
-              "page_number": [],
+              "page_number": [
+                1
+              ],
               "text": [
                 "REKSA DANA BAHANA LIKUID PLUS",
                 "CATATAN ATAS LAPORAN KEUANGAN",
@@ -84,13 +86,15 @@
                 "3. PORTOFOLIO EFEK (Lanjutan)",
                 "31 Desember 2022"
               ],
-              "extraction_notes": "Extracted title and description text above the table."
+              "extraction_notes": "Extracted the text present at the beginning of the document. Identified as title and table description."
             },
             {
               "type": "table",
-              "page_number": [],
+              "page_number": [
+                1
+              ],
               "title": "PORTOFOLIO EFEK (Lanjutan)",
-              "description": "Angka dalam tabel disajikan dalam Rupiah, kecuali dinyatakan lain",
+              "description": "31 Desember 2022",
               "headers": [
                 "Nilai Nominal\n(Rp)",
                 "Investasi\nInstrumen Pasar Uang",
@@ -110,7 +114,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "85.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "5,63",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "60.000.000.000",
@@ -120,7 +124,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "60.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,98",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "50.000.000.000",
@@ -130,7 +134,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "50.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,31",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "50.000.000.000",
@@ -140,7 +144,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "50.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,31",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "50.000.000.000",
@@ -150,7 +154,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "50.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,31",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "50.000.000.000",
@@ -160,7 +164,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "50.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,31",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "50.000.000.000",
@@ -170,7 +174,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "50.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,31",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "50.000.000.000",
@@ -180,7 +184,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "50.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,31",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "50.000.000.000",
@@ -190,7 +194,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "50.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,31",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "50.000.000.000",
@@ -200,7 +204,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "50.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,31",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "50.000.000.000",
@@ -210,7 +214,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "50.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "3,31",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "40.000.000.000",
@@ -220,7 +224,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "40.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "2,65",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "40.000.000.000",
@@ -230,7 +234,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "40.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "2,65",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "40.000.000.000",
@@ -240,7 +244,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "40.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "2,65",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "40.000.000.000",
@@ -250,7 +254,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "40.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "2,65",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "33.000.000.000",
@@ -260,7 +264,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "33.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "2,19",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "30.000.000.000",
@@ -270,7 +274,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "30.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,99",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "30.000.000.000",
@@ -280,7 +284,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "30.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,99",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "30.000.000.000",
@@ -290,7 +294,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "30.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,99",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "30.000.000.000",
@@ -300,7 +304,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "30.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,99",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "30.000.000.000",
@@ -310,7 +314,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "30.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,99",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "30.000.000.000",
@@ -320,7 +324,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "30.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,99",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "30.000.000.000",
@@ -330,7 +334,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "30.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,99",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "30.000.000.000",
@@ -340,7 +344,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "30.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,99",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "25.000.000.000",
@@ -350,7 +354,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "25.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,66",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "25.000.000.000",
@@ -360,7 +364,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "25.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,66",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "20.000.000.000",
@@ -370,7 +374,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "20.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,33",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "20.000.000.000",
@@ -380,7 +384,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "20.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,33",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "20.000.000.000",
@@ -390,7 +394,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "20.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,33",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "20.000.000.000",
@@ -400,7 +404,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "20.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,33",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "20.000.000.000",
@@ -410,7 +414,7 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100,00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "20.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1,33",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal\n(Rp)": "30.000.000.000",
@@ -420,12 +424,12 @@
                   "Harga\nPerolehan\nRata-rata\n(%)": "100.00",
                   "Biaya Perolehan\nAmortisasi\n(Rp)": "20.000.000.000",
                   "Rasio Biaya\nPerolehan\nAmortisasi\nTerhadap\nJumlah\nInvestasi\n(%)": "1 33",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 }
               ],
-              "footer": [],
+              "footer": null,
               "is_continued": false,
-              "extraction_notes": "Extracted all table data including headers, rows, and general information. The values are maintained as string."
+              "extraction_notes": "Extracted the data from the table. No footer was detected."
             }
           ]
         },
@@ -442,18 +446,17 @@
                 "CATATAN ATAS LAPORAN KEUANGAN",
                 "PADA TANGGAL DAN UNTUK TAHUN YANG BERAKHIR PADA 31 DESEMBER 2023",
                 "(Angka dalam tabel disajikan dalam Rupiah, kecuali dinyatakan lain)",
-                "3. PORTOFOLIO EFEK (Lanjutan)",
-                "31 Desember 2022"
+                "3. PORTOFOLIO EFEK (Lanjutan)"
               ],
-              "extraction_notes": "Extracted text before the table."
+              "extraction_notes": "Extracted the introductory text from the document."
             },
             {
               "type": "table",
               "page_number": [
                 11
               ],
-              "title": "PORTOFOLIO EFEK (Lanjutan)",
-              "description": "Data portofolio efek pada 31 Desember 2022",
+              "title": null,
+              "description": "31 Desember 2022",
               "headers": [
                 "Nilai Nominal (Rp)",
                 "Investasi",
@@ -653,7 +656,7 @@
                   "Harga Perolehan Rata-rata (%)": "100,00",
                   "Biaya Perolehan Amortisasi (Rp)": "5.000.000.000",
                   "Rasio Biaya Perolehan Amortisasi Terhadap Jumlah Investasi (%)": "0,33",
-                  "Peringkat": "-"
+                  "Peringkat": null
                 },
                 {
                   "Nilai Nominal (Rp)": "1.473.000.000.000",
@@ -668,7 +671,7 @@
               ],
               "footer": null,
               "is_continued": false,
-              "extraction_notes": "Extracted the table data."
+              "extraction_notes": "Extracted table data, including headers and row values.  Set is_continued to false, as this table appears to be complete on this page."
             }
           ]
         }

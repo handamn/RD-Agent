@@ -1025,8 +1025,8 @@ if __name__ == "__main__":
         scan_footer_threshold=50,
         min_lines_per_page=1,
         api_provider="google",  # Using Google Gemini API
-        save_images=False,
-        draw_line_highlights=False,
+        save_images=True,
+        draw_line_highlights=True,
         cleanup_temp_files=True
     )
     
