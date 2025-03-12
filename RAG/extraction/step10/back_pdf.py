@@ -90,8 +90,16 @@ class PDFExtractor:
             print(f"  * Opsi save_pdf_splits dinonaktifkan, tidak menyimpan split PDF")
             return None
         
+        output_filename = f"split_{os.path.basename(self.pdf_path).replace('.pdf', '')}_{group_id}.pdf"
+        output_path = os.path.join(self.pdf_output_dir, output_filename)
+        
+        # Cek apakah kita bisa menggunakan alur baru (dengan gap detection)
+        use_new_flow = False
+        quarter_coords = []
 
-        for page_num in page_group:
+        # Kita hanya menangani kasus khusus untuk grup halaman tunggal
+        if len(page_group) == 1:
+            page_num = page_group[0]
             # Cari data halaman yang sesuai
             page_data = None
             for p in self.result["pages"]:
@@ -106,39 +114,157 @@ class PDFExtractor:
                 
                 # Panggil check_large_y_gaps
                 upper_line_coord, lower_line_coord, max_gap = self.check_large_y_gaps(valid_lines, page_height)
-            
-                print()
-                print(f"  * Halaman {page_num+1} memiliki gap besar: {max_gap} poin")
-                print(f"    - Garis atas: {upper_line_coord}")
-                print(f"    - Garis bawah: {lower_line_coord}")
-                print()
                 
-                # Di sini Anda bisa menambahkan logika tambahan berdasarkan gap
-                # Misalnya, memisahkan halaman berdasarkan gap besar
+                # Jika gap cukup besar, gunakan alur baru
+                # if max_gap > (page_height * 0.1):  # Misalnya, jika gap > 10% dari tinggi halaman
+                use_new_flow = True
+                print(f"\n  * Halaman {page_num+1} memiliki gap besar: {max_gap} poin")
+                print(f"    - Garis atas: {upper_line_coord}")
+                print(f"    - Garis bawah: {lower_line_coord}\n")
+                
+                # Buat koordinat untuk split_and_merge_pdf
+                quarter_coords = [
+                    (0, upper_line_coord),  # Dari atas halaman ke garis atas
+                    (lower_line_coord, page_height)  # Dari garis bawah ke bawah halaman
+                ]
+        
+        # Jika dapat menggunakan alur baru
+        if use_new_flow:
+            try:
+                # Buat PDF sementara dengan halaman yang diinginkan
+                temp_dir = os.path.join(self.output_dir, "temp")
+                Path(temp_dir).mkdir(parents=True, exist_ok=True)
+                temp_pdf = os.path.join(temp_dir, f"temp_{group_id}.pdf")
+                
+                # Buat dokumen sementara dengan halaman yang diperlukan
+                temp_doc = fitz.open()
+                temp_doc.insert_pdf(self.doc, from_page=page_group[0], to_page=page_group[0])
+                temp_doc.save(temp_pdf)
+                temp_doc.close()
+                
+                # Panggil fungsi split_and_merge_pdf
+                print(f"  * Menggunakan alur baru dengan split_and_merge_pdf")
+                self.split_and_merge_pdf(temp_pdf, output_path, quarter_coords)
+                
+                # Hapus file sementara jika diperlukan
+                if self.cleanup_temp_files and os.path.exists(temp_pdf):
+                    os.remove(temp_pdf)
+                
+                print(f"  * PDF split disimpan: {output_path}")
+                return output_path
+                
+            except Exception as e:
+                print(f"  * Error saat menggunakan alur baru: {e}")
+                print(f"  * Menggunakan alur lama sebagai fallback...")
+                use_new_flow = False  # Fallback ke alur lama
+        
+        # Jika tidak menggunakan alur baru, gunakan alur lama
+        if not use_new_flow:
+            # Buat dokumen baru
+            new_doc = fitz.open()
+            
+            try:
+                # Salin halaman yang diinginkan ke dokumen baru
+                for page_num in page_group:
+                    new_doc.insert_pdf(self.doc, from_page=page_num, to_page=page_num)
+                
+                # Simpan dokumen baru
+                new_doc.save(output_path)
+                print(f"  * PDF split disimpan: {output_path}")
+                
+                return output_path
+            except Exception as e:
+                print(f"  * Error saat menyimpan PDF split: {e}")
+                return None
+            finally:
+                # Tutup dokumen
+                new_doc.close()
+
+
+        #####################
+
+        # for page_num in page_group:
+        #     # Cari data halaman yang sesuai
+        #     page_data = None
+        #     for p in self.result["pages"]: 
+        #         if p["page_num"] == page_num + 1:
+        #             page_data = p
+        #             break
+            
+        #     if page_data and "valid_lines" in page_data:
+        #         valid_lines = page_data["valid_lines"]
+        #         page = self.doc[page_num]
+        #         page_height = page.rect.height
+                
+        #         # Panggil check_large_y_gaps
+        #         upper_line_coord, lower_line_coord, max_gap = self.check_large_y_gaps(valid_lines, page_height)
+            
+        #         print()
+        #         print(f"  * Halaman {page_num+1} memiliki gap besar: {max_gap} poin")
+        #         print(f"    - Garis atas: {upper_line_coord}")
+        #         print(f"    - Garis bawah: {lower_line_coord}")
+        #         print()
+                
+        #         # Di sini Anda bisa menambahkan logika tambahan berdasarkan gap
+        #         # Misalnya, memisahkan halaman berdasarkan gap besar
 
             
-        output_filename = f"split_{os.path.basename(self.pdf_path).replace('.pdf', '')}_{group_id}.pdf"
-        output_path = os.path.join(self.pdf_output_dir, output_filename)
         
-        # Buat dokumen baru
+        
+        # # Buat dokumen baru
+        # new_doc = fitz.open()
+        
+        # try:
+        #     # Salin halaman yang diinginkan ke dokumen baru
+        #     for page_num in page_group:
+        #         new_doc.insert_pdf(self.doc, from_page=page_num, to_page=page_num)
+            
+        #     # Simpan dokumen baru
+        #     new_doc.save(output_path)
+        #     print(f"  * PDF split disimpan: {output_path}")
+            
+        #     return output_path
+        # except Exception as e:
+        #     print(f"  * Error saat menyimpan PDF split: {e}")
+        #     return None
+        # finally:
+        #     # Tutup dokumen
+        #     new_doc.close()
+
+    
+    def convert_opencv_to_pymupdf(self, coords, page_width):
+        """
+        Mengkonversi koordinat (y_top, y_bottom) ke format PyMuPDF Rect
+        """
+        return [fitz.Rect(0, y_top, page_width, y_bottom) for (y_top, y_bottom) in coords]
+
+    def split_and_merge_pdf(self, input_pdf, output_pdf, quarter_coords):
+        """
+        Membagi dan menggabungkan PDF berdasarkan koordinat yang diberikan
+        """
+        doc = fitz.open(input_pdf)
         new_doc = fitz.open()
+        page = doc[0]  # Ambil halaman pertama
+        rect = page.rect  # Ukuran halaman asli
         
-        try:
-            # Salin halaman yang diinginkan ke dokumen baru
-            for page_num in page_group:
-                new_doc.insert_pdf(self.doc, from_page=page_num, to_page=page_num)
-            
-            # Simpan dokumen baru
-            new_doc.save(output_path)
-            print(f"  * PDF split disimpan: {output_path}")
-            
-            return output_path
-        except Exception as e:
-            print(f"  * Error saat menyimpan PDF split: {e}")
-            return None
-        finally:
-            # Tutup dokumen
-            new_doc.close()
+        if not quarter_coords:
+            raise ValueError("quarter_coords harus diberikan!")
+        
+        quarters = self.convert_opencv_to_pymupdf(quarter_coords, rect.width)
+        new_height = sum(q.height for q in quarters)
+        new_page = new_doc.new_page(width=rect.width, height=new_height)
+        
+        y_offset = 0
+        for quarter_rect in quarters:
+            new_page.show_pdf_page(
+                fitz.Rect(rect.x0, y_offset, rect.x1, y_offset + quarter_rect.height),
+                doc, 0, clip=quarter_rect
+            )
+            y_offset += quarter_rect.height
+        
+        new_doc.save(output_pdf)
+        new_doc.close()
+        doc.close()
     
     def process(self):
         """
