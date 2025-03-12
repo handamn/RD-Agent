@@ -106,7 +106,7 @@ class PDFExtractor:
             page_num = page_group[0]
             # Cari data halaman yang sesuai
             page_data = None
-            for p in self.result["pages"]:
+            for p in self.result["pages"]: 
                 if p["page_num"] == page_num + 1:
                     page_data = p
                     break
