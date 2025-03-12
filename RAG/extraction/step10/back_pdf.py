@@ -585,13 +585,17 @@ class PDFExtractor:
                 # Panggil API LLM dengan PDF split
                 api_result = self.call_llm_api_with_pdf(pdf_split_path, page_group)
                 
-                # Gabungkan hasil
+                # Simpan hasil dengan prefix 'split_X_' untuk membedakan antara berbagai split
+                split_prefix = f"split_{idx+1}_" if len(pdf_split_paths) > 1 else ""
+                
+                # Gabungkan hasil dengan prefix yang sesuai
                 for key, value in api_result.items():
-                    if key in all_api_results:
-                        # Jika key sudah ada, tambahkan prefix untuk membedakan
-                        split_key = f"{key}_split{idx+1}"
-                        all_api_results[split_key] = value
-                    else:
+                    # Buat key baru dengan prefix split
+                    prefixed_key = f"{split_prefix}{key}"
+                    all_api_results[prefixed_key] = value
+                    
+                    # Juga simpan dengan key asli jika ini split pertama (untuk kompatibilitas)
+                    if idx == 0:
                         all_api_results[key] = value
             
             # Update hasil untuk setiap halaman dalam grup
@@ -603,11 +607,26 @@ class PDFExtractor:
                         page_idx = idx
                         break
                 
-                # Update data tabel
-                page_key = f"page_{page_num+1}"
-                self.result["pages"][page_idx]["table_data"] = all_api_results.get(page_key, {})
+                # Format key dasar untuk halaman ini
+                base_page_key = f"page_{page_num+1}"
                 
-                # Tambahkan informasi path split PDF ke hasil (gunakan list untuk multiple split)
+                # Siapkan struktur untuk menyimpan semua data tabel dari berbagai split
+                all_table_data = {}
+                
+                # Tambahkan data untuk split pertama (key tradisional tanpa prefix)
+                if base_page_key in all_api_results:
+                    all_table_data["primary"] = all_api_results[base_page_key]
+                
+                # Tambahkan data untuk semua split dengan prefix
+                for idx in range(len(pdf_split_paths)):
+                    split_key = f"split_{idx+1}_{base_page_key}"
+                    if split_key in all_api_results:
+                        all_table_data[f"split_{idx+1}"] = all_api_results[split_key]
+                
+                # Update data tabel dengan semua hasil
+                self.result["pages"][page_idx]["table_data"] = all_table_data
+                
+                # Tambahkan informasi path split PDF ke hasil
                 self.result["pages"][page_idx]["pdf_split_paths"] = pdf_split_paths
         else:
             print(f"  * Tidak dapat membuat atau menyimpan PDF split untuk halaman {group_id}")
@@ -1008,7 +1027,7 @@ class PDFExtractor:
 
 if __name__ == "__main__":
     extractor = PDFExtractor(
-        pdf_path="studi_kasus/v2.pdf",
+        pdf_path="studi_kasus/v1.pdf",
         output_dir="output_ekstraksi",
         min_line_length=30,
         line_thickness=1,
