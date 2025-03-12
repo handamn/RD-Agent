@@ -1031,3 +1031,6 @@ if __name__ == "__main__":
     print(f"Total halaman: {results['metadata']['total_pages']}")
     print(f"Metode ekstraksi: {results['metadata']['extraction_method']}")
     
+
+
+    ### pertimbangkan lagi untuk flowchart sehingga berkesinambungan
