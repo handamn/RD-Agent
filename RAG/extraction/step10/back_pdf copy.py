@@ -76,69 +76,36 @@ class PDFExtractor:
 
 
     def save_pdf_split(self, page_group: List[int], group_id: str, split_index: int = 0, quarter_coords_list: List = None) -> List[str]:
+        """
+        Menyimpan halaman-halaman tertentu dari PDF sebagai file PDF baru.
+        Dapat melakukan multiple split jika quarter_coords_list diberikan.
+        
+        Args:
+            page_group: List nomor halaman yang akan disimpan (berbasis indeks 0)
+            group_id: Identifier untuk grup halaman
+            split_index: Indeks split untuk penamaan file jika melakukan multiple split
+            quarter_coords_list: List dari quarter_coords untuk multiple split
+            
+        Returns:
+            List path file PDF yang disimpan atau [] jika opsi dinonaktifkan
+        """
+        # Jika opsi save_pdf_splits dinonaktifkan, kembalikan list kosong
         if not self.save_pdf_splits:
             print(f"  * Opsi save_pdf_splits dinonaktifkan, tidak menyimpan split PDF")
             return []
         
         saved_paths = []
         
-        # Process pages individually if there are multiple pages
-        if len(page_group) > 1:
-            # First check if any individual page needs splitting
-            pages_needing_split = []
-            for page_num in page_group:
-                page_data = None
-                for p in self.result["pages"]:
-                    if p["page_num"] == page_num + 1:
-                        page_data = p
-                        break
-                
-                if page_data and "valid_lines" in page_data:
-                    valid_lines = page_data["valid_lines"]
-                    page = self.doc[page_num]
-                    page_height = page.rect.height
-                    
-                    upper_line_coord, lower_line_coord, max_gap = self.check_large_y_gaps(valid_lines, page_height)
-                    
-                    if max_gap > (page_height * 0.1):
-                        pages_needing_split.append((page_num, upper_line_coord, lower_line_coord, max_gap))
-            
-            # If any pages need splitting, handle them individually
-            if pages_needing_split:
-                print(f"\n  * Ditemukan {len(pages_needing_split)} halaman memerlukan split dalam grup {group_id}")
-                for idx, (page_num, upper_line_coord, lower_line_coord, max_gap) in enumerate(pages_needing_split):
-                    page = self.doc[page_num]
-                    page_height = page.rect.height
-                    print(f"    - Halaman {page_num+1} memiliki gap besar: {max_gap} poin")
-                    print(f"      Garis atas: {upper_line_coord}")
-                    print(f"      Garis bawah: {lower_line_coord}")
-                    
-                    quarter_coords = [
-                        [(0, upper_line_coord/2),
-                        (upper_line_coord/2, lower_line_coord-upper_line_coord)],
-                        [(0, upper_line_coord),
-                        (lower_line_coord-upper_line_coord, page_height)]
-                    ]
-                    
-                    # Process this individual page with its split coords
-                    individual_paths = self.save_pdf_split([page_num], f"{group_id}_page{page_num+1}", idx, quarter_coords)
-                    saved_paths.extend(individual_paths)
-                
-                # Process remaining pages as a group if needed
-                remaining_pages = [p for p in page_group if p not in [ps[0] for ps in pages_needing_split]]
-                if remaining_pages:
-                    print(f"    - Memproses {len(remaining_pages)} halaman lainnya sebagai grup")
-                    remaining_paths = self._save_pdf_group(remaining_pages, f"{group_id}_remaining")
-                    saved_paths.extend(remaining_paths)
-                    
-                return saved_paths
-        
-        # Original single-page logic for checking large gaps
+        # Cek apakah kita perlu menggunakan alur baru (dengan gap detection)
         use_new_flow = False
+        
+        # Jika quarter_coords_list diberikan, gunakan itu
         if quarter_coords_list:
             use_new_flow = True
+        # Jika tidak, coba deteksi gap seperti sebelumnya
         elif len(page_group) == 1:
             page_num = page_group[0]
+            # Cari data halaman yang sesuai
             page_data = None
             for p in self.result["pages"]:
                 if p["page_num"] == page_num + 1:
@@ -150,46 +117,55 @@ class PDFExtractor:
                 page = self.doc[page_num]
                 page_height = page.rect.height
                 
+                # Panggil check_large_y_gaps
                 upper_line_coord, lower_line_coord, max_gap = self.check_large_y_gaps(valid_lines, page_height)
                 
-                if max_gap > (page_height * 0.1):
+                # Jika gap cukup besar, gunakan alur baru
+                if max_gap > (page_height * 0.1):  # Misalnya, jika gap > 10% dari tinggi halaman
                     use_new_flow = True
                     print(f"\n  * Halaman {page_num+1} memiliki gap besar: {max_gap} poin")
                     print(f"    - Garis atas: {upper_line_coord}")
                     print(f"    - Garis bawah: {lower_line_coord}\n")
                     
+                    # Buat koordinat untuk split_and_merge_pdf
                     quarter_coords_list = [
-                        [(0, upper_line_coord/2),
-                        (upper_line_coord/2, lower_line_coord-upper_line_coord)],
+                        [(0, upper_line_coord/2),  # Dari atas halaman ke garis atas
+                         (upper_line_coord/2, lower_line_coord-upper_line_coord)],  # Dari garis bawah ke bawah halaman
                         [(0, upper_line_coord),
-                        (lower_line_coord-upper_line_coord, page_height)]
+                         (lower_line_coord-upper_line_coord, page_height)]
                     ]
         
-        # Implement the new flow for splitting
+        # Jika dapat menggunakan alur baru
         if use_new_flow:
             try:
+                # Buat PDF sementara dengan halaman yang diinginkan
                 temp_dir = os.path.join(self.output_dir, "temp")
                 Path(temp_dir).mkdir(parents=True, exist_ok=True)
                 temp_pdf = os.path.join(temp_dir, f"temp_{group_id}.pdf")
                 
+                # Buat dokumen sementara dengan halaman yang diperlukan
                 temp_doc = fitz.open()
                 temp_doc.insert_pdf(self.doc, from_page=page_group[0], to_page=page_group[0])
                 temp_doc.save(temp_pdf)
                 temp_doc.close()
                 
+                # Loop untuk setiap set koordinat jika ada multiple split
                 coords_to_process = quarter_coords_list if quarter_coords_list else [quarter_coords_list[0]]
                 
                 for idx, quarter_coords in enumerate(coords_to_process):
+                    # Buat nama file unik untuk setiap split
                     split_suffix = f"_part{idx+1}" if len(coords_to_process) > 1 or split_index > 0 else ""
                     output_filename = f"split_{os.path.basename(self.pdf_path).replace('.pdf', '')}_{group_id}{split_suffix}.pdf"
                     output_path = os.path.join(self.pdf_output_dir, output_filename)
                     
+                    # Panggil fungsi split_and_merge_pdf
                     print(f"  * Menggunakan alur baru dengan split_and_merge_pdf (split {idx+1})")
                     self.split_and_merge_pdf(temp_pdf, output_path, quarter_coords)
                     
                     saved_paths.append(output_path)
                     print(f"  * PDF split disimpan: {output_path}")
                 
+                # Hapus file sementara jika diperlukan
                 if self.cleanup_temp_files and os.path.exists(temp_pdf):
                     os.remove(temp_pdf)
                 
@@ -198,19 +174,23 @@ class PDFExtractor:
             except Exception as e:
                 print(f"  * Error saat menggunakan alur baru: {e}")
                 print(f"  * Menggunakan alur lama sebagai fallback...")
-                use_new_flow = False
+                use_new_flow = False  # Fallback ke alur lama
         
-        # Default flow for non-split pages or as fallback
+        # Jika tidak menggunakan alur baru, gunakan alur lama
         if not use_new_flow:
+            # Buat nama file
             output_filename = f"split_{os.path.basename(self.pdf_path).replace('.pdf', '')}_{group_id}.pdf"
             output_path = os.path.join(self.pdf_output_dir, output_filename)
             
+            # Buat dokumen baru
             new_doc = fitz.open()
             
             try:
+                # Salin halaman yang diinginkan ke dokumen baru
                 for page_num in page_group:
                     new_doc.insert_pdf(self.doc, from_page=page_num, to_page=page_num)
                 
+                # Simpan dokumen baru
                 new_doc.save(output_path)
                 print(f"  * PDF split disimpan: {output_path}")
                 
@@ -220,30 +200,8 @@ class PDFExtractor:
                 print(f"  * Error saat menyimpan PDF split: {e}")
                 return []
             finally:
+                # Tutup dokumen
                 new_doc.close()
-
-    def _save_pdf_group(self, page_group: List[int], group_id: str) -> List[str]:
-        """Helper method to save a group of pages as a single PDF"""
-        output_filename = f"split_{os.path.basename(self.pdf_path).replace('.pdf', '')}_{group_id}.pdf"
-        output_path = os.path.join(self.pdf_output_dir, output_filename)
-        
-        new_doc = fitz.open()
-        saved_paths = []
-        
-        try:
-            for page_num in page_group:
-                new_doc.insert_pdf(self.doc, from_page=page_num, to_page=page_num)
-            
-            new_doc.save(output_path)
-            print(f"  * PDF split disimpan: {output_path}")
-            
-            saved_paths.append(output_path)
-            return saved_paths
-        except Exception as e:
-            print(f"  * Error saat menyimpan PDF split: {e}")
-            return []
-        finally:
-            new_doc.close()
 
     
     def convert_opencv_to_pymupdf(self, coords, page_width):
@@ -409,7 +367,7 @@ class PDFExtractor:
             return 0,0,0
 
         y_positions = sorted(set(line['y_position'] for line in valid_lines))
-        threshold = page_height / 3
+        threshold = page_height / 2
         max_gap = 0
         selected_pair = None
 
@@ -662,6 +620,55 @@ class PDFExtractor:
             print(f"  * Tidak dapat membuat atau menyimpan PDF split untuk halaman {group_id}")
 
 
+    def _process_pdf_split(self, pdf_split_path, page_group, identifier):
+        """
+        Proses PDF split dan panggil API LLM
+        
+        Args:
+            pdf_split_path: Path ke file PDF split
+            page_group: List nomor halaman
+            identifier: Pengenal untuk hasil (bisa berisi info tentang bagian)
+        """
+        # Jika PDF split berhasil disimpan atau dibuat, gunakan API untuk ekstraksi
+        if pdf_split_path:
+            # Jika gambar sudah diproses dan opsi save_images diaktifkan, simpan gambar untuk visualisasi
+            if self.save_images:
+                for i, page_num in enumerate(page_group):
+                    if page_num in self.page_images:
+                        img_filename = f"table_pages_{identifier}_part{i+1}.png"
+                        img_path = os.path.join(self.img_output_dir, img_filename)
+                        cv2.imwrite(img_path, self.page_images[page_num])
+                        print(f"  * Gambar untuk visualisasi disimpan: {img_path}")
+        
+            # Panggil API LLM dengan PDF split
+            api_result = self.call_llm_api_with_pdf(pdf_split_path, page_group)
+            
+            # Update hasil untuk setiap halaman dalam grup
+            for page_num in page_group:
+                page_idx = page_num  # Indeks dalam self.result["pages"]
+                # Cari halaman yang sesuai
+                for idx, page_data in enumerate(self.result["pages"]):
+                    if page_data["page_num"] == page_num + 1:
+                        page_idx = idx
+                        break
+                
+                # Update data tabel
+                result_key = f"page_{page_num+1}"
+                if result_key in api_result:
+                    # Jika belum ada data tabel, inisialisasi sebagai list
+                    if "table_data" not in self.result["pages"][page_idx]:
+                        self.result["pages"][page_idx]["table_data"] = []
+                    
+                    # Tambahkan hasil sebagai item dalam list
+                    table_entry = {
+                        "split_id": identifier,
+                        "data": api_result[result_key],
+                        "pdf_split_path": pdf_split_path
+                    }
+                    
+                    self.result["pages"][page_idx]["table_data"].append(table_entry)
+        else:
+            print(f"  * Tidak dapat membuat atau menyimpan PDF split untuk halaman {identifier}")
     
     def call_llm_api_with_pdf(self, pdf_path: str, page_group: List[int]) -> Dict:
         """
@@ -984,7 +991,6 @@ class PDFExtractor:
         
         print(f"\nHasil ekstraksi disimpan ke: {output_json}")
 
-    
     def cleanup(self):
         """
         Membersihkan semua file sementara
@@ -1009,7 +1015,7 @@ class PDFExtractor:
 
 if __name__ == "__main__":
     extractor = PDFExtractor(
-        pdf_path="studi_kasus/8_Tabel_N_Halaman_Merge_V3.pdf",
+        pdf_path="studi_kasus/8_Tabel_N_Halaman_Merge_V2.pdf",
         output_dir="output_ekstraksi",
         min_line_length=30,
         line_thickness=1,
