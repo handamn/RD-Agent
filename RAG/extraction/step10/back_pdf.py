@@ -1009,13 +1009,13 @@ class PDFExtractor:
 
 if __name__ == "__main__":
     extractor = PDFExtractor(
-        pdf_path="studi_kasus/8_Tabel_N_Halaman_Merge_V3.pdf",
+        pdf_path="studi_kasus/Bahana Likuid Plus.pdf",
         output_dir="output_ekstraksi",
         min_line_length=30,
         line_thickness=1,
-        header_threshold=50,
+        header_threshold=120,
         footer_threshold=50,
-        scan_header_threshold=50,
+        scan_header_threshold=120,
         scan_footer_threshold=50,
         min_lines_per_page=1,
         api_provider="google",  # Using Google Gemini API
