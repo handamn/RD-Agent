@@ -770,22 +770,46 @@ class PDFExtractor:
                         "type": "flowchart",
                         "page_number": [Nomor Halaman (jika diketahui, jika tidak, biarkan kosong)],
                         "title": [Judul flowchart (jika ada, jika tidak, biarkan kosong)],
-                        "structured_data": [
+                        "nodes": [
                             {
-                            "entity": [Nama Entitas],
-                            "input": [Input (jika ada)],
-                            "processes": [
-                                {
-                                "name": [Nama Proses],
-                                "description": [Deskripsi Proses]
-                                }
-                            ],
-                            "description": [Deskripsi Entitas]
+                                "id": [ID unik node],
+                                "type": [Tipe node (misalnya, "process", "decision", "start", "end", "input/output")],
+                                "text": [Teks di dalam node],
+                                "x": [Koordinat X node (jika tersedia)],
+                                "y": [Koordinat Y node (jika tersedia)],
+                                "extraction_notes": [Catatan tentang ekstraksi node (jika ada)]
                             }
                         ],
-                        "narrative": [Ringkasan naratif dari flowchart]
+                        "edges": [
+                            {
+                                "source": [ID node sumber],
+                                "target": [ID node tujuan],
+                                "label": [Label pada panah (jika ada)],
+                                "extraction_notes": [Catatan tentang ekstraksi edge (jika ada)]
+                            }
+                        ],
+                        "narrative": [Ringkasan naratif dari flowchart],
+                        "extraction_notes": [Catatan umum tentang ekstraksi flowchart (misalnya, masalah dengan OCR)]
                         }
                         ```
+
+                        **Penjelasan Perubahan pada Format Flowchart:**
+
+                        *   **`nodes` (Array):** Menggantikan `structured_data` dengan array `nodes`. Setiap elemen dalam array `nodes` mewakili satu node (kotak, elips, belah ketupat, dll.) dalam flowchart. Ini memberikan representasi yang lebih granular dan memungkinkan pelacakan setiap elemen individual.
+                            *   `id`: ID unik untuk setiap node, yang digunakan untuk menghubungkannya dengan `edges`.
+                            *   `type`: Tipe node (misalnya, "process", "decision", "start", "end", "input/output").  Ini membantu mengklasifikasikan fungsi node.
+                            *   `text`: Teks yang terkandung di dalam node.  Ini adalah deskripsi langkah atau keputusan.
+                            *   `x`, `y`: (Opsional) Koordinat X dan Y node dalam gambar. Ini dapat berguna untuk merekonstruksi tata letak visual flowchart.
+                            *   `extraction_notes`: Catatan apa pun tentang proses ekstraksi untuk node ini (misalnya, teks sulit dibaca, tipe node tidak yakin).
+
+                        *   **`edges` (Array):**  Menambahkan array `edges` untuk mewakili koneksi (panah) antar node.
+                            *   `source`: ID node asal panah.
+                            *   `target`: ID node tujuan panah.
+                            *   `label`: Teks yang terkait dengan panah (misalnya, "Ya", "Tidak" untuk keputusan).
+                            *   `extraction_notes`: Catatan apa pun tentang proses ekstraksi untuk edge ini.
+
+                        *   **Penghapusan `structured_data`:** Struktur `structured_data` sebelumnya kurang jelas dan sulit untuk digeneralisasi ke berbagai jenis flowchart. Struktur baru `nodes` dan `edges` memberikan representasi yang lebih fleksibel dan akurat.
+                        *   **`extraction_notes` di setiap bagian:** Menambahkan `extraction_notes` di tingkat node, edge, dan flowchart untuk memberikan informasi lebih detail tentang potensi masalah atau ketidakpastian selama proses ekstraksi.
 
                 3. **Output:**  Keluarkan *semua* informasi yang diekstraksi sebagai *satu* array JSON. Setiap elemen dalam array mewakili satu bagian konten (teks, tabel, atau flowchart) yang diekstraksi dari dokumen. Pastikan JSON tersebut valid dan dapat diurai dengan benar.
 
@@ -796,6 +820,15 @@ class PDFExtractor:
                 *   **Prioritaskan deteksi *semua* elemen yang ada di dokumen.** Jika dokumen berisi teks *dan* tabel, hasilkan *dua* objek JSON terpisah: satu untuk teks, dan satu lagi untuk tabel.
                 *   Jika ada teks di luar tabel atau flowchart, identifikasi apakah teks tersebut merupakan judul/catatan kaki yang terkait dengan tabel/flowchart. Jika ya, gabungkan informasi tersebut ke dalam objek JSON tabel/flowchart yang sesuai. Jika tidak, perlakukan teks tersebut sebagai elemen "text" yang terpisah.
                 *   Jika dokumen berisi *sebagian* tabel atau flowchart, usahakan untuk mengekstrak informasi sebanyak mungkin dan gunakan `is_continued: true` pada tabel yang terpotong.
+                
+                **Tambahan Instruksi Khusus Flowchart:**
+
+                *   **Prioritaskan identifikasi *semua* node dan koneksi (edges) dalam flowchart.** Akurasi dalam mengidentifikasi node dan edges sangat penting untuk merekonstruksi logika flowchart.
+                *   **Gunakan konvensi penamaan yang konsisten untuk tipe node.** Misalnya, selalu gunakan "process" untuk kotak persegi panjang, "decision" untuk belah ketupat, dll.
+                *   **Jika teks dalam node terlalu panjang, buat ringkasan singkat di bidang "text" dan simpan teks lengkap di bidang "extraction_notes".**
+                *   **Dalam narasi, jelaskan alur proses, keputusan, dan hasil yang mungkin.**
+                *   **Jika flowchart berisi loop, pastikan narasi menjelaskan loop tersebut dengan jelas.**
+
                 """,
                 {"mime_type": mime_type, "data": pdf_data},
                 "Ekstrak semua tabel dan informasi penting dari dokumen PDF ini, berikan output dalam format JSON yang valid."
