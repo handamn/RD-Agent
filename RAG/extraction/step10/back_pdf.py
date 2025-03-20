@@ -524,12 +524,13 @@ class PDFExtractor:
         if not is_scanned:
             # Untuk dokumen asli, gunakan PyMuPDF
             print(f"- Mengekstrak teks dari dokumen asli")
-            text = page.get_text("text")  # Menggunakan "text" untuk mendapatkan teks per baris
+            text = page.get_text()  # Menggunakan "text" untuk mendapatkan teks per baris
             
             # Split teks menjadi list berdasarkan newline
-            text_lines = text.split('\n')
-            
+            text_lines = [line for line in text.split('\n')[1:] if line.strip()]
+
             return text_lines
+            # return text
         else:
             # Untuk dokumen hasil scan, gunakan OCR
             print(f"- Mengekstrak teks dari dokumen scan dengan OCR")
@@ -564,7 +565,7 @@ class PDFExtractor:
                         raise Exception("Hasil unstructured terlalu sedikit, coba dengan tesseract")
                     
                     # Split teks menjadi list berdasarkan newline
-                    text_lines = text.split('\n')
+                    # text_lines = text.split('\n') ##############
                     
                     return text_lines
                 finally:
@@ -657,7 +658,7 @@ class PDFExtractor:
                     self.result["pages"][page_idx]["table_data"] = {}
                 
                 # Tambahkan informasi path split PDF ke hasil
-                self.result["pages"][page_idx]["pdf_split_paths"] = pdf_split_paths
+                # self.result["pages"][page_idx]["pdf_split_paths"] = pdf_split_paths
         else:
             print(f"  * Tidak dapat membuat atau menyimpan PDF split untuk halaman {group_id}")
 
@@ -989,16 +990,16 @@ class PDFExtractor:
             self.result["metadata"]["extraction_method"] = "text_extraction_only"
         
         # Simpan metadata tabel
-        self.result["metadata"]["tables"] = {
-            "total_pages_with_tables": len(self.pages_with_tables),
-            "table_groups": [
-                {
-                    "group_id": f"{group[0]+1}" if len(group) == 1 else f"{group[0]+1}-{group[-1]+1}",
-                    "pages": [p+1 for p in group]
-                }
-                for group in self.table_groups
-            ]
-        }
+        # self.result["metadata"]["tables"] = {
+        #     "total_pages_with_tables": len(self.pages_with_tables),
+        #     "table_groups": [
+        #         {
+        #             "group_id": f"{group[0]+1}" if len(group) == 1 else f"{group[0]+1}-{group[-1]+1}",
+        #             "pages": [p+1 for p in group]
+        #         }
+        #         for group in self.table_groups
+        #     ]
+        # }
         
         # Hapus objek PIL image sebelum menyimpan ke JSON
         for page in self.result["pages"]:
