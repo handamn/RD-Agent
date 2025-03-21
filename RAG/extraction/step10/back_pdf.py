@@ -842,14 +842,14 @@ class PDFExtractor:
             response_text = response.text
             print(f"API Response received. Length: {len(response_text)} characters")
 
-            print()
-            print("---")
-            print(len(response_text))
-            print(type(response_text))
-            print("---")
-            print(response_text)
-            print("---")
-            print()
+            # print()
+            # print("---")
+            # print(len(response_text))
+            # print(type(response_text))
+            # print("---")
+            # print(response_text)
+            # print("---")
+            # print()
             
             # Parse the JSON response
             try:
@@ -1024,7 +1024,7 @@ class PDFExtractor:
         Membersihkan semua file sementara
         """
         if self.cleanup_temp_files:
-            temp_dir = os.path.join(self.output_dir, "temp")
+            temp_dir = os.path.join(self.output_dir, "pdf_splits")
             if os.path.exists(temp_dir):
                 for file in os.listdir(temp_dir):
                     file_path = os.path.join(temp_dir, file)
@@ -1053,8 +1053,8 @@ if __name__ == "__main__":
         scan_footer_threshold=50,
         min_lines_per_page=1,
         api_provider="google",  # Using Google Gemini API
-        save_images=True,
-        draw_line_highlights=True,
+        save_images=False,
+        draw_line_highlights=False,
         cleanup_temp_files=True
     )
     
