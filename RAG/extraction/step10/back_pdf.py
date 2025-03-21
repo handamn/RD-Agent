@@ -1043,7 +1043,7 @@ class PDFExtractor:
 
 if __name__ == "__main__":
     extractor = PDFExtractor(
-        pdf_path="studi_kasus/Bahana Likuid Plus.pdf",
+        pdf_path="prospectus/ABF Indonesia Bond Index Fund.pdf",
         output_dir="output_ekstraksi",
         min_line_length=30,
         line_thickness=1,
