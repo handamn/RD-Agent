@@ -1,0 +1,57 @@
+[2025-04-08 21:13:48] [INFO] Inisialisasi Comparison_Data_Scrapper dengan 2 URL dan tahun 3M
+[2025-04-08 21:13:49] [INFO] Browser Chrome berhasil diinisialisasi
+[2025-04-08 21:13:49] [INFO] ===== Memulai proses scraping =====
+[2025-04-08 21:13:49] [INFO] Memulai scraping untuk IHSG dari https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE
+[2025-04-08 21:13:49] [INFO] Mengakses URL: https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE
+[2025-04-08 21:13:59] [INFO] Mencari dan mengklik tombol menu
+[2025-04-08 21:13:59] [ERROR] Error saat scraping IHSG: Message: no such element: Unable to locate element: {"method":"css selector","selector":".tertiary-btn.fin-size-small.menuBtn.rounded.yf-15mk0m"}
+  (Session info: chrome=135.0.7049.42); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF71D1A1F55+78133]
+	GetHandleVerifier [0x00007FF71D1A1FB0+78224]
+	(No symbol) [0x00007FF71CF691BA]
+	(No symbol) [0x00007FF71CFBF19D]
+	(No symbol) [0x00007FF71CFBF44C]
+	(No symbol) [0x00007FF71D0123D7]
+	(No symbol) [0x00007FF71CFE719F]
+	(No symbol) [0x00007FF71D00F21F]
+	(No symbol) [0x00007FF71CFE6F33]
+	(No symbol) [0x00007FF71CFB0358]
+	(No symbol) [0x00007FF71CFB10C3]
+	GetHandleVerifier [0x00007FF71D46BA8D+3001453]
+	GetHandleVerifier [0x00007FF71D465E72+2977874]
+	GetHandleVerifier [0x00007FF71D48497D+3103581]
+	GetHandleVerifier [0x00007FF71D1BC7EA+186826]
+	GetHandleVerifier [0x00007FF71D1C43FF+218591]
+	GetHandleVerifier [0x00007FF71D1A9D94+110452]
+	GetHandleVerifier [0x00007FF71D1A9F42+110882]
+	GetHandleVerifier [0x00007FF71D190379+5465]
+	BaseThreadInitThunk [0x00007FF8C364E8D7+23]
+	RtlUserThreadStart [0x00007FF8C4E5BF6C+44]
+
+[2025-04-08 21:13:59] [ERROR] Error dalam proses scraping utama: Message: no such element: Unable to locate element: {"method":"css selector","selector":".tertiary-btn.fin-size-small.menuBtn.rounded.yf-15mk0m"}
+  (Session info: chrome=135.0.7049.42); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF71D1A1F55+78133]
+	GetHandleVerifier [0x00007FF71D1A1FB0+78224]
+	(No symbol) [0x00007FF71CF691BA]
+	(No symbol) [0x00007FF71CFBF19D]
+	(No symbol) [0x00007FF71CFBF44C]
+	(No symbol) [0x00007FF71D0123D7]
+	(No symbol) [0x00007FF71CFE719F]
+	(No symbol) [0x00007FF71D00F21F]
+	(No symbol) [0x00007FF71CFE6F33]
+	(No symbol) [0x00007FF71CFB0358]
+	(No symbol) [0x00007FF71CFB10C3]
+	GetHandleVerifier [0x00007FF71D46BA8D+3001453]
+	GetHandleVerifier [0x00007FF71D465E72+2977874]
+	GetHandleVerifier [0x00007FF71D48497D+3103581]
+	GetHandleVerifier [0x00007FF71D1BC7EA+186826]
+	GetHandleVerifier [0x00007FF71D1C43FF+218591]
+	GetHandleVerifier [0x00007FF71D1A9D94+110452]
+	GetHandleVerifier [0x00007FF71D1A9F42+110882]
+	GetHandleVerifier [0x00007FF71D190379+5465]
+	BaseThreadInitThunk [0x00007FF8C364E8D7+23]
+	RtlUserThreadStart [0x00007FF8C4E5BF6C+44]
+
+[2025-04-08 21:14:03] [INFO] ===== Proses scraping selesai dalam 13.71 detik =====
