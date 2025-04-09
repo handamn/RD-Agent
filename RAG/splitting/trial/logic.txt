@@ -1,0 +1,29 @@
+for page_a in data.get "pages"
+    if text not null 
+        read text
+    
+    if table_data not null
+        for split_a in data.get "splits"
+            if type in extracted_data = text
+                read text
+            
+            if type in extracted_data = table
+                read headers
+                read rows
+                read footer
+            
+            if type in extracted_data = flowchart
+                read title
+                read node text
+                if extraction_notes not null
+                    read extraction_notes
+
+                read edge source
+                read edge target
+                read edge label
+                    if extraction_notes not null
+                        read extraction_notes
+                        
+                read narrative
+                read extraction_notes
+                
