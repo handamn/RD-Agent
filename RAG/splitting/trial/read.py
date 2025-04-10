@@ -22,10 +22,40 @@ with open(file_path, 'r', encoding='utf-8') as f:
 
 # Ambil nilai y_position dari valid_lines pada page_num 1
 y_positions = []
-for page in data.get("pages", []):
-    if page.get("page_num") == 1:
-        for line in page.get("valid_lines", []):
-            y_positions.append(line.get("y_position"))
+# for page in data.get("pages", []):
+#     if page.get("page_num") == 1:
+#         for line in page.get("valid_lines", []):
+#             y_positions.append(line.get("y_position"))
 
-print("Semua y_position dari page_num 1:")
-print(y_positions)
+# print("Semua y_position dari page_num 1:")
+# print(y_positions)
+
+
+# text = []
+# a = 1
+# for page in data.get("pages", []):
+#     if page.get("page_num") == 107 :
+#         print(page.get("table_data"))
+#         # print(a)
+#         a+=1
+
+
+# text = []
+# table = []
+# a = 1
+# for page in data.get("pages", []):
+#     if page.get("text") != None :
+#         text.append(page.get("text"))
+    
+#     if page.get("table_data") != None:
+
+#         print(page.get("table_data"))
+
+#         # print(a)
+#     # a+=1
+
+
+# for a in text :
+#     print(type(a))
+#     print()
+# # print(len(text))
