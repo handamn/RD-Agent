@@ -31,28 +31,44 @@ y_positions = []
 # print(y_positions)
 
 
-# text = []
+text = []
 # a = 1
 # for page in data.get("pages", []):
-#     if page.get("page_num") == 107 :
-#         print(page.get("table_data"))
-#         # print(a)
-#         a+=1
+#     if page.get("page_num") == 40 :
+        # index = 1
+        # for split in page.get("table_data"):
+            # key_split = "split_" + str(split)
+            # print(split)
+            # index +=1
+        # bacot = "split_"+str(1)
+        # print((page.get("table_data"))[bacot])
+        # # print(a)
+        # a+=1
 
 
-# text = []
-# table = []
-# a = 1
-# for page in data.get("pages", []):
-#     if page.get("text") != None :
-#         text.append(page.get("text"))
+text = []
+table = []
+a = 1
+for page in data.get("pages", []):
+    # if page.get("text") != None :
+    #     text.append(page.get("text"))
     
-#     if page.get("table_data") != None:
+    if page.get("table_data") != None:
+        # a = 0
+        for split in page.get("table_data",[]):
+            for type
+            # print(split)
+            # print(a)
+            # print()
 
-#         print(page.get("table_data"))
+            # a+=1
+            # if split.get("type") != None:
+            #     print(split.get("type"))
 
-#         # print(a)
-#     # a+=1
+    #     print(page.get("table_data"))
+
+    #     print(a)
+    # a+=1
 
 
 # for a in text :
