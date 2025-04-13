@@ -7,67 +7,47 @@ import cv2
 import numpy as np
 from PIL import Image
 
-def detect_table_in_image(image, min_vertical_lines=3, min_horizontal_lines=3, min_intersections=4):
+def detect_table_in_image(image, min_lines_threshold=3):
     """
-    Mendeteksi tabel dengan kriteria ketat:
-    - Harus ada minimal beberapa garis vertikal DAN horizontal
-    - Harus ada cukup banyak persimpangan garis
-    - Garis harus membentuk pola grid
+    Deteksi tabel yang disederhanakan:
+    - Abaikan jika hanya ada 1-2 garis horizontal (header/footer)
+    - Abaikan jika hanya ada garis vertikal tunggal (margin/dekorasi)
+    - Anggap sebagai tabel jika ada cukup banyak garis (horizontal atau vertikal)
     """
     try:
         # Konversi ke grayscale
         gray = cv2.cvtColor(np.array(image), cv2.COLOR_BGR2GRAY)
         
-        # Thresholding untuk mendapatkan edges
+        # Thresholding
         thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
         
         # Deteksi garis vertikal
         vertical_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, 50))
         vertical_lines = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, vertical_kernel, iterations=2)
+        v_lines = cv2.countNonZero(vertical_lines)
         
         # Deteksi garis horizontal
         horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (50, 1))
         horizontal_lines = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, horizontal_kernel, iterations=2)
-        
-        # Hitung jumlah garis
-        v_lines = cv2.countNonZero(vertical_lines)
         h_lines = cv2.countNonZero(horizontal_lines)
         
-        # Jika tidak memenuhi minimal garis, bukan tabel
-        if v_lines < min_vertical_lines or h_lines < min_horizontal_lines:
-            return False
-            
-        # Gabungkan garis untuk deteksi persimpangan
-        table_mask = cv2.add(vertical_lines, horizontal_lines)
+        # Filter garis tunggal
+        if v_lines <= 2 and h_lines <= 2:
+            return False  # Garis terlalu sedikit
         
-        # Temukan contours untuk analisis lebih lanjut
-        contours, _ = cv2.findContours(table_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        
-        # Filter berdasarkan area dan aspect ratio
-        table_contours = []
-        for cnt in contours:
-            x, y, w, h = cv2.boundingRect(cnt)
-            aspect_ratio = w / float(h)
-            area = cv2.contourArea(cnt)
-            
-            # Filter bentuk yang terlalu memanjang (garis tunggal)
-            if 0.2 < aspect_ratio < 5 and area > 100:
-                table_contours.append(cnt)
-        
-        # Jika menemukan cukup banyak contours yang memenuhi syarat
-        if len(table_contours) >= min_intersections:
-            return True
-            
-        return False
+        # Anggap sebagai tabel jika:
+        # - Ada cukup banyak garis horizontal ATAU
+        # - Ada cukup banyak garis vertikal
+        return (h_lines >= min_lines_threshold) or (v_lines >= min_lines_threshold)
         
     except Exception as e:
         print(f"Error in table detection: {str(e)}")
         return False
 
 def detect_table_from_text(text):
-    """Deteksi tabel dari pola teks (baris dengan banyak tab/space)"""
+    """Deteksi tabel dari pola teks sederhana"""
     lines = [line for line in text.split('\n') if line.strip()]
-    if len(lines) < 2:  # Minimal 2 baris untuk dianggap tabel
+    if len(lines) < 2:  # Minimal 2 baris
         return False
     
     # Hitung jumlah kolom berdasarkan split whitespace
@@ -76,14 +56,12 @@ def detect_table_from_text(text):
         cols = [c for c in line.split() if c.strip()]
         col_counts.append(len(cols))
     
-    # Jika minimal 3 kolom dan konsisten
-    if max(col_counts) >= 3 and len(set(col_counts)) <= 2:
-        return True
-    return False
+    # Minimal 3 kolom pada salah satu baris
+    return max(col_counts) >= 3
 
 def check_page_needs_ocr(pdf_path, min_text_length=50, dpi=200):
     """
-    Fungsi utama untuk memeriksa halaman PDF dengan prioritas:
+    Fungsi utama dengan prioritas:
     1. Terindikasi ada tabel
     2. Perlu OCR
     3. Cukup scan biasa
@@ -97,7 +75,6 @@ def check_page_needs_ocr(pdf_path, min_text_length=50, dpi=200):
             
             print(f"Menganalisis PDF dengan {total_pages} halaman...")
             
-            # Konversi semua halaman ke gambar untuk deteksi tabel
             images = convert_from_path(pdf_path, dpi=dpi)
             
             for page_num in range(total_pages):
@@ -105,15 +82,16 @@ def check_page_needs_ocr(pdf_path, min_text_length=50, dpi=200):
                 text = page.extract_text() or ""
                 
                 # Cek tabel dari gambar (jika ada gambar)
-                table_in_image = False
+                table_detected = False
                 if page_num < len(images):
-                    table_in_image = detect_table_in_image(images[page_num])
+                    table_detected = detect_table_in_image(images[page_num])
                 
                 # Cek tabel dari teks (jika ada teks)
-                table_in_text = detect_table_from_text(text)
+                if not table_detected and text:
+                    table_detected = detect_table_from_text(text)
                 
                 # Prioritas: tabel > ocr > normal
-                if table_in_image or table_in_text:
+                if table_detected:
                     results[page_num + 1] = "terindikasi ada tabel"
                 elif text and len(text.strip()) >= min_text_length:
                     results[page_num + 1] = "cukup scan biasa"
@@ -145,15 +123,13 @@ def main():
         print(f"File {pdf_path} tidak ditemukan!")
         return
     
-    # Mendapatkan hasil analisis
     analysis_results = check_page_needs_ocr(pdf_path)
     
     if not analysis_results:
         print("Gagal menganalisis PDF.")
         return
     
-    # Simpan hasil sebagai JSON
-    output_file = os.path.splitext(pdf_path)[0] + "_enhanced_analysis.json"
+    output_file = os.path.splitext(pdf_path)[0] + "_simple_table_analysis.json"
     try:
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(analysis_results, f, indent=4, ensure_ascii=False)
