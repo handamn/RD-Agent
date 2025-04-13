@@ -3,13 +3,16 @@ import json
 import PyPDF2
 from pdf2image import convert_from_path
 import pytesseract
-from PIL import Image
 import cv2
 import numpy as np
+from PIL import Image
 
-def detect_table_in_image(image):
+def detect_table_in_image(image, min_vertical_lines=3, min_horizontal_lines=3, min_intersections=4):
     """
-    Mendeteksi indikasi tabel dalam gambar menggunakan pengolahan citra
+    Mendeteksi tabel dengan kriteria ketat:
+    - Harus ada minimal beberapa garis vertikal DAN horizontal
+    - Harus ada cukup banyak persimpangan garis
+    - Garis harus membentuk pola grid
     """
     try:
         # Konversi ke grayscale
@@ -18,25 +21,69 @@ def detect_table_in_image(image):
         # Thresholding untuk mendapatkan edges
         thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
         
-        # Deteksi garis vertikal dan horizontal
+        # Deteksi garis vertikal
         vertical_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, 50))
-        horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (50, 1))
-        
         vertical_lines = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, vertical_kernel, iterations=2)
+        
+        # Deteksi garis horizontal
+        horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (50, 1))
         horizontal_lines = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, horizontal_kernel, iterations=2)
         
-        # Hitung jumlah garis yang terdeteksi
+        # Hitung jumlah garis
         v_lines = cv2.countNonZero(vertical_lines)
         h_lines = cv2.countNonZero(horizontal_lines)
         
-        # Jika ditemukan cukup banyak garis vertikal/horizontal, indikasi tabel
-        return (v_lines > 100) or (h_lines > 100)
-    except:
+        # Jika tidak memenuhi minimal garis, bukan tabel
+        if v_lines < min_vertical_lines or h_lines < min_horizontal_lines:
+            return False
+            
+        # Gabungkan garis untuk deteksi persimpangan
+        table_mask = cv2.add(vertical_lines, horizontal_lines)
+        
+        # Temukan contours untuk analisis lebih lanjut
+        contours, _ = cv2.findContours(table_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        
+        # Filter berdasarkan area dan aspect ratio
+        table_contours = []
+        for cnt in contours:
+            x, y, w, h = cv2.boundingRect(cnt)
+            aspect_ratio = w / float(h)
+            area = cv2.contourArea(cnt)
+            
+            # Filter bentuk yang terlalu memanjang (garis tunggal)
+            if 0.2 < aspect_ratio < 5 and area > 100:
+                table_contours.append(cnt)
+        
+        # Jika menemukan cukup banyak contours yang memenuhi syarat
+        if len(table_contours) >= min_intersections:
+            return True
+            
         return False
+        
+    except Exception as e:
+        print(f"Error in table detection: {str(e)}")
+        return False
+
+def detect_table_from_text(text):
+    """Deteksi tabel dari pola teks (baris dengan banyak tab/space)"""
+    lines = [line for line in text.split('\n') if line.strip()]
+    if len(lines) < 2:  # Minimal 2 baris untuk dianggap tabel
+        return False
+    
+    # Hitung jumlah kolom berdasarkan split whitespace
+    col_counts = []
+    for line in lines:
+        cols = [c for c in line.split() if c.strip()]
+        col_counts.append(len(cols))
+    
+    # Jika minimal 3 kolom dan konsisten
+    if max(col_counts) >= 3 and len(set(col_counts)) <= 2:
+        return True
+    return False
 
 def check_page_needs_ocr(pdf_path, min_text_length=50, dpi=200):
     """
-    Fungsi untuk memeriksa halaman PDF dengan prioritas:
+    Fungsi utama untuk memeriksa halaman PDF dengan prioritas:
     1. Terindikasi ada tabel
     2. Perlu OCR
     3. Cukup scan biasa
@@ -55,23 +102,30 @@ def check_page_needs_ocr(pdf_path, min_text_length=50, dpi=200):
             
             for page_num in range(total_pages):
                 page = pdf_reader.pages[page_num]
+                text = page.extract_text() or ""
                 
-                # Pertama, cek indikasi tabel dari gambar
-                if page_num < len(images) and detect_table_in_image(images[page_num]):
+                # Cek tabel dari gambar (jika ada gambar)
+                table_in_image = False
+                if page_num < len(images):
+                    table_in_image = detect_table_in_image(images[page_num])
+                
+                # Cek tabel dari teks (jika ada teks)
+                table_in_text = detect_table_from_text(text)
+                
+                # Prioritas: tabel > ocr > normal
+                if table_in_image or table_in_text:
                     results[page_num + 1] = "terindikasi ada tabel"
-                    continue
-                
-                # Jika tidak ada tabel, lanjutkan pemeriksaan teks
-                text = page.extract_text()
-                
-                if text and len(text.strip()) >= min_text_length:
+                elif text and len(text.strip()) >= min_text_length:
                     results[page_num + 1] = "cukup scan biasa"
                 else:
                     # Gunakan OCR jika diperlukan
                     if page_num < len(images):
                         text_from_ocr = pytesseract.image_to_string(images[page_num])
                         
-                        if text_from_ocr and len(text_from_ocr.strip()) >= min_text_length:
+                        # Cek lagi tabel dari hasil OCR
+                        if detect_table_from_text(text_from_ocr):
+                            results[page_num + 1] = "terindikasi ada tabel"
+                        elif text_from_ocr and len(text_from_ocr.strip()) >= min_text_length:
                             results[page_num + 1] = "perlu ocr"
                         else:
                             results[page_num + 1] = "cukup scan biasa"
@@ -92,9 +146,9 @@ def main():
         return
     
     # Mendapatkan hasil analisis
-    ocr_analysis = check_page_needs_ocr(pdf_path)
+    analysis_results = check_page_needs_ocr(pdf_path)
     
-    if not ocr_analysis:
+    if not analysis_results:
         print("Gagal menganalisis PDF.")
         return
     
@@ -102,10 +156,10 @@ def main():
     output_file = os.path.splitext(pdf_path)[0] + "_enhanced_analysis.json"
     try:
         with open(output_file, 'w', encoding='utf-8') as f:
-            json.dump(ocr_analysis, f, indent=4, ensure_ascii=False)
+            json.dump(analysis_results, f, indent=4, ensure_ascii=False)
         
         print("\nHasil analisis:")
-        for page, status in sorted(ocr_analysis.items(), key=lambda x: x[0]):
+        for page, status in sorted(analysis_results.items(), key=lambda x: x[0]):
             print(f"Halaman {page}: {status}")
         
         print(f"\nHasil analisis telah disimpan ke {output_file}")
