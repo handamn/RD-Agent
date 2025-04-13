@@ -1,0 +1,623 @@
+{
+  "metadata": {
+    "filename": "ABF Indonesia Bond Index Fund.pdf",
+    "page_num": 100,
+    "total_pages": 113,
+    "extraction_method": "mixed"
+  },
+  "page_data": {
+    "page_num": 100,
+    "is_scanned": false,
+    "rotation": 0,
+    "has_table": true,
+    "valid_lines": [
+      {
+        "y_position": 674.0,
+        "x_min": 86.5,
+        "x_max": 490.5
+      },
+      {
+        "y_position": 658.0,
+        "x_min": 205.5,
+        "x_max": 249.5
+      },
+      {
+        "y_position": 639.0,
+        "x_min": 205.5,
+        "x_max": 249.5
+      },
+      {
+        "y_position": 618.0,
+        "x_min": 170.5,
+        "x_max": 283.5
+      },
+      {
+        "y_position": 593.0,
+        "x_min": 170.5,
+        "x_max": 283.5
+      },
+      {
+        "y_position": 577.0,
+        "x_min": 170.5,
+        "x_max": 283.5
+      },
+      {
+        "y_position": 559.0,
+        "x_min": 168.0,
+        "x_max": 281.0
+      },
+      {
+        "y_position": 524.0,
+        "x_min": 168.0,
+        "x_max": 281.0
+      },
+      {
+        "y_position": 508.0,
+        "x_min": 168.0,
+        "x_max": 281.0
+      },
+      {
+        "y_position": 490.0,
+        "x_min": 155.0,
+        "x_max": 297.5
+      },
+      {
+        "y_position": 446.5,
+        "x_min": 155.0,
+        "x_max": 297.5
+      },
+      {
+        "y_position": 431.0,
+        "x_min": 155.0,
+        "x_max": 297.5
+      },
+      {
+        "y_position": 415.0,
+        "x_min": 181.5,
+        "x_max": 267.5
+      },
+      {
+        "y_position": 379.5,
+        "x_min": 181.5,
+        "x_max": 267.5
+      },
+      {
+        "y_position": 375.0,
+        "x_min": 295.0,
+        "x_max": 367.5
+      },
+      {
+        "y_position": 363.5,
+        "x_min": 181.5,
+        "x_max": 267.5
+      },
+      {
+        "y_position": 330.5,
+        "x_min": 295.0,
+        "x_max": 368.0
+      },
+      {
+        "y_position": 319.0,
+        "x_min": 258.0,
+        "x_max": 301.0
+      },
+      {
+        "y_position": 314.5,
+        "x_min": 295.5,
+        "x_max": 368.0
+      },
+      {
+        "y_position": 278.0,
+        "x_min": 178.5,
+        "x_max": 273.0
+      },
+      {
+        "y_position": 234.5,
+        "x_min": 178.5,
+        "x_max": 274.0
+      },
+      {
+        "y_position": 219.0,
+        "x_min": 178.5,
+        "x_max": 274.0
+      },
+      {
+        "y_position": 197.5,
+        "x_min": 178.5,
+        "x_max": 273.5
+      },
+      {
+        "y_position": 171.5,
+        "x_min": 266.0,
+        "x_max": 399.0
+      },
+      {
+        "y_position": 163.5,
+        "x_min": 178.5,
+        "x_max": 273.5
+      },
+      {
+        "y_position": 147.5,
+        "x_min": 178.5,
+        "x_max": 273.5
+      }
+    ],
+    "text": null,
+    "table_data": {
+      "split_1": {
+        "table_type": "extracted_table",
+        "extracted_data": [
+          {
+            "type": "flowchart",
+            "page_number": [
+              1
+            ],
+            "title": "BAB XVII: Skema Proses Pembelian Unit Penyertaan ABF IBI FUND",
+            "nodes": [
+              {
+                "id": "1",
+                "type": "start",
+                "text": "Mulai",
+                "x": null,
+                "y": null,
+                "extraction_notes": null
+              },
+              {
+                "id": "2",
+                "type": "process",
+                "text": "Investor",
+                "x": null,
+                "y": null,
+                "extraction_notes": "Lakukan transfer ke rekening Reksa dana dan serahkan FPPUP dan dokumen-dokumen yang diperlukan ke BTIM*"
+              },
+              {
+                "id": "3",
+                "type": "process",
+                "text": "BTIM",
+                "x": null,
+                "y": null,
+                "extraction_notes": "Terima FPUP, FPPRD, bukti pembayaran +dokumen yang diperlukan dan periksa kelengkapan"
+              },
+              {
+                "id": "4",
+                "type": "decision",
+                "text": "Lengkap ?",
+                "x": null,
+                "y": null,
+                "extraction_notes": null
+              },
+              {
+                "id": "5",
+                "type": "process",
+                "text": "BTIM",
+                "x": null,
+                "y": null,
+                "extraction_notes": "Kirim dokumen ke Bank Kustodian"
+              },
+              {
+                "id": "6",
+                "type": "process",
+                "text": "BTIM",
+                "x": null,
+                "y": null,
+                "extraction_notes": "Kirim Surat Konfirmasi Transaksi Unit Penyertaan ke Investor"
+              },
+              {
+                "id": "7",
+                "type": "end",
+                "text": "Selesai",
+                "x": null,
+                "y": null,
+                "extraction_notes": null
+              },
+              {
+                "id": "8",
+                "type": "process",
+                "text": "BTIM",
+                "x": null,
+                "y": null,
+                "extraction_notes": "Informasikan ke Investor untuk dilengkapi"
+              }
+            ],
+            "edges": [
+              {
+                "source": "1",
+                "target": "2",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "2",
+                "target": "3",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "3",
+                "target": "4",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "4",
+                "target": "5",
+                "label": "Ya",
+                "extraction_notes": null
+              },
+              {
+                "source": "4",
+                "target": "8",
+                "label": "Tidak",
+                "extraction_notes": null
+              },
+              {
+                "source": "8",
+                "target": "2",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "5",
+                "target": "6",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "6",
+                "target": "7",
+                "label": null,
+                "extraction_notes": null
+              }
+            ],
+            "narrative": "Flowchart menggambarkan proses pembelian unit penyertaan ABF IBI FUND. Investor melakukan transfer dan menyerahkan dokumen ke BTIM. BTIM memeriksa kelengkapan dokumen. Jika lengkap, dokumen dikirim ke Bank Kustodian dan surat konfirmasi dikirim ke Investor. Jika tidak lengkap, Investor diinformasikan untuk melengkapi dokumen.",
+            "extraction_notes": "None"
+          },
+          {
+            "type": "text",
+            "page_number": [
+              1
+            ],
+            "text": [
+              "BTIM: Bahana TCW Investment Management",
+              "47"
+            ]
+          },
+          {
+            "type": "flowchart",
+            "page_number": [
+              2
+            ],
+            "title": "BAB XVIII: Skema Proses Penjualan Kembali (Pelunasan) Unit Penyertaan ABF IBI FUND",
+            "nodes": [
+              {
+                "id": "1",
+                "type": "start",
+                "text": "Mulai",
+                "x": null,
+                "y": null,
+                "extraction_notes": null
+              },
+              {
+                "id": "2",
+                "type": "process",
+                "text": "Investor",
+                "x": null,
+                "y": null,
+                "extraction_notes": "Serahkan FPK dan dokumen-dokumen yang diperlukan ke BTIM"
+              },
+              {
+                "id": "3",
+                "type": "process",
+                "text": "BTIM",
+                "x": null,
+                "y": null,
+                "extraction_notes": "Terima FPK dari Investor dan Periksa kelengkapan pengisian FPK"
+              },
+              {
+                "id": "4",
+                "type": "decision",
+                "text": "Lengkap ?",
+                "x": null,
+                "y": null,
+                "extraction_notes": null
+              },
+              {
+                "id": "5",
+                "type": "process",
+                "text": "BTIM",
+                "x": null,
+                "y": null,
+                "extraction_notes": "kirim dokumen ke Bank Kustodian"
+              },
+              {
+                "id": "6",
+                "type": "process",
+                "text": "Bank Kustodian",
+                "x": null,
+                "y": null,
+                "extraction_notes": "Terima dokumen, lakukan pembayaran pada investor dan kirimkan Surat Konfirmasi Transaksi Unit Penyertaan ke BTIM"
+              },
+              {
+                "id": "7",
+                "type": "process",
+                "text": "BTIM",
+                "x": null,
+                "y": null,
+                "extraction_notes": "Terima Surat Konfirmasi Transaksi Unit Penyertaan dari Bank Kustodian"
+              },
+              {
+                "id": "8",
+                "type": "process",
+                "text": "BTIM",
+                "x": null,
+                "y": null,
+                "extraction_notes": "Kirim Surat Konfirmasi Transaksi Unit Penyertaan ke"
+              },
+              {
+                "id": "9",
+                "type": "end",
+                "text": "Selesai",
+                "x": null,
+                "y": null,
+                "extraction_notes": null
+              },
+              {
+                "id": "10",
+                "type": "process",
+                "text": "BTIM",
+                "x": null,
+                "y": null,
+                "extraction_notes": "Informasikan ke Investor untuk dilengkapi"
+              }
+            ],
+            "edges": [
+              {
+                "source": "1",
+                "target": "2",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "2",
+                "target": "3",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "3",
+                "target": "4",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "4",
+                "target": "5",
+                "label": "Ya",
+                "extraction_notes": null
+              },
+              {
+                "source": "4",
+                "target": "10",
+                "label": "Tidak",
+                "extraction_notes": null
+              },
+              {
+                "source": "10",
+                "target": "2",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "5",
+                "target": "6",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "6",
+                "target": "7",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "7",
+                "target": "8",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "8",
+                "target": "9",
+                "label": null,
+                "extraction_notes": null
+              }
+            ],
+            "narrative": "Flowchart menggambarkan proses penjualan kembali unit penyertaan ABF IBI FUND. Investor menyerahkan FPK dan dokumen ke BTIM. BTIM memeriksa kelengkapan FPK. Jika lengkap, dokumen dikirim ke Bank Kustodian, Bank Kustodian membayar investor dan mengirimkan surat konfirmasi. BTIM menerima surat konfirmasi dan mengirimkannya ke Investor. Jika tidak lengkap, Investor diinformasikan untuk melengkapi FPK.",
+            "extraction_notes": "None"
+          },
+          {
+            "type": "text",
+            "page_number": [
+              2
+            ],
+            "text": [
+              "BTIM: Bahana TCW Investment Management",
+              "48"
+            ]
+          },
+          {
+            "type": "flowchart",
+            "page_number": [
+              3
+            ],
+            "title": "BAB IX: Skema Proses Pengalihan Unit Penyertaan ABF IBI FUND",
+            "nodes": [
+              {
+                "id": "1",
+                "type": "start",
+                "text": "Mulai",
+                "x": null,
+                "y": null,
+                "extraction_notes": null
+              },
+              {
+                "id": "2",
+                "type": "process",
+                "text": "Investor",
+                "x": null,
+                "y": null,
+                "extraction_notes": "Serahkan FPUP dan dokumen-dokumen yang diperlukan ke BTIM / APERD"
+              },
+              {
+                "id": "3",
+                "type": "process",
+                "text": "BTIM/APERD",
+                "x": null,
+                "y": null,
+                "extraction_notes": "Terima FPUP dari Investor dan periksa kelengkapan pengisian FPUP"
+              },
+              {
+                "id": "4",
+                "type": "decision",
+                "text": "Lengkap?",
+                "x": null,
+                "y": null,
+                "extraction_notes": null
+              },
+              {
+                "id": "5",
+                "type": "process",
+                "text": "BTIM/APERD",
+                "x": null,
+                "y": null,
+                "extraction_notes": "kirim informasi pengalihan ke Bank Kustodian melalui S-Invest"
+              },
+              {
+                "id": "6",
+                "type": "process",
+                "text": "Bank Kustodian",
+                "x": null,
+                "y": null,
+                "extraction_notes": "Terima dokumen, lakukan pembayaran pada investor dan kirimkan Surat Konfirmasi Pengalihan Unit Penyertaan ke BTIM / APERD"
+              },
+              {
+                "id": "7",
+                "type": "process",
+                "text": "BTIM/APERD",
+                "x": null,
+                "y": null,
+                "extraction_notes": "Terima Surat Konfirmasi Pengalihan Unit Penyertaan dari Bank Kustodian"
+              },
+              {
+                "id": "8",
+                "type": "process",
+                "text": "BTIM/APERD",
+                "x": null,
+                "y": null,
+                "extraction_notes": "Kirim Surat Konfirmasi Transaksi Unit Penyertaan ke Investor"
+              },
+              {
+                "id": "9",
+                "type": "end",
+                "text": "Selesai",
+                "x": null,
+                "y": null,
+                "extraction_notes": null
+              },
+              {
+                "id": "10",
+                "type": "process",
+                "text": "BTIM/APERD",
+                "x": null,
+                "y": null,
+                "extraction_notes": "Informasikan ke Investor untuk dilengkapi"
+              }
+            ],
+            "edges": [
+              {
+                "source": "1",
+                "target": "2",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "2",
+                "target": "3",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "3",
+                "target": "4",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "4",
+                "target": "5",
+                "label": "Ya",
+                "extraction_notes": null
+              },
+              {
+                "source": "4",
+                "target": "10",
+                "label": "Tidak",
+                "extraction_notes": null
+              },
+              {
+                "source": "10",
+                "target": "2",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "5",
+                "target": "6",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "6",
+                "target": "7",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "7",
+                "target": "8",
+                "label": null,
+                "extraction_notes": null
+              },
+              {
+                "source": "8",
+                "target": "9",
+                "label": null,
+                "extraction_notes": null
+              }
+            ],
+            "narrative": "Flowchart menggambarkan proses pengalihan unit penyertaan ABF IBI FUND. Investor menyerahkan FPUP dan dokumen ke BTIM/APERD. BTIM/APERD memeriksa kelengkapan FPUP. Jika lengkap, informasi dikirim ke Bank Kustodian melalui S-Invest. Bank Kustodian melakukan pembayaran dan mengirim surat konfirmasi. BTIM/APERD menerima surat konfirmasi dan mengirimkannya ke Investor. Jika tidak lengkap, Investor diinformasikan untuk melengkapi dokumen.",
+            "extraction_notes": "None"
+          },
+          {
+            "type": "text",
+            "page_number": [
+              3
+            ],
+            "text": [
+              "Keterangan",
+              "BTIM",
+              "BK",
+              "FPUP",
+              "APERD",
+              ": Bahana TCW Investment Management",
+              ": Bank Kustodian",
+              ": Formulir Pengalihan Unit Penyertaan",
+              ": Agen Penjual Efek Reksa Dana",
+              "49"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

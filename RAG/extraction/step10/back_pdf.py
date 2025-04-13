@@ -979,6 +979,7 @@ class PDFExtractor:
         """
         Simpan hasil ekstraksi ke file JSON.
         Nama file JSON diambil dari nama file PDF yang diproses.
+        Menyimpan hasil per halaman dan hasil keseluruhan.
         """
         # Tentukan metode ekstraksi berdasarkan hasil
         if self.pages_with_tables:
@@ -988,18 +989,6 @@ class PDFExtractor:
                 self.result["metadata"]["extraction_method"] = "mixed"
         else:
             self.result["metadata"]["extraction_method"] = "text_extraction_only"
-        
-        # Simpan metadata tabel
-        # self.result["metadata"]["tables"] = {
-        #     "total_pages_with_tables": len(self.pages_with_tables),
-        #     "table_groups": [
-        #         {
-        #             "group_id": f"{group[0]+1}" if len(group) == 1 else f"{group[0]+1}-{group[-1]+1}",
-        #             "pages": [p+1 for p in group]
-        #         }
-        #         for group in self.table_groups
-        #     ]
-        # }
         
         # Hapus objek PIL image sebelum menyimpan ke JSON
         for page in self.result["pages"]:
@@ -1011,12 +1000,38 @@ class PDFExtractor:
         json_filename = pdf_filename.replace(".pdf", ".json")  # Ganti ekstensi .pdf dengan .json
         output_json = os.path.join(self.output_dir, json_filename)  # Gabungkan dengan direktori output
         
-        # Simpan ke file JSON
-        # output_json = os.path.join(self.output_dir, "extraction_results.json")
+        # Simpan ke file JSON keseluruhan
         with open(output_json, "w", encoding="utf-8") as f:
             json.dump(self.result, f, ensure_ascii=False, indent=2)
         
-        print(f"\nHasil ekstraksi disimpan ke: {output_json}")
+        print(f"\nHasil ekstraksi keseluruhan disimpan ke: {output_json}")
+        
+        # Buat direktori untuk hasil per halaman
+        pages_output_dir = Path(self.output_dir) / "pages"
+        pages_output_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Simpan hasil setiap halaman ke file JSON terpisah
+        for page_data in self.result["pages"]:
+            page_num = page_data["page_num"]
+            page_json_filename = f"{pdf_filename.replace('.pdf', '')}_page{page_num}.json"
+            page_output_json = os.path.join(pages_output_dir, page_json_filename)
+            
+            # Buat struktur hasil untuk halaman individual
+            page_result = {
+                "metadata": {
+                    "filename": os.path.basename(self.pdf_path),
+                    "page_num": page_num,
+                    "total_pages": self.total_pages,
+                    "extraction_method": self.result["metadata"]["extraction_method"]
+                },
+                "page_data": page_data
+            }
+            
+            # Simpan ke file JSON per halaman
+            with open(page_output_json, "w", encoding="utf-8") as f:
+                json.dump(page_result, f, ensure_ascii=False, indent=2)
+            
+        print(f"Hasil ekstraksi per halaman disimpan ke direktori: {pages_output_dir}")
 
     
     def cleanup(self):
@@ -1051,7 +1066,7 @@ if __name__ == "__main__":
         footer_threshold=50,
         scan_header_threshold=120,
         scan_footer_threshold=50,
-        min_lines_per_page=1,
+        min_lines_per_page=3,
         api_provider="google",  # Using Google Gemini API
         save_images=False,
         draw_line_highlights=False,
