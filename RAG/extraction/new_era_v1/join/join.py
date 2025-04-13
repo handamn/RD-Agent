@@ -20,12 +20,12 @@ def check_page_needs_ocr(pdf_path, min_text_length=50, dpi=200):
             text = page.extract_text()
 
             if text and len(text.strip()) >= min_text_length:
-                results[page_num + 1] = "cukup scan biasa"
+                results[page_num + 1] = False
             else:
                 if page_num < len(images):
                     text_from_ocr = pytesseract.image_to_string(images[page_num])
                     if text_from_ocr and len(text_from_ocr.strip()) >= min_text_length:
-                        results[page_num + 1] = "perlu ocr"
+                        results[page_num + 1] = True
                     else:
                         results[page_num + 1] = "halaman kosong/gambar saja"
                 else:
@@ -62,7 +62,7 @@ def analyze_pdf(pdf_path, output_file="hasil_gabungan.json", min_text_length=50,
             img = cv2.cvtColor(img, cv2.COLOR_BGRA2RGB)
         else:
             img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        garis_results[i] = "ada garis" if detect_horizontal_lines(img, min_line_count, min_line_length_percent) else "tidak"
+        garis_results[i] = True if detect_horizontal_lines(img, min_line_count, min_line_length_percent) else False
 
     # Gabungkan hasil
     hasil_gabungan = {}
@@ -70,7 +70,7 @@ def analyze_pdf(pdf_path, output_file="hasil_gabungan.json", min_text_length=50,
     for page in sorted(all_pages):
         hasil_gabungan[str(page)] = {
             "ocr_status": ocr_results.get(page, "tidak diketahui"),
-            "garis_status": garis_results.get(page, "tidak diketahui")
+            "line_status": garis_results.get(page, "tidak diketahui")
         }
 
     with open(output_file, 'w', encoding='utf-8') as f:
