@@ -5,21 +5,6 @@ from pdf2image import convert_from_path
 import pytesseract
 from PIL import Image
 
-def detect_table_from_text(text):
-    """Deteksi tabel dari pola teks sederhana"""
-    lines = [line for line in text.split('\n') if line.strip()]
-    if len(lines) < 2:  # Minimal 2 baris
-        return False
-    
-    # Hitung jumlah kolom berdasarkan split whitespace
-    col_counts = []
-    for line in lines:
-        cols = [c for c in line.split() if c.strip()]
-        col_counts.append(len(cols))
-    
-    # Minimal 3 kolom pada salah satu baris
-    return max(col_counts) >= 3
-
 def check_page_needs_ocr(pdf_path, min_text_length=50, dpi=200):
     """
     Fungsi untuk memeriksa halaman PDF yang memerlukan OCR atau tidak.
@@ -55,10 +40,7 @@ def check_page_needs_ocr(pdf_path, min_text_length=50, dpi=200):
                     if page_num < len(images):
                         text_from_ocr = pytesseract.image_to_string(images[page_num])
                         
-                        # Cek lagi tabel dari hasil OCR
-                        if detect_table_from_text(text_from_ocr):
-                            results[page_num + 1] = "terindikasi ada tabel"
-                        elif text_from_ocr and len(text_from_ocr.strip()) >= min_text_length:
+                        if text_from_ocr and len(text_from_ocr.strip()) >= min_text_length:
                             results[page_num + 1] = "perlu ocr"
                         else:
                             results[page_num + 1] = "halaman kosong/gambar saja"
@@ -78,9 +60,10 @@ def main():
         print(f"File {pdf_path} tidak ditemukan!")
         return
     
-    analysis_results = check_page_needs_ocr(pdf_path)
+    # Mendapatkan hasil analisis
+    ocr_analysis = check_page_needs_ocr(pdf_path)
     
-    if not analysis_results:
+    if not ocr_analysis:
         print("Gagal menganalisis PDF.")
         return
     
@@ -88,10 +71,10 @@ def main():
     output_file = os.path.splitext(pdf_path)[0] + "_ocr_analysis.json"
     try:
         with open(output_file, 'w', encoding='utf-8') as f:
-            json.dump(analysis_results, f, indent=4, ensure_ascii=False)
+            json.dump(ocr_analysis, f, indent=4, ensure_ascii=False)
         
         print("\nHasil analisis:")
-        for page, status in sorted(analysis_results.items(), key=lambda x: x[0]):
+        for page, status in sorted(ocr_analysis.items(), key=lambda x: x[0]):
             print(f"Halaman {page}: {status}")
         
         print(f"\nHasil analisis telah disimpan ke {output_file}")
