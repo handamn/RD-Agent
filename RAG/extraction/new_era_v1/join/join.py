@@ -74,6 +74,9 @@ def analyze_pdf(pdf_path, output_file="hasil_gabungan.json", min_text_length=50,
                 "ai_status": ai_status
             }
 
+            print(f"Halaman {page_index} diproses: OCR={ocr_status}, LINE={line_status}, AI={ai_status}")
+
+
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(hasil_gabungan, f, indent=4, ensure_ascii=False)
 
