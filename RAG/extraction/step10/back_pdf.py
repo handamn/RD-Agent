@@ -1070,7 +1070,7 @@ if __name__ == "__main__":
         api_provider="google",  # Using Google Gemini API
         save_images=False,
         draw_line_highlights=False,
-        cleanup_temp_files=True
+        cleanup_temp_files=False
     )
     
     results = extractor.process()
