@@ -1,0 +1,118 @@
+{
+    "metadata": {
+      "filename": "ABF Indonesia Bond Index Fund.pdf",
+      "total_pages": 25,
+      "extraction_date": "2025-04-14T10:30:00",
+      "processing_time": "45.2s"
+    },
+    "pages": {
+      "1": {
+        "analysis": {
+          "ocr_status": false,
+          "line_status": false,
+          "ai_status": false
+        },
+        "extraction": {
+          "method": "direct_extraction",
+          "library": "PyMuPDF",
+          "processing_time": "0.3s",
+          "content": {
+            "text": "Konten teks dari halaman yang diekstrak langsung...",
+            "tables": []
+          }
+        }
+      },
+      "2": {
+        "analysis": {
+          "ocr_status": true,
+          "line_status": false,
+          "ai_status": false
+        },
+        "extraction": {
+          "method": "ocr",
+          "library": "pytesseract",
+          "processing_time": "1.5s",
+          "content": {
+            "text": "Konten teks hasil OCR dari halaman...",
+            "tables": []
+          }
+        }
+      },
+      "3": {
+        "analysis": {
+          "ocr_status": false,
+          "line_status": true,
+          "ai_status": true
+        },
+        "extraction": {
+          "method": "multimodal_llm",
+          "model": "gpt-4-vision",
+          "prompt_used": "Ekstrak teks dan tabel dari gambar ini...",
+          "processing_time": "4.2s",
+          "content": {
+            "text": "Konten teks dari halaman hasil analisis multimodal...",
+            "tables": [
+              {
+                "table_id": 1,
+                "title": "Performa Investasi 2024",
+                "data": [
+                  {"Periode": "Q1", "Return": "2.5%", "Benchmark": "2.1%"},
+                  {"Periode": "Q2", "Return": "1.8%", "Benchmark": "1.7%"}
+                ],
+                "text_representation": "Tabel: Performa Investasi 2024\n|-----------------|\n| Periode | Return | Benchmark |\n|-----------------|\n| Q1      | 2.5%   | 2.1%      |\n| Q2      | 1.8%   | 1.7%      |\n|-----------------|\n"
+              }
+            ]
+          }
+        }
+      },
+      "4": {
+        "analysis": {
+          "ocr_status": true,
+          "line_status": true,
+          "ai_status": true
+        },
+        "extraction": {
+          "method": "multimodal_llm",
+          "model": "gpt-4-vision",
+          "prompt_used": "Ekstrak teks dan tabel dari gambar hasil scan ini...",
+          "processing_time": "5.7s",
+          "content": {
+            "text": "Konten teks dari halaman hasil scan yang dianalisis dengan multimodal...",
+            "tables": [
+              {
+                "table_id": 1,
+                "title": "Alokasi Aset",
+                "data": [
+                  {"Jenis Aset": "Obligasi Pemerintah", "Persentase": "65%"},
+                  {"Jenis Aset": "Obligasi Korporasi", "Persentase": "25%"},
+                  {"Jenis Aset": "Kas & Setara Kas", "Persentase": "10%"}
+                ],
+                "text_representation": "Tabel: Alokasi Aset\n|-----------------------------|\n| Jenis Aset        | Persentase |\n|-----------------------------|\n| Obligasi Pemerintah| 65%       |\n| Obligasi Korporasi | 25%       |\n| Kas & Setara Kas   | 10%       |\n|-----------------------------|\n"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "summary": {
+      "extraction_methods": {
+        "direct_extraction": 10,
+        "ocr": 5,
+        "multimodal_llm": 10
+      },
+      "content_stats": {
+        "total_tables": 15,
+        "total_text_length": 62500,
+        "avg_text_length_per_page": 2500
+      },
+      "processing_stats": {
+        "total_processing_time": "45.2s",
+        "avg_processing_time_per_page": "1.8s",
+        "processing_time_by_method": {
+          "direct_extraction": "3.5s",
+          "ocr": "7.2s",
+          "multimodal_llm": "34.5s"
+        }
+      }
+    }
+  }
