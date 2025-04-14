@@ -24,3 +24,350 @@ tabel
 chart
 flowchart
 
+---
+
+saya memiliki script python untuk mengetahui penanganan apa yang diperlukan untuk mengekstrak pdf yang memiliki bermacam bentuk baik bisa langsung discan maupun ocr dan masih banyak lainnya
+
+import os
+import json
+import PyPDF2
+import pytesseract
+from PIL import Image
+import fitz  # PyMuPDF
+import cv2
+import numpy as np
+from io import BytesIO
+
+def detect_horizontal_lines(image, min_line_count=1, min_line_length_percent=20):
+    height, width = image.shape[:2]
+    min_line_length = int((min_line_length_percent / 100.0) * width)
+
+    gray = cv2.cvtColor(image, cv2.COLORRGB2GRAY)
+    , binary = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY_INV)
+
+    horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (40, 1))
+    detected_lines = cv2.morphologyEx(binary, cv2.MORPH_OPEN, horizontal_kernel, iterations=1)
+
+    contours, _ = cv2.findContours(detected_lines, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    panjang_valid = [
+        cv2.boundingRect(cnt)[2]
+        for cnt in contours
+        if cv2.boundingRect(cnt)[2] >= min_line_length
+    ]
+    return len(panjang_valid) >= min_line_count
+
+def analyze_pdf(pdf_path, output_file="hasil_gabungan.json", min_text_length=50, min_line_count=1, min_line_length_percent=20):
+    hasil_gabungan = {}
+
+    with open(pdf_path, 'rb') as file:
+        pdf_reader = PyPDF2.PdfReader(file)
+        doc = fitz.open(pdf_path)
+        total_pages = len(pdf_reader.pages)
+
+        for i in range(total_pages):
+            page_index = i + 1
+            pdf_page = pdf_reader.pages[i]
+            text = pdf_page.extract_text()
+
+            # render image sekali saja pakai PyMuPDF
+            page = doc[i]
+            pix = page.get_pixmap(dpi=200)
+            img = np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.height, pix.width, pix.n)
+            if pix.n == 4:
+                img = cv2.cvtColor(img, cv2.COLOR_BGRA2RGB)
+            else:
+                img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+            # OCR
+            if text and len(text.strip()) >= min_text_length:
+                ocr_status = False
+            else:
+                pil_img = Image.fromarray(img)
+                text_from_ocr = pytesseract.image_to_string(pil_img)
+                if text_from_ocr and len(text_from_ocr.strip()) >= min_text_length:
+                    ocr_status = True
+                else:
+                    ocr_status = "halaman kosong/gambar saja"
+
+            # Line detection
+            line_status = detect_horizontal_lines(img, min_line_count, min_line_length_percent)
+
+            # Decision logic
+            if isinstance(ocr_status, bool):
+                ai_status = (ocr_status and line_status) or (not ocr_status and line_status)
+            else:
+                ai_status = False  # Default jika OCR gagal atau hasil ambigu
+
+            hasil_gabungan[str(page_index)] = {
+                "ocr_status": ocr_status,
+                "line_status": line_status,
+                "ai_status": ai_status
+            }
+
+            print(f"Halaman {page_index} diproses: OCR={ocr_status}, LINE={line_status}, AI={ai_status}")
+
+    with open(output_file, 'w', encoding='utf-8') as f:
+        json.dump(hasil_gabungan, f, indent=4, ensure_ascii=False)
+
+    print(f"Hasil gabungan disimpan di {output_file}")
+
+# Contoh penggunaan
+if name == "main":
+    pdf_path = "ABF Indonesia Bond Index Fund.pdf"  # Ganti sesuai path file
+    analyze_pdf(pdf_path, min_text_length=50, min_line_count=3, min_line_length_percent=10)
+
+saat ini outputnya adalah file json yang memiliki informasi setiap halamannya seperti ini contohnya
+
+{
+    "1": {
+        "ocr_status": false,
+        "line_status": true,
+        "ai_status": true
+    },
+    "2": {
+        "ocr_status": false,
+        "line_status": false,
+        "ai_status": false
+    },
+    "3": {
+        "ocr_status": false,
+        "line_status": true,
+        "ai_status": true
+    },
+}
+
+dan seterusnya.
+
+kemudian setelah didapatkan dokumen json yang memiliki informasi setiap halaman akan saya gunakan sebagai guide dalam melakukan ekstraksi.
+rencannya proses ekstraksi akan saya buat dalam script berbeda agar tetap modular. bagaimana menurutmu?
+
+adapun ekstraksinya akan menggunakan berbagai metode mengikuti skenario ini
+jika "ocr_status" dan "line_status" dan "decision_status" adalah True maka halaman pdf tersebut akan saya manfaatkan multimodal dengan mengakses api LLM
+jika "ocr_status" True dan "line_status" False dan "decision_status" False maka halaman tersebut akan saya ekstrak dengan OCR
+jika "ocr_status" False dan "line_status" True dan "decision_status" True maka halaman tersebut akan saya manfaatkan multimodal dengan mengakses api LLM
+jika "ocr_status" dan "line_status" False dan "decision_status" adalah False maka halaman pdf tersebut akan saya ekstrak dengan library ekstrak pdf biasa saja
+
+bagaimana menurutmu?
+
+sehingga saya rasa hasil ekstraksi akan saya simpan ke file json agar terstruktur. adapun ini rencana format file json hasil ekstraksinya
+
+{
+    "metadata": {
+        "filename":"file_name",
+        "total_pages": "value-total_pages",
+        "extraction_date": "value-extraction_date",
+        "processing_time": "value-processing_time"
+    },
+    "pages": {
+        "1": {
+            "analysis":{
+                "ocr_status": false,
+                "line_status": false,
+                "ai_status": false
+            },
+            "extraction": {
+                "method": "direct_extraction",
+                "processing_time": "value-processing_time",
+                "content_blocks":[
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "value-content"
+                    }
+                ]
+            }
+        },
+        "2": {
+            "analysis":{
+                "ocr_status": true,
+                "line_status": false,
+                "ai_status": false
+            },
+            "extraction": {
+                "method": "ocr",
+                "processing_time": "value-processing_time",
+                "content_blocks":[
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "value-content"
+                    }
+                ]
+            }
+        },
+        "3": {
+            "analysis":{
+                "ocr_status": false,
+                "line_status": true,
+                "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "processing_time": "value-processing_time",
+                "content_blocks":[
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 2,
+                        "type": "table",
+                        "title": "value-title",
+                        "data": [
+                            {"header_1": "value-header_1-row_1", "header_2": "value-header_2-row_1"},
+                            {"header_1": "value-header_1-row_2", "header_2": "value-header_2-row_2"},
+                            {"header_1": "value-header_1-row_3", "header_2": "value-header_2-row_3"},
+                            {"header_1": "value-header_1-row_4", "header_2": "value-header_2-row_4"},
+                            {"header_1": "value-header_1-row_5", "header_2": "value-header_2-row_5"}
+                        ],
+                        "summary_table": "value-summary_table"
+                    },
+                    {
+                        "block_id": 3,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 4,
+                        "type": "chart",
+                        "chart_type": "line",
+                        "title": "value-title",
+                        "data": {
+                            "labels": ["labels_1","labels_2","labels_3","labels_4","labels_5"],
+                            "datasets": [
+                                {
+                                    "label": "label_1",
+                                    "values": [6.8, 7.2, 5.9, 6.7, 7.5]
+                                },
+                                {
+                                    "label": "label_2",
+                                    "values": [6.2, 6.5, 5.4, 6.1, 6.9]
+                                }
+                            ]
+                        },
+                        "summary_chart": "value-summary_chart"
+                    },
+                    {
+                        "block_id": 5,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 6,
+                        "type": "flowchart",
+                        "title": "value-title",
+                        "elements": [
+                            {"type": "node", "id": "1", "text": "value-node_1", "connects_to": ["2"]},
+                            {"type": "node", "id": "2", "text": "value-node_2", "connects_to": ["3"]},
+                            {"type": "node", "id": "3", "text": "value-node_3", "connects_to": ["4"]},
+                            {"type": "node", "id": "4", "text": "value-node_4", "connects_to": ["5"]},
+                            {"type": "node", "id": "5", "text": "value-node_5", "connects_to": ["6"]},
+                            {"type": "node", "id": "6", "text": "value-node_6", "connects_to": ["1"]}
+                        ],
+                        "summary_flowchart": "value-summary_flowchart"
+                    },
+                    {
+                        "block_id": 7,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 8,
+                        "type": "image",
+                        "description_image": "value-description_image"
+                    }
+                ]
+            }
+        },
+        "4": {
+            "analysis":{
+                "ocr_status": false,
+                "line_status": true,
+                "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "processing_time": "value-processing_time",
+                "content_blocks":[
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 2,
+                        "type": "table",
+                        "title": "value-title",
+                        "data": [
+                            {"header_1": "value-header_1-row_1", "header_2": "value-header_2-row_1"},
+                            {"header_1": "value-header_1-row_2", "header_2": "value-header_2-row_2"},
+                            {"header_1": "value-header_1-row_3", "header_2": "value-header_2-row_3"},
+                            {"header_1": "value-header_1-row_4", "header_2": "value-header_2-row_4"},
+                            {"header_1": "value-header_1-row_5", "header_2": "value-header_2-row_5"}
+                        ],
+                        "summary_table": "value-summary_table"
+                    },
+                    {
+                        "block_id": 3,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 4,
+                        "type": "chart",
+                        "chart_type": "line",
+                        "title": "value-title",
+                        "data": {
+                            "labels": ["labels_1","labels_2","labels_3","labels_4","labels_5"],
+                            "datasets": [
+                                {
+                                    "label": "label_1",
+                                    "values": [6.8, 7.2, 5.9, 6.7, 7.5]
+                                },
+                                {
+                                    "label": "label_2",
+                                    "values": [6.2, 6.5, 5.4, 6.1, 6.9]
+                                }
+                            ]
+                        },
+                        "summary_chart": "value-summary_chart"
+                    },
+                    {
+                        "block_id": 5,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 6,
+                        "type": "flowchart",
+                        "title": "value-title",
+                        "elements": [
+                            {"type": "node", "id": "1", "text": "value-node_1", "connects_to": ["2"]},
+                            {"type": "node", "id": "2", "text": "value-node_2", "connects_to": ["3"]},
+                            {"type": "node", "id": "3", "text": "value-node_3", "connects_to": ["4"]},
+                            {"type": "node", "id": "4", "text": "value-node_4", "connects_to": ["5"]},
+                            {"type": "node", "id": "5", "text": "value-node_5", "connects_to": ["6"]},
+                            {"type": "node", "id": "6", "text": "value-node_6", "connects_to": ["1"]}
+                        ],
+                        "summary_flowchart": "value-summary_flowchart"
+                    },
+                    {
+                        "block_id": 7,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 8,
+                        "type": "image",
+                        "description_image": "value-description_image"
+                    }
+                ]
+            }
+        }
+    }
+}
+
+
+bagaimana menurutmu? apakah ada hal yang saya lupakan? atau berikan masukan mu. jika ini sudah ok baru saya akan mulai melakukan pembuatan script untuk melakukan ekstraksi.
+berikan saja responmu jangan inisiatif membuatkan program sebelum saya minta
