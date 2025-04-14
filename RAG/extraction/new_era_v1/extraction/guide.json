@@ -1,401 +1,216 @@
 {
     "metadata": {
-      "filename": "ABF Indonesia Bond Index Fund.pdf",
-      "total_pages": 25,
-      "extraction_date": "2025-04-14T10:30:00",
-      "processing_time": "120.5s",
-      "extraction_version": "1.0"
+        "filename":"file_name",
+        "total_pages": "value-total_pages",
+        "extraction_date": "value-extraction_date",
+        "processing_time": "value-processing_time"
     },
     "pages": {
-      "1": {
-        "analysis": {
-          "ocr_status": false,
-          "line_status": false,
-          "ai_status": false
-        },
-        "extraction": {
-          "method": "direct_extraction",
-          "library": "PyMuPDF",
-          "processing_time": "0.3s",
-          "content": {
-            "text": "ABF INDONESIA BOND INDEX FUND\n\nLAPORAN KEUANGAN TRIWULAN I 2025\n\nDana investasi yang dikelola oleh PT XYZ Investment Management telah menunjukkan pertumbuhan yang konsisten dalam tiga bulan pertama tahun 2025. Laporan ini menyajikan kinerja keuangan dan alokasi aset untuk periode tersebut.",
-            "tables": []
-          },
-          "content_blocks": [
-            {
-              "block_id": 1,
-              "type": "text",
-              "content": "ABF INDONESIA BOND INDEX FUND\n\nLAPORAN KEUANGAN TRIWULAN I 2025\n\nDana investasi yang dikelola oleh PT XYZ Investment Management telah menunjukkan pertumbuhan yang konsisten dalam tiga bulan pertama tahun 2025. Laporan ini menyajikan kinerja keuangan dan alokasi aset untuk periode tersebut."
-            }
-          ]
-        }
-      },
-      "2": {
-        "analysis": {
-          "ocr_status": true,
-          "line_status": false,
-          "ai_status": false
-        },
-        "extraction": {
-          "method": "ocr",
-          "library": "pytesseract",
-          "processing_time": "2.5s",
-          "content": {
-            "text": "RINGKASAN EKSEKUTIF\n\nSelama periode Januari - Maret 2025, ABF Indonesia Bond Index Fund mencatatkan imbal hasil sebesar 3.2%, lebih tinggi dari benchmark pasar yang hanya mencapai 2.8%. Kinerja ini didukung oleh strategi alokasi pada obligasi pemerintah tenor menengah yang memiliki imbal hasil optimal dengan risiko yang terukur.\n\nTotal dana kelolaan per 31 Maret 2025 mencapai Rp 1.25 triliun, meningkat 5% dari posisi akhir tahun 2024.",
-            "tables": []
-          },
-          "content_blocks": [
-            {
-              "block_id": 1,
-              "type": "text",
-              "content": "RINGKASAN EKSEKUTIF\n\nSelama periode Januari - Maret 2025, ABF Indonesia Bond Index Fund mencatatkan imbal hasil sebesar 3.2%, lebih tinggi dari benchmark pasar yang hanya mencapai 2.8%. Kinerja ini didukung oleh strategi alokasi pada obligasi pemerintah tenor menengah yang memiliki imbal hasil optimal dengan risiko yang terukur.\n\nTotal dana kelolaan per 31 Maret 2025 mencapai Rp 1.25 triliun, meningkat 5% dari posisi akhir tahun 2024."
-            }
-          ]
-        }
-      },
-      "3": {
-        "analysis": {
-          "ocr_status": false,
-          "line_status": true,
-          "ai_status": true
-        },
-        "extraction": {
-          "method": "multimodal_llm",
-          "model": "gpt-4-vision",
-          "prompt_used": "Ekstrak semua konten dari gambar ini termasuk teks, tabel, diagram, dan grafik dengan mempertahankan urutan dan struktur aslinya...",
-          "processing_time": "8.2s",
-          "content": {
-            "text": "ALOKASI ASET DAN KINERJA INVESTASI\n\nAlokasi aset ABF Indonesia Bond Index Fund saat ini didominasi oleh obligasi pemerintah dengan tenor 5-10 tahun, diikuti oleh obligasi korporasi rating AAA dan surat berharga negara jangka pendek.\n\nBerikut adalah rincian alokasi aset per 31 Maret 2025:\n\n[TABEL: Alokasi Aset per 31/03/2025]\n\nGrafik berikut menunjukkan tren kinerja investasi dalam 5 tahun terakhir dibandingkan dengan benchmark:\n\n[GRAFIK: Kinerja 5 Tahun vs Benchmark]\n\nProses investasi yang kami terapkan mengikuti alur sebagai berikut:\n\n[FLOWCHART: Proses Pengambilan Keputusan Investasi]\n\nDengan menerapkan proses yang ketat dan disiplin, kami berhasil mencapai kinerja yang konsisten melebihi benchmark selama 12 kuartal berturut-turut.",
-            "tables": [
-              {
-                "table_id": 1,
-                "title": "Alokasi Aset per 31/03/2025",
-                "data": [
-                  {"Jenis Aset": "Obligasi Pemerintah (5-10 tahun)", "Persentase": "45%"},
-                  {"Jenis Aset": "Obligasi Pemerintah (1-5 tahun)", "Persentase": "25%"},
-                  {"Jenis Aset": "Obligasi Korporasi (AAA)", "Persentase": "15%"},
-                  {"Jenis Aset": "Obligasi Korporasi (AA)", "Persentase": "5%"},
-                  {"Jenis Aset": "Surat Berharga Negara Jangka Pendek", "Persentase": "7%"},
-                  {"Jenis Aset": "Kas & Setara Kas", "Persentase": "3%"}
-                ],
-                "text_representation": "Tabel: Alokasi Aset per 31/03/2025\n|-----------------------------------------|\n| Jenis Aset                        | Persentase |\n|-----------------------------------------|\n| Obligasi Pemerintah (5-10 tahun)  | 45%       |\n| Obligasi Pemerintah (1-5 tahun)   | 25%       |\n| Obligasi Korporasi (AAA)          | 15%       |\n| Obligasi Korporasi (AA)           | 5%        |\n| Surat Berharga Negara Jangka Pendek| 7%        |\n| Kas & Setara Kas                  | 3%        |\n|-----------------------------------------|\n"
-              }
-            ]
-          },
-          "content_blocks": [
-            {
-              "block_id": 1,
-              "type": "text",
-              "content": "ALOKASI ASET DAN KINERJA INVESTASI\n\nAlokasi aset ABF Indonesia Bond Index Fund saat ini didominasi oleh obligasi pemerintah dengan tenor 5-10 tahun, diikuti oleh obligasi korporasi rating AAA dan surat berharga negara jangka pendek.\n\nBerikut adalah rincian alokasi aset per 31 Maret 2025:",
-              "position": {
-                "top": 120,
-                "left": 50,
-                "width": 500,
-                "height": 150
-              }
+        "1": {
+            "analysis":{
+                "ocr_status": false,
+                "line_status": false,
+                "ai_status": false
             },
-            {
-              "block_id": 2,
-              "type": "table",
-              "title": "Alokasi Aset per 31/03/2025",
-              "data": [
-                {"Jenis Aset": "Obligasi Pemerintah (5-10 tahun)", "Persentase": "45%"},
-                {"Jenis Aset": "Obligasi Pemerintah (1-5 tahun)", "Persentase": "25%"},
-                {"Jenis Aset": "Obligasi Korporasi (AAA)", "Persentase": "15%"},
-                {"Jenis Aset": "Obligasi Korporasi (AA)", "Persentase": "5%"},
-                {"Jenis Aset": "Surat Berharga Negara Jangka Pendek", "Persentase": "7%"},
-                {"Jenis Aset": "Kas & Setara Kas", "Persentase": "3%"}
-              ],
-              "text_representation": "Tabel: Alokasi Aset per 31/03/2025\n|-----------------------------------------|\n| Jenis Aset                        | Persentase |\n|-----------------------------------------|\n| Obligasi Pemerintah (5-10 tahun)  | 45%       |\n| Obligasi Pemerintah (1-5 tahun)   | 25%       |\n| Obligasi Korporasi (AAA)          | 15%       |\n| Obligasi Korporasi (AA)           | 5%        |\n| Surat Berharga Negara Jangka Pendek| 7%        |\n| Kas & Setara Kas                  | 3%        |\n|-----------------------------------------|\n",
-              "position": {
-                "top": 280,
-                "left": 50,
-                "width": 500,
-                "height": 200
-              }
-            },
-            {
-              "block_id": 3,
-              "type": "text",
-              "content": "Grafik berikut menunjukkan tren kinerja investasi dalam 5 tahun terakhir dibandingkan dengan benchmark:",
-              "position": {
-                "top": 490,
-                "left": 50,
-                "width": 500,
-                "height": 40
-              }
-            },
-            {
-              "block_id": 4,
-              "type": "chart",
-              "chart_type": "line",
-              "title": "Kinerja 5 Tahun vs Benchmark",
-              "data": {
-                "labels": ["2020", "2021", "2022", "2023", "2024"],
-                "datasets": [
-                  {
-                    "label": "ABF Indonesia Bond Index Fund",
-                    "values": [6.8, 7.2, 5.9, 6.7, 7.5]
-                  },
-                  {
-                    "label": "Benchmark",
-                    "values": [6.2, 6.5, 5.4, 6.1, 6.9]
-                  }
+            "extraction": {
+                "method": "direct_extraction",
+                "processing_time": "value-processing_time",
+                "content_blocks":[
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "value-content"
+                    }
                 ]
-              },
-              "description": "Grafik garis menunjukkan kinerja dana dibandingkan benchmark selama 5 tahun terakhir. Dana konsisten mengungguli benchmark setiap tahun.",
-              "text_representation": "Grafik: Kinerja 5 Tahun vs Benchmark\nABF Indonesia Bond Index Fund: 2020 (6.8%), 2021 (7.2%), 2022 (5.9%), 2023 (6.7%), 2024 (7.5%)\nBenchmark: 2020 (6.2%), 2021 (6.5%), 2022 (5.4%), 2023 (6.1%), 2024 (6.9%)",
-              "position": {
-                "top": 540,
-                "left": 50,
-                "width": 500,
-                "height": 300
-              }
-            },
-            {
-              "block_id": 5,
-              "type": "text",
-              "content": "Proses investasi yang kami terapkan mengikuti alur sebagai berikut:",
-              "position": {
-                "top": 850,
-                "left": 50,
-                "width": 500,
-                "height": 40
-              }
-            },
-            {
-              "block_id": 6,
-              "type": "flowchart",
-              "title": "Proses Pengambilan Keputusan Investasi",
-              "elements": [
-                {"type": "node", "id": "1", "text": "Analisis Makroekonomi", "connects_to": ["2"]},
-                {"type": "node", "id": "2", "text": "Evaluasi Kurva Yield", "connects_to": ["3"]},
-                {"type": "node", "id": "3", "text": "Riset Kredit", "connects_to": ["4"]},
-                {"type": "node", "id": "4", "text": "Konstruksi Portofolio", "connects_to": ["5"]},
-                {"type": "node", "id": "5", "text": "Implementasi", "connects_to": ["6"]},
-                {"type": "node", "id": "6", "text": "Monitoring & Evaluasi", "connects_to": ["1"]}
-              ],
-              "description": "Flowchart menunjukkan siklus proses pengambilan keputusan investasi yang dimulai dari analisis makroekonomi hingga monitoring dan evaluasi, yang kemudian kembali ke analisis makroekonomi.",
-              "text_representation": "Flowchart: Proses Pengambilan Keputusan Investasi\nAnalisis Makroekonomi → Evaluasi Kurva Yield → Riset Kredit → Konstruksi Portofolio → Implementasi → Monitoring & Evaluasi → [kembali ke] Analisis Makroekonomi",
-              "position": {
-                "top": 900,
-                "left": 50,
-                "width": 500,
-                "height": 250
-              }
-            },
-            {
-              "block_id": 7,
-              "type": "text",
-              "content": "Dengan menerapkan proses yang ketat dan disiplin, kami berhasil mencapai kinerja yang konsisten melebihi benchmark selama 12 kuartal berturut-turut.",
-              "position": {
-                "top": 1160,
-                "left": 50,
-                "width": 500,
-                "height": 60
-              }
             }
-          ]
-        }
-      },
-      "4": {
-        "analysis": {
-          "ocr_status": true,
-          "line_status": true,
-          "ai_status": true
         },
-        "extraction": {
-          "method": "multimodal_llm",
-          "model": "gpt-4-vision",
-          "prompt_used": "Ekstrak semua konten termasuk teks, tabel, diagram, gambar dan grafik dari gambar hasil scan ini...",
-          "processing_time": "10.7s",
-          "content": {
-            "text": "ANALISIS RISIKO DAN PROSPEK INVESTASI\n\nPengelolaan risiko merupakan aspek fundamental dalam strategi investasi ABF Indonesia Bond Index Fund. Tim manajemen risiko secara aktif memantau berbagai parameter untuk memastikan profil risiko sesuai dengan mandate investasi.\n\n[TABEL: Profil Risiko per 31/03/2025]\n\nDalam mengelola risiko suku bunga, kami menerapkan strategi durasi yang dinamis seperti terlihat pada grafik di bawah ini:\n\n[GRAFIK: Strategi Durasi vs Pergerakan Suku Bunga]\n\nUntuk memahami sensitivitas portofolio terhadap perubahan suku bunga, berikut adalah analisis skenario yang telah kami lakukan:\n\n[FLOWCHART: Analisis Sensitivitas Portfolio]\n\nKantor kami yang baru di Distrik Bisnis Jakarta menjadi pusat operasional pengelolaan investasi dengan fasilitas riset terkini:\n\n[GAMBAR: Gedung Kantor ABF Indonesia]\n\nBerdasarkan analisis komprehensif terhadap indikator ekonomi terkini dan proyeksi kebijakan moneter Bank Indonesia, kami memperkirakan tren suku bunga akan cenderung stabil dalam dua kuartal ke depan sebelum berpotensi menurun di akhir tahun. Strategi kami adalah mempertahankan durasi moderat pada kuartal II-2025 dan secara bertahap memperpanjang durasi menjelang akhir tahun.",
-            "tables": [
-              {
-                "table_id": 1,
-                "title": "Profil Risiko per 31/03/2025",
-                "data": [
-                  {"Parameter Risiko": "Modified Duration", "Nilai": "5.2 tahun"},
-                  {"Parameter Risiko": "Yield to Maturity", "Nilai": "6.75%"},
-                  {"Parameter Risiko": "Credit Rating Rata-rata", "Nilai": "AA+"},
-                  {"Parameter Risiko": "Value at Risk (95%, 1 bulan)", "Nilai": "1.8%"},
-                  {"Parameter Risiko": "Tracking Error", "Nilai": "0.35%"},
-                  {"Parameter Risiko": "Sharpe Ratio", "Nilai": "1.72"}
-                ],
-                "text_representation": "Tabel: Profil Risiko per 31/03/2025\n|------------------------------------|\n| Parameter Risiko          | Nilai       |\n|------------------------------------|\n| Modified Duration        | 5.2 tahun   |\n| Yield to Maturity        | 6.75%       |\n| Credit Rating Rata-rata  | AA+         |\n| Value at Risk (95%, 1 bulan) | 1.8%    |\n| Tracking Error           | 0.35%       |\n| Sharpe Ratio             | 1.72        |\n|------------------------------------|\n"
-              }
-            ]
-          },
-          "content_blocks": [
-            {
-              "block_id": 1,
-              "type": "text",
-              "content": "ANALISIS RISIKO DAN PROSPEK INVESTASI\n\nPengelolaan risiko merupakan aspek fundamental dalam strategi investasi ABF Indonesia Bond Index Fund. Tim manajemen risiko secara aktif memantau berbagai parameter untuk memastikan profil risiko sesuai dengan mandate investasi.",
-              "position": {
-                "top": 120,
-                "left": 50,
-                "width": 500,
-                "height": 120
-              }
+        "2": {
+            "analysis":{
+                "ocr_status": true,
+                "line_status": false,
+                "ai_status": false
             },
-            {
-              "block_id": 2,
-              "type": "table",
-              "title": "Profil Risiko per 31/03/2025",
-              "data": [
-                {"Parameter Risiko": "Modified Duration", "Nilai": "5.2 tahun"},
-                {"Parameter Risiko": "Yield to Maturity", "Nilai": "6.75%"},
-                {"Parameter Risiko": "Credit Rating Rata-rata", "Nilai": "AA+"},
-                {"Parameter Risiko": "Value at Risk (95%, 1 bulan)", "Nilai": "1.8%"},
-                {"Parameter Risiko": "Tracking Error", "Nilai": "0.35%"},
-                {"Parameter Risiko": "Sharpe Ratio", "Nilai": "1.72"}
-              ],
-              "text_representation": "Tabel: Profil Risiko per 31/03/2025\n|------------------------------------|\n| Parameter Risiko          | Nilai       |\n|------------------------------------|\n| Modified Duration        | 5.2 tahun   |\n| Yield to Maturity        | 6.75%       |\n| Credit Rating Rata-rata  | AA+         |\n| Value at Risk (95%, 1 bulan) | 1.8%    |\n| Tracking Error           | 0.35%       |\n| Sharpe Ratio             | 1.72        |\n|------------------------------------|\n",
-              "position": {
-                "top": 250,
-                "left": 50,
-                "width": 500,
-                "height": 200
-              }
-            },
-            {
-              "block_id": 3,
-              "type": "text",
-              "content": "Dalam mengelola risiko suku bunga, kami menerapkan strategi durasi yang dinamis seperti terlihat pada grafik di bawah ini:",
-              "position": {
-                "top": 460,
-                "left": 50,
-                "width": 500,
-                "height": 50
-              }
-            },
-            {
-              "block_id": 4,
-              "type": "chart",
-              "chart_type": "line",
-              "title": "Strategi Durasi vs Pergerakan Suku Bunga",
-              "data": {
-                "labels": ["Q1 2024", "Q2 2024", "Q3 2024", "Q4 2024", "Q1 2025"],
-                "datasets": [
-                  {
-                    "label": "Portfolio Duration (tahun)",
-                    "values": [4.8, 5.1, 5.5, 5.3, 5.2]
-                  },
-                  {
-                    "label": "BI 7-Day Reverse Repo Rate (%)",
-                    "values": [5.75, 5.75, 5.50, 5.25, 5.25]
-                  }
+            "extraction": {
+                "method": "ocr",
+                "processing_time": "value-processing_time",
+                "content_blocks":[
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "value-content"
+                    }
                 ]
-              },
-              "description": "Grafik garis menunjukkan perubahan durasi portofolio dibandingkan dengan pergerakan suku bunga BI selama 5 kuartal terakhir.",
-              "text_representation": "Grafik: Strategi Durasi vs Pergerakan Suku Bunga\nPortfolio Duration (tahun): Q1 2024 (4.8), Q2 2024 (5.1), Q3 2024 (5.5), Q4 2024 (5.3), Q1 2025 (5.2)\nBI 7-Day Reverse Repo Rate (%): Q1 2024 (5.75), Q2 2024 (5.75), Q3 2024 (5.50), Q4 2024 (5.25), Q1 2025 (5.25)",
-              "position": {
-                "top": 520,
-                "left": 50,
-                "width": 500,
-                "height": 250
-              }
-            },
-            {
-              "block_id": 5,
-              "type": "text",
-              "content": "Untuk memahami sensitivitas portofolio terhadap perubahan suku bunga, berikut adalah analisis skenario yang telah kami lakukan:",
-              "position": {
-                "top": 780,
-                "left": 50,
-                "width": 500,
-                "height": 50
-              }
-            },
-            {
-              "block_id": 6,
-              "type": "flowchart",
-              "title": "Analisis Sensitivitas Portfolio",
-              "elements": [
-                {"type": "node", "id": "1", "text": "Kenaikan Suku Bunga +50bps", "connects_to": ["2"]},
-                {"type": "node", "id": "2", "text": "Dampak NAB: -2.6%", "connects_to": []},
-                {"type": "node", "id": "3", "text": "Kenaikan Suku Bunga +25bps", "connects_to": ["4"]},
-                {"type": "node", "id": "4", "text": "Dampak NAB: -1.3%", "connects_to": []},
-                {"type": "node", "id": "5", "text": "Tidak Ada Perubahan", "connects_to": ["6"]},
-                {"type": "node", "id": "6", "text": "Dampak NAB: 0%", "connects_to": []},
-                {"type": "node", "id": "7", "text": "Penurunan Suku Bunga -25bps", "connects_to": ["8"]},
-                {"type": "node", "id": "8", "text": "Dampak NAB: +1.3%", "connects_to": []},
-                {"type": "node", "id": "9", "text": "Penurunan Suku Bunga -50bps", "connects_to": ["10"]},
-                {"type": "node", "id": "10", "text": "Dampak NAB: +2.6%", "connects_to": []}
-              ],
-              "description": "Flowchart menunjukkan berbagai skenario perubahan suku bunga dan dampaknya terhadap Nilai Aktiva Bersih (NAB) portofolio.",
-              "text_representation": "Flowchart: Analisis Sensitivitas Portfolio\nKenaikan Suku Bunga +50bps → Dampak NAB: -2.6%\nKenaikan Suku Bunga +25bps → Dampak NAB: -1.3%\nTidak Ada Perubahan → Dampak NAB: 0%\nPenurunan Suku Bunga -25bps → Dampak NAB: +1.3%\nPenurunan Suku Bunga -50bps → Dampak NAB: +2.6%",
-              "position": {
-                "top": 840,
-                "left": 50,
-                "width": 500,
-                "height": 200
-              }
-            },
-            {
-              "block_id": 7,
-              "type": "text",
-              "content": "Kantor kami yang baru di Distrik Bisnis Jakarta menjadi pusat operasional pengelolaan investasi dengan fasilitas riset terkini:",
-              "position": {
-                "top": 1050,
-                "left": 50,
-                "width": 500,
-                "height": 50
-              }
-            },
-            {
-              "block_id": 8,
-              "type": "image",
-              "title": "Gedung Kantor ABF Indonesia",
-              "description": "Foto gedung kantor ABF Indonesia di Distrik Bisnis Jakarta dengan arsitektur modern dan lingkungan hijau.",
-              "caption": "Kantor Pusat ABF Indonesia di Jakarta",
-              "text_representation": "[GAMBAR: Gedung Kantor ABF Indonesia - Kantor Pusat ABF Indonesia di Jakarta]",
-              "position": {
-                "top": 1110,
-                "left": 50,
-                "width": 500,
-                "height": 300
-              }
-            },
-            {
-              "block_id": 9,
-              "type": "text",
-              "content": "Berdasarkan analisis komprehensif terhadap indikator ekonomi terkini dan proyeksi kebijakan moneter Bank Indonesia, kami memperkirakan tren suku bunga akan cenderung stabil dalam dua kuartal ke depan sebelum berpotensi menurun di akhir tahun. Strategi kami adalah mempertahankan durasi moderat pada kuartal II-2025 dan secara bertahap memperpanjang durasi menjelang akhir tahun.",
-              "position": {
-                "top": 1420,
-                "left": 50,
-                "width": 500,
-                "height": 120
-              }
             }
-          ]
+        },
+        "3": {
+            "analysis":{
+                "ocr_status": false,
+                "line_status": true,
+                "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "processing_time": "value-processing_time",
+                "content_blocks":[
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 2,
+                        "type": "table",
+                        "title": "value-title",
+                        "data": [
+                            {"header_1": "value-header_1-row_1", "header_2": "value-header_2-row_1"},
+                            {"header_1": "value-header_1-row_2", "header_2": "value-header_2-row_2"},
+                            {"header_1": "value-header_1-row_3", "header_2": "value-header_2-row_3"},
+                            {"header_1": "value-header_1-row_4", "header_2": "value-header_2-row_4"},
+                            {"header_1": "value-header_1-row_5", "header_2": "value-header_2-row_5"}
+                        ],
+                        "summary_table": "value-summary_table"
+                    },
+                    {
+                        "block_id": 3,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 4,
+                        "type": "chart",
+                        "chart_type": "line",
+                        "title": "value-title",
+                        "data": {
+                            "labels": ["labels_1","labels_2","labels_3","labels_4","labels_5"],
+                            "datasets": [
+                                {
+                                    "label": "label_1",
+                                    "values": [6.8, 7.2, 5.9, 6.7, 7.5]
+                                },
+                                {
+                                    "label": "label_2",
+                                    "values": [6.2, 6.5, 5.4, 6.1, 6.9]
+                                }
+                            ]
+                        },
+                        "summary_chart": "value-summary_chart"
+                    },
+                    {
+                        "block_id": 5,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 6,
+                        "type": "flowchart",
+                        "title": "value-title",
+                        "elements": [
+                            {"type": "node", "id": "1", "text": "value-node_1", "connects_to": ["2"]},
+                            {"type": "node", "id": "2", "text": "value-node_2", "connects_to": ["3"]},
+                            {"type": "node", "id": "3", "text": "value-node_3", "connects_to": ["4"]},
+                            {"type": "node", "id": "4", "text": "value-node_4", "connects_to": ["5"]},
+                            {"type": "node", "id": "5", "text": "value-node_5", "connects_to": ["6"]},
+                            {"type": "node", "id": "6", "text": "value-node_6", "connects_to": ["1"]}
+                        ],
+                        "summary_flowchart": "value-summary_flowchart"
+                    },
+                    {
+                        "block_id": 7,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 8,
+                        "type": "image",
+                        "description_image": "value-description_image"
+                    }
+                ]
+            }
+        },
+        "4": {
+            "analysis":{
+                "ocr_status": false,
+                "line_status": true,
+                "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "processing_time": "value-processing_time",
+                "content_blocks":[
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 2,
+                        "type": "table",
+                        "title": "value-title",
+                        "data": [
+                            {"header_1": "value-header_1-row_1", "header_2": "value-header_2-row_1"},
+                            {"header_1": "value-header_1-row_2", "header_2": "value-header_2-row_2"},
+                            {"header_1": "value-header_1-row_3", "header_2": "value-header_2-row_3"},
+                            {"header_1": "value-header_1-row_4", "header_2": "value-header_2-row_4"},
+                            {"header_1": "value-header_1-row_5", "header_2": "value-header_2-row_5"}
+                        ],
+                        "summary_table": "value-summary_table"
+                    },
+                    {
+                        "block_id": 3,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 4,
+                        "type": "chart",
+                        "chart_type": "line",
+                        "title": "value-title",
+                        "data": {
+                            "labels": ["labels_1","labels_2","labels_3","labels_4","labels_5"],
+                            "datasets": [
+                                {
+                                    "label": "label_1",
+                                    "values": [6.8, 7.2, 5.9, 6.7, 7.5]
+                                },
+                                {
+                                    "label": "label_2",
+                                    "values": [6.2, 6.5, 5.4, 6.1, 6.9]
+                                }
+                            ]
+                        },
+                        "summary_chart": "value-summary_chart"
+                    },
+                    {
+                        "block_id": 5,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 6,
+                        "type": "flowchart",
+                        "title": "value-title",
+                        "elements": [
+                            {"type": "node", "id": "1", "text": "value-node_1", "connects_to": ["2"]},
+                            {"type": "node", "id": "2", "text": "value-node_2", "connects_to": ["3"]},
+                            {"type": "node", "id": "3", "text": "value-node_3", "connects_to": ["4"]},
+                            {"type": "node", "id": "4", "text": "value-node_4", "connects_to": ["5"]},
+                            {"type": "node", "id": "5", "text": "value-node_5", "connects_to": ["6"]},
+                            {"type": "node", "id": "6", "text": "value-node_6", "connects_to": ["1"]}
+                        ],
+                        "summary_flowchart": "value-summary_flowchart"
+                    },
+                    {
+                        "block_id": 7,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 8,
+                        "type": "image",
+                        "description_image": "value-description_image"
+                    }
+                ]
+            }
         }
-      }
-    },
-    "summary": {
-      "extraction_methods": {
-        "direct_extraction": 10,
-        "ocr": 5,
-        "multimodal_llm": 10
-      },
-      "content_stats": {
-        "total_pages": 25,
-        "total_text_blocks": 120,
-        "total_tables": 15,
-        "total_charts": 8,
-        "total_flowcharts": 5,
-        "total_images": 7,
-        "avg_text_length_per_page": 2500
-      },
-      "processing_stats": {
-        "total_processing_time": "120.5s",
-        "avg_processing_time_per_page": "4.82s",
-        "processing_time_by_method": {
-          "direct_extraction": "5.3s",
-          "ocr": "12.5s",
-          "multimodal_llm": "102.7s"
-        }
-      }
     }
-  }
+}
