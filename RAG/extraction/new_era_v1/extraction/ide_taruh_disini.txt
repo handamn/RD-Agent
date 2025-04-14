@@ -1,0 +1,26 @@
+	ocr_stats	line_stats	result
+case_1	T	T	T
+case_2	T	F	F
+case_3	F	T	T
+case_4	F	F	F
+
+"ocr_status" dan "line_status"
+
+jika "ocr_status" dan "line_status" True maka "decision_status" adalah True
+jika "ocr_status" True dan "line_status" False maka "decision_status" adalah False
+jika "ocr_status" False dan "line_status" True maka "decision_status" adalah True
+jika "ocr_status" dan "line_status" False maka "decision_status" adalah False
+
+
+jika "ocr_status" dan "line_status" dan "decision_status" adalah True maka halaman pdf tersebut akan saya manfaatkan multimodal dengan mengakses api LLM
+jika "ocr_status" True dan "line_status" False dan "decision_status" False maka halaman tersebut akan saya ekstrak dengan OCR
+jika "ocr_status" False dan "line_status" True dan "decision_status" True maka halaman tersebut akan saya manfaatkan multimodal dengan mengakses api LLM
+jika "ocr_status" dan "line_status" False dan "decision_status" adalah False maka halaman pdf tersebut akan saya ekstrak dengan library ekstrak pdf biasa saja
+
+
+
+text
+tabel
+chart
+flowchart
+
