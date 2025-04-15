@@ -82,99 +82,34 @@ def extract_with_ocr_method(pdf_path, page_num, existing_result=None, dpi=300):
         # Perform OCR
         text = pytesseract.image_to_string(pil_img)
         
-        # Get text blocks with position information
-        ocr_data = pytesseract.image_to_data(pil_img, output_type=pytesseract.Output.DICT)
-        
-        # Process OCR data to extract structured content
-        content_blocks = process_ocr_data(ocr_data, text)
-        
-        # Add content blocks to result
-        if content_blocks:
-            result["extraction"]["content_blocks"] = content_blocks
-        else:
-            # Fallback if structured extraction fails
-            result["extraction"]["content_blocks"].append({
+        # For OCR case, we only create one content block with all the text
+        # regardless of paragraphs or line breaks
+        if text and text.strip():
+            result["extraction"]["content_blocks"] = [{
                 "block_id": 1,
                 "type": "text",
-                "content": text.strip() if text and text.strip() else "No text content could be extracted via OCR from this page."
-            })
+                "content": text.strip()
+            }]
+        else:
+            result["extraction"]["content_blocks"] = [{
+                "block_id": 1,
+                "type": "text",
+                "content": "No text content could be extracted via OCR from this page."
+            }]
                 
     except Exception as e:
         # Handle extraction errors
-        result["extraction"]["content_blocks"].append({
+        result["extraction"]["content_blocks"] = [{
             "block_id": 1,
             "type": "text",
             "content": f"Error during OCR extraction: {str(e)}"
-        })
+        }]
     
     # Calculate and record processing time
     processing_time = time.time() - start_time
     result["extraction"]["processing_time"] = f"{processing_time:.2f} seconds"
     
     return result
-
-def process_ocr_data(ocr_data, full_text):
-    """
-    Process OCR data to extract structured content blocks
-    
-    Args:
-        ocr_data (dict): Dictionary with OCR data from pytesseract
-        full_text (str): Full text extracted via OCR
-        
-    Returns:
-        list: List of content blocks
-    """
-    content_blocks = []
-    
-    try:
-        # Process recognized text into blocks
-        current_block = {"text": "", "conf": 0, "count": 0}
-        blocks = []
-        
-        # Group text by paragraph/block
-        for i, text in enumerate(ocr_data["text"]):
-            if text.strip():
-                current_block["text"] += f"{text} "
-                current_block["conf"] += ocr_data["conf"][i]
-                current_block["count"] += 1
-            elif current_block["text"].strip():
-                # End of a block
-                current_block["conf"] = current_block["conf"] / current_block["count"] if current_block["count"] > 0 else 0
-                blocks.append(current_block)
-                current_block = {"text": "", "conf": 0, "count": 0}
-        
-        # Add the last block if it contains text
-        if current_block["text"].strip():
-            current_block["conf"] = current_block["conf"] / current_block["count"] if current_block["count"] > 0 else 0
-            blocks.append(current_block)
-        
-        # Create content blocks
-        for i, block in enumerate(blocks):
-            content_blocks.append({
-                "block_id": i + 1,
-                "type": "text",
-                "content": block["text"].strip(),
-                "confidence": f"{block['conf']:.2f}%"
-            })
-        
-        # If no blocks were created, create a single block with the full text
-        if not content_blocks and full_text.strip():
-            content_blocks.append({
-                "block_id": 1,
-                "type": "text",
-                "content": full_text.strip()
-            })
-            
-    except Exception as e:
-        # If processing fails, create a single block with the full text
-        if full_text and full_text.strip():
-            content_blocks.append({
-                "block_id": 1,
-                "type": "text",
-                "content": full_text.strip()
-            })
-    
-    return content_blocks
 
 def process_pdf_pages(pdf_path, analysis_json_path, output_json_path, dpi=300):
     """
