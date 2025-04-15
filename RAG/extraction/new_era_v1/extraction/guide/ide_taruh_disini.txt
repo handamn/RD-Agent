@@ -1240,3 +1240,706 @@ response = model.generate_content(
 )
 
 print(response.text)
+
+
+
+
+---
+
+saya memiliki sebuah proyek software untuk melakukan ekstraksi pdf yang hasilnya akan digunakan untuk basis pengetahuan RAG. mengingat akan beragamnya bentuk dan element pdf maka harus dibuat cara ekstraksi pdf yang baik, karena bisa saja berisikan teks, table, gambar, ocr dan lainnya.
+
+saya memiliki scenario untuk melakukan identifikasi karakteristik pdf yang akan digunakan perhalaman
+saya telah membuat script python untuk melakukan identifikasinya sehingga terbentuk sebuah file json yang berisikan informasi elemen apa yang ada di file pdf tersebut. berikut contohnya
+
+{
+    "1": {
+        "ocr_status": false,
+        "line_status": true,
+        "ai_status": true
+    },
+    "2": {
+        "ocr_status": false,
+        "line_status": false,
+        "ai_status": false
+    },
+    "3": {
+        "ocr_status": false,
+        "line_status": true,
+        "ai_status": true
+    }
+}
+
+
+script tersebut Bernama identifier.py dan hasilnya disimpan dalam file sample.json
+
+kemudian dengan guide elemen yang ada disetiap halaman akan dilakukan ekstraksi berdasarkan tipe elementnya.
+Adapun aturan ekstraksinya adalah sebagai berikut
+1. jika "ocr_status" dan "line_status" dan "decision_status" adalah True maka halaman pdf tersebut akan saya manfaatkan multimodal dengan mengakses api LLM
+2. jika "ocr_status" True dan "line_status" False dan "decision_status" False maka halaman tersebut akan saya ekstrak dengan OCR
+3. jika "ocr_status" False dan "line_status" True dan "decision_status" True maka halaman tersebut akan saya manfaatkan multimodal dengan mengakses api LLM
+4. jika "ocr_status" dan "line_status" False dan "decision_status" adalah False maka halaman pdf tersebut akan saya ekstrak dengan library ekstrak pdf biasa saja
+
+untuk aturan 2 dan 4 saya sudah menyiapkan script terpisah masing-masing
+
+aturan 2 saya gunakan script ocr_only.py dengan isi scriptnya sebagai berikut
+"""
+ocr_extractor.py - Module for OCR-based PDF text extraction
+For pages where OCR is needed but no special formatting is detected
+"""
+
+import os
+import json
+import time
+import datetime
+import pytesseract
+import fitz  # PyMuPDF
+import PyPDF2
+import numpy as np
+import cv2
+from PIL import Image
+from pathlib import Path
+
+def extract_with_ocr_method(pdf_path, page_num, existing_result=None, dpi=300):
+    """
+    Extract text from PDF using OCR for pages that need OCR processing
+    but don't have complex formatting.
+    
+    Args:
+        pdf_path (str): Path to the PDF file
+        page_num (int): Page number to extract (1-based indexing)
+        existing_result (dict, optional): Existing extraction result to update
+        dpi (int): DPI resolution for rendering PDF to image
+        
+    Returns:
+        dict: The extraction result for the specified page
+    """
+    start_time = time.time()
+    
+    # Create result structure if not provided
+    if existing_result is None:
+        result = {
+            "analysis": {
+                "ocr_status": True,
+                "line_status": False,
+                "ai_status": False
+            },
+            "extraction": {
+                "method": "ocr",
+                "processing_time": None,
+                "content_blocks": []
+            }
+        }
+    else:
+        result = existing_result
+        # Set extraction method and initialize content blocks if they don't exist
+        result["extraction"] = {
+            "method": "ocr",
+            "processing_time": None,
+            "content_blocks": []
+        }
+    
+    try:
+        # Convert PDF page to image using PyMuPDF
+        doc = fitz.open(pdf_path)
+        
+        # Adjust for 0-based indexing
+        pdf_page_index = page_num - 1
+        
+        if pdf_page_index < 0 or pdf_page_index >= len(doc):
+            raise ValueError(f"Page {page_num} does not exist in PDF with {len(doc)} pages")
+        
+        page = doc[pdf_page_index]
+        
+        # Render page to image at specified DPI
+        pix = page.get_pixmap(dpi=dpi)
+        img = np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.height, pix.width, pix.n)
+        
+        # Convert to RGB if needed
+        if pix.n == 4:  # RGBA
+            img = cv2.cvtColor(img, cv2.COLOR_RGBA2RGB)
+        elif pix.n == 1:  # Grayscale
+            img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
+        
+        # Convert to PIL image for Tesseract
+        pil_img = Image.fromarray(img)
+        
+        # Perform OCR
+        text = pytesseract.image_to_string(pil_img)
+        
+        # For OCR case, we only create one content block with all the text
+        # regardless of paragraphs or line breaks
+        if text and text.strip():
+            result["extraction"]["content_blocks"] = [{
+                "block_id": 1,
+                "type": "text",
+                "content": text.strip()
+            }]
+        else:
+            result["extraction"]["content_blocks"] = [{
+                "block_id": 1,
+                "type": "text",
+                "content": "No text content could be extracted via OCR from this page."
+            }]
+                
+    except Exception as e:
+        # Handle extraction errors
+        result["extraction"]["content_blocks"] = [{
+            "block_id": 1,
+            "type": "text",
+            "content": f"Error during OCR extraction: {str(e)}"
+        }]
+    
+    # Calculate and record processing time
+    processing_time = time.time() - start_time
+    result["extraction"]["processing_time"] = f"{processing_time:.2f} seconds"
+    
+    return result
+
+def process_pdf_pages(pdf_path, analysis_json_path, output_json_path, dpi=300):
+    """
+    Process all PDF pages that need OCR extraction based on analysis results
+    
+    Args:
+        pdf_path (str): Path to the PDF file
+        analysis_json_path (str): Path to the analysis JSON file
+        output_json_path (str): Path to save the extraction results
+        dpi (int): DPI resolution for rendering PDF to image
+    """
+    # Load analysis results
+    with open(analysis_json_path, 'r', encoding='utf-8') as f:
+        analysis_data = json.load(f)
+    
+    # Create or load output JSON
+    if os.path.exists(output_json_path):
+        with open(output_json_path, 'r', encoding='utf-8') as f:
+            output_data = json.load(f)
+    else:
+        # Get PDF metadata
+        with open(pdf_path, 'rb') as file:
+            pdf_reader = PyPDF2.PdfReader(file)
+            total_pages = len(pdf_reader.pages)
+        
+        # Create new output structure
+        output_data = {
+            "metadata": {
+                "filename": Path(pdf_path).name,
+                "total_pages": total_pages,
+                "extraction_date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "processing_time": "0 seconds"  # Will be updated later
+            },
+            "pages": {}
+        }
+        
+        # Initialize pages structure with analysis data
+        for page_num, page_analysis in analysis_data.items():
+            output_data["pages"][page_num] = {
+                "analysis": page_analysis
+            }
+    
+    start_time = time.time()
+    processed_count = 0
+    
+    # Process pages that need OCR extraction
+    for page_num, page_data in analysis_data.items():
+        # Check if this page needs OCR extraction
+        if (page_data.get("ocr_status", False) and 
+            not page_data.get("line_status", True) and 
+            not page_data.get("ai_status", True)):
+            
+            # Check if this page has already been processed with OCR extraction
+            if (page_num in output_data["pages"] and 
+                "extraction" in output_data["pages"][page_num] and 
+                output_data["pages"][page_num]["extraction"]["method"] == "ocr"):
+                print(f"Page {page_num} already processed with OCR extraction. Skipping.")
+                continue
+            
+            print(f"Processing page {page_num} with OCR extraction...")
+            
+            # Get existing result if available, otherwise create new
+            existing_result = output_data["pages"].get(page_num, {"analysis": page_data})
+            
+            # Extract content
+            result = extract_with_ocr_method(pdf_path, int(page_num), existing_result, dpi)
+            
+            # Update output data
+            output_data["pages"][page_num] = result
+            processed_count += 1
+    
+    # Update metadata
+    total_processing_time = time.time() - start_time
+    output_data["metadata"]["processing_time"] = f"{total_processing_time:.2f} seconds"
+    
+    # Save output data
+    with open(output_json_path, 'w', encoding='utf-8') as f:
+        json.dump(output_data, f, indent=4, ensure_ascii=False)
+    
+    print(f"OCR extraction completed. Processed {processed_count} pages.")
+    return output_data
+
+if __name__ == "__main__":
+    # Example usage
+    pdf_path = "ABF Indonesia Bond Index Fund.pdf"  # Replace with your PDF path
+    analysis_json_path = "sample.json"  # Path to analysis JSON
+    output_json_path = "hasil_ekstraksi.json"  # Path to save extraction results
+    
+    process_pdf_pages(pdf_path, analysis_json_path, output_json_path)
+
+
+
+aturan 3 akan menggunakan script pdf_only.py sebagai berikut
+
+"""
+direct_extractor.py - Module for direct PDF text extraction
+For pages where OCR isn't needed and no special formatting is detected
+"""
+
+import os
+import json
+import PyPDF2
+import datetime
+import time
+from pathlib import Path
+
+def extract_with_direct_method(pdf_path, page_num, existing_result=None):
+    """
+    Extract text directly from PDF using PyPDF2 for pages that don't need 
+    special processing.
+    
+    Args:
+        pdf_path (str): Path to the PDF file
+        page_num (int): Page number to extract (1-based indexing)
+        existing_result (dict, optional): Existing extraction result to update
+        
+    Returns:
+        dict: The extraction result for the specified page
+    """
+    start_time = time.time()
+    
+    # Create result structure if not provided
+    if existing_result is None:
+        result = {
+            "analysis": {
+                "ocr_status": False,
+                "line_status": False,
+                "ai_status": False
+            },
+            "extraction": {
+                "method": "direct_extraction",
+                "processing_time": None,
+                "content_blocks": []
+            }
+        }
+    else:
+        result = existing_result
+        # Set extraction method and initialize content blocks
+        result["extraction"] = {
+            "method": "direct_extraction",
+            "processing_time": None,
+            "content_blocks": []
+        }
+    
+    try:
+        # Open PDF and extract text from the specific page
+        with open(pdf_path, 'rb') as file:
+            pdf_reader = PyPDF2.PdfReader(file)
+            
+            # Adjust for 0-based indexing in PyPDF2
+            pdf_page_index = page_num - 1
+            
+            if pdf_page_index < 0 or pdf_page_index >= len(pdf_reader.pages):
+                raise ValueError(f"Page {page_num} does not exist in PDF with {len(pdf_reader.pages)} pages")
+            
+            pdf_page = pdf_reader.pages[pdf_page_index]
+            text = pdf_page.extract_text()
+            
+            # Create a single content block for the extracted text, regardless of paragraphs
+            if text and text.strip():
+                result["extraction"]["content_blocks"] = [{
+                    "block_id": 1,
+                    "type": "text",
+                    "content": text.strip()
+                }]
+            else:
+                result["extraction"]["content_blocks"] = [{
+                    "block_id": 1,
+                    "type": "text",
+                    "content": "No text content could be extracted directly from this page."
+                }]
+                
+    except Exception as e:
+        # Handle extraction errors
+        result["extraction"]["content_blocks"] = [{
+            "block_id": 1,
+            "type": "text",
+            "content": f"Error during direct extraction: {str(e)}"
+        }]
+    
+    # Calculate and record processing time
+    processing_time = time.time() - start_time
+    result["extraction"]["processing_time"] = f"{processing_time:.2f} seconds"
+    
+    return result
+
+def process_pdf_pages(pdf_path, analysis_json_path, output_json_path):
+    """
+    Process all PDF pages that need direct extraction based on analysis results
+    
+    Args:
+        pdf_path (str): Path to the PDF file
+        analysis_json_path (str): Path to the analysis JSON file
+        output_json_path (str): Path to save the extraction results
+    """
+    # Load analysis results
+    with open(analysis_json_path, 'r', encoding='utf-8') as f:
+        analysis_data = json.load(f)
+    
+    # Create or load output JSON
+    if os.path.exists(output_json_path):
+        with open(output_json_path, 'r', encoding='utf-8') as f:
+            output_data = json.load(f)
+    else:
+        # Get PDF metadata
+        with open(pdf_path, 'rb') as file:
+            pdf_reader = PyPDF2.PdfReader(file)
+            total_pages = len(pdf_reader.pages)
+        
+        # Create new output structure
+        output_data = {
+            "metadata": {
+                "filename": Path(pdf_path).name,
+                "total_pages": total_pages,
+                "extraction_date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "processing_time": "0 seconds"  # Will be updated later
+            },
+            "pages": {}
+        }
+        
+        # Initialize pages structure with analysis data
+        for page_num, page_analysis in analysis_data.items():
+            output_data["pages"][page_num] = {
+                "analysis": page_analysis
+            }
+    
+    start_time = time.time()
+    processed_count = 0
+    
+    # Process pages that need direct extraction
+    for page_num, page_data in analysis_data.items():
+        # Check if this page needs direct extraction
+        if (not page_data.get("ocr_status", True) and 
+            not page_data.get("line_status", True) and 
+            not page_data.get("ai_status", True)):
+            
+            # Check if this page has already been processed with direct extraction
+            if (page_num in output_data["pages"] and 
+                "extraction" in output_data["pages"][page_num] and 
+                output_data["pages"][page_num]["extraction"]["method"] == "direct_extraction"):
+                print(f"Page {page_num} already processed with direct extraction. Skipping.")
+                continue
+            
+            print(f"Processing page {page_num} with direct extraction...")
+            
+            # Get existing result if available, otherwise create new
+            existing_result = output_data["pages"].get(page_num, {"analysis": page_data})
+            
+            # Extract content
+            result = extract_with_direct_method(pdf_path, int(page_num), existing_result)
+            
+            # Update output data
+            output_data["pages"][page_num] = result
+            processed_count += 1
+    
+    # Update metadata
+    total_processing_time = time.time() - start_time
+    output_data["metadata"]["processing_time"] = f"{total_processing_time:.2f} seconds"
+    
+    # Save output data
+    with open(output_json_path, 'w', encoding='utf-8') as f:
+        json.dump(output_data, f, indent=4, ensure_ascii=False)
+    
+    print(f"Direct extraction completed. Processed {processed_count} pages.")
+    return output_data
+
+if __name__ == "__main__":
+    # Example usage
+    pdf_path = "ABF Indonesia Bond Index Fund.pdf"  # Replace with your PDF path
+    analysis_json_path = "sample.json"  # Path to analysis JSON
+    output_json_path = "hasil_ekstraksi.json"  # Path to save extraction results
+    
+    process_pdf_pages(pdf_path, analysis_json_path, output_json_path)
+
+
+kedua sript tersebut akan menuliskan hasil ekstraksinya di file json Bernama hasil_ekstraksi.json dengan guide penyimpanan seperti ini
+
+{
+    "metadata": {
+        "filename":"file_name",
+        "total_pages": "value-total_pages",
+        "extraction_date": "value-extraction_date",
+        "processing_time": "value-processing_time"
+    },
+    "pages": {
+        "1": {
+            "analysis":{
+                "ocr_status": false,
+                "line_status": false,
+                "ai_status": false
+            },
+            "extraction": {
+                "method": "direct_extraction",
+                "processing_time": "value-processing_time",
+                "content_blocks":[
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "value-content"
+                    }
+                ]
+            }
+        },
+        "2": {
+            "analysis":{
+                "ocr_status": true,
+                "line_status": false,
+                "ai_status": false
+            },
+            "extraction": {
+                "method": "ocr",
+                "processing_time": "value-processing_time",
+                "content_blocks":[
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "value-content"
+                    }
+                ]
+            }
+        },
+        "3": {
+            "analysis":{
+                "ocr_status": false,
+                "line_status": true,
+                "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "processing_time": "value-processing_time",
+                "content_blocks":[
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 2,
+                        "type": "table",
+                        "title": "value-title",
+                        "data": [
+                            {"header_1": "value-header_1-row_1", "header_2": "value-header_2-row_1"},
+                            {"header_1": "value-header_1-row_2", "header_2": "value-header_2-row_2"},
+                            {"header_1": "value-header_1-row_3", "header_2": "value-header_2-row_3"},
+                            {"header_1": "value-header_1-row_4", "header_2": "value-header_2-row_4"},
+                            {"header_1": "value-header_1-row_5", "header_2": "value-header_2-row_5"}
+                        ],
+                        "summary_table": "value-summary_table"
+                    },
+                    {
+                        "block_id": 3,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 4,
+                        "type": "chart",
+                        "chart_type": "line",
+                        "title": "value-title",
+                        "data": {
+                            "labels": ["labels_1","labels_2","labels_3","labels_4","labels_5"],
+                            "datasets": [
+                                {
+                                    "label": "label_1",
+                                    "values": [6.8, 7.2, 5.9, 6.7, 7.5]
+                                },
+                                {
+                                    "label": "label_2",
+                                    "values": [6.2, 6.5, 5.4, 6.1, 6.9]
+                                }
+                            ]
+                        },
+                        "summary_chart": "value-summary_chart"
+                    },
+                    {
+                        "block_id": 5,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 6,
+                        "type": "flowchart",
+                        "title": "value-title",
+                        "elements": [
+                            {"type": "node", "id": "1", "text": "value-node_1", "connects_to": ["2"]},
+                            {"type": "node", "id": "2", "text": "value-node_2", "connects_to": ["3"]},
+                            {"type": "node", "id": "3", "text": "value-node_3", "connects_to": ["4"]},
+                            {"type": "node", "id": "4", "text": "value-node_4", "connects_to": ["5"]},
+                            {"type": "node", "id": "5", "text": "value-node_5", "connects_to": ["6"]},
+                            {"type": "node", "id": "6", "text": "value-node_6", "connects_to": ["1"]}
+                        ],
+                        "summary_flowchart": "value-summary_flowchart"
+                    },
+                    {
+                        "block_id": 7,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 8,
+                        "type": "image",
+                        "description_image": "value-description_image"
+                    }
+                ]
+            }
+        },
+        "4": {
+            "analysis":{
+                "ocr_status": false,
+                "line_status": true,
+                "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "processing_time": "value-processing_time",
+                "content_blocks":[
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 2,
+                        "type": "table",
+                        "title": "value-title",
+                        "data": [
+                            {"header_1": "value-header_1-row_1", "header_2": "value-header_2-row_1"},
+                            {"header_1": "value-header_1-row_2", "header_2": "value-header_2-row_2"},
+                            {"header_1": "value-header_1-row_3", "header_2": "value-header_2-row_3"},
+                            {"header_1": "value-header_1-row_4", "header_2": "value-header_2-row_4"},
+                            {"header_1": "value-header_1-row_5", "header_2": "value-header_2-row_5"}
+                        ],
+                        "summary_table": "value-summary_table"
+                    },
+                    {
+                        "block_id": 3,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 4,
+                        "type": "chart",
+                        "chart_type": "line",
+                        "title": "value-title",
+                        "data": {
+                            "labels": ["labels_1","labels_2","labels_3","labels_4","labels_5"],
+                            "datasets": [
+                                {
+                                    "label": "label_1",
+                                    "values": [6.8, 7.2, 5.9, 6.7, 7.5]
+                                },
+                                {
+                                    "label": "label_2",
+                                    "values": [6.2, 6.5, 5.4, 6.1, 6.9]
+                                }
+                            ]
+                        },
+                        "summary_chart": "value-summary_chart"
+                    },
+                    {
+                        "block_id": 5,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 6,
+                        "type": "flowchart",
+                        "title": "value-title",
+                        "elements": [
+                            {"type": "node", "id": "1", "text": "value-node_1", "connects_to": ["2"]},
+                            {"type": "node", "id": "2", "text": "value-node_2", "connects_to": ["3"]},
+                            {"type": "node", "id": "3", "text": "value-node_3", "connects_to": ["4"]},
+                            {"type": "node", "id": "4", "text": "value-node_4", "connects_to": ["5"]},
+                            {"type": "node", "id": "5", "text": "value-node_5", "connects_to": ["6"]},
+                            {"type": "node", "id": "6", "text": "value-node_6", "connects_to": ["1"]}
+                        ],
+                        "summary_flowchart": "value-summary_flowchart"
+                    },
+                    {
+                        "block_id": 7,
+                        "type": "text",
+                        "content": "value-content"
+                    },
+                    {
+                        "block_id": 8,
+                        "type": "image",
+                        "description_image": "value-description_image"
+                    }
+                ]
+            }
+        }
+    }
+}
+
+sekarang saya ingin meminta bantuan mu
+karena saya telah membuat script :
+1. identifier.py
+2. ocr_only.py
+3. pdf_only.py
+
+apakah kamu bisa membuat untuk ekstraksi dengan penanganan multimodal apinya? jika bisa saya telah memiliki script yang saya harap bisa jadi guide mu dalam membuat multimodal api ekstraktornya dengan nama multimodal_only.py
+
+
+import PIL.Image
+import google.generativeai as genai
+from google.generativeai import types
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+
+image_path_1 = "image/7_Tabel_N_Halaman_Normal_V1_page-0001.jpg"
+image_path_2 = "image/7_Tabel_N_Halaman_Normal_V1_page-0002.jpg"
+
+pil_image_1 = PIL.Image.open(image_path_1)
+pil_image_2 = PIL.Image.open(image_path_2)
+
+genai.configure(api_key=GOOGLE_API_KEY) #configure api key
+
+model = genai.GenerativeModel('gemini-2.0-flash') #gunakan model yang sesuai
+
+response = model.generate_content(
+    [
+        "apakah kamu bisa melakukan ekstraksi tabel dari file pdf yang saya berikan ini? serta outputnya kalau bisa dalam bentuk json",
+        pil_image_1, pil_image_2
+    ]
+)
+
+print(response.text)
+
+
+kemudian karena image harus disimpan sementara atau dirender sebelum dikirimkan ke llm multimodal api
+bagaimana kalau kita spesifikkan penyimpanan sementara akan ada didalam folder temporary_dir dengan struktur penyimpanan script seperti ini
+
+identifier.py
+ocr_only.py
+pdf_only.py
+multimodal_only.py
+temporary_dir
+  image_page_1.png
+  image_page_2.png
+ABF Indonesia Bond Index Fund.pdf
+hasil_ekstraksi.json
+sample.json
+
+coba pahami terlebih dahulu perintah atau permintaan saya sebelum membuat multimodal_only.py
+jika ada yang perlu diklarifikasikan jangan ragu tanyakan ke saya terlebih dahulu
