@@ -1,6 +1,6 @@
 """
-multimodal_only.py - Module for multimodal AI-based PDF text extraction
-For pages with complex layouts, tables, charts, or images that require AI understanding
+multimodal_only.py - Module for multimodal LLM-based PDF extraction
+For pages with complex layouts, tables, charts or images that need AI-powered interpretation
 """
 
 import os
@@ -8,206 +8,74 @@ import json
 import time
 import datetime
 import fitz  # PyMuPDF
-import PyPDF2
+import PIL.Image
 import numpy as np
-import cv2
+import PyPDF2
 from pathlib import Path
-from PIL import Image
 import google.generativeai as genai
 from dotenv import load_dotenv
-import uuid
-import logging
-
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
 
 # Load environment variables
 load_dotenv()
+
+# Get API key from environment
 GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
 
-# Configure Gemini API
-genai.configure(api_key=GOOGLE_API_KEY)
+# Configure the API client
+if GOOGLE_API_KEY:
+    genai.configure(api_key=GOOGLE_API_KEY)
+else:
+    print("Warning: GOOGLE_API_KEY not found in environment variables")
 
-def ensure_directory_exists(directory_path):
+def render_pdf_page_to_image(pdf_path, page_num, output_dir="temporary_dir", dpi=300):
     """
-    Ensure that the specified directory exists, creating it if necessary.
-    
-    Args:
-        directory_path (str): Path to the directory
-    """
-    os.makedirs(directory_path, exist_ok=True)
-
-def render_pdf_page_to_image(pdf_path, page_num, output_dir, dpi=300):
-    """
-    Render a PDF page to an image file and return the path to the image.
+    Render a specific page from a PDF to an image
     
     Args:
         pdf_path (str): Path to the PDF file
         page_num (int): Page number to render (1-based indexing)
         output_dir (str): Directory to save the rendered image
-        dpi (int): DPI resolution for rendering PDF to image
+        dpi (int): DPI resolution for rendering
         
     Returns:
-        str: Path to the rendered image file
+        str: Path to the saved image
     """
-    try:
-        # Ensure output directory exists
-        ensure_directory_exists(output_dir)
-        
-        # Open PDF document
-        doc = fitz.open(pdf_path)
-        
-        # Convert to 0-based indexing for PyMuPDF
-        pdf_page_index = page_num - 1
-        
-        if pdf_page_index < 0 or pdf_page_index >= len(doc):
-            raise ValueError(f"Page {page_num} does not exist in PDF with {len(doc)} pages")
-        
-        # Get the page
-        page = doc[pdf_page_index]
-        
-        # Create a unique filename to avoid overwriting
-        image_filename = f"image_page_{page_num}_{uuid.uuid4().hex[:8]}.png"
-        image_path = os.path.join(output_dir, image_filename)
-        
-        # Render page to image with specified DPI
-        pix = page.get_pixmap(dpi=dpi)
-        pix.save(image_path)
-        
-        logger.info(f"Rendered page {page_num} to {image_path}")
-        
-        return image_path
+    # Ensure the output directory exists
+    os.makedirs(output_dir, exist_ok=True)
     
-    except Exception as e:
-        logger.error(f"Error rendering PDF page {page_num} to image: {str(e)}")
-        raise
+    # Generate output image path
+    output_image_path = os.path.join(output_dir, f"image_page_{page_num}.png")
+    
+    # Open the PDF document
+    doc = fitz.open(pdf_path)
+    
+    # Adjust for 0-based indexing
+    pdf_page_index = page_num - 1
+    
+    if pdf_page_index < 0 or pdf_page_index >= len(doc):
+        raise ValueError(f"Page {page_num} does not exist in PDF with {len(doc)} pages")
+    
+    # Get the page
+    page = doc[pdf_page_index]
+    
+    # Render page to image at specified DPI
+    pix = page.get_pixmap(dpi=dpi)
+    
+    # Save the image
+    pix.save(output_image_path)
+    
+    doc.close()
+    return output_image_path
 
-def create_multimodal_prompt(page_analysis):
+def extract_with_multimodal_llm(pdf_path, page_num, existing_result=None, dpi=300):
     """
-    Create an appropriate prompt for the multimodal AI model based on page analysis.
-    
-    Args:
-        page_analysis (dict): Analysis of the page content
-        
-    Returns:
-        str: Prompt for the multimodal model
-    """
-    # Base prompt that works for both conditions
-    prompt = ("Analisis gambar ini secara detail dan ekstrak semua konten dengan mempertahankan struktur aslinya. "
-             "Identifikasi dan berikan output dalam format berikut:\n\n"
-             "1. Semua teks, termasuk heading, paragraf dan caption.\n"
-             "2. Tabel lengkap dengan data seluruh baris dan kolom beserta judulnya.\n"
-             "3. Grafik dan diagram, termasuk judul, label, nilai data, dan deskripsi visual.\n"
-             "4. Flowchart dengan elemen-elemen dan hubungannya.\n"
-             "5. Gambar dengan deskripsi dan caption (jika ada).\n\n"
-             "Berikan output yang lengkap dan terstruktur dalam format JSON seperti contoh berikut:\n"
-             "```json\n"
-             "{\n"
-             "  \"content_blocks\": [\n"
-             "    {\n"
-             "      \"block_id\": 1,\n"
-             "      \"type\": \"text\",\n"
-             "      \"content\": \"Teks lengkap dari bagian ini...\",\n"
-             "      \"position\": {\"top\": 120, \"left\": 50, \"width\": 500, \"height\": 150}\n"
-             "    },\n"
-             "    {\n"
-             "      \"block_id\": 2,\n"
-             "      \"type\": \"table\",\n"
-             "      \"title\": \"Judul tabel (jika ada)\",\n"
-             "      \"data\": [{\"Kolom1\": \"Nilai1\", \"Kolom2\": \"Nilai2\"}, ...],\n"
-             "      \"text_representation\": \"Representasi tabel dalam format text\",\n"
-             "      \"position\": {\"top\": 280, \"left\": 50, \"width\": 500, \"height\": 200}\n"
-             "    },\n"
-             "    ...\n"
-             "  ]\n"
-             "}\n"
-             "```\n"
-             "Pastikan mengekstrak SEMUA konten termasuk angka, teks lengkap, dan struktur tabel dengan tepat.")
-    
-    # Customize prompt further based on specific page characteristics if needed
-    if page_analysis.get("ocr_status", False):
-        prompt += "\nPerhatikan bahwa halaman ini mungkin mengandung teks hasil scan/OCR, pastikan untuk mengekstrak semua teks dengan tepat."
-    
-    if page_analysis.get("line_status", False):
-        prompt += "\nPerhatikan garis-garis dan elemen visual untuk mengidentifikasi struktur tabel, diagram, atau flowchart dengan benar."
-    
-    return prompt
-
-def process_with_multimodal_api(image_path, prompt):
-    """
-    Process an image using the Gemini multimodal API.
-    
-    Args:
-        image_path (str): Path to the image file
-        prompt (str): Prompt for the multimodal model
-        
-    Returns:
-        dict: The extracted content from the multimodal model
-    """
-    try:
-        # Load the image
-        pil_image = Image.open(image_path)
-        
-        # Get model
-        model = genai.GenerativeModel('gemini-2.0-flash')
-        
-        # Generate content
-        response = model.generate_content([prompt, pil_image])
-        
-        # Extract and parse JSON content
-        response_text = response.text
-        
-        # Try to extract JSON from the response if it's wrapped in code blocks
-        if "```json" in response_text and "```" in response_text:
-            json_content = response_text.split("```json")[1].split("```")[0].strip()
-        elif "```" in response_text:
-            json_content = response_text.split("```")[1].split("```")[0].strip()
-        else:
-            json_content = response_text
-        
-        try:
-            # Try to parse as JSON
-            content_json = json.loads(json_content)
-            return content_json
-        except json.JSONDecodeError:
-            # If JSON parsing fails, return as raw text
-            logger.warning("Failed to parse JSON from model response, returning raw text")
-            return {
-                "content_blocks": [
-                    {
-                        "block_id": 1,
-                        "type": "text",
-                        "content": response_text
-                    }
-                ]
-            }
-    
-    except Exception as e:
-        logger.error(f"Error processing image with multimodal API: {str(e)}")
-        return {
-            "content_blocks": [
-                {
-                    "block_id": 1,
-                    "type": "text",
-                    "content": f"Error during multimodal processing: {str(e)}"
-                }
-            ]
-        }
-
-def extract_with_multimodal_method(pdf_path, page_num, existing_result=None, dpi=300, temp_dir="temporary_dir"):
-    """
-    Extract content from PDF using multimodal AI for pages with complex formatting.
+    Extract content from PDF page using a multimodal LLM API
     
     Args:
         pdf_path (str): Path to the PDF file
         page_num (int): Page number to extract (1-based indexing)
         existing_result (dict, optional): Existing extraction result to update
         dpi (int): DPI resolution for rendering PDF to image
-        temp_dir (str): Directory to store temporary images
         
     Returns:
         dict: The extraction result for the specified page
@@ -216,22 +84,15 @@ def extract_with_multimodal_method(pdf_path, page_num, existing_result=None, dpi
     
     # Create result structure if not provided
     if existing_result is None:
-        # Default to both flags being True since this is a fallback case
         result = {
             "analysis": {
-                "ocr_status": True,
+                "ocr_status": False,
                 "line_status": True,
                 "ai_status": True
             },
             "extraction": {
                 "method": "multimodal_llm",
-                "model": "gemini-2.0-flash",
-                "prompt_used": "",
                 "processing_time": None,
-                "content": {
-                    "text": "",
-                    "tables": []
-                },
                 "content_blocks": []
             }
         }
@@ -240,96 +101,334 @@ def extract_with_multimodal_method(pdf_path, page_num, existing_result=None, dpi
         # Set extraction method and initialize content blocks
         result["extraction"] = {
             "method": "multimodal_llm",
-            "model": "gemini-2.0-flash",
-            "prompt_used": "",
             "processing_time": None,
-            "content": {
-                "text": "",
-                "tables": []
-            },
             "content_blocks": []
         }
     
     try:
         # Render PDF page to image
-        image_path = render_pdf_page_to_image(pdf_path, page_num, temp_dir, dpi)
+        image_path = render_pdf_page_to_image(pdf_path, page_num, dpi=dpi)
         
-        # Create prompt based on page analysis
-        prompt = create_multimodal_prompt(result["analysis"])
-        result["extraction"]["prompt_used"] = prompt
+        # Check if the API key is configured
+        if not GOOGLE_API_KEY:
+            raise ValueError("GOOGLE_API_KEY not found in environment variables")
         
-        # Process with multimodal API
-        content_result = process_with_multimodal_api(image_path, prompt)
+        # Load the image
+        pil_image = PIL.Image.open(image_path)
         
-        # Update the result with content blocks
-        if "content_blocks" in content_result:
-            result["extraction"]["content_blocks"] = content_result["content_blocks"]
-            
-            # Extract text and tables for the content field
-            combined_text = []
-            tables = []
-            
-            for block in content_result["content_blocks"]:
-                if block["type"] == "text":
-                    combined_text.append(block["content"])
-                elif block["type"] == "table" and "data" in block:
-                    tables.append({
-                        "table_id": len(tables) + 1,
-                        "title": block.get("title", ""),
-                        "data": block["data"],
-                        "text_representation": block.get("text_representation", "")
-                    })
-            
-            result["extraction"]["content"]["text"] = "\n\n".join(combined_text)
-            result["extraction"]["content"]["tables"] = tables
-        else:
-            # Fallback if we didn't get content blocks
-            result["extraction"]["content_blocks"] = [{
-                "block_id": 1,
-                "type": "text",
-                "content": "No structured content could be extracted via multimodal processing."
-            }]
-            
-            result["extraction"]["content"]["text"] = "No structured content could be extracted via multimodal processing."
+        # Initialize the model
+        model = genai.GenerativeModel('gemini-2.0-flash')  # Use appropriate model
         
+        # Create a structured prompt for the model
+        prompt = """
+        Extract all content from this PDF page. Identify and structure the following elements:
+        
+        1. All textual content
+        2. Tables with headers and data
+        3. Charts or graphs with data points
+        4. Flowcharts or diagrams
+        5. Images with descriptions
+        
+        Format the response as follows:
+        
+        1. For text blocks, provide the content
+        2. For tables, provide a title if present, structured data with headers and rows, and a brief summary
+        3. For charts, specify chart type, title, data (labels, datasets), and a brief summary
+        4. For flowcharts, provide a title, elements (nodes and connections), and a brief summary
+        5. For images, provide a detailed description
+        
+        Organize these as separate blocks in the response.
+        """
+        
+        # Generate content
+        response = model.generate_content([prompt, pil_image])
+        
+        # Process the response and extract structured data
+        processed_blocks = parse_llm_response(response.text, page_num)
+        
+        # Update the extraction result with the processed blocks
+        result["extraction"]["content_blocks"] = processed_blocks
+        
+        # Clean up temporary image file
+        os.remove(image_path)
+                
     except Exception as e:
         # Handle extraction errors
-        error_message = f"Error during multimodal extraction: {str(e)}"
-        logger.error(error_message)
-        
         result["extraction"]["content_blocks"] = [{
             "block_id": 1,
             "type": "text",
-            "content": error_message
+            "content": f"Error during multimodal LLM extraction: {str(e)}"
         }]
-        
-        result["extraction"]["content"]["text"] = error_message
     
     # Calculate and record processing time
     processing_time = time.time() - start_time
     result["extraction"]["processing_time"] = f"{processing_time:.2f} seconds"
     
-    # Clean up temporary image file if needed
-    # Uncomment to enable automatic cleanup
-    # if os.path.exists(image_path):
-    #     os.remove(image_path)
-    
     return result
 
-def process_pdf_pages(pdf_path, analysis_json_path, output_json_path, temp_dir="temporary_dir", dpi=300):
+def parse_llm_response(response_text, page_num):
     """
-    Process all PDF pages that need multimodal extraction based on analysis results
+    Parse the response from the LLM and convert it to structured content blocks
+    
+    Args:
+        response_text (str): Raw text response from the LLM
+        page_num (int): Page number for reference
+        
+    Returns:
+        list: List of structured content blocks
+    """
+    # Initialize content blocks
+    content_blocks = []
+    block_id_counter = 1
+    
+    # This is a placeholder implementation that creates a simple text block
+    # In a real implementation, you would need to parse the LLM response to identify
+    # different types of content (text, tables, charts, etc.)
+    
+    # For demonstration, we'll implement a basic parser that attempts to identify
+    # tables and different content types from the response text
+    
+    # Split the response into sections based on common patterns
+    lines = response_text.split('\n')
+    current_block_type = "text"
+    current_block_content = []
+    current_block_title = ""
+    
+    for line in lines:
+        line = line.strip()
+        
+        # Skip empty lines
+        if not line:
+            continue
+        
+        # Check for block type indicators
+        if "Table:" in line or "TABLE" in line or line.lower().startswith("table "):
+            # Save the previous block if it exists
+            if current_block_content:
+                content_blocks.append(create_content_block(
+                    block_id_counter, current_block_type, current_block_content, current_block_title
+                ))
+                block_id_counter += 1
+                current_block_content = []
+            
+            current_block_type = "table"
+            current_block_title = line.replace("Table:", "").strip()
+            
+        elif "Chart:" in line or "CHART" in line or line.lower().startswith("chart ") or "Graph:" in line:
+            # Save the previous block if it exists
+            if current_block_content:
+                content_blocks.append(create_content_block(
+                    block_id_counter, current_block_type, current_block_content, current_block_title
+                ))
+                block_id_counter += 1
+                current_block_content = []
+            
+            current_block_type = "chart"
+            current_block_title = line.replace("Chart:", "").replace("Graph:", "").strip()
+            
+        elif "Flowchart:" in line or "FLOWCHART" in line or line.lower().startswith("flowchart ") or "Diagram:" in line:
+            # Save the previous block if it exists
+            if current_block_content:
+                content_blocks.append(create_content_block(
+                    block_id_counter, current_block_type, current_block_content, current_block_title
+                ))
+                block_id_counter += 1
+                current_block_content = []
+            
+            current_block_type = "flowchart"
+            current_block_title = line.replace("Flowchart:", "").replace("Diagram:", "").strip()
+            
+        elif "Image:" in line or "IMAGE" in line or line.lower().startswith("image description"):
+            # Save the previous block if it exists
+            if current_block_content:
+                content_blocks.append(create_content_block(
+                    block_id_counter, current_block_type, current_block_content, current_block_title
+                ))
+                block_id_counter += 1
+                current_block_content = []
+            
+            current_block_type = "image"
+            current_block_content = [line.replace("Image:", "").strip()]
+            
+        else:
+            # If we're in a text block and encounter something that looks like a header/section
+            if current_block_type == "text" and line.endswith(":") and len(line) < 50:
+                # Save the previous block if it exists
+                if current_block_content:
+                    content_blocks.append(create_content_block(
+                        block_id_counter, current_block_type, current_block_content, current_block_title
+                    ))
+                    block_id_counter += 1
+                    current_block_content = []
+                
+                current_block_title = line.replace(":", "").strip()
+            else:
+                # Add to the current block content
+                current_block_content.append(line)
+    
+    # Add the final block
+    if current_block_content:
+        content_blocks.append(create_content_block(
+            block_id_counter, current_block_type, current_block_content, current_block_title
+        ))
+    
+    # If no blocks were created, create a default text block with the entire response
+    if not content_blocks:
+        content_blocks.append({
+            "block_id": 1,
+            "type": "text",
+            "content": response_text.strip()
+        })
+    
+    return content_blocks
+
+def create_content_block(block_id, block_type, content_lines, title=""):
+    """
+    Create a structured content block based on the type and content
+    
+    Args:
+        block_id (int): Unique identifier for the block
+        block_type (str): Type of content (text, table, chart, flowchart, image)
+        content_lines (list): Lines of content for the block
+        title (str): Title for the block if available
+        
+    Returns:
+        dict: Structured content block
+    """
+    content_text = "\n".join(content_lines)
+    
+    if block_type == "text":
+        return {
+            "block_id": block_id,
+            "type": "text",
+            "content": content_text
+        }
+    elif block_type == "table":
+        # Try to parse the table structure
+        # This is a simplified implementation
+        try:
+            # Process table content to extract headers and rows
+            headers = []
+            rows = []
+            
+            # Look for header row indicators
+            for i, line in enumerate(content_lines):
+                if "|" in line and (i == 0 or (i == 1 and "---" in content_lines[i])):
+                    # This looks like a header row in markdown table format
+                    headers = [h.strip() for h in line.split("|") if h.strip()]
+                    continue
+                    
+                if headers and "|" in line and "---" not in line:
+                    # This looks like a data row
+                    row_values = [cell.strip() for cell in line.split("|") if cell.strip()]
+                    if len(row_values) == len(headers):
+                        row_dict = {headers[i]: row_values[i] for i in range(len(headers))}
+                        rows.append(row_dict)
+            
+            # If we couldn't parse as a structured table, use a basic approach
+            if not headers or not rows:
+                # Simplified approach: try to split by equal number of whitespace
+                for i, line in enumerate(content_lines):
+                    if i == 0 or i == 1:  # First two lines might be headers
+                        headers = line.split()
+                        continue
+                    
+                    values = line.split()
+                    if len(values) == len(headers):
+                        row_dict = {headers[i]: values[i] for i in range(len(headers))}
+                        rows.append(row_dict)
+            
+            # If we still couldn't parse as a table, create a basic structure
+            if not headers or not rows:
+                return {
+                    "block_id": block_id,
+                    "type": "table",
+                    "title": title,
+                    "data": [{"value": content_text}],
+                    "summary_table": f"Table containing data that could not be parsed structurally"
+                }
+            
+            return {
+                "block_id": block_id,
+                "type": "table",
+                "title": title,
+                "data": rows,
+                "summary_table": f"Table with {len(rows)} rows and {len(headers)} columns"
+            }
+        except Exception as e:
+            # Fall back to raw text if table parsing fails
+            return {
+                "block_id": block_id,
+                "type": "table",
+                "title": title,
+                "data": [{"raw_table_content": content_text}],
+                "summary_table": f"Table data (parsing failed with error: {str(e)})"
+            }
+    elif block_type == "chart":
+        # Simplified chart structure, in a real implementation you would need more robust parsing
+        chart_type = "unknown"
+        for line in content_lines:
+            if "bar" in line.lower():
+                chart_type = "bar"
+                break
+            elif "line" in line.lower():
+                chart_type = "line"
+                break
+            elif "pie" in line.lower():
+                chart_type = "pie"
+                break
+        
+        # Create a placeholder chart structure
+        return {
+            "block_id": block_id,
+            "type": "chart",
+            "chart_type": chart_type,
+            "title": title,
+            "data": {
+                "labels": ["Data extraction would require more sophisticated parsing"],
+                "datasets": [
+                    {
+                        "label": "Chart Data",
+                        "values": [0]  # Placeholder
+                    }
+                ]
+            },
+            "summary_chart": content_text
+        }
+    elif block_type == "flowchart":
+        return {
+            "block_id": block_id,
+            "type": "flowchart",
+            "title": title,
+            "elements": [
+                {"type": "node", "id": "1", "text": "Flowchart extraction would require more sophisticated parsing", "connects_to": []}
+            ],
+            "summary_flowchart": content_text
+        }
+    elif block_type == "image":
+        return {
+            "block_id": block_id,
+            "type": "image",
+            "description_image": content_text
+        }
+    else:
+        # Default to text for unknown types
+        return {
+            "block_id": block_id,
+            "type": "text",
+            "content": content_text
+        }
+
+def process_pdf_pages(pdf_path, analysis_json_path, output_json_path, dpi=300):
+    """
+    Process all PDF pages that need multimodal LLM extraction based on analysis results
     
     Args:
         pdf_path (str): Path to the PDF file
         analysis_json_path (str): Path to the analysis JSON file
         output_json_path (str): Path to save the extraction results
-        temp_dir (str): Directory to store temporary images
         dpi (int): DPI resolution for rendering PDF to image
     """
-    # Ensure temp directory exists
-    ensure_directory_exists(temp_dir)
-    
     # Load analysis results
     with open(analysis_json_path, 'r', encoding='utf-8') as f:
         analysis_data = json.load(f)
@@ -364,31 +463,32 @@ def process_pdf_pages(pdf_path, analysis_json_path, output_json_path, temp_dir="
     start_time = time.time()
     processed_count = 0
     
-    # Process pages that need multimodal extraction based on the two rules
+    # Process pages that need multimodal LLM extraction
     for page_num, page_data in analysis_data.items():
+        # Check if this page needs multimodal LLM extraction (rules 1 and 3)
         # Rule 1: ocr_status=True, line_status=True, ai_status=True
         # Rule 3: ocr_status=False, line_status=True, ai_status=True
         if ((page_data.get("ocr_status", False) and 
              page_data.get("line_status", False) and 
-             page_data.get("ai_status", False)) or 
+             page_data.get("ai_status", False)) or
             (not page_data.get("ocr_status", True) and 
              page_data.get("line_status", False) and 
              page_data.get("ai_status", False))):
             
-            # Check if this page has already been processed with multimodal extraction
+            # Check if this page has already been processed with multimodal LLM extraction
             if (page_num in output_data["pages"] and 
                 "extraction" in output_data["pages"][page_num] and 
                 output_data["pages"][page_num]["extraction"]["method"] == "multimodal_llm"):
-                logger.info(f"Page {page_num} already processed with multimodal extraction. Skipping.")
+                print(f"Page {page_num} already processed with multimodal LLM extraction. Skipping.")
                 continue
             
-            logger.info(f"Processing page {page_num} with multimodal extraction...")
+            print(f"Processing page {page_num} with multimodal LLM extraction...")
             
             # Get existing result if available, otherwise create new
             existing_result = output_data["pages"].get(page_num, {"analysis": page_data})
             
             # Extract content
-            result = extract_with_multimodal_method(pdf_path, int(page_num), existing_result, dpi, temp_dir)
+            result = extract_with_multimodal_llm(pdf_path, int(page_num), existing_result, dpi)
             
             # Update output data
             output_data["pages"][page_num] = result
@@ -402,7 +502,7 @@ def process_pdf_pages(pdf_path, analysis_json_path, output_json_path, temp_dir="
     with open(output_json_path, 'w', encoding='utf-8') as f:
         json.dump(output_data, f, indent=4, ensure_ascii=False)
     
-    logger.info(f"Multimodal extraction completed. Processed {processed_count} pages.")
+    print(f"Multimodal LLM extraction completed. Processed {processed_count} pages.")
     return output_data
 
 if __name__ == "__main__":
@@ -410,6 +510,5 @@ if __name__ == "__main__":
     pdf_path = "ABF Indonesia Bond Index Fund.pdf"  # Replace with your PDF path
     analysis_json_path = "sample.json"  # Path to analysis JSON
     output_json_path = "hasil_ekstraksi.json"  # Path to save extraction results
-    temp_dir = "temporary_dir"  # Directory for temporary images
     
-    process_pdf_pages(pdf_path, analysis_json_path, output_json_path, temp_dir)
+    process_pdf_pages(pdf_path, analysis_json_path, output_json_path)
