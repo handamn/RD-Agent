@@ -1930,16 +1930,17 @@ print(response.text)
 kemudian karena image harus disimpan sementara atau dirender sebelum dikirimkan ke llm multimodal api
 bagaimana kalau kita spesifikkan penyimpanan sementara akan ada didalam folder temporary_dir dengan struktur penyimpanan script seperti ini
 
-identifier.py
-ocr_only.py
-pdf_only.py
-multimodal_only.py
-temporary_dir
-  image_page_1.png
-  image_page_2.png
-ABF Indonesia Bond Index Fund.pdf
-hasil_ekstraksi.json
-sample.json
+.
+├── identifier.py
+├── ocr_only.py
+├── pdf_only.py
+├── multimodal_only.py
+├── temporary_dir/
+│   ├── image_page_1.png
+│   └── image_page_2.png
+├── ABF Indonesia Bond Index Fund.pdf
+├── hasil_ekstraksi.json
+└── sample.json
 
 coba pahami terlebih dahulu perintah atau permintaan saya sebelum membuat multimodal_only.py
 jika ada yang perlu diklarifikasikan jangan ragu tanyakan ke saya terlebih dahulu
