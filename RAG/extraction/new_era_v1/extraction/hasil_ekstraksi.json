@@ -3,7 +3,7 @@
         "filename": "ABF Indonesia Bond Index Fund.pdf",
         "total_pages": 113,
         "extraction_date": "2025-04-15 09:57:44",
-        "processing_time": "55.43 seconds"
+        "processing_time": "332.36 seconds"
     },
     "pages": {
         "1": {
@@ -11,6 +11,19 @@
                 "ocr_status": false,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "9.23 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmpkjisew9d\\\\page_1.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains complex formatting elements like tables, charts, or diagrams. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format with column headers as keys and row data as values. For charts and diagrams, provide detailed descriptions of what they represent.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "2": {
@@ -36,6 +49,19 @@
                 "ocr_status": false,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "4.53 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmpt7qrip8d\\\\page_3.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains complex formatting elements like tables, charts, or diagrams. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format with column headers as keys and row data as values. For charts and diagrams, provide detailed descriptions of what they represent.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "4": {
@@ -367,6 +393,19 @@
                 "ocr_status": false,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "10.34 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmppa9fdi45\\\\page_22.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains complex formatting elements like tables, charts, or diagrams. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format with column headers as keys and row data as values. For charts and diagrams, provide detailed descriptions of what they represent.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "23": {
@@ -680,6 +719,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "5.57 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmpxydzydrs\\\\page_40.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "41": {
@@ -723,6 +775,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "16.54 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmp3ac30uz5\\\\page_43.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "44": {
@@ -730,6 +795,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "12.09 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmp0ao_sskv\\\\page_44.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "45": {
@@ -737,6 +815,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "10.72 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmpxbyuqnwr\\\\page_45.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "46": {
@@ -744,6 +835,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "10.62 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmptu0ostix\\\\page_46.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "47": {
@@ -877,6 +981,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "9.30 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmppwrz2xkm\\\\page_54.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "55": {
@@ -1010,6 +1127,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "40.54 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmpew5t6_s4\\\\page_62.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "63": {
@@ -1017,6 +1147,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "40.25 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmpisbrtnk9\\\\page_63.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "64": {
@@ -1024,6 +1167,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "25.89 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmplvm7eeh_\\\\page_64.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "65": {
@@ -1031,6 +1187,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "12.23 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmprc1koy_3\\\\page_65.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "66": {
@@ -1038,6 +1207,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "12.93 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmp_d22om26\\\\page_66.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "67": {
@@ -1045,6 +1227,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "10.12 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmpkpcpmuiq\\\\page_67.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "68": {
@@ -1052,6 +1247,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "10.95 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmpau_gky8v\\\\page_68.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "69": {
@@ -1059,6 +1267,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "11.01 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmp02eaed7u\\\\page_69.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "70": {
@@ -1066,6 +1287,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "9.44 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmpviwji20m\\\\page_70.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "71": {
@@ -1091,6 +1325,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "7.18 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmplu_yk9s6\\\\page_72.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "73": {
@@ -1188,6 +1435,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "24.55 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmp9p_2evkl\\\\page_78.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "79": {
@@ -1195,6 +1455,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "8.53 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmpa33bf_ue\\\\page_79.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "80": {
@@ -1202,6 +1475,19 @@
                 "ocr_status": true,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "7.79 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmpq1_g5bi1\\\\page_80.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains both text that might need OCR and complex formatting elements. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format. For charts and diagrams, provide detailed descriptions.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "81": {
@@ -1227,6 +1513,19 @@
                 "ocr_status": false,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "4.55 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmp38uipxm0\\\\page_82.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains complex formatting elements like tables, charts, or diagrams. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format with column headers as keys and row data as values. For charts and diagrams, provide detailed descriptions of what they represent.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "83": {
@@ -1522,6 +1821,19 @@
                 "ocr_status": false,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "3.42 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmpebq34b4h\\\\page_99.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains complex formatting elements like tables, charts, or diagrams. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format with column headers as keys and row data as values. For charts and diagrams, provide detailed descriptions of what they represent.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "100": {
@@ -1529,6 +1841,19 @@
                 "ocr_status": false,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "3.21 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmpeto_0_3u\\\\page_100.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains complex formatting elements like tables, charts, or diagrams. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format with column headers as keys and row data as values. For charts and diagrams, provide detailed descriptions of what they represent.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "101": {
@@ -1536,6 +1861,19 @@
                 "ocr_status": false,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "4.30 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmpcisp2j59\\\\page_101.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains complex formatting elements like tables, charts, or diagrams. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format with column headers as keys and row data as values. For charts and diagrams, provide detailed descriptions of what they represent.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "102": {
@@ -1615,6 +1953,19 @@
                 "ocr_status": false,
                 "line_status": true,
                 "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "6.34 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "Error during multimodal extraction: [WinError 267] The directory name is invalid: 'C:\\\\Users\\\\Asus\\\\AppData\\\\Local\\\\Temp\\\\tmpbihgcpni\\\\page_106.png'"
+                    }
+                ],
+                "prompt_used": "Please extract all content from this PDF page, maintaining the original structure and formatting. This page contains complex formatting elements like tables, charts, or diagrams. Extract and organize ALL content including: text paragraphs, headings, lists, tables, charts, diagrams, and any other visual elements. For tables, please convert them to a structured JSON format with column headers as keys and row data as values. For charts and diagrams, provide detailed descriptions of what they represent.\n\nPlease structure your response in JSON format with the following structure:\n{\n  \"text\": \"[All plain text content]\",\n  \"tables\": [\n    {\n      \"table_id\": 1,\n      \"title\": \"[Table title if present]\",\n      \"data\": [[row1col1, row1col2, ...], [row2col1, row2col2, ...], ...],\n      \"text_representation\": \"[Plain text representation of the table]\"\n    }\n  ],\n  \"charts\": [\n    {\n      \"chart_id\": 1,\n      \"type\": \"[line/bar/pie/etc.]\",\n      \"title\": \"[Chart title if present]\",\n      \"description\": \"[Detailed description of what the chart shows]\"\n    }\n  ],\n  \"diagrams\": [\n    {\n      \"diagram_id\": 1,\n      \"type\": \"[flowchart/process/organization/etc.]\",\n      \"description\": \"[Detailed description of the diagram]\"\n    }\n  ],\n  \"other_elements\": [\n    {\n      \"element_id\": 1,\n      \"type\": \"[image/logo/etc.]\",\n      \"description\": \"[Description of the element]\"\n    }\n  ]\n}"
             }
         },
         "107": {
