@@ -81,6 +81,7 @@ def extract_with_multimodal_llm(pdf_path, page_num, existing_result=None, dpi=30
         dict: The extraction result for the specified page
     """
     start_time = time.time()
+    image_path = None
     
     # Create result structure if not provided
     if existing_result is None:
@@ -114,43 +115,59 @@ def extract_with_multimodal_llm(pdf_path, page_num, existing_result=None, dpi=30
             raise ValueError("GOOGLE_API_KEY not found in environment variables")
         
         # Load the image
-        pil_image = PIL.Image.open(image_path)
-        
-        # Initialize the model
-        model = genai.GenerativeModel('gemini-2.0-flash')  # Use appropriate model
-        
-        # Create a structured prompt for the model
-        prompt = """
-        Extract all content from this PDF page. Identify and structure the following elements:
-        
-        1. All textual content
-        2. Tables with headers and data
-        3. Charts or graphs with data points
-        4. Flowcharts or diagrams
-        5. Images with descriptions
-        
-        Format the response as follows:
-        
-        1. For text blocks, provide the content
-        2. For tables, provide a title if present, structured data with headers and rows, and a brief summary
-        3. For charts, specify chart type, title, data (labels, datasets), and a brief summary
-        4. For flowcharts, provide a title, elements (nodes and connections), and a brief summary
-        5. For images, provide a detailed description
-        
-        Organize these as separate blocks in the response.
-        """
-        
-        # Generate content
-        response = model.generate_content([prompt, pil_image])
-        
-        # Process the response and extract structured data
-        processed_blocks = parse_llm_response(response.text, page_num)
-        
-        # Update the extraction result with the processed blocks
-        result["extraction"]["content_blocks"] = processed_blocks
-        
-        # Clean up temporary image file
-        os.remove(image_path)
+        pil_image = None
+        try:
+            pil_image = PIL.Image.open(image_path)
+            
+            # Initialize the model
+            model = genai.GenerativeModel('gemini-2.0-flash')  # Use appropriate model
+            
+            # Create a structured prompt for the model
+            prompt = """
+            Extract all content from this PDF page. Identify and structure the following elements:
+            
+            1. All textual content
+            2. Tables with headers and data
+            3. Charts or graphs with data points
+            4. Flowcharts or diagrams
+            5. Images with descriptions
+            
+            Format the response as follows:
+            
+            1. For text blocks, provide the content
+            2. For tables, provide a title if present, structured data with headers and rows, and a brief summary
+            3. For charts, specify chart type, title, data (labels, datasets), and a brief summary
+            4. For flowcharts, provide a title, elements (nodes and connections), and a brief summary
+            5. For images, provide a detailed description
+            
+            Organize these as separate blocks in the response.
+            """
+            
+            # Generate content
+            response = model.generate_content([prompt, pil_image])
+            
+            # Process the response and extract structured data
+            processed_blocks = parse_llm_response(response.text, page_num)
+            
+            # Update the extraction result with the processed blocks
+            result["extraction"]["content_blocks"] = processed_blocks
+            
+        finally:
+            # Make sure to close the image before attempting to delete it
+            if pil_image:
+                pil_image.close()
+            
+            # Add a small delay to ensure file handles are completely released
+            time.sleep(0.1)
+            
+            # Try to clean up temporary image file with extra error handling
+            try:
+                if image_path and os.path.exists(image_path):
+                    os.remove(image_path)
+            except Exception as cleanup_error:
+                print(f"Warning: Could not delete temporary file {image_path}: {cleanup_error}")
+                # If deletion fails, we'll just let Windows clean it up later
+                pass
                 
     except Exception as e:
         # Handle extraction errors
@@ -159,6 +176,13 @@ def extract_with_multimodal_llm(pdf_path, page_num, existing_result=None, dpi=30
             "type": "text",
             "content": f"Error during multimodal LLM extraction: {str(e)}"
         }]
+        
+        # Try cleanup again in case of early exception
+        try:
+            if image_path and os.path.exists(image_path):
+                os.remove(image_path)
+        except:
+            pass
     
     # Calculate and record processing time
     processing_time = time.time() - start_time
