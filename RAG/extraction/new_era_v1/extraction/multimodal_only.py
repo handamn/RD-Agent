@@ -96,7 +96,7 @@ def create_multimodal_prompt(page_analysis):
     Returns:
         str: Prompt for the multimodal model
     """
-    # Base prompt that works for both conditions
+    # Base prompt with expanded content structure
     prompt = ("Analisis gambar ini secara detail dan ekstrak semua konten dengan mempertahankan struktur aslinya. "
              "Identifikasi dan berikan output dalam format berikut:\n\n"
              "1. Semua teks, termasuk heading, paragraf dan caption.\n"
@@ -111,22 +111,54 @@ def create_multimodal_prompt(page_analysis):
              "    {\n"
              "      \"block_id\": 1,\n"
              "      \"type\": \"text\",\n"
-             "      \"content\": \"Teks lengkap dari bagian ini...\",\n"
-             "      \"position\": {\"top\": 120, \"left\": 50, \"width\": 500, \"height\": 150}\n"
+             "      \"content\": \"Teks lengkap dari bagian ini...\"\n"
              "    },\n"
              "    {\n"
              "      \"block_id\": 2,\n"
              "      \"type\": \"table\",\n"
              "      \"title\": \"Judul tabel (jika ada)\",\n"
-             "      \"data\": [{\"Kolom1\": \"Nilai1\", \"Kolom2\": \"Nilai2\"}, ...],\n"
-             "      \"text_representation\": \"Representasi tabel dalam format text\",\n"
-             "      \"position\": {\"top\": 280, \"left\": 50, \"width\": 500, \"height\": 200}\n"
+             "      \"data\": [\n"
+             "        {\"header_1\": \"nilai_baris_1_kolom_1\", \"header_2\": \"nilai_baris_1_kolom_2\"},\n"
+             "        {\"header_1\": \"nilai_baris_2_kolom_1\", \"header_2\": \"nilai_baris_2_kolom_2\"}\n"
+             "      ],\n"
+             "      \"summary_table\": \"Deskripsi singkat tentang tabel\"\n"
              "    },\n"
-             "    ...\n"
+             "    {\n"
+             "      \"block_id\": 3,\n"
+             "      \"type\": \"chart\",\n"
+             "      \"chart_type\": \"line\",\n"
+             "      \"title\": \"Judul grafik\",\n"
+             "      \"data\": {\n"
+             "        \"labels\": [\"label_1\", \"label_2\", \"label_3\"],\n"
+             "        \"datasets\": [\n"
+             "          {\n"
+             "            \"label\": \"Dataset 1\",\n"
+             "            \"values\": [5.2, 6.3, 7.1]\n"
+             "          }\n"
+             "        ]\n"
+             "      },\n"
+             "      \"summary_chart\": \"Deskripsi singkat tentang grafik\"\n"
+             "    },\n"
+             "    {\n"
+             "      \"block_id\": 4,\n"
+             "      \"type\": \"flowchart\",\n"
+             "      \"title\": \"Judul flowchart\",\n"
+             "      \"elements\": [\n"
+             "        {\"type\": \"node\", \"id\": \"1\", \"text\": \"Langkah 1\", \"connects_to\": [\"2\"]},\n"
+             "        {\"type\": \"node\", \"id\": \"2\", \"text\": \"Langkah 2\", \"connects_to\": [\"3\"]},\n"
+             "        {\"type\": \"node\", \"id\": \"3\", \"text\": \"Langkah 3\", \"connects_to\": []}\n"
+             "      ],\n"
+             "      \"summary_flowchart\": \"Deskripsi singkat tentang flowchart\"\n"
+             "    },\n"
+             "    {\n"
+             "      \"block_id\": 5,\n"
+             "      \"type\": \"image\",\n"
+             "      \"description_image\": \"Deskripsi detail tentang gambar\"\n"
+             "    }\n"
              "  ]\n"
              "}\n"
              "```\n"
-             "Pastikan mengekstrak SEMUA konten termasuk angka, teks lengkap, dan struktur tabel dengan tepat.")
+             "Pastikan mengekstrak SEMUA konten termasuk angka, teks lengkap, dan struktur dengan tepat sesuai format di atas.")
     
     # Customize prompt further based on specific page characteristics if needed
     if page_analysis.get("ocr_status", False):
@@ -228,10 +260,6 @@ def extract_with_multimodal_method(pdf_path, page_num, existing_result=None, dpi
                 "model": "gemini-2.0-flash",
                 "prompt_used": "",
                 "processing_time": None,
-                "content": {
-                    "text": "",
-                    "tables": []
-                },
                 "content_blocks": []
             }
         }
@@ -243,10 +271,6 @@ def extract_with_multimodal_method(pdf_path, page_num, existing_result=None, dpi
             "model": "gemini-2.0-flash",
             "prompt_used": "",
             "processing_time": None,
-            "content": {
-                "text": "",
-                "tables": []
-            },
             "content_blocks": []
         }
     
@@ -264,24 +288,6 @@ def extract_with_multimodal_method(pdf_path, page_num, existing_result=None, dpi
         # Update the result with content blocks
         if "content_blocks" in content_result:
             result["extraction"]["content_blocks"] = content_result["content_blocks"]
-            
-            # Extract text and tables for the content field
-            combined_text = []
-            tables = []
-            
-            for block in content_result["content_blocks"]:
-                if block["type"] == "text":
-                    combined_text.append(block["content"])
-                elif block["type"] == "table" and "data" in block:
-                    tables.append({
-                        "table_id": len(tables) + 1,
-                        "title": block.get("title", ""),
-                        "data": block["data"],
-                        "text_representation": block.get("text_representation", "")
-                    })
-            
-            result["extraction"]["content"]["text"] = "\n\n".join(combined_text)
-            result["extraction"]["content"]["tables"] = tables
         else:
             # Fallback if we didn't get content blocks
             result["extraction"]["content_blocks"] = [{
@@ -289,8 +295,6 @@ def extract_with_multimodal_method(pdf_path, page_num, existing_result=None, dpi
                 "type": "text",
                 "content": "No structured content could be extracted via multimodal processing."
             }]
-            
-            result["extraction"]["content"]["text"] = "No structured content could be extracted via multimodal processing."
         
     except Exception as e:
         # Handle extraction errors
@@ -302,8 +306,6 @@ def extract_with_multimodal_method(pdf_path, page_num, existing_result=None, dpi
             "type": "text",
             "content": error_message
         }]
-        
-        result["extraction"]["content"]["text"] = error_message
     
     # Calculate and record processing time
     processing_time = time.time() - start_time
