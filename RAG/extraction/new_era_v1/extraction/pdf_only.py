@@ -41,7 +41,7 @@ def extract_with_direct_method(pdf_path, page_num, existing_result=None):
         }
     else:
         result = existing_result
-        # Set extraction method and initialize content blocks if they don't exist
+        # Set extraction method and initialize content blocks
         result["extraction"] = {
             "method": "direct_extraction",
             "processing_time": None,
@@ -62,27 +62,27 @@ def extract_with_direct_method(pdf_path, page_num, existing_result=None):
             pdf_page = pdf_reader.pages[pdf_page_index]
             text = pdf_page.extract_text()
             
-            # Create content block for the extracted text
+            # Create a single content block for the extracted text, regardless of paragraphs
             if text and text.strip():
-                result["extraction"]["content_blocks"].append({
+                result["extraction"]["content_blocks"] = [{
                     "block_id": 1,
                     "type": "text",
                     "content": text.strip()
-                })
+                }]
             else:
-                result["extraction"]["content_blocks"].append({
+                result["extraction"]["content_blocks"] = [{
                     "block_id": 1,
                     "type": "text",
                     "content": "No text content could be extracted directly from this page."
-                })
+                }]
                 
     except Exception as e:
         # Handle extraction errors
-        result["extraction"]["content_blocks"].append({
+        result["extraction"]["content_blocks"] = [{
             "block_id": 1,
             "type": "text",
             "content": f"Error during direct extraction: {str(e)}"
-        })
+        }]
     
     # Calculate and record processing time
     processing_time = time.time() - start_time
