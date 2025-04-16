@@ -12,4 +12,6 @@ Pada versi ini telah berhasil untuk melakukan :
 Catatan per tanggal :
 1. 15 April 2025
     1. Telah melakukan pengerjaan untuk ekstraksi llm, namun temporary image masih belum terhapus.
-    2. 
+
+2. 16 April 2025
+    1. Telah membuat gambar temporary menjadi terhapus ketika sudah mengunduh
