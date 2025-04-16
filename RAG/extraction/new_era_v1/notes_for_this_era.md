@@ -15,3 +15,4 @@ Catatan per tanggal :
 
 2. 16 April 2025
     1. Telah membuat gambar temporary menjadi terhapus ketika sudah mengunduh
+    2. Next lanjut membuat main_run ***
