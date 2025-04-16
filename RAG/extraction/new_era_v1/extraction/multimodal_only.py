@@ -32,6 +32,7 @@ GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
 # Configure Gemini API
 genai.configure(api_key=GOOGLE_API_KEY)
 
+# --- Image processing --- #
 def ensure_directory_exists(directory_path):
     """
     Ensure that the specified directory exists, creating it if necessary.
@@ -86,6 +87,37 @@ def render_pdf_page_to_image(pdf_path, page_num, output_dir, dpi=300):
         logger.error(f"Error rendering PDF page {page_num} to image: {str(e)}")
         raise
 
+def clean_temporary_images(temp_dir):
+    """
+    Delete all image files in the temporary directory after processing is complete.
+    
+    Args:
+        temp_dir (str): Directory containing temporary images
+    """
+    try:
+        # Check if directory exists
+        if not os.path.exists(temp_dir):
+            logger.info(f"Temporary directory {temp_dir} does not exist. Nothing to clean.")
+            return
+            
+        # Get list of all files in directory
+        image_extensions = ['.png', '.jpg', '.jpeg', '.tiff', '.bmp']
+        file_count = 0
+        
+        for filename in os.listdir(temp_dir):
+            file_path = os.path.join(temp_dir, filename)
+            # Check if it's a file and has image extension
+            if os.path.isfile(file_path) and any(filename.lower().endswith(ext) for ext in image_extensions):
+                os.remove(file_path)
+                file_count += 1
+                
+        logger.info(f"Cleaned up {file_count} temporary image files from {temp_dir}")
+        
+    except Exception as e:
+        logger.error(f"Error cleaning temporary images: {str(e)}")
+
+
+# --- LLM Processing --- #
 def create_multimodal_prompt(page_analysis):
     """
     Create an appropriate prompt for the multimodal AI model based on page analysis.
@@ -258,7 +290,6 @@ def extract_with_multimodal_method(pdf_path, page_num, existing_result=None, dpi
             "extraction": {
                 "method": "multimodal_llm",
                 "model": "gemini-2.0-flash",
-                "prompt_used": "",
                 "processing_time": None,
                 "content_blocks": []
             }
@@ -269,7 +300,6 @@ def extract_with_multimodal_method(pdf_path, page_num, existing_result=None, dpi
         result["extraction"] = {
             "method": "multimodal_llm",
             "model": "gemini-2.0-flash",
-            "prompt_used": "",
             "processing_time": None,
             "content_blocks": []
         }
@@ -280,7 +310,7 @@ def extract_with_multimodal_method(pdf_path, page_num, existing_result=None, dpi
         
         # Create prompt based on page analysis
         prompt = create_multimodal_prompt(result["analysis"])
-        result["extraction"]["prompt_used"] = prompt
+        # result["extraction"]["prompt_used"] = prompt
         
         # Process with multimodal API
         content_result = process_with_multimodal_api(image_path, prompt)
@@ -311,13 +341,10 @@ def extract_with_multimodal_method(pdf_path, page_num, existing_result=None, dpi
     processing_time = time.time() - start_time
     result["extraction"]["processing_time"] = f"{processing_time:.2f} seconds"
     
-    # Clean up temporary image file if needed
-    # Uncomment to enable automatic cleanup
-    # if os.path.exists(image_path):
-    #     os.remove(image_path)
-    
     return result
 
+
+# --- Main Process --- #
 def process_pdf_pages(pdf_path, analysis_json_path, output_json_path, temp_dir="temporary_dir", dpi=300):
     """
     Process all PDF pages that need multimodal extraction based on analysis results
@@ -404,6 +431,8 @@ def process_pdf_pages(pdf_path, analysis_json_path, output_json_path, temp_dir="
     with open(output_json_path, 'w', encoding='utf-8') as f:
         json.dump(output_data, f, indent=4, ensure_ascii=False)
     
+    clean_temporary_images(temp_dir)
+
     logger.info(f"Multimodal extraction completed. Processed {processed_count} pages.")
     return output_data
 
