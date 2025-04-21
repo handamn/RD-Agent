@@ -1,6 +1,6 @@
 """
 integrated_pdf_extractor.py - Modul terintegrasi untuk ekstraksi teks PDF
-Menggabungkan metode ekstraksi langsung, OCR, dan multimodal AI
+Menggabungkan metode ekstraksi langsung, OCR, dan multimodal AI dalam struktur kelas
 """
 
 import os
@@ -19,67 +19,73 @@ from dotenv import load_dotenv
 import uuid
 import logging
 
-class PDFExtractor:
-    """Class untuk ekstraksi teks dari PDF dengan berbagai metode: langsung, OCR, dan multimodal AI."""
+class IntegratedPdfExtractor:
+    """
+    Kelas untuk mengekstrak teks dari file PDF menggunakan beberapa metode:
+    1. Ekstraksi langsung untuk halaman sederhana
+    2. OCR untuk halaman dengan teks sebagai gambar
+    3. Multimodal AI untuk halaman dengan struktur kompleks
+    """
     
     def __init__(self, temp_dir="temporary_dir", dpi=300):
         """
-        Inisialisasi PDFExtractor dengan konfigurasi default.
+        Inisialisasi PDF Extractor
         
         Args:
-            temp_dir (str): Direktori untuk menyimpan file sementara
-            dpi (int): Resolusi DPI untuk render gambar PDF
+            temp_dir (str): Direktori untuk menyimpan file temporer
+            dpi (int): Resolusi untuk merender PDF ke gambar
         """
-        # Configure logging
+        # Setup logging
+        self._setup_logging()
+        
+        # Setup parameter
+        self.temp_dir = temp_dir
+        self.dpi = dpi
+        self.ensure_directory_exists(temp_dir)
+        
+        # Setup environment untuk Google API
+        self._setup_google_api()
+    
+    def _setup_logging(self):
+        """Konfigurasi logging."""
         logging.basicConfig(
             level=logging.INFO,
             format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
         )
         self.logger = logging.getLogger(__name__)
-        
-        # Simpan parameter
-        self.temp_dir = temp_dir
-        self.dpi = dpi
-        
-        # Load environment variables untuk Google API (untuk metode multimodal)
+    
+    def _setup_google_api(self):
+        """Setup API Google untuk metode multimodal."""
         load_dotenv()
-        self.GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+        self.google_api_key = os.getenv('GOOGLE_API_KEY')
         
         # Configure Gemini API jika API key tersedia
-        if self.GOOGLE_API_KEY:
-            genai.configure(api_key=self.GOOGLE_API_KEY)
-            
-        # Pastikan direktori temporary ada
-        self._ensure_directory_exists(self.temp_dir)
-        
-        self.logger.info("PDF Extractor diinisialisasi")
+        if self.google_api_key:
+            genai.configure(api_key=self.google_api_key)
+            self.logger.info("Google Generative AI API berhasil dikonfigurasi")
+        else:
+            self.logger.warning("Google API Key tidak ditemukan. Metode multimodal tidak akan berfungsi.")
     
-    def _ensure_directory_exists(self, directory_path):
-        """Memastikan bahwa direktori yang ditentukan ada, membuat jika perlu."""
+    def ensure_directory_exists(self, directory_path):
+        """Memastikan direktori yang ditentukan ada, membuat jika perlu."""
         os.makedirs(directory_path, exist_ok=True)
     
-    def _render_pdf_page_to_image(self, pdf_path, page_num, output_dir, dpi=None):
+    def render_pdf_page_to_image(self, pdf_path, page_num):
         """
-        Render halaman PDF ke file gambar dan mengembalikan path ke gambar.
+        Merender halaman PDF ke file gambar dan mengembalikan path ke gambar.
         
         Args:
             pdf_path (str): Path ke file PDF
-            page_num (int): Nomor halaman (mulai dari 1)
-            output_dir (str): Direktori output untuk gambar
-            dpi (int, optional): Resolusi DPI untuk render. Default menggunakan self.dpi
+            page_num (int): Nomor halaman PDF (1-based indexing)
             
         Returns:
             str: Path ke file gambar yang dihasilkan
         """
         try:
-            # Pastikan direktori output ada
-            self._ensure_directory_exists(output_dir)
+            # Ensure output directory exists
+            self.ensure_directory_exists(self.temp_dir)
             
-            # Gunakan DPI default jika tidak ditentukan
-            if dpi is None:
-                dpi = self.dpi
-            
-            # Buka dokumen PDF
+            # Open PDF document
             doc = fitz.open(pdf_path)
             
             # Convert to 0-based indexing for PyMuPDF
@@ -88,15 +94,15 @@ class PDFExtractor:
             if pdf_page_index < 0 or pdf_page_index >= len(doc):
                 raise ValueError(f"Page {page_num} does not exist in PDF with {len(doc)} pages")
             
-            # Ambil halaman
+            # Get the page
             page = doc[pdf_page_index]
             
-            # Buat filename unik untuk menghindari overwrite
+            # Create a unique filename to avoid overwriting
             image_filename = f"image_page_{page_num}_{uuid.uuid4().hex[:8]}.png"
-            image_path = os.path.join(output_dir, image_filename)
+            image_path = os.path.join(self.temp_dir, image_filename)
             
-            # Render halaman ke gambar dengan DPI yang ditentukan
-            pix = page.get_pixmap(dpi=dpi)
+            # Render page to image with specified DPI
+            pix = page.get_pixmap(dpi=self.dpi)
             pix.save(image_path)
             
             self.logger.info(f"Rendered page {page_num} to {image_path}")
@@ -107,21 +113,21 @@ class PDFExtractor:
             self.logger.error(f"Error rendering PDF page {page_num} to image: {str(e)}")
             raise
     
-    def _clean_temporary_images(self):
+    def clean_temporary_images(self):
         """Hapus semua file gambar di direktori sementara setelah pemrosesan selesai."""
         try:
-            # Periksa apakah direktori ada
+            # Check if directory exists
             if not os.path.exists(self.temp_dir):
-                self.logger.info(f"Direktori sementara {self.temp_dir} tidak ada. Tidak ada yang dibersihkan.")
+                self.logger.info(f"Temporary directory {self.temp_dir} does not exist. Nothing to clean.")
                 return
                 
-            # Dapatkan daftar semua file di direktori
+            # Get list of all files in directory
             image_extensions = ['.png', '.jpg', '.jpeg', '.tiff', '.bmp']
             file_count = 0
             
             for filename in os.listdir(self.temp_dir):
                 file_path = os.path.join(self.temp_dir, filename)
-                # Periksa apakah itu adalah file dan memiliki ekstensi gambar
+                # Check if it's a file and has image extension
                 if os.path.isfile(file_path) and any(filename.lower().endswith(ext) for ext in image_extensions):
                     os.remove(file_path)
                     file_count += 1
@@ -133,19 +139,19 @@ class PDFExtractor:
     
     def extract_with_direct_method(self, pdf_path, page_num, existing_result=None):
         """
-        Ekstrak teks langsung dari PDF menggunakan PyPDF2 untuk halaman yang tidak memerlukan pemrosesan khusus.
+        Ekstraksi teks langsung dari PDF menggunakan PyPDF2 untuk halaman yang tidak memerlukan pemrosesan khusus.
         
         Args:
             pdf_path (str): Path ke file PDF
-            page_num (int): Nomor halaman (mulai dari 1)
+            page_num (int): Nomor halaman yang akan diekstrak
             existing_result (dict, optional): Hasil yang sudah ada untuk diperbarui
             
         Returns:
-            dict: Hasil ekstraksi dengan metode langsung
+            dict: Hasil ekstraksi
         """
         start_time = time.time()
         
-        # Buat struktur hasil jika tidak disediakan
+        # Create result structure if not provided
         if existing_result is None:
             result = {
                 "analysis": {
@@ -161,7 +167,7 @@ class PDFExtractor:
             }
         else:
             result = existing_result
-            # Set metode ekstraksi dan inisialisasi content blocks
+            # Set extraction method and initialize content blocks
             result["extraction"] = {
                 "method": "direct_extraction",
                 "processing_time": None,
@@ -169,11 +175,11 @@ class PDFExtractor:
             }
         
         try:
-            # Buka PDF dan ekstrak teks dari halaman tertentu
+            # Open PDF and extract text from the specific page
             with open(pdf_path, 'rb') as file:
                 pdf_reader = PyPDF2.PdfReader(file)
                 
-                # Sesuaikan untuk indexing 0-based di PyPDF2
+                # Adjust for 0-based indexing in PyPDF2
                 pdf_page_index = page_num - 1
                 
                 if pdf_page_index < 0 or pdf_page_index >= len(pdf_reader.pages):
@@ -182,7 +188,7 @@ class PDFExtractor:
                 pdf_page = pdf_reader.pages[pdf_page_index]
                 text = pdf_page.extract_text()
                 
-                # Buat satu blok konten untuk teks yang diekstrak
+                # Create a single content block for the extracted text, regardless of paragraphs
                 if text and text.strip():
                     result["extraction"]["content_blocks"] = [{
                         "block_id": 1,
@@ -197,39 +203,35 @@ class PDFExtractor:
                     }]
                     
         except Exception as e:
-            # Tangani error ekstraksi
+            # Handle extraction errors
             result["extraction"]["content_blocks"] = [{
                 "block_id": 1,
                 "type": "text",
                 "content": f"Error during direct extraction: {str(e)}"
             }]
         
-        # Hitung dan catat waktu pemrosesan
+        # Calculate and record processing time
         processing_time = time.time() - start_time
         result["extraction"]["processing_time"] = f"{processing_time:.2f} seconds"
         
         return result
     
-    def extract_with_ocr_method(self, pdf_path, page_num, existing_result=None, dpi=None):
+    def extract_with_ocr_method(self, pdf_path, page_num, existing_result=None):
         """
-        Ekstrak teks dari PDF menggunakan OCR untuk halaman yang membutuhkan pemrosesan OCR tetapi tidak memiliki format kompleks.
+        Ekstraksi teks dari PDF menggunakan OCR untuk halaman yang membutuhkan pemrosesan OCR 
+        tapi tidak memiliki format kompleks.
         
         Args:
             pdf_path (str): Path ke file PDF
-            page_num (int): Nomor halaman (mulai dari 1)
+            page_num (int): Nomor halaman yang akan diekstrak
             existing_result (dict, optional): Hasil yang sudah ada untuk diperbarui
-            dpi (int, optional): Resolusi DPI untuk render. Default menggunakan self.dpi
             
         Returns:
-            dict: Hasil ekstraksi dengan metode OCR
+            dict: Hasil ekstraksi
         """
         start_time = time.time()
         
-        # Gunakan DPI default jika tidak ditentukan
-        if dpi is None:
-            dpi = self.dpi
-        
-        # Buat struktur hasil jika tidak disediakan
+        # Create result structure if not provided
         if existing_result is None:
             result = {
                 "analysis": {
@@ -245,7 +247,7 @@ class PDFExtractor:
             }
         else:
             result = existing_result
-            # Set metode ekstraksi dan inisialisasi content blocks
+            # Set extraction method and initialize content blocks if they don't exist
             result["extraction"] = {
                 "method": "ocr",
                 "processing_time": None,
@@ -253,10 +255,10 @@ class PDFExtractor:
             }
         
         try:
-            # Konversi halaman PDF ke gambar menggunakan PyMuPDF
+            # Convert PDF page to image using PyMuPDF
             doc = fitz.open(pdf_path)
             
-            # Sesuaikan untuk indexing 0-based
+            # Adjust for 0-based indexing
             pdf_page_index = page_num - 1
             
             if pdf_page_index < 0 or pdf_page_index >= len(doc):
@@ -264,23 +266,24 @@ class PDFExtractor:
             
             page = doc[pdf_page_index]
             
-            # Render halaman ke gambar dengan DPI yang ditentukan
-            pix = page.get_pixmap(dpi=dpi)
+            # Render page to image at specified DPI
+            pix = page.get_pixmap(dpi=self.dpi)
             img = np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.height, pix.width, pix.n)
             
-            # Konversi ke RGB jika diperlukan
+            # Convert to RGB if needed
             if pix.n == 4:  # RGBA
                 img = cv2.cvtColor(img, cv2.COLOR_RGBA2RGB)
             elif pix.n == 1:  # Grayscale
                 img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
             
-            # Konversi ke gambar PIL untuk Tesseract
+            # Convert to PIL image for Tesseract
             pil_img = Image.fromarray(img)
             
-            # Lakukan OCR
+            # Perform OCR
             text = pytesseract.image_to_string(pil_img)
             
-            # Untuk kasus OCR, hanya buat satu blok konten dengan semua teks
+            # For OCR case, we only create one content block with all the text
+            # regardless of paragraphs or line breaks
             if text and text.strip():
                 result["extraction"]["content_blocks"] = [{
                     "block_id": 1,
@@ -295,94 +298,94 @@ class PDFExtractor:
                 }]
                     
         except Exception as e:
-            # Tangani error ekstraksi
+            # Handle extraction errors
             result["extraction"]["content_blocks"] = [{
                 "block_id": 1,
                 "type": "text",
                 "content": f"Error during OCR extraction: {str(e)}"
             }]
         
-        # Hitung dan catat waktu pemrosesan
+        # Calculate and record processing time
         processing_time = time.time() - start_time
         result["extraction"]["processing_time"] = f"{processing_time:.2f} seconds"
         
         return result
     
-    def _create_multimodal_prompt(self, page_analysis):
+    def create_multimodal_prompt(self, page_analysis):
         """
-        Buat prompt yang sesuai untuk model AI multimodal berdasarkan analisis halaman.
+        Membuat prompt yang sesuai untuk model AI multimodal berdasarkan analisis halaman.
         
         Args:
-            page_analysis (dict): Hasil analisis halaman
+            page_analysis (dict): Analisis halaman yang berisi status OCR, line, dan AI
             
         Returns:
             str: Prompt untuk model AI multimodal
         """
-        # Prompt dasar dengan struktur konten yang diperluas
+        # Base prompt with expanded content structure
         prompt = ("Analisis gambar ini secara detail dan ekstrak semua konten dengan mempertahankan struktur aslinya. "
-                 "Identifikasi dan berikan output dalam format berikut:\n\n"
-                 "1. Semua teks, termasuk heading, paragraf dan caption.\n"
-                 "2. Tabel lengkap dengan data seluruh baris dan kolom beserta judulnya.\n"
-                 "3. Grafik dan diagram, termasuk judul, label, nilai data, dan deskripsi visual.\n"
-                 "4. Flowchart dengan elemen-elemen dan hubungannya.\n"
-                 "5. Gambar dengan deskripsi dan caption (jika ada).\n\n"
-                 "Berikan output yang lengkap dan terstruktur dalam format JSON seperti contoh berikut:\n"
-                 "```json\n"
-                 "{\n"
-                 "  \"content_blocks\": [\n"
-                 "    {\n"
-                 "      \"block_id\": 1,\n"
-                 "      \"type\": \"text\",\n"
-                 "      \"content\": \"Teks lengkap dari bagian ini...\"\n"
-                 "    },\n"
-                 "    {\n"
-                 "      \"block_id\": 2,\n"
-                 "      \"type\": \"table\",\n"
-                 "      \"title\": \"Judul tabel (jika ada)\",\n"
-                 "      \"data\": [\n"
-                 "        {\"header_1\": \"nilai_baris_1_kolom_1\", \"header_2\": \"nilai_baris_1_kolom_2\"},\n"
-                 "        {\"header_1\": \"nilai_baris_2_kolom_1\", \"header_2\": \"nilai_baris_2_kolom_2\"}\n"
-                 "      ],\n"
-                 "      \"summary_table\": \"Deskripsi singkat tentang tabel\"\n"
-                 "    },\n"
-                 "    {\n"
-                 "      \"block_id\": 3,\n"
-                 "      \"type\": \"chart\",\n"
-                 "      \"chart_type\": \"line\",\n"
-                 "      \"title\": \"Judul grafik\",\n"
-                 "      \"data\": {\n"
-                 "        \"labels\": [\"label_1\", \"label_2\", \"label_3\"],\n"
-                 "        \"datasets\": [\n"
-                 "          {\n"
-                 "            \"label\": \"Dataset 1\",\n"
-                 "            \"values\": [5.2, 6.3, 7.1]\n"
-                 "          }\n"
-                 "        ]\n"
-                 "      },\n"
-                 "      \"summary_chart\": \"Deskripsi singkat tentang grafik\"\n"
-                 "    },\n"
-                 "    {\n"
-                 "      \"block_id\": 4,\n"
-                 "      \"type\": \"flowchart\",\n"
-                 "      \"title\": \"Judul flowchart\",\n"
-                 "      \"elements\": [\n"
-                 "        {\"type\": \"node\", \"id\": \"1\", \"text\": \"Langkah 1\", \"connects_to\": [\"2\"]},\n"
-                 "        {\"type\": \"node\", \"id\": \"2\", \"text\": \"Langkah 2\", \"connects_to\": [\"3\"]},\n"
-                 "        {\"type\": \"node\", \"id\": \"3\", \"text\": \"Langkah 3\", \"connects_to\": []}\n"
-                 "      ],\n"
-                 "      \"summary_flowchart\": \"Deskripsi singkat tentang flowchart\"\n"
-                 "    },\n"
-                 "    {\n"
-                 "      \"block_id\": 5,\n"
-                 "      \"type\": \"image\",\n"
-                 "      \"description_image\": \"Deskripsi detail tentang gambar\"\n"
-                 "    }\n"
-                 "  ]\n"
-                 "}\n"
-                 "```\n"
-                 "Pastikan mengekstrak SEMUA konten termasuk angka, teks lengkap, dan struktur dengan tepat sesuai format di atas.")
+                "Identifikasi dan berikan output dalam format berikut:\n\n"
+                "1. Semua teks, termasuk heading, paragraf dan caption.\n"
+                "2. Tabel lengkap dengan data seluruh baris dan kolom beserta judulnya.\n"
+                "3. Grafik dan diagram, termasuk judul, label, nilai data, dan deskripsi visual.\n"
+                "4. Flowchart dengan elemen-elemen dan hubungannya.\n"
+                "5. Gambar dengan deskripsi dan caption (jika ada).\n\n"
+                "Berikan output yang lengkap dan terstruktur dalam format JSON seperti contoh berikut:\n"
+                "```json\n"
+                "{\n"
+                "  \"content_blocks\": [\n"
+                "    {\n"
+                "      \"block_id\": 1,\n"
+                "      \"type\": \"text\",\n"
+                "      \"content\": \"Teks lengkap dari bagian ini...\"\n"
+                "    },\n"
+                "    {\n"
+                "      \"block_id\": 2,\n"
+                "      \"type\": \"table\",\n"
+                "      \"title\": \"Judul tabel (jika ada)\",\n"
+                "      \"data\": [\n"
+                "        {\"header_1\": \"nilai_baris_1_kolom_1\", \"header_2\": \"nilai_baris_1_kolom_2\"},\n"
+                "        {\"header_1\": \"nilai_baris_2_kolom_1\", \"header_2\": \"nilai_baris_2_kolom_2\"}\n"
+                "      ],\n"
+                "      \"summary_table\": \"Deskripsi singkat tentang tabel\"\n"
+                "    },\n"
+                "    {\n"
+                "      \"block_id\": 3,\n"
+                "      \"type\": \"chart\",\n"
+                "      \"chart_type\": \"line\",\n"
+                "      \"title\": \"Judul grafik\",\n"
+                "      \"data\": {\n"
+                "        \"labels\": [\"label_1\", \"label_2\", \"label_3\"],\n"
+                "        \"datasets\": [\n"
+                "          {\n"
+                "            \"label\": \"Dataset 1\",\n"
+                "            \"values\": [5.2, 6.3, 7.1]\n"
+                "          }\n"
+                "        ]\n"
+                "      },\n"
+                "      \"summary_chart\": \"Deskripsi singkat tentang grafik\"\n"
+                "    },\n"
+                "    {\n"
+                "      \"block_id\": 4,\n"
+                "      \"type\": \"flowchart\",\n"
+                "      \"title\": \"Judul flowchart\",\n"
+                "      \"elements\": [\n"
+                "        {\"type\": \"node\", \"id\": \"1\", \"text\": \"Langkah 1\", \"connects_to\": [\"2\"]},\n"
+                "        {\"type\": \"node\", \"id\": \"2\", \"text\": \"Langkah 2\", \"connects_to\": [\"3\"]},\n"
+                "        {\"type\": \"node\", \"id\": \"3\", \"text\": \"Langkah 3\", \"connects_to\": []}\n"
+                "      ],\n"
+                "      \"summary_flowchart\": \"Deskripsi singkat tentang flowchart\"\n"
+                "    },\n"
+                "    {\n"
+                "      \"block_id\": 5,\n"
+                "      \"type\": \"image\",\n"
+                "      \"description_image\": \"Deskripsi detail tentang gambar\"\n"
+                "    }\n"
+                "  ]\n"
+                "}\n"
+                "```\n"
+                "Pastikan mengekstrak SEMUA konten termasuk angka, teks lengkap, dan struktur dengan tepat sesuai format di atas.")
         
-        # Kustomisasi prompt lebih lanjut berdasarkan karakteristik halaman spesifik jika diperlukan
+        # Customize prompt further based on specific page characteristics if needed
         if page_analysis.get("ocr_status", False):
             prompt += "\nPerhatikan bahwa halaman ini mungkin mengandung teks hasil scan/OCR, pastikan untuk mengekstrak semua teks dengan tepat."
         
@@ -391,31 +394,31 @@ class PDFExtractor:
         
         return prompt
     
-    def _process_with_multimodal_api(self, image_path, prompt):
+    def process_with_multimodal_api(self, image_path, prompt):
         """
-        Proses gambar menggunakan API Gemini multimodal.
+        Memproses gambar menggunakan API Gemini multimodal.
         
         Args:
             image_path (str): Path ke file gambar
             prompt (str): Prompt untuk model AI
             
         Returns:
-            dict: Hasil pemrosesan dari API multimodal
+            dict: Hasil pemrosesan multimodal
         """
         try:
-            # Load gambar
+            # Load the image
             pil_image = Image.open(image_path)
             
-            # Dapatkan model
+            # Get model
             model = genai.GenerativeModel('gemini-2.0-flash')
             
             # Generate content
             response = model.generate_content([prompt, pil_image])
             
-            # Ekstrak dan parse konten JSON
+            # Extract and parse JSON content
             response_text = response.text
             
-            # Coba ekstrak JSON dari respons jika dibungkus dalam blok kode
+            # Try to extract JSON from the response if it's wrapped in code blocks
             if "```json" in response_text and "```" in response_text:
                 json_content = response_text.split("```json")[1].split("```")[0].strip()
             elif "```" in response_text:
@@ -424,11 +427,11 @@ class PDFExtractor:
                 json_content = response_text
             
             try:
-                # Coba parse sebagai JSON
+                # Try to parse as JSON
                 content_json = json.loads(json_content)
                 return content_json
             except json.JSONDecodeError:
-                # Jika parsing JSON gagal, kembalikan sebagai raw text
+                # If JSON parsing fails, return as raw text
                 self.logger.warning("Failed to parse JSON from model response, returning raw text")
                 return {
                     "content_blocks": [
@@ -452,28 +455,23 @@ class PDFExtractor:
                 ]
             }
     
-    def extract_with_multimodal_method(self, pdf_path, page_num, existing_result=None, dpi=None):
+    def extract_with_multimodal_method(self, pdf_path, page_num, existing_result=None):
         """
-        Ekstrak konten dari PDF menggunakan AI multimodal untuk halaman dengan format kompleks.
+        Ekstraksi konten dari PDF menggunakan AI multimodal untuk halaman dengan format kompleks.
         
         Args:
             pdf_path (str): Path ke file PDF
-            page_num (int): Nomor halaman (mulai dari 1)
+            page_num (int): Nomor halaman yang akan diekstrak
             existing_result (dict, optional): Hasil yang sudah ada untuk diperbarui
-            dpi (int, optional): Resolusi DPI untuk render. Default menggunakan self.dpi
             
         Returns:
-            dict: Hasil ekstraksi dengan metode multimodal
+            dict: Hasil ekstraksi
         """
         start_time = time.time()
         
-        # Gunakan DPI default jika tidak ditentukan
-        if dpi is None:
-            dpi = self.dpi
-        
-        # Buat struktur hasil jika tidak disediakan
+        # Create result structure if not provided
         if existing_result is None:
-            # Default ke kedua flag adalah True karena ini adalah kasus fallback
+            # Default to both flags being True since this is a fallback case
             result = {
                 "analysis": {
                     "ocr_status": True,
@@ -489,7 +487,7 @@ class PDFExtractor:
             }
         else:
             result = existing_result
-            # Set metode ekstraksi dan inisialisasi content blocks
+            # Set extraction method and initialize content blocks
             result["extraction"] = {
                 "method": "multimodal_llm",
                 "model": "gemini-2.0-flash",
@@ -498,20 +496,20 @@ class PDFExtractor:
             }
         
         try:
-            # Render halaman PDF ke gambar
-            image_path = self._render_pdf_page_to_image(pdf_path, page_num, self.temp_dir, dpi)
+            # Render PDF page to image
+            image_path = self.render_pdf_page_to_image(pdf_path, page_num)
             
-            # Buat prompt berdasarkan analisis halaman
-            prompt = self._create_multimodal_prompt(result["analysis"])
+            # Create prompt based on page analysis
+            prompt = self.create_multimodal_prompt(result["analysis"])
             
-            # Proses dengan API multimodal
-            content_result = self._process_with_multimodal_api(image_path, prompt)
+            # Process with multimodal API
+            content_result = self.process_with_multimodal_api(image_path, prompt)
             
-            # Perbarui hasil dengan blok konten
+            # Update the result with content blocks
             if "content_blocks" in content_result:
                 result["extraction"]["content_blocks"] = content_result["content_blocks"]
             else:
-                # Fallback jika tidak mendapatkan blok konten
+                # Fallback if we didn't get content blocks
                 result["extraction"]["content_blocks"] = [{
                     "block_id": 1,
                     "type": "text",
@@ -519,7 +517,7 @@ class PDFExtractor:
                 }]
             
         except Exception as e:
-            # Tangani error ekstraksi
+            # Handle extraction errors
             error_message = f"Error during multimodal extraction: {str(e)}"
             self.logger.error(error_message)
             
@@ -529,40 +527,40 @@ class PDFExtractor:
                 "content": error_message
             }]
         
-        # Hitung dan catat waktu pemrosesan
+        # Calculate and record processing time
         processing_time = time.time() - start_time
         result["extraction"]["processing_time"] = f"{processing_time:.2f} seconds"
         
         return result
     
-    def _initialize_output_data(self, pdf_path, analysis_data):
+    def initialize_output_data(self, pdf_path, analysis_data):
         """
         Inisialisasi struktur data output dengan metadata PDF dan data analisis.
         
         Args:
             pdf_path (str): Path ke file PDF
-            analysis_data (dict): Data analisis untuk setiap halaman
+            analysis_data (dict): Data analisis per halaman
             
         Returns:
-            dict: Struktur data output yang diinisialisasi
+            dict: Struktur output awal
         """
-        # Dapatkan metadata PDF
+        # Get PDF metadata
         with open(pdf_path, 'rb') as file:
             pdf_reader = PyPDF2.PdfReader(file)
             total_pages = len(pdf_reader.pages)
         
-        # Buat struktur output baru
+        # Create new output structure
         output_data = {
             "metadata": {
                 "filename": Path(pdf_path).name,
                 "total_pages": total_pages,
                 "extraction_date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                "processing_time": "0 seconds"  # Akan diperbarui nanti
+                "processing_time": "0 seconds"  # Will be updated later
             },
             "pages": {}
         }
         
-        # Inisialisasi struktur halaman dengan data analisis
+        # Initialize pages structure with analysis data
         for page_num, page_analysis in analysis_data.items():
             output_data["pages"][page_num] = {
                 "analysis": page_analysis
@@ -572,7 +570,7 @@ class PDFExtractor:
     
     def process_pdf(self, pdf_path, analysis_json_path, output_json_path):
         """
-        Proses halaman PDF menggunakan metode ekstraksi yang paling sesuai berdasarkan analisis.
+        Memproses halaman PDF menggunakan metode ekstraksi yang paling sesuai berdasarkan analisis.
         
         Args:
             pdf_path (str): Path ke file PDF
@@ -582,35 +580,35 @@ class PDFExtractor:
         Returns:
             dict: Hasil ekstraksi lengkap
         """
-        # Pastikan direktori temp ada
-        self._ensure_directory_exists(self.temp_dir)
+        # Ensure temp directory exists
+        self.ensure_directory_exists(self.temp_dir)
         
-        # Muat hasil analisis
+        # Load analysis results
         self.logger.info(f"Loading analysis data from {analysis_json_path}")
         with open(analysis_json_path, 'r', encoding='utf-8') as f:
             analysis_data = json.load(f)
         
-        # Buat atau muat JSON output
+        # Create or load output JSON
         if os.path.exists(output_json_path):
             self.logger.info(f"Loading existing output data from {output_json_path}")
             with open(output_json_path, 'r', encoding='utf-8') as f:
                 output_data = json.load(f)
         else:
             self.logger.info(f"Initializing new output data structure")
-            output_data = self._initialize_output_data(pdf_path, analysis_data)
+            output_data = self.initialize_output_data(pdf_path, analysis_data)
         
-        # Waktu mulai proses
+        # Process start time
         start_time = time.time()
         processed_count = {"direct": 0, "ocr": 0, "multimodal": 0}
         
-        # Proses semua halaman berdasarkan flag analisis
+        # Process all pages based on analysis flags
         for page_num, page_data in analysis_data.items():
-            # Dapatkan flag tipe ekstraksi
+            # Get extraction type flags
             ocr_status = page_data.get("ocr_status", False)
             line_status = page_data.get("line_status", False)
             ai_status = page_data.get("ai_status", False)
             
-            # Periksa apakah halaman ini sudah diproses
+            # Check if this page has already been processed
             page_processed = (
                 page_num in output_data["pages"] and 
                 "extraction" in output_data["pages"][page_num]
@@ -621,65 +619,64 @@ class PDFExtractor:
                 self.logger.info(f"Page {page_num} already processed with {method}. Skipping.")
                 continue
             
-            # Tentukan metode yang akan digunakan berdasarkan flag:
+            # Decide which method to use based on flags:
             existing_result = output_data["pages"].get(page_num, {"analysis": page_data})
             
-            # Kasus 1: Ekstraksi langsung (tanpa OCR, tanpa garis, tanpa AI)
+            # Case 1: Direct extraction (no OCR, no lines, no AI)
             if not ocr_status and not line_status and not ai_status:
                 self.logger.info(f"Processing page {page_num} with direct extraction...")
                 result = self.extract_with_direct_method(pdf_path, int(page_num), existing_result)
                 processed_count["direct"] += 1
             
-            # Kasus 2: OCR saja (OCR diperlukan, tetapi tidak ada struktur kompleks)
+            # Case 2: OCR only (OCR needed, but no complex structure)
             elif ocr_status and not line_status and not ai_status:
                 self.logger.info(f"Processing page {page_num} with OCR extraction...")
                 result = self.extract_with_ocr_method(pdf_path, int(page_num), existing_result)
                 processed_count["ocr"] += 1
             
-            # Kasus 3 & 4: Multimodal (kasus kompleks dengan garis atau AI diperlukan)
+            # Case 3 & 4: Multimodal (complex cases with lines or AI needed)
             elif ((ocr_status and line_status and ai_status) or 
-                  (not ocr_status and line_status and ai_status)):
+                (not ocr_status and line_status and ai_status)):
                 self.logger.info(f"Processing page {page_num} with multimodal extraction...")
                 result = self.extract_with_multimodal_method(pdf_path, int(page_num), existing_result)
                 processed_count["multimodal"] += 1
             
-            # Kasus default: Gunakan multimodal sebagai fallback untuk kombinasi lainnya
+            # Default case: Use multimodal as fallback for any other combination
             else:
                 self.logger.info(f"Processing page {page_num} with multimodal extraction (fallback)...")
                 result = self.extract_with_multimodal_method(pdf_path, int(page_num), existing_result)
                 processed_count["multimodal"] += 1
             
-            # Perbarui data output
+            # Update output data
             output_data["pages"][page_num] = result
         
-        # Perbarui metadata
+        # Update metadata
         total_processing_time = time.time() - start_time
         output_data["metadata"]["processing_time"] = f"{total_processing_time:.2f} seconds"
         
-        # Simpan data output
+        # Save output data
         with open(output_json_path, 'w', encoding='utf-8') as f:
             json.dump(output_data, f, indent=4, ensure_ascii=False)
         
-        # Bersihkan file sementara
-        self._clean_temporary_images()
+        # Clean up temporary files
+        self.clean_temporary_images()
         
-        # Log selesai
+        # Log completion
         total_processed = sum(processed_count.values())
         self.logger.info(f"PDF processing completed. Total pages processed: {total_processed}")
         self.logger.info(f"Direct: {processed_count['direct']}, OCR: {processed_count['ocr']}, Multimodal: {processed_count['multimodal']}")
         
         return output_data
 
-
 # Contoh penggunaan
 if __name__ == "__main__":
     # Inisialisasi extractor
-    extractor = PDFExtractor(temp_dir="temporary_dir", dpi=300)
+    extractor = IntegratedPdfExtractor(temp_dir="temporary_dir", dpi=300)
     
-    # Example usage
+    # Parameter untuk ekstraksi
     pdf_path = "ABF Indonesia Bond Index Fund.pdf"  # Update with your PDF path
     analysis_json_path = "sample.json"  # Path to analysis JSON
     output_json_path = "hasil_ekstraksi.json"  # Path to save extraction results
     
     # Proses PDF
-    extractor.process_pdf(pdf_path, analysis_json_path, output_json_path)
+    result = extractor.process_pdf(pdf_path, analysis_json_path, output_json_path)
