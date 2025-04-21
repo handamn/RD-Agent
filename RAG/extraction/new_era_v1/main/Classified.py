@@ -27,7 +27,7 @@ class Logger:
         # Juga cetak ke console untuk memudahkan debug
         print(log_message.strip())
 
-class PDFAnalyzer:
+class Classified:
     def __init__(self, output_dir="hasil_analisis"):
         """Inisialisasi analyzer dengan lokasi folder output dan logger."""
         self.logger = Logger()
@@ -222,7 +222,7 @@ class PDFAnalyzer:
 # Contoh penggunaan
 if __name__ == "__main__":
     # Inisialisasi analyzer
-    analyzer = PDFAnalyzer(output_dir="database/classified_result")
+    analyzer = Classified(output_dir="database/classified_result")
     
     # List file PDF untuk dianalisis [nama_file, path_file]
     pdf_files = [
