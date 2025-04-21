@@ -667,16 +667,67 @@ class IntegratedPdfExtractor:
         self.logger.info(f"Direct: {processed_count['direct']}, OCR: {processed_count['ocr']}, Multimodal: {processed_count['multimodal']}")
         
         return output_data
+    
+    def process_multiple_pdfs(self, pdf_files, analysis_dir="hasil_analisis", output_dir="hasil_ekstraksi"):
+        """
+        Memproses banyak file PDF sekaligus.
+        
+        Args:
+            pdf_files (list): List berisi [nama_file, path_file] untuk setiap file PDF
+            analysis_dir (str): Direktori tempat file analisis JSON disimpan
+            output_dir (str): Direktori untuk menyimpan hasil ekstraksi
+            
+        Returns:
+            dict: Hasil ekstraksi untuk semua file PDF
+        """
+        # Pastikan direktori output ada
+        self.ensure_directory_exists(output_dir)
+        
+        hasil_ekstraksi = {}
+        
+        for pdf_name, pdf_path in pdf_files:
+            try:
+                self.logger.info(f"Memulai pemrosesan untuk {pdf_name}")
+                
+                # Path untuk file analisis dan output
+                analysis_json_path = os.path.join(analysis_dir, f"{pdf_name}_analisis.json")
+                output_json_path = os.path.join(output_dir, f"{pdf_name}_ekstraksi.json")
+                
+                # Proses PDF
+                result = self.process_pdf(pdf_path, analysis_json_path, output_json_path)
+                hasil_ekstraksi[pdf_name] = result
+                
+                self.logger.info(f"Pemrosesan selesai untuk {pdf_name}")
+                
+            except Exception as e:
+                self.logger.error(f"Gagal memproses {pdf_name}: {str(e)}")
+                hasil_ekstraksi[pdf_name] = {"error": str(e)}
+        
+        return hasil_ekstraksi
 
 # Contoh penggunaan
 if __name__ == "__main__":
     # Inisialisasi extractor
     extractor = IntegratedPdfExtractor(temp_dir="temporary_dir", dpi=300)
     
-    # Parameter untuk ekstraksi
-    pdf_path = "ABF Indonesia Bond Index Fund.pdf"  # Update with your PDF path
-    analysis_json_path = "sample.json"  # Path to analysis JSON
-    output_json_path = "hasil_ekstraksi.json"  # Path to save extraction results
+    # List file PDF untuk diproses [nama_file, path_file]
+    pdf_files = [
+        ['ABF Indonesia Bond Index Fund', 'database/prospectus/ABF Indonesia Bond Index Fund.pdf'],
+        ['Sucorinvest Money Market Fund', 'database/prospectus/Sucorinvest Money Market Fund.pdf']
+    ]
     
-    # Proses PDF
-    result = extractor.process_pdf(pdf_path, analysis_json_path, output_json_path)
+    # Proses semua PDF
+    hasil = extractor.process_multiple_pdfs(
+        pdf_files,
+        analysis_dir="database/classified_result",
+        output_dir="database/extracted_result"
+    )
+    
+    # Output ringkasan
+    print("\nRingkasan Hasil Ekstraksi:")
+    for pdf_name, result in hasil.items():
+        if "error" in result:
+            print(f"- {pdf_name}: Error - {result['error']}")
+        else:
+            total_pages = result['metadata']['total_pages']
+            print(f"- {pdf_name}: {total_pages} halaman diproses")
