@@ -10,7 +10,7 @@ from io import BytesIO
 from datetime import datetime
 
 class Logger:
-    """Logger untuk mencatat aktivitas analisis PDF ke file log."""
+    """Logger untuk mencatat aktivitas analisis PDF ke file log yang sama."""
     def __init__(self, log_dir="logs"):
         os.makedirs(log_dir, exist_ok=True)
         log_filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "_PDF_Analyzer.log"
@@ -28,27 +28,24 @@ class Logger:
         print(log_message.strip())
 
 class PDFAnalyzer:
-    def __init__(self, log_dir="logs"):
-        """
-        Initialize the PDF Analyzer with custom logger.
-        
-        Args:
-            log_dir: Directory to store log files (default: "logs")
-        """
-        self.logger = Logger(log_dir)
+    def __init__(self, output_dir="hasil_analisis"):
+        """Inisialisasi analyzer dengan lokasi folder output dan logger."""
+        self.logger = Logger()
+        self.output_dir = os.path.join(os.getcwd(), output_dir)
+        os.makedirs(self.output_dir, exist_ok=True)
         self.logger.log_info("PDF Analyzer diinisialisasi")
     
-    def detect_horizontal_lines(self, image, min_line_count=1, min_line_length_percent=20):
+    def _detect_horizontal_lines(self, image, min_line_count=1, min_line_length_percent=20):
         """
-        Detect horizontal lines in an image.
+        Deteksi garis horizontal dalam gambar.
         
-        Args:
-            image: Input image
-            min_line_count: Minimum number of lines to consider page has lines
-            min_line_length_percent: Minimum length of line as percentage of page width
-            
+        Parameters:
+        image: Gambar input
+        min_line_count: Jumlah minimum garis untuk dianggap ada garis
+        min_line_length_percent: Panjang minimum garis sebagai persentase dari lebar halaman
+        
         Returns:
-            boolean: True if sufficient horizontal lines are detected
+        boolean: True jika ditemukan garis horizontal yang cukup
         """
         height, width = image.shape[:2]
         min_line_length = int((min_line_length_percent / 100.0) * width)
@@ -77,20 +74,69 @@ class PDFAnalyzer:
         self.logger.log_info(f"Ditemukan {len(valid_lines)} garis valid, hasil: {result}", "DEBUG")
         return result
 
-    def analyze_pdf(self, pdf_path, output_file="hasil_gabungan.json", min_text_length=50, 
-                   min_line_count=1, min_line_length_percent=20):
+    def _file_exists(self, pdf_name):
+        """Memeriksa apakah file hasil analisis sudah ada di direktori."""
+        expected_file = os.path.join(self.output_dir, f"{pdf_name}_analisis.json")
+        return os.path.exists(expected_file)
+
+    def analyze(self, pdf_paths, min_text_length=50, min_line_count=1, min_line_length_percent=20):
         """
-        Analyze a PDF file for text content and horizontal lines.
+        Fungsi utama untuk menganalisis daftar file PDF.
         
-        Args:
-            pdf_path: Path to the PDF file
-            output_file: Path to save results JSON
-            min_text_length: Minimum text length to consider page has readable text
-            min_line_count: Minimum number of lines to consider page has lines
-            min_line_length_percent: Minimum length of line as percentage of page width
-            
+        Parameters:
+        pdf_paths (list): List berisi [nama_file, path_file] untuk setiap file PDF.
+        min_text_length: Panjang minimum teks untuk dianggap memiliki teks
+        min_line_count: Jumlah minimum garis untuk dianggap memiliki garis
+        min_line_length_percent: Panjang minimum garis sebagai persentase dari lebar halaman
+        
         Returns:
-            dict: Analysis results for each page
+        dict: Hasil analisis untuk setiap file PDF
+        """
+        hasil_all = {}
+        
+        for pdf_name, pdf_path in pdf_paths:
+            output_file = os.path.join(self.output_dir, f"{pdf_name}_analisis.json")
+            
+            # Periksa apakah file hasil analisis sudah ada
+            if self._file_exists(pdf_name):
+                self.logger.log_info(f"File hasil analisis untuk {pdf_name} sudah ada, melewati proses.")
+                
+                # Baca hasil yang sudah ada
+                with open(output_file, 'r', encoding='utf-8') as f:
+                    hasil_gabungan = json.load(f)
+                    hasil_all[pdf_name] = hasil_gabungan
+                continue
+            
+            try:
+                hasil_gabungan = self._analyze_single_pdf(
+                    pdf_path, 
+                    output_file, 
+                    min_text_length, 
+                    min_line_count, 
+                    min_line_length_percent
+                )
+                hasil_all[pdf_name] = hasil_gabungan
+                
+            except Exception as e:
+                self.logger.log_info(f"Error menganalisis {pdf_name}: {str(e)}", "ERROR")
+                hasil_all[pdf_name] = {"error": str(e)}
+                
+        return hasil_all
+
+    def _analyze_single_pdf(self, pdf_path, output_file, min_text_length=50, 
+                           min_line_count=1, min_line_length_percent=20):
+        """
+        Analisis file PDF tunggal untuk konten teks dan garis horizontal.
+        
+        Parameters:
+        pdf_path: Path ke file PDF
+        output_file: Path untuk menyimpan hasil JSON
+        min_text_length: Panjang minimum teks untuk dianggap memiliki teks
+        min_line_count: Jumlah minimum garis untuk dianggap memiliki garis
+        min_line_length_percent: Panjang minimum garis sebagai persentase dari lebar halaman
+        
+        Returns:
+        dict: Hasil analisis untuk setiap halaman
         """
         hasil_gabungan = {}
         start_time = datetime.now()
@@ -141,7 +187,7 @@ class PDFAnalyzer:
                             self.logger.log_info(f"Halaman {page_index}: OCR gagal, halaman mungkin kosong atau hanya gambar", "DEBUG")
 
                     # Line detection
-                    line_status = self.detect_horizontal_lines(img, min_line_count, min_line_length_percent)
+                    line_status = self._detect_horizontal_lines(img, min_line_count, min_line_length_percent)
 
                     # Decision logic
                     if isinstance(ocr_status, bool):
@@ -172,60 +218,32 @@ class PDFAnalyzer:
             self.logger.log_info(f"Error menganalisis PDF: {str(e)}", "ERROR")
             raise
 
-    def batch_analyze(self, pdf_dir, output_dir="hasil", **kwargs):
-        """
-        Analyze multiple PDF files in a directory.
-        
-        Args:
-            pdf_dir: Directory containing PDF files
-            output_dir: Directory to save results
-            **kwargs: Additional parameters for analyze_pdf method
-        
-        Returns:
-            dict: Mapping of PDF files to their analysis results
-        """
-        if not os.path.exists(output_dir):
-            os.makedirs(output_dir)
-            self.logger.log_info(f"Membuat direktori output: {output_dir}")
-            
-        results = {}
-        pdf_files = [f for f in os.listdir(pdf_dir) if f.lower().endswith('.pdf')]
-        self.logger.log_info(f"Ditemukan {len(pdf_files)} file PDF di {pdf_dir}")
-        
-        for pdf_file in pdf_files:
-            pdf_path = os.path.join(pdf_dir, pdf_file)
-            output_file = os.path.join(output_dir, f"{os.path.splitext(pdf_file)[0]}_analisis.json")
-            
-            self.logger.log_info(f"Mulai analisis batch untuk {pdf_file}")
-            try:
-                result = self.analyze_pdf(pdf_path, output_file, **kwargs)
-                results[pdf_file] = result
-                self.logger.log_info(f"Berhasil menganalisis {pdf_file}")
-            except Exception as e:
-                self.logger.log_info(f"Gagal menganalisis {pdf_file}: {str(e)}", "ERROR")
-                results[pdf_file] = {"error": str(e)}
-                
-        return results
-
 
 # Contoh penggunaan
 if __name__ == "__main__":
-    # Inisialisasi analyzer dengan custom logger
-    analyzer = PDFAnalyzer(log_dir="logs")
+    # Inisialisasi analyzer
+    analyzer = PDFAnalyzer(output_dir="hasil_analisis")
     
-    # Analisis file tunggal
-    pdf_path = "ABF Indonesia Bond Index Fund.pdf"
-    analyzer.analyze_pdf(
-        pdf_path, 
+    # List file PDF untuk dianalisis [nama_file, path_file]
+    pdf_files = [
+        ['ABF Indonesia Bond Index Fund', 'data/ABF Indonesia Bond Index Fund.pdf'],
+        ['Sucorinvest Money Market Fund', 'data/Sucorinvest Money Market Fund.pdf']
+    ]
+    
+    # Proses analisis
+    hasil = analyzer.analyze(
+        pdf_files,
         min_text_length=50, 
         min_line_count=3, 
         min_line_length_percent=10
     )
     
-    # Uncomment untuk menjalankan analisis batch pada direktori
-    # analyzer.batch_analyze(
-    #     "direktori_pdf",
-    #     min_text_length=50,
-    #     min_line_count=3,
-    #     min_line_length_percent=10
-    # )
+    # Output hasil
+    print("Rangkuman hasil analisis:")
+    for pdf_name, result in hasil.items():
+        if "error" in result:
+            print(f"- {pdf_name}: Error - {result['error']}")
+        else:
+            ai_pages = sum(1 for page_data in result.values() if page_data.get("ai_status", False))
+            total_pages = len(result)
+            print(f"- {pdf_name}: {ai_pages}/{total_pages} halaman memenuhi kriteria AI")
