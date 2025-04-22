@@ -1,6 +1,7 @@
 """
 integrated_pdf_extractor.py - Modul terintegrasi untuk ekstraksi teks PDF
 Menggabungkan metode ekstraksi langsung, OCR, dan multimodal AI dalam struktur kelas
+Dengan kemampuan logging ke file
 """
 
 import os
@@ -19,6 +20,24 @@ from dotenv import load_dotenv
 import uuid
 import logging
 
+class PdfExtractorLogger:
+    """Logger untuk mencatat aktivitas ekstraksi PDF ke file log yang sama."""
+    def __init__(self, log_dir="logs"):
+        os.makedirs(log_dir, exist_ok=True)
+        log_filename = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "_Extractor.log"
+        self.LOG_FILE = os.path.join(log_dir, log_filename)
+
+    def log(self, message, status="INFO"):
+        """Menyimpan log ke file dengan format timestamp."""
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        log_message = f"[{timestamp}] [{status}] {message}\n"
+
+        with open(self.LOG_FILE, "a", encoding="utf-8") as log_file:
+            log_file.write(log_message)
+        
+        # Juga cetak ke console untuk memudahkan debug
+        print(log_message.strip())
+
 class IntegratedPdfExtractor:
     """
     Kelas untuk mengekstrak teks dari file PDF menggunakan beberapa metode:
@@ -27,16 +46,17 @@ class IntegratedPdfExtractor:
     3. Multimodal AI untuk halaman dengan struktur kompleks
     """
     
-    def __init__(self, temp_dir="temporary_dir", dpi=300):
+    def __init__(self, temp_dir="temporary_dir", dpi=300, log_dir="logs"):
         """
         Inisialisasi PDF Extractor
         
         Args:
             temp_dir (str): Direktori untuk menyimpan file temporer
             dpi (int): Resolusi untuk merender PDF ke gambar
+            log_dir (str): Direktori untuk menyimpan file log
         """
         # Setup logging
-        self._setup_logging()
+        self._setup_logging(log_dir)
         
         # Setup parameter
         self.temp_dir = temp_dir
@@ -46,14 +66,46 @@ class IntegratedPdfExtractor:
         # Setup environment untuk Google API
         self._setup_google_api()
     
-    def _setup_logging(self):
-        """Konfigurasi logging."""
-        logging.basicConfig(
-            level=logging.INFO,
-            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-        )
-        self.logger = logging.getLogger(__name__)
+    def _setup_logging(self, log_dir):
+        """Konfigurasi logging yang lebih komprehensif."""
+        # Setup file logger
+        self.file_logger = PdfExtractorLogger(log_dir)
+        
+        # Setup console logger
+        self.console_logger = logging.getLogger(__name__)
+        self.console_logger.setLevel(logging.INFO)
+        
+        # Create console handler
+        ch = logging.StreamHandler()
+        ch.setLevel(logging.INFO)
+        
+        # Create formatter and add it to the handlers
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        ch.setFormatter(formatter)
+        
+        # Add the handlers to the logger
+        self.console_logger.addHandler(ch)
     
+    def log_info(self, message):
+        """Log info message to both file and console."""
+        self.file_logger.log(message, "INFO")
+        self.console_logger.info(message)
+    
+    def log_warning(self, message):
+        """Log warning message to both file and console."""
+        self.file_logger.log(message, "WARNING")
+        self.console_logger.warning(message)
+    
+    def log_error(self, message):
+        """Log error message to both file and console."""
+        self.file_logger.log(message, "ERROR")
+        self.console_logger.error(message)
+    
+    def log_debug(self, message):
+        """Log debug message to both file and console."""
+        self.file_logger.log(message, "DEBUG")
+        self.console_logger.debug(message)
+
     def _setup_google_api(self):
         """Setup API Google untuk metode multimodal."""
         load_dotenv()
@@ -62,13 +114,18 @@ class IntegratedPdfExtractor:
         # Configure Gemini API jika API key tersedia
         if self.google_api_key:
             genai.configure(api_key=self.google_api_key)
-            self.logger.info("Google Generative AI API berhasil dikonfigurasi")
+            self.log_info("Google Generative AI API berhasil dikonfigurasi")
         else:
-            self.logger.warning("Google API Key tidak ditemukan. Metode multimodal tidak akan berfungsi.")
+            self.log_warning("Google API Key tidak ditemukan. Metode multimodal tidak akan berfungsi.")
     
     def ensure_directory_exists(self, directory_path):
         """Memastikan direktori yang ditentukan ada, membuat jika perlu."""
-        os.makedirs(directory_path, exist_ok=True)
+        try:
+            os.makedirs(directory_path, exist_ok=True)
+            self.log_debug(f"Memastikan direktori {directory_path} ada")
+        except Exception as e:
+            self.log_error(f"Gagal membuat direktori {directory_path}: {str(e)}")
+            raise
     
     def render_pdf_page_to_image(self, pdf_path, page_num):
         """
@@ -92,7 +149,9 @@ class IntegratedPdfExtractor:
             pdf_page_index = page_num - 1
             
             if pdf_page_index < 0 or pdf_page_index >= len(doc):
-                raise ValueError(f"Page {page_num} does not exist in PDF with {len(doc)} pages")
+                error_msg = f"Page {page_num} does not exist in PDF with {len(doc)} pages"
+                self.log_error(error_msg)
+                raise ValueError(error_msg)
             
             # Get the page
             page = doc[pdf_page_index]
@@ -105,12 +164,12 @@ class IntegratedPdfExtractor:
             pix = page.get_pixmap(dpi=self.dpi)
             pix.save(image_path)
             
-            self.logger.info(f"Rendered page {page_num} to {image_path}")
+            self.log_info(f"Rendered page {page_num} to {image_path}")
             
             return image_path
         
         except Exception as e:
-            self.logger.error(f"Error rendering PDF page {page_num} to image: {str(e)}")
+            self.log_error(f"Error rendering PDF page {page_num} to image: {str(e)}")
             raise
     
     def clean_temporary_images(self):
@@ -118,7 +177,7 @@ class IntegratedPdfExtractor:
         try:
             # Check if directory exists
             if not os.path.exists(self.temp_dir):
-                self.logger.info(f"Temporary directory {self.temp_dir} does not exist. Nothing to clean.")
+                self.log_info(f"Temporary directory {self.temp_dir} does not exist. Nothing to clean.")
                 return
                 
             # Get list of all files in directory
@@ -132,10 +191,10 @@ class IntegratedPdfExtractor:
                     os.remove(file_path)
                     file_count += 1
                     
-            self.logger.info(f"Cleaned up {file_count} temporary image files from {self.temp_dir}")
+            self.log_info(f"Cleaned up {file_count} temporary image files from {self.temp_dir}")
             
         except Exception as e:
-            self.logger.error(f"Error cleaning temporary images: {str(e)}")
+            self.log_error(f"Error cleaning temporary images: {str(e)}")
     
     def extract_with_direct_method(self, pdf_path, page_num, existing_result=None):
         """
@@ -183,7 +242,9 @@ class IntegratedPdfExtractor:
                 pdf_page_index = page_num - 1
                 
                 if pdf_page_index < 0 or pdf_page_index >= len(pdf_reader.pages):
-                    raise ValueError(f"Page {page_num} does not exist in PDF with {len(pdf_reader.pages)} pages")
+                    error_msg = f"Page {page_num} does not exist in PDF with {len(pdf_reader.pages)} pages"
+                    self.log_error(error_msg)
+                    raise ValueError(error_msg)
                 
                 pdf_page = pdf_reader.pages[pdf_page_index]
                 text = pdf_page.extract_text()
@@ -195,24 +256,29 @@ class IntegratedPdfExtractor:
                         "type": "text",
                         "content": text.strip()
                     }]
+                    self.log_info(f"Direct extraction successful for page {page_num}")
                 else:
                     result["extraction"]["content_blocks"] = [{
                         "block_id": 1,
                         "type": "text",
                         "content": "No text content could be extracted directly from this page."
                     }]
+                    self.log_warning(f"No text extracted directly from page {page_num}")
                     
         except Exception as e:
             # Handle extraction errors
+            error_msg = f"Error during direct extraction: {str(e)}"
             result["extraction"]["content_blocks"] = [{
                 "block_id": 1,
                 "type": "text",
-                "content": f"Error during direct extraction: {str(e)}"
+                "content": error_msg
             }]
+            self.log_error(error_msg)
         
         # Calculate and record processing time
         processing_time = time.time() - start_time
         result["extraction"]["processing_time"] = f"{processing_time:.2f} seconds"
+        self.log_debug(f"Direct extraction for page {page_num} took {processing_time:.2f} seconds")
         
         return result
     
@@ -262,7 +328,9 @@ class IntegratedPdfExtractor:
             pdf_page_index = page_num - 1
             
             if pdf_page_index < 0 or pdf_page_index >= len(doc):
-                raise ValueError(f"Page {page_num} does not exist in PDF with {len(doc)} pages")
+                error_msg = f"Page {page_num} does not exist in PDF with {len(doc)} pages"
+                self.log_error(error_msg)
+                raise ValueError(error_msg)
             
             page = doc[pdf_page_index]
             
@@ -290,24 +358,29 @@ class IntegratedPdfExtractor:
                     "type": "text",
                     "content": text.strip()
                 }]
+                self.log_info(f"OCR extraction successful for page {page_num}")
             else:
                 result["extraction"]["content_blocks"] = [{
                     "block_id": 1,
                     "type": "text",
                     "content": "No text content could be extracted via OCR from this page."
                 }]
+                self.log_warning(f"No text extracted via OCR from page {page_num}")
                     
         except Exception as e:
             # Handle extraction errors
+            error_msg = f"Error during OCR extraction: {str(e)}"
             result["extraction"]["content_blocks"] = [{
                 "block_id": 1,
                 "type": "text",
-                "content": f"Error during OCR extraction: {str(e)}"
+                "content": error_msg
             }]
+            self.log_error(error_msg)
         
         # Calculate and record processing time
         processing_time = time.time() - start_time
         result["extraction"]["processing_time"] = f"{processing_time:.2f} seconds"
+        self.log_debug(f"OCR extraction for page {page_num} took {processing_time:.2f} seconds")
         
         return result
     
@@ -392,6 +465,7 @@ class IntegratedPdfExtractor:
         if page_analysis.get("line_status", False):
             prompt += "\nPerhatikan garis-garis dan elemen visual untuk mengidentifikasi struktur tabel, diagram, atau flowchart dengan benar."
         
+        # self.log_debug(f"Created multimodal prompt: {prompt}")
         return prompt
     
     def process_with_multimodal_api(self, image_path, prompt):
@@ -429,10 +503,11 @@ class IntegratedPdfExtractor:
             try:
                 # Try to parse as JSON
                 content_json = json.loads(json_content)
+                self.log_info("Successfully parsed JSON from multimodal API response")
                 return content_json
             except json.JSONDecodeError:
                 # If JSON parsing fails, return as raw text
-                self.logger.warning("Failed to parse JSON from model response, returning raw text")
+                self.log_warning("Failed to parse JSON from model response, returning raw text")
                 return {
                     "content_blocks": [
                         {
@@ -444,7 +519,7 @@ class IntegratedPdfExtractor:
                 }
         
         except Exception as e:
-            self.logger.error(f"Error processing image with multimodal API: {str(e)}")
+            self.log_error(f"Error processing image with multimodal API: {str(e)}")
             return {
                 "content_blocks": [
                     {
@@ -508,6 +583,7 @@ class IntegratedPdfExtractor:
             # Update the result with content blocks
             if "content_blocks" in content_result:
                 result["extraction"]["content_blocks"] = content_result["content_blocks"]
+                self.log_info(f"Multimodal extraction successful for page {page_num}")
             else:
                 # Fallback if we didn't get content blocks
                 result["extraction"]["content_blocks"] = [{
@@ -515,11 +591,12 @@ class IntegratedPdfExtractor:
                     "type": "text",
                     "content": "No structured content could be extracted via multimodal processing."
                 }]
+                self.log_warning(f"No structured content from multimodal processing for page {page_num}")
             
         except Exception as e:
             # Handle extraction errors
             error_message = f"Error during multimodal extraction: {str(e)}"
-            self.logger.error(error_message)
+            self.log_error(error_message)
             
             result["extraction"]["content_blocks"] = [{
                 "block_id": 1,
@@ -530,6 +607,7 @@ class IntegratedPdfExtractor:
         # Calculate and record processing time
         processing_time = time.time() - start_time
         result["extraction"]["processing_time"] = f"{processing_time:.2f} seconds"
+        self.log_debug(f"Multimodal extraction for page {page_num} took {processing_time:.2f} seconds")
         
         return result
     
@@ -566,6 +644,7 @@ class IntegratedPdfExtractor:
                 "analysis": page_analysis
             }
         
+        self.log_info(f"Initialized output data structure for {Path(pdf_path).name}")
         return output_data
     
     def process_pdf(self, pdf_path, analysis_json_path, output_json_path):
@@ -584,17 +663,17 @@ class IntegratedPdfExtractor:
         self.ensure_directory_exists(self.temp_dir)
         
         # Load analysis results
-        self.logger.info(f"Loading analysis data from {analysis_json_path}")
+        self.log_info(f"Loading analysis data from {analysis_json_path}")
         with open(analysis_json_path, 'r', encoding='utf-8') as f:
             analysis_data = json.load(f)
         
         # Create or load output JSON
         if os.path.exists(output_json_path):
-            self.logger.info(f"Loading existing output data from {output_json_path}")
+            self.log_info(f"Loading existing output data from {output_json_path}")
             with open(output_json_path, 'r', encoding='utf-8') as f:
                 output_data = json.load(f)
         else:
-            self.logger.info(f"Initializing new output data structure")
+            self.log_info(f"Initializing new output data structure")
             output_data = self.initialize_output_data(pdf_path, analysis_data)
         
         # Process start time
@@ -616,7 +695,7 @@ class IntegratedPdfExtractor:
             
             if page_processed:
                 method = output_data["pages"][page_num]["extraction"]["method"]
-                self.logger.info(f"Page {page_num} already processed with {method}. Skipping.")
+                self.log_info(f"Page {page_num} already processed with {method}. Skipping.")
                 continue
             
             # Decide which method to use based on flags:
@@ -624,26 +703,26 @@ class IntegratedPdfExtractor:
             
             # Case 1: Direct extraction (no OCR, no lines, no AI)
             if not ocr_status and not line_status and not ai_status:
-                self.logger.info(f"Processing page {page_num} with direct extraction...")
+                self.log_info(f"Processing page {page_num} with direct extraction...")
                 result = self.extract_with_direct_method(pdf_path, int(page_num), existing_result)
                 processed_count["direct"] += 1
             
             # Case 2: OCR only (OCR needed, but no complex structure)
             elif ocr_status and not line_status and not ai_status:
-                self.logger.info(f"Processing page {page_num} with OCR extraction...")
+                self.log_info(f"Processing page {page_num} with OCR extraction...")
                 result = self.extract_with_ocr_method(pdf_path, int(page_num), existing_result)
                 processed_count["ocr"] += 1
             
             # Case 3 & 4: Multimodal (complex cases with lines or AI needed)
             elif ((ocr_status and line_status and ai_status) or 
                 (not ocr_status and line_status and ai_status)):
-                self.logger.info(f"Processing page {page_num} with multimodal extraction...")
+                self.log_info(f"Processing page {page_num} with multimodal extraction...")
                 result = self.extract_with_multimodal_method(pdf_path, int(page_num), existing_result)
                 processed_count["multimodal"] += 1
             
             # Default case: Use multimodal as fallback for any other combination
             else:
-                self.logger.info(f"Processing page {page_num} with multimodal extraction (fallback)...")
+                self.log_info(f"Processing page {page_num} with multimodal extraction (fallback)...")
                 result = self.extract_with_multimodal_method(pdf_path, int(page_num), existing_result)
                 processed_count["multimodal"] += 1
             
@@ -663,8 +742,8 @@ class IntegratedPdfExtractor:
         
         # Log completion
         total_processed = sum(processed_count.values())
-        self.logger.info(f"PDF processing completed. Total pages processed: {total_processed}")
-        self.logger.info(f"Direct: {processed_count['direct']}, OCR: {processed_count['ocr']}, Multimodal: {processed_count['multimodal']}")
+        self.log_info(f"PDF processing completed. Total pages processed: {total_processed}")
+        self.log_info(f"Direct: {processed_count['direct']}, OCR: {processed_count['ocr']}, Multimodal: {processed_count['multimodal']}")
         
         return output_data
     
@@ -687,7 +766,7 @@ class IntegratedPdfExtractor:
         
         for pdf_name, pdf_path in pdf_files:
             try:
-                self.logger.info(f"Memulai pemrosesan untuk {pdf_name}")
+                self.log_info(f"Memulai pemrosesan untuk {pdf_name}")
                 
                 # Path untuk file analisis dan output
                 analysis_json_path = os.path.join(analysis_dir, f"{pdf_name}_analisis.json")
@@ -697,10 +776,10 @@ class IntegratedPdfExtractor:
                 result = self.process_pdf(pdf_path, analysis_json_path, output_json_path)
                 hasil_ekstraksi[pdf_name] = result
                 
-                self.logger.info(f"Pemrosesan selesai untuk {pdf_name}")
+                self.log_info(f"Pemrosesan selesai untuk {pdf_name}")
                 
             except Exception as e:
-                self.logger.error(f"Gagal memproses {pdf_name}: {str(e)}")
+                self.log_error(f"Gagal memproses {pdf_name}: {str(e)}")
                 hasil_ekstraksi[pdf_name] = {"error": str(e)}
         
         return hasil_ekstraksi

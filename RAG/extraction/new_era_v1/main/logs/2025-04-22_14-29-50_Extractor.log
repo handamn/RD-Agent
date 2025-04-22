@@ -1,0 +1,152 @@
+[2025-04-22 14:29:50] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-22 14:29:50] [WARNING] Google API Key tidak ditemukan. Metode multimodal tidak akan berfungsi.
+[2025-04-22 14:29:50] [DEBUG] Memastikan direktori database/extracted_result ada
+[2025-04-22 14:29:50] [INFO] Memulai pemrosesan untuk ABF Indonesia Bond Index Fund
+[2025-04-22 14:29:50] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-22 14:29:50] [INFO] Loading analysis data from database/classified_result\ABF Indonesia Bond Index Fund_analisis.json
+[2025-04-22 14:29:50] [INFO] Initializing new output data structure
+[2025-04-22 14:29:50] [INFO] Initialized output data structure for ABF Indonesia Bond Index Fund.pdf
+[2025-04-22 14:29:50] [INFO] Processing page 1 with multimodal extraction...
+[2025-04-22 14:29:50] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-22 14:29:50] [INFO] Rendered page 1 to temporary_dir\image_page_1_449d9015.png
+[2025-04-22 14:29:50] [DEBUG] Created multimodal prompt: Analisis gambar ini secara detail dan ekstrak semua konten dengan mempertahankan struktur aslinya. Identifikasi dan berikan output dalam format berikut:
+
+1. Semua teks, termasuk heading, paragraf dan caption.
+2. Tabel lengkap dengan data seluruh baris dan kolom beserta judulnya.
+3. Grafik dan diagram, termasuk judul, label, nilai data, dan deskripsi visual.
+4. Flowchart dengan elemen-elemen dan hubungannya.
+5. Gambar dengan deskripsi dan caption (jika ada).
+
+Berikan output yang lengkap dan terstruktur dalam format JSON seperti contoh berikut:
+```json
+{
+  "content_blocks": [
+    {
+      "block_id": 1,
+      "type": "text",
+      "content": "Teks lengkap dari bagian ini..."
+    },
+    {
+      "block_id": 2,
+      "type": "table",
+      "title": "Judul tabel (jika ada)",
+      "data": [
+        {"header_1": "nilai_baris_1_kolom_1", "header_2": "nilai_baris_1_kolom_2"},
+        {"header_1": "nilai_baris_2_kolom_1", "header_2": "nilai_baris_2_kolom_2"}
+      ],
+      "summary_table": "Deskripsi singkat tentang tabel"
+    },
+    {
+      "block_id": 3,
+      "type": "chart",
+      "chart_type": "line",
+      "title": "Judul grafik",
+      "data": {
+        "labels": ["label_1", "label_2", "label_3"],
+        "datasets": [
+          {
+            "label": "Dataset 1",
+            "values": [5.2, 6.3, 7.1]
+          }
+        ]
+      },
+      "summary_chart": "Deskripsi singkat tentang grafik"
+    },
+    {
+      "block_id": 4,
+      "type": "flowchart",
+      "title": "Judul flowchart",
+      "elements": [
+        {"type": "node", "id": "1", "text": "Langkah 1", "connects_to": ["2"]},
+        {"type": "node", "id": "2", "text": "Langkah 2", "connects_to": ["3"]},
+        {"type": "node", "id": "3", "text": "Langkah 3", "connects_to": []}
+      ],
+      "summary_flowchart": "Deskripsi singkat tentang flowchart"
+    },
+    {
+      "block_id": 5,
+      "type": "image",
+      "description_image": "Deskripsi detail tentang gambar"
+    }
+  ]
+}
+```
+Pastikan mengekstrak SEMUA konten termasuk angka, teks lengkap, dan struktur dengan tepat sesuai format di atas.
+Perhatikan garis-garis dan elemen visual untuk mengidentifikasi struktur tabel, diagram, atau flowchart dengan benar.
+[2025-04-22 14:30:02] [ERROR] Error processing image with multimodal API: 
+  No API_KEY or ADC found. Please either:
+    - Set the `GOOGLE_API_KEY` environment variable.
+    - Manually pass the key with `genai.configure(api_key=my_api_key)`.
+    - Or set up Application Default Credentials, see https://ai.google.dev/gemini-api/docs/oauth for more information.
+[2025-04-22 14:30:02] [INFO] Multimodal extraction successful for page 1
+[2025-04-22 14:30:02] [DEBUG] Multimodal extraction for page 1 took 12.35 seconds
+[2025-04-22 14:30:02] [INFO] Processing page 2 with direct extraction...
+[2025-04-22 14:30:02] [INFO] Direct extraction successful for page 2
+[2025-04-22 14:30:02] [DEBUG] Direct extraction for page 2 took 0.04 seconds
+[2025-04-22 14:30:02] [INFO] Processing page 3 with multimodal extraction...
+[2025-04-22 14:30:02] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-22 14:30:02] [INFO] Rendered page 3 to temporary_dir\image_page_3_9d564a2a.png
+[2025-04-22 14:30:02] [DEBUG] Created multimodal prompt: Analisis gambar ini secara detail dan ekstrak semua konten dengan mempertahankan struktur aslinya. Identifikasi dan berikan output dalam format berikut:
+
+1. Semua teks, termasuk heading, paragraf dan caption.
+2. Tabel lengkap dengan data seluruh baris dan kolom beserta judulnya.
+3. Grafik dan diagram, termasuk judul, label, nilai data, dan deskripsi visual.
+4. Flowchart dengan elemen-elemen dan hubungannya.
+5. Gambar dengan deskripsi dan caption (jika ada).
+
+Berikan output yang lengkap dan terstruktur dalam format JSON seperti contoh berikut:
+```json
+{
+  "content_blocks": [
+    {
+      "block_id": 1,
+      "type": "text",
+      "content": "Teks lengkap dari bagian ini..."
+    },
+    {
+      "block_id": 2,
+      "type": "table",
+      "title": "Judul tabel (jika ada)",
+      "data": [
+        {"header_1": "nilai_baris_1_kolom_1", "header_2": "nilai_baris_1_kolom_2"},
+        {"header_1": "nilai_baris_2_kolom_1", "header_2": "nilai_baris_2_kolom_2"}
+      ],
+      "summary_table": "Deskripsi singkat tentang tabel"
+    },
+    {
+      "block_id": 3,
+      "type": "chart",
+      "chart_type": "line",
+      "title": "Judul grafik",
+      "data": {
+        "labels": ["label_1", "label_2", "label_3"],
+        "datasets": [
+          {
+            "label": "Dataset 1",
+            "values": [5.2, 6.3, 7.1]
+          }
+        ]
+      },
+      "summary_chart": "Deskripsi singkat tentang grafik"
+    },
+    {
+      "block_id": 4,
+      "type": "flowchart",
+      "title": "Judul flowchart",
+      "elements": [
+        {"type": "node", "id": "1", "text": "Langkah 1", "connects_to": ["2"]},
+        {"type": "node", "id": "2", "text": "Langkah 2", "connects_to": ["3"]},
+        {"type": "node", "id": "3", "text": "Langkah 3", "connects_to": []}
+      ],
+      "summary_flowchart": "Deskripsi singkat tentang flowchart"
+    },
+    {
+      "block_id": 5,
+      "type": "image",
+      "description_image": "Deskripsi detail tentang gambar"
+    }
+  ]
+}
+```
+Pastikan mengekstrak SEMUA konten termasuk angka, teks lengkap, dan struktur dengan tepat sesuai format di atas.
+Perhatikan garis-garis dan elemen visual untuk mengidentifikasi struktur tabel, diagram, atau flowchart dengan benar.

@@ -13,7 +13,7 @@ class Logger:
     """Logger untuk mencatat aktivitas analisis PDF ke file log yang sama."""
     def __init__(self, log_dir="logs"):
         os.makedirs(log_dir, exist_ok=True)
-        log_filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "_PDF_Analyzer.log"
+        log_filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "_Classify.log"
         self.LOG_FILE = os.path.join(log_dir, log_filename)
 
     def log_info(self, message, status="INFO"):

@@ -1,0 +1,24 @@
+[2025-04-22 14:30:50] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-22 14:30:50] [WARNING] Google API Key tidak ditemukan. Metode multimodal tidak akan berfungsi.
+[2025-04-22 14:30:50] [DEBUG] Memastikan direktori database/extracted_result ada
+[2025-04-22 14:30:50] [INFO] Memulai pemrosesan untuk ABF Indonesia Bond Index Fund
+[2025-04-22 14:30:50] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-22 14:30:50] [INFO] Loading analysis data from database/classified_result\ABF Indonesia Bond Index Fund_analisis.json
+[2025-04-22 14:30:50] [INFO] Initializing new output data structure
+[2025-04-22 14:30:50] [INFO] Initialized output data structure for ABF Indonesia Bond Index Fund.pdf
+[2025-04-22 14:30:50] [INFO] Processing page 1 with multimodal extraction...
+[2025-04-22 14:30:50] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-22 14:30:50] [INFO] Rendered page 1 to temporary_dir\image_page_1_f47044a0.png
+[2025-04-22 14:31:02] [ERROR] Error processing image with multimodal API: 
+  No API_KEY or ADC found. Please either:
+    - Set the `GOOGLE_API_KEY` environment variable.
+    - Manually pass the key with `genai.configure(api_key=my_api_key)`.
+    - Or set up Application Default Credentials, see https://ai.google.dev/gemini-api/docs/oauth for more information.
+[2025-04-22 14:31:02] [INFO] Multimodal extraction successful for page 1
+[2025-04-22 14:31:02] [DEBUG] Multimodal extraction for page 1 took 12.12 seconds
+[2025-04-22 14:31:02] [INFO] Processing page 2 with direct extraction...
+[2025-04-22 14:31:02] [INFO] Direct extraction successful for page 2
+[2025-04-22 14:31:02] [DEBUG] Direct extraction for page 2 took 0.04 seconds
+[2025-04-22 14:31:02] [INFO] Processing page 3 with multimodal extraction...
+[2025-04-22 14:31:02] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-22 14:31:02] [INFO] Rendered page 3 to temporary_dir\image_page_3_c8311d6d.png
