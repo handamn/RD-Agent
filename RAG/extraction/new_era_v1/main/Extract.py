@@ -489,34 +489,9 @@ class IntegratedPdfExtractor:
             # Generate content
             response = model.generate_content([prompt, pil_image])
             
-            # Extract and parse JSON content
+            # Extract and parse JSON content using the new function
             response_text = response.text
-            
-            # Try to extract JSON from the response if it's wrapped in code blocks
-            if "```json" in response_text and "```" in response_text:
-                json_content = response_text.split("```json")[1].split("```")[0].strip()
-            elif "```" in response_text:
-                json_content = response_text.split("```")[1].split("```")[0].strip()
-            else:
-                json_content = response_text
-            
-            try:
-                # Try to parse as JSON
-                content_json = json.loads(json_content)
-                self.log_info("Successfully parsed JSON from multimodal API response")
-                return content_json
-            except json.JSONDecodeError:
-                # If JSON parsing fails, return as raw text
-                self.log_warning("Failed to parse JSON from model response, returning raw text")
-                return {
-                    "content_blocks": [
-                        {
-                            "block_id": 1,
-                            "type": "text",
-                            "content": response_text
-                        }
-                    ]
-                }
+            return self.extract_json_content(response_text)
         
         except Exception as e:
             self.log_error(f"Error processing image with multimodal API: {str(e)}")
@@ -528,6 +503,69 @@ class IntegratedPdfExtractor:
                         "content": f"Error during multimodal processing: {str(e)}"
                     }
                 ]
+            }
+
+    def extract_json_content(self, response_text):
+        """
+        Extract and parse JSON content from a text response.
+        Handles various formats including code blocks with or without language specifiers.
+        """
+        # Case 1: Check for ```json format first
+        if "```json" in response_text and "```" in response_text.split("```json", 1)[1]:
+            parts = response_text.split("```json", 1)[1].split("```", 1)
+            json_content = parts[0].strip()
+        
+        # Case 2: Check for any code block format (```python, ```javascript, etc)
+        elif "```" in response_text:
+            # Get all content between first and second ``` markers
+            code_blocks = response_text.split("```")
+            if len(code_blocks) >= 3:  # Ensure we have opening and closing markers
+                # If language specifier is present, remove it
+                content = code_blocks[1].strip()
+                if content.split("\n", 1)[0].strip() and not content.split("\n", 1)[0].startswith("{"):
+                    # Remove the first line (language specifier)
+                    json_content = content.split("\n", 1)[1].strip() if "\n" in content else ""
+                else:
+                    json_content = content
+            else:
+                json_content = response_text
+        
+        # Case 3: Look for JSON-like content with curly braces
+        elif "{" in response_text and "}" in response_text:
+            # Try to extract content between first { and last }
+            try:
+                start = response_text.find("{")
+                end = response_text.rfind("}") + 1
+                if start >= 0 and end > start:
+                    json_content = response_text[start:end]
+                else:
+                    json_content = response_text
+            except:
+                json_content = response_text
+        
+        # Case 4: No special format detected
+        else:
+            json_content = response_text
+        
+        try:
+            # Try to parse as JSON
+            content_json = json.loads(json_content)
+            self.log_info(f"Successfully parsed JSON from API response: {type(content_json)}")
+            return content_json
+        except json.JSONDecodeError as e:
+            # Log the error details for debugging
+            self.log_warning(f"JSON parsing error: {str(e)} in content: {json_content[:100]}...")
+            
+            # If JSON parsing fails, return as raw text with structured format
+            return {
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": response_text
+                    }
+                ],
+                "parsing_error": str(e)
             }
     
     def extract_with_multimodal_method(self, pdf_path, page_num, existing_result=None):
@@ -791,8 +829,8 @@ if __name__ == "__main__":
     
     # List file PDF untuk diproses [nama_file, path_file]
     pdf_files = [
-        ['ABF Indonesia Bond Index Fund', 'database/prospectus/ABF Indonesia Bond Index Fund.pdf'],
-        ['Sucorinvest Money Market Fund', 'database/prospectus/Sucorinvest Money Market Fund.pdf']
+        ['ABF Indonesia Bond Index Fund', 'database/prospectus/ABF Indonesia Bond Index Fund.pdf']
+        # ['Sucorinvest Money Market Fund', 'database/prospectus/Sucorinvest Money Market Fund.pdf']
     ]
     
     # Proses semua PDF
