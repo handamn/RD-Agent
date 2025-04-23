@@ -1,0 +1,21 @@
+pelajari hasil curhat ke claude
+
+coba lanjutin process_with_multimodal_api
+
+setelah if gak masuk maka coba manfaatin image untuk dicrop
+
+buat fungsi crop
+
+proses per segmen dulu 1, 2, 3
+
+segmen 1 bisa pakai prompt asli atau prompt sebelumnya + beberapa prompt spesifik promp1
+hasil segmen 1 coba diparse dengan self.extract_json_content(response_text)
+pastikan hasil segmen bisa diparse
+
+segmen 2 bisa pakai prompt asli + beberapa prompt spesifik prompt2(perintah untuk analisa overlap dan otomatis gabung) + hasil segmen1
+hasil segmen 2 coba diparse dengan self.extract_json_content(response_text)
+pastikan hasil segmen bisa diparse
+
+segmen 3 bisa pakai prompt asli + beberapa prompt spesifik prompt3(perintah untuk analisa overlap dan otomatis gabung) + hasil segmen2
+hasil segmen 3 coba diparse dengan self.extract_json_content(response_text)
+pastikan hasil segmen bisa diparse
