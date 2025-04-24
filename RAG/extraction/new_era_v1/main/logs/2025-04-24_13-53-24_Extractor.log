@@ -1,0 +1,53 @@
+[2025-04-24 13:53:24] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-24 13:53:24] [INFO] Google Generative AI API berhasil dikonfigurasi
+[2025-04-24 13:53:24] [DEBUG] Memastikan direktori database/extracted_result ada
+[2025-04-24 13:53:24] [INFO] Memulai pemrosesan untuk ABF latihan
+[2025-04-24 13:53:24] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-24 13:53:24] [INFO] Loading analysis data from database/classified_result\ABF latihan_analisis.json
+[2025-04-24 13:53:24] [INFO] Initializing new output data structure
+[2025-04-24 13:53:24] [INFO] Initialized output data structure for ABF latihan.pdf
+[2025-04-24 13:53:24] [INFO] Processing page 1 with OCR extraction...
+[2025-04-24 13:53:26] [INFO] OCR extraction successful for page 1
+[2025-04-24 13:53:26] [DEBUG] OCR extraction for page 1 took 1.88 seconds
+[2025-04-24 13:53:26] [INFO] Processing page 2 with multimodal extraction...
+[2025-04-24 13:53:26] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-24 13:53:27] [INFO] Rendered page 2 to temporary_dir\image_page_2_0249faf4.png
+[2025-04-24 13:54:06] [WARNING] JSON parsing error: Expecting value: line 1 column 1 (char 0) in content: ```json
+{
+  "content_blocks": [
+    {
+      "block_id": 1,
+      "type": "text",
+      "content": "R...
+[2025-04-24 13:54:45] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-24 13:54:45] [INFO] Multimodal extraction successful for page 2
+[2025-04-24 13:54:45] [DEBUG] Multimodal extraction for page 2 took 78.31 seconds
+[2025-04-24 13:54:45] [INFO] Processing page 3 with multimodal extraction...
+[2025-04-24 13:54:45] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-24 13:54:45] [INFO] Rendered page 3 to temporary_dir\image_page_3_c27032b6.png
+[2025-04-24 13:55:25] [WARNING] JSON parsing error: Expecting value: line 1 column 1 (char 0) in content: ```json
+{
+  "content_blocks": [
+    {
+      "block_id": 1,
+      "type": "text",
+      "content": "R...
+[2025-04-24 13:55:52] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-24 13:55:52] [INFO] Multimodal extraction successful for page 3
+[2025-04-24 13:55:52] [DEBUG] Multimodal extraction for page 3 took 67.06 seconds
+[2025-04-24 13:55:52] [INFO] Processing page 4 with multimodal extraction...
+[2025-04-24 13:55:52] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-24 13:55:52] [INFO] Rendered page 4 to temporary_dir\image_page_4_c1952846.png
+[2025-04-24 13:56:23] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-24 13:56:23] [INFO] Multimodal extraction successful for page 4
+[2025-04-24 13:56:23] [DEBUG] Multimodal extraction for page 4 took 31.32 seconds
+[2025-04-24 13:56:23] [INFO] Processing page 5 with multimodal extraction...
+[2025-04-24 13:56:23] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-24 13:56:23] [INFO] Rendered page 5 to temporary_dir\image_page_5_9b2cb5e8.png
+[2025-04-24 13:56:35] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-24 13:56:35] [INFO] Multimodal extraction successful for page 5
+[2025-04-24 13:56:35] [DEBUG] Multimodal extraction for page 5 took 12.01 seconds
+[2025-04-24 13:56:35] [INFO] Cleaned up 6 temporary image files from temporary_dir
+[2025-04-24 13:56:35] [INFO] PDF processing completed. Total pages processed: 5
+[2025-04-24 13:56:35] [INFO] Direct: 0, OCR: 1, Multimodal: 4
+[2025-04-24 13:56:35] [INFO] Pemrosesan selesai untuk ABF latihan

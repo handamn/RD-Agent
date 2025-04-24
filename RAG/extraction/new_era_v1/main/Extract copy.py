@@ -498,7 +498,22 @@ class IntegratedPdfExtractor:
                 return parse_json
             
             else:
-                return "GAS LANJUT DISINI CUY"
+                segments = [
+                    (0.0, 0.5),  # Segmen 1: 0% - 50% 
+                    (0.25, 0.75),  # Segmen 2: 25% - 75%
+                    (0.5, 1.0)   # Segmen 3: 50% - 100%
+                ]
+                # Segment 1
+                segment1_path = self.crop_image_segment(image_path, segments[0])
+                segment1_image = Image.open(segment1_path)
+                segment1_prompt = f"""{prompt}
+                """
+
+                response1 = model.generate_content([segment1_prompt, segment1_image])
+                response1_text = response1.text
+                parse1_json = self.extract_json_content(response1_text)
+
+                return parse1_json
         
         except Exception as e:
             self.log_error(f"Error processing image with multimodal API: {str(e)}")
@@ -576,6 +591,21 @@ class IntegratedPdfExtractor:
             # }
 
             return "try_divide_and_conquer"
+    
+    def crop_image_segment(self, image_path, segment_range):
+        """Crop image based on percentage range (start_percent, end_percent)"""
+        start_percent, end_percent = segment_range
+        img = Image.open(image_path)
+        width, height = img.size
+        
+        top = int(height * start_percent)
+        bottom = int(height * end_percent)
+        
+        segment = img.crop((0, top, width, bottom))
+        segment_path = f"{image_path.split('.')[0]}_seg_{start_percent:.2f}_{end_percent:.2f}.png"
+        segment.save(segment_path)
+        
+        return segment_path
     
     def extract_with_multimodal_method(self, pdf_path, page_num, existing_result=None):
         """
@@ -838,8 +868,9 @@ if __name__ == "__main__":
     
     # List file PDF untuk diproses [nama_file, path_file]
     pdf_files = [
-        ['ABF Indonesia Bond Index Fund', 'database/prospectus/ABF Indonesia Bond Index Fund.pdf']
+        # ['ABF Indonesia Bond Index Fund', 'database/prospectus/ABF Indonesia Bond Index Fund.pdf']
         # ['Sucorinvest Money Market Fund', 'database/prospectus/Sucorinvest Money Market Fund.pdf']
+        ['ABF latihan', 'database/prospectus/ABF latihan.pdf']
     ]
     
     # Proses semua PDF
