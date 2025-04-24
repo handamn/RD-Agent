@@ -684,6 +684,8 @@ class IntegratedPdfExtractor:
             
             # Process with multimodal API
             content_result = self.process_with_multimodal_api(image_path, prompt)
+
+            print(content_result)
             
             # Update the result with content blocks
             if "content_blocks" in content_result:
