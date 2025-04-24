@@ -503,20 +503,45 @@ class IntegratedPdfExtractor:
                     (0.25, 0.75),  # Segmen 2: 25% - 75%
                     (0.5, 1.0)   # Segmen 3: 50% - 100%
                 ]
-                # Segment 1
-                segment1_path = self.crop_image_segment(image_path, segments[0])
-                segment1_image = Image.open(segment1_path)
-                segment1_prompt = f"""{prompt}
+                # # Segment 1
+                # segment1_path = self.crop_image_segment(image_path, segments[0])
+                # segment1_image = Image.open(segment1_path)
+                # segment1_prompt = f"""{prompt}
+                # """
+
+                # response1 = model.generate_content([segment1_prompt, segment1_image])
+                # response1_text = response1.text
+                # parse1_json = self.extract_json_content(response1_text)
+
+                # print(type(parse1_json))
+                # print(parse1_json)
+
+                # Segment 2
+                segment2_path = self.crop_image_segment(image_path, segments[1])
+                segment2_image = Image.open(segment2_path)
+                # segment2_prompt = f"""
+                # Gambar ini merupakan Potongan kedua dari sebuah gambar halaman
+                # Potongan pertama telah dilakukan ekstraksi dan disimpan dalam bentuk dictionary sebagai berikut :
+                # {parse1_json}
+
+                # tugasmu adalah :
+                # 1. melakukan ekstraksi gambar ini dengan aturan yang saya buat {prompt}
+                # 2. identifikasi kesamaan pola atau data antara hasil Potongan pertama dengan hasil ekstraksi gambar potongan kedua ini
+                # 3. jika ditemukan kesamaan pola atau data maka gabungkan sedemikian rupa sehingga menjadi data yang lengkap dengan acuna format pada aturan yang saya sebutkan pada poin nomer 1
+                # """
+
+                segment2_prompt = f"""{prompt}
                 """
 
-                response1 = model.generate_content([segment1_prompt, segment1_image])
-                response1_text = response1.text
-                parse1_json = self.extract_json_content(response1_text)
+                response2 = model.generate_content([segment2_prompt, segment2_image])
+                response2_text = response2.text
+                print(response2_text)
+                parse2_json = self.extract_json_content(response2_text)
 
-                print(type(parse1_json))
-                print(parse1_json)
+                print(type(parse2_json))
+                print(parse2_json)
 
-                return parse1_json
+                return parse2_json
         
         except Exception as e:
             self.log_error(f"Error processing image with multimodal API: {str(e)}")
