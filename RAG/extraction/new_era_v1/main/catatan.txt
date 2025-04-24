@@ -19,3 +19,6 @@ pastikan hasil segmen bisa diparse
 segmen 3 bisa pakai prompt asli + beberapa prompt spesifik prompt3(perintah untuk analisa overlap dan otomatis gabung) + hasil segmen2
 hasil segmen 3 coba diparse dengan self.extract_json_content(response_text)
 pastikan hasil segmen bisa diparse
+
+
+coba bagi persentase segmentnya diperkecil lagi

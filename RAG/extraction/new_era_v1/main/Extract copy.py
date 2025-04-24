@@ -499,9 +499,11 @@ class IntegratedPdfExtractor:
             
             else:
                 segments = [
-                    (0.0, 0.5),  # Segmen 1: 0% - 50% 
-                    (0.25, 0.75),  # Segmen 2: 25% - 75%
-                    (0.5, 1.0)   # Segmen 3: 50% - 100%
+                    (0.0, 0.36),  # Segmen 1: 0% - 50% 
+                    (0.20, 0.54),  # Segmen 2: 25% - 75%
+                    (0.38, 0.72),   # Segmen 3: 50% - 100%
+                    (0.56, 0.90),
+                    (0.74, 0.100)
                 ]
                 # # Segment 1
                 # segment1_path = self.crop_image_segment(image_path, segments[0])
@@ -536,10 +538,13 @@ class IntegratedPdfExtractor:
                 response2 = model.generate_content([segment2_prompt, segment2_image])
                 response2_text = response2.text
                 print(response2_text)
+                print("----")
                 parse2_json = self.extract_json_content(response2_text)
 
+                print("===========")
                 print(type(parse2_json))
                 print(parse2_json)
+                print("===========")
 
                 return parse2_json
         
