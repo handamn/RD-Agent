@@ -1,0 +1,18 @@
+[2025-04-24 14:26:41] [INFO] PDF Analyzer diinisialisasi
+[2025-04-24 14:26:41] [INFO] Mulai analisis file database/prospectus/ABF latihan.pdf
+[2025-04-24 14:26:41] [INFO] Parameter: min_text_length=50, min_line_count=3, min_line_length_percent=10
+[2025-04-24 14:26:41] [INFO] PDF memiliki 2 halaman
+[2025-04-24 14:26:41] [INFO] Memproses halaman 1/2
+[2025-04-24 14:26:41] [DEBUG] Halaman 1: Teks tidak mencukupi, mencoba OCR
+[2025-04-24 14:26:42] [DEBUG] Halaman 1: OCR berhasil, teks mencukupi
+[2025-04-24 14:26:42] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-24 14:26:42] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-24 14:26:42] [INFO] Hasil halaman 1: OCR=True, LINE=False, AI=False
+[2025-04-24 14:26:42] [INFO] Memproses halaman 2/2
+[2025-04-24 14:26:42] [DEBUG] Halaman 2: Teks tidak mencukupi, mencoba OCR
+[2025-04-24 14:26:47] [DEBUG] Halaman 2: OCR berhasil, teks mencukupi
+[2025-04-24 14:26:47] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-24 14:26:47] [DEBUG] Ditemukan 7 garis valid, hasil: True
+[2025-04-24 14:26:47] [INFO] Hasil halaman 2: OCR=True, LINE=True, AI=True
+[2025-04-24 14:26:47] [INFO] Analisis selesai dalam 5.78 detik
+[2025-04-24 14:26:47] [INFO] Hasil disimpan ke E:\belajar-RAG\RD-Agent\RAG\extraction\new_era_v1\main\database/classified_result\ABF latihan_analisis.json

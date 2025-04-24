@@ -513,6 +513,9 @@ class IntegratedPdfExtractor:
                 response1_text = response1.text
                 parse1_json = self.extract_json_content(response1_text)
 
+                print(type(parse1_json))
+                print(parse1_json)
+
                 return parse1_json
         
         except Exception as e:
