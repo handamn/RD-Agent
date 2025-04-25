@@ -499,13 +499,13 @@ class IntegratedPdfExtractor:
             
             else:
                 segments = [
-                    (0.0, 0.26),  # Segmen 1: 0% - 50% 
-                    (0.16, 0.38),  # Segmen 2: 25% - 75%
-                    (0.28, 0.50),   # Segmen 3: 50% - 100%
-                    (0.40, 0.64),   # Segmen 4: 50% - 100%
-                    (0.52, 0.76),   # Segmen 5: 50% - 100%
-                    (0.66, 0.88),   # Segmen 6: 50% - 100%
-                    (0.78, 1.00),   # Segmen 7: 50% - 100%
+                    (0.0, 0.26),  # Segmen 1: 0% - 26% 
+                    (0.16, 0.38),  # Segmen 2: 16% - 38%
+                    (0.28, 0.50),   # Segmen 3: 28% - 50%
+                    (0.40, 0.64),   # Segmen 4: 40% - 64%
+                    (0.52, 0.76),   # Segmen 5: 52% - 76%
+                    (0.66, 0.88),   # Segmen 6: 66% - 88%
+                    (0.78, 1.00),   # Segmen 7: 78% - 100%
                 ]
                 # Segment 1
                 segment1_path = self.crop_image_segment(image_path, segments[0])
@@ -521,15 +521,7 @@ class IntegratedPdfExtractor:
                 # Segment 2
                 segment2_path = self.crop_image_segment(image_path, segments[1])
                 segment2_image = Image.open(segment2_path)
-                segment2_prompt = f"""
-                Gambar ini merupakan Potongan kedua dari sebuah gambar halaman
-                Potongan pertama telah dilakukan ekstraksi dan disimpan dalam bentuk dictionary sebagai berikut :
-                {parse1_json}
-
-                tugasmu adalah :
-                1. melakukan ekstraksi gambar ini dengan aturan yang saya buat {prompt}
-                2. identifikasi kesamaan pola atau data antara hasil Potongan pertama dengan hasil ekstraksi gambar potongan kedua ini
-                3. jika ditemukan kesamaan pola atau data maka gabungkan sedemikian rupa sehingga menjadi data yang lengkap dengan acuan format pada aturan yang saya sebutkan pada poin nomer 1
+                segment2_prompt = f"""{prompt}
                 """
 
                 response2 = model.generate_content([segment2_prompt, segment2_image])
@@ -540,15 +532,7 @@ class IntegratedPdfExtractor:
                 # Segment 3
                 segment3_path = self.crop_image_segment(image_path, segments[2])
                 segment3_image = Image.open(segment3_path)
-                segment3_prompt = f"""
-                Gambar ini merupakan Potongan ketiga dari sebuah gambar halaman
-                Potongan pertama sampai kedua telah dilakukan ekstraksi dan disimpan dalam bentuk dictionary sebagai berikut :
-                {parse2_json}
-
-                tugasmu adalah :
-                1. melakukan ekstraksi gambar ini dengan aturan yang saya buat {prompt}
-                2. identifikasi kesamaan pola atau data antara hasil Potongan pertama sampai kedua dengan hasil ekstraksi gambar potongan ketiga ini
-                3. jika ditemukan kesamaan pola atau data maka gabungkan sedemikian rupa sehingga menjadi data yang lengkap dengan acuan format pada aturan yang saya sebutkan pada poin nomer 1
+                segment3_prompt = f"""{prompt}
                 """
 
                 response3 = model.generate_content([segment3_prompt, segment3_image])
@@ -559,15 +543,7 @@ class IntegratedPdfExtractor:
                 # Segment 4
                 segment4_path = self.crop_image_segment(image_path, segments[3])
                 segment4_image = Image.open(segment4_path)
-                segment4_prompt = f"""
-                Gambar ini merupakan Potongan keempat dari sebuah gambar halaman
-                Potongan pertama sampai ketiga telah dilakukan ekstraksi dan disimpan dalam bentuk dictionary sebagai berikut :
-                {parse3_json}
-
-                tugasmu adalah :
-                1. melakukan ekstraksi gambar ini dengan aturan yang saya buat {prompt}
-                2. identifikasi kesamaan pola atau data antara hasil Potongan pertama sampai ketiga dengan hasil ekstraksi gambar potongan keempat ini
-                3. jika ditemukan kesamaan pola atau data maka gabungkan sedemikian rupa sehingga menjadi data yang lengkap dengan acuan format pada aturan yang saya sebutkan pada poin nomer 1
+                segment4_prompt = f"""{prompt}
                 """
 
                 response4 = model.generate_content([segment4_prompt, segment4_image])
@@ -578,15 +554,7 @@ class IntegratedPdfExtractor:
                 # Segment 5
                 segment5_path = self.crop_image_segment(image_path, segments[4])
                 segment5_image = Image.open(segment5_path)
-                segment5_prompt = f"""
-                Gambar ini merupakan Potongan kelima dari sebuah gambar halaman
-                Potongan pertama sampai keempat telah dilakukan ekstraksi dan disimpan dalam bentuk dictionary sebagai berikut :
-                {parse4_json}
-
-                tugasmu adalah :
-                1. melakukan ekstraksi gambar ini dengan aturan yang saya buat {prompt}
-                2. identifikasi kesamaan pola atau data antara hasil Potongan pertama sampai keempat dengan hasil ekstraksi gambar potongan kelima ini
-                3. jika ditemukan kesamaan pola atau data maka gabungkan sedemikian rupa sehingga menjadi data yang lengkap dengan acuan format pada aturan yang saya sebutkan pada poin nomer 1
+                segment5_prompt = f"""{prompt}
                 """
 
                 response5 = model.generate_content([segment5_prompt, segment5_image])
@@ -597,15 +565,7 @@ class IntegratedPdfExtractor:
                 # Segment 6
                 segment6_path = self.crop_image_segment(image_path, segments[5])
                 segment6_image = Image.open(segment6_path)
-                segment6_prompt = f"""
-                Gambar ini merupakan Potongan keenam dari sebuah gambar halaman
-                Potongan pertama sampai kelima telah dilakukan ekstraksi dan disimpan dalam bentuk dictionary sebagai berikut :
-                {parse5_json}
-
-                tugasmu adalah :
-                1. melakukan ekstraksi gambar ini dengan aturan yang saya buat {prompt}
-                2. identifikasi kesamaan pola atau data antara hasil Potongan pertama sampai keenam dengan hasil ekstraksi gambar potongan keenam ini
-                3. jika ditemukan kesamaan pola atau data maka gabungkan sedemikian rupa sehingga menjadi data yang lengkap dengan acuan format pada aturan yang saya sebutkan pada poin nomer 1
+                segment6_prompt = f"""{prompt}
                 """
 
                 response6 = model.generate_content([segment6_prompt, segment6_image])
@@ -616,20 +576,41 @@ class IntegratedPdfExtractor:
                 # Segment 7
                 segment7_path = self.crop_image_segment(image_path, segments[6])
                 segment7_image = Image.open(segment7_path)
-                segment7_prompt = f"""
-                Gambar ini merupakan Potongan ketujuh dari sebuah gambar halaman
-                Potongan pertama sampai keenam telah dilakukan ekstraksi dan disimpan dalam bentuk dictionary sebagai berikut :
-                {parse6_json}
-
-                tugasmu adalah :
-                1. melakukan ekstraksi gambar ini dengan aturan yang saya buat {prompt}
-                2. identifikasi kesamaan pola atau data antara hasil Potongan pertama sampai keenam dengan hasil ekstraksi gambar potongan ketujuh ini
-                3. jika ditemukan kesamaan pola atau data maka gabungkan sedemikian rupa sehingga menjadi data yang lengkap dengan acuan format pada aturan yang saya sebutkan pada poin nomer 1
+                segment7_prompt = f"""{prompt}
                 """
 
                 response7 = model.generate_content([segment7_prompt, segment7_image])
                 response7_text = response7.text
                 parse7_json = self.extract_json_content(response7_text)
+
+
+                ### Gabung
+                gabung_prompt = f"""
+                saya memiliki sebuah gambar halaman yang telah saya lakukan ekstraksi.
+                ekstraksi yang saya lakukan saya bagi segmentasi sebanyak 7 segmen.
+                hal ini dilakukan karena halaman memiliki banyak tulisan berukuran kecil. 
+                adapun saya melakukan segmentasi dengan persentase dan data hasil ekstraksinya seperti ini :
+                Segmen 1: 0% - 26% 
+                Segmen 2: 16% - 38%
+                Segmen 3: 28% - 50%
+                Segmen 4: 40% - 64%
+                Segmen 5: 52% - 76%
+                Segmen 6: 66% - 88%
+                Segmen 7: 78% - 100%
+
+                jika diperhatikan maka antara setiap segmee terdsapat overlap
+            
+                adapun data ekstraksi dari setiap segmentasi adalah sebagai berikut :
+                Segmen 1: {parse1_json}
+                Segmen 2: {parse2_json}
+                Segmen 3: {parse3_json}
+                Segmen 4: {parse4_json}
+                Segmen 5: {parse5_json}
+                Segmen 6: {parse6_json}
+                Segmen 7: {parse7_json}
+
+                Tugasmu adalah mengidentifikasi 
+                """
 
 
 
