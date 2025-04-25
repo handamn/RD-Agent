@@ -1,0 +1,407 @@
+{
+    "metadata": {
+        "filename": "ABF latihan.pdf",
+        "total_pages": 2,
+        "extraction_date": "2025-04-25 16:19:50",
+        "processing_time": "260.22 seconds"
+    },
+    "pages": {
+        "1": {
+            "analysis": {
+                "ocr_status": true,
+                "line_status": false,
+                "ai_status": false
+            },
+            "extraction": {
+                "method": "ocr",
+                "processing_time": "1.83 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "text",
+                        "content": "REKSA DANA INDEKS ABF INDONESIA BOND\nINDEX FUND\n\nNotes to Financial Statements\n\nFor the Year Ended December 31, 2023\n(Figures are Presented in Rupiah,\n\nunless Otherwise Stated)\n\nREKSA DANA INDEKS ABF INDONESIA BOND\nINDEX FUND\n\nCatatan atas Laporan Keuangan\n\nUntuk Tahun yang Berakhir 31 Desember 2023\n(Angka-angka Disajikan dalam Rupiah,\n\nkecuali Dinyatakan Lain)\n\nc. Pajak Penghasilan\n\nPertimbangan yang signifikan dibutuhkan\nuntuk menentukan jumlah pajak penghasilan.\nTerdapat sejumlah transaksi dan perhitungan\nyang menimbulkan ketidakpastian penentuan\njumlah pajak penghasilan karena interpretasi\natas peraturan pajak yang berbeda. Jika hasil\npemeriksaan pajak berbeda dengan jumlah\nyang sebelumnya telah dibukukan, maka\nselisih tersebut akan berdampak terhadap\naset dan liabilitas pajak kini dan tangguhan\ndalam periode dimana hasil pemeriksaan\ntersebut terjadi.\n\nEstimasi dan Asumsi\n\nAsumsi utama mengenai masa depan dan\nsumber utama_ lain dalam  mengestimasi\nketidakpastian pada tanggal pelaporan yang\nmempunyai__risiko — signifikan yang dapat\nmenyebabkan penyesuaian material terhadap\nnilai tercatat aset dan liabilitas dalam periode\nberikutnya diungkapkan di bawah ini. Estimasi\ndan asumsi didasarkan pada parameter yang\ntersedia saat laporan keuangan disusun. Kondisi\nyang ada dan asumsi mengenai perkembangan\nmasa depan dapat berubah karena perubahan\nsituasi pasar yang berada di luar kendali Reksa\nDana. Perubahan tersebut tercermin dalam\nasumsi ketika keadaan tersebut terjadi.\n\nNilai Wajar Aset Keuangan\n\nStandar Akuntansi Keuangan di _ Indonesia\nmensyaratkan pengukuran aset keuangan\ntertentu pada nilai wajarnya, dan penyajian ini\nmengharuskan penggunaan estimasi. Komponen\npengukuran nilai wajar yang signifikan ditentukan\nberdasarkan bukti obyektif yang dapat diverifikasi\n(seperti nilai tukar, suku bunga), sedangkan saat\ndan besaran perubahan nilai wajar dapat menjadi\nberbeda karena penggunaan metode penilaian\nyang berbeda.\n\nNilai wajar portofolio efek diungkapkan pada\nCatatan 11.\n\n-19-\n\nc. Income Tax\n\nSignificant judgment is required in determining\nthe provision for income taxes. There are\nmany transactions and calculations for which\nthe ultimate tax determination is uncertain due\nto different interpretation of tax regulations.\nWhere the final tax outcome of these matters\nis different from the amounts that were initially\nrecorded, such differences will have an impact\non the current and deferred income tax assets\nand liabilities in the period in which such\ndetermination is made.\n\nEstimates and Assumptions\n\nThe key assumptions concerning the future and\nother key sources of estimation uncertainty at the\nreporting date that have a significant risk of\ncausing a material adjustment to the carrying\nvalues of assets and liabilities within the next\nfinancial period are disclosed below. The\nestimates and assumptions are based on\nparameters available when the _ financial\nstatements were prepared. Existing\ncircumstances and assumptions about future\ndevelopments may change due to market\nchanges on circumstances arising beyond the\ncontrol of the Mutual Fund. Such changes are\nreflected in the assumptions when they occur.\n\nFair Value of Financial Assets\n\nIndonesian Financial Accounting Standards\nrequire measurement of certain financial assets at\nfair values, and the disclosure requires the use of\nestimates. Significant component of fair value\nmeasurement is determined based on verifiable\nobjective evidence (i.e. foreign exchange rate,\ninterest rate), while timing and amount of changes\nin fair value might differ due to different valuation\nmethod used.\n\nThe fair values of investment portfolios are set out\nin Note 11."
+                    }
+                ]
+            }
+        },
+        "2": {
+            "analysis": {
+                "ocr_status": true,
+                "line_status": true,
+                "ai_status": true
+            },
+            "extraction": {
+                "method": "multimodal_llm",
+                "model": "gemini-2.0-flash",
+                "processing_time": "258.38 seconds",
+                "content_blocks": [
+                    {
+                        "block_id": 1,
+                        "type": "table",
+                        "title": "Financial Assets at FVPL Bonds",
+                        "data": [
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0087",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "225.089.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "100,60",
+                                "Nilai wajar/\nFair value": "220.044.539.425",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "6,50",
+                                "Jatuh tempo/\nMaturity date": "15-Feb-31",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "4,62",
+                                "Type of investments": "Government Bonds FR0087"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0091",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "219.650.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "97,37",
+                                "Nilai wajar/\nFair value": "211.622.789.711",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "6,38",
+                                "Jatuh tempo/\nMaturity date": "15-Apr-32",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "4,44",
+                                "Type of investments": "Government Bonds FR0091"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0082",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "208.686.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "100,52",
+                                "Nilai wajar/\nFair value": "210.772.860.000",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "7,00",
+                                "Jatuh tempo/\nMaturity date": "15-Sep-30",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "4,42",
+                                "Type of investments": "Government Bonds FR0082"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0081",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "183.384.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "101,78",
+                                "Nilai wajar/\nFair value": "185.355.378.000",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "6,50",
+                                "Jatuh tempo/\nMaturity date": "15-Jun-25",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "3,89",
+                                "Type of investments": "Government Bonds FR0081"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0068",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "167.660.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "106,47",
+                                "Nilai wajar/\nFair value": "184.444.632.056",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "8,38",
+                                "Jatuh tempo/\nMaturity date": "15-Mar-34",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "3,87",
+                                "Type of investments": "Government Bonds FR0068"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0070",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "165,052.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "106,83",
+                                "Nilai wajar/\nFair value": "170.507.925.902",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "8,38",
+                                "Jatuh tempo/\nMaturity date": "15-Mar-24",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "3,58",
+                                "Type of investments": "Government Bonds FR0070"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0086",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "170.043.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "100,40",
+                                "Nilai wajar/\nFair value": "166.796.149.646",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "5,50",
+                                "Jatuh tempo/\nMaturity date": "15-Apr-26",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "3,50",
+                                "Type of investments": "Government Bonds FR0086"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0083",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "157.931.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "103,93",
+                                "Nilai wajar/\nFair value": "162.930.700.633",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "7,50",
+                                "Jatuh tempo/\nMaturity date": "15-Apr-40",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "3,42",
+                                "Type of investments": "Government Bonds FR0083"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0056",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "148.450.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "109,37",
+                                "Nilai wajar/\nFair value": "158.514.910.000",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "8,38",
+                                "Jatuh tempo/\nMaturity date": "15-Sep-26",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "3,33",
+                                "Type of investments": "Government Bonds FR0056"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0059",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "142.677.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "101,06",
+                                "Nilai wajar/\nFair value": "146.295.003.366",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "7,00",
+                                "Jatuh tempo/\nMaturity date": "15-Mei-27",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "3,07",
+                                "Type of investments": "Government Bonds FR0059"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0078",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "133.134.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "105,65",
+                                "Nilai wajar/\nFair value": "143.739.188.172",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "8,25",
+                                "Jatuh tempo/\nMaturity date": "15-Mei-29",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "3,02",
+                                "Type of investments": "Government Bonds FR0078"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0064",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "141.500.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "93,60",
+                                "Nilai wajar/\nFair value": "138.611.136.000",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "6,13",
+                                "Jatuh tempo/\nMaturity date": "15-Mei-28",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "2,91",
+                                "Type of investments": "Government Bonds FR0064"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0080",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "134.015.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "103,19",
+                                "Nilai wajar/\nFair value": "138.449.434.396",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "7,50",
+                                "Jatuh tempo/\nMaturity date": "15-Jun-35",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "2,91",
+                                "Type of investments": "Government Bonds FR0080"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0090",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "139.072.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "98,23",
+                                "Nilai wajar/\nFair value": "133.773.078.656",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "5,13",
+                                "Jatuh tempo/\nMaturity date": "15-Apr-27",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "2,81",
+                                "Type of investments": "Government Bonds FR0090"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0092",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "133.000.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "100,92",
+                                "Nilai wajar/\nFair value": "133,361.125.590",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "7,13",
+                                "Jatuh tempo/\nMaturity date": "15-Jun-42",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "2,80",
+                                "Type of investments": "Government Bonds FR0092"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0071",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "115.400.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "111,69",
+                                "Nilai wajar/\nFair value": "128.696,849.600",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "9,00",
+                                "Jatuh tempo/\nMaturity date": "15-Mar-29",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "2,70",
+                                "Type of investments": "Government Bonds FR0071"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0064",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "141.500.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "93,60",
+                                "Nilai wajar/\nFair value": "138.611.136.000",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "6,13",
+                                "Jatuh tempo/\nMaturity date": "15-Mei-28",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "2,91",
+                                "Type of investments": "Government Bonds FR0064"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0080",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "134.015.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "103,19",
+                                "Nilai wajar/\nFair value": "138.449.434.396",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "7,50",
+                                "Jatuh tempo/\nMaturity date": "15-Jun-35",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "2,91",
+                                "Type of investments": "Government Bonds FR0080"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0090",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "139.072.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "98,23",
+                                "Nilai wajar/\nFair value": "133.773.078.656",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "5,13",
+                                "Jatuh tempo/\nMaturity date": "15-Apr-27",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "2,81",
+                                "Type of investments": "Government Bonds FR0090"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0092",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "133.000.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "100,92",
+                                "Nilai wajar/\nFair value": "133,361.125.590",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "7,13",
+                                "Jatuh tempo/\nMaturity date": "15-Jun-42",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "2,80",
+                                "Type of investments": "Government Bonds FR0092"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0071",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "115.400.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "111,69",
+                                "Nilai wajar/\nFair value": "128.696,849.600",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "9,00",
+                                "Jatuh tempo/\nMaturity date": "15-Mar-29",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "2,70",
+                                "Type of investments": "Government Bonds FR0071"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0072",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "111.591.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "105.92",
+                                "Nilai wajar/\nFair value": "122.136.916.382",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "8,25",
+                                "Jatuh tempo/\nMaturity date": "15-Mei-36",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "2,56",
+                                "Type of investments": "Government Bonds FR0072"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0077",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "106.452.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "104,72",
+                                "Nilai wajar/\nFair value": "110.003.249.365",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "8,13",
+                                "Jatuh tempo/\nMaturity date": "15-Mei-24",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "2,31",
+                                "Type of investments": "Government Bonds FR0077"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0065",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "108.100.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "91,31",
+                                "Nilai wajar/\nFair value": "105.303.453,000",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "6,63",
+                                "Jatuh tempo/\nMaturity date": "15-Mei-33",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "2,21",
+                                "Type of investments": "Government Bonds FR0065"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0073",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "81.866.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "109,89",
+                                "Nilai wajar/\nFair value": "91.316.017.512",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "8,75",
+                                "Jatuh tempo/\nMaturity date": "15-Mei-31",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "1,92",
+                                "Type of investments": "Government Bonds FR0073"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0075",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "84.263.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "99,60",
+                                "Nilai wajar/\nFair value": "86.687.378.803",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "7,50",
+                                "Jatuh tempo/\nMaturity date": "15-Mei-38",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "1,82",
+                                "Type of investments": "Government Bonds FR0075"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0076",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "84.167.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "98,20",
+                                "Nilai wajar/\nFair value": "84.976.325.464",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "7,38",
+                                "Jatuh tempo/\nMaturity date": "15-Mei-48",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "1,78",
+                                "Type of investments": "Government Bonds FR0076"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0079",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "69.328.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "105,03",
+                                "Nilai wajar/\nFair value": "77.039.087.914",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "8,38",
+                                "Jatuh tempo/\nMaturity date": "15-Apr-39",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "1,62",
+                                "Type of investments": "Government Bonds FR0079"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0074",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "63.500.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "101,61",
+                                "Nilai wajar/\nFair value": "65.743.839.175",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "7,50",
+                                "Jatuh tempo/\nMaturity date": "15-Agt-32",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "1,38",
+                                "Type of investments": "Government Bonds FR0074"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0088",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "68.000.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "99,29",
+                                "Nilai wajar/\nFair value": "63.563.340,000",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "6,25",
+                                "Jatuh tempo/\nMaturity date": "15-Jun-36",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "1,33",
+                                "Type of investments": "Government Bonds FR0088"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0058",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "52.213.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "108,55",
+                                "Nilai wajar/\nFair value": "56.751.705.876",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "8,25",
+                                "Jatuh tempo/\nMaturity date": "15-Jun-32",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "1,19",
+                                "Type of investments": "Government Bonds FR0058"
+                            },
+                            {
+                                "Jenis efek": "Obligasi Pemerintah FR0089",
+                                "Peringkat/\nRating": "-",
+                                "Nilai nominal/\nNominal value": "54.553.000.000",
+                                "Harga\nperolehan\nrata-rata/\nAverage\ncost\n%": "100,01",
+                                "Nilai wajar/\nFair value": "51.977.606.877",
+                                "Suku bunga\nper tahun/\nInterest rate\nper annum\n%": "6,88",
+                                "Jatuh tempo/\nMaturity date": "15-Agt-51",
+                                "Persentase\nterhadap jumlah\nportofolio efek/\nPercentage to\ntotal investment\nportfolios\n%": "1,09",
+                                "Type of investments": "Government Bonds FR0089"
+                            }
+                        ],
+                        "summary_table": null
+                    },
+                    {
+                        "block_id": 2,
+                        "type": "text",
+                        "content": "Aset Keuangan Diukur pada\nNilai Wajar melalui Laba Rugi\nObligasi"
+                    }
+                ]
+            }
+        }
+    }
+}

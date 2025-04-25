@@ -502,10 +502,10 @@ class IntegratedPdfExtractor:
                     (0.0, 0.26),  # Segmen 1: 0% - 50% 
                     (0.16, 0.38),  # Segmen 2: 25% - 75%
                     (0.28, 0.50),   # Segmen 3: 50% - 100%
-                    (0.40, 0.64),
-                    (0.52, 0.76),
-                    (0.66, 0.88),
-                    (0.78, 1.00),
+                    (0.40, 0.64),   # Segmen 4: 50% - 100%
+                    (0.52, 0.76),   # Segmen 5: 50% - 100%
+                    (0.66, 0.88),   # Segmen 6: 50% - 100%
+                    (0.78, 1.00),   # Segmen 7: 50% - 100%
                 ]
                 # Segment 1
                 segment1_path = self.crop_image_segment(image_path, segments[0])
@@ -556,8 +556,84 @@ class IntegratedPdfExtractor:
                 parse3_json = self.extract_json_content(response3_text)
 
 
+                # Segment 4
+                segment4_path = self.crop_image_segment(image_path, segments[3])
+                segment4_image = Image.open(segment4_path)
+                segment4_prompt = f"""
+                Gambar ini merupakan Potongan keempat dari sebuah gambar halaman
+                Potongan pertama sampai kedua telah dilakukan ekstraksi dan disimpan dalam bentuk dictionary sebagai berikut :
+                {parse3_json}
 
-                return parse3_json
+                tugasmu adalah :
+                1. melakukan ekstraksi gambar ini dengan aturan yang saya buat {prompt}
+                2. identifikasi kesamaan pola atau data antara hasil Potongan pertama dengan hasil ekstraksi gambar potongan kedua ini
+                3. jika ditemukan kesamaan pola atau data maka gabungkan sedemikian rupa sehingga menjadi data yang lengkap dengan acuan format pada aturan yang saya sebutkan pada poin nomer 1
+                """
+
+                response4 = model.generate_content([segment4_prompt, segment4_image])
+                response4_text = response4.text
+                parse4_json = self.extract_json_content(response4_text)
+
+
+                # Segment 5
+                segment5_path = self.crop_image_segment(image_path, segments[4])
+                segment5_image = Image.open(segment5_path)
+                segment5_prompt = f"""
+                Gambar ini merupakan Potongan kelima dari sebuah gambar halaman
+                Potongan pertama sampai kedua telah dilakukan ekstraksi dan disimpan dalam bentuk dictionary sebagai berikut :
+                {parse4_json}
+
+                tugasmu adalah :
+                1. melakukan ekstraksi gambar ini dengan aturan yang saya buat {prompt}
+                2. identifikasi kesamaan pola atau data antara hasil Potongan pertama dengan hasil ekstraksi gambar potongan kedua ini
+                3. jika ditemukan kesamaan pola atau data maka gabungkan sedemikian rupa sehingga menjadi data yang lengkap dengan acuan format pada aturan yang saya sebutkan pada poin nomer 1
+                """
+
+                response5 = model.generate_content([segment5_prompt, segment5_image])
+                response5_text = response5.text
+                parse5_json = self.extract_json_content(response5_text)
+
+
+                # Segment 6
+                segment6_path = self.crop_image_segment(image_path, segments[5])
+                segment6_image = Image.open(segment6_path)
+                segment6_prompt = f"""
+                Gambar ini merupakan Potongan keenam dari sebuah gambar halaman
+                Potongan pertama sampai kedua telah dilakukan ekstraksi dan disimpan dalam bentuk dictionary sebagai berikut :
+                {parse5_json}
+
+                tugasmu adalah :
+                1. melakukan ekstraksi gambar ini dengan aturan yang saya buat {prompt}
+                2. identifikasi kesamaan pola atau data antara hasil Potongan pertama dengan hasil ekstraksi gambar potongan kedua ini
+                3. jika ditemukan kesamaan pola atau data maka gabungkan sedemikian rupa sehingga menjadi data yang lengkap dengan acuan format pada aturan yang saya sebutkan pada poin nomer 1
+                """
+
+                response6 = model.generate_content([segment6_prompt, segment6_image])
+                response6_text = response6.text
+                parse6_json = self.extract_json_content(response6_text)
+
+
+                # Segment 7
+                segment7_path = self.crop_image_segment(image_path, segments[6])
+                segment7_image = Image.open(segment7_path)
+                segment7_prompt = f"""
+                Gambar ini merupakan Potongan ketujuh dari sebuah gambar halaman
+                Potongan pertama sampai kedua telah dilakukan ekstraksi dan disimpan dalam bentuk dictionary sebagai berikut :
+                {parse6_json}
+
+                tugasmu adalah :
+                1. melakukan ekstraksi gambar ini dengan aturan yang saya buat {prompt}
+                2. identifikasi kesamaan pola atau data antara hasil Potongan pertama dengan hasil ekstraksi gambar potongan kedua ini
+                3. jika ditemukan kesamaan pola atau data maka gabungkan sedemikian rupa sehingga menjadi data yang lengkap dengan acuan format pada aturan yang saya sebutkan pada poin nomer 1
+                """
+
+                response7 = model.generate_content([segment7_prompt, segment7_image])
+                response7_text = response7.text
+                parse7_json = self.extract_json_content(response7_text)
+
+
+
+                return parse7_json
         
         except Exception as e:
             self.log_error(f"Error processing image with multimodal API: {str(e)}")
