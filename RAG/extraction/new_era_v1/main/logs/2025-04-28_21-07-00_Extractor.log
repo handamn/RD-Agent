@@ -1,0 +1,37 @@
+[2025-04-28 21:07:00] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-28 21:07:00] [INFO] Google Generative AI API berhasil dikonfigurasi
+[2025-04-28 21:07:00] [DEBUG] Memastikan direktori database/extracted_result ada
+[2025-04-28 21:07:00] [INFO] Memulai pemrosesan untuk ABF latihan
+[2025-04-28 21:07:00] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-28 21:07:00] [INFO] Loading analysis data from database/classified_result\ABF latihan_analisis.json
+[2025-04-28 21:07:00] [INFO] Initializing new output data structure
+[2025-04-28 21:07:00] [INFO] Initialized output data structure for ABF latihan.pdf
+[2025-04-28 21:07:00] [INFO] Processing page 1 with OCR extraction...
+[2025-04-28 21:07:03] [INFO] OCR extraction successful for page 1
+[2025-04-28 21:07:03] [DEBUG] OCR extraction for page 1 took 3.02 seconds
+[2025-04-28 21:07:03] [INFO] Processing page 2 with multimodal extraction...
+[2025-04-28 21:07:03] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-28 21:07:03] [INFO] Rendered page 2 to temporary_dir\image_page_2_5200a89f.png
+[2025-04-28 21:07:48] [WARNING] JSON parsing error: Expecting value: line 1 column 1 (char 0) in content: ```json
+{
+  "content_blocks": [
+    {
+      "block_id": 1,
+      "type": "text",
+      "content": "R...
+[2025-04-28 21:07:52] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-28 21:08:07] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-28 21:08:36] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-28 21:09:14] [WARNING] JSON parsing error: Expecting value: line 1 column 1 (char 0) in content: ```json
+{
+  "content_blocks": [
+    {
+      "block_id": 1,
+      "type": "text",
+      "content": "R...
+[2025-04-28 21:09:14] [WARNING] No structured content from multimodal processing for page 2
+[2025-04-28 21:09:14] [DEBUG] Multimodal extraction for page 2 took 131.40 seconds
+[2025-04-28 21:09:14] [INFO] Cleaned up 5 temporary image files from temporary_dir
+[2025-04-28 21:09:14] [INFO] PDF processing completed. Total pages processed: 2
+[2025-04-28 21:09:14] [INFO] Direct: 0, OCR: 1, Multimodal: 1
+[2025-04-28 21:09:14] [INFO] Pemrosesan selesai untuk ABF latihan
