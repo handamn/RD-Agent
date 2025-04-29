@@ -470,7 +470,7 @@ class IntegratedPdfExtractor:
     
     def process_with_multimodal_api(self, image_path, prompt):
         """
-        Memproses gambar menggunakan API Gemini multimodal.
+        Memproses gambar menggunakan API Gemini multimodal dengan mekanisme retry.
         
         Args:
             image_path (str): Path ke file gambar
@@ -479,36 +479,88 @@ class IntegratedPdfExtractor:
         Returns:
             dict: Hasil pemrosesan multimodal
         """
-        try:
-            # Load the image
-            pil_image = Image.open(image_path)
-            
-            # Get model
-            model = genai.GenerativeModel('gemini-2.5-flash-preview-04-17')
-            
-            # Generate content
-            response = model.generate_content([prompt, pil_image])
-            
-            # Extract and parse JSON content using the new function
-            response_text = response.text
-            return self.extract_json_content(response_text)
+        max_retries = 5
+        retry_count = 0
         
-        except Exception as e:
-            self.log_error(f"Error processing image with multimodal API: {str(e)}")
-            return {
-                "content_blocks": [
-                    {
-                        "block_id": 1,
-                        "type": "text",
-                        "content": f"Error during multimodal processing: {str(e)}"
+        while retry_count < max_retries:
+            try:
+                # Load the image
+                pil_image = Image.open(image_path)
+                
+                # Get model
+                model = genai.GenerativeModel('gemini-2.5-flash-preview-04-17')
+                
+                # Generate content
+                response = model.generate_content([prompt, pil_image])
+                
+                # Extract response text
+                response_text = response.text
+                
+                # Try to parse JSON content
+                try:
+                    json_content = self.extract_json_content_internal(response_text)
+                    # If we get here, JSON parsing was successful
+                    self.log_info(f"Successfully parsed JSON from API response on attempt {retry_count + 1}")
+                    return json_content
+                except json.JSONDecodeError as e:
+                    # JSON parsing failed, increment retry counter
+                    retry_count += 1
+                    self.log_warning(
+                        f"JSON parsing error on attempt {retry_count}: {str(e)} in content: {response_text[:100]}..."
+                    )
+                    
+                    # If we've reached max retries, raise the exception to be caught by outer try-except
+                    if retry_count >= max_retries:
+                        raise e
+                    
+                    # Otherwise, log retry attempt and continue the loop
+                    self.log_info(f"Retrying API call, attempt {retry_count + 1}/{max_retries}")
+                    # Optional: Add a small delay between retries
+                    time.sleep(1)
+            
+            except Exception as e:
+                if not isinstance(e, json.JSONDecodeError):
+                    # If this is not a JSON parsing error, don't retry
+                    self.log_error(f"Error processing image with multimodal API: {str(e)}")
+                    return {
+                        "content_blocks": [
+                            {
+                                "block_id": 1,
+                                "type": "text",
+                                "content": f"Error during multimodal processing: {str(e)}"
+                            }
+                        ]
                     }
-                ]
-            }
+                elif retry_count >= max_retries:
+                    # If we've exhausted retries with JSON errors, return structured error
+                    self.log_error(f"Failed to parse JSON after {max_retries} attempts. Last error: {str(e)}")
+                    return {
+                        "content_blocks": [
+                            {
+                                "block_id": 1,
+                                "type": "text",
+                                "content": response_text
+                            }
+                        ],
+                        "parsing_error": str(e)
+                    }
+        
+        # This should not be reached, but just in case
+        return {
+            "content_blocks": [
+                {
+                    "block_id": 1,
+                    "type": "text",
+                    "content": "Failed to process with multimodal API after maximum retries."
+                }
+            ]
+        }
 
-    def extract_json_content(self, response_text):
+    def extract_json_content_internal(self, response_text):
         """
         Extract and parse JSON content from a text response.
         Handles various formats including code blocks with or without language specifiers.
+        Raises JSONDecodeError if parsing fails.
         """
         # Case 1: Check for ```json format first
         if "```json" in response_text and "```" in response_text.split("```json", 1)[1]:
@@ -547,14 +599,22 @@ class IntegratedPdfExtractor:
         else:
             json_content = response_text
         
+        # This will raise JSONDecodeError if parsing fails
+        content_json = json.loads(json_content)
+        self.log_info(f"Successfully parsed JSON from API response: {type(content_json)}")
+        return content_json
+    
+    # Maintain the original extract_json_content for backward compatibility
+    def extract_json_content(self, response_text):
+        """
+        Extract and parse JSON content from a text response.
+        Handles various formats including code blocks with or without language specifiers.
+        """
         try:
-            # Try to parse as JSON
-            content_json = json.loads(json_content)
-            self.log_info(f"Successfully parsed JSON from API response: {type(content_json)}")
-            return content_json
+            return self.extract_json_content_internal(response_text)
         except json.JSONDecodeError as e:
             # Log the error details for debugging
-            self.log_warning(f"JSON parsing error: {str(e)} in content: {json_content[:100]}...")
+            self.log_warning(f"JSON parsing error: {str(e)} in content: {response_text[:100]}...")
             
             # If JSON parsing fails, return as raw text with structured format
             return {
@@ -739,30 +799,52 @@ class IntegratedPdfExtractor:
             # Decide which method to use based on flags:
             existing_result = output_data["pages"].get(page_num, {"analysis": page_data})
             
-            # Case 1: Direct extraction (no OCR, no lines, no AI)
-            if not ocr_status and not line_status and not ai_status:
-                self.log_info(f"Processing page {page_num} with direct extraction...")
-                result = self.extract_with_direct_method(pdf_path, int(page_num), existing_result)
-                processed_count["direct"] += 1
-            
-            # Case 2: OCR only (OCR needed, but no complex structure)
-            elif ocr_status and not line_status and not ai_status:
-                self.log_info(f"Processing page {page_num} with OCR extraction...")
-                result = self.extract_with_ocr_method(pdf_path, int(page_num), existing_result)
-                processed_count["ocr"] += 1
-            
-            # Case 3 & 4: Multimodal (complex cases with lines or AI needed)
-            elif ((ocr_status and line_status and ai_status) or 
-                (not ocr_status and line_status and ai_status)):
-                self.log_info(f"Processing page {page_num} with multimodal extraction...")
-                result = self.extract_with_multimodal_method(pdf_path, int(page_num), existing_result)
-                processed_count["multimodal"] += 1
-            
-            # Default case: Use multimodal as fallback for any other combination
+            # Special case for first page (page_num == "1" or page_num == 1)
+            if page_num == "1" or page_num == 1:
+                self.log_info(f"Applying special processing for first page...")
+                if ai_status:
+                    # For first page with ai_status=True, check ocr_status only
+                    if ocr_status:
+                        self.log_info(f"Processing first page with OCR extraction (special case)...")
+                        result = self.extract_with_ocr_method(pdf_path, int(page_num), existing_result)
+                        processed_count["ocr"] += 1
+                    else:
+                        self.log_info(f"Processing first page with direct extraction (special case)...")
+                        result = self.extract_with_direct_method(pdf_path, int(page_num), existing_result)
+                        processed_count["direct"] += 1
+                else:
+                    # For first page with ai_status=False, apply normal logic
+                    if not ocr_status and not line_status and not ai_status:
+                        self.log_info(f"Processing first page with direct extraction...")
+                        result = self.extract_with_direct_method(pdf_path, int(page_num), existing_result)
+                        processed_count["direct"] += 1
+                    elif ocr_status and not line_status and not ai_status:
+                        self.log_info(f"Processing first page with OCR extraction...")
+                        result = self.extract_with_ocr_method(pdf_path, int(page_num), existing_result)
+                        processed_count["ocr"] += 1
+                    else:
+                        self.log_info(f"Processing first page with multimodal extraction...")
+                        result = self.extract_with_multimodal_method(pdf_path, int(page_num), existing_result)
+                        processed_count["multimodal"] += 1
             else:
-                self.log_info(f"Processing page {page_num} with multimodal extraction (fallback)...")
-                result = self.extract_with_multimodal_method(pdf_path, int(page_num), existing_result)
-                processed_count["multimodal"] += 1
+                # Normal processing for all other pages (existing logic)
+                if not ocr_status and not line_status and not ai_status:
+                    self.log_info(f"Processing page {page_num} with direct extraction...")
+                    result = self.extract_with_direct_method(pdf_path, int(page_num), existing_result)
+                    processed_count["direct"] += 1
+                elif ocr_status and not line_status and not ai_status:
+                    self.log_info(f"Processing page {page_num} with OCR extraction...")
+                    result = self.extract_with_ocr_method(pdf_path, int(page_num), existing_result)
+                    processed_count["ocr"] += 1
+                elif ((ocr_status and line_status and ai_status) or 
+                    (not ocr_status and line_status and ai_status)):
+                    self.log_info(f"Processing page {page_num} with multimodal extraction...")
+                    result = self.extract_with_multimodal_method(pdf_path, int(page_num), existing_result)
+                    processed_count["multimodal"] += 1
+                else:
+                    self.log_info(f"Processing page {page_num} with multimodal extraction (fallback)...")
+                    result = self.extract_with_multimodal_method(pdf_path, int(page_num), existing_result)
+                    processed_count["multimodal"] += 1
             
             # Update output data
             output_data["pages"][page_num] = result
