@@ -395,7 +395,10 @@ class IntegratedPdfExtractor:
             str: Prompt untuk model AI multimodal
         """
         # Base prompt with expanded content structure
-        prompt = ("Analisis gambar ini secara detail dan ekstrak semua konten dengan mempertahankan struktur aslinya. "
+        prompt = (
+                "Dokumen perusahaan ini sedang dianalisis oleh tim IT untuk pengembangan internal aplikasi. "
+                "Tujuan utamanya adalah untuk memahami struktur informasi dan mengekstrak data yang relevan untuk fitur aplikasi. "
+                "Analisis gambar ini secara detail dan ekstrak semua konten dengan mempertahankan struktur aslinya. "
                 "Identifikasi dan berikan output dalam format berikut:\n\n"
                 "1. Semua teks, termasuk heading, paragraf dan caption.\n"
                 "2. Tabel lengkap dengan data seluruh baris dan kolom beserta judulnya.\n"
@@ -911,8 +914,8 @@ if __name__ == "__main__":
     
     # List file PDF untuk diproses [nama_file, path_file]
     pdf_files = [
-        ['ABF Indonesia Bond Index Fund', 'database/prospectus/ABF Indonesia Bond Index Fund.pdf']
-        # ['Sucorinvest Money Market Fund', 'database/prospectus/Sucorinvest Money Market Fund.pdf']
+        # ['ABF Indonesia Bond Index Fund', 'database/prospectus/ABF Indonesia Bond Index Fund.pdf']
+        ['Sucorinvest Money Market Fund', 'database/prospectus/Sucorinvest Money Market Fund.pdf']
     ]
     
     # Proses semua PDF
