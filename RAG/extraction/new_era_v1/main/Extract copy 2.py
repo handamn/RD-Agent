@@ -799,33 +799,33 @@ class IntegratedPdfExtractor:
                 # parse7_json = self.extract_json_content(response7_text)
 
 
-                ### Gabung
-                gabung_prompt = f"""
-                saya memiliki sebuah gambar halaman yang telah saya lakukan ekstraksi.
-                ekstraksi yang saya lakukan saya bagi segmentasi sebanyak 7 segmen.
-                hal ini dilakukan karena halaman memiliki banyak tulisan berukuran kecil. 
-                adapun saya melakukan segmentasi dengan persentase dan data hasil ekstraksinya seperti ini :
-                Segmen 1: 0% - 26% 
-                Segmen 2: 16% - 38%
-                Segmen 3: 28% - 50%
-                Segmen 4: 40% - 64%
-                Segmen 5: 52% - 76%
-                Segmen 6: 66% - 88%
-                Segmen 7: 78% - 100%
+                # ### Gabung
+                # gabung_prompt = f"""
+                # saya memiliki sebuah gambar halaman yang telah saya lakukan ekstraksi.
+                # ekstraksi yang saya lakukan saya bagi segmentasi sebanyak 7 segmen.
+                # hal ini dilakukan karena halaman memiliki banyak tulisan berukuran kecil. 
+                # adapun saya melakukan segmentasi dengan persentase dan data hasil ekstraksinya seperti ini :
+                # Segmen 1: 0% - 26% 
+                # Segmen 2: 16% - 38%
+                # Segmen 3: 28% - 50%
+                # Segmen 4: 40% - 64%
+                # Segmen 5: 52% - 76%
+                # Segmen 6: 66% - 88%
+                # Segmen 7: 78% - 100%
 
-                jika diperhatikan maka antara setiap segmee terdsapat overlap
+                # jika diperhatikan maka antara setiap segmee terdsapat overlap
             
-                adapun data ekstraksi dari setiap segmentasi adalah sebagai berikut :
-                Segmen 1: {parse1_json}
-                Segmen 2: {parse2_json}
-                Segmen 3: {parse3_json}
-                Segmen 4: {parse4_json}
-                Segmen 5: {parse5_json}
-                Segmen 6: {parse6_json}
-                Segmen 7: {parse7_json}
+                # adapun data ekstraksi dari setiap segmentasi adalah sebagai berikut :
+                # Segmen 1: {parse1_json}
+                # Segmen 2: {parse2_json}
+                # Segmen 3: {parse3_json}
+                # Segmen 4: {parse4_json}
+                # Segmen 5: {parse5_json}
+                # Segmen 6: {parse6_json}
+                # Segmen 7: {parse7_json}
 
-                Tugasmu adalah mengidentifikasi 
-                """
+                # Tugasmu adalah mengidentifikasi 
+                # """
 
 
 
