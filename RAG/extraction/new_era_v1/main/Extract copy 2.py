@@ -483,13 +483,8 @@ class IntegratedPdfExtractor:
             # Load the image
             pil_image = Image.open(image_path)
             
-            generation_config = {
-                "timeout": 300  # Adding explicit timeout
-            }
-            
             # Get model
-            model = genai.GenerativeModel('gemini-2.0-flash',
-        generation_config=generation_config)
+            model = genai.GenerativeModel('gemini-2.0-flash')
             
             
             # Generate content
