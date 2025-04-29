@@ -2,8 +2,8 @@
     "metadata": {
         "filename": "ABF latihan.pdf",
         "total_pages": 2,
-        "extraction_date": "2025-04-29 09:50:12",
-        "processing_time": "140.37 seconds"
+        "extraction_date": "2025-04-29 16:57:29",
+        "processing_time": "141.67 seconds"
     },
     "pages": {
         "1": {
@@ -14,7 +14,7 @@
             },
             "extraction": {
                 "method": "ocr",
-                "processing_time": "1.82 seconds",
+                "processing_time": "1.83 seconds",
                 "content_blocks": [
                     {
                         "block_id": 1,
@@ -33,7 +33,7 @@
             "extraction": {
                 "method": "multimodal_llm",
                 "model": "gemini-2.0-flash",
-                "processing_time": "138.55 seconds",
+                "processing_time": "139.83 seconds",
                 "content_blocks": [
                     {
                         "block_id": 1,

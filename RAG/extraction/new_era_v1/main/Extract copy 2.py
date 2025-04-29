@@ -541,6 +541,8 @@ class IntegratedPdfExtractor:
                 print("========================")
                 print()
                 print()
+                with open(("database/extracted_result/yuhuu1.json"), 'w', encoding='utf-8') as f:
+                    json.dump(parse1_json, f, indent=4, ensure_ascii=False)
 
 
 
@@ -604,6 +606,8 @@ class IntegratedPdfExtractor:
                 print("========================")
                 print()
                 print()
+                with open(("database/extracted_result/yuhuu2.json"), 'w', encoding='utf-8') as f:
+                    json.dump(parse2_json, f, indent=4, ensure_ascii=False)
 
 
 
@@ -668,6 +672,8 @@ class IntegratedPdfExtractor:
                 print("========================")
                 print()
                 print()
+                with open(("database/extracted_result/yuhuu3.json"), 'w', encoding='utf-8') as f:
+                    json.dump(parse3_json, f, indent=4, ensure_ascii=False)
                 
 
 
@@ -735,6 +741,8 @@ class IntegratedPdfExtractor:
                 print("========================")
                 print()
                 print()
+                with open(("database/extracted_result/yuhuu4.json"), 'w', encoding='utf-8') as f:
+                    json.dump(parse4_json, f, indent=4, ensure_ascii=False)
 
 
                 # # Segment 5
