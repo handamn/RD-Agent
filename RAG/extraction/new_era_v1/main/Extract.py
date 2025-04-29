@@ -484,7 +484,7 @@ class IntegratedPdfExtractor:
             pil_image = Image.open(image_path)
             
             # Get model
-            model = genai.GenerativeModel('gemini-2.0-flash')
+            model = genai.GenerativeModel('gemini-2.5-flash-preview-04-17')
             
             # Generate content
             response = model.generate_content([prompt, pil_image])
@@ -593,7 +593,7 @@ class IntegratedPdfExtractor:
                 },
                 "extraction": {
                     "method": "multimodal_llm",
-                    "model": "gemini-2.0-flash",
+                    "model": "gemini-2.5-flash-preview-04-17",
                     "processing_time": None,
                     "content_blocks": []
                 }
@@ -603,7 +603,7 @@ class IntegratedPdfExtractor:
             # Set extraction method and initialize content blocks
             result["extraction"] = {
                 "method": "multimodal_llm",
-                "model": "gemini-2.0-flash",
+                "model": "gemini-2.5-flash-preview-04-17",
                 "processing_time": None,
                 "content_blocks": []
             }

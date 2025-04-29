@@ -1,0 +1,432 @@
+[2025-04-29 20:25:28] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:25:28] [INFO] Google Generative AI API berhasil dikonfigurasi
+[2025-04-29 20:25:28] [DEBUG] Memastikan direktori database/extracted_result ada
+[2025-04-29 20:25:28] [INFO] Memulai pemrosesan untuk ABF Indonesia Bond Index Fund
+[2025-04-29 20:25:28] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:25:28] [INFO] Loading analysis data from database/classified_result\ABF Indonesia Bond Index Fund_analisis.json
+[2025-04-29 20:25:28] [INFO] Initializing new output data structure
+[2025-04-29 20:25:29] [INFO] Initialized output data structure for ABF Indonesia Bond Index Fund.pdf
+[2025-04-29 20:25:29] [INFO] Processing page 1 with multimodal extraction...
+[2025-04-29 20:25:29] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:25:29] [INFO] Rendered page 1 to temporary_dir\image_page_1_573c3dc2.png
+[2025-04-29 20:25:53] [ERROR] Error processing image with multimodal API: Invalid operation: The `response.text` quick accessor requires the response to contain a valid `Part`, but none were returned. The candidate's [finish_reason](https://ai.google.dev/api/generate-content#finishreason) is 4. Meaning that the model was reciting from copyrighted material.
+[2025-04-29 20:25:53] [INFO] Multimodal extraction successful for page 1
+[2025-04-29 20:25:53] [DEBUG] Multimodal extraction for page 1 took 24.17 seconds
+[2025-04-29 20:25:53] [INFO] Processing page 2 with direct extraction...
+[2025-04-29 20:25:53] [INFO] Direct extraction successful for page 2
+[2025-04-29 20:25:53] [DEBUG] Direct extraction for page 2 took 0.06 seconds
+[2025-04-29 20:25:53] [INFO] Processing page 3 with multimodal extraction...
+[2025-04-29 20:25:53] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:25:53] [INFO] Rendered page 3 to temporary_dir\image_page_3_2c95ea00.png
+[2025-04-29 20:26:04] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:26:04] [INFO] Multimodal extraction successful for page 3
+[2025-04-29 20:26:04] [DEBUG] Multimodal extraction for page 3 took 10.83 seconds
+[2025-04-29 20:26:04] [INFO] Processing page 4 with direct extraction...
+[2025-04-29 20:26:04] [INFO] Direct extraction successful for page 4
+[2025-04-29 20:26:04] [DEBUG] Direct extraction for page 4 took 0.10 seconds
+[2025-04-29 20:26:04] [INFO] Processing page 5 with direct extraction...
+[2025-04-29 20:26:04] [INFO] Direct extraction successful for page 5
+[2025-04-29 20:26:04] [DEBUG] Direct extraction for page 5 took 0.11 seconds
+[2025-04-29 20:26:04] [INFO] Processing page 6 with direct extraction...
+[2025-04-29 20:26:04] [INFO] Direct extraction successful for page 6
+[2025-04-29 20:26:04] [DEBUG] Direct extraction for page 6 took 0.10 seconds
+[2025-04-29 20:26:04] [INFO] Processing page 7 with direct extraction...
+[2025-04-29 20:26:04] [INFO] Direct extraction successful for page 7
+[2025-04-29 20:26:04] [DEBUG] Direct extraction for page 7 took 0.14 seconds
+[2025-04-29 20:26:04] [INFO] Processing page 8 with direct extraction...
+[2025-04-29 20:26:04] [INFO] Direct extraction successful for page 8
+[2025-04-29 20:26:04] [DEBUG] Direct extraction for page 8 took 0.10 seconds
+[2025-04-29 20:26:04] [INFO] Processing page 9 with direct extraction...
+[2025-04-29 20:26:04] [INFO] Direct extraction successful for page 9
+[2025-04-29 20:26:04] [DEBUG] Direct extraction for page 9 took 0.09 seconds
+[2025-04-29 20:26:04] [INFO] Processing page 10 with direct extraction...
+[2025-04-29 20:26:04] [INFO] Direct extraction successful for page 10
+[2025-04-29 20:26:04] [DEBUG] Direct extraction for page 10 took 0.09 seconds
+[2025-04-29 20:26:04] [INFO] Processing page 11 with direct extraction...
+[2025-04-29 20:26:04] [INFO] Direct extraction successful for page 11
+[2025-04-29 20:26:04] [DEBUG] Direct extraction for page 11 took 0.09 seconds
+[2025-04-29 20:26:04] [INFO] Processing page 12 with direct extraction...
+[2025-04-29 20:26:05] [INFO] Direct extraction successful for page 12
+[2025-04-29 20:26:05] [DEBUG] Direct extraction for page 12 took 0.09 seconds
+[2025-04-29 20:26:05] [INFO] Processing page 13 with direct extraction...
+[2025-04-29 20:26:05] [INFO] Direct extraction successful for page 13
+[2025-04-29 20:26:05] [DEBUG] Direct extraction for page 13 took 0.11 seconds
+[2025-04-29 20:26:05] [INFO] Processing page 14 with direct extraction...
+[2025-04-29 20:26:05] [INFO] Direct extraction successful for page 14
+[2025-04-29 20:26:05] [DEBUG] Direct extraction for page 14 took 0.10 seconds
+[2025-04-29 20:26:05] [INFO] Processing page 15 with direct extraction...
+[2025-04-29 20:26:05] [INFO] Direct extraction successful for page 15
+[2025-04-29 20:26:05] [DEBUG] Direct extraction for page 15 took 0.08 seconds
+[2025-04-29 20:26:05] [INFO] Processing page 16 with direct extraction...
+[2025-04-29 20:26:05] [INFO] Direct extraction successful for page 16
+[2025-04-29 20:26:05] [DEBUG] Direct extraction for page 16 took 0.06 seconds
+[2025-04-29 20:26:05] [INFO] Processing page 17 with direct extraction...
+[2025-04-29 20:26:05] [INFO] Direct extraction successful for page 17
+[2025-04-29 20:26:05] [DEBUG] Direct extraction for page 17 took 0.06 seconds
+[2025-04-29 20:26:05] [INFO] Processing page 18 with direct extraction...
+[2025-04-29 20:26:05] [INFO] Direct extraction successful for page 18
+[2025-04-29 20:26:05] [DEBUG] Direct extraction for page 18 took 0.10 seconds
+[2025-04-29 20:26:05] [INFO] Processing page 19 with direct extraction...
+[2025-04-29 20:26:05] [INFO] Direct extraction successful for page 19
+[2025-04-29 20:26:05] [DEBUG] Direct extraction for page 19 took 0.10 seconds
+[2025-04-29 20:26:05] [INFO] Processing page 20 with direct extraction...
+[2025-04-29 20:26:05] [INFO] Direct extraction successful for page 20
+[2025-04-29 20:26:05] [DEBUG] Direct extraction for page 20 took 0.14 seconds
+[2025-04-29 20:26:05] [INFO] Processing page 21 with direct extraction...
+[2025-04-29 20:26:05] [INFO] Direct extraction successful for page 21
+[2025-04-29 20:26:05] [DEBUG] Direct extraction for page 21 took 0.08 seconds
+[2025-04-29 20:26:05] [INFO] Processing page 22 with multimodal extraction...
+[2025-04-29 20:26:05] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:26:06] [INFO] Rendered page 22 to temporary_dir\image_page_22_4dfc0451.png
+[2025-04-29 20:26:24] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:26:24] [INFO] Multimodal extraction successful for page 22
+[2025-04-29 20:26:24] [DEBUG] Multimodal extraction for page 22 took 18.81 seconds
+[2025-04-29 20:26:24] [INFO] Processing page 23 with direct extraction...
+[2025-04-29 20:26:24] [INFO] Direct extraction successful for page 23
+[2025-04-29 20:26:24] [DEBUG] Direct extraction for page 23 took 0.06 seconds
+[2025-04-29 20:26:24] [INFO] Processing page 24 with direct extraction...
+[2025-04-29 20:26:24] [INFO] Direct extraction successful for page 24
+[2025-04-29 20:26:24] [DEBUG] Direct extraction for page 24 took 0.08 seconds
+[2025-04-29 20:26:24] [INFO] Processing page 25 with direct extraction...
+[2025-04-29 20:26:24] [INFO] Direct extraction successful for page 25
+[2025-04-29 20:26:24] [DEBUG] Direct extraction for page 25 took 0.09 seconds
+[2025-04-29 20:26:24] [INFO] Processing page 26 with direct extraction...
+[2025-04-29 20:26:25] [INFO] Direct extraction successful for page 26
+[2025-04-29 20:26:25] [DEBUG] Direct extraction for page 26 took 0.06 seconds
+[2025-04-29 20:26:25] [INFO] Processing page 27 with direct extraction...
+[2025-04-29 20:26:25] [INFO] Direct extraction successful for page 27
+[2025-04-29 20:26:25] [DEBUG] Direct extraction for page 27 took 0.16 seconds
+[2025-04-29 20:26:25] [INFO] Processing page 28 with direct extraction...
+[2025-04-29 20:26:25] [INFO] Direct extraction successful for page 28
+[2025-04-29 20:26:25] [DEBUG] Direct extraction for page 28 took 0.08 seconds
+[2025-04-29 20:26:25] [INFO] Processing page 29 with direct extraction...
+[2025-04-29 20:26:25] [INFO] Direct extraction successful for page 29
+[2025-04-29 20:26:25] [DEBUG] Direct extraction for page 29 took 0.08 seconds
+[2025-04-29 20:26:25] [INFO] Processing page 30 with direct extraction...
+[2025-04-29 20:26:25] [INFO] Direct extraction successful for page 30
+[2025-04-29 20:26:25] [DEBUG] Direct extraction for page 30 took 0.06 seconds
+[2025-04-29 20:26:25] [INFO] Processing page 31 with direct extraction...
+[2025-04-29 20:26:25] [INFO] Direct extraction successful for page 31
+[2025-04-29 20:26:25] [DEBUG] Direct extraction for page 31 took 0.05 seconds
+[2025-04-29 20:26:25] [INFO] Processing page 32 with OCR extraction...
+[2025-04-29 20:26:26] [INFO] OCR extraction successful for page 32
+[2025-04-29 20:26:26] [DEBUG] OCR extraction for page 32 took 0.86 seconds
+[2025-04-29 20:26:26] [INFO] Processing page 33 with OCR extraction...
+[2025-04-29 20:26:27] [INFO] OCR extraction successful for page 33
+[2025-04-29 20:26:27] [DEBUG] OCR extraction for page 33 took 1.46 seconds
+[2025-04-29 20:26:27] [INFO] Processing page 34 with OCR extraction...
+[2025-04-29 20:26:31] [INFO] OCR extraction successful for page 34
+[2025-04-29 20:26:31] [DEBUG] OCR extraction for page 34 took 3.25 seconds
+[2025-04-29 20:26:31] [INFO] Processing page 35 with OCR extraction...
+[2025-04-29 20:26:34] [INFO] OCR extraction successful for page 35
+[2025-04-29 20:26:34] [DEBUG] OCR extraction for page 35 took 3.63 seconds
+[2025-04-29 20:26:34] [INFO] Processing page 36 with OCR extraction...
+[2025-04-29 20:26:38] [INFO] OCR extraction successful for page 36
+[2025-04-29 20:26:38] [DEBUG] OCR extraction for page 36 took 3.71 seconds
+[2025-04-29 20:26:38] [INFO] Processing page 37 with OCR extraction...
+[2025-04-29 20:26:41] [INFO] OCR extraction successful for page 37
+[2025-04-29 20:26:41] [DEBUG] OCR extraction for page 37 took 2.84 seconds
+[2025-04-29 20:26:41] [INFO] Processing page 38 with OCR extraction...
+[2025-04-29 20:26:42] [INFO] OCR extraction successful for page 38
+[2025-04-29 20:26:42] [DEBUG] OCR extraction for page 38 took 1.71 seconds
+[2025-04-29 20:26:42] [INFO] Processing page 39 with OCR extraction...
+[2025-04-29 20:26:45] [INFO] OCR extraction successful for page 39
+[2025-04-29 20:26:45] [DEBUG] OCR extraction for page 39 took 2.56 seconds
+[2025-04-29 20:26:45] [INFO] Processing page 40 with multimodal extraction...
+[2025-04-29 20:26:45] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:26:45] [INFO] Rendered page 40 to temporary_dir\image_page_40_6dd725b2.png
+[2025-04-29 20:26:57] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:26:57] [INFO] Multimodal extraction successful for page 40
+[2025-04-29 20:26:57] [DEBUG] Multimodal extraction for page 40 took 12.37 seconds
+[2025-04-29 20:26:57] [INFO] Processing page 41 with OCR extraction...
+[2025-04-29 20:27:01] [INFO] OCR extraction successful for page 41
+[2025-04-29 20:27:01] [DEBUG] OCR extraction for page 41 took 3.30 seconds
+[2025-04-29 20:27:01] [INFO] Processing page 42 with OCR extraction...
+[2025-04-29 20:27:02] [INFO] OCR extraction successful for page 42
+[2025-04-29 20:27:02] [DEBUG] OCR extraction for page 42 took 1.28 seconds
+[2025-04-29 20:27:02] [INFO] Processing page 43 with multimodal extraction...
+[2025-04-29 20:27:02] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:27:02] [INFO] Rendered page 43 to temporary_dir\image_page_43_91c22d8f.png
+[2025-04-29 20:27:18] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:27:18] [INFO] Multimodal extraction successful for page 43
+[2025-04-29 20:27:18] [DEBUG] Multimodal extraction for page 43 took 15.84 seconds
+[2025-04-29 20:27:18] [INFO] Processing page 44 with multimodal extraction...
+[2025-04-29 20:27:18] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:27:18] [INFO] Rendered page 44 to temporary_dir\image_page_44_0ce920ec.png
+[2025-04-29 20:27:32] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:27:32] [INFO] Multimodal extraction successful for page 44
+[2025-04-29 20:27:32] [DEBUG] Multimodal extraction for page 44 took 13.86 seconds
+[2025-04-29 20:27:32] [INFO] Processing page 45 with multimodal extraction...
+[2025-04-29 20:27:32] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:27:32] [INFO] Rendered page 45 to temporary_dir\image_page_45_94a709ee.png
+[2025-04-29 20:27:47] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:27:47] [INFO] Multimodal extraction successful for page 45
+[2025-04-29 20:27:47] [DEBUG] Multimodal extraction for page 45 took 14.83 seconds
+[2025-04-29 20:27:47] [INFO] Processing page 46 with multimodal extraction...
+[2025-04-29 20:27:47] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:27:47] [INFO] Rendered page 46 to temporary_dir\image_page_46_2fca281d.png
+[2025-04-29 20:28:21] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:28:21] [INFO] Multimodal extraction successful for page 46
+[2025-04-29 20:28:21] [DEBUG] Multimodal extraction for page 46 took 34.55 seconds
+[2025-04-29 20:28:21] [INFO] Processing page 47 with OCR extraction...
+[2025-04-29 20:28:25] [INFO] OCR extraction successful for page 47
+[2025-04-29 20:28:25] [DEBUG] OCR extraction for page 47 took 3.52 seconds
+[2025-04-29 20:28:25] [INFO] Processing page 48 with OCR extraction...
+[2025-04-29 20:28:28] [INFO] OCR extraction successful for page 48
+[2025-04-29 20:28:28] [DEBUG] OCR extraction for page 48 took 3.17 seconds
+[2025-04-29 20:28:28] [INFO] Processing page 49 with OCR extraction...
+[2025-04-29 20:28:31] [INFO] OCR extraction successful for page 49
+[2025-04-29 20:28:31] [DEBUG] OCR extraction for page 49 took 3.57 seconds
+[2025-04-29 20:28:31] [INFO] Processing page 50 with OCR extraction...
+[2025-04-29 20:28:35] [INFO] OCR extraction successful for page 50
+[2025-04-29 20:28:35] [DEBUG] OCR extraction for page 50 took 3.19 seconds
+[2025-04-29 20:28:35] [INFO] Processing page 51 with OCR extraction...
+[2025-04-29 20:28:37] [INFO] OCR extraction successful for page 51
+[2025-04-29 20:28:37] [DEBUG] OCR extraction for page 51 took 2.60 seconds
+[2025-04-29 20:28:37] [INFO] Processing page 52 with OCR extraction...
+[2025-04-29 20:28:40] [INFO] OCR extraction successful for page 52
+[2025-04-29 20:28:40] [DEBUG] OCR extraction for page 52 took 2.69 seconds
+[2025-04-29 20:28:40] [INFO] Processing page 53 with OCR extraction...
+[2025-04-29 20:28:43] [INFO] OCR extraction successful for page 53
+[2025-04-29 20:28:43] [DEBUG] OCR extraction for page 53 took 2.74 seconds
+[2025-04-29 20:28:43] [INFO] Processing page 54 with multimodal extraction...
+[2025-04-29 20:28:43] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:28:43] [INFO] Rendered page 54 to temporary_dir\image_page_54_65c0f367.png
+[2025-04-29 20:28:59] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:28:59] [INFO] Multimodal extraction successful for page 54
+[2025-04-29 20:28:59] [DEBUG] Multimodal extraction for page 54 took 16.61 seconds
+[2025-04-29 20:28:59] [INFO] Processing page 55 with OCR extraction...
+[2025-04-29 20:29:02] [INFO] OCR extraction successful for page 55
+[2025-04-29 20:29:02] [DEBUG] OCR extraction for page 55 took 2.83 seconds
+[2025-04-29 20:29:02] [INFO] Processing page 56 with OCR extraction...
+[2025-04-29 20:29:05] [INFO] OCR extraction successful for page 56
+[2025-04-29 20:29:05] [DEBUG] OCR extraction for page 56 took 2.47 seconds
+[2025-04-29 20:29:05] [INFO] Processing page 57 with OCR extraction...
+[2025-04-29 20:29:07] [INFO] OCR extraction successful for page 57
+[2025-04-29 20:29:07] [DEBUG] OCR extraction for page 57 took 2.53 seconds
+[2025-04-29 20:29:07] [INFO] Processing page 58 with OCR extraction...
+[2025-04-29 20:29:10] [INFO] OCR extraction successful for page 58
+[2025-04-29 20:29:10] [DEBUG] OCR extraction for page 58 took 2.78 seconds
+[2025-04-29 20:29:10] [INFO] Processing page 59 with OCR extraction...
+[2025-04-29 20:29:13] [INFO] OCR extraction successful for page 59
+[2025-04-29 20:29:13] [DEBUG] OCR extraction for page 59 took 2.73 seconds
+[2025-04-29 20:29:13] [INFO] Processing page 60 with OCR extraction...
+[2025-04-29 20:29:16] [INFO] OCR extraction successful for page 60
+[2025-04-29 20:29:16] [DEBUG] OCR extraction for page 60 took 3.43 seconds
+[2025-04-29 20:29:16] [INFO] Processing page 61 with OCR extraction...
+[2025-04-29 20:29:19] [INFO] OCR extraction successful for page 61
+[2025-04-29 20:29:19] [DEBUG] OCR extraction for page 61 took 2.86 seconds
+[2025-04-29 20:29:19] [INFO] Processing page 62 with multimodal extraction...
+[2025-04-29 20:29:19] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:29:19] [INFO] Rendered page 62 to temporary_dir\image_page_62_6597f30f.png
+[2025-04-29 20:30:27] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:30:27] [INFO] Multimodal extraction successful for page 62
+[2025-04-29 20:30:27] [DEBUG] Multimodal extraction for page 62 took 68.11 seconds
+[2025-04-29 20:30:27] [INFO] Processing page 63 with multimodal extraction...
+[2025-04-29 20:30:27] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:30:28] [INFO] Rendered page 63 to temporary_dir\image_page_63_439e335c.png
+[2025-04-29 20:32:03] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:32:03] [INFO] Multimodal extraction successful for page 63
+[2025-04-29 20:32:03] [DEBUG] Multimodal extraction for page 63 took 95.55 seconds
+[2025-04-29 20:32:03] [INFO] Processing page 64 with multimodal extraction...
+[2025-04-29 20:32:03] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:32:03] [INFO] Rendered page 64 to temporary_dir\image_page_64_f00183e8.png
+[2025-04-29 20:32:46] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:32:46] [INFO] Multimodal extraction successful for page 64
+[2025-04-29 20:32:46] [DEBUG] Multimodal extraction for page 64 took 43.07 seconds
+[2025-04-29 20:32:46] [INFO] Processing page 65 with multimodal extraction...
+[2025-04-29 20:32:46] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:32:46] [INFO] Rendered page 65 to temporary_dir\image_page_65_76e6716d.png
+[2025-04-29 20:33:02] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:33:02] [INFO] Multimodal extraction successful for page 65
+[2025-04-29 20:33:02] [DEBUG] Multimodal extraction for page 65 took 16.02 seconds
+[2025-04-29 20:33:02] [INFO] Processing page 66 with multimodal extraction...
+[2025-04-29 20:33:02] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:33:02] [INFO] Rendered page 66 to temporary_dir\image_page_66_a2e7d118.png
+[2025-04-29 20:33:28] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:33:28] [INFO] Multimodal extraction successful for page 66
+[2025-04-29 20:33:28] [DEBUG] Multimodal extraction for page 66 took 25.72 seconds
+[2025-04-29 20:33:28] [INFO] Processing page 67 with multimodal extraction...
+[2025-04-29 20:33:28] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:33:28] [INFO] Rendered page 67 to temporary_dir\image_page_67_08dbae5a.png
+[2025-04-29 20:33:44] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:33:44] [INFO] Multimodal extraction successful for page 67
+[2025-04-29 20:33:44] [DEBUG] Multimodal extraction for page 67 took 16.93 seconds
+[2025-04-29 20:33:44] [INFO] Processing page 68 with multimodal extraction...
+[2025-04-29 20:33:44] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:33:45] [INFO] Rendered page 68 to temporary_dir\image_page_68_5fab8172.png
+[2025-04-29 20:34:00] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:34:00] [INFO] Multimodal extraction successful for page 68
+[2025-04-29 20:34:00] [DEBUG] Multimodal extraction for page 68 took 15.56 seconds
+[2025-04-29 20:34:00] [INFO] Processing page 69 with multimodal extraction...
+[2025-04-29 20:34:00] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:34:00] [INFO] Rendered page 69 to temporary_dir\image_page_69_19f08e77.png
+[2025-04-29 20:34:12] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:34:12] [INFO] Multimodal extraction successful for page 69
+[2025-04-29 20:34:12] [DEBUG] Multimodal extraction for page 69 took 12.19 seconds
+[2025-04-29 20:34:12] [INFO] Processing page 70 with multimodal extraction...
+[2025-04-29 20:34:12] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:34:13] [INFO] Rendered page 70 to temporary_dir\image_page_70_e1cfb1ec.png
+[2025-04-29 20:34:24] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:34:24] [INFO] Multimodal extraction successful for page 70
+[2025-04-29 20:34:24] [DEBUG] Multimodal extraction for page 70 took 12.01 seconds
+[2025-04-29 20:34:24] [INFO] Processing page 71 with OCR extraction...
+[2025-04-29 20:34:27] [INFO] OCR extraction successful for page 71
+[2025-04-29 20:34:27] [DEBUG] OCR extraction for page 71 took 3.01 seconds
+[2025-04-29 20:34:27] [INFO] Processing page 72 with multimodal extraction...
+[2025-04-29 20:34:27] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:34:28] [INFO] Rendered page 72 to temporary_dir\image_page_72_d5cad1ef.png
+[2025-04-29 20:34:41] [ERROR] Error processing image with multimodal API: Invalid operation: The `response.text` quick accessor requires the response to contain a valid `Part`, but none were returned. The candidate's [finish_reason](https://ai.google.dev/api/generate-content#finishreason) is 4. Meaning that the model was reciting from copyrighted material.
+[2025-04-29 20:34:41] [INFO] Multimodal extraction successful for page 72
+[2025-04-29 20:34:41] [DEBUG] Multimodal extraction for page 72 took 13.87 seconds
+[2025-04-29 20:34:41] [INFO] Processing page 73 with OCR extraction...
+[2025-04-29 20:34:44] [INFO] OCR extraction successful for page 73
+[2025-04-29 20:34:44] [DEBUG] OCR extraction for page 73 took 3.33 seconds
+[2025-04-29 20:34:44] [INFO] Processing page 74 with OCR extraction...
+[2025-04-29 20:34:47] [INFO] OCR extraction successful for page 74
+[2025-04-29 20:34:47] [DEBUG] OCR extraction for page 74 took 2.99 seconds
+[2025-04-29 20:34:47] [INFO] Processing page 75 with OCR extraction...
+[2025-04-29 20:34:51] [INFO] OCR extraction successful for page 75
+[2025-04-29 20:34:51] [DEBUG] OCR extraction for page 75 took 3.18 seconds
+[2025-04-29 20:34:51] [INFO] Processing page 76 with OCR extraction...
+[2025-04-29 20:34:54] [INFO] OCR extraction successful for page 76
+[2025-04-29 20:34:54] [DEBUG] OCR extraction for page 76 took 3.13 seconds
+[2025-04-29 20:34:54] [INFO] Processing page 77 with OCR extraction...
+[2025-04-29 20:34:57] [INFO] OCR extraction successful for page 77
+[2025-04-29 20:34:57] [DEBUG] OCR extraction for page 77 took 3.06 seconds
+[2025-04-29 20:34:57] [INFO] Processing page 78 with multimodal extraction...
+[2025-04-29 20:34:57] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:34:57] [INFO] Rendered page 78 to temporary_dir\image_page_78_7d47b827.png
+[2025-04-29 20:35:53] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:35:53] [INFO] Multimodal extraction successful for page 78
+[2025-04-29 20:35:53] [DEBUG] Multimodal extraction for page 78 took 56.53 seconds
+[2025-04-29 20:35:53] [INFO] Processing page 79 with multimodal extraction...
+[2025-04-29 20:35:53] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:35:54] [INFO] Rendered page 79 to temporary_dir\image_page_79_95ee8473.png
+[2025-04-29 20:36:13] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:36:13] [INFO] Multimodal extraction successful for page 79
+[2025-04-29 20:36:13] [DEBUG] Multimodal extraction for page 79 took 19.24 seconds
+[2025-04-29 20:36:13] [INFO] Processing page 80 with multimodal extraction...
+[2025-04-29 20:36:13] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:36:13] [INFO] Rendered page 80 to temporary_dir\image_page_80_e0f5f002.png
+[2025-04-29 20:36:34] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:36:34] [INFO] Multimodal extraction successful for page 80
+[2025-04-29 20:36:34] [DEBUG] Multimodal extraction for page 80 took 21.35 seconds
+[2025-04-29 20:36:34] [INFO] Processing page 81 with OCR extraction...
+[2025-04-29 20:36:35] [INFO] OCR extraction successful for page 81
+[2025-04-29 20:36:35] [DEBUG] OCR extraction for page 81 took 1.13 seconds
+[2025-04-29 20:36:35] [INFO] Processing page 82 with multimodal extraction...
+[2025-04-29 20:36:35] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:36:35] [INFO] Rendered page 82 to temporary_dir\image_page_82_4da210df.png
+[2025-04-29 20:36:43] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:36:43] [INFO] Multimodal extraction successful for page 82
+[2025-04-29 20:36:43] [DEBUG] Multimodal extraction for page 82 took 7.86 seconds
+[2025-04-29 20:36:43] [INFO] Processing page 83 with direct extraction...
+[2025-04-29 20:36:43] [INFO] Direct extraction successful for page 83
+[2025-04-29 20:36:43] [DEBUG] Direct extraction for page 83 took 0.10 seconds
+[2025-04-29 20:36:43] [INFO] Processing page 84 with direct extraction...
+[2025-04-29 20:36:43] [INFO] Direct extraction successful for page 84
+[2025-04-29 20:36:43] [DEBUG] Direct extraction for page 84 took 0.09 seconds
+[2025-04-29 20:36:43] [INFO] Processing page 85 with direct extraction...
+[2025-04-29 20:36:43] [INFO] Direct extraction successful for page 85
+[2025-04-29 20:36:43] [DEBUG] Direct extraction for page 85 took 0.14 seconds
+[2025-04-29 20:36:43] [INFO] Processing page 86 with direct extraction...
+[2025-04-29 20:36:43] [INFO] Direct extraction successful for page 86
+[2025-04-29 20:36:43] [DEBUG] Direct extraction for page 86 took 0.09 seconds
+[2025-04-29 20:36:43] [INFO] Processing page 87 with direct extraction...
+[2025-04-29 20:36:43] [INFO] Direct extraction successful for page 87
+[2025-04-29 20:36:43] [DEBUG] Direct extraction for page 87 took 0.11 seconds
+[2025-04-29 20:36:43] [INFO] Processing page 88 with direct extraction...
+[2025-04-29 20:36:44] [INFO] Direct extraction successful for page 88
+[2025-04-29 20:36:44] [DEBUG] Direct extraction for page 88 took 0.08 seconds
+[2025-04-29 20:36:44] [INFO] Processing page 89 with direct extraction...
+[2025-04-29 20:36:44] [INFO] Direct extraction successful for page 89
+[2025-04-29 20:36:44] [DEBUG] Direct extraction for page 89 took 0.09 seconds
+[2025-04-29 20:36:44] [INFO] Processing page 90 with direct extraction...
+[2025-04-29 20:36:44] [INFO] Direct extraction successful for page 90
+[2025-04-29 20:36:44] [DEBUG] Direct extraction for page 90 took 0.09 seconds
+[2025-04-29 20:36:44] [INFO] Processing page 91 with direct extraction...
+[2025-04-29 20:36:44] [INFO] Direct extraction successful for page 91
+[2025-04-29 20:36:44] [DEBUG] Direct extraction for page 91 took 0.14 seconds
+[2025-04-29 20:36:44] [INFO] Processing page 92 with direct extraction...
+[2025-04-29 20:36:44] [INFO] Direct extraction successful for page 92
+[2025-04-29 20:36:44] [DEBUG] Direct extraction for page 92 took 0.09 seconds
+[2025-04-29 20:36:44] [INFO] Processing page 93 with direct extraction...
+[2025-04-29 20:36:44] [INFO] Direct extraction successful for page 93
+[2025-04-29 20:36:44] [DEBUG] Direct extraction for page 93 took 0.10 seconds
+[2025-04-29 20:36:44] [INFO] Processing page 94 with direct extraction...
+[2025-04-29 20:36:44] [INFO] Direct extraction successful for page 94
+[2025-04-29 20:36:44] [DEBUG] Direct extraction for page 94 took 0.09 seconds
+[2025-04-29 20:36:44] [INFO] Processing page 95 with direct extraction...
+[2025-04-29 20:36:44] [INFO] Direct extraction successful for page 95
+[2025-04-29 20:36:44] [DEBUG] Direct extraction for page 95 took 0.08 seconds
+[2025-04-29 20:36:44] [INFO] Processing page 96 with direct extraction...
+[2025-04-29 20:36:44] [INFO] Direct extraction successful for page 96
+[2025-04-29 20:36:44] [DEBUG] Direct extraction for page 96 took 0.07 seconds
+[2025-04-29 20:36:44] [INFO] Processing page 97 with direct extraction...
+[2025-04-29 20:36:44] [INFO] Direct extraction successful for page 97
+[2025-04-29 20:36:44] [DEBUG] Direct extraction for page 97 took 0.12 seconds
+[2025-04-29 20:36:44] [INFO] Processing page 98 with direct extraction...
+[2025-04-29 20:36:45] [INFO] Direct extraction successful for page 98
+[2025-04-29 20:36:45] [DEBUG] Direct extraction for page 98 took 0.07 seconds
+[2025-04-29 20:36:45] [INFO] Processing page 99 with multimodal extraction...
+[2025-04-29 20:36:45] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:36:45] [INFO] Rendered page 99 to temporary_dir\image_page_99_b181d101.png
+[2025-04-29 20:37:04] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:37:04] [INFO] Multimodal extraction successful for page 99
+[2025-04-29 20:37:04] [DEBUG] Multimodal extraction for page 99 took 19.20 seconds
+[2025-04-29 20:37:04] [INFO] Processing page 100 with multimodal extraction...
+[2025-04-29 20:37:04] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:37:04] [INFO] Rendered page 100 to temporary_dir\image_page_100_1fccae13.png
+[2025-04-29 20:37:20] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:37:20] [INFO] Multimodal extraction successful for page 100
+[2025-04-29 20:37:20] [DEBUG] Multimodal extraction for page 100 took 16.38 seconds
+[2025-04-29 20:37:20] [INFO] Processing page 101 with multimodal extraction...
+[2025-04-29 20:37:20] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:37:20] [INFO] Rendered page 101 to temporary_dir\image_page_101_68eb0260.png
+[2025-04-29 20:37:32] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:37:32] [INFO] Multimodal extraction successful for page 101
+[2025-04-29 20:37:32] [DEBUG] Multimodal extraction for page 101 took 12.14 seconds
+[2025-04-29 20:37:32] [INFO] Processing page 102 with direct extraction...
+[2025-04-29 20:37:32] [INFO] Direct extraction successful for page 102
+[2025-04-29 20:37:32] [DEBUG] Direct extraction for page 102 took 0.06 seconds
+[2025-04-29 20:37:32] [INFO] Processing page 103 with direct extraction...
+[2025-04-29 20:37:32] [INFO] Direct extraction successful for page 103
+[2025-04-29 20:37:32] [DEBUG] Direct extraction for page 103 took 0.08 seconds
+[2025-04-29 20:37:32] [INFO] Processing page 104 with direct extraction...
+[2025-04-29 20:37:32] [INFO] Direct extraction successful for page 104
+[2025-04-29 20:37:32] [DEBUG] Direct extraction for page 104 took 0.08 seconds
+[2025-04-29 20:37:32] [INFO] Processing page 105 with direct extraction...
+[2025-04-29 20:37:33] [INFO] Direct extraction successful for page 105
+[2025-04-29 20:37:33] [DEBUG] Direct extraction for page 105 took 0.08 seconds
+[2025-04-29 20:37:33] [INFO] Processing page 106 with multimodal extraction...
+[2025-04-29 20:37:33] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-29 20:37:33] [INFO] Rendered page 106 to temporary_dir\image_page_106_8f4c20f3.png
+[2025-04-29 20:37:40] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-29 20:37:40] [INFO] Multimodal extraction successful for page 106
+[2025-04-29 20:37:40] [DEBUG] Multimodal extraction for page 106 took 7.70 seconds
+[2025-04-29 20:37:40] [INFO] Processing page 107 with direct extraction...
+[2025-04-29 20:37:40] [INFO] Direct extraction successful for page 107
+[2025-04-29 20:37:40] [DEBUG] Direct extraction for page 107 took 0.05 seconds
+[2025-04-29 20:37:40] [INFO] Processing page 108 with direct extraction...
+[2025-04-29 20:37:40] [INFO] Direct extraction successful for page 108
+[2025-04-29 20:37:40] [DEBUG] Direct extraction for page 108 took 0.13 seconds
+[2025-04-29 20:37:40] [INFO] Processing page 109 with direct extraction...
+[2025-04-29 20:37:41] [INFO] Direct extraction successful for page 109
+[2025-04-29 20:37:41] [DEBUG] Direct extraction for page 109 took 0.10 seconds
+[2025-04-29 20:37:41] [INFO] Processing page 110 with direct extraction...
+[2025-04-29 20:37:41] [INFO] Direct extraction successful for page 110
+[2025-04-29 20:37:41] [DEBUG] Direct extraction for page 110 took 0.08 seconds
+[2025-04-29 20:37:41] [INFO] Processing page 111 with direct extraction...
+[2025-04-29 20:37:41] [INFO] Direct extraction successful for page 111
+[2025-04-29 20:37:41] [DEBUG] Direct extraction for page 111 took 0.08 seconds
+[2025-04-29 20:37:41] [INFO] Processing page 112 with direct extraction...
+[2025-04-29 20:37:41] [INFO] Direct extraction successful for page 112
+[2025-04-29 20:37:41] [DEBUG] Direct extraction for page 112 took 0.10 seconds
+[2025-04-29 20:37:41] [INFO] Processing page 113 with direct extraction...
+[2025-04-29 20:37:41] [INFO] Direct extraction successful for page 113
+[2025-04-29 20:37:41] [DEBUG] Direct extraction for page 113 took 0.06 seconds
+[2025-04-29 20:37:41] [INFO] Cleaned up 27 temporary image files from temporary_dir
+[2025-04-29 20:37:41] [INFO] PDF processing completed. Total pages processed: 113
+[2025-04-29 20:37:41] [INFO] Direct: 55, OCR: 31, Multimodal: 27
+[2025-04-29 20:37:41] [INFO] Pemrosesan selesai untuk ABF Indonesia Bond Index Fund
