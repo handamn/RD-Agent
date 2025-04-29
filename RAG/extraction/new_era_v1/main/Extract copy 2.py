@@ -483,11 +483,18 @@ class IntegratedPdfExtractor:
             # Load the image
             pil_image = Image.open(image_path)
             
+            generation_config = {
+                "timeout": 300  # Adding explicit timeout
+            }
+            
             # Get model
-            model = genai.GenerativeModel('gemini-2.0-flash')
+            model = genai.GenerativeModel('gemini-2.0-flash',
+        generation_config=generation_config)
+            
             
             # Generate content
             response = model.generate_content([prompt, pil_image])
+            
             
             # Extract and parse JSON content using the new function
             response_text = response.text
@@ -507,81 +514,289 @@ class IntegratedPdfExtractor:
                     (0.66, 0.88),   # Segmen 6: 66% - 88%
                     (0.78, 1.00),   # Segmen 7: 78% - 100%
                 ]
+
+                print()
+                print()
+                print("========================")
+                print()
+                print("---")
+                print(segments[0])
+                print("===")
+                print(segments[0][0])
+                print(segments[0][1])
+                print("---")
+                print()
+
                 # Segment 1
                 segment1_path = self.crop_image_segment(image_path, segments[0])
                 segment1_image = Image.open(segment1_path)
                 segment1_prompt = f"""{prompt}
-                """
+                CATATAN PENTING:
+                - Ini adalah bagian pertama ({segments[0][0]*100:.0f}%-{segments[0][1]*100:.0f}%) dari dokumen
+                - Ekstrak SEMUA informasi yang terlihat dalam format JSON
+                - Jika tabel terpotong di bagian bawah, itu normal, ekstrak sebanyak yang terlihat
+                """                
 
                 response1 = model.generate_content([segment1_prompt, segment1_image])
                 response1_text = response1.text
                 parse1_json = self.extract_json_content(response1_text)
+                
+                print(parse1_json)
+                print()
+                print("========================")
+                print()
+                print()
 
+
+
+
+                print()
+                print()
+                print("========================")
+                print()
+                print("---")
+                print(segments[1])
+                print("===")
+                print(segments[1][0])
+                print(segments[1][1])
+                print("---")
+                print()
 
                 # Segment 2
                 segment2_path = self.crop_image_segment(image_path, segments[1])
                 segment2_image = Image.open(segment2_path)
-                segment2_prompt = f"""{prompt}
+                segment2_prompt = f"""
+                {prompt}
+                
+                CATATAN PENTING:
+                - Ini adalah bagian 2 dari 7 ({segments[1][0]*100:.0f}%-{segments[1][1]*100:.0f}%) dari dokumen
+                - Berikut hasil ekstraksi gabungan sejauh ini:
+                {parse1_json}
+                
+                INSTRUKSI KHUSUS UNTUK PENGGABUNGAN:
+                1. Identifikasi "OVERLAP BREAK" - baris terakhir yang sudah ada di JSON sebelumnya
+                2. Mulai ekstraksi dari baris SETELAH OVERLAP BREAK
+                3. Untuk TABEL:
+                - Jika ini kelanjutan tabel yang sudah dimulai, gunakan struktur header yang sama
+                - Tambahkan baris baru ke "rows" yang sudah ada
+                - Jangan duplikasi baris yang sudah ada
+                4. Untuk TEKS:
+                - Lanjutkan dari konten yang sudah ada
+                - Hindari pengulangan paragraf atau poin yang sama
+                5. Hasilkan JSON lengkap termasuk semua data sebelumnya + data baru dari segmen ini
+
+                INSTRUKSI KHUSUS UNTUK TABEL KOMPLEKS:
+                - Prioritaskan struktur tabel yang konsisten
+                - Jika header tabel sudah ada di JSON sebelumnya, gunakan struktur yang sama
+                - Perhatikan nomor baris/urutan untuk memastikan kelengkapan
+                - Jika menemukan tabel baru, buat blok baru dengan "type": "table"
+                
+                TEKNIK PENDETEKSIAN OVERLAP:
+                - Bandingkan 2-3 baris pertama yang Anda lihat dengan JSON sebelumnya
+                - OVERLAP BREAK adalah konten terakhir yang sama persis antara JSON dan gambar ini
+                - Fokus pada angka, tanggal, atau frasa unik untuk memastikan deteksi yang akurat
+                - Jangan ekstrak ulang data yang sudah ada di JSON sebelumnya
+                
+                PENTING: Hasilkan JSON LENGKAP sebagai output, termasuk semua data sebelumnya + data baru
                 """
 
                 response2 = model.generate_content([segment2_prompt, segment2_image])
                 response2_text = response2.text
                 parse2_json = self.extract_json_content(response2_text)
 
+                print(parse2_json)
+                print()
+                print("========================")
+                print()
+                print()
+
+
+
+
+
+                print()
+                print()
+                print("========================")
+                print()
+                print("---")
+                print(segments[2])
+                print("===")
+                print(segments[2][0])
+                print(segments[2][1])
+                print("---")
+                print()
 
                 # Segment 3
                 segment3_path = self.crop_image_segment(image_path, segments[2])
                 segment3_image = Image.open(segment3_path)
-                segment3_prompt = f"""{prompt}
+                segment3_prompt = f"""
+                {prompt}
+                
+                CATATAN PENTING:
+                - Ini adalah bagian 3 dari 7 ({segments[2][0]*100:.0f}%-{segments[2][1]*100:.0f}%) dari dokumen
+                - Berikut hasil ekstraksi gabungan sejauh ini:
+                {parse2_json}
+                
+                INSTRUKSI KHUSUS UNTUK PENGGABUNGAN:
+                1. Identifikasi "OVERLAP BREAK" - baris terakhir yang sudah ada di JSON sebelumnya
+                2. Mulai ekstraksi dari baris SETELAH OVERLAP BREAK
+                3. Untuk TABEL:
+                - Jika ini kelanjutan tabel yang sudah dimulai, gunakan struktur header yang sama
+                - Tambahkan baris baru ke "rows" yang sudah ada
+                - Jangan duplikasi baris yang sudah ada
+                4. Untuk TEKS:
+                - Lanjutkan dari konten yang sudah ada
+                - Hindari pengulangan paragraf atau poin yang sama
+                5. Hasilkan JSON lengkap termasuk semua data sebelumnya + data baru dari segmen ini
+
+                INSTRUKSI KHUSUS UNTUK TABEL KOMPLEKS:
+                - Prioritaskan struktur tabel yang konsisten
+                - Jika header tabel sudah ada di JSON sebelumnya, gunakan struktur yang sama
+                - Perhatikan nomor baris/urutan untuk memastikan kelengkapan
+                - Jika menemukan tabel baru, buat blok baru dengan "type": "table"
+                
+                TEKNIK PENDETEKSIAN OVERLAP:
+                - Bandingkan 2-3 baris pertama yang Anda lihat dengan JSON sebelumnya
+                - OVERLAP BREAK adalah konten terakhir yang sama persis antara JSON dan gambar ini
+                - Fokus pada angka, tanggal, atau frasa unik untuk memastikan deteksi yang akurat
+                - Jangan ekstrak ulang data yang sudah ada di JSON sebelumnya
+                
+                PENTING: Hasilkan JSON LENGKAP sebagai output, termasuk semua data sebelumnya + data baru
                 """
 
                 response3 = model.generate_content([segment3_prompt, segment3_image])
                 response3_text = response3.text
                 parse3_json = self.extract_json_content(response3_text)
 
+                print(parse3_json)
+                print()
+                print("========================")
+                print()
+                print()
+                
+
+
+
+
+                print()
+                print()
+                print("========================")
+                print()
+                print("---")
+                print(segments[3])
+                print("===")
+                print(segments[3][0])
+                print(segments[3][1])
+                print("---")
+                print()
 
                 # Segment 4
                 segment4_path = self.crop_image_segment(image_path, segments[3])
                 segment4_image = Image.open(segment4_path)
-                segment4_prompt = f"""{prompt}
+                segment4_prompt = f"""
+                {prompt}
+                
+                CATATAN PENTING:
+                - Ini adalah bagian 4 dari 7 ({segments[3][0]*100:.0f}%-{segments[3][1]*100:.0f}%) dari dokumen
+                - Berikut hasil ekstraksi gabungan sejauh ini:
+                {parse3_json}
+                
+                INSTRUKSI KHUSUS UNTUK PENGGABUNGAN:
+                1. Identifikasi "OVERLAP BREAK" - baris terakhir yang sudah ada di JSON sebelumnya
+                2. Mulai ekstraksi dari baris SETELAH OVERLAP BREAK
+                3. Untuk TABEL:
+                - Jika ini kelanjutan tabel yang sudah dimulai, gunakan struktur header yang sama
+                - Tambahkan baris baru ke "rows" yang sudah ada
+                - Jangan duplikasi baris yang sudah ada
+                4. Untuk TEKS:
+                - Lanjutkan dari konten yang sudah ada
+                - Hindari pengulangan paragraf atau poin yang sama
+                5. Hasilkan JSON lengkap termasuk semua data sebelumnya + data baru dari segmen ini
+
+                INSTRUKSI KHUSUS UNTUK TABEL KOMPLEKS:
+                - Prioritaskan struktur tabel yang konsisten
+                - Jika header tabel sudah ada di JSON sebelumnya, gunakan struktur yang sama
+                - Perhatikan nomor baris/urutan untuk memastikan kelengkapan
+                - Jika menemukan tabel baru, buat blok baru dengan "type": "table"
+                
+                TEKNIK PENDETEKSIAN OVERLAP:
+                - Bandingkan 2-3 baris pertama yang Anda lihat dengan JSON sebelumnya
+                - OVERLAP BREAK adalah konten terakhir yang sama persis antara JSON dan gambar ini
+                - Fokus pada angka, tanggal, atau frasa unik untuk memastikan deteksi yang akurat
+                - Jangan ekstrak ulang data yang sudah ada di JSON sebelumnya
+                
+                PENTING: Hasilkan JSON LENGKAP sebagai output, termasuk semua data sebelumnya + data baru
                 """
 
                 response4 = model.generate_content([segment4_prompt, segment4_image])
                 response4_text = response4.text
+                print()
+                print(response4_text)
+                print()
                 parse4_json = self.extract_json_content(response4_text)
 
-
-                # Segment 5
-                segment5_path = self.crop_image_segment(image_path, segments[4])
-                segment5_image = Image.open(segment5_path)
-                segment5_prompt = f"""{prompt}
-                """
-
-                response5 = model.generate_content([segment5_prompt, segment5_image])
-                response5_text = response5.text
-                parse5_json = self.extract_json_content(response5_text)
+                print(parse4_json)
+                print()
+                print("========================")
+                print()
+                print()
 
 
-                # Segment 6
-                segment6_path = self.crop_image_segment(image_path, segments[5])
-                segment6_image = Image.open(segment6_path)
-                segment6_prompt = f"""{prompt}
-                """
+                # # Segment 5
+                # segment5_path = self.crop_image_segment(image_path, segments[4])
+                # segment5_image = Image.open(segment5_path)
+                # segment5_prompt = f"""
+                # Gambar ini merupakan Potongan kelima dari sebuah gambar halaman
+                # Potongan pertama sampai keempat telah dilakukan ekstraksi dan disimpan dalam bentuk dictionary sebagai berikut :
+                # {parse4_json}
 
-                response6 = model.generate_content([segment6_prompt, segment6_image])
-                response6_text = response6.text
-                parse6_json = self.extract_json_content(response6_text)
+                # tugasmu adalah :
+                # 1. melakukan ekstraksi gambar ini dengan aturan yang saya buat {prompt}
+                # 2. identifikasi kesamaan pola atau data antara hasil Potongan pertama sampai keempat dengan hasil ekstraksi gambar potongan kelima ini
+                # 3. jika ditemukan kesamaan pola atau data maka gabungkan sedemikian rupa sehingga menjadi data yang lengkap dengan acuan format pada aturan yang saya sebutkan pada poin nomer 1
+                # """
+
+                # response5 = model.generate_content([segment5_prompt, segment5_image])
+                # response5_text = response5.text
+                # parse5_json = self.extract_json_content(response5_text)
 
 
-                # Segment 7
-                segment7_path = self.crop_image_segment(image_path, segments[6])
-                segment7_image = Image.open(segment7_path)
-                segment7_prompt = f"""{prompt}
-                """
+                # # Segment 6
+                # segment6_path = self.crop_image_segment(image_path, segments[5])
+                # segment6_image = Image.open(segment6_path)
+                # segment6_prompt = f"""
+                # Gambar ini merupakan Potongan keenam dari sebuah gambar halaman
+                # Potongan pertama sampai kelima telah dilakukan ekstraksi dan disimpan dalam bentuk dictionary sebagai berikut :
+                # {parse5_json}
 
-                response7 = model.generate_content([segment7_prompt, segment7_image])
-                response7_text = response7.text
-                parse7_json = self.extract_json_content(response7_text)
+                # tugasmu adalah :
+                # 1. melakukan ekstraksi gambar ini dengan aturan yang saya buat {prompt}
+                # 2. identifikasi kesamaan pola atau data antara hasil Potongan pertama sampai keenam dengan hasil ekstraksi gambar potongan keenam ini
+                # 3. jika ditemukan kesamaan pola atau data maka gabungkan sedemikian rupa sehingga menjadi data yang lengkap dengan acuan format pada aturan yang saya sebutkan pada poin nomer 1
+                # """
+
+                # response6 = model.generate_content([segment6_prompt, segment6_image])
+                # response6_text = response6.text
+                # parse6_json = self.extract_json_content(response6_text)
+
+
+                # # Segment 7
+                # segment7_path = self.crop_image_segment(image_path, segments[6])
+                # segment7_image = Image.open(segment7_path)
+                # segment7_prompt = f"""
+                # Gambar ini merupakan Potongan ketujuh dari sebuah gambar halaman
+                # Potongan pertama sampai keenam telah dilakukan ekstraksi dan disimpan dalam bentuk dictionary sebagai berikut :
+                # {parse6_json}
+
+                # tugasmu adalah :
+                # 1. melakukan ekstraksi gambar ini dengan aturan yang saya buat {prompt}
+                # 2. identifikasi kesamaan pola atau data antara hasil Potongan pertama sampai keenam dengan hasil ekstraksi gambar potongan ketujuh ini
+                # 3. jika ditemukan kesamaan pola atau data maka gabungkan sedemikian rupa sehingga menjadi data yang lengkap dengan acuan format pada aturan yang saya sebutkan pada poin nomer 1
+                # """
+
+                # response7 = model.generate_content([segment7_prompt, segment7_image])
+                # response7_text = response7.text
+                # parse7_json = self.extract_json_content(response7_text)
 
 
                 ### Gabung
@@ -614,7 +829,7 @@ class IntegratedPdfExtractor:
 
 
 
-                return parse7_json
+                return parse4_json
         
         except Exception as e:
             self.log_error(f"Error processing image with multimodal API: {str(e)}")
