@@ -1,0 +1,37 @@
+[2025-04-30 16:22:31] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-30 16:22:31] [INFO] Google Generative AI API berhasil dikonfigurasi
+[2025-04-30 16:22:31] [DEBUG] Memastikan direktori database/extracted_result ada
+[2025-04-30 16:22:31] [INFO] Memulai pemrosesan untuk test_ryan
+[2025-04-30 16:22:31] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-30 16:22:31] [INFO] Loading analysis data from database/classified_result\test_ryan_analisis.json
+[2025-04-30 16:22:31] [INFO] Initializing new output data structure
+[2025-04-30 16:22:31] [INFO] Initialized output data structure for test_ryan.pdf
+[2025-04-30 16:22:31] [INFO] Applying special processing for first page...
+[2025-04-30 16:22:31] [INFO] Processing first page with direct extraction (special case)...
+[2025-04-30 16:22:31] [INFO] Direct extraction successful for page 1
+[2025-04-30 16:22:31] [DEBUG] Direct extraction for page 1 took 0.01 seconds
+[2025-04-30 16:22:31] [INFO] Processing page 2 with multimodal extraction...
+[2025-04-30 16:22:31] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-30 16:22:31] [INFO] Rendered page 2 to temporary_dir\image_page_2_3b3e7346.png
+[2025-04-30 16:22:44] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-30 16:22:44] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-04-30 16:22:44] [INFO] Multimodal extraction successful for page 2
+[2025-04-30 16:22:44] [DEBUG] Multimodal extraction for page 2 took 13.40 seconds
+[2025-04-30 16:22:44] [INFO] Processing page 3 with multimodal extraction...
+[2025-04-30 16:22:44] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-30 16:22:44] [INFO] Rendered page 3 to temporary_dir\image_page_3_4bb9eda3.png
+[2025-04-30 16:22:58] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-30 16:22:58] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-04-30 16:22:58] [INFO] Multimodal extraction successful for page 3
+[2025-04-30 16:22:58] [DEBUG] Multimodal extraction for page 3 took 13.69 seconds
+[2025-04-30 16:22:58] [INFO] Processing page 4 with multimodal extraction...
+[2025-04-30 16:22:58] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-30 16:22:58] [INFO] Rendered page 4 to temporary_dir\image_page_4_c220c4cd.png
+[2025-04-30 16:23:08] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-30 16:23:08] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-04-30 16:23:08] [INFO] Multimodal extraction successful for page 4
+[2025-04-30 16:23:08] [DEBUG] Multimodal extraction for page 4 took 9.65 seconds
+[2025-04-30 16:23:08] [INFO] Cleaned up 3 temporary image files from temporary_dir
+[2025-04-30 16:23:08] [INFO] PDF processing completed. Total pages processed: 4
+[2025-04-30 16:23:08] [INFO] Direct: 1, OCR: 0, Multimodal: 3
+[2025-04-30 16:23:08] [INFO] Pemrosesan selesai untuk test_ryan

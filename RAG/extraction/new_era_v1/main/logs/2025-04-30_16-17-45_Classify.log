@@ -1,0 +1,26 @@
+[2025-04-30 16:17:45] [INFO] PDF Analyzer diinisialisasi
+[2025-04-30 16:17:45] [INFO] Mulai analisis file database/prospectus/test_ryan.pdf
+[2025-04-30 16:17:45] [INFO] Parameter: min_text_length=50, min_line_count=3, min_line_length_percent=10
+[2025-04-30 16:17:45] [INFO] PDF memiliki 4 halaman
+[2025-04-30 16:17:45] [INFO] Memproses halaman 1/4
+[2025-04-30 16:17:45] [DEBUG] Halaman 1: Teks mencukupi tanpa OCR
+[2025-04-30 16:17:45] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 16:17:45] [DEBUG] Ditemukan 8 garis valid, hasil: True
+[2025-04-30 16:17:45] [INFO] Hasil halaman 1: OCR=False, LINE=True, AI=True
+[2025-04-30 16:17:45] [INFO] Memproses halaman 2/4
+[2025-04-30 16:17:45] [DEBUG] Halaman 2: Teks mencukupi tanpa OCR
+[2025-04-30 16:17:45] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 16:17:45] [DEBUG] Ditemukan 8 garis valid, hasil: True
+[2025-04-30 16:17:45] [INFO] Hasil halaman 2: OCR=False, LINE=True, AI=True
+[2025-04-30 16:17:45] [INFO] Memproses halaman 3/4
+[2025-04-30 16:17:45] [DEBUG] Halaman 3: Teks mencukupi tanpa OCR
+[2025-04-30 16:17:45] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 16:17:45] [DEBUG] Ditemukan 8 garis valid, hasil: True
+[2025-04-30 16:17:45] [INFO] Hasil halaman 3: OCR=False, LINE=True, AI=True
+[2025-04-30 16:17:45] [INFO] Memproses halaman 4/4
+[2025-04-30 16:17:45] [DEBUG] Halaman 4: Teks mencukupi tanpa OCR
+[2025-04-30 16:17:45] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 16:17:45] [DEBUG] Ditemukan 8 garis valid, hasil: True
+[2025-04-30 16:17:45] [INFO] Hasil halaman 4: OCR=False, LINE=True, AI=True
+[2025-04-30 16:17:45] [INFO] Analisis selesai dalam 0.13 detik
+[2025-04-30 16:17:45] [INFO] Hasil disimpan ke E:\belajar-RAG\RD-Agent\RAG\extraction\new_era_v1\main\database/classified_result\test_ryan_analisis.json
