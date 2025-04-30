@@ -1,0 +1,45 @@
+[2025-04-30 16:02:06] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-30 16:02:06] [INFO] Google Generative AI API berhasil dikonfigurasi
+[2025-04-30 16:02:06] [DEBUG] Memastikan direktori database/extracted_result ada
+[2025-04-30 16:02:06] [INFO] Memulai pemrosesan untuk Sucorinvest Money Market Fund
+[2025-04-30 16:02:06] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-30 16:02:06] [INFO] Loading analysis data from database/classified_result\Sucorinvest Money Market Fund_analisis.json
+[2025-04-30 16:02:06] [INFO] Initializing new output data structure
+[2025-04-30 16:02:06] [INFO] Initialized output data structure for Sucorinvest Money Market Fund.pdf
+[2025-04-30 16:02:06] [INFO] Applying special processing for first page...
+[2025-04-30 16:02:06] [INFO] Processing first page with direct extraction (special case)...
+[2025-04-30 16:02:07] [INFO] Direct extraction successful for page 1
+[2025-04-30 16:02:07] [DEBUG] Direct extraction for page 1 took 0.12 seconds
+[2025-04-30 16:02:07] [INFO] Processing page 2 with direct extraction...
+[2025-04-30 16:02:07] [INFO] Direct extraction successful for page 2
+[2025-04-30 16:02:07] [DEBUG] Direct extraction for page 2 took 0.06 seconds
+[2025-04-30 16:02:07] [INFO] Processing page 3 with direct extraction...
+[2025-04-30 16:02:07] [INFO] Direct extraction successful for page 3
+[2025-04-30 16:02:07] [DEBUG] Direct extraction for page 3 took 0.08 seconds
+[2025-04-30 16:02:07] [INFO] Processing page 4 with direct extraction...
+[2025-04-30 16:02:07] [INFO] Direct extraction successful for page 4
+[2025-04-30 16:02:07] [DEBUG] Direct extraction for page 4 took 0.12 seconds
+[2025-04-30 16:02:07] [INFO] Processing page 5 with direct extraction...
+[2025-04-30 16:02:07] [INFO] Direct extraction successful for page 5
+[2025-04-30 16:02:07] [DEBUG] Direct extraction for page 5 took 0.08 seconds
+[2025-04-30 16:02:07] [INFO] Processing page 6 with direct extraction...
+[2025-04-30 16:02:07] [INFO] Direct extraction successful for page 6
+[2025-04-30 16:02:07] [DEBUG] Direct extraction for page 6 took 0.08 seconds
+[2025-04-30 16:02:07] [INFO] Processing page 7 with direct extraction...
+[2025-04-30 16:02:07] [INFO] Direct extraction successful for page 7
+[2025-04-30 16:02:07] [DEBUG] Direct extraction for page 7 took 0.12 seconds
+[2025-04-30 16:02:07] [INFO] Processing page 8 with direct extraction...
+[2025-04-30 16:02:07] [INFO] Direct extraction successful for page 8
+[2025-04-30 16:02:07] [DEBUG] Direct extraction for page 8 took 0.09 seconds
+[2025-04-30 16:02:07] [INFO] Processing page 9 with direct extraction...
+[2025-04-30 16:02:07] [INFO] Direct extraction successful for page 9
+[2025-04-30 16:02:07] [DEBUG] Direct extraction for page 9 took 0.08 seconds
+[2025-04-30 16:02:07] [INFO] Processing page 10 with direct extraction...
+[2025-04-30 16:02:07] [INFO] Direct extraction successful for page 10
+[2025-04-30 16:02:07] [DEBUG] Direct extraction for page 10 took 0.12 seconds
+[2025-04-30 16:02:07] [INFO] Processing page 11 with direct extraction...
+[2025-04-30 16:02:07] [INFO] Direct extraction successful for page 11
+[2025-04-30 16:02:07] [DEBUG] Direct extraction for page 11 took 0.08 seconds
+[2025-04-30 16:02:07] [INFO] Processing page 12 with multimodal extraction...
+[2025-04-30 16:02:07] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-30 16:02:08] [INFO] Rendered page 12 to temporary_dir\image_page_12_7f5313f3.png

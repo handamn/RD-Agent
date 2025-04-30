@@ -1,0 +1,26 @@
+[2025-04-30 16:01:02] [INFO] PDF Analyzer diinisialisasi
+[2025-04-30 16:01:02] [INFO] Mulai analisis file database/prospectus/a_latihan_sucorinvest.pdf
+[2025-04-30 16:01:02] [INFO] Parameter: min_text_length=50, min_line_count=3, min_line_length_percent=10
+[2025-04-30 16:01:02] [INFO] PDF memiliki 4 halaman
+[2025-04-30 16:01:02] [INFO] Memproses halaman 1/4
+[2025-04-30 16:01:02] [DEBUG] Halaman 1: Teks mencukupi tanpa OCR
+[2025-04-30 16:01:02] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 16:01:02] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 16:01:02] [INFO] Hasil halaman 1: OCR=False, LINE=False, AI=False
+[2025-04-30 16:01:02] [INFO] Memproses halaman 2/4
+[2025-04-30 16:01:02] [DEBUG] Halaman 2: Teks mencukupi tanpa OCR
+[2025-04-30 16:01:02] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 16:01:02] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 16:01:02] [INFO] Hasil halaman 2: OCR=False, LINE=False, AI=False
+[2025-04-30 16:01:02] [INFO] Memproses halaman 3/4
+[2025-04-30 16:01:02] [DEBUG] Halaman 3: Teks mencukupi tanpa OCR
+[2025-04-30 16:01:02] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 16:01:02] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 16:01:02] [INFO] Hasil halaman 3: OCR=False, LINE=False, AI=False
+[2025-04-30 16:01:02] [INFO] Memproses halaman 4/4
+[2025-04-30 16:01:02] [DEBUG] Halaman 4: Teks mencukupi tanpa OCR
+[2025-04-30 16:01:02] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 16:01:02] [DEBUG] Ditemukan 25 garis valid, hasil: True
+[2025-04-30 16:01:02] [INFO] Hasil halaman 4: OCR=False, LINE=True, AI=True
+[2025-04-30 16:01:02] [INFO] Analisis selesai dalam 0.51 detik
+[2025-04-30 16:01:02] [INFO] Hasil disimpan ke E:\belajar-RAG\RD-Agent\RAG\extraction\new_era_v1\main\database/classified_result\A_latihan_sucorinvest_analisis.json

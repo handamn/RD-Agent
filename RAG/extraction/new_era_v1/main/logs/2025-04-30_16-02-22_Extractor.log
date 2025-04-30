@@ -1,0 +1,35 @@
+[2025-04-30 16:02:22] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-30 16:02:22] [INFO] Google Generative AI API berhasil dikonfigurasi
+[2025-04-30 16:02:22] [DEBUG] Memastikan direktori database/extracted_result ada
+[2025-04-30 16:02:22] [INFO] Memulai pemrosesan untuk A_latihan_sucorinvest
+[2025-04-30 16:02:22] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-30 16:02:22] [INFO] Loading analysis data from database/classified_result\A_latihan_sucorinvest_analisis.json
+[2025-04-30 16:02:22] [INFO] Initializing new output data structure
+[2025-04-30 16:02:22] [INFO] Initialized output data structure for a_latihan_sucorinvest.pdf
+[2025-04-30 16:02:22] [INFO] Applying special processing for first page...
+[2025-04-30 16:02:22] [INFO] Processing first page with direct extraction (special case)...
+[2025-04-30 16:02:22] [INFO] Direct extraction successful for page 1
+[2025-04-30 16:02:22] [DEBUG] Direct extraction for page 1 took 0.12 seconds
+[2025-04-30 16:02:22] [INFO] Processing page 2 with multimodal extraction (fallback)...
+[2025-04-30 16:02:22] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-30 16:02:22] [INFO] Rendered page 2 to temporary_dir\image_page_2_0983240a.png
+[2025-04-30 16:02:36] [ERROR] Error during multimodal extraction: 'IntegratedPdfExtractor' object has no attribute 'crop_image_segment'
+[2025-04-30 16:02:36] [DEBUG] Multimodal extraction for page 2 took 14.59 seconds
+[2025-04-30 16:02:36] [INFO] Processing page 3 with multimodal extraction (fallback)...
+[2025-04-30 16:02:36] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-30 16:02:36] [INFO] Rendered page 3 to temporary_dir\image_page_3_ce45baa0.png
+[2025-04-30 16:02:47] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-30 16:02:47] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-04-30 16:02:47] [INFO] Multimodal extraction successful for page 3
+[2025-04-30 16:02:47] [DEBUG] Multimodal extraction for page 3 took 11.16 seconds
+[2025-04-30 16:02:47] [INFO] Processing page 4 with multimodal extraction...
+[2025-04-30 16:02:47] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-04-30 16:02:48] [INFO] Rendered page 4 to temporary_dir\image_page_4_e54e4822.png
+[2025-04-30 16:03:00] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-04-30 16:03:00] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-04-30 16:03:00] [INFO] Multimodal extraction successful for page 4
+[2025-04-30 16:03:00] [DEBUG] Multimodal extraction for page 4 took 12.33 seconds
+[2025-04-30 16:03:00] [INFO] Cleaned up 4 temporary image files from temporary_dir
+[2025-04-30 16:03:00] [INFO] PDF processing completed. Total pages processed: 4
+[2025-04-30 16:03:00] [INFO] Direct: 1, OCR: 0, Multimodal: 3
+[2025-04-30 16:03:00] [INFO] Pemrosesan selesai untuk A_latihan_sucorinvest

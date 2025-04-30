@@ -228,7 +228,7 @@ if __name__ == "__main__":
     pdf_files = [
         # ['ABF Indonesia Bond Index Fund', 'database/prospectus/ABF Indonesia Bond Index Fund.pdf'],
         # ['Sucorinvest Money Market Fund', 'database/prospectus/Avrist Ada Kas Mutiara.pdf']
-        ['ABF latihan', 'database/prospectus/ABF latihan.pdf']
+        ['A_latihan_sucorinvest', 'database/prospectus/a_latihan_sucorinvest.pdf']
     ]
     
     # Proses analisis
