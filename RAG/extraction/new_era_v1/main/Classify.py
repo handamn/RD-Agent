@@ -230,7 +230,10 @@ if __name__ == "__main__":
         # ['test_ryan', 'database/prospectus/test_ryan.pdf'],
         # ['A_latihan_sucorinvest', 'database/prospectus/a_latihan_sucorinvest.pdf']
         # ['Avrist Ada Kas Mutiara', 'database/prospectus/Avrist Ada Kas Mutiara.pdf']
-        ['Grow Dana Optima Kas Utama','database/prospectus/Grow Dana Optima Kas Utama.pdf']
+        ['ABF Indonesia Bond Index Fund','database/prospectus/ABF Indonesia Bond Index Fund.pdf'],
+        ['Avrist Ada Kas Mutiara','database/prospectus/Avrist Ada Kas Mutiara.pdf'],
+        ['Trimegah Kas Syariah','database/prospectus/Trimegah Kas Syariah.pdf']
+
 
     ]
     

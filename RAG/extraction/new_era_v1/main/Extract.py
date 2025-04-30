@@ -807,52 +807,24 @@ class IntegratedPdfExtractor:
             # Decide which method to use based on flags:
             existing_result = output_data["pages"].get(page_num, {"analysis": page_data})
             
-            # Special case for first page (page_num == "1" or page_num == 1)
-            if page_num == "1" or page_num == 1:
-                self.log_info(f"Applying special processing for first page...")
-                if ai_status:
-                    # For first page with ai_status=True, check ocr_status only
-                    if ocr_status:
-                        self.log_info(f"Processing first page with OCR extraction (special case)...")
-                        result = self.extract_with_ocr_method(pdf_path, int(page_num), existing_result)
-                        processed_count["ocr"] += 1
-                    else:
-                        self.log_info(f"Processing first page with direct extraction (special case)...")
-                        result = self.extract_with_direct_method(pdf_path, int(page_num), existing_result)
-                        processed_count["direct"] += 1
-                else:
-                    # For first page with ai_status=False, apply normal logic
-                    if not ocr_status and not line_status and not ai_status:
-                        self.log_info(f"Processing first page with direct extraction...")
-                        result = self.extract_with_direct_method(pdf_path, int(page_num), existing_result)
-                        processed_count["direct"] += 1
-                    elif ocr_status and not line_status and not ai_status:
-                        self.log_info(f"Processing first page with OCR extraction...")
-                        result = self.extract_with_ocr_method(pdf_path, int(page_num), existing_result)
-                        processed_count["ocr"] += 1
-                    else:
-                        self.log_info(f"Processing first page with multimodal extraction...")
-                        result = self.extract_with_multimodal_method(pdf_path, int(page_num), existing_result)
-                        processed_count["multimodal"] += 1
+            # Normal processing for all other pages (existing logic)
+            if not ocr_status and not line_status and not ai_status:
+                self.log_info(f"Processing page {page_num} with direct extraction...")
+                result = self.extract_with_direct_method(pdf_path, int(page_num), existing_result)
+                processed_count["direct"] += 1
+            elif ocr_status and not line_status and not ai_status:
+                self.log_info(f"Processing page {page_num} with OCR extraction...")
+                result = self.extract_with_ocr_method(pdf_path, int(page_num), existing_result)
+                processed_count["ocr"] += 1
+            elif ((ocr_status and line_status and ai_status) or 
+                (not ocr_status and line_status and ai_status)):
+                self.log_info(f"Processing page {page_num} with multimodal extraction...")
+                result = self.extract_with_multimodal_method(pdf_path, int(page_num), existing_result)
+                processed_count["multimodal"] += 1
             else:
-                # Normal processing for all other pages (existing logic)
-                if not ocr_status and not line_status and not ai_status:
-                    self.log_info(f"Processing page {page_num} with direct extraction...")
-                    result = self.extract_with_direct_method(pdf_path, int(page_num), existing_result)
-                    processed_count["direct"] += 1
-                elif ocr_status and not line_status and not ai_status:
-                    self.log_info(f"Processing page {page_num} with OCR extraction...")
-                    result = self.extract_with_ocr_method(pdf_path, int(page_num), existing_result)
-                    processed_count["ocr"] += 1
-                elif ((ocr_status and line_status and ai_status) or 
-                    (not ocr_status and line_status and ai_status)):
-                    self.log_info(f"Processing page {page_num} with multimodal extraction...")
-                    result = self.extract_with_multimodal_method(pdf_path, int(page_num), existing_result)
-                    processed_count["multimodal"] += 1
-                else:
-                    self.log_info(f"Processing page {page_num} with multimodal extraction (fallback)...")
-                    result = self.extract_with_multimodal_method(pdf_path, int(page_num), existing_result)
-                    processed_count["multimodal"] += 1
+                self.log_info(f"Processing page {page_num} with multimodal extraction (fallback)...")
+                result = self.extract_with_multimodal_method(pdf_path, int(page_num), existing_result)
+                processed_count["multimodal"] += 1
             
             # Update output data
             output_data["pages"][page_num] = result
@@ -922,7 +894,9 @@ if __name__ == "__main__":
         # ['ABF Indonesia Bond Index Fund', 'database/prospectus/ABF Indonesia Bond Index Fund.pdf']
         # ['Avrist Ada Kas Mutiara', 'database/prospectus/Avrist Ada Kas Mutiara.pdf']
         # ['test_ryan', 'database/prospectus/test_ryan.pdf']
-        ['Grow Dana Optima Kas Utama','database/prospectus/Grow Dana Optima Kas Utama.pdf']
+        ['ABF Indonesia Bond Index Fund','database/prospectus/ABF Indonesia Bond Index Fund.pdf'],
+        ['Avrist Ada Kas Mutiara','database/prospectus/Avrist Ada Kas Mutiara.pdf'],
+        ['Trimegah Kas Syariah','database/prospectus/Trimegah Kas Syariah.pdf']
     ]
     
     # Proses semua PDF

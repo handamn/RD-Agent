@@ -1,0 +1,1558 @@
+[2025-04-30 20:34:29] [INFO] PDF Analyzer diinisialisasi
+[2025-04-30 20:34:29] [INFO] Mulai analisis file database/prospectus/ABF Indonesia Bond Index Fund.pdf
+[2025-04-30 20:34:29] [INFO] Parameter: min_text_length=50, min_line_count=3, min_line_length_percent=10
+[2025-04-30 20:34:29] [INFO] PDF memiliki 113 halaman
+[2025-04-30 20:34:29] [INFO] Memproses halaman 1/113
+[2025-04-30 20:34:29] [DEBUG] Halaman 1: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:29] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:29] [DEBUG] Ditemukan 3 garis valid, hasil: True
+[2025-04-30 20:34:29] [INFO] Hasil halaman 1: OCR=False, LINE=True, AI=True
+[2025-04-30 20:34:29] [INFO] Memproses halaman 2/113
+[2025-04-30 20:34:29] [DEBUG] Halaman 2: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:29] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:29] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:29] [INFO] Hasil halaman 2: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:29] [INFO] Memproses halaman 3/113
+[2025-04-30 20:34:29] [DEBUG] Halaman 3: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:29] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:29] [DEBUG] Ditemukan 19 garis valid, hasil: True
+[2025-04-30 20:34:29] [INFO] Hasil halaman 3: OCR=False, LINE=True, AI=True
+[2025-04-30 20:34:29] [INFO] Memproses halaman 4/113
+[2025-04-30 20:34:29] [DEBUG] Halaman 4: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:29] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:29] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:29] [INFO] Hasil halaman 4: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:29] [INFO] Memproses halaman 5/113
+[2025-04-30 20:34:29] [DEBUG] Halaman 5: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:29] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:29] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:29] [INFO] Hasil halaman 5: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:29] [INFO] Memproses halaman 6/113
+[2025-04-30 20:34:29] [DEBUG] Halaman 6: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:29] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:29] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:29] [INFO] Hasil halaman 6: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:29] [INFO] Memproses halaman 7/113
+[2025-04-30 20:34:30] [DEBUG] Halaman 7: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:30] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:30] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:30] [INFO] Hasil halaman 7: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:30] [INFO] Memproses halaman 8/113
+[2025-04-30 20:34:30] [DEBUG] Halaman 8: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:30] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:30] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:30] [INFO] Hasil halaman 8: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:30] [INFO] Memproses halaman 9/113
+[2025-04-30 20:34:30] [DEBUG] Halaman 9: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:30] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:30] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:30] [INFO] Hasil halaman 9: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:30] [INFO] Memproses halaman 10/113
+[2025-04-30 20:34:30] [DEBUG] Halaman 10: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:30] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:30] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:30] [INFO] Hasil halaman 10: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:30] [INFO] Memproses halaman 11/113
+[2025-04-30 20:34:30] [DEBUG] Halaman 11: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:30] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:30] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:30] [INFO] Hasil halaman 11: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:30] [INFO] Memproses halaman 12/113
+[2025-04-30 20:34:30] [DEBUG] Halaman 12: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:30] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:30] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:30] [INFO] Hasil halaman 12: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:30] [INFO] Memproses halaman 13/113
+[2025-04-30 20:34:30] [DEBUG] Halaman 13: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:30] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:30] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:30] [INFO] Hasil halaman 13: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:30] [INFO] Memproses halaman 14/113
+[2025-04-30 20:34:30] [DEBUG] Halaman 14: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:30] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:30] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:30] [INFO] Hasil halaman 14: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:30] [INFO] Memproses halaman 15/113
+[2025-04-30 20:34:30] [DEBUG] Halaman 15: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:30] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:30] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:30] [INFO] Hasil halaman 15: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:30] [INFO] Memproses halaman 16/113
+[2025-04-30 20:34:30] [DEBUG] Halaman 16: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:30] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:30] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:30] [INFO] Hasil halaman 16: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:30] [INFO] Memproses halaman 17/113
+[2025-04-30 20:34:30] [DEBUG] Halaman 17: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:30] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:30] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:30] [INFO] Hasil halaman 17: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:30] [INFO] Memproses halaman 18/113
+[2025-04-30 20:34:31] [DEBUG] Halaman 18: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:31] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:31] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:31] [INFO] Hasil halaman 18: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:31] [INFO] Memproses halaman 19/113
+[2025-04-30 20:34:31] [DEBUG] Halaman 19: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:31] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:31] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:31] [INFO] Hasil halaman 19: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:31] [INFO] Memproses halaman 20/113
+[2025-04-30 20:34:31] [DEBUG] Halaman 20: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:31] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:31] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:31] [INFO] Hasil halaman 20: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:31] [INFO] Memproses halaman 21/113
+[2025-04-30 20:34:31] [DEBUG] Halaman 21: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:31] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:31] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:31] [INFO] Hasil halaman 21: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:31] [INFO] Memproses halaman 22/113
+[2025-04-30 20:34:31] [DEBUG] Halaman 22: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:31] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:31] [DEBUG] Ditemukan 9 garis valid, hasil: True
+[2025-04-30 20:34:31] [INFO] Hasil halaman 22: OCR=False, LINE=True, AI=True
+[2025-04-30 20:34:31] [INFO] Memproses halaman 23/113
+[2025-04-30 20:34:31] [DEBUG] Halaman 23: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:31] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:31] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:31] [INFO] Hasil halaman 23: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:31] [INFO] Memproses halaman 24/113
+[2025-04-30 20:34:31] [DEBUG] Halaman 24: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:31] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:31] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:31] [INFO] Hasil halaman 24: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:31] [INFO] Memproses halaman 25/113
+[2025-04-30 20:34:31] [DEBUG] Halaman 25: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:31] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:31] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:31] [INFO] Hasil halaman 25: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:31] [INFO] Memproses halaman 26/113
+[2025-04-30 20:34:31] [DEBUG] Halaman 26: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:31] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:31] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:31] [INFO] Hasil halaman 26: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:31] [INFO] Memproses halaman 27/113
+[2025-04-30 20:34:32] [DEBUG] Halaman 27: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:32] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:32] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:32] [INFO] Hasil halaman 27: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:32] [INFO] Memproses halaman 28/113
+[2025-04-30 20:34:32] [DEBUG] Halaman 28: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:32] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:32] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:32] [INFO] Hasil halaman 28: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:32] [INFO] Memproses halaman 29/113
+[2025-04-30 20:34:32] [DEBUG] Halaman 29: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:32] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:32] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:32] [INFO] Hasil halaman 29: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:32] [INFO] Memproses halaman 30/113
+[2025-04-30 20:34:32] [DEBUG] Halaman 30: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:32] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:32] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:32] [INFO] Hasil halaman 30: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:32] [INFO] Memproses halaman 31/113
+[2025-04-30 20:34:32] [DEBUG] Halaman 31: Teks mencukupi tanpa OCR
+[2025-04-30 20:34:32] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:32] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:32] [INFO] Hasil halaman 31: OCR=False, LINE=False, AI=False
+[2025-04-30 20:34:32] [INFO] Memproses halaman 32/113
+[2025-04-30 20:34:32] [DEBUG] Halaman 32: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:34:33] [DEBUG] Halaman 32: OCR berhasil, teks mencukupi
+[2025-04-30 20:34:33] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:33] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:33] [INFO] Hasil halaman 32: OCR=True, LINE=False, AI=False
+[2025-04-30 20:34:33] [INFO] Memproses halaman 33/113
+[2025-04-30 20:34:33] [DEBUG] Halaman 33: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:34:34] [DEBUG] Halaman 33: OCR berhasil, teks mencukupi
+[2025-04-30 20:34:34] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:34] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:34:34] [INFO] Hasil halaman 33: OCR=True, LINE=False, AI=False
+[2025-04-30 20:34:34] [INFO] Memproses halaman 34/113
+[2025-04-30 20:34:34] [DEBUG] Halaman 34: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:34:37] [DEBUG] Halaman 34: OCR berhasil, teks mencukupi
+[2025-04-30 20:34:37] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:37] [DEBUG] Ditemukan 2 garis valid, hasil: False
+[2025-04-30 20:34:37] [INFO] Hasil halaman 34: OCR=True, LINE=False, AI=False
+[2025-04-30 20:34:37] [INFO] Memproses halaman 35/113
+[2025-04-30 20:34:37] [DEBUG] Halaman 35: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:34:40] [DEBUG] Halaman 35: OCR berhasil, teks mencukupi
+[2025-04-30 20:34:40] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:40] [DEBUG] Ditemukan 2 garis valid, hasil: False
+[2025-04-30 20:34:40] [INFO] Hasil halaman 35: OCR=True, LINE=False, AI=False
+[2025-04-30 20:34:40] [INFO] Memproses halaman 36/113
+[2025-04-30 20:34:40] [DEBUG] Halaman 36: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:34:42] [DEBUG] Halaman 36: OCR berhasil, teks mencukupi
+[2025-04-30 20:34:42] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:42] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:42] [INFO] Hasil halaman 36: OCR=True, LINE=False, AI=False
+[2025-04-30 20:34:42] [INFO] Memproses halaman 37/113
+[2025-04-30 20:34:43] [DEBUG] Halaman 37: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:34:45] [DEBUG] Halaman 37: OCR berhasil, teks mencukupi
+[2025-04-30 20:34:45] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:45] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:45] [INFO] Hasil halaman 37: OCR=True, LINE=False, AI=False
+[2025-04-30 20:34:45] [INFO] Memproses halaman 38/113
+[2025-04-30 20:34:45] [DEBUG] Halaman 38: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:34:46] [DEBUG] Halaman 38: OCR berhasil, teks mencukupi
+[2025-04-30 20:34:46] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:46] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:46] [INFO] Hasil halaman 38: OCR=True, LINE=False, AI=False
+[2025-04-30 20:34:46] [INFO] Memproses halaman 39/113
+[2025-04-30 20:34:46] [DEBUG] Halaman 39: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:34:48] [DEBUG] Halaman 39: OCR berhasil, teks mencukupi
+[2025-04-30 20:34:48] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:48] [DEBUG] Ditemukan 2 garis valid, hasil: False
+[2025-04-30 20:34:48] [INFO] Hasil halaman 39: OCR=True, LINE=False, AI=False
+[2025-04-30 20:34:48] [INFO] Memproses halaman 40/113
+[2025-04-30 20:34:48] [DEBUG] Halaman 40: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:34:49] [DEBUG] Halaman 40: OCR berhasil, teks mencukupi
+[2025-04-30 20:34:49] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:49] [DEBUG] Ditemukan 3 garis valid, hasil: True
+[2025-04-30 20:34:49] [INFO] Hasil halaman 40: OCR=True, LINE=True, AI=True
+[2025-04-30 20:34:49] [INFO] Memproses halaman 41/113
+[2025-04-30 20:34:49] [DEBUG] Halaman 41: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:34:52] [DEBUG] Halaman 41: OCR berhasil, teks mencukupi
+[2025-04-30 20:34:52] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:52] [DEBUG] Ditemukan 2 garis valid, hasil: False
+[2025-04-30 20:34:52] [INFO] Hasil halaman 41: OCR=True, LINE=False, AI=False
+[2025-04-30 20:34:52] [INFO] Memproses halaman 42/113
+[2025-04-30 20:34:52] [DEBUG] Halaman 42: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:34:52] [DEBUG] Halaman 42: OCR berhasil, teks mencukupi
+[2025-04-30 20:34:52] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:53] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:34:53] [INFO] Hasil halaman 42: OCR=True, LINE=False, AI=False
+[2025-04-30 20:34:53] [INFO] Memproses halaman 43/113
+[2025-04-30 20:34:53] [DEBUG] Halaman 43: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:34:54] [DEBUG] Halaman 43: OCR berhasil, teks mencukupi
+[2025-04-30 20:34:54] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:54] [DEBUG] Ditemukan 29 garis valid, hasil: True
+[2025-04-30 20:34:54] [INFO] Hasil halaman 43: OCR=True, LINE=True, AI=True
+[2025-04-30 20:34:54] [INFO] Memproses halaman 44/113
+[2025-04-30 20:34:54] [DEBUG] Halaman 44: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:34:55] [DEBUG] Halaman 44: OCR berhasil, teks mencukupi
+[2025-04-30 20:34:55] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:55] [DEBUG] Ditemukan 19 garis valid, hasil: True
+[2025-04-30 20:34:55] [INFO] Hasil halaman 44: OCR=True, LINE=True, AI=True
+[2025-04-30 20:34:55] [INFO] Memproses halaman 45/113
+[2025-04-30 20:34:56] [DEBUG] Halaman 45: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:34:57] [DEBUG] Halaman 45: OCR berhasil, teks mencukupi
+[2025-04-30 20:34:57] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:57] [DEBUG] Ditemukan 22 garis valid, hasil: True
+[2025-04-30 20:34:57] [INFO] Hasil halaman 45: OCR=True, LINE=True, AI=True
+[2025-04-30 20:34:57] [INFO] Memproses halaman 46/113
+[2025-04-30 20:34:57] [DEBUG] Halaman 46: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:34:58] [DEBUG] Halaman 46: OCR berhasil, teks mencukupi
+[2025-04-30 20:34:58] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:34:58] [DEBUG] Ditemukan 17 garis valid, hasil: True
+[2025-04-30 20:34:58] [INFO] Hasil halaman 46: OCR=True, LINE=True, AI=True
+[2025-04-30 20:34:58] [INFO] Memproses halaman 47/113
+[2025-04-30 20:34:58] [DEBUG] Halaman 47: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:01] [DEBUG] Halaman 47: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:01] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:01] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:35:01] [INFO] Hasil halaman 47: OCR=True, LINE=False, AI=False
+[2025-04-30 20:35:01] [INFO] Memproses halaman 48/113
+[2025-04-30 20:35:02] [DEBUG] Halaman 48: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:04] [DEBUG] Halaman 48: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:04] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:04] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:35:04] [INFO] Hasil halaman 48: OCR=True, LINE=False, AI=False
+[2025-04-30 20:35:04] [INFO] Memproses halaman 49/113
+[2025-04-30 20:35:05] [DEBUG] Halaman 49: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:07] [DEBUG] Halaman 49: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:07] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:08] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:35:08] [INFO] Hasil halaman 49: OCR=True, LINE=False, AI=False
+[2025-04-30 20:35:08] [INFO] Memproses halaman 50/113
+[2025-04-30 20:35:08] [DEBUG] Halaman 50: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:10] [DEBUG] Halaman 50: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:10] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:10] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:35:10] [INFO] Hasil halaman 50: OCR=True, LINE=False, AI=False
+[2025-04-30 20:35:10] [INFO] Memproses halaman 51/113
+[2025-04-30 20:35:10] [DEBUG] Halaman 51: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:13] [DEBUG] Halaman 51: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:13] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:13] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:35:13] [INFO] Hasil halaman 51: OCR=True, LINE=False, AI=False
+[2025-04-30 20:35:13] [INFO] Memproses halaman 52/113
+[2025-04-30 20:35:13] [DEBUG] Halaman 52: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:16] [DEBUG] Halaman 52: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:16] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:16] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:35:16] [INFO] Hasil halaman 52: OCR=True, LINE=False, AI=False
+[2025-04-30 20:35:16] [INFO] Memproses halaman 53/113
+[2025-04-30 20:35:16] [DEBUG] Halaman 53: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:19] [DEBUG] Halaman 53: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:19] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:19] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:35:19] [INFO] Hasil halaman 53: OCR=True, LINE=False, AI=False
+[2025-04-30 20:35:19] [INFO] Memproses halaman 54/113
+[2025-04-30 20:35:19] [DEBUG] Halaman 54: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:21] [DEBUG] Halaman 54: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:21] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:21] [DEBUG] Ditemukan 4 garis valid, hasil: True
+[2025-04-30 20:35:21] [INFO] Hasil halaman 54: OCR=True, LINE=True, AI=True
+[2025-04-30 20:35:21] [INFO] Memproses halaman 55/113
+[2025-04-30 20:35:22] [DEBUG] Halaman 55: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:24] [DEBUG] Halaman 55: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:24] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:24] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:35:24] [INFO] Hasil halaman 55: OCR=True, LINE=False, AI=False
+[2025-04-30 20:35:24] [INFO] Memproses halaman 56/113
+[2025-04-30 20:35:24] [DEBUG] Halaman 56: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:26] [DEBUG] Halaman 56: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:26] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:26] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:35:26] [INFO] Hasil halaman 56: OCR=True, LINE=False, AI=False
+[2025-04-30 20:35:26] [INFO] Memproses halaman 57/113
+[2025-04-30 20:35:26] [DEBUG] Halaman 57: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:28] [DEBUG] Halaman 57: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:28] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:28] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:35:28] [INFO] Hasil halaman 57: OCR=True, LINE=False, AI=False
+[2025-04-30 20:35:28] [INFO] Memproses halaman 58/113
+[2025-04-30 20:35:28] [DEBUG] Halaman 58: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:31] [DEBUG] Halaman 58: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:31] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:31] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:35:31] [INFO] Hasil halaman 58: OCR=True, LINE=False, AI=False
+[2025-04-30 20:35:31] [INFO] Memproses halaman 59/113
+[2025-04-30 20:35:31] [DEBUG] Halaman 59: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:33] [DEBUG] Halaman 59: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:33] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:33] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:35:33] [INFO] Hasil halaman 59: OCR=True, LINE=False, AI=False
+[2025-04-30 20:35:33] [INFO] Memproses halaman 60/113
+[2025-04-30 20:35:33] [DEBUG] Halaman 60: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:36] [DEBUG] Halaman 60: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:36] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:36] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:35:36] [INFO] Hasil halaman 60: OCR=True, LINE=False, AI=False
+[2025-04-30 20:35:36] [INFO] Memproses halaman 61/113
+[2025-04-30 20:35:36] [DEBUG] Halaman 61: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:38] [DEBUG] Halaman 61: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:38] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:38] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:35:38] [INFO] Hasil halaman 61: OCR=True, LINE=False, AI=False
+[2025-04-30 20:35:38] [INFO] Memproses halaman 62/113
+[2025-04-30 20:35:38] [DEBUG] Halaman 62: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:46] [DEBUG] Halaman 62: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:46] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:46] [DEBUG] Ditemukan 7 garis valid, hasil: True
+[2025-04-30 20:35:46] [INFO] Hasil halaman 62: OCR=True, LINE=True, AI=True
+[2025-04-30 20:35:46] [INFO] Memproses halaman 63/113
+[2025-04-30 20:35:46] [DEBUG] Halaman 63: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:49] [DEBUG] Halaman 63: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:49] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:49] [DEBUG] Ditemukan 7 garis valid, hasil: True
+[2025-04-30 20:35:49] [INFO] Hasil halaman 63: OCR=True, LINE=True, AI=True
+[2025-04-30 20:35:49] [INFO] Memproses halaman 64/113
+[2025-04-30 20:35:50] [DEBUG] Halaman 64: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:52] [DEBUG] Halaman 64: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:52] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:52] [DEBUG] Ditemukan 7 garis valid, hasil: True
+[2025-04-30 20:35:52] [INFO] Hasil halaman 64: OCR=True, LINE=True, AI=True
+[2025-04-30 20:35:52] [INFO] Memproses halaman 65/113
+[2025-04-30 20:35:52] [DEBUG] Halaman 65: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:54] [DEBUG] Halaman 65: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:54] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:54] [DEBUG] Ditemukan 20 garis valid, hasil: True
+[2025-04-30 20:35:54] [INFO] Hasil halaman 65: OCR=True, LINE=True, AI=True
+[2025-04-30 20:35:54] [INFO] Memproses halaman 66/113
+[2025-04-30 20:35:54] [DEBUG] Halaman 66: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:35:57] [DEBUG] Halaman 66: OCR berhasil, teks mencukupi
+[2025-04-30 20:35:57] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:35:57] [DEBUG] Ditemukan 25 garis valid, hasil: True
+[2025-04-30 20:35:57] [INFO] Hasil halaman 66: OCR=True, LINE=True, AI=True
+[2025-04-30 20:35:57] [INFO] Memproses halaman 67/113
+[2025-04-30 20:35:57] [DEBUG] Halaman 67: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:36:00] [DEBUG] Halaman 67: OCR berhasil, teks mencukupi
+[2025-04-30 20:36:00] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:00] [DEBUG] Ditemukan 21 garis valid, hasil: True
+[2025-04-30 20:36:00] [INFO] Hasil halaman 67: OCR=True, LINE=True, AI=True
+[2025-04-30 20:36:00] [INFO] Memproses halaman 68/113
+[2025-04-30 20:36:00] [DEBUG] Halaman 68: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:36:02] [DEBUG] Halaman 68: OCR berhasil, teks mencukupi
+[2025-04-30 20:36:02] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:02] [DEBUG] Ditemukan 29 garis valid, hasil: True
+[2025-04-30 20:36:02] [INFO] Hasil halaman 68: OCR=True, LINE=True, AI=True
+[2025-04-30 20:36:02] [INFO] Memproses halaman 69/113
+[2025-04-30 20:36:02] [DEBUG] Halaman 69: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:36:06] [DEBUG] Halaman 69: OCR berhasil, teks mencukupi
+[2025-04-30 20:36:06] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:06] [DEBUG] Ditemukan 9 garis valid, hasil: True
+[2025-04-30 20:36:06] [INFO] Hasil halaman 69: OCR=True, LINE=True, AI=True
+[2025-04-30 20:36:06] [INFO] Memproses halaman 70/113
+[2025-04-30 20:36:06] [DEBUG] Halaman 70: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:36:08] [DEBUG] Halaman 70: OCR berhasil, teks mencukupi
+[2025-04-30 20:36:08] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:08] [DEBUG] Ditemukan 13 garis valid, hasil: True
+[2025-04-30 20:36:08] [INFO] Hasil halaman 70: OCR=True, LINE=True, AI=True
+[2025-04-30 20:36:08] [INFO] Memproses halaman 71/113
+[2025-04-30 20:36:09] [DEBUG] Halaman 71: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:36:12] [DEBUG] Halaman 71: OCR berhasil, teks mencukupi
+[2025-04-30 20:36:12] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:12] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:36:12] [INFO] Hasil halaman 71: OCR=True, LINE=False, AI=False
+[2025-04-30 20:36:12] [INFO] Memproses halaman 72/113
+[2025-04-30 20:36:12] [DEBUG] Halaman 72: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:36:15] [DEBUG] Halaman 72: OCR berhasil, teks mencukupi
+[2025-04-30 20:36:15] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:15] [DEBUG] Ditemukan 3 garis valid, hasil: True
+[2025-04-30 20:36:15] [INFO] Hasil halaman 72: OCR=True, LINE=True, AI=True
+[2025-04-30 20:36:15] [INFO] Memproses halaman 73/113
+[2025-04-30 20:36:15] [DEBUG] Halaman 73: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:36:19] [DEBUG] Halaman 73: OCR berhasil, teks mencukupi
+[2025-04-30 20:36:19] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:19] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:36:19] [INFO] Hasil halaman 73: OCR=True, LINE=False, AI=False
+[2025-04-30 20:36:19] [INFO] Memproses halaman 74/113
+[2025-04-30 20:36:19] [DEBUG] Halaman 74: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:36:23] [DEBUG] Halaman 74: OCR berhasil, teks mencukupi
+[2025-04-30 20:36:23] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:23] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:36:23] [INFO] Hasil halaman 74: OCR=True, LINE=False, AI=False
+[2025-04-30 20:36:23] [INFO] Memproses halaman 75/113
+[2025-04-30 20:36:23] [DEBUG] Halaman 75: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:36:26] [DEBUG] Halaman 75: OCR berhasil, teks mencukupi
+[2025-04-30 20:36:26] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:26] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:36:26] [INFO] Hasil halaman 75: OCR=True, LINE=False, AI=False
+[2025-04-30 20:36:26] [INFO] Memproses halaman 76/113
+[2025-04-30 20:36:26] [DEBUG] Halaman 76: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:36:30] [DEBUG] Halaman 76: OCR berhasil, teks mencukupi
+[2025-04-30 20:36:30] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:30] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:36:30] [INFO] Hasil halaman 76: OCR=True, LINE=False, AI=False
+[2025-04-30 20:36:30] [INFO] Memproses halaman 77/113
+[2025-04-30 20:36:30] [DEBUG] Halaman 77: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:36:33] [DEBUG] Halaman 77: OCR berhasil, teks mencukupi
+[2025-04-30 20:36:33] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:33] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:36:33] [INFO] Hasil halaman 77: OCR=True, LINE=False, AI=False
+[2025-04-30 20:36:33] [INFO] Memproses halaman 78/113
+[2025-04-30 20:36:34] [DEBUG] Halaman 78: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:36:38] [DEBUG] Halaman 78: OCR berhasil, teks mencukupi
+[2025-04-30 20:36:38] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:38] [DEBUG] Ditemukan 3 garis valid, hasil: True
+[2025-04-30 20:36:38] [INFO] Hasil halaman 78: OCR=True, LINE=True, AI=True
+[2025-04-30 20:36:38] [INFO] Memproses halaman 79/113
+[2025-04-30 20:36:38] [DEBUG] Halaman 79: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:36:42] [DEBUG] Halaman 79: OCR berhasil, teks mencukupi
+[2025-04-30 20:36:42] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:42] [DEBUG] Ditemukan 3 garis valid, hasil: True
+[2025-04-30 20:36:42] [INFO] Hasil halaman 79: OCR=True, LINE=True, AI=True
+[2025-04-30 20:36:42] [INFO] Memproses halaman 80/113
+[2025-04-30 20:36:42] [DEBUG] Halaman 80: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:36:46] [DEBUG] Halaman 80: OCR berhasil, teks mencukupi
+[2025-04-30 20:36:46] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:46] [DEBUG] Ditemukan 7 garis valid, hasil: True
+[2025-04-30 20:36:46] [INFO] Hasil halaman 80: OCR=True, LINE=True, AI=True
+[2025-04-30 20:36:46] [INFO] Memproses halaman 81/113
+[2025-04-30 20:36:46] [DEBUG] Halaman 81: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:36:48] [DEBUG] Halaman 81: OCR berhasil, teks mencukupi
+[2025-04-30 20:36:48] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:48] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:36:48] [INFO] Hasil halaman 81: OCR=True, LINE=False, AI=False
+[2025-04-30 20:36:48] [INFO] Memproses halaman 82/113
+[2025-04-30 20:36:48] [DEBUG] Halaman 82: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:48] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:48] [DEBUG] Ditemukan 12 garis valid, hasil: True
+[2025-04-30 20:36:48] [INFO] Hasil halaman 82: OCR=False, LINE=True, AI=True
+[2025-04-30 20:36:48] [INFO] Memproses halaman 83/113
+[2025-04-30 20:36:49] [DEBUG] Halaman 83: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:49] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:49] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:49] [INFO] Hasil halaman 83: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:49] [INFO] Memproses halaman 84/113
+[2025-04-30 20:36:49] [DEBUG] Halaman 84: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:49] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:49] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:49] [INFO] Hasil halaman 84: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:49] [INFO] Memproses halaman 85/113
+[2025-04-30 20:36:49] [DEBUG] Halaman 85: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:49] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:49] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:49] [INFO] Hasil halaman 85: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:49] [INFO] Memproses halaman 86/113
+[2025-04-30 20:36:49] [DEBUG] Halaman 86: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:49] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:49] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:49] [INFO] Hasil halaman 86: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:49] [INFO] Memproses halaman 87/113
+[2025-04-30 20:36:49] [DEBUG] Halaman 87: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:49] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:49] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:49] [INFO] Hasil halaman 87: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:49] [INFO] Memproses halaman 88/113
+[2025-04-30 20:36:50] [DEBUG] Halaman 88: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:50] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:50] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:50] [INFO] Hasil halaman 88: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:50] [INFO] Memproses halaman 89/113
+[2025-04-30 20:36:50] [DEBUG] Halaman 89: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:50] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:50] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:50] [INFO] Hasil halaman 89: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:50] [INFO] Memproses halaman 90/113
+[2025-04-30 20:36:50] [DEBUG] Halaman 90: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:50] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:50] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:50] [INFO] Hasil halaman 90: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:50] [INFO] Memproses halaman 91/113
+[2025-04-30 20:36:50] [DEBUG] Halaman 91: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:50] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:50] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:50] [INFO] Hasil halaman 91: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:50] [INFO] Memproses halaman 92/113
+[2025-04-30 20:36:50] [DEBUG] Halaman 92: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:50] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:50] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:50] [INFO] Hasil halaman 92: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:50] [INFO] Memproses halaman 93/113
+[2025-04-30 20:36:51] [DEBUG] Halaman 93: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:51] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:51] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:51] [INFO] Hasil halaman 93: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:51] [INFO] Memproses halaman 94/113
+[2025-04-30 20:36:51] [DEBUG] Halaman 94: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:51] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:51] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:51] [INFO] Hasil halaman 94: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:51] [INFO] Memproses halaman 95/113
+[2025-04-30 20:36:51] [DEBUG] Halaman 95: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:51] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:51] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:51] [INFO] Hasil halaman 95: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:51] [INFO] Memproses halaman 96/113
+[2025-04-30 20:36:51] [DEBUG] Halaman 96: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:51] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:51] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:51] [INFO] Hasil halaman 96: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:51] [INFO] Memproses halaman 97/113
+[2025-04-30 20:36:51] [DEBUG] Halaman 97: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:51] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:51] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:51] [INFO] Hasil halaman 97: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:51] [INFO] Memproses halaman 98/113
+[2025-04-30 20:36:51] [DEBUG] Halaman 98: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:51] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:51] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:51] [INFO] Hasil halaman 98: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:51] [INFO] Memproses halaman 99/113
+[2025-04-30 20:36:51] [DEBUG] Halaman 99: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:51] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:51] [DEBUG] Ditemukan 19 garis valid, hasil: True
+[2025-04-30 20:36:51] [INFO] Hasil halaman 99: OCR=False, LINE=True, AI=True
+[2025-04-30 20:36:51] [INFO] Memproses halaman 100/113
+[2025-04-30 20:36:52] [DEBUG] Halaman 100: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:52] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:52] [DEBUG] Ditemukan 24 garis valid, hasil: True
+[2025-04-30 20:36:52] [INFO] Hasil halaman 100: OCR=False, LINE=True, AI=True
+[2025-04-30 20:36:52] [INFO] Memproses halaman 101/113
+[2025-04-30 20:36:52] [DEBUG] Halaman 101: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:52] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:52] [DEBUG] Ditemukan 22 garis valid, hasil: True
+[2025-04-30 20:36:52] [INFO] Hasil halaman 101: OCR=False, LINE=True, AI=True
+[2025-04-30 20:36:52] [INFO] Memproses halaman 102/113
+[2025-04-30 20:36:52] [DEBUG] Halaman 102: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:52] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:52] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:52] [INFO] Hasil halaman 102: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:52] [INFO] Memproses halaman 103/113
+[2025-04-30 20:36:52] [DEBUG] Halaman 103: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:52] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:52] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:52] [INFO] Hasil halaman 103: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:52] [INFO] Memproses halaman 104/113
+[2025-04-30 20:36:52] [DEBUG] Halaman 104: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:52] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:52] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:52] [INFO] Hasil halaman 104: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:52] [INFO] Memproses halaman 105/113
+[2025-04-30 20:36:53] [DEBUG] Halaman 105: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:53] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:53] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:53] [INFO] Hasil halaman 105: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:53] [INFO] Memproses halaman 106/113
+[2025-04-30 20:36:53] [DEBUG] Halaman 106: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:53] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:53] [DEBUG] Ditemukan 3 garis valid, hasil: True
+[2025-04-30 20:36:53] [INFO] Hasil halaman 106: OCR=False, LINE=True, AI=True
+[2025-04-30 20:36:53] [INFO] Memproses halaman 107/113
+[2025-04-30 20:36:53] [DEBUG] Halaman 107: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:53] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:53] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:53] [INFO] Hasil halaman 107: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:53] [INFO] Memproses halaman 108/113
+[2025-04-30 20:36:53] [DEBUG] Halaman 108: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:53] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:53] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:53] [INFO] Hasil halaman 108: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:53] [INFO] Memproses halaman 109/113
+[2025-04-30 20:36:53] [DEBUG] Halaman 109: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:53] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:53] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:53] [INFO] Hasil halaman 109: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:53] [INFO] Memproses halaman 110/113
+[2025-04-30 20:36:54] [DEBUG] Halaman 110: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:54] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:54] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:54] [INFO] Hasil halaman 110: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:54] [INFO] Memproses halaman 111/113
+[2025-04-30 20:36:54] [DEBUG] Halaman 111: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:54] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:54] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:54] [INFO] Hasil halaman 111: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:54] [INFO] Memproses halaman 112/113
+[2025-04-30 20:36:54] [DEBUG] Halaman 112: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:54] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:54] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:54] [INFO] Hasil halaman 112: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:54] [INFO] Memproses halaman 113/113
+[2025-04-30 20:36:54] [DEBUG] Halaman 113: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:54] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:54] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:54] [INFO] Hasil halaman 113: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:54] [INFO] Analisis selesai dalam 145.49 detik
+[2025-04-30 20:36:54] [INFO] Hasil disimpan ke E:\RD-Agent\RAG\extraction\new_era_v1\main\database/classified_result\ABF Indonesia Bond Index Fund_analisis.json
+[2025-04-30 20:36:54] [INFO] Mulai analisis file database/prospectus/Avrist Ada Kas Mutiara.pdf
+[2025-04-30 20:36:54] [INFO] Parameter: min_text_length=50, min_line_count=3, min_line_length_percent=10
+[2025-04-30 20:36:54] [INFO] PDF memiliki 86 halaman
+[2025-04-30 20:36:54] [INFO] Memproses halaman 1/86
+[2025-04-30 20:36:55] [DEBUG] Halaman 1: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:55] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:55] [DEBUG] Ditemukan 8 garis valid, hasil: True
+[2025-04-30 20:36:55] [INFO] Hasil halaman 1: OCR=False, LINE=True, AI=True
+[2025-04-30 20:36:55] [INFO] Memproses halaman 2/86
+[2025-04-30 20:36:55] [DEBUG] Halaman 2: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:55] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:55] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:55] [INFO] Hasil halaman 2: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:55] [INFO] Memproses halaman 3/86
+[2025-04-30 20:36:55] [DEBUG] Halaman 3: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:55] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:55] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:55] [INFO] Hasil halaman 3: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:55] [INFO] Memproses halaman 4/86
+[2025-04-30 20:36:55] [DEBUG] Halaman 4: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:55] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:56] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:56] [INFO] Hasil halaman 4: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:56] [INFO] Memproses halaman 5/86
+[2025-04-30 20:36:56] [DEBUG] Halaman 5: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:56] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:56] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:56] [INFO] Hasil halaman 5: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:56] [INFO] Memproses halaman 6/86
+[2025-04-30 20:36:56] [DEBUG] Halaman 6: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:56] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:56] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:56] [INFO] Hasil halaman 6: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:56] [INFO] Memproses halaman 7/86
+[2025-04-30 20:36:56] [DEBUG] Halaman 7: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:56] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:56] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:56] [INFO] Hasil halaman 7: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:56] [INFO] Memproses halaman 8/86
+[2025-04-30 20:36:56] [DEBUG] Halaman 8: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:56] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:56] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:56] [INFO] Hasil halaman 8: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:56] [INFO] Memproses halaman 9/86
+[2025-04-30 20:36:57] [DEBUG] Halaman 9: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:57] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:57] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:57] [INFO] Hasil halaman 9: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:57] [INFO] Memproses halaman 10/86
+[2025-04-30 20:36:57] [DEBUG] Halaman 10: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:57] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:57] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:57] [INFO] Hasil halaman 10: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:57] [INFO] Memproses halaman 11/86
+[2025-04-30 20:36:57] [DEBUG] Halaman 11: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:57] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:57] [DEBUG] Ditemukan 2 garis valid, hasil: False
+[2025-04-30 20:36:57] [INFO] Hasil halaman 11: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:57] [INFO] Memproses halaman 12/86
+[2025-04-30 20:36:58] [DEBUG] Halaman 12: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:58] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:58] [DEBUG] Ditemukan 3 garis valid, hasil: True
+[2025-04-30 20:36:58] [INFO] Hasil halaman 12: OCR=False, LINE=True, AI=True
+[2025-04-30 20:36:58] [INFO] Memproses halaman 13/86
+[2025-04-30 20:36:58] [DEBUG] Halaman 13: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:58] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:58] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:58] [INFO] Hasil halaman 13: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:58] [INFO] Memproses halaman 14/86
+[2025-04-30 20:36:58] [DEBUG] Halaman 14: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:58] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:58] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:58] [INFO] Hasil halaman 14: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:58] [INFO] Memproses halaman 15/86
+[2025-04-30 20:36:58] [DEBUG] Halaman 15: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:58] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:58] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:58] [INFO] Hasil halaman 15: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:58] [INFO] Memproses halaman 16/86
+[2025-04-30 20:36:58] [DEBUG] Halaman 16: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:58] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:58] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:58] [INFO] Hasil halaman 16: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:58] [INFO] Memproses halaman 17/86
+[2025-04-30 20:36:59] [DEBUG] Halaman 17: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:59] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:59] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:59] [INFO] Hasil halaman 17: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:59] [INFO] Memproses halaman 18/86
+[2025-04-30 20:36:59] [DEBUG] Halaman 18: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:59] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:59] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:59] [INFO] Hasil halaman 18: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:59] [INFO] Memproses halaman 19/86
+[2025-04-30 20:36:59] [DEBUG] Halaman 19: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:59] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:59] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:59] [INFO] Hasil halaman 19: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:59] [INFO] Memproses halaman 20/86
+[2025-04-30 20:36:59] [DEBUG] Halaman 20: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:59] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:59] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:59] [INFO] Hasil halaman 20: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:59] [INFO] Memproses halaman 21/86
+[2025-04-30 20:36:59] [DEBUG] Halaman 21: Teks mencukupi tanpa OCR
+[2025-04-30 20:36:59] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:36:59] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:36:59] [INFO] Hasil halaman 21: OCR=False, LINE=False, AI=False
+[2025-04-30 20:36:59] [INFO] Memproses halaman 22/86
+[2025-04-30 20:37:00] [DEBUG] Halaman 22: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:00] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:00] [DEBUG] Ditemukan 3 garis valid, hasil: True
+[2025-04-30 20:37:00] [INFO] Hasil halaman 22: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:00] [INFO] Memproses halaman 23/86
+[2025-04-30 20:37:00] [DEBUG] Halaman 23: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:00] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:00] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:00] [INFO] Hasil halaman 23: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:00] [INFO] Memproses halaman 24/86
+[2025-04-30 20:37:00] [DEBUG] Halaman 24: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:00] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:00] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:00] [INFO] Hasil halaman 24: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:00] [INFO] Memproses halaman 25/86
+[2025-04-30 20:37:00] [DEBUG] Halaman 25: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:00] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:00] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:00] [INFO] Hasil halaman 25: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:00] [INFO] Memproses halaman 26/86
+[2025-04-30 20:37:01] [DEBUG] Halaman 26: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:01] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:01] [DEBUG] Ditemukan 4 garis valid, hasil: True
+[2025-04-30 20:37:01] [INFO] Hasil halaman 26: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:01] [INFO] Memproses halaman 27/86
+[2025-04-30 20:37:01] [DEBUG] Halaman 27: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:01] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:01] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:01] [INFO] Hasil halaman 27: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:01] [INFO] Memproses halaman 28/86
+[2025-04-30 20:37:01] [DEBUG] Halaman 28: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:01] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:01] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:01] [INFO] Hasil halaman 28: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:01] [INFO] Memproses halaman 29/86
+[2025-04-30 20:37:01] [DEBUG] Halaman 29: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:01] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:01] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:01] [INFO] Hasil halaman 29: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:01] [INFO] Memproses halaman 30/86
+[2025-04-30 20:37:01] [DEBUG] Halaman 30: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:01] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:01] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:01] [INFO] Hasil halaman 30: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:01] [INFO] Memproses halaman 31/86
+[2025-04-30 20:37:01] [DEBUG] Halaman 31: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:01] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:01] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:01] [INFO] Hasil halaman 31: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:01] [INFO] Memproses halaman 32/86
+[2025-04-30 20:37:01] [DEBUG] Halaman 32: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:01] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:01] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:01] [INFO] Hasil halaman 32: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:01] [INFO] Memproses halaman 33/86
+[2025-04-30 20:37:01] [DEBUG] Halaman 33: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:01] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:02] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:02] [INFO] Hasil halaman 33: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:02] [INFO] Memproses halaman 34/86
+[2025-04-30 20:37:02] [DEBUG] Halaman 34: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:02] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:02] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:02] [INFO] Hasil halaman 34: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:02] [INFO] Memproses halaman 35/86
+[2025-04-30 20:37:02] [DEBUG] Halaman 35: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:02] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:02] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:02] [INFO] Hasil halaman 35: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:02] [INFO] Memproses halaman 36/86
+[2025-04-30 20:37:02] [DEBUG] Halaman 36: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:37:04] [DEBUG] Halaman 36: OCR berhasil, teks mencukupi
+[2025-04-30 20:37:04] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:04] [DEBUG] Ditemukan 3 garis valid, hasil: True
+[2025-04-30 20:37:04] [INFO] Hasil halaman 36: OCR=True, LINE=True, AI=True
+[2025-04-30 20:37:04] [INFO] Memproses halaman 37/86
+[2025-04-30 20:37:05] [DEBUG] Halaman 37: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:37:07] [DEBUG] Halaman 37: OCR berhasil, teks mencukupi
+[2025-04-30 20:37:07] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:07] [DEBUG] Ditemukan 2 garis valid, hasil: False
+[2025-04-30 20:37:07] [INFO] Hasil halaman 37: OCR=True, LINE=False, AI=False
+[2025-04-30 20:37:07] [INFO] Memproses halaman 38/86
+[2025-04-30 20:37:07] [DEBUG] Halaman 38: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:37:09] [DEBUG] Halaman 38: OCR berhasil, teks mencukupi
+[2025-04-30 20:37:09] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:09] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:09] [INFO] Hasil halaman 38: OCR=True, LINE=False, AI=False
+[2025-04-30 20:37:09] [INFO] Memproses halaman 39/86
+[2025-04-30 20:37:10] [DEBUG] Halaman 39: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:10] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:10] [DEBUG] Ditemukan 2 garis valid, hasil: False
+[2025-04-30 20:37:10] [INFO] Hasil halaman 39: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:10] [INFO] Memproses halaman 40/86
+[2025-04-30 20:37:11] [DEBUG] Halaman 40: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:11] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:11] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:11] [INFO] Hasil halaman 40: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:11] [INFO] Memproses halaman 41/86
+[2025-04-30 20:37:11] [DEBUG] Halaman 41: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:11] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:11] [DEBUG] Ditemukan 25 garis valid, hasil: True
+[2025-04-30 20:37:11] [INFO] Hasil halaman 41: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:11] [INFO] Memproses halaman 42/86
+[2025-04-30 20:37:11] [DEBUG] Halaman 42: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:11] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:11] [DEBUG] Ditemukan 24 garis valid, hasil: True
+[2025-04-30 20:37:11] [INFO] Hasil halaman 42: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:11] [INFO] Memproses halaman 43/86
+[2025-04-30 20:37:12] [DEBUG] Halaman 43: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:12] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:12] [DEBUG] Ditemukan 18 garis valid, hasil: True
+[2025-04-30 20:37:12] [INFO] Hasil halaman 43: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:12] [INFO] Memproses halaman 44/86
+[2025-04-30 20:37:12] [DEBUG] Halaman 44: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:12] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:12] [DEBUG] Ditemukan 18 garis valid, hasil: True
+[2025-04-30 20:37:12] [INFO] Hasil halaman 44: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:12] [INFO] Memproses halaman 45/86
+[2025-04-30 20:37:12] [DEBUG] Halaman 45: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:12] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:12] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:12] [INFO] Hasil halaman 45: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:12] [INFO] Memproses halaman 46/86
+[2025-04-30 20:37:12] [DEBUG] Halaman 46: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:12] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:12] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:12] [INFO] Hasil halaman 46: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:12] [INFO] Memproses halaman 47/86
+[2025-04-30 20:37:12] [DEBUG] Halaman 47: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:12] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:12] [DEBUG] Ditemukan 3 garis valid, hasil: True
+[2025-04-30 20:37:12] [INFO] Hasil halaman 47: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:12] [INFO] Memproses halaman 48/86
+[2025-04-30 20:37:12] [DEBUG] Halaman 48: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:12] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:12] [DEBUG] Ditemukan 3 garis valid, hasil: True
+[2025-04-30 20:37:12] [INFO] Hasil halaman 48: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:12] [INFO] Memproses halaman 49/86
+[2025-04-30 20:37:12] [DEBUG] Halaman 49: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:12] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:12] [DEBUG] Ditemukan 2 garis valid, hasil: False
+[2025-04-30 20:37:13] [INFO] Hasil halaman 49: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:13] [INFO] Memproses halaman 50/86
+[2025-04-30 20:37:13] [DEBUG] Halaman 50: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:13] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:13] [DEBUG] Ditemukan 3 garis valid, hasil: True
+[2025-04-30 20:37:13] [INFO] Hasil halaman 50: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:13] [INFO] Memproses halaman 51/86
+[2025-04-30 20:37:13] [DEBUG] Halaman 51: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:13] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:13] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:13] [INFO] Hasil halaman 51: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:13] [INFO] Memproses halaman 52/86
+[2025-04-30 20:37:13] [DEBUG] Halaman 52: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:13] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:13] [DEBUG] Ditemukan 2 garis valid, hasil: False
+[2025-04-30 20:37:13] [INFO] Hasil halaman 52: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:13] [INFO] Memproses halaman 53/86
+[2025-04-30 20:37:13] [DEBUG] Halaman 53: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:13] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:13] [DEBUG] Ditemukan 3 garis valid, hasil: True
+[2025-04-30 20:37:13] [INFO] Hasil halaman 53: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:13] [INFO] Memproses halaman 54/86
+[2025-04-30 20:37:13] [DEBUG] Halaman 54: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:13] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:13] [DEBUG] Ditemukan 5 garis valid, hasil: True
+[2025-04-30 20:37:13] [INFO] Hasil halaman 54: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:13] [INFO] Memproses halaman 55/86
+[2025-04-30 20:37:13] [DEBUG] Halaman 55: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:13] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:13] [DEBUG] Ditemukan 8 garis valid, hasil: True
+[2025-04-30 20:37:13] [INFO] Hasil halaman 55: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:13] [INFO] Memproses halaman 56/86
+[2025-04-30 20:37:14] [DEBUG] Halaman 56: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:14] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:14] [DEBUG] Ditemukan 11 garis valid, hasil: True
+[2025-04-30 20:37:14] [INFO] Hasil halaman 56: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:14] [INFO] Memproses halaman 57/86
+[2025-04-30 20:37:14] [DEBUG] Halaman 57: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:14] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:14] [DEBUG] Ditemukan 36 garis valid, hasil: True
+[2025-04-30 20:37:14] [INFO] Hasil halaman 57: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:14] [INFO] Memproses halaman 58/86
+[2025-04-30 20:37:14] [DEBUG] Halaman 58: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:14] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:14] [DEBUG] Ditemukan 9 garis valid, hasil: True
+[2025-04-30 20:37:14] [INFO] Hasil halaman 58: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:14] [INFO] Memproses halaman 59/86
+[2025-04-30 20:37:14] [DEBUG] Halaman 59: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:14] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:14] [DEBUG] Ditemukan 23 garis valid, hasil: True
+[2025-04-30 20:37:14] [INFO] Hasil halaman 59: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:14] [INFO] Memproses halaman 60/86
+[2025-04-30 20:37:15] [DEBUG] Halaman 60: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:15] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:15] [DEBUG] Ditemukan 30 garis valid, hasil: True
+[2025-04-30 20:37:15] [INFO] Hasil halaman 60: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:15] [INFO] Memproses halaman 61/86
+[2025-04-30 20:37:15] [DEBUG] Halaman 61: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:15] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:15] [DEBUG] Ditemukan 27 garis valid, hasil: True
+[2025-04-30 20:37:15] [INFO] Hasil halaman 61: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:15] [INFO] Memproses halaman 62/86
+[2025-04-30 20:37:15] [DEBUG] Halaman 62: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:15] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:15] [DEBUG] Ditemukan 2 garis valid, hasil: False
+[2025-04-30 20:37:15] [INFO] Hasil halaman 62: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:15] [INFO] Memproses halaman 63/86
+[2025-04-30 20:37:15] [DEBUG] Halaman 63: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:15] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:15] [DEBUG] Ditemukan 59 garis valid, hasil: True
+[2025-04-30 20:37:15] [INFO] Hasil halaman 63: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:15] [INFO] Memproses halaman 64/86
+[2025-04-30 20:37:15] [DEBUG] Halaman 64: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:15] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:15] [DEBUG] Ditemukan 8 garis valid, hasil: True
+[2025-04-30 20:37:15] [INFO] Hasil halaman 64: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:15] [INFO] Memproses halaman 65/86
+[2025-04-30 20:37:16] [DEBUG] Halaman 65: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:16] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:16] [DEBUG] Ditemukan 17 garis valid, hasil: True
+[2025-04-30 20:37:16] [INFO] Hasil halaman 65: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:16] [INFO] Memproses halaman 66/86
+[2025-04-30 20:37:16] [DEBUG] Halaman 66: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:16] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:16] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:16] [INFO] Hasil halaman 66: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:16] [INFO] Memproses halaman 67/86
+[2025-04-30 20:37:16] [DEBUG] Halaman 67: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:37:16] [DEBUG] Halaman 67: OCR gagal, halaman mungkin kosong atau hanya gambar
+[2025-04-30 20:37:16] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:16] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:16] [INFO] Hasil halaman 67: OCR=halaman kosong/gambar saja, LINE=False, AI=False
+[2025-04-30 20:37:16] [INFO] Memproses halaman 68/86
+[2025-04-30 20:37:17] [DEBUG] Halaman 68: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:17] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:17] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:17] [INFO] Hasil halaman 68: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:17] [INFO] Memproses halaman 69/86
+[2025-04-30 20:37:17] [DEBUG] Halaman 69: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:17] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:17] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:17] [INFO] Hasil halaman 69: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:17] [INFO] Memproses halaman 70/86
+[2025-04-30 20:37:17] [DEBUG] Halaman 70: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:17] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:17] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:17] [INFO] Hasil halaman 70: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:17] [INFO] Memproses halaman 71/86
+[2025-04-30 20:37:17] [DEBUG] Halaman 71: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:17] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:17] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:17] [INFO] Hasil halaman 71: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:17] [INFO] Memproses halaman 72/86
+[2025-04-30 20:37:17] [DEBUG] Halaman 72: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:17] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:17] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:17] [INFO] Hasil halaman 72: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:17] [INFO] Memproses halaman 73/86
+[2025-04-30 20:37:17] [DEBUG] Halaman 73: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:17] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:17] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:17] [INFO] Hasil halaman 73: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:17] [INFO] Memproses halaman 74/86
+[2025-04-30 20:37:18] [DEBUG] Halaman 74: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:18] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:18] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:18] [INFO] Hasil halaman 74: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:18] [INFO] Memproses halaman 75/86
+[2025-04-30 20:37:18] [DEBUG] Halaman 75: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:18] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:18] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:18] [INFO] Hasil halaman 75: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:18] [INFO] Memproses halaman 76/86
+[2025-04-30 20:37:18] [DEBUG] Halaman 76: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:18] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:18] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:18] [INFO] Hasil halaman 76: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:18] [INFO] Memproses halaman 77/86
+[2025-04-30 20:37:18] [DEBUG] Halaman 77: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:18] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:18] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:18] [INFO] Hasil halaman 77: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:18] [INFO] Memproses halaman 78/86
+[2025-04-30 20:37:18] [DEBUG] Halaman 78: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:18] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:18] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:18] [INFO] Hasil halaman 78: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:18] [INFO] Memproses halaman 79/86
+[2025-04-30 20:37:19] [DEBUG] Halaman 79: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:19] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:19] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:19] [INFO] Hasil halaman 79: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:19] [INFO] Memproses halaman 80/86
+[2025-04-30 20:37:19] [DEBUG] Halaman 80: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:19] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:19] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:19] [INFO] Hasil halaman 80: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:19] [INFO] Memproses halaman 81/86
+[2025-04-30 20:37:19] [DEBUG] Halaman 81: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:19] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:19] [DEBUG] Ditemukan 49 garis valid, hasil: True
+[2025-04-30 20:37:19] [INFO] Hasil halaman 81: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:19] [INFO] Memproses halaman 82/86
+[2025-04-30 20:37:19] [DEBUG] Halaman 82: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:19] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:19] [DEBUG] Ditemukan 52 garis valid, hasil: True
+[2025-04-30 20:37:19] [INFO] Hasil halaman 82: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:19] [INFO] Memproses halaman 83/86
+[2025-04-30 20:37:19] [DEBUG] Halaman 83: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:19] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:19] [DEBUG] Ditemukan 41 garis valid, hasil: True
+[2025-04-30 20:37:19] [INFO] Hasil halaman 83: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:19] [INFO] Memproses halaman 84/86
+[2025-04-30 20:37:20] [DEBUG] Halaman 84: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:20] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:20] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:20] [INFO] Hasil halaman 84: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:20] [INFO] Memproses halaman 85/86
+[2025-04-30 20:37:20] [DEBUG] Halaman 85: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:20] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:20] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:20] [INFO] Hasil halaman 85: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:20] [INFO] Memproses halaman 86/86
+[2025-04-30 20:37:20] [DEBUG] Halaman 86: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:20] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:20] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:20] [INFO] Hasil halaman 86: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:20] [INFO] Analisis selesai dalam 25.84 detik
+[2025-04-30 20:37:20] [INFO] Hasil disimpan ke E:\RD-Agent\RAG\extraction\new_era_v1\main\database/classified_result\Avrist Ada Kas Mutiara_analisis.json
+[2025-04-30 20:37:20] [INFO] Mulai analisis file database/prospectus/Trimegah Kas Syariah.pdf
+[2025-04-30 20:37:20] [INFO] Parameter: min_text_length=50, min_line_count=3, min_line_length_percent=10
+[2025-04-30 20:37:20] [INFO] PDF memiliki 92 halaman
+[2025-04-30 20:37:20] [INFO] Memproses halaman 1/92
+[2025-04-30 20:37:21] [DEBUG] Halaman 1: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:21] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:21] [DEBUG] Ditemukan 8 garis valid, hasil: True
+[2025-04-30 20:37:21] [INFO] Hasil halaman 1: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:21] [INFO] Memproses halaman 2/92
+[2025-04-30 20:37:21] [DEBUG] Halaman 2: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:21] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:21] [DEBUG] Ditemukan 3 garis valid, hasil: True
+[2025-04-30 20:37:21] [INFO] Hasil halaman 2: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:21] [INFO] Memproses halaman 3/92
+[2025-04-30 20:37:21] [DEBUG] Halaman 3: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:21] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:21] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:21] [INFO] Hasil halaman 3: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:21] [INFO] Memproses halaman 4/92
+[2025-04-30 20:37:21] [DEBUG] Halaman 4: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:21] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:21] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:21] [INFO] Hasil halaman 4: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:21] [INFO] Memproses halaman 5/92
+[2025-04-30 20:37:22] [DEBUG] Halaman 5: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:22] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:22] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:22] [INFO] Hasil halaman 5: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:22] [INFO] Memproses halaman 6/92
+[2025-04-30 20:37:22] [DEBUG] Halaman 6: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:22] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:22] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:22] [INFO] Hasil halaman 6: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:22] [INFO] Memproses halaman 7/92
+[2025-04-30 20:37:22] [DEBUG] Halaman 7: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:22] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:22] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:22] [INFO] Hasil halaman 7: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:22] [INFO] Memproses halaman 8/92
+[2025-04-30 20:37:22] [DEBUG] Halaman 8: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:22] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:22] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:22] [INFO] Hasil halaman 8: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:22] [INFO] Memproses halaman 9/92
+[2025-04-30 20:37:22] [DEBUG] Halaman 9: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:22] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:23] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:23] [INFO] Hasil halaman 9: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:23] [INFO] Memproses halaman 10/92
+[2025-04-30 20:37:23] [DEBUG] Halaman 10: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:23] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:23] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:23] [INFO] Hasil halaman 10: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:23] [INFO] Memproses halaman 11/92
+[2025-04-30 20:37:23] [DEBUG] Halaman 11: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:23] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:23] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:23] [INFO] Hasil halaman 11: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:23] [INFO] Memproses halaman 12/92
+[2025-04-30 20:37:23] [DEBUG] Halaman 12: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:23] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:23] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:23] [INFO] Hasil halaman 12: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:23] [INFO] Memproses halaman 13/92
+[2025-04-30 20:37:23] [DEBUG] Halaman 13: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:23] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:23] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:23] [INFO] Hasil halaman 13: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:23] [INFO] Memproses halaman 14/92
+[2025-04-30 20:37:24] [DEBUG] Halaman 14: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:24] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:24] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:24] [INFO] Hasil halaman 14: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:24] [INFO] Memproses halaman 15/92
+[2025-04-30 20:37:24] [DEBUG] Halaman 15: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:24] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:24] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:24] [INFO] Hasil halaman 15: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:24] [INFO] Memproses halaman 16/92
+[2025-04-30 20:37:24] [DEBUG] Halaman 16: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:24] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:24] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:24] [INFO] Hasil halaman 16: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:24] [INFO] Memproses halaman 17/92
+[2025-04-30 20:37:24] [DEBUG] Halaman 17: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:24] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:24] [DEBUG] Ditemukan 8 garis valid, hasil: True
+[2025-04-30 20:37:24] [INFO] Hasil halaman 17: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:24] [INFO] Memproses halaman 18/92
+[2025-04-30 20:37:25] [DEBUG] Halaman 18: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:25] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:25] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:25] [INFO] Hasil halaman 18: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:25] [INFO] Memproses halaman 19/92
+[2025-04-30 20:37:25] [DEBUG] Halaman 19: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:25] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:25] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:25] [INFO] Hasil halaman 19: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:25] [INFO] Memproses halaman 20/92
+[2025-04-30 20:37:25] [DEBUG] Halaman 20: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:25] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:25] [DEBUG] Ditemukan 4 garis valid, hasil: True
+[2025-04-30 20:37:25] [INFO] Hasil halaman 20: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:25] [INFO] Memproses halaman 21/92
+[2025-04-30 20:37:25] [DEBUG] Halaman 21: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:25] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:25] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:25] [INFO] Hasil halaman 21: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:25] [INFO] Memproses halaman 22/92
+[2025-04-30 20:37:25] [DEBUG] Halaman 22: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:25] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:26] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:26] [INFO] Hasil halaman 22: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:26] [INFO] Memproses halaman 23/92
+[2025-04-30 20:37:26] [DEBUG] Halaman 23: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:26] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:26] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:26] [INFO] Hasil halaman 23: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:26] [INFO] Memproses halaman 24/92
+[2025-04-30 20:37:26] [DEBUG] Halaman 24: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:26] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:26] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:26] [INFO] Hasil halaman 24: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:26] [INFO] Memproses halaman 25/92
+[2025-04-30 20:37:26] [DEBUG] Halaman 25: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:26] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:26] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:26] [INFO] Hasil halaman 25: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:26] [INFO] Memproses halaman 26/92
+[2025-04-30 20:37:26] [DEBUG] Halaman 26: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:26] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:26] [DEBUG] Ditemukan 2 garis valid, hasil: False
+[2025-04-30 20:37:26] [INFO] Hasil halaman 26: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:26] [INFO] Memproses halaman 27/92
+[2025-04-30 20:37:27] [DEBUG] Halaman 27: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:27] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:27] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:27] [INFO] Hasil halaman 27: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:27] [INFO] Memproses halaman 28/92
+[2025-04-30 20:37:27] [DEBUG] Halaman 28: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:27] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:27] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:27] [INFO] Hasil halaman 28: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:27] [INFO] Memproses halaman 29/92
+[2025-04-30 20:37:27] [DEBUG] Halaman 29: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:27] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:27] [DEBUG] Ditemukan 3 garis valid, hasil: True
+[2025-04-30 20:37:27] [INFO] Hasil halaman 29: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:27] [INFO] Memproses halaman 30/92
+[2025-04-30 20:37:27] [DEBUG] Halaman 30: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:27] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:27] [DEBUG] Ditemukan 2 garis valid, hasil: False
+[2025-04-30 20:37:27] [INFO] Hasil halaman 30: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:27] [INFO] Memproses halaman 31/92
+[2025-04-30 20:37:27] [DEBUG] Halaman 31: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:27] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:27] [DEBUG] Ditemukan 4 garis valid, hasil: True
+[2025-04-30 20:37:27] [INFO] Hasil halaman 31: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:27] [INFO] Memproses halaman 32/92
+[2025-04-30 20:37:28] [DEBUG] Halaman 32: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:28] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:28] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:28] [INFO] Hasil halaman 32: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:28] [INFO] Memproses halaman 33/92
+[2025-04-30 20:37:28] [DEBUG] Halaman 33: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:28] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:28] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:28] [INFO] Hasil halaman 33: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:28] [INFO] Memproses halaman 34/92
+[2025-04-30 20:37:28] [DEBUG] Halaman 34: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:28] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:28] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:28] [INFO] Hasil halaman 34: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:28] [INFO] Memproses halaman 35/92
+[2025-04-30 20:37:28] [DEBUG] Halaman 35: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:28] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:28] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:28] [INFO] Hasil halaman 35: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:28] [INFO] Memproses halaman 36/92
+[2025-04-30 20:37:28] [DEBUG] Halaman 36: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:28] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:28] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:28] [INFO] Hasil halaman 36: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:28] [INFO] Memproses halaman 37/92
+[2025-04-30 20:37:29] [DEBUG] Halaman 37: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:29] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:29] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:29] [INFO] Hasil halaman 37: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:29] [INFO] Memproses halaman 38/92
+[2025-04-30 20:37:29] [DEBUG] Halaman 38: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:29] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:29] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:29] [INFO] Hasil halaman 38: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:29] [INFO] Memproses halaman 39/92
+[2025-04-30 20:37:29] [DEBUG] Halaman 39: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:29] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:29] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:29] [INFO] Hasil halaman 39: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:29] [INFO] Memproses halaman 40/92
+[2025-04-30 20:37:29] [DEBUG] Halaman 40: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:29] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:29] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:29] [INFO] Hasil halaman 40: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:29] [INFO] Memproses halaman 41/92
+[2025-04-30 20:37:29] [DEBUG] Halaman 41: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:37:33] [DEBUG] Halaman 41: OCR berhasil, teks mencukupi
+[2025-04-30 20:37:33] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:33] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:33] [INFO] Hasil halaman 41: OCR=True, LINE=False, AI=False
+[2025-04-30 20:37:33] [INFO] Memproses halaman 42/92
+[2025-04-30 20:37:33] [DEBUG] Halaman 42: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:37:36] [DEBUG] Halaman 42: OCR berhasil, teks mencukupi
+[2025-04-30 20:37:36] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:36] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:36] [INFO] Hasil halaman 42: OCR=True, LINE=False, AI=False
+[2025-04-30 20:37:36] [INFO] Memproses halaman 43/92
+[2025-04-30 20:37:36] [DEBUG] Halaman 43: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:37:39] [DEBUG] Halaman 43: OCR berhasil, teks mencukupi
+[2025-04-30 20:37:39] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:39] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:39] [INFO] Hasil halaman 43: OCR=True, LINE=False, AI=False
+[2025-04-30 20:37:39] [INFO] Memproses halaman 44/92
+[2025-04-30 20:37:39] [DEBUG] Halaman 44: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:37:42] [DEBUG] Halaman 44: OCR berhasil, teks mencukupi
+[2025-04-30 20:37:42] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:42] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:42] [INFO] Hasil halaman 44: OCR=True, LINE=False, AI=False
+[2025-04-30 20:37:42] [INFO] Memproses halaman 45/92
+[2025-04-30 20:37:42] [DEBUG] Halaman 45: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:37:44] [DEBUG] Halaman 45: OCR berhasil, teks mencukupi
+[2025-04-30 20:37:44] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:44] [DEBUG] Ditemukan 2 garis valid, hasil: False
+[2025-04-30 20:37:44] [INFO] Hasil halaman 45: OCR=True, LINE=False, AI=False
+[2025-04-30 20:37:44] [INFO] Memproses halaman 46/92
+[2025-04-30 20:37:44] [DEBUG] Halaman 46: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:44] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:44] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:44] [INFO] Hasil halaman 46: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:44] [INFO] Memproses halaman 47/92
+[2025-04-30 20:37:45] [DEBUG] Halaman 47: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:45] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:45] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:45] [INFO] Hasil halaman 47: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:45] [INFO] Memproses halaman 48/92
+[2025-04-30 20:37:45] [DEBUG] Halaman 48: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:45] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:45] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:45] [INFO] Hasil halaman 48: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:45] [INFO] Memproses halaman 49/92
+[2025-04-30 20:37:45] [DEBUG] Halaman 49: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:45] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:45] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:45] [INFO] Hasil halaman 49: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:45] [INFO] Memproses halaman 50/92
+[2025-04-30 20:37:45] [DEBUG] Halaman 50: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:45] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:45] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:45] [INFO] Hasil halaman 50: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:45] [INFO] Memproses halaman 51/92
+[2025-04-30 20:37:45] [DEBUG] Halaman 51: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:45] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:45] [DEBUG] Ditemukan 2 garis valid, hasil: False
+[2025-04-30 20:37:45] [INFO] Hasil halaman 51: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:45] [INFO] Memproses halaman 52/92
+[2025-04-30 20:37:45] [DEBUG] Halaman 52: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:45] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:45] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:45] [INFO] Hasil halaman 52: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:45] [INFO] Memproses halaman 53/92
+[2025-04-30 20:37:46] [DEBUG] Halaman 53: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:46] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:46] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:46] [INFO] Hasil halaman 53: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:46] [INFO] Memproses halaman 54/92
+[2025-04-30 20:37:46] [DEBUG] Halaman 54: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:46] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:46] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:46] [INFO] Hasil halaman 54: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:46] [INFO] Memproses halaman 55/92
+[2025-04-30 20:37:46] [DEBUG] Halaman 55: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:46] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:46] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:46] [INFO] Hasil halaman 55: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:46] [INFO] Memproses halaman 56/92
+[2025-04-30 20:37:46] [DEBUG] Halaman 56: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:46] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:46] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:46] [INFO] Hasil halaman 56: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:46] [INFO] Memproses halaman 57/92
+[2025-04-30 20:37:46] [DEBUG] Halaman 57: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:46] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:46] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:46] [INFO] Hasil halaman 57: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:46] [INFO] Memproses halaman 58/92
+[2025-04-30 20:37:46] [DEBUG] Halaman 58: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:46] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:46] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:46] [INFO] Hasil halaman 58: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:46] [INFO] Memproses halaman 59/92
+[2025-04-30 20:37:46] [DEBUG] Halaman 59: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:46] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:46] [DEBUG] Ditemukan 33 garis valid, hasil: True
+[2025-04-30 20:37:46] [INFO] Hasil halaman 59: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:46] [INFO] Memproses halaman 60/92
+[2025-04-30 20:37:46] [DEBUG] Halaman 60: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:46] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:46] [DEBUG] Ditemukan 30 garis valid, hasil: True
+[2025-04-30 20:37:46] [INFO] Hasil halaman 60: OCR=False, LINE=True, AI=True
+[2025-04-30 20:37:46] [INFO] Memproses halaman 61/92
+[2025-04-30 20:37:47] [DEBUG] Halaman 61: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:47] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:47] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:47] [INFO] Hasil halaman 61: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:47] [INFO] Memproses halaman 62/92
+[2025-04-30 20:37:47] [DEBUG] Halaman 62: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:47] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:47] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:47] [INFO] Hasil halaman 62: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:47] [INFO] Memproses halaman 63/92
+[2025-04-30 20:37:47] [DEBUG] Halaman 63: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:47] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:47] [DEBUG] Ditemukan 2 garis valid, hasil: False
+[2025-04-30 20:37:47] [INFO] Hasil halaman 63: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:47] [INFO] Memproses halaman 64/92
+[2025-04-30 20:37:47] [DEBUG] Halaman 64: Teks mencukupi tanpa OCR
+[2025-04-30 20:37:47] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:47] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:47] [INFO] Hasil halaman 64: OCR=False, LINE=False, AI=False
+[2025-04-30 20:37:47] [INFO] Memproses halaman 65/92
+[2025-04-30 20:37:47] [DEBUG] Halaman 65: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:37:48] [DEBUG] Halaman 65: OCR berhasil, teks mencukupi
+[2025-04-30 20:37:48] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:48] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:48] [INFO] Hasil halaman 65: OCR=True, LINE=False, AI=False
+[2025-04-30 20:37:48] [INFO] Memproses halaman 66/92
+[2025-04-30 20:37:48] [DEBUG] Halaman 66: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:37:49] [DEBUG] Halaman 66: OCR berhasil, teks mencukupi
+[2025-04-30 20:37:49] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:49] [DEBUG] Ditemukan 2 garis valid, hasil: False
+[2025-04-30 20:37:49] [INFO] Hasil halaman 66: OCR=True, LINE=False, AI=False
+[2025-04-30 20:37:49] [INFO] Memproses halaman 67/92
+[2025-04-30 20:37:49] [DEBUG] Halaman 67: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:37:52] [DEBUG] Halaman 67: OCR berhasil, teks mencukupi
+[2025-04-30 20:37:52] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:52] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:37:52] [INFO] Hasil halaman 67: OCR=True, LINE=False, AI=False
+[2025-04-30 20:37:52] [INFO] Memproses halaman 68/92
+[2025-04-30 20:37:52] [DEBUG] Halaman 68: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:37:55] [DEBUG] Halaman 68: OCR berhasil, teks mencukupi
+[2025-04-30 20:37:55] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:55] [DEBUG] Ditemukan 0 garis valid, hasil: False
+[2025-04-30 20:37:55] [INFO] Hasil halaman 68: OCR=True, LINE=False, AI=False
+[2025-04-30 20:37:55] [INFO] Memproses halaman 69/92
+[2025-04-30 20:37:55] [DEBUG] Halaman 69: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:37:58] [DEBUG] Halaman 69: OCR berhasil, teks mencukupi
+[2025-04-30 20:37:58] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:37:58] [DEBUG] Ditemukan 3 garis valid, hasil: True
+[2025-04-30 20:37:58] [INFO] Hasil halaman 69: OCR=True, LINE=True, AI=True
+[2025-04-30 20:37:58] [INFO] Memproses halaman 70/92
+[2025-04-30 20:37:58] [DEBUG] Halaman 70: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:02] [DEBUG] Halaman 70: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:02] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:02] [DEBUG] Ditemukan 3 garis valid, hasil: True
+[2025-04-30 20:38:02] [INFO] Hasil halaman 70: OCR=True, LINE=True, AI=True
+[2025-04-30 20:38:02] [INFO] Memproses halaman 71/92
+[2025-04-30 20:38:02] [DEBUG] Halaman 71: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:04] [DEBUG] Halaman 71: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:04] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:04] [DEBUG] Ditemukan 29 garis valid, hasil: True
+[2025-04-30 20:38:04] [INFO] Hasil halaman 71: OCR=True, LINE=True, AI=True
+[2025-04-30 20:38:04] [INFO] Memproses halaman 72/92
+[2025-04-30 20:38:04] [DEBUG] Halaman 72: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:06] [DEBUG] Halaman 72: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:06] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:06] [DEBUG] Ditemukan 19 garis valid, hasil: True
+[2025-04-30 20:38:06] [INFO] Hasil halaman 72: OCR=True, LINE=True, AI=True
+[2025-04-30 20:38:06] [INFO] Memproses halaman 73/92
+[2025-04-30 20:38:06] [DEBUG] Halaman 73: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:08] [DEBUG] Halaman 73: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:08] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:08] [DEBUG] Ditemukan 29 garis valid, hasil: True
+[2025-04-30 20:38:08] [INFO] Hasil halaman 73: OCR=True, LINE=True, AI=True
+[2025-04-30 20:38:08] [INFO] Memproses halaman 74/92
+[2025-04-30 20:38:08] [DEBUG] Halaman 74: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:10] [DEBUG] Halaman 74: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:10] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:10] [DEBUG] Ditemukan 17 garis valid, hasil: True
+[2025-04-30 20:38:10] [INFO] Hasil halaman 74: OCR=True, LINE=True, AI=True
+[2025-04-30 20:38:10] [INFO] Memproses halaman 75/92
+[2025-04-30 20:38:10] [DEBUG] Halaman 75: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:12] [DEBUG] Halaman 75: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:12] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:12] [DEBUG] Ditemukan 13 garis valid, hasil: True
+[2025-04-30 20:38:12] [INFO] Hasil halaman 75: OCR=True, LINE=True, AI=True
+[2025-04-30 20:38:12] [INFO] Memproses halaman 76/92
+[2025-04-30 20:38:12] [DEBUG] Halaman 76: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:14] [DEBUG] Halaman 76: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:14] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:14] [DEBUG] Ditemukan 17 garis valid, hasil: True
+[2025-04-30 20:38:14] [INFO] Hasil halaman 76: OCR=True, LINE=True, AI=True
+[2025-04-30 20:38:14] [INFO] Memproses halaman 77/92
+[2025-04-30 20:38:14] [DEBUG] Halaman 77: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:18] [DEBUG] Halaman 77: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:18] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:18] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:38:18] [INFO] Hasil halaman 77: OCR=True, LINE=False, AI=False
+[2025-04-30 20:38:18] [INFO] Memproses halaman 78/92
+[2025-04-30 20:38:18] [DEBUG] Halaman 78: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:22] [DEBUG] Halaman 78: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:22] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:22] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:38:22] [INFO] Hasil halaman 78: OCR=True, LINE=False, AI=False
+[2025-04-30 20:38:22] [INFO] Memproses halaman 79/92
+[2025-04-30 20:38:22] [DEBUG] Halaman 79: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:25] [DEBUG] Halaman 79: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:25] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:25] [DEBUG] Ditemukan 2 garis valid, hasil: False
+[2025-04-30 20:38:25] [INFO] Hasil halaman 79: OCR=True, LINE=False, AI=False
+[2025-04-30 20:38:25] [INFO] Memproses halaman 80/92
+[2025-04-30 20:38:25] [DEBUG] Halaman 80: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:28] [DEBUG] Halaman 80: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:28] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:28] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:38:28] [INFO] Hasil halaman 80: OCR=True, LINE=False, AI=False
+[2025-04-30 20:38:28] [INFO] Memproses halaman 81/92
+[2025-04-30 20:38:28] [DEBUG] Halaman 81: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:32] [DEBUG] Halaman 81: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:32] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:33] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:38:33] [INFO] Hasil halaman 81: OCR=True, LINE=False, AI=False
+[2025-04-30 20:38:33] [INFO] Memproses halaman 82/92
+[2025-04-30 20:38:33] [DEBUG] Halaman 82: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:38] [DEBUG] Halaman 82: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:38] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:38] [DEBUG] Ditemukan 15 garis valid, hasil: True
+[2025-04-30 20:38:38] [INFO] Hasil halaman 82: OCR=True, LINE=True, AI=True
+[2025-04-30 20:38:38] [INFO] Memproses halaman 83/92
+[2025-04-30 20:38:38] [DEBUG] Halaman 83: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:40] [DEBUG] Halaman 83: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:40] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:40] [DEBUG] Ditemukan 13 garis valid, hasil: True
+[2025-04-30 20:38:40] [INFO] Hasil halaman 83: OCR=True, LINE=True, AI=True
+[2025-04-30 20:38:40] [INFO] Memproses halaman 84/92
+[2025-04-30 20:38:40] [DEBUG] Halaman 84: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:42] [DEBUG] Halaman 84: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:42] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:42] [DEBUG] Ditemukan 19 garis valid, hasil: True
+[2025-04-30 20:38:42] [INFO] Hasil halaman 84: OCR=True, LINE=True, AI=True
+[2025-04-30 20:38:42] [INFO] Memproses halaman 85/92
+[2025-04-30 20:38:42] [DEBUG] Halaman 85: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:43] [DEBUG] Halaman 85: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:43] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:43] [DEBUG] Ditemukan 17 garis valid, hasil: True
+[2025-04-30 20:38:43] [INFO] Hasil halaman 85: OCR=True, LINE=True, AI=True
+[2025-04-30 20:38:43] [INFO] Memproses halaman 86/92
+[2025-04-30 20:38:44] [DEBUG] Halaman 86: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:45] [DEBUG] Halaman 86: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:45] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:45] [DEBUG] Ditemukan 29 garis valid, hasil: True
+[2025-04-30 20:38:45] [INFO] Hasil halaman 86: OCR=True, LINE=True, AI=True
+[2025-04-30 20:38:45] [INFO] Memproses halaman 87/92
+[2025-04-30 20:38:45] [DEBUG] Halaman 87: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:47] [DEBUG] Halaman 87: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:47] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:47] [DEBUG] Ditemukan 37 garis valid, hasil: True
+[2025-04-30 20:38:47] [INFO] Hasil halaman 87: OCR=True, LINE=True, AI=True
+[2025-04-30 20:38:47] [INFO] Memproses halaman 88/92
+[2025-04-30 20:38:47] [DEBUG] Halaman 88: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:49] [DEBUG] Halaman 88: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:49] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:49] [DEBUG] Ditemukan 21 garis valid, hasil: True
+[2025-04-30 20:38:49] [INFO] Hasil halaman 88: OCR=True, LINE=True, AI=True
+[2025-04-30 20:38:49] [INFO] Memproses halaman 89/92
+[2025-04-30 20:38:49] [DEBUG] Halaman 89: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:51] [DEBUG] Halaman 89: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:51] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:51] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:38:51] [INFO] Hasil halaman 89: OCR=True, LINE=False, AI=False
+[2025-04-30 20:38:51] [INFO] Memproses halaman 90/92
+[2025-04-30 20:38:51] [DEBUG] Halaman 90: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:53] [DEBUG] Halaman 90: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:53] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:53] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:38:53] [INFO] Hasil halaman 90: OCR=True, LINE=False, AI=False
+[2025-04-30 20:38:53] [INFO] Memproses halaman 91/92
+[2025-04-30 20:38:53] [DEBUG] Halaman 91: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:55] [DEBUG] Halaman 91: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:55] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:55] [DEBUG] Ditemukan 6 garis valid, hasil: True
+[2025-04-30 20:38:55] [INFO] Hasil halaman 91: OCR=True, LINE=True, AI=True
+[2025-04-30 20:38:55] [INFO] Memproses halaman 92/92
+[2025-04-30 20:38:55] [DEBUG] Halaman 92: Teks tidak mencukupi, mencoba OCR
+[2025-04-30 20:38:56] [DEBUG] Halaman 92: OCR berhasil, teks mencukupi
+[2025-04-30 20:38:56] [DEBUG] Mendeteksi garis horizontal dengan min_count=3, min_length=10%
+[2025-04-30 20:38:56] [DEBUG] Ditemukan 1 garis valid, hasil: False
+[2025-04-30 20:38:56] [INFO] Hasil halaman 92: OCR=True, LINE=False, AI=False
+[2025-04-30 20:38:56] [INFO] Analisis selesai dalam 95.52 detik
+[2025-04-30 20:38:56] [INFO] Hasil disimpan ke E:\RD-Agent\RAG\extraction\new_era_v1\main\database/classified_result\Trimegah Kas Syariah_analisis.json
