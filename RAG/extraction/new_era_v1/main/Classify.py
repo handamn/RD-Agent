@@ -227,8 +227,8 @@ if __name__ == "__main__":
     # List file PDF untuk dianalisis [nama_file, path_file]
     pdf_files = [
         # ['ABF Indonesia Bond Index Fund', 'database/prospectus/ABF Indonesia Bond Index Fund.pdf'],
-        # ['Sucorinvest Money Market Fund', 'database/prospectus/Avrist Ada Kas Mutiara.pdf']
-        ['A_latihan_sucorinvest', 'database/prospectus/a_latihan_sucorinvest.pdf']
+        ['Avrist Ada Kas Mutiara', 'database/prospectus/Avrist Ada Kas Mutiara.pdf'],
+        # ['A_latihan_sucorinvest', 'database/prospectus/a_latihan_sucorinvest.pdf']
     ]
     
     # Proses analisis
