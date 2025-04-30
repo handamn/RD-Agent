@@ -474,6 +474,7 @@ class IntegratedPdfExtractor:
     def process_with_multimodal_api(self, image_path, prompt):
         """
         Memproses gambar menggunakan API Gemini multimodal dengan mekanisme retry.
+        Menambahkan retry khusus untuk kasus konten berhak cipta.
         
         Args:
             image_path (str): Path ke file gambar
@@ -484,27 +485,114 @@ class IntegratedPdfExtractor:
         """
         max_retries = 5
         retry_count = 0
+        copyright_retry_count = 0
+        max_copyright_retries = 5  # Jumlah maksimum percobaan untuk kasus copyright
+        
+        # Prompt modifiers that might help avoid copyright issues
+        copyright_prompt_modifiers = [
+            "Analisis gambar berikut secara umum: ",
+            "Berikan deskripsi objektif dari gambar ini: ",
+            "Jelaskan unsur visual utama dalam gambar ini: ",
+            "Identifikasi dan jelaskan apa yang terlihat pada gambar: ",
+            "Apa yang Anda lihat dalam gambar ini secara umum? "
+        ]
+        
+        original_prompt = prompt
+        current_prompt = original_prompt
         
         while retry_count < max_retries:
-            ######
             try:
                 # Load the image
                 pil_image = Image.open(image_path)
                 
                 # Get model
-                model = genai.GenerativeModel('gemini-2.0-flash')
+                model = genai.GenerativeModel('gemini-2.5-flash-preview-04-17')
+                
+                self.log_info(f"Sending request with prompt: {current_prompt[:50]}...")
                 
                 # Generate content
-                response = model.generate_content([prompt, pil_image])
+                response = model.generate_content([current_prompt, pil_image])
                 
-                # Extract response text
-                response_text = response.text
+                # Check if response contains finish_reason that indicates a copyright issue
+                copyright_detected = False
+                if hasattr(response, 'candidates') and response.candidates:
+                    if hasattr(response.candidates[0], 'finish_reason') and response.candidates[0].finish_reason == 4:
+                        copyright_detected = True
+                        copyright_retry_count += 1
+                        
+                        if copyright_retry_count <= max_copyright_retries:
+                            # Modify prompt to try to avoid copyright issues
+                            modifier_index = (copyright_retry_count - 1) % len(copyright_prompt_modifiers)
+                            current_prompt = copyright_prompt_modifiers[modifier_index] + original_prompt
+                            
+                            self.log_warning(
+                                f"Copyright issue detected (finish_reason=4). "
+                                f"Copyright retry {copyright_retry_count}/{max_copyright_retries}. "
+                                f"Trying with modified prompt."
+                            )
+                            time.sleep(1)  # Small delay before retry
+                            continue
+                        else:
+                            error_msg = "Model detected copyrighted material and refused to process the request after multiple attempts."
+                            self.log_warning(f"Exhausted copyright retries ({max_copyright_retries}): {error_msg}")
+                            return {
+                                "content_blocks": [
+                                    {
+                                        "block_id": 1,
+                                        "type": "text",
+                                        "content": f"Error during multimodal processing: {error_msg}"
+                                    }
+                                ],
+                                "copyright_error": True
+                            }
+                
+                # Reset copyright retry counter if we succeeded after copyright issues
+                if copyright_retry_count > 0 and not copyright_detected:
+                    self.log_info(f"Successfully bypassed copyright detection after {copyright_retry_count} attempts.")
+                
+                # Safely extract response text
+                try:
+                    response_text = response.text
+                except Exception as text_error:
+                    self.log_error(f"Could not extract text from response: {str(text_error)}")
+                    
+                    # If this is after copyright retries, try again with a different prompt modifier
+                    if copyright_retry_count < max_copyright_retries:
+                        copyright_retry_count += 1
+                        modifier_index = (copyright_retry_count - 1) % len(copyright_prompt_modifiers)
+                        current_prompt = copyright_prompt_modifiers[modifier_index] + original_prompt
+                        
+                        self.log_warning(
+                            f"Failed to extract text. Copyright retry {copyright_retry_count}/{max_copyright_retries}. "
+                            f"Trying with modified prompt."
+                        )
+                        time.sleep(1)
+                        continue
+                    
+                    return {
+                        "content_blocks": [
+                            {
+                                "block_id": 1,
+                                "type": "text",
+                                "content": f"Error extracting text from API response: {str(text_error)}"
+                            }
+                        ]
+                    }
                 
                 # Try to parse JSON content
                 try:
                     json_content = self.extract_json_content_internal(response_text)
                     # If we get here, JSON parsing was successful
                     self.log_info(f"Successfully parsed JSON from API response on attempt {retry_count + 1}")
+                    
+                    # Add information about whether this was after copyright retries
+                    if copyright_retry_count > 0:
+                        if isinstance(json_content, dict):
+                            json_content["copyright_retry_info"] = {
+                                "retries_needed": copyright_retry_count,
+                                "final_prompt_used": current_prompt[:100] + "..." if len(current_prompt) > 100 else current_prompt
+                            }
+                    
                     return json_content
                 except json.JSONDecodeError as e:
                     # JSON parsing failed, increment retry counter
@@ -522,12 +610,9 @@ class IntegratedPdfExtractor:
                     # Optional: Add a small delay between retries
                     time.sleep(1)
             
-            ######
             except Exception as e:
                 if not isinstance(e, json.JSONDecodeError):
-                    ######## edit disini
                     # If this is not a JSON parsing error, don't retry
-                    # print("YUHUUUUUUUU")
                     self.log_error(f"Error processing image with multimodal API: {str(e)}")
                     return {
                         "content_blocks": [
@@ -538,7 +623,6 @@ class IntegratedPdfExtractor:
                             }
                         ]
                     }
-                    ####### sampai disini
                 elif retry_count >= max_retries:
                     # If we've exhausted retries with JSON errors, return structured error
                     self.log_error(f"Failed to parse JSON after {max_retries} attempts. Last error: {str(e)}")
@@ -552,6 +636,9 @@ class IntegratedPdfExtractor:
                         ],
                         "parsing_error": str(e)
                     }
+                retry_count += 1
+                self.log_info(f"Retrying API call, attempt {retry_count + 1}/{max_retries}")
+                time.sleep(1)
         
         # This should not be reached, but just in case
         return {
@@ -563,6 +650,7 @@ class IntegratedPdfExtractor:
                 }
             ]
         }
+
 
     def extract_json_content_internal(self, response_text):
         """
@@ -661,7 +749,7 @@ class IntegratedPdfExtractor:
                 },
                 "extraction": {
                     "method": "multimodal_llm",
-                    "model": "gemini-2.0-flash",
+                    "model": "gemini-2.5-flash-preview-04-17",
                     "processing_time": None,
                     "content_blocks": []
                 }
@@ -671,7 +759,7 @@ class IntegratedPdfExtractor:
             # Set extraction method and initialize content blocks
             result["extraction"] = {
                 "method": "multimodal_llm",
-                "model": "gemini-2.0-flash",
+                "model": "gemini-2.5-flash-preview-04-17",
                 "processing_time": None,
                 "content_blocks": []
             }
@@ -891,12 +979,9 @@ if __name__ == "__main__":
     
     # List file PDF untuk diproses [nama_file, path_file]
     pdf_files = [
-        # ['ABF Indonesia Bond Index Fund', 'database/prospectus/ABF Indonesia Bond Index Fund.pdf']
-        # ['Avrist Ada Kas Mutiara', 'database/prospectus/Avrist Ada Kas Mutiara.pdf']
-        # ['test_ryan', 'database/prospectus/test_ryan.pdf']
-        ['ABF Indonesia Bond Index Fund','database/prospectus/ABF Indonesia Bond Index Fund.pdf'],
+        # ['ABF Indonesia Bond Index Fund','database/prospectus/ABF Indonesia Bond Index Fund.pdf'],
         ['Avrist Ada Kas Mutiara','database/prospectus/Avrist Ada Kas Mutiara.pdf'],
-        ['Trimegah Kas Syariah','database/prospectus/Trimegah Kas Syariah.pdf']
+        # ['Trimegah Kas Syariah','database/prospectus/Trimegah Kas Syariah.pdf']
     ]
     
     # Proses semua PDF
