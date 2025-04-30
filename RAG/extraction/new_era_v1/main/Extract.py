@@ -920,8 +920,9 @@ if __name__ == "__main__":
     # List file PDF untuk diproses [nama_file, path_file]
     pdf_files = [
         # ['ABF Indonesia Bond Index Fund', 'database/prospectus/ABF Indonesia Bond Index Fund.pdf']
-        ['Avrist Ada Kas Mutiara', 'database/prospectus/Avrist Ada Kas Mutiara.pdf']
+        # ['Avrist Ada Kas Mutiara', 'database/prospectus/Avrist Ada Kas Mutiara.pdf']
         # ['test_ryan', 'database/prospectus/test_ryan.pdf']
+        ['Grow Dana Optima Kas Utama','database/prospectus/Grow Dana Optima Kas Utama.pdf']
     ]
     
     # Proses semua PDF

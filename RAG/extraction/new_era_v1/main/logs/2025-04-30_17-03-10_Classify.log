@@ -1,0 +1,5 @@
+[2025-04-30 17:03:10] [INFO] PDF Analyzer diinisialisasi
+[2025-04-30 17:03:10] [INFO] Mulai analisis file database/prospectus/Grow Dana Optima Kas Utama
+[2025-04-30 17:03:10] [INFO] Parameter: min_text_length=50, min_line_count=3, min_line_length_percent=10
+[2025-04-30 17:03:10] [ERROR] Error menganalisis PDF: [Errno 2] No such file or directory: 'database/prospectus/Grow Dana Optima Kas Utama'
+[2025-04-30 17:03:10] [ERROR] Error menganalisis Grow Dana Optima Kas Utama: [Errno 2] No such file or directory: 'database/prospectus/Grow Dana Optima Kas Utama'
