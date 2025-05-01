@@ -1,0 +1,49 @@
+[2025-05-01 10:08:32] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-01 10:08:32] [INFO] Google Generative AI API berhasil dikonfigurasi
+[2025-05-01 10:08:32] [DEBUG] Memastikan direktori database/extracted_result ada
+[2025-05-01 10:08:32] [INFO] Memulai pemrosesan untuk Avrist Ada Kas Mutiara
+[2025-05-01 10:08:32] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-01 10:08:32] [INFO] Loading analysis data from database/classified_result\Avrist Ada Kas Mutiara_analisis.json
+[2025-05-01 10:08:32] [INFO] Initializing new output data structure
+[2025-05-01 10:08:32] [INFO] Initialized output data structure for Avrist Ada Kas Mutiara.pdf
+[2025-05-01 10:08:32] [INFO] Processing page 1 with multimodal extraction...
+[2025-05-01 10:08:32] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-01 10:08:32] [INFO] Rendered page 1 to temporary_dir\image_page_1_18167425.png
+[2025-05-01 10:08:32] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-01 10:08:46] [ERROR] Error processing image with multimodal API: 'IntegratedPdfExtractor' object has no attribute 'crop_image_segment'
+[2025-05-01 10:08:46] [INFO] Multimodal extraction successful for page 1
+[2025-05-01 10:08:46] [DEBUG] Multimodal extraction for page 1 took 14.44 seconds
+[2025-05-01 10:08:46] [INFO] Processing page 2 with direct extraction...
+[2025-05-01 10:08:46] [INFO] Direct extraction successful for page 2
+[2025-05-01 10:08:46] [DEBUG] Direct extraction for page 2 took 0.14 seconds
+[2025-05-01 10:08:46] [INFO] Processing page 3 with direct extraction...
+[2025-05-01 10:08:46] [INFO] Direct extraction successful for page 3
+[2025-05-01 10:08:46] [DEBUG] Direct extraction for page 3 took 0.14 seconds
+[2025-05-01 10:08:46] [INFO] Processing page 4 with direct extraction...
+[2025-05-01 10:08:47] [INFO] Direct extraction successful for page 4
+[2025-05-01 10:08:47] [DEBUG] Direct extraction for page 4 took 0.18 seconds
+[2025-05-01 10:08:47] [INFO] Processing page 5 with direct extraction...
+[2025-05-01 10:08:47] [INFO] Direct extraction successful for page 5
+[2025-05-01 10:08:47] [DEBUG] Direct extraction for page 5 took 0.14 seconds
+[2025-05-01 10:08:47] [INFO] Processing page 6 with direct extraction...
+[2025-05-01 10:08:47] [INFO] Direct extraction successful for page 6
+[2025-05-01 10:08:47] [DEBUG] Direct extraction for page 6 took 0.13 seconds
+[2025-05-01 10:08:47] [INFO] Processing page 7 with direct extraction...
+[2025-05-01 10:08:47] [INFO] Direct extraction successful for page 7
+[2025-05-01 10:08:47] [DEBUG] Direct extraction for page 7 took 0.18 seconds
+[2025-05-01 10:08:47] [INFO] Processing page 8 with direct extraction...
+[2025-05-01 10:08:47] [INFO] Direct extraction successful for page 8
+[2025-05-01 10:08:47] [DEBUG] Direct extraction for page 8 took 0.13 seconds
+[2025-05-01 10:08:47] [INFO] Processing page 9 with direct extraction...
+[2025-05-01 10:08:47] [INFO] Direct extraction successful for page 9
+[2025-05-01 10:08:47] [DEBUG] Direct extraction for page 9 took 0.13 seconds
+[2025-05-01 10:08:47] [INFO] Processing page 10 with direct extraction...
+[2025-05-01 10:08:47] [INFO] Direct extraction successful for page 10
+[2025-05-01 10:08:47] [DEBUG] Direct extraction for page 10 took 0.13 seconds
+[2025-05-01 10:08:47] [INFO] Processing page 11 with direct extraction...
+[2025-05-01 10:08:47] [INFO] Direct extraction successful for page 11
+[2025-05-01 10:08:47] [DEBUG] Direct extraction for page 11 took 0.13 seconds
+[2025-05-01 10:08:47] [INFO] Processing page 12 with multimodal extraction...
+[2025-05-01 10:08:47] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-01 10:08:48] [INFO] Rendered page 12 to temporary_dir\image_page_12_56ebfbc0.png
+[2025-05-01 10:08:48] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...

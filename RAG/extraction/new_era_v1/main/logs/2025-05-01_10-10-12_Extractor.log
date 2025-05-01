@@ -1,0 +1,85 @@
+[2025-05-01 10:10:12] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-01 10:10:12] [INFO] Google Generative AI API berhasil dikonfigurasi
+[2025-05-01 10:10:12] [DEBUG] Memastikan direktori database/extracted_result ada
+[2025-05-01 10:10:12] [INFO] Memulai pemrosesan untuk Avrist Ada Kas Mutiara
+[2025-05-01 10:10:12] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-01 10:10:12] [INFO] Loading analysis data from database/classified_result\Avrist Ada Kas Mutiara_analisis.json
+[2025-05-01 10:10:12] [INFO] Initializing new output data structure
+[2025-05-01 10:10:12] [INFO] Initialized output data structure for Avrist Ada Kas Mutiara.pdf
+[2025-05-01 10:10:12] [INFO] Processing page 1 with multimodal extraction...
+[2025-05-01 10:10:12] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-01 10:10:12] [INFO] Rendered page 1 to temporary_dir\image_page_1_80554d7e.png
+[2025-05-01 10:10:12] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-01 10:10:44] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-01 10:10:59] [ERROR] Error processing image with multimodal API: Invalid operation: The `response.text` quick accessor requires the response to contain a valid `Part`, but none were returned. The candidate's [finish_reason](https://ai.google.dev/api/generate-content#finishreason) is 4. Meaning that the model was reciting from copyrighted material.
+[2025-05-01 10:10:59] [INFO] Multimodal extraction successful for page 1
+[2025-05-01 10:10:59] [DEBUG] Multimodal extraction for page 1 took 47.40 seconds
+[2025-05-01 10:10:59] [INFO] Processing page 2 with direct extraction...
+[2025-05-01 10:10:59] [INFO] Direct extraction successful for page 2
+[2025-05-01 10:10:59] [DEBUG] Direct extraction for page 2 took 0.21 seconds
+[2025-05-01 10:10:59] [INFO] Processing page 3 with direct extraction...
+[2025-05-01 10:11:00] [INFO] Direct extraction successful for page 3
+[2025-05-01 10:11:00] [DEBUG] Direct extraction for page 3 took 0.17 seconds
+[2025-05-01 10:11:00] [INFO] Processing page 4 with direct extraction...
+[2025-05-01 10:11:00] [INFO] Direct extraction successful for page 4
+[2025-05-01 10:11:00] [DEBUG] Direct extraction for page 4 took 0.17 seconds
+[2025-05-01 10:11:00] [INFO] Processing page 5 with direct extraction...
+[2025-05-01 10:11:00] [INFO] Direct extraction successful for page 5
+[2025-05-01 10:11:00] [DEBUG] Direct extraction for page 5 took 0.16 seconds
+[2025-05-01 10:11:00] [INFO] Processing page 6 with direct extraction...
+[2025-05-01 10:11:00] [INFO] Direct extraction successful for page 6
+[2025-05-01 10:11:00] [DEBUG] Direct extraction for page 6 took 0.13 seconds
+[2025-05-01 10:11:00] [INFO] Processing page 7 with direct extraction...
+[2025-05-01 10:11:00] [INFO] Direct extraction successful for page 7
+[2025-05-01 10:11:00] [DEBUG] Direct extraction for page 7 took 0.32 seconds
+[2025-05-01 10:11:00] [INFO] Processing page 8 with direct extraction...
+[2025-05-01 10:11:01] [INFO] Direct extraction successful for page 8
+[2025-05-01 10:11:01] [DEBUG] Direct extraction for page 8 took 0.22 seconds
+[2025-05-01 10:11:01] [INFO] Processing page 9 with direct extraction...
+[2025-05-01 10:11:01] [INFO] Direct extraction successful for page 9
+[2025-05-01 10:11:01] [DEBUG] Direct extraction for page 9 took 0.13 seconds
+[2025-05-01 10:11:01] [INFO] Processing page 10 with direct extraction...
+[2025-05-01 10:11:01] [INFO] Direct extraction successful for page 10
+[2025-05-01 10:11:01] [DEBUG] Direct extraction for page 10 took 0.14 seconds
+[2025-05-01 10:11:01] [INFO] Processing page 11 with direct extraction...
+[2025-05-01 10:11:01] [INFO] Direct extraction successful for page 11
+[2025-05-01 10:11:01] [DEBUG] Direct extraction for page 11 took 0.14 seconds
+[2025-05-01 10:11:01] [INFO] Processing page 12 with multimodal extraction...
+[2025-05-01 10:11:01] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-01 10:11:01] [INFO] Rendered page 12 to temporary_dir\image_page_12_83ca2354.png
+[2025-05-01 10:11:01] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-01 10:11:10] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-01 10:11:10] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-01 10:11:10] [INFO] Multimodal extraction successful for page 12
+[2025-05-01 10:11:10] [DEBUG] Multimodal extraction for page 12 took 9.33 seconds
+[2025-05-01 10:11:10] [INFO] Processing page 13 with direct extraction...
+[2025-05-01 10:11:10] [INFO] Direct extraction successful for page 13
+[2025-05-01 10:11:10] [DEBUG] Direct extraction for page 13 took 0.16 seconds
+[2025-05-01 10:11:10] [INFO] Processing page 14 with direct extraction...
+[2025-05-01 10:11:11] [INFO] Direct extraction successful for page 14
+[2025-05-01 10:11:11] [DEBUG] Direct extraction for page 14 took 0.08 seconds
+[2025-05-01 10:11:11] [INFO] Processing page 15 with direct extraction...
+[2025-05-01 10:11:11] [INFO] Direct extraction successful for page 15
+[2025-05-01 10:11:11] [DEBUG] Direct extraction for page 15 took 0.14 seconds
+[2025-05-01 10:11:11] [INFO] Processing page 16 with direct extraction...
+[2025-05-01 10:11:11] [INFO] Direct extraction successful for page 16
+[2025-05-01 10:11:11] [DEBUG] Direct extraction for page 16 took 0.14 seconds
+[2025-05-01 10:11:11] [INFO] Processing page 17 with direct extraction...
+[2025-05-01 10:11:11] [INFO] Direct extraction successful for page 17
+[2025-05-01 10:11:11] [DEBUG] Direct extraction for page 17 took 0.21 seconds
+[2025-05-01 10:11:11] [INFO] Processing page 18 with direct extraction...
+[2025-05-01 10:11:11] [INFO] Direct extraction successful for page 18
+[2025-05-01 10:11:11] [DEBUG] Direct extraction for page 18 took 0.13 seconds
+[2025-05-01 10:11:11] [INFO] Processing page 19 with direct extraction...
+[2025-05-01 10:11:11] [INFO] Direct extraction successful for page 19
+[2025-05-01 10:11:11] [DEBUG] Direct extraction for page 19 took 0.10 seconds
+[2025-05-01 10:11:11] [INFO] Processing page 20 with direct extraction...
+[2025-05-01 10:11:11] [INFO] Direct extraction successful for page 20
+[2025-05-01 10:11:11] [DEBUG] Direct extraction for page 20 took 0.17 seconds
+[2025-05-01 10:11:11] [INFO] Processing page 21 with direct extraction...
+[2025-05-01 10:11:12] [INFO] Direct extraction successful for page 21
+[2025-05-01 10:11:12] [DEBUG] Direct extraction for page 21 took 0.10 seconds
+[2025-05-01 10:11:12] [INFO] Processing page 22 with multimodal extraction...
+[2025-05-01 10:11:12] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-01 10:11:12] [INFO] Rendered page 22 to temporary_dir\image_page_22_dd9aa0d4.png
+[2025-05-01 10:11:12] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...

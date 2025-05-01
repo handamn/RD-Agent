@@ -474,7 +474,7 @@ class IntegratedPdfExtractor:
     def process_with_multimodal_api(self, image_path, prompt):
         """
         Memproses gambar menggunakan API Gemini multimodal dengan mekanisme retry.
-        Menambahkan retry khusus untuk kasus konten berhak cipta.
+        Jika terdeteksi masalah copyright, menggunakan pendekatan segmentasi gambar.
         
         Args:
             image_path (str): Path ke file gambar
@@ -486,7 +486,7 @@ class IntegratedPdfExtractor:
         max_retries = 5
         retry_count = 0
         copyright_retry_count = 0
-        max_copyright_retries = 5  # Jumlah maksimum percobaan untuk kasus copyright
+        max_copyright_retries = 3  # Mengurangi jumlah retry sebelum segmentasi
         
         # Prompt modifiers that might help avoid copyright issues
         copyright_prompt_modifiers = [
@@ -520,8 +520,8 @@ class IntegratedPdfExtractor:
                         copyright_detected = True
                         copyright_retry_count += 1
                         
+                        # Mencoba dengan prompt modifier terlebih dahulu untuk kasus sederhana
                         if copyright_retry_count <= max_copyright_retries:
-                            # Modify prompt to try to avoid copyright issues
                             modifier_index = (copyright_retry_count - 1) % len(copyright_prompt_modifiers)
                             current_prompt = copyright_prompt_modifiers[modifier_index] + original_prompt
                             
@@ -533,18 +533,110 @@ class IntegratedPdfExtractor:
                             time.sleep(1)  # Small delay before retry
                             continue
                         else:
-                            error_msg = "Model detected copyrighted material and refused to process the request after multiple attempts."
-                            self.log_warning(f"Exhausted copyright retries ({max_copyright_retries}): {error_msg}")
-                            return {
-                                "content_blocks": [
-                                    {
-                                        "block_id": 1,
-                                        "type": "text",
-                                        "content": f"Error during multimodal processing: {error_msg}"
+                            # Jika retry sederhana gagal, beralih ke strategi segmentasi
+                            self.log_warning(
+                                f"Simple prompt modifications failed after {max_copyright_retries} attempts. "
+                                f"Switching to image segmentation strategy."
+                            )
+                            
+                            # Tentukan segmen dengan overlap
+                            segments = [
+                                (0.0, 0.26),   # Segmen 1: 0% - 26%
+                                (0.16, 0.38),  # Segmen 2: 16% - 38%
+                                (0.28, 0.50),  # Segmen 3: 28% - 50%
+                                (0.40, 0.64),  # Segmen 4: 40% - 64%
+                                (0.52, 0.76),  # Segmen 5: 52% - 76%
+                                (0.66, 0.88),  # Segmen 6: 66% - 88%
+                                (0.78, 1.00),  # Segmen 7: 78% - 100%
+                            ]
+                            
+                            # Inisialisasi untuk hasil segmentasi
+                            segment_results = []
+                            combined_json = None
+                            
+                            # Proses setiap segmen secara berurutan
+                            for i, segment in enumerate(segments):
+                                segment_num = i + 1
+                                self.log_info(f"Processing segment {segment_num}/{len(segments)} ({segment[0]*100:.0f}%-{segment[1]*100:.0f}%)")
+                                
+                                try:
+                                    # Potong segmen gambar
+                                    segment_path = self.crop_image_segment(image_path, segment)
+                                    segment_image = Image.open(segment_path)
+                                    
+                                    # Buat prompt untuk segmen ini
+                                    segment_prompt = self._create_segment_prompt(
+                                        original_prompt, 
+                                        segment_num, 
+                                        len(segments), 
+                                        segment, 
+                                        combined_json
+                                    )
+                                    
+                                    # Coba beberapa kali jika ada kegagalan pada segmen
+                                    segment_retry = 0
+                                    max_segment_retry = 3
+                                    segment_success = False
+                                    
+                                    while segment_retry < max_segment_retry and not segment_success:
+                                        try:
+                                            # Generate response untuk segmen ini
+                                            segment_response = model.generate_content([segment_prompt, segment_image])
+                                            segment_text = segment_response.text
+                                            segment_json = self.extract_json_content(segment_text)
+                                            
+                                            # Simpan hasil segmen untuk debugging
+                                            output_path = f"database/extracted_result/segment_{segment_num}.json"
+                                            with open(output_path, 'w', encoding='utf-8') as f:
+                                                json.dump(segment_json, f, indent=4, ensure_ascii=False)
+                                            
+                                            # Update combined JSON
+                                            combined_json = segment_json
+                                            segment_results.append(segment_json)
+                                            segment_success = True
+                                            
+                                        except Exception as seg_error:
+                                            segment_retry += 1
+                                            self.log_warning(
+                                                f"Error processing segment {segment_num}, retry {segment_retry}/{max_segment_retry}: {str(seg_error)}"
+                                            )
+                                            time.sleep(1)
+                                    
+                                    if not segment_success:
+                                        self.log_error(f"Failed to process segment {segment_num} after {max_segment_retry} attempts")
+                                
+                                except Exception as segment_error:
+                                    self.log_error(f"Error in segment {segment_num} processing: {str(segment_error)}")
+                            
+                            # Jika kita berhasil memproses setidaknya beberapa segmen
+                            if combined_json:
+                                self.log_info(f"Successfully processed {len(segment_results)}/{len(segments)} segments")
+                                
+                                # Tambahkan metadata segmentasi
+                                if isinstance(combined_json, dict):
+                                    combined_json["segmentation_info"] = {
+                                        "total_segments": len(segments),
+                                        "processed_segments": len(segment_results),
+                                        "segments_processed": [i+1 for i in range(len(segment_results))],
+                                        "original_prompt": original_prompt
                                     }
-                                ],
-                                "copyright_error": True
-                            }
+                                
+                                return combined_json
+                            else:
+                                # Jika semua segmen gagal
+                                error_msg = "Failed to process document using segmentation approach"
+                                self.log_error(error_msg)
+                                return {
+                                    "content_blocks": [
+                                        {
+                                            "block_id": 1,
+                                            "type": "text",
+                                            "content": f"Error during multimodal processing: {error_msg}"
+                                        }
+                                    ],
+                                    "copyright_error": True,
+                                    "segmentation_failed": True
+                                }
                 
                 # Reset copyright retry counter if we succeeded after copyright issues
                 if copyright_retry_count > 0 and not copyright_detected:
@@ -651,6 +743,128 @@ class IntegratedPdfExtractor:
             ]
         }
 
+    def _create_segment_prompt(self, original_prompt, segment_num, total_segments, segment_range, previous_json):
+        """
+        Membuat prompt untuk segmen gambar berdasarkan nomor segmen dan hasil sebelumnya.
+        
+        Args:
+            original_prompt (str): Prompt asli dari user
+            segment_num (int): Nomor segmen (1-based)
+            total_segments (int): Total jumlah segmen
+            segment_range (tuple): Range segmen dalam persentase (start, end)
+            previous_json (dict): Hasil JSON dari segmen sebelumnya
+            
+        Returns:
+            str: Prompt yang dioptimalkan untuk segmen ini
+        """
+        # Base prompt selalu menyertakan prompt asli
+        segment_prompt = f"""{original_prompt}
+        
+        CATATAN PENTING:
+        - Ini adalah bagian {segment_num} dari {total_segments} ({segment_range[0]*100:.0f}%-{segment_range[1]*100:.0f}%) dari dokumen
+        """
+        
+        # Tambahkan hasil sebelumnya jika ada
+        if segment_num > 1 and previous_json:
+            # Truncate previous_json jika terlalu besar untuk mencegah error konteks
+            previous_json_str = json.dumps(previous_json, ensure_ascii=False)
+            if len(previous_json_str) > 10000:  # Batasi ukuran JSON sebelumnya
+                self.log_warning(f"Previous JSON too large ({len(previous_json_str)} chars), truncating...")
+                # Coba ambil bagian penting saja, misalnya 5000 karakter awal dan 5000 karakter akhir
+                previous_json_str = previous_json_str[:5000] + "\n...[truncated]...\n" + previous_json_str[-5000:]
+            
+            segment_prompt += f"""
+            - Berikut hasil ekstraksi gabungan sejauh ini:
+            {previous_json_str}
+            """
+            
+            segment_prompt += """
+            INSTRUKSI KHUSUS UNTUK PENGGABUNGAN:
+            1. Identifikasi "OVERLAP BREAK" - baris terakhir yang sudah ada di JSON sebelumnya
+            2. Mulai ekstraksi dari baris SETELAH OVERLAP BREAK
+            3. Untuk TABEL:
+            - Jika ini kelanjutan tabel yang sudah dimulai, gunakan struktur header yang sama
+            - Tambahkan baris baru ke "rows" yang sudah ada
+            - Jangan duplikasi baris yang sudah ada
+            4. Untuk TEKS:
+            - Lanjutkan dari konten yang sudah ada
+            - Hindari pengulangan paragraf atau poin yang sama
+            5. Hasilkan JSON lengkap termasuk semua data sebelumnya + data baru dari segmen ini
+            
+            TEKNIK PENDETEKSIAN OVERLAP:
+            - Bandingkan 2-3 baris pertama yang Anda lihat dengan JSON sebelumnya
+            - OVERLAP BREAK adalah konten terakhir yang sama persis antara JSON dan gambar ini
+            - Fokus pada angka, tanggal, atau frasa unik untuk memastikan deteksi yang akurat
+            - Jangan ekstrak ulang data yang sudah ada di JSON sebelumnya
+            """
+        else:
+            # Untuk segmen pertama, tambahkan instruksi khusus
+            segment_prompt += """
+            INSTRUKSI KHUSUS:
+            1. Ekstrak SEMUA informasi yang terlihat dalam format JSON
+            2. Untuk tabel, gunakan struktur berikut:
+            {
+                "type": "table",
+                "headers": ["Kolom1", "Kolom2", ...],
+                "rows": [
+                ["Data1_1", "Data1_2", ...],
+                ["Data2_1", "Data2_2", ...],
+                ...
+                ]
+            }
+            3. Untuk teks, gunakan:
+            {
+                "type": "text",
+                "content": "Isi teks..."
+            }
+            4. Jika tabel terpotong di bagian bawah, itu normal, ekstrak sebanyak yang terlihat
+            """
+        
+        # Tambahkan instruksi khusus untuk tabel kompleks
+        segment_prompt += """
+        INSTRUKSI KHUSUS UNTUK TABEL KOMPLEKS:
+        - Prioritaskan struktur tabel yang konsisten
+        - Jika header tabel sudah ada di JSON sebelumnya, gunakan struktur yang sama
+        - Perhatikan nomor baris/urutan untuk memastikan kelengkapan
+        - Jika menemukan tabel baru, buat blok baru dengan "type": "table"
+        
+        PENTING: Hasilkan JSON LENGKAP sebagai output, termasuk semua data sebelumnya + data baru
+        """
+        
+        return segment_prompt
+
+    def crop_image_segment(self, image_path, segment_range):
+        """
+        Memotong gambar berdasarkan persentase range.
+        
+        Args:
+            image_path (str): Path ke file gambar
+            segment_range (tuple): Range segmen dalam persentase (start, end)
+            
+        Returns:
+            str: Path ke file gambar yang dipotong
+        """
+        try:
+            # Load image
+            image = Image.open(image_path)
+            width, height = image.size
+            
+            # Calculate crop coordinates
+            start_y = int(height * segment_range[0])
+            end_y = int(height * segment_range[1])
+            
+            # Crop image
+            cropped_image = image.crop((0, start_y, width, end_y))
+            
+            # Save cropped image
+            segment_path = f"{image_path.rsplit('.', 1)[0]}_segment_{segment_range[0]:.2f}_{segment_range[1]:.2f}.{image_path.rsplit('.', 1)[1]}"
+            cropped_image.save(segment_path)
+            
+            return segment_path
+        except Exception as e:
+            self.log_error(f"Error cropping image segment: {str(e)}")
+            raise
+
 
     def extract_json_content_internal(self, response_text):
         """
@@ -724,6 +938,21 @@ class IntegratedPdfExtractor:
                 "parsing_error": str(e)
             }
     
+    def crop_image_segment(self, image_path, segment_range):
+        """Crop image based on percentage range (start_percent, end_percent)"""
+        start_percent, end_percent = segment_range
+        img = Image.open(image_path)
+        width, height = img.size
+        
+        top = int(height * start_percent)
+        bottom = int(height * end_percent)
+        
+        segment = img.crop((0, top, width, bottom))
+        segment_path = f"{image_path.split('.')[0]}_seg_{start_percent:.2f}_{end_percent:.2f}.png"
+        segment.save(segment_path)
+        
+        return segment_path
+
     def extract_with_multimodal_method(self, pdf_path, page_num, existing_result=None):
         """
         Ekstraksi konten dari PDF menggunakan AI multimodal untuk halaman dengan format kompleks.
