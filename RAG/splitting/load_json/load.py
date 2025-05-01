@@ -216,7 +216,7 @@ class PDFJsonProcessor:
 # Example usage
 if __name__ == "__main__":
     # File paths
-    input_json = "misterius.json"  # Path to your JSON file
+    input_json = "real.json"  # Path to your JSON file
     output_json = "processed_for_qdrant.json"  # Output file path
     
     # Initialize and run the processor
