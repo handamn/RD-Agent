@@ -1,0 +1,19 @@
+[2025-05-01 13:03:02] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-01 13:03:02] [WARNING] Google API Key tidak ditemukan. Metode multimodal tidak akan berfungsi.
+[2025-05-01 13:03:14] [DEBUG] Memastikan direktori database/extracted_result ada
+[2025-05-01 13:03:14] [INFO] Memulai pemrosesan untuk Avrist Ada Saham Blue Safir Kelas A
+[2025-05-01 13:03:14] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-01 13:03:14] [INFO] Loading analysis data from database/classified_result\Avrist Ada Saham Blue Safir Kelas A_analisis.json
+[2025-05-01 13:03:14] [INFO] Initializing new output data structure
+[2025-05-01 13:03:14] [INFO] Initialized output data structure for Avrist Ada Saham Blue Safir Kelas A.pdf
+[2025-05-01 13:03:14] [INFO] Processing page 1 with multimodal extraction...
+[2025-05-01 13:03:14] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-01 13:03:14] [INFO] Rendered page 1 to temporary_dir\image_page_1_268542b3.png
+[2025-05-01 13:03:14] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-01 13:13:15] [ERROR] Error processing image with multimodal API: Timeout of 600.0s exceeded, last exception: 503 Getting metadata from plugin failed with error: ('invalid_grant: Account has been deleted', {'error': 'invalid_grant', 'error_description': 'Account has been deleted'})
+[2025-05-01 13:13:15] [INFO] Multimodal extraction successful for page 1
+[2025-05-01 13:13:15] [DEBUG] Multimodal extraction for page 1 took 600.91 seconds
+[2025-05-01 13:13:15] [INFO] Processing page 2 with multimodal extraction...
+[2025-05-01 13:13:15] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-01 13:13:15] [INFO] Rendered page 2 to temporary_dir\image_page_2_d81f5d52.png
+[2025-05-01 13:13:15] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
