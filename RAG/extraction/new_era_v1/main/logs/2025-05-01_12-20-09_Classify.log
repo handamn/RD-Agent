@@ -1,0 +1,5 @@
+[2025-05-01 12:20:09] [INFO] PDF Analyzer diinisialisasi
+[2025-05-01 12:20:09] [INFO] Mulai analisis file database/prospectus/['ABF Indonesia Bond Index Fund'].pdf
+[2025-05-01 12:20:09] [INFO] Parameter: min_text_length=50, min_line_count=1, min_line_length_percent=20
+[2025-05-01 12:20:09] [ERROR] Error menganalisis PDF: [Errno 2] No such file or directory: "database/prospectus/['ABF Indonesia Bond Index Fund'].pdf"
+[2025-05-01 12:20:09] [ERROR] Error menganalisis ['ABF Indonesia Bond Index Fund']: [Errno 2] No such file or directory: "database/prospectus/['ABF Indonesia Bond Index Fund'].pdf"
