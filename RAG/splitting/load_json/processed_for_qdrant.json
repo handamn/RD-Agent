@@ -1,0 +1,132 @@
+[
+  {
+    "id": "page_1_block_1",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "metadata": {
+      "id": "page_1_block_1",
+      "page": "1",
+      "block_id": 1,
+      "block_type": "image",
+      "extraction_method": "multimodal_llm",
+      "document_filename": "...",
+      "document_total_pages": 113
+    }
+  },
+  {
+    "id": "page_1_block_2",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "metadata": {
+      "id": "page_1_block_2",
+      "page": "1",
+      "block_id": 2,
+      "block_type": "text",
+      "extraction_method": "multimodal_llm",
+      "document_filename": "...",
+      "document_total_pages": 113
+    }
+  },
+  {
+    "id": "page_2_block_1",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "metadata": {
+      "id": "page_2_block_1",
+      "page": "2",
+      "block_id": 1,
+      "block_type": "text",
+      "extraction_method": "direct_extraction",
+      "document_filename": "...",
+      "document_total_pages": 113
+    }
+  },
+  {
+    "id": "page_3_block_1",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "metadata": {
+      "id": "page_3_block_1",
+      "page": "3",
+      "block_id": 1,
+      "block_type": "text",
+      "extraction_method": "multimodal_llm",
+      "document_filename": "...",
+      "document_total_pages": 113
+    }
+  },
+  {
+    "id": "page_3_block_2",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit\ncol_1: Lorem ipsum dolor sit amet, consectetur adipiscing elit | col_2: Lorem ipsum dolor sit amet, consectetur adipiscing elit | col_n: Lorem ipsum dolor sit amet, consectetur adipiscing elit\ncol_1: Lorem ipsum dolor sit amet, consectetur adipiscing elit | col_2: Lorem ipsum dolor sit amet, consectetur adipiscing elit | col_n: Lorem ipsum dolor sit amet, consectetur adipiscing elit\ncol_1: Lorem ipsum dolor sit amet, consectetur adipiscing elit | col_2: Lorem ipsum dolor sit amet, consectetur adipiscing elit | col_n: Lorem ipsum dolor sit amet, consectetur adipiscing elit\nSummary: Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "metadata": {
+      "id": "page_3_block_2",
+      "page": "3",
+      "block_id": 2,
+      "block_type": "table",
+      "extraction_method": "multimodal_llm",
+      "document_filename": "...",
+      "document_total_pages": 113
+    }
+  },
+  {
+    "id": "page_3_block_3",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "metadata": {
+      "id": "page_3_block_3",
+      "page": "3",
+      "block_id": 3,
+      "block_type": "text",
+      "extraction_method": "multimodal_llm",
+      "document_filename": "...",
+      "document_total_pages": 113
+    }
+  },
+  {
+    "id": "page_32_block_1",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "metadata": {
+      "id": "page_32_block_1",
+      "page": "32",
+      "block_id": 1,
+      "block_type": "text",
+      "extraction_method": "ocr",
+      "document_filename": "...",
+      "document_total_pages": 113
+    }
+  },
+  {
+    "id": "page_99_block_1",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "metadata": {
+      "id": "page_99_block_1",
+      "page": "99",
+      "block_id": 1,
+      "block_type": "text",
+      "extraction_method": "multimodal_llm",
+      "document_filename": "...",
+      "document_total_pages": 113
+    }
+  },
+  {
+    "id": "page_99_block_2",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit\nstart - start: Lorem ipsum dolor sit amet, consectetur adipiscing elit → Connects to: bbb\nprocess - bbb: Lorem ipsum dolor sit amet, consectetur adipiscing elit → Connects to: ccc\nprocess - ccc: Lorem ipsum dolor sit amet, consectetur adipiscing elit → Connects to: ddd\ndecision - ddd: Lorem ipsum dolor sit amet, consectetur adipiscing elit → Connects to: eee (Lorem ipsum dolor sit amet, consectetur adipiscing elit), fff (Lorem ipsum dolor sit amet, consectetur adipiscing elit)\nprocess - fff: Lorem ipsum dolor sit amet, consectetur adipiscing elit → Connects to: bbb\nprocess - eee: Lorem ipsum dolor sit amet, consectetur adipiscing elit → Connects to: ggg\nprocess - ggg: Lorem ipsum dolor sit amet, consectetur adipiscing elit → Connects to: end\nend - end: Lorem ipsum dolor sit amet, consectetur adipiscing elit\nSummary: Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "metadata": {
+      "id": "page_99_block_2",
+      "page": "99",
+      "block_id": 2,
+      "block_type": "flowchart",
+      "extraction_method": "multimodal_llm",
+      "document_filename": "...",
+      "document_total_pages": 113
+    }
+  },
+  {
+    "id": "page_99_block_3",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "metadata": {
+      "id": "page_99_block_3",
+      "page": "99",
+      "block_id": 3,
+      "block_type": "text",
+      "extraction_method": "multimodal_llm",
+      "document_filename": "...",
+      "document_total_pages": 113
+    }
+  }
+]
