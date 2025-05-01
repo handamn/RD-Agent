@@ -218,7 +218,7 @@ class PDFJsonProcessor:
 
 # Example usage
 if __name__ == "__main__":
-    input_json = "real.json"
+    input_json = "misterius.json"
     output_json = "processed_for_qdrant.json"
 
     processor = PDFJsonProcessor(input_json)
