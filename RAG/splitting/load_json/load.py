@@ -36,15 +36,23 @@ class PDFJsonProcessor:
     
     def _extract_text_from_block(self, block: Dict[str, Any]) -> str:
         """Extract text content from a block based on its type"""
+        if not isinstance(block, dict):
+            return ""
+            
         block_type = block.get('type')
         
         if block_type == 'text':
-            return block.get('content', '')
+            content = block.get('content')
+            return content if content is not None else ""
         elif block_type == 'image':
-            return block.get('description_image', '')
+            description = block.get('description_image')
+            return description if description is not None else ""
         elif block_type == 'table':
             # Convert table data to text representation
-            text = block.get('title', '') + "\n"
+            text = block.get('title', '') or ''
+            if text:
+                text += "\n"
+            
             table_data = block.get('data', [])
             
             if table_data and isinstance(table_data, list):
@@ -59,30 +67,45 @@ class PDFJsonProcessor:
             
             # Add table summary if available
             if 'summary_table' in block:
-                text += f"Summary: {block['summary_table']}"
+                summary = block.get('summary_table')
+                if summary is not None:
+                    text += f"Summary: {summary}"
                 
             return text
         elif block_type == 'flowchart':
             # Convert flowchart to text representation
-            text = block.get('title', '') + "\n"
+            text = block.get('title', '') or ''
+            if text:
+                text += "\n"
+                
             elements = block.get('elements', [])
             
             # Process each flowchart element
             for element in elements:
-                element_text = f"{element.get('type', 'node')} - {element.get('id', '')}: {element.get('text', '')}"
+                if not isinstance(element, dict):
+                    continue
+                    
+                element_type = element.get('type', 'node')
+                element_id = element.get('id', '')
+                element_content = element.get('text', '')
+                
+                element_text = f"{element_type} - {element_id}: {element_content}"
                 
                 # Add connection information
                 connects_to = element.get('connects_to', [])
                 if isinstance(connects_to, list):
-                    if all(isinstance(c, str) for c in connects_to):
+                    if all(isinstance(c, str) for c in connects_to if c is not None):
                         if connects_to:
-                            element_text += f" → Connects to: {', '.join(connects_to)}"
+                            element_text += f" → Connects to: {', '.join([c for c in connects_to if c is not None])}"
                     else:
                         # Handle complex connections with labels
                         connections = []
                         for conn in connects_to:
                             if isinstance(conn, dict):
-                                connections.append(f"{conn.get('target', '')} ({conn.get('label', '')})")
+                                target = conn.get('target', '')
+                                label = conn.get('label', '')
+                                if target:
+                                    connections.append(f"{target} ({label})" if label else target)
                         if connections:
                             element_text += f" → Connects to: {', '.join(connections)}"
                 
@@ -90,7 +113,9 @@ class PDFJsonProcessor:
                 
             # Add flowchart summary if available
             if 'summary_flowchart' in block:
-                text += f"Summary: {block['summary_flowchart']}"
+                summary = block.get('summary_flowchart')
+                if summary is not None:
+                    text += f"Summary: {summary}"
                 
             return text
         else:
@@ -111,34 +136,53 @@ class PDFJsonProcessor:
         
         # Process each page
         for page_num, page_data in self.data['pages'].items():
+            if not isinstance(page_data, dict):
+                print(f"Warning: Page {page_num} data is not a dictionary. Skipping.")
+                continue
+                
             extraction_data = page_data.get('extraction', {})
+            if not isinstance(extraction_data, dict):
+                print(f"Warning: Page {page_num} extraction data is not a dictionary. Skipping.")
+                continue
+                
             content_blocks = extraction_data.get('content_blocks', [])
+            if not isinstance(content_blocks, list):
+                print(f"Warning: Page {page_num} content_blocks is not a list. Skipping.")
+                continue
             
             # Process each content block on the page
             for block in content_blocks:
+                if not isinstance(block, dict):
+                    print(f"Warning: Found a content block that is not a dictionary on page {page_num}. Skipping.")
+                    continue
+                    
                 block_id = block.get('block_id')
                 block_type = block.get('type')
                 
                 # Create a unique ID for this block
                 unique_id = self._create_unique_id(page_num, block_id)
                 
-                # Extract text based on block type
-                text_content = self._extract_text_from_block(block)
-                
-                # Skip empty content
-                if not text_content.strip():
+                try:
+                    # Extract text based on block type
+                    text_content = self._extract_text_from_block(block)
+                    
+                    # Skip empty content
+                    if not text_content or not text_content.strip():
+                        continue
+                    
+                    # Create block metadata
+                    block_metadata = {
+                        'id': unique_id,
+                        'page': page_num,
+                        'block_id': block_id,
+                        'block_type': block_type,
+                        'extraction_method': extraction_data.get('method'),
+                        'document_filename': self.metadata.get('filename'),
+                        'document_total_pages': self.metadata.get('total_pages')
+                    }
+                except Exception as e:
+                    print(f"Error processing block {block_id} on page {page_num}: {e}")
                     continue
-                
-                # Create block metadata
-                block_metadata = {
-                    'id': unique_id,
-                    'page': page_num,
-                    'block_id': block_id,
-                    'block_type': block_type,
-                    'extraction_method': extraction_data.get('method'),
-                    'document_filename': self.metadata.get('filename'),
-                    'document_total_pages': self.metadata.get('total_pages')
-                }
                 
                 # For longer text blocks, create chunks with overlap
                 if len(text_content) > chunk_size and block_type == 'text':
