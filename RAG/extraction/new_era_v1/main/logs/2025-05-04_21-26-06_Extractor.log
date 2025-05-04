@@ -1,0 +1,2527 @@
+[2025-05-04 21:26:06] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:26:06] [INFO] Google Generative AI API berhasil dikonfigurasi
+[2025-05-04 21:26:06] [DEBUG] Memastikan direktori database/extracted_result ada
+[2025-05-04 21:26:06] [INFO] Memulai pemrosesan untuk BRI Seruni Pasar Uang III
+[2025-05-04 21:26:06] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:26:06] [INFO] Loading analysis data from database/classified_result\BRI Seruni Pasar Uang III_analisis.json
+[2025-05-04 21:26:06] [INFO] Initializing new output data structure
+[2025-05-04 21:26:06] [INFO] Initialized output data structure for BRI Seruni Pasar Uang III.pdf
+[2025-05-04 21:26:06] [INFO] Processing page 1 with multimodal extraction...
+[2025-05-04 21:26:06] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:26:06] [INFO] Rendered page 1 to temporary_dir\image_page_1_0c62cd9b.png
+[2025-05-04 21:26:07] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:26:15] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:26:15] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:26:15] [INFO] Multimodal extraction successful for page 1
+[2025-05-04 21:26:15] [DEBUG] Multimodal extraction for page 1 took 9.21 seconds
+[2025-05-04 21:26:15] [INFO] Processing page 2 with multimodal extraction...
+[2025-05-04 21:26:15] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:26:16] [INFO] Rendered page 2 to temporary_dir\image_page_2_0fb331d2.png
+[2025-05-04 21:26:16] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:26:23] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:26:23] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:26:23] [INFO] Multimodal extraction successful for page 2
+[2025-05-04 21:26:23] [DEBUG] Multimodal extraction for page 2 took 7.19 seconds
+[2025-05-04 21:26:23] [INFO] Processing page 3 with multimodal extraction...
+[2025-05-04 21:26:23] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:26:23] [INFO] Rendered page 3 to temporary_dir\image_page_3_ac28f1f4.png
+[2025-05-04 21:26:23] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:26:32] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:26:32] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:26:32] [INFO] Multimodal extraction successful for page 3
+[2025-05-04 21:26:32] [DEBUG] Multimodal extraction for page 3 took 9.30 seconds
+[2025-05-04 21:26:32] [INFO] Processing page 4 with multimodal extraction...
+[2025-05-04 21:26:32] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:26:32] [INFO] Rendered page 4 to temporary_dir\image_page_4_f061bba6.png
+[2025-05-04 21:26:32] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:26:40] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:26:40] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:26:40] [INFO] Multimodal extraction successful for page 4
+[2025-05-04 21:26:40] [DEBUG] Multimodal extraction for page 4 took 7.77 seconds
+[2025-05-04 21:26:40] [INFO] Processing page 5 with multimodal extraction...
+[2025-05-04 21:26:40] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:26:40] [INFO] Rendered page 5 to temporary_dir\image_page_5_6d2e95a8.png
+[2025-05-04 21:26:40] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:26:52] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:26:52] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:26:52] [INFO] Multimodal extraction successful for page 5
+[2025-05-04 21:26:52] [DEBUG] Multimodal extraction for page 5 took 12.00 seconds
+[2025-05-04 21:26:52] [INFO] Processing page 6 with multimodal extraction...
+[2025-05-04 21:26:52] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:26:52] [INFO] Rendered page 6 to temporary_dir\image_page_6_67c97cb7.png
+[2025-05-04 21:26:52] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:27:01] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:27:01] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:27:01] [INFO] Multimodal extraction successful for page 6
+[2025-05-04 21:27:01] [DEBUG] Multimodal extraction for page 6 took 8.82 seconds
+[2025-05-04 21:27:01] [INFO] Processing page 7 with multimodal extraction...
+[2025-05-04 21:27:01] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:27:01] [INFO] Rendered page 7 to temporary_dir\image_page_7_1165b37a.png
+[2025-05-04 21:27:01] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:27:11] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:27:11] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:27:11] [INFO] Multimodal extraction successful for page 7
+[2025-05-04 21:27:11] [DEBUG] Multimodal extraction for page 7 took 10.20 seconds
+[2025-05-04 21:27:11] [INFO] Processing page 8 with multimodal extraction...
+[2025-05-04 21:27:11] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:27:11] [INFO] Rendered page 8 to temporary_dir\image_page_8_17e24170.png
+[2025-05-04 21:27:11] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:27:19] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:27:19] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:27:19] [INFO] Multimodal extraction successful for page 8
+[2025-05-04 21:27:19] [DEBUG] Multimodal extraction for page 8 took 8.42 seconds
+[2025-05-04 21:27:19] [INFO] Processing page 9 with multimodal extraction...
+[2025-05-04 21:27:19] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:27:19] [INFO] Rendered page 9 to temporary_dir\image_page_9_922a73c7.png
+[2025-05-04 21:27:19] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:27:27] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:27:27] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:27:27] [INFO] Multimodal extraction successful for page 9
+[2025-05-04 21:27:27] [DEBUG] Multimodal extraction for page 9 took 7.77 seconds
+[2025-05-04 21:27:27] [INFO] Processing page 10 with multimodal extraction...
+[2025-05-04 21:27:27] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:27:27] [INFO] Rendered page 10 to temporary_dir\image_page_10_dace5265.png
+[2025-05-04 21:27:27] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:27:34] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:27:34] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:27:35] [INFO] Multimodal extraction successful for page 10
+[2025-05-04 21:27:35] [DEBUG] Multimodal extraction for page 10 took 7.57 seconds
+[2025-05-04 21:27:35] [INFO] Processing page 11 with multimodal extraction...
+[2025-05-04 21:27:35] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:27:35] [INFO] Rendered page 11 to temporary_dir\image_page_11_ec854304.png
+[2025-05-04 21:27:35] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:27:45] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:27:45] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:27:45] [INFO] Multimodal extraction successful for page 11
+[2025-05-04 21:27:45] [DEBUG] Multimodal extraction for page 11 took 10.30 seconds
+[2025-05-04 21:27:45] [INFO] Processing page 12 with multimodal extraction...
+[2025-05-04 21:27:45] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:27:45] [INFO] Rendered page 12 to temporary_dir\image_page_12_bd0c146b.png
+[2025-05-04 21:27:45] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:27:55] [WARNING] Copyright issue detected (finish_reason=4). Copyright retry 1/3. Trying with modified prompt.
+[2025-05-04 21:27:56] [INFO] Sending request with prompt: Analisis gambar berikut secara umum: Dokumen perus...
+[2025-05-04 21:28:15] [INFO] Successfully bypassed copyright detection after 1 attempts.
+[2025-05-04 21:28:15] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:28:15] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:28:15] [INFO] Multimodal extraction successful for page 12
+[2025-05-04 21:28:15] [DEBUG] Multimodal extraction for page 12 took 30.20 seconds
+[2025-05-04 21:28:15] [INFO] Processing page 13 with multimodal extraction...
+[2025-05-04 21:28:15] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:28:15] [INFO] Rendered page 13 to temporary_dir\image_page_13_a87b3139.png
+[2025-05-04 21:28:15] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:28:24] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:28:24] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:28:24] [INFO] Multimodal extraction successful for page 13
+[2025-05-04 21:28:24] [DEBUG] Multimodal extraction for page 13 took 8.56 seconds
+[2025-05-04 21:28:24] [INFO] Processing page 14 with multimodal extraction...
+[2025-05-04 21:28:24] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:28:24] [INFO] Rendered page 14 to temporary_dir\image_page_14_731289c7.png
+[2025-05-04 21:28:24] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:28:34] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:28:34] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:28:34] [INFO] Multimodal extraction successful for page 14
+[2025-05-04 21:28:34] [DEBUG] Multimodal extraction for page 14 took 10.37 seconds
+[2025-05-04 21:28:34] [INFO] Processing page 15 with multimodal extraction...
+[2025-05-04 21:28:34] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:28:34] [INFO] Rendered page 15 to temporary_dir\image_page_15_9a82344c.png
+[2025-05-04 21:28:34] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:28:45] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:28:45] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:28:45] [INFO] Multimodal extraction successful for page 15
+[2025-05-04 21:28:45] [DEBUG] Multimodal extraction for page 15 took 11.21 seconds
+[2025-05-04 21:28:45] [INFO] Processing page 16 with multimodal extraction...
+[2025-05-04 21:28:45] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:28:45] [INFO] Rendered page 16 to temporary_dir\image_page_16_f7d54f2e.png
+[2025-05-04 21:28:45] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:28:49] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:28:49] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:28:49] [INFO] Multimodal extraction successful for page 16
+[2025-05-04 21:28:49] [DEBUG] Multimodal extraction for page 16 took 4.30 seconds
+[2025-05-04 21:28:49] [INFO] Processing page 17 with multimodal extraction...
+[2025-05-04 21:28:49] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:28:50] [INFO] Rendered page 17 to temporary_dir\image_page_17_c61ccaf7.png
+[2025-05-04 21:28:50] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:29:04] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:29:04] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:29:04] [INFO] Multimodal extraction successful for page 17
+[2025-05-04 21:29:04] [DEBUG] Multimodal extraction for page 17 took 14.40 seconds
+[2025-05-04 21:29:04] [INFO] Processing page 18 with multimodal extraction...
+[2025-05-04 21:29:04] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:29:04] [INFO] Rendered page 18 to temporary_dir\image_page_18_9eb4040f.png
+[2025-05-04 21:29:04] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:29:12] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:29:12] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:29:12] [INFO] Multimodal extraction successful for page 18
+[2025-05-04 21:29:12] [DEBUG] Multimodal extraction for page 18 took 7.99 seconds
+[2025-05-04 21:29:12] [INFO] Processing page 19 with multimodal extraction...
+[2025-05-04 21:29:12] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:29:12] [INFO] Rendered page 19 to temporary_dir\image_page_19_6af484ce.png
+[2025-05-04 21:29:12] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:29:23] [WARNING] Copyright issue detected (finish_reason=4). Copyright retry 1/3. Trying with modified prompt.
+[2025-05-04 21:29:24] [INFO] Sending request with prompt: Analisis gambar berikut secara umum: Dokumen perus...
+[2025-05-04 21:29:34] [INFO] Successfully bypassed copyright detection after 1 attempts.
+[2025-05-04 21:29:34] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:29:34] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:29:34] [INFO] Multimodal extraction successful for page 19
+[2025-05-04 21:29:34] [DEBUG] Multimodal extraction for page 19 took 22.49 seconds
+[2025-05-04 21:29:34] [INFO] Processing page 20 with multimodal extraction...
+[2025-05-04 21:29:34] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:29:35] [INFO] Rendered page 20 to temporary_dir\image_page_20_dd431142.png
+[2025-05-04 21:29:35] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:29:47] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:29:47] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:29:47] [INFO] Multimodal extraction successful for page 20
+[2025-05-04 21:29:47] [DEBUG] Multimodal extraction for page 20 took 12.61 seconds
+[2025-05-04 21:29:47] [INFO] Processing page 21 with multimodal extraction...
+[2025-05-04 21:29:47] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:29:47] [INFO] Rendered page 21 to temporary_dir\image_page_21_dd0c0153.png
+[2025-05-04 21:29:47] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:29:56] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:29:56] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:29:56] [INFO] Multimodal extraction successful for page 21
+[2025-05-04 21:29:56] [DEBUG] Multimodal extraction for page 21 took 9.37 seconds
+[2025-05-04 21:29:56] [INFO] Processing page 22 with multimodal extraction...
+[2025-05-04 21:29:56] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:29:56] [INFO] Rendered page 22 to temporary_dir\image_page_22_7860fcd2.png
+[2025-05-04 21:29:57] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:30:08] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:30:08] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:30:08] [INFO] Multimodal extraction successful for page 22
+[2025-05-04 21:30:08] [DEBUG] Multimodal extraction for page 22 took 11.15 seconds
+[2025-05-04 21:30:08] [INFO] Processing page 23 with multimodal extraction...
+[2025-05-04 21:30:08] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:30:08] [INFO] Rendered page 23 to temporary_dir\image_page_23_64921aa9.png
+[2025-05-04 21:30:08] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:30:16] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:30:16] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:30:16] [INFO] Multimodal extraction successful for page 23
+[2025-05-04 21:30:16] [DEBUG] Multimodal extraction for page 23 took 8.51 seconds
+[2025-05-04 21:30:16] [INFO] Processing page 24 with multimodal extraction...
+[2025-05-04 21:30:16] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:30:16] [INFO] Rendered page 24 to temporary_dir\image_page_24_15e02bef.png
+[2025-05-04 21:30:16] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:30:23] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:30:23] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:30:23] [INFO] Multimodal extraction successful for page 24
+[2025-05-04 21:30:23] [DEBUG] Multimodal extraction for page 24 took 7.33 seconds
+[2025-05-04 21:30:23] [INFO] Processing page 25 with multimodal extraction...
+[2025-05-04 21:30:23] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:30:24] [INFO] Rendered page 25 to temporary_dir\image_page_25_74969c4c.png
+[2025-05-04 21:30:24] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:30:31] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:30:31] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:30:31] [INFO] Multimodal extraction successful for page 25
+[2025-05-04 21:30:31] [DEBUG] Multimodal extraction for page 25 took 8.04 seconds
+[2025-05-04 21:30:31] [INFO] Processing page 26 with multimodal extraction...
+[2025-05-04 21:30:31] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:30:32] [INFO] Rendered page 26 to temporary_dir\image_page_26_65a9c088.png
+[2025-05-04 21:30:32] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:30:36] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:30:36] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:30:36] [INFO] Multimodal extraction successful for page 26
+[2025-05-04 21:30:36] [DEBUG] Multimodal extraction for page 26 took 4.43 seconds
+[2025-05-04 21:30:36] [INFO] Processing page 27 with multimodal extraction...
+[2025-05-04 21:30:36] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:30:36] [INFO] Rendered page 27 to temporary_dir\image_page_27_41b2b797.png
+[2025-05-04 21:30:36] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:30:49] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:30:49] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:30:49] [INFO] Multimodal extraction successful for page 27
+[2025-05-04 21:30:49] [DEBUG] Multimodal extraction for page 27 took 13.11 seconds
+[2025-05-04 21:30:49] [INFO] Processing page 28 with multimodal extraction...
+[2025-05-04 21:30:49] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:30:49] [INFO] Rendered page 28 to temporary_dir\image_page_28_581051a0.png
+[2025-05-04 21:30:49] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:30:59] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:30:59] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:30:59] [INFO] Multimodal extraction successful for page 28
+[2025-05-04 21:30:59] [DEBUG] Multimodal extraction for page 28 took 10.17 seconds
+[2025-05-04 21:30:59] [INFO] Processing page 29 with multimodal extraction...
+[2025-05-04 21:30:59] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:30:59] [INFO] Rendered page 29 to temporary_dir\image_page_29_2b132995.png
+[2025-05-04 21:30:59] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:31:09] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:31:09] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:31:09] [INFO] Multimodal extraction successful for page 29
+[2025-05-04 21:31:09] [DEBUG] Multimodal extraction for page 29 took 10.01 seconds
+[2025-05-04 21:31:09] [INFO] Processing page 30 with multimodal extraction...
+[2025-05-04 21:31:09] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:31:09] [INFO] Rendered page 30 to temporary_dir\image_page_30_ac63faed.png
+[2025-05-04 21:31:09] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:31:20] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:31:20] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:31:20] [INFO] Multimodal extraction successful for page 30
+[2025-05-04 21:31:20] [DEBUG] Multimodal extraction for page 30 took 10.66 seconds
+[2025-05-04 21:31:20] [INFO] Processing page 31 with multimodal extraction...
+[2025-05-04 21:31:20] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:31:20] [INFO] Rendered page 31 to temporary_dir\image_page_31_6bb169bb.png
+[2025-05-04 21:31:20] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:31:28] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:31:28] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:31:28] [INFO] Multimodal extraction successful for page 31
+[2025-05-04 21:31:28] [DEBUG] Multimodal extraction for page 31 took 8.35 seconds
+[2025-05-04 21:31:28] [INFO] Processing page 32 with multimodal extraction...
+[2025-05-04 21:31:28] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:31:28] [INFO] Rendered page 32 to temporary_dir\image_page_32_955e4c9f.png
+[2025-05-04 21:31:28] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:31:37] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:31:37] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:31:37] [INFO] Multimodal extraction successful for page 32
+[2025-05-04 21:31:37] [DEBUG] Multimodal extraction for page 32 took 9.33 seconds
+[2025-05-04 21:31:37] [INFO] Processing page 33 with multimodal extraction...
+[2025-05-04 21:31:37] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:31:38] [INFO] Rendered page 33 to temporary_dir\image_page_33_ff39fa25.png
+[2025-05-04 21:31:38] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:31:46] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:31:46] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:31:46] [INFO] Multimodal extraction successful for page 33
+[2025-05-04 21:31:46] [DEBUG] Multimodal extraction for page 33 took 8.94 seconds
+[2025-05-04 21:31:46] [INFO] Processing page 34 with multimodal extraction...
+[2025-05-04 21:31:46] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:31:47] [INFO] Rendered page 34 to temporary_dir\image_page_34_bd38b4da.png
+[2025-05-04 21:31:47] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:31:57] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:31:57] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:31:57] [INFO] Multimodal extraction successful for page 34
+[2025-05-04 21:31:57] [DEBUG] Multimodal extraction for page 34 took 10.83 seconds
+[2025-05-04 21:31:57] [INFO] Processing page 35 with multimodal extraction...
+[2025-05-04 21:31:57] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:31:57] [INFO] Rendered page 35 to temporary_dir\image_page_35_575567a5.png
+[2025-05-04 21:31:57] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:32:02] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:32:02] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:32:02] [INFO] Multimodal extraction successful for page 35
+[2025-05-04 21:32:02] [DEBUG] Multimodal extraction for page 35 took 4.49 seconds
+[2025-05-04 21:32:02] [INFO] Processing page 36 with multimodal extraction...
+[2025-05-04 21:32:02] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:32:02] [INFO] Rendered page 36 to temporary_dir\image_page_36_7e7c4c5c.png
+[2025-05-04 21:32:02] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:32:10] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:32:10] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:32:10] [INFO] Multimodal extraction successful for page 36
+[2025-05-04 21:32:10] [DEBUG] Multimodal extraction for page 36 took 8.50 seconds
+[2025-05-04 21:32:10] [INFO] Processing page 37 with multimodal extraction...
+[2025-05-04 21:32:10] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:32:10] [INFO] Rendered page 37 to temporary_dir\image_page_37_d18cafb6.png
+[2025-05-04 21:32:10] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:32:25] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:32:25] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:32:25] [INFO] Multimodal extraction successful for page 37
+[2025-05-04 21:32:25] [DEBUG] Multimodal extraction for page 37 took 14.51 seconds
+[2025-05-04 21:32:25] [INFO] Processing page 38 with multimodal extraction...
+[2025-05-04 21:32:25] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:32:25] [INFO] Rendered page 38 to temporary_dir\image_page_38_0ae4764f.png
+[2025-05-04 21:32:25] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:33:11] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:33:11] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:33:11] [INFO] Multimodal extraction successful for page 38
+[2025-05-04 21:33:11] [DEBUG] Multimodal extraction for page 38 took 46.00 seconds
+[2025-05-04 21:33:11] [INFO] Processing page 39 with multimodal extraction...
+[2025-05-04 21:33:11] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:33:11] [INFO] Rendered page 39 to temporary_dir\image_page_39_7bdd0935.png
+[2025-05-04 21:33:11] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:33:35] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:33:35] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:33:35] [INFO] Multimodal extraction successful for page 39
+[2025-05-04 21:33:35] [DEBUG] Multimodal extraction for page 39 took 24.62 seconds
+[2025-05-04 21:33:35] [INFO] Processing page 40 with multimodal extraction...
+[2025-05-04 21:33:35] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:33:35] [INFO] Rendered page 40 to temporary_dir\image_page_40_294c0227.png
+[2025-05-04 21:33:35] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:34:13] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:34:13] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:34:13] [INFO] Multimodal extraction successful for page 40
+[2025-05-04 21:34:13] [DEBUG] Multimodal extraction for page 40 took 37.69 seconds
+[2025-05-04 21:34:13] [INFO] Processing page 41 with multimodal extraction...
+[2025-05-04 21:34:13] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:34:13] [INFO] Rendered page 41 to temporary_dir\image_page_41_a8a7bfda.png
+[2025-05-04 21:34:13] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:34:21] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:34:21] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:34:21] [INFO] Multimodal extraction successful for page 41
+[2025-05-04 21:34:21] [DEBUG] Multimodal extraction for page 41 took 8.21 seconds
+[2025-05-04 21:34:21] [INFO] Processing page 42 with multimodal extraction...
+[2025-05-04 21:34:21] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:34:21] [INFO] Rendered page 42 to temporary_dir\image_page_42_c2f502ea.png
+[2025-05-04 21:34:21] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:34:31] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:34:31] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:34:31] [INFO] Multimodal extraction successful for page 42
+[2025-05-04 21:34:31] [DEBUG] Multimodal extraction for page 42 took 9.47 seconds
+[2025-05-04 21:34:31] [INFO] Processing page 43 with multimodal extraction...
+[2025-05-04 21:34:31] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:34:31] [INFO] Rendered page 43 to temporary_dir\image_page_43_7cd0fa82.png
+[2025-05-04 21:34:31] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:34:43] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:34:43] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:34:43] [INFO] Multimodal extraction successful for page 43
+[2025-05-04 21:34:43] [DEBUG] Multimodal extraction for page 43 took 11.85 seconds
+[2025-05-04 21:34:43] [INFO] Processing page 44 with multimodal extraction...
+[2025-05-04 21:34:43] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:34:43] [INFO] Rendered page 44 to temporary_dir\image_page_44_81c3aa52.png
+[2025-05-04 21:34:43] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:34:47] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:34:47] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:34:47] [INFO] Multimodal extraction successful for page 44
+[2025-05-04 21:34:47] [DEBUG] Multimodal extraction for page 44 took 4.41 seconds
+[2025-05-04 21:34:47] [INFO] Processing page 45 with multimodal extraction...
+[2025-05-04 21:34:47] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:34:47] [INFO] Rendered page 45 to temporary_dir\image_page_45_4e7975e1.png
+[2025-05-04 21:34:47] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:34:56] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:34:56] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:34:56] [INFO] Multimodal extraction successful for page 45
+[2025-05-04 21:34:56] [DEBUG] Multimodal extraction for page 45 took 8.86 seconds
+[2025-05-04 21:34:56] [INFO] Processing page 46 with multimodal extraction...
+[2025-05-04 21:34:56] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:34:56] [INFO] Rendered page 46 to temporary_dir\image_page_46_9510644f.png
+[2025-05-04 21:34:56] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:35:07] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:35:07] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:35:07] [INFO] Multimodal extraction successful for page 46
+[2025-05-04 21:35:07] [DEBUG] Multimodal extraction for page 46 took 10.62 seconds
+[2025-05-04 21:35:07] [INFO] Processing page 47 with multimodal extraction...
+[2025-05-04 21:35:07] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:35:07] [INFO] Rendered page 47 to temporary_dir\image_page_47_dcb4899b.png
+[2025-05-04 21:35:07] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:35:13] [WARNING] Copyright issue detected (finish_reason=4). Copyright retry 1/3. Trying with modified prompt.
+[2025-05-04 21:35:14] [INFO] Sending request with prompt: Analisis gambar berikut secara umum: Dokumen perus...
+[2025-05-04 21:35:22] [INFO] Successfully bypassed copyright detection after 1 attempts.
+[2025-05-04 21:35:22] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:35:22] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:35:22] [INFO] Multimodal extraction successful for page 47
+[2025-05-04 21:35:22] [DEBUG] Multimodal extraction for page 47 took 15.03 seconds
+[2025-05-04 21:35:22] [INFO] Processing page 48 with multimodal extraction...
+[2025-05-04 21:35:22] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:35:22] [INFO] Rendered page 48 to temporary_dir\image_page_48_169d978c.png
+[2025-05-04 21:35:22] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:35:30] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:35:30] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:35:30] [INFO] Multimodal extraction successful for page 48
+[2025-05-04 21:35:30] [DEBUG] Multimodal extraction for page 48 took 8.55 seconds
+[2025-05-04 21:35:30] [INFO] Processing page 49 with multimodal extraction...
+[2025-05-04 21:35:30] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:35:30] [INFO] Rendered page 49 to temporary_dir\image_page_49_873b33ad.png
+[2025-05-04 21:35:30] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:35:38] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:35:38] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:35:38] [INFO] Multimodal extraction successful for page 49
+[2025-05-04 21:35:38] [DEBUG] Multimodal extraction for page 49 took 7.81 seconds
+[2025-05-04 21:35:38] [INFO] Processing page 50 with multimodal extraction...
+[2025-05-04 21:35:38] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:35:38] [INFO] Rendered page 50 to temporary_dir\image_page_50_2cd56cc4.png
+[2025-05-04 21:35:38] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:35:47] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:35:47] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:35:47] [INFO] Multimodal extraction successful for page 50
+[2025-05-04 21:35:47] [DEBUG] Multimodal extraction for page 50 took 9.19 seconds
+[2025-05-04 21:35:47] [INFO] Processing page 51 with multimodal extraction...
+[2025-05-04 21:35:47] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:35:47] [INFO] Rendered page 51 to temporary_dir\image_page_51_123094b6.png
+[2025-05-04 21:35:47] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:35:59] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:35:59] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:35:59] [INFO] Multimodal extraction successful for page 51
+[2025-05-04 21:35:59] [DEBUG] Multimodal extraction for page 51 took 12.01 seconds
+[2025-05-04 21:35:59] [INFO] Processing page 52 with multimodal extraction...
+[2025-05-04 21:35:59] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:35:59] [INFO] Rendered page 52 to temporary_dir\image_page_52_cc04987e.png
+[2025-05-04 21:35:59] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:36:08] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:36:08] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:36:08] [INFO] Multimodal extraction successful for page 52
+[2025-05-04 21:36:08] [DEBUG] Multimodal extraction for page 52 took 9.08 seconds
+[2025-05-04 21:36:08] [INFO] Processing page 53 with multimodal extraction...
+[2025-05-04 21:36:08] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:36:08] [INFO] Rendered page 53 to temporary_dir\image_page_53_f92108be.png
+[2025-05-04 21:36:08] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:36:16] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:36:16] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:36:16] [INFO] Multimodal extraction successful for page 53
+[2025-05-04 21:36:16] [DEBUG] Multimodal extraction for page 53 took 7.82 seconds
+[2025-05-04 21:36:16] [INFO] Processing page 54 with multimodal extraction...
+[2025-05-04 21:36:16] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:36:17] [INFO] Rendered page 54 to temporary_dir\image_page_54_8dc0a618.png
+[2025-05-04 21:36:17] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:36:23] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:36:23] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:36:23] [INFO] Multimodal extraction successful for page 54
+[2025-05-04 21:36:23] [DEBUG] Multimodal extraction for page 54 took 6.83 seconds
+[2025-05-04 21:36:23] [INFO] Processing page 55 with direct extraction...
+[2025-05-04 21:36:23] [INFO] Direct extraction successful for page 55
+[2025-05-04 21:36:23] [DEBUG] Direct extraction for page 55 took 0.20 seconds
+[2025-05-04 21:36:23] [INFO] Processing page 56 with direct extraction...
+[2025-05-04 21:36:23] [INFO] Direct extraction successful for page 56
+[2025-05-04 21:36:23] [DEBUG] Direct extraction for page 56 took 0.18 seconds
+[2025-05-04 21:36:23] [INFO] Processing page 57 with multimodal extraction...
+[2025-05-04 21:36:23] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:36:24] [INFO] Rendered page 57 to temporary_dir\image_page_57_717c6a48.png
+[2025-05-04 21:36:24] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:36:35] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:36:35] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:36:35] [INFO] Multimodal extraction successful for page 57
+[2025-05-04 21:36:35] [DEBUG] Multimodal extraction for page 57 took 12.03 seconds
+[2025-05-04 21:36:35] [INFO] Processing page 58 with OCR extraction...
+[2025-05-04 21:36:38] [INFO] OCR extraction successful for page 58
+[2025-05-04 21:36:38] [DEBUG] OCR extraction for page 58 took 2.36 seconds
+[2025-05-04 21:36:38] [INFO] Processing page 59 with OCR extraction...
+[2025-05-04 21:36:40] [INFO] OCR extraction successful for page 59
+[2025-05-04 21:36:40] [DEBUG] OCR extraction for page 59 took 1.96 seconds
+[2025-05-04 21:36:40] [INFO] Processing page 60 with direct extraction...
+[2025-05-04 21:36:40] [INFO] Direct extraction successful for page 60
+[2025-05-04 21:36:40] [DEBUG] Direct extraction for page 60 took 0.43 seconds
+[2025-05-04 21:36:40] [INFO] Processing page 61 with direct extraction...
+[2025-05-04 21:36:40] [INFO] Direct extraction successful for page 61
+[2025-05-04 21:36:40] [DEBUG] Direct extraction for page 61 took 0.19 seconds
+[2025-05-04 21:36:40] [INFO] Processing page 62 with direct extraction...
+[2025-05-04 21:36:40] [INFO] Direct extraction successful for page 62
+[2025-05-04 21:36:40] [DEBUG] Direct extraction for page 62 took 0.10 seconds
+[2025-05-04 21:36:40] [INFO] Processing page 63 with multimodal extraction...
+[2025-05-04 21:36:40] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:36:41] [INFO] Rendered page 63 to temporary_dir\image_page_63_94baa519.png
+[2025-05-04 21:36:41] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:37:01] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:37:01] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:37:01] [INFO] Multimodal extraction successful for page 63
+[2025-05-04 21:37:01] [DEBUG] Multimodal extraction for page 63 took 20.37 seconds
+[2025-05-04 21:37:01] [INFO] Processing page 64 with multimodal extraction...
+[2025-05-04 21:37:01] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:37:01] [INFO] Rendered page 64 to temporary_dir\image_page_64_859d8a61.png
+[2025-05-04 21:37:01] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:37:15] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:37:15] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:37:15] [INFO] Multimodal extraction successful for page 64
+[2025-05-04 21:37:15] [DEBUG] Multimodal extraction for page 64 took 14.36 seconds
+[2025-05-04 21:37:15] [INFO] Processing page 65 with multimodal extraction...
+[2025-05-04 21:37:15] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:37:15] [INFO] Rendered page 65 to temporary_dir\image_page_65_abbfb368.png
+[2025-05-04 21:37:15] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:37:27] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:37:27] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:37:27] [INFO] Multimodal extraction successful for page 65
+[2025-05-04 21:37:27] [DEBUG] Multimodal extraction for page 65 took 12.31 seconds
+[2025-05-04 21:37:27] [INFO] Processing page 66 with multimodal extraction...
+[2025-05-04 21:37:27] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:37:28] [INFO] Rendered page 66 to temporary_dir\image_page_66_dbb18e14.png
+[2025-05-04 21:37:28] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:37:45] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:37:45] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:37:45] [INFO] Multimodal extraction successful for page 66
+[2025-05-04 21:37:45] [DEBUG] Multimodal extraction for page 66 took 17.96 seconds
+[2025-05-04 21:37:45] [INFO] Processing page 67 with multimodal extraction...
+[2025-05-04 21:37:45] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:37:46] [INFO] Rendered page 67 to temporary_dir\image_page_67_83f20d10.png
+[2025-05-04 21:37:46] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:38:00] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:38:00] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:38:00] [INFO] Multimodal extraction successful for page 67
+[2025-05-04 21:38:00] [DEBUG] Multimodal extraction for page 67 took 14.38 seconds
+[2025-05-04 21:38:00] [INFO] Processing page 68 with multimodal extraction...
+[2025-05-04 21:38:00] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:38:00] [INFO] Rendered page 68 to temporary_dir\image_page_68_eb824912.png
+[2025-05-04 21:38:00] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:38:08] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:38:08] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:38:08] [INFO] Multimodal extraction successful for page 68
+[2025-05-04 21:38:08] [DEBUG] Multimodal extraction for page 68 took 8.44 seconds
+[2025-05-04 21:38:08] [INFO] Processing page 69 with multimodal extraction...
+[2025-05-04 21:38:08] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:38:08] [INFO] Rendered page 69 to temporary_dir\image_page_69_44f91978.png
+[2025-05-04 21:38:08] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:38:16] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:38:16] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:38:16] [INFO] Multimodal extraction successful for page 69
+[2025-05-04 21:38:16] [DEBUG] Multimodal extraction for page 69 took 7.39 seconds
+[2025-05-04 21:38:16] [INFO] Processing page 70 with multimodal extraction...
+[2025-05-04 21:38:16] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:38:16] [INFO] Rendered page 70 to temporary_dir\image_page_70_9666ad1f.png
+[2025-05-04 21:38:16] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:38:40] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:38:40] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:38:40] [INFO] Multimodal extraction successful for page 70
+[2025-05-04 21:38:40] [DEBUG] Multimodal extraction for page 70 took 24.63 seconds
+[2025-05-04 21:38:40] [INFO] Processing page 71 with multimodal extraction...
+[2025-05-04 21:38:40] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:38:40] [INFO] Rendered page 71 to temporary_dir\image_page_71_e6e6513a.png
+[2025-05-04 21:38:40] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:38:54] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:38:54] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:38:54] [INFO] Multimodal extraction successful for page 71
+[2025-05-04 21:38:54] [DEBUG] Multimodal extraction for page 71 took 13.56 seconds
+[2025-05-04 21:38:54] [INFO] Processing page 72 with multimodal extraction...
+[2025-05-04 21:38:54] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:38:54] [INFO] Rendered page 72 to temporary_dir\image_page_72_f5385522.png
+[2025-05-04 21:38:54] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:39:13] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:39:13] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:39:13] [INFO] Multimodal extraction successful for page 72
+[2025-05-04 21:39:13] [DEBUG] Multimodal extraction for page 72 took 18.92 seconds
+[2025-05-04 21:39:13] [INFO] Processing page 73 with multimodal extraction...
+[2025-05-04 21:39:13] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:39:13] [INFO] Rendered page 73 to temporary_dir\image_page_73_7dc8f8c7.png
+[2025-05-04 21:39:13] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:39:26] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:39:26] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:39:26] [INFO] Multimodal extraction successful for page 73
+[2025-05-04 21:39:26] [DEBUG] Multimodal extraction for page 73 took 12.85 seconds
+[2025-05-04 21:39:26] [INFO] Processing page 74 with multimodal extraction...
+[2025-05-04 21:39:26] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:39:26] [INFO] Rendered page 74 to temporary_dir\image_page_74_9cbde60d.png
+[2025-05-04 21:39:26] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:39:34] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:39:34] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:39:34] [INFO] Multimodal extraction successful for page 74
+[2025-05-04 21:39:34] [DEBUG] Multimodal extraction for page 74 took 8.71 seconds
+[2025-05-04 21:39:34] [INFO] Processing page 75 with multimodal extraction...
+[2025-05-04 21:39:34] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:39:34] [INFO] Rendered page 75 to temporary_dir\image_page_75_b2045ac8.png
+[2025-05-04 21:39:34] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:39:42] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:39:42] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:39:42] [INFO] Multimodal extraction successful for page 75
+[2025-05-04 21:39:42] [DEBUG] Multimodal extraction for page 75 took 7.60 seconds
+[2025-05-04 21:39:42] [INFO] Processing page 76 with multimodal extraction...
+[2025-05-04 21:39:42] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:39:42] [INFO] Rendered page 76 to temporary_dir\image_page_76_da75f295.png
+[2025-05-04 21:39:42] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:39:53] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:39:53] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:39:53] [INFO] Multimodal extraction successful for page 76
+[2025-05-04 21:39:53] [DEBUG] Multimodal extraction for page 76 took 10.72 seconds
+[2025-05-04 21:39:53] [INFO] Processing page 77 with multimodal extraction...
+[2025-05-04 21:39:53] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:39:53] [INFO] Rendered page 77 to temporary_dir\image_page_77_cd23c7f9.png
+[2025-05-04 21:39:53] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:40:12] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:40:12] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:40:12] [INFO] Multimodal extraction successful for page 77
+[2025-05-04 21:40:12] [DEBUG] Multimodal extraction for page 77 took 19.02 seconds
+[2025-05-04 21:40:12] [INFO] Processing page 78 with multimodal extraction...
+[2025-05-04 21:40:12] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:40:12] [INFO] Rendered page 78 to temporary_dir\image_page_78_92e14764.png
+[2025-05-04 21:40:12] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:40:22] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:40:22] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:40:22] [INFO] Multimodal extraction successful for page 78
+[2025-05-04 21:40:22] [DEBUG] Multimodal extraction for page 78 took 10.82 seconds
+[2025-05-04 21:40:22] [INFO] Processing page 79 with multimodal extraction...
+[2025-05-04 21:40:22] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:40:23] [INFO] Rendered page 79 to temporary_dir\image_page_79_897b51dd.png
+[2025-05-04 21:40:23] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:40:34] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:40:34] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:40:34] [INFO] Multimodal extraction successful for page 79
+[2025-05-04 21:40:34] [DEBUG] Multimodal extraction for page 79 took 11.93 seconds
+[2025-05-04 21:40:34] [INFO] Processing page 80 with multimodal extraction...
+[2025-05-04 21:40:34] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:40:35] [INFO] Rendered page 80 to temporary_dir\image_page_80_ebb1684b.png
+[2025-05-04 21:40:35] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:41:03] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:41:03] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:41:03] [INFO] Multimodal extraction successful for page 80
+[2025-05-04 21:41:03] [DEBUG] Multimodal extraction for page 80 took 28.44 seconds
+[2025-05-04 21:41:03] [INFO] Processing page 81 with multimodal extraction...
+[2025-05-04 21:41:03] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:41:03] [INFO] Rendered page 81 to temporary_dir\image_page_81_29f3fa2a.png
+[2025-05-04 21:41:03] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:41:23] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:41:23] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:41:23] [INFO] Multimodal extraction successful for page 81
+[2025-05-04 21:41:23] [DEBUG] Multimodal extraction for page 81 took 20.65 seconds
+[2025-05-04 21:41:23] [INFO] Processing page 82 with multimodal extraction...
+[2025-05-04 21:41:23] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:41:24] [INFO] Rendered page 82 to temporary_dir\image_page_82_fea5cf71.png
+[2025-05-04 21:41:24] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:41:35] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:41:35] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:41:35] [INFO] Multimodal extraction successful for page 82
+[2025-05-04 21:41:35] [DEBUG] Multimodal extraction for page 82 took 11.77 seconds
+[2025-05-04 21:41:35] [INFO] Processing page 83 with multimodal extraction...
+[2025-05-04 21:41:35] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:41:35] [INFO] Rendered page 83 to temporary_dir\image_page_83_23f33aab.png
+[2025-05-04 21:41:35] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:41:52] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:41:52] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:41:52] [INFO] Multimodal extraction successful for page 83
+[2025-05-04 21:41:52] [DEBUG] Multimodal extraction for page 83 took 16.35 seconds
+[2025-05-04 21:41:52] [INFO] Processing page 84 with multimodal extraction...
+[2025-05-04 21:41:52] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:41:52] [INFO] Rendered page 84 to temporary_dir\image_page_84_07c4f577.png
+[2025-05-04 21:41:52] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:42:05] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:42:05] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:42:05] [INFO] Multimodal extraction successful for page 84
+[2025-05-04 21:42:05] [DEBUG] Multimodal extraction for page 84 took 13.82 seconds
+[2025-05-04 21:42:05] [INFO] Processing page 85 with multimodal extraction...
+[2025-05-04 21:42:05] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:42:06] [INFO] Rendered page 85 to temporary_dir\image_page_85_32c07958.png
+[2025-05-04 21:42:06] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:42:23] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:42:23] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:42:23] [INFO] Multimodal extraction successful for page 85
+[2025-05-04 21:42:23] [DEBUG] Multimodal extraction for page 85 took 17.69 seconds
+[2025-05-04 21:42:23] [INFO] Processing page 86 with multimodal extraction...
+[2025-05-04 21:42:23] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:42:23] [INFO] Rendered page 86 to temporary_dir\image_page_86_99bb07e9.png
+[2025-05-04 21:42:23] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:42:34] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:42:34] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:42:34] [INFO] Multimodal extraction successful for page 86
+[2025-05-04 21:42:34] [DEBUG] Multimodal extraction for page 86 took 11.26 seconds
+[2025-05-04 21:42:34] [INFO] Processing page 87 with multimodal extraction...
+[2025-05-04 21:42:34] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:42:35] [INFO] Rendered page 87 to temporary_dir\image_page_87_01599c5e.png
+[2025-05-04 21:42:35] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:42:51] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:42:51] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:42:51] [INFO] Multimodal extraction successful for page 87
+[2025-05-04 21:42:51] [DEBUG] Multimodal extraction for page 87 took 16.38 seconds
+[2025-05-04 21:42:51] [INFO] Processing page 88 with multimodal extraction...
+[2025-05-04 21:42:51] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:42:51] [INFO] Rendered page 88 to temporary_dir\image_page_88_dc298a34.png
+[2025-05-04 21:42:51] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:43:07] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:43:07] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:43:07] [INFO] Multimodal extraction successful for page 88
+[2025-05-04 21:43:07] [DEBUG] Multimodal extraction for page 88 took 16.07 seconds
+[2025-05-04 21:43:07] [INFO] Processing page 89 with multimodal extraction...
+[2025-05-04 21:43:07] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:43:07] [INFO] Rendered page 89 to temporary_dir\image_page_89_d99ed3e2.png
+[2025-05-04 21:43:07] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:43:19] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:43:19] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:43:19] [INFO] Multimodal extraction successful for page 89
+[2025-05-04 21:43:19] [DEBUG] Multimodal extraction for page 89 took 11.83 seconds
+[2025-05-04 21:43:19] [INFO] Processing page 90 with multimodal extraction...
+[2025-05-04 21:43:19] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:43:19] [INFO] Rendered page 90 to temporary_dir\image_page_90_442d994d.png
+[2025-05-04 21:43:19] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:43:32] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:43:32] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:43:32] [INFO] Multimodal extraction successful for page 90
+[2025-05-04 21:43:32] [DEBUG] Multimodal extraction for page 90 took 13.04 seconds
+[2025-05-04 21:43:32] [INFO] Processing page 91 with multimodal extraction...
+[2025-05-04 21:43:32] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:43:32] [INFO] Rendered page 91 to temporary_dir\image_page_91_6bdadd4c.png
+[2025-05-04 21:43:32] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:43:42] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:43:42] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:43:42] [INFO] Multimodal extraction successful for page 91
+[2025-05-04 21:43:42] [DEBUG] Multimodal extraction for page 91 took 10.19 seconds
+[2025-05-04 21:43:42] [INFO] Processing page 92 with multimodal extraction...
+[2025-05-04 21:43:42] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:43:42] [INFO] Rendered page 92 to temporary_dir\image_page_92_0e8f9d9a.png
+[2025-05-04 21:43:42] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:43:56] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:43:56] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:43:56] [INFO] Multimodal extraction successful for page 92
+[2025-05-04 21:43:56] [DEBUG] Multimodal extraction for page 92 took 13.82 seconds
+[2025-05-04 21:43:56] [INFO] Processing page 93 with multimodal extraction...
+[2025-05-04 21:43:56] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:43:56] [INFO] Rendered page 93 to temporary_dir\image_page_93_b56855fd.png
+[2025-05-04 21:43:56] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:43:57] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 3
+}
+]
+[2025-05-04 21:43:57] [INFO] Multimodal extraction successful for page 93
+[2025-05-04 21:43:57] [DEBUG] Multimodal extraction for page 93 took 1.15 seconds
+[2025-05-04 21:43:57] [INFO] Processing page 94 with multimodal extraction...
+[2025-05-04 21:43:57] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:43:57] [INFO] Rendered page 94 to temporary_dir\image_page_94_cf4e26d2.png
+[2025-05-04 21:43:57] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:43:58] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 1
+}
+]
+[2025-05-04 21:43:58] [INFO] Multimodal extraction successful for page 94
+[2025-05-04 21:43:58] [DEBUG] Multimodal extraction for page 94 took 0.85 seconds
+[2025-05-04 21:43:58] [INFO] Processing page 95 with multimodal extraction...
+[2025-05-04 21:43:58] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:43:58] [INFO] Rendered page 95 to temporary_dir\image_page_95_150c1368.png
+[2025-05-04 21:43:58] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:43:59] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 1
+}
+]
+[2025-05-04 21:43:59] [INFO] Multimodal extraction successful for page 95
+[2025-05-04 21:43:59] [DEBUG] Multimodal extraction for page 95 took 0.86 seconds
+[2025-05-04 21:43:59] [INFO] Processing page 96 with multimodal extraction...
+[2025-05-04 21:43:59] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:43:59] [INFO] Rendered page 96 to temporary_dir\image_page_96_b0c923a7.png
+[2025-05-04 21:43:59] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:43:59] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+}
+]
+[2025-05-04 21:43:59] [INFO] Multimodal extraction successful for page 96
+[2025-05-04 21:43:59] [DEBUG] Multimodal extraction for page 96 took 0.85 seconds
+[2025-05-04 21:43:59] [INFO] Processing page 97 with multimodal extraction...
+[2025-05-04 21:43:59] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:00] [INFO] Rendered page 97 to temporary_dir\image_page_97_2923d86e.png
+[2025-05-04 21:44:00] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:00] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 59
+}
+]
+[2025-05-04 21:44:00] [INFO] Multimodal extraction successful for page 97
+[2025-05-04 21:44:00] [DEBUG] Multimodal extraction for page 97 took 0.92 seconds
+[2025-05-04 21:44:00] [INFO] Processing page 98 with multimodal extraction...
+[2025-05-04 21:44:00] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:01] [INFO] Rendered page 98 to temporary_dir\image_page_98_8cea8201.png
+[2025-05-04 21:44:01] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:01] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 58
+}
+]
+[2025-05-04 21:44:01] [INFO] Multimodal extraction successful for page 98
+[2025-05-04 21:44:01] [DEBUG] Multimodal extraction for page 98 took 1.04 seconds
+[2025-05-04 21:44:01] [INFO] Processing page 99 with multimodal extraction...
+[2025-05-04 21:44:01] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:02] [INFO] Rendered page 99 to temporary_dir\image_page_99_76a7dffb.png
+[2025-05-04 21:44:02] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:02] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 57
+}
+]
+[2025-05-04 21:44:02] [INFO] Multimodal extraction successful for page 99
+[2025-05-04 21:44:02] [DEBUG] Multimodal extraction for page 99 took 1.07 seconds
+[2025-05-04 21:44:02] [INFO] Processing page 100 with multimodal extraction...
+[2025-05-04 21:44:02] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:03] [INFO] Rendered page 100 to temporary_dir\image_page_100_68b0726f.png
+[2025-05-04 21:44:03] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:04] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 56
+}
+]
+[2025-05-04 21:44:04] [INFO] Multimodal extraction successful for page 100
+[2025-05-04 21:44:04] [DEBUG] Multimodal extraction for page 100 took 1.16 seconds
+[2025-05-04 21:44:04] [INFO] Processing page 101 with multimodal extraction...
+[2025-05-04 21:44:04] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:04] [INFO] Rendered page 101 to temporary_dir\image_page_101_af7feac9.png
+[2025-05-04 21:44:04] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:05] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 55
+}
+]
+[2025-05-04 21:44:05] [INFO] Multimodal extraction successful for page 101
+[2025-05-04 21:44:05] [DEBUG] Multimodal extraction for page 101 took 0.93 seconds
+[2025-05-04 21:44:05] [INFO] Processing page 102 with multimodal extraction...
+[2025-05-04 21:44:05] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:05] [INFO] Rendered page 102 to temporary_dir\image_page_102_9c2c2245.png
+[2025-05-04 21:44:05] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:06] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 53
+}
+]
+[2025-05-04 21:44:06] [INFO] Multimodal extraction successful for page 102
+[2025-05-04 21:44:06] [DEBUG] Multimodal extraction for page 102 took 1.16 seconds
+[2025-05-04 21:44:06] [INFO] Processing page 103 with multimodal extraction...
+[2025-05-04 21:44:06] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:06] [INFO] Rendered page 103 to temporary_dir\image_page_103_4fb5b025.png
+[2025-05-04 21:44:06] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:07] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 52
+}
+]
+[2025-05-04 21:44:07] [INFO] Multimodal extraction successful for page 103
+[2025-05-04 21:44:07] [DEBUG] Multimodal extraction for page 103 took 0.98 seconds
+[2025-05-04 21:44:07] [INFO] Processing page 104 with multimodal extraction...
+[2025-05-04 21:44:07] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:07] [INFO] Rendered page 104 to temporary_dir\image_page_104_62355c73.png
+[2025-05-04 21:44:07] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:08] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 51
+}
+]
+[2025-05-04 21:44:08] [INFO] Multimodal extraction successful for page 104
+[2025-05-04 21:44:08] [DEBUG] Multimodal extraction for page 104 took 0.99 seconds
+[2025-05-04 21:44:08] [INFO] Processing page 105 with multimodal extraction...
+[2025-05-04 21:44:08] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:08] [INFO] Rendered page 105 to temporary_dir\image_page_105_aa09f76a.png
+[2025-05-04 21:44:08] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:09] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 50
+}
+]
+[2025-05-04 21:44:09] [INFO] Multimodal extraction successful for page 105
+[2025-05-04 21:44:09] [DEBUG] Multimodal extraction for page 105 took 0.98 seconds
+[2025-05-04 21:44:09] [INFO] Processing page 106 with multimodal extraction...
+[2025-05-04 21:44:09] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:09] [INFO] Rendered page 106 to temporary_dir\image_page_106_e3ab1b91.png
+[2025-05-04 21:44:09] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:10] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 50
+}
+]
+[2025-05-04 21:44:10] [INFO] Multimodal extraction successful for page 106
+[2025-05-04 21:44:10] [DEBUG] Multimodal extraction for page 106 took 0.88 seconds
+[2025-05-04 21:44:10] [INFO] Processing page 107 with multimodal extraction...
+[2025-05-04 21:44:10] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:10] [INFO] Rendered page 107 to temporary_dir\image_page_107_81278eb0.png
+[2025-05-04 21:44:10] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:10] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 49
+}
+]
+[2025-05-04 21:44:10] [INFO] Multimodal extraction successful for page 107
+[2025-05-04 21:44:10] [DEBUG] Multimodal extraction for page 107 took 0.88 seconds
+[2025-05-04 21:44:10] [INFO] Processing page 108 with multimodal extraction...
+[2025-05-04 21:44:10] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:11] [INFO] Rendered page 108 to temporary_dir\image_page_108_f2bdedb8.png
+[2025-05-04 21:44:11] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:11] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 48
+}
+]
+[2025-05-04 21:44:11] [INFO] Multimodal extraction successful for page 108
+[2025-05-04 21:44:11] [DEBUG] Multimodal extraction for page 108 took 0.82 seconds
+[2025-05-04 21:44:11] [INFO] Processing page 109 with multimodal extraction...
+[2025-05-04 21:44:11] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:11] [INFO] Rendered page 109 to temporary_dir\image_page_109_48576139.png
+[2025-05-04 21:44:11] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:12] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 47
+}
+]
+[2025-05-04 21:44:12] [INFO] Multimodal extraction successful for page 109
+[2025-05-04 21:44:12] [DEBUG] Multimodal extraction for page 109 took 0.85 seconds
+[2025-05-04 21:44:12] [ERROR] Error cleaning temporary images: [WinError 32] The process cannot access the file because it is being used by another process: 'temporary_dir\\image_page_109_48576139.png'
+[2025-05-04 21:44:12] [INFO] PDF processing completed. Total pages processed: 109
+[2025-05-04 21:44:12] [INFO] Direct: 5, OCR: 2, Multimodal: 102
+[2025-05-04 21:44:12] [INFO] Pemrosesan selesai untuk BRI Seruni Pasar Uang III
+[2025-05-04 21:44:22] [DEBUG] Memastikan direktori database/extracted_result ada
+[2025-05-04 21:44:22] [INFO] Memulai pemrosesan untuk BRI Seruni Pasar Uang Syariah
+[2025-05-04 21:44:22] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:22] [INFO] Loading analysis data from database/classified_result\BRI Seruni Pasar Uang Syariah_analisis.json
+[2025-05-04 21:44:22] [INFO] Initializing new output data structure
+[2025-05-04 21:44:22] [INFO] Initialized output data structure for BRI Seruni Pasar Uang Syariah.pdf
+[2025-05-04 21:44:22] [INFO] Processing page 1 with multimodal extraction...
+[2025-05-04 21:44:22] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:22] [INFO] Rendered page 1 to temporary_dir\image_page_1_a8908fc5.png
+[2025-05-04 21:44:22] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:22] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 37
+}
+]
+[2025-05-04 21:44:22] [INFO] Multimodal extraction successful for page 1
+[2025-05-04 21:44:22] [DEBUG] Multimodal extraction for page 1 took 0.68 seconds
+[2025-05-04 21:44:22] [INFO] Processing page 2 with multimodal extraction...
+[2025-05-04 21:44:22] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:22] [INFO] Rendered page 2 to temporary_dir\image_page_2_1eb40fa6.png
+[2025-05-04 21:44:22] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:23] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 36
+}
+]
+[2025-05-04 21:44:23] [INFO] Multimodal extraction successful for page 2
+[2025-05-04 21:44:23] [DEBUG] Multimodal extraction for page 2 took 0.76 seconds
+[2025-05-04 21:44:23] [INFO] Processing page 3 with multimodal extraction...
+[2025-05-04 21:44:23] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:23] [INFO] Rendered page 3 to temporary_dir\image_page_3_7b5cb245.png
+[2025-05-04 21:44:23] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:37] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:44:37] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:44:37] [INFO] Multimodal extraction successful for page 3
+[2025-05-04 21:44:37] [DEBUG] Multimodal extraction for page 3 took 13.90 seconds
+[2025-05-04 21:44:37] [INFO] Processing page 4 with multimodal extraction...
+[2025-05-04 21:44:37] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:37] [INFO] Rendered page 4 to temporary_dir\image_page_4_8230c35f.png
+[2025-05-04 21:44:37] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:45] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:44:45] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:44:45] [INFO] Multimodal extraction successful for page 4
+[2025-05-04 21:44:45] [DEBUG] Multimodal extraction for page 4 took 7.94 seconds
+[2025-05-04 21:44:45] [INFO] Processing page 5 with multimodal extraction...
+[2025-05-04 21:44:45] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:45] [INFO] Rendered page 5 to temporary_dir\image_page_5_1d4c4bca.png
+[2025-05-04 21:44:45] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:56] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-04 21:44:57] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-04 21:44:57] [INFO] Multimodal extraction successful for page 5
+[2025-05-04 21:44:57] [DEBUG] Multimodal extraction for page 5 took 11.64 seconds
+[2025-05-04 21:44:57] [INFO] Processing page 6 with multimodal extraction...
+[2025-05-04 21:44:57] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:57] [INFO] Rendered page 6 to temporary_dir\image_page_6_29dd9279.png
+[2025-05-04 21:44:57] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:57] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 2
+}
+]
+[2025-05-04 21:44:57] [INFO] Multimodal extraction successful for page 6
+[2025-05-04 21:44:57] [DEBUG] Multimodal extraction for page 6 took 0.72 seconds
+[2025-05-04 21:44:57] [INFO] Processing page 7 with multimodal extraction...
+[2025-05-04 21:44:57] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:57] [INFO] Rendered page 7 to temporary_dir\image_page_7_04eff285.png
+[2025-05-04 21:44:57] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:58] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 1
+}
+]
+[2025-05-04 21:44:58] [INFO] Multimodal extraction successful for page 7
+[2025-05-04 21:44:58] [DEBUG] Multimodal extraction for page 7 took 0.72 seconds
+[2025-05-04 21:44:58] [INFO] Processing page 8 with multimodal extraction...
+[2025-05-04 21:44:58] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:58] [INFO] Rendered page 8 to temporary_dir\image_page_8_47a81fbd.png
+[2025-05-04 21:44:58] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:59] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+}
+]
+[2025-05-04 21:44:59] [INFO] Multimodal extraction successful for page 8
+[2025-05-04 21:44:59] [DEBUG] Multimodal extraction for page 8 took 0.74 seconds
+[2025-05-04 21:44:59] [INFO] Processing page 9 with multimodal extraction...
+[2025-05-04 21:44:59] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:44:59] [INFO] Rendered page 9 to temporary_dir\image_page_9_15950c4d.png
+[2025-05-04 21:44:59] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:44:59] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+}
+]
+[2025-05-04 21:44:59] [INFO] Multimodal extraction successful for page 9
+[2025-05-04 21:44:59] [DEBUG] Multimodal extraction for page 9 took 0.76 seconds
+[2025-05-04 21:44:59] [INFO] Processing page 10 with multimodal extraction...
+[2025-05-04 21:44:59] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:00] [INFO] Rendered page 10 to temporary_dir\image_page_10_446cd2e4.png
+[2025-05-04 21:45:00] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:00] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 59
+}
+]
+[2025-05-04 21:45:00] [INFO] Multimodal extraction successful for page 10
+[2025-05-04 21:45:00] [DEBUG] Multimodal extraction for page 10 took 0.70 seconds
+[2025-05-04 21:45:00] [INFO] Processing page 11 with multimodal extraction...
+[2025-05-04 21:45:00] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:00] [INFO] Rendered page 11 to temporary_dir\image_page_11_0cfa21db.png
+[2025-05-04 21:45:00] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:01] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 58
+}
+]
+[2025-05-04 21:45:01] [INFO] Multimodal extraction successful for page 11
+[2025-05-04 21:45:01] [DEBUG] Multimodal extraction for page 11 took 0.68 seconds
+[2025-05-04 21:45:01] [INFO] Processing page 12 with multimodal extraction...
+[2025-05-04 21:45:01] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:01] [INFO] Rendered page 12 to temporary_dir\image_page_12_d2ed42a6.png
+[2025-05-04 21:45:01] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:02] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 58
+}
+]
+[2025-05-04 21:45:02] [INFO] Multimodal extraction successful for page 12
+[2025-05-04 21:45:02] [DEBUG] Multimodal extraction for page 12 took 0.76 seconds
+[2025-05-04 21:45:02] [INFO] Processing page 13 with multimodal extraction...
+[2025-05-04 21:45:02] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:02] [INFO] Rendered page 13 to temporary_dir\image_page_13_b95a2148.png
+[2025-05-04 21:45:02] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:02] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 57
+}
+]
+[2025-05-04 21:45:02] [INFO] Multimodal extraction successful for page 13
+[2025-05-04 21:45:02] [DEBUG] Multimodal extraction for page 13 took 0.77 seconds
+[2025-05-04 21:45:02] [INFO] Processing page 14 with multimodal extraction...
+[2025-05-04 21:45:02] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:02] [INFO] Rendered page 14 to temporary_dir\image_page_14_2b2a4383.png
+[2025-05-04 21:45:02] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:03] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 56
+}
+]
+[2025-05-04 21:45:03] [INFO] Multimodal extraction successful for page 14
+[2025-05-04 21:45:03] [DEBUG] Multimodal extraction for page 14 took 0.65 seconds
+[2025-05-04 21:45:03] [INFO] Processing page 15 with multimodal extraction...
+[2025-05-04 21:45:03] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:03] [INFO] Rendered page 15 to temporary_dir\image_page_15_cbda49e1.png
+[2025-05-04 21:45:03] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:04] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 55
+}
+]
+[2025-05-04 21:45:04] [INFO] Multimodal extraction successful for page 15
+[2025-05-04 21:45:04] [DEBUG] Multimodal extraction for page 15 took 0.73 seconds
+[2025-05-04 21:45:04] [INFO] Processing page 16 with multimodal extraction...
+[2025-05-04 21:45:04] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:04] [INFO] Rendered page 16 to temporary_dir\image_page_16_6658b16e.png
+[2025-05-04 21:45:04] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:04] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 55
+}
+]
+[2025-05-04 21:45:04] [INFO] Multimodal extraction successful for page 16
+[2025-05-04 21:45:04] [DEBUG] Multimodal extraction for page 16 took 0.74 seconds
+[2025-05-04 21:45:04] [INFO] Processing page 17 with multimodal extraction...
+[2025-05-04 21:45:04] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:05] [INFO] Rendered page 17 to temporary_dir\image_page_17_e95e711f.png
+[2025-05-04 21:45:05] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:05] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 54
+}
+]
+[2025-05-04 21:45:05] [INFO] Multimodal extraction successful for page 17
+[2025-05-04 21:45:05] [DEBUG] Multimodal extraction for page 17 took 0.81 seconds
+[2025-05-04 21:45:05] [INFO] Processing page 18 with multimodal extraction...
+[2025-05-04 21:45:05] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:05] [INFO] Rendered page 18 to temporary_dir\image_page_18_63f27d45.png
+[2025-05-04 21:45:05] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:06] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 53
+}
+]
+[2025-05-04 21:45:06] [INFO] Multimodal extraction successful for page 18
+[2025-05-04 21:45:06] [DEBUG] Multimodal extraction for page 18 took 0.73 seconds
+[2025-05-04 21:45:06] [INFO] Processing page 19 with multimodal extraction...
+[2025-05-04 21:45:06] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:06] [INFO] Rendered page 19 to temporary_dir\image_page_19_1529e732.png
+[2025-05-04 21:45:06] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:07] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 52
+}
+]
+[2025-05-04 21:45:07] [INFO] Multimodal extraction successful for page 19
+[2025-05-04 21:45:07] [DEBUG] Multimodal extraction for page 19 took 0.71 seconds
+[2025-05-04 21:45:07] [INFO] Processing page 20 with multimodal extraction...
+[2025-05-04 21:45:07] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:07] [INFO] Rendered page 20 to temporary_dir\image_page_20_093af30a.png
+[2025-05-04 21:45:07] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:07] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 52
+}
+]
+[2025-05-04 21:45:07] [INFO] Multimodal extraction successful for page 20
+[2025-05-04 21:45:07] [DEBUG] Multimodal extraction for page 20 took 0.65 seconds
+[2025-05-04 21:45:07] [INFO] Processing page 21 with multimodal extraction...
+[2025-05-04 21:45:07] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:07] [INFO] Rendered page 21 to temporary_dir\image_page_21_b50b911e.png
+[2025-05-04 21:45:08] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:08] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 51
+}
+]
+[2025-05-04 21:45:08] [INFO] Multimodal extraction successful for page 21
+[2025-05-04 21:45:08] [DEBUG] Multimodal extraction for page 21 took 0.61 seconds
+[2025-05-04 21:45:08] [INFO] Processing page 22 with multimodal extraction...
+[2025-05-04 21:45:08] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:08] [INFO] Rendered page 22 to temporary_dir\image_page_22_f6431689.png
+[2025-05-04 21:45:08] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:09] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 50
+}
+]
+[2025-05-04 21:45:09] [INFO] Multimodal extraction successful for page 22
+[2025-05-04 21:45:09] [DEBUG] Multimodal extraction for page 22 took 0.75 seconds
+[2025-05-04 21:45:09] [INFO] Processing page 23 with multimodal extraction...
+[2025-05-04 21:45:09] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:09] [INFO] Rendered page 23 to temporary_dir\image_page_23_414c5061.png
+[2025-05-04 21:45:09] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:09] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 50
+}
+]
+[2025-05-04 21:45:09] [INFO] Multimodal extraction successful for page 23
+[2025-05-04 21:45:09] [DEBUG] Multimodal extraction for page 23 took 0.72 seconds
+[2025-05-04 21:45:09] [INFO] Processing page 24 with multimodal extraction...
+[2025-05-04 21:45:09] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:10] [INFO] Rendered page 24 to temporary_dir\image_page_24_47f37ddd.png
+[2025-05-04 21:45:10] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:10] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 49
+}
+]
+[2025-05-04 21:45:10] [INFO] Multimodal extraction successful for page 24
+[2025-05-04 21:45:10] [DEBUG] Multimodal extraction for page 24 took 0.73 seconds
+[2025-05-04 21:45:10] [INFO] Processing page 25 with multimodal extraction...
+[2025-05-04 21:45:10] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:10] [INFO] Rendered page 25 to temporary_dir\image_page_25_ab2444d5.png
+[2025-05-04 21:45:10] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:11] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 48
+}
+]
+[2025-05-04 21:45:11] [INFO] Multimodal extraction successful for page 25
+[2025-05-04 21:45:11] [DEBUG] Multimodal extraction for page 25 took 0.72 seconds
+[2025-05-04 21:45:11] [INFO] Processing page 26 with multimodal extraction...
+[2025-05-04 21:45:11] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:11] [INFO] Rendered page 26 to temporary_dir\image_page_26_6e98c532.png
+[2025-05-04 21:45:11] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:12] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 47
+}
+]
+[2025-05-04 21:45:12] [INFO] Multimodal extraction successful for page 26
+[2025-05-04 21:45:12] [DEBUG] Multimodal extraction for page 26 took 0.76 seconds
+[2025-05-04 21:45:12] [INFO] Processing page 27 with multimodal extraction...
+[2025-05-04 21:45:12] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:12] [INFO] Rendered page 27 to temporary_dir\image_page_27_89a79000.png
+[2025-05-04 21:45:12] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:12] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 47
+}
+]
+[2025-05-04 21:45:12] [INFO] Multimodal extraction successful for page 27
+[2025-05-04 21:45:12] [DEBUG] Multimodal extraction for page 27 took 0.75 seconds
+[2025-05-04 21:45:12] [INFO] Processing page 28 with multimodal extraction...
+[2025-05-04 21:45:12] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:13] [INFO] Rendered page 28 to temporary_dir\image_page_28_2fc2010a.png
+[2025-05-04 21:45:13] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:13] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 46
+}
+]
+[2025-05-04 21:45:13] [INFO] Multimodal extraction successful for page 28
+[2025-05-04 21:45:13] [DEBUG] Multimodal extraction for page 28 took 0.69 seconds
+[2025-05-04 21:45:13] [INFO] Processing page 29 with multimodal extraction...
+[2025-05-04 21:45:13] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:13] [INFO] Rendered page 29 to temporary_dir\image_page_29_39ef9bde.png
+[2025-05-04 21:45:13] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:14] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 45
+}
+]
+[2025-05-04 21:45:14] [INFO] Multimodal extraction successful for page 29
+[2025-05-04 21:45:14] [DEBUG] Multimodal extraction for page 29 took 0.72 seconds
+[2025-05-04 21:45:14] [INFO] Processing page 30 with multimodal extraction...
+[2025-05-04 21:45:14] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:14] [INFO] Rendered page 30 to temporary_dir\image_page_30_f9e00cd4.png
+[2025-05-04 21:45:14] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:15] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 45
+}
+]
+[2025-05-04 21:45:15] [INFO] Multimodal extraction successful for page 30
+[2025-05-04 21:45:15] [DEBUG] Multimodal extraction for page 30 took 0.68 seconds
+[2025-05-04 21:45:15] [INFO] Processing page 31 with multimodal extraction...
+[2025-05-04 21:45:15] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:15] [INFO] Rendered page 31 to temporary_dir\image_page_31_523ce88c.png
+[2025-05-04 21:45:15] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:15] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 44
+}
+]
+[2025-05-04 21:45:15] [INFO] Multimodal extraction successful for page 31
+[2025-05-04 21:45:15] [DEBUG] Multimodal extraction for page 31 took 0.66 seconds
+[2025-05-04 21:45:15] [INFO] Processing page 32 with multimodal extraction...
+[2025-05-04 21:45:15] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:15] [INFO] Rendered page 32 to temporary_dir\image_page_32_d7e08e0e.png
+[2025-05-04 21:45:15] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:16] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 43
+}
+]
+[2025-05-04 21:45:16] [INFO] Multimodal extraction successful for page 32
+[2025-05-04 21:45:16] [DEBUG] Multimodal extraction for page 32 took 0.72 seconds
+[2025-05-04 21:45:16] [INFO] Processing page 33 with multimodal extraction...
+[2025-05-04 21:45:16] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:16] [INFO] Rendered page 33 to temporary_dir\image_page_33_f47a1b49.png
+[2025-05-04 21:45:16] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:17] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 42
+}
+]
+[2025-05-04 21:45:17] [INFO] Multimodal extraction successful for page 33
+[2025-05-04 21:45:17] [DEBUG] Multimodal extraction for page 33 took 0.72 seconds
+[2025-05-04 21:45:17] [INFO] Processing page 34 with multimodal extraction...
+[2025-05-04 21:45:17] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:17] [INFO] Rendered page 34 to temporary_dir\image_page_34_fdfeaf3e.png
+[2025-05-04 21:45:17] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:17] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 42
+}
+]
+[2025-05-04 21:45:17] [INFO] Multimodal extraction successful for page 34
+[2025-05-04 21:45:17] [DEBUG] Multimodal extraction for page 34 took 0.62 seconds
+[2025-05-04 21:45:17] [INFO] Processing page 35 with multimodal extraction...
+[2025-05-04 21:45:17] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:17] [INFO] Rendered page 35 to temporary_dir\image_page_35_04114e4e.png
+[2025-05-04 21:45:17] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:18] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 41
+}
+]
+[2025-05-04 21:45:18] [INFO] Multimodal extraction successful for page 35
+[2025-05-04 21:45:18] [DEBUG] Multimodal extraction for page 35 took 0.71 seconds
+[2025-05-04 21:45:18] [INFO] Processing page 36 with multimodal extraction...
+[2025-05-04 21:45:18] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:18] [INFO] Rendered page 36 to temporary_dir\image_page_36_3d836110.png
+[2025-05-04 21:45:18] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:19] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 40
+}
+]
+[2025-05-04 21:45:19] [INFO] Multimodal extraction successful for page 36
+[2025-05-04 21:45:19] [DEBUG] Multimodal extraction for page 36 took 0.74 seconds
+[2025-05-04 21:45:19] [INFO] Processing page 37 with multimodal extraction...
+[2025-05-04 21:45:19] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:19] [INFO] Rendered page 37 to temporary_dir\image_page_37_4a278112.png
+[2025-05-04 21:45:19] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:19] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 40
+}
+]
+[2025-05-04 21:45:19] [INFO] Multimodal extraction successful for page 37
+[2025-05-04 21:45:19] [DEBUG] Multimodal extraction for page 37 took 0.73 seconds
+[2025-05-04 21:45:19] [INFO] Processing page 38 with multimodal extraction...
+[2025-05-04 21:45:19] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:20] [INFO] Rendered page 38 to temporary_dir\image_page_38_32c0ef3f.png
+[2025-05-04 21:45:20] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:20] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 39
+}
+]
+[2025-05-04 21:45:20] [INFO] Multimodal extraction successful for page 38
+[2025-05-04 21:45:20] [DEBUG] Multimodal extraction for page 38 took 0.63 seconds
+[2025-05-04 21:45:20] [INFO] Processing page 39 with multimodal extraction...
+[2025-05-04 21:45:20] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:20] [INFO] Rendered page 39 to temporary_dir\image_page_39_b0b9539c.png
+[2025-05-04 21:45:20] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:21] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 38
+}
+]
+[2025-05-04 21:45:21] [INFO] Multimodal extraction successful for page 39
+[2025-05-04 21:45:21] [DEBUG] Multimodal extraction for page 39 took 0.76 seconds
+[2025-05-04 21:45:21] [INFO] Processing page 40 with multimodal extraction...
+[2025-05-04 21:45:21] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:21] [INFO] Rendered page 40 to temporary_dir\image_page_40_c9167cf0.png
+[2025-05-04 21:45:21] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:22] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 38
+}
+]
+[2025-05-04 21:45:22] [INFO] Multimodal extraction successful for page 40
+[2025-05-04 21:45:22] [DEBUG] Multimodal extraction for page 40 took 0.74 seconds
+[2025-05-04 21:45:22] [INFO] Processing page 41 with multimodal extraction...
+[2025-05-04 21:45:22] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:22] [INFO] Rendered page 41 to temporary_dir\image_page_41_0c3c0a94.png
+[2025-05-04 21:45:22] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:22] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 37
+}
+]
+[2025-05-04 21:45:22] [INFO] Multimodal extraction successful for page 41
+[2025-05-04 21:45:22] [DEBUG] Multimodal extraction for page 41 took 0.70 seconds
+[2025-05-04 21:45:22] [INFO] Processing page 42 with multimodal extraction...
+[2025-05-04 21:45:22] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:22] [INFO] Rendered page 42 to temporary_dir\image_page_42_967911a3.png
+[2025-05-04 21:45:22] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:23] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 36
+}
+]
+[2025-05-04 21:45:23] [INFO] Multimodal extraction successful for page 42
+[2025-05-04 21:45:23] [DEBUG] Multimodal extraction for page 42 took 0.69 seconds
+[2025-05-04 21:45:23] [INFO] Processing page 43 with multimodal extraction...
+[2025-05-04 21:45:23] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:23] [INFO] Rendered page 43 to temporary_dir\image_page_43_c0324789.png
+[2025-05-04 21:45:23] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:24] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 36
+}
+]
+[2025-05-04 21:45:24] [INFO] Multimodal extraction successful for page 43
+[2025-05-04 21:45:24] [DEBUG] Multimodal extraction for page 43 took 0.63 seconds
+[2025-05-04 21:45:24] [INFO] Processing page 44 with multimodal extraction...
+[2025-05-04 21:45:24] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:24] [INFO] Rendered page 44 to temporary_dir\image_page_44_149f2c3d.png
+[2025-05-04 21:45:24] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:24] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 35
+}
+]
+[2025-05-04 21:45:24] [INFO] Multimodal extraction successful for page 44
+[2025-05-04 21:45:24] [DEBUG] Multimodal extraction for page 44 took 0.63 seconds
+[2025-05-04 21:45:24] [INFO] Processing page 45 with multimodal extraction...
+[2025-05-04 21:45:24] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:24] [INFO] Rendered page 45 to temporary_dir\image_page_45_516ce63d.png
+[2025-05-04 21:45:24] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:25] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 34
+}
+]
+[2025-05-04 21:45:25] [INFO] Multimodal extraction successful for page 45
+[2025-05-04 21:45:25] [DEBUG] Multimodal extraction for page 45 took 0.73 seconds
+[2025-05-04 21:45:25] [INFO] Processing page 46 with multimodal extraction...
+[2025-05-04 21:45:25] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:25] [INFO] Rendered page 46 to temporary_dir\image_page_46_79f2d5eb.png
+[2025-05-04 21:45:25] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:26] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 33
+}
+]
+[2025-05-04 21:45:26] [INFO] Multimodal extraction successful for page 46
+[2025-05-04 21:45:26] [DEBUG] Multimodal extraction for page 46 took 0.70 seconds
+[2025-05-04 21:45:26] [INFO] Processing page 47 with multimodal extraction...
+[2025-05-04 21:45:26] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:26] [INFO] Rendered page 47 to temporary_dir\image_page_47_35fa8ee3.png
+[2025-05-04 21:45:26] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:26] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 33
+}
+]
+[2025-05-04 21:45:26] [INFO] Multimodal extraction successful for page 47
+[2025-05-04 21:45:26] [DEBUG] Multimodal extraction for page 47 took 0.67 seconds
+[2025-05-04 21:45:26] [INFO] Processing page 48 with multimodal extraction...
+[2025-05-04 21:45:26] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:26] [INFO] Rendered page 48 to temporary_dir\image_page_48_149619df.png
+[2025-05-04 21:45:27] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:27] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 32
+}
+]
+[2025-05-04 21:45:27] [INFO] Multimodal extraction successful for page 48
+[2025-05-04 21:45:27] [DEBUG] Multimodal extraction for page 48 took 0.76 seconds
+[2025-05-04 21:45:27] [INFO] Processing page 49 with multimodal extraction...
+[2025-05-04 21:45:27] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:27] [INFO] Rendered page 49 to temporary_dir\image_page_49_a27093e1.png
+[2025-05-04 21:45:27] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:28] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 31
+}
+]
+[2025-05-04 21:45:28] [INFO] Multimodal extraction successful for page 49
+[2025-05-04 21:45:28] [DEBUG] Multimodal extraction for page 49 took 0.70 seconds
+[2025-05-04 21:45:28] [INFO] Processing page 50 with multimodal extraction...
+[2025-05-04 21:45:28] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:28] [INFO] Rendered page 50 to temporary_dir\image_page_50_4d3b0a55.png
+[2025-05-04 21:45:28] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:28] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 31
+}
+]
+[2025-05-04 21:45:28] [INFO] Multimodal extraction successful for page 50
+[2025-05-04 21:45:28] [DEBUG] Multimodal extraction for page 50 took 0.66 seconds
+[2025-05-04 21:45:28] [INFO] Processing page 51 with multimodal extraction...
+[2025-05-04 21:45:28] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:29] [INFO] Rendered page 51 to temporary_dir\image_page_51_cd155f42.png
+[2025-05-04 21:45:29] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:29] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 30
+}
+]
+[2025-05-04 21:45:29] [INFO] Multimodal extraction successful for page 51
+[2025-05-04 21:45:29] [DEBUG] Multimodal extraction for page 51 took 0.70 seconds
+[2025-05-04 21:45:29] [INFO] Processing page 52 with multimodal extraction...
+[2025-05-04 21:45:29] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:29] [INFO] Rendered page 52 to temporary_dir\image_page_52_f0bed165.png
+[2025-05-04 21:45:29] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:30] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 29
+}
+]
+[2025-05-04 21:45:30] [INFO] Multimodal extraction successful for page 52
+[2025-05-04 21:45:30] [DEBUG] Multimodal extraction for page 52 took 0.73 seconds
+[2025-05-04 21:45:30] [INFO] Processing page 53 with multimodal extraction...
+[2025-05-04 21:45:30] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:30] [INFO] Rendered page 53 to temporary_dir\image_page_53_40b25010.png
+[2025-05-04 21:45:30] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:31] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 29
+}
+]
+[2025-05-04 21:45:31] [INFO] Multimodal extraction successful for page 53
+[2025-05-04 21:45:31] [DEBUG] Multimodal extraction for page 53 took 0.71 seconds
+[2025-05-04 21:45:31] [INFO] Processing page 54 with multimodal extraction...
+[2025-05-04 21:45:31] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:31] [INFO] Rendered page 54 to temporary_dir\image_page_54_0eaf9d95.png
+[2025-05-04 21:45:31] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:31] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 28
+}
+]
+[2025-05-04 21:45:31] [INFO] Multimodal extraction successful for page 54
+[2025-05-04 21:45:31] [DEBUG] Multimodal extraction for page 54 took 0.74 seconds
+[2025-05-04 21:45:31] [INFO] Processing page 55 with multimodal extraction...
+[2025-05-04 21:45:31] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:31] [INFO] Rendered page 55 to temporary_dir\image_page_55_63548905.png
+[2025-05-04 21:45:31] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:32] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 27
+}
+]
+[2025-05-04 21:45:32] [INFO] Multimodal extraction successful for page 55
+[2025-05-04 21:45:32] [DEBUG] Multimodal extraction for page 55 took 0.72 seconds
+[2025-05-04 21:45:32] [INFO] Processing page 56 with multimodal extraction...
+[2025-05-04 21:45:32] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:32] [INFO] Rendered page 56 to temporary_dir\image_page_56_fbc80fca.png
+[2025-05-04 21:45:32] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:33] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 26
+}
+]
+[2025-05-04 21:45:33] [INFO] Multimodal extraction successful for page 56
+[2025-05-04 21:45:33] [DEBUG] Multimodal extraction for page 56 took 0.73 seconds
+[2025-05-04 21:45:33] [INFO] Processing page 57 with multimodal extraction...
+[2025-05-04 21:45:33] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:33] [INFO] Rendered page 57 to temporary_dir\image_page_57_d17524bd.png
+[2025-05-04 21:45:33] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:34] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 26
+}
+]
+[2025-05-04 21:45:34] [INFO] Multimodal extraction successful for page 57
+[2025-05-04 21:45:34] [DEBUG] Multimodal extraction for page 57 took 0.74 seconds
+[2025-05-04 21:45:34] [INFO] Processing page 58 with multimodal extraction...
+[2025-05-04 21:45:34] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:34] [INFO] Rendered page 58 to temporary_dir\image_page_58_961b3ab3.png
+[2025-05-04 21:45:34] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:34] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 25
+}
+]
+[2025-05-04 21:45:34] [INFO] Multimodal extraction successful for page 58
+[2025-05-04 21:45:34] [DEBUG] Multimodal extraction for page 58 took 0.71 seconds
+[2025-05-04 21:45:34] [INFO] Processing page 59 with multimodal extraction...
+[2025-05-04 21:45:34] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:34] [INFO] Rendered page 59 to temporary_dir\image_page_59_877014b0.png
+[2025-05-04 21:45:34] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:35] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 24
+}
+]
+[2025-05-04 21:45:35] [INFO] Multimodal extraction successful for page 59
+[2025-05-04 21:45:35] [DEBUG] Multimodal extraction for page 59 took 0.64 seconds
+[2025-05-04 21:45:35] [INFO] Processing page 60 with multimodal extraction...
+[2025-05-04 21:45:35] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:35] [INFO] Rendered page 60 to temporary_dir\image_page_60_63e703e5.png
+[2025-05-04 21:45:35] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:36] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 24
+}
+]
+[2025-05-04 21:45:36] [INFO] Multimodal extraction successful for page 60
+[2025-05-04 21:45:36] [DEBUG] Multimodal extraction for page 60 took 0.68 seconds
+[2025-05-04 21:45:36] [INFO] Processing page 61 with multimodal extraction...
+[2025-05-04 21:45:36] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:36] [INFO] Rendered page 61 to temporary_dir\image_page_61_8b010904.png
+[2025-05-04 21:45:36] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:36] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 23
+}
+]
+[2025-05-04 21:45:36] [INFO] Multimodal extraction successful for page 61
+[2025-05-04 21:45:36] [DEBUG] Multimodal extraction for page 61 took 0.67 seconds
+[2025-05-04 21:45:36] [INFO] Processing page 62 with multimodal extraction...
+[2025-05-04 21:45:36] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:36] [INFO] Rendered page 62 to temporary_dir\image_page_62_f2176f51.png
+[2025-05-04 21:45:36] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:37] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 22
+}
+]
+[2025-05-04 21:45:37] [INFO] Multimodal extraction successful for page 62
+[2025-05-04 21:45:37] [DEBUG] Multimodal extraction for page 62 took 0.63 seconds
+[2025-05-04 21:45:37] [INFO] Processing page 63 with multimodal extraction...
+[2025-05-04 21:45:37] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:37] [INFO] Rendered page 63 to temporary_dir\image_page_63_f6f5c456.png
+[2025-05-04 21:45:37] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:38] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 22
+}
+]
+[2025-05-04 21:45:38] [INFO] Multimodal extraction successful for page 63
+[2025-05-04 21:45:38] [DEBUG] Multimodal extraction for page 63 took 0.69 seconds
+[2025-05-04 21:45:38] [INFO] Processing page 64 with multimodal extraction...
+[2025-05-04 21:45:38] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:38] [INFO] Rendered page 64 to temporary_dir\image_page_64_cfb3e66a.png
+[2025-05-04 21:45:38] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:38] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 21
+}
+]
+[2025-05-04 21:45:38] [INFO] Multimodal extraction successful for page 64
+[2025-05-04 21:45:38] [DEBUG] Multimodal extraction for page 64 took 0.69 seconds
+[2025-05-04 21:45:38] [INFO] Processing page 65 with direct extraction...
+[2025-05-04 21:45:38] [INFO] Direct extraction successful for page 65
+[2025-05-04 21:45:38] [DEBUG] Direct extraction for page 65 took 0.03 seconds
+[2025-05-04 21:45:38] [INFO] Processing page 66 with direct extraction...
+[2025-05-04 21:45:38] [INFO] Direct extraction successful for page 66
+[2025-05-04 21:45:38] [DEBUG] Direct extraction for page 66 took 0.04 seconds
+[2025-05-04 21:45:38] [INFO] Processing page 67 with multimodal extraction...
+[2025-05-04 21:45:38] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:39] [INFO] Rendered page 67 to temporary_dir\image_page_67_406010eb.png
+[2025-05-04 21:45:39] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:39] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 20
+}
+]
+[2025-05-04 21:45:39] [INFO] Multimodal extraction successful for page 67
+[2025-05-04 21:45:39] [DEBUG] Multimodal extraction for page 67 took 0.90 seconds
+[2025-05-04 21:45:39] [INFO] Processing page 68 with multimodal extraction...
+[2025-05-04 21:45:39] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:39] [INFO] Rendered page 68 to temporary_dir\image_page_68_1d529dc6.png
+[2025-05-04 21:45:39] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:40] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 19
+}
+]
+[2025-05-04 21:45:40] [INFO] Multimodal extraction successful for page 68
+[2025-05-04 21:45:40] [DEBUG] Multimodal extraction for page 68 took 0.91 seconds
+[2025-05-04 21:45:40] [INFO] Processing page 69 with direct extraction...
+[2025-05-04 21:45:40] [INFO] Direct extraction successful for page 69
+[2025-05-04 21:45:40] [DEBUG] Direct extraction for page 69 took 0.14 seconds
+[2025-05-04 21:45:40] [INFO] Processing page 70 with direct extraction...
+[2025-05-04 21:45:40] [INFO] Direct extraction successful for page 70
+[2025-05-04 21:45:40] [DEBUG] Direct extraction for page 70 took 0.11 seconds
+[2025-05-04 21:45:40] [INFO] Processing page 71 with direct extraction...
+[2025-05-04 21:45:40] [INFO] Direct extraction successful for page 71
+[2025-05-04 21:45:40] [DEBUG] Direct extraction for page 71 took 0.05 seconds
+[2025-05-04 21:45:40] [INFO] Processing page 72 with multimodal extraction...
+[2025-05-04 21:45:40] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:41] [INFO] Rendered page 72 to temporary_dir\image_page_72_89716eba.png
+[2025-05-04 21:45:41] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:41] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 18
+}
+]
+[2025-05-04 21:45:41] [INFO] Multimodal extraction successful for page 72
+[2025-05-04 21:45:41] [DEBUG] Multimodal extraction for page 72 took 0.76 seconds
+[2025-05-04 21:45:41] [INFO] Processing page 73 with multimodal extraction...
+[2025-05-04 21:45:41] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:41] [INFO] Rendered page 73 to temporary_dir\image_page_73_1ff9e1c7.png
+[2025-05-04 21:45:41] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:42] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 17
+}
+]
+[2025-05-04 21:45:42] [INFO] Multimodal extraction successful for page 73
+[2025-05-04 21:45:42] [DEBUG] Multimodal extraction for page 73 took 0.75 seconds
+[2025-05-04 21:45:42] [INFO] Processing page 74 with multimodal extraction...
+[2025-05-04 21:45:42] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:42] [INFO] Rendered page 74 to temporary_dir\image_page_74_a6e9ab5f.png
+[2025-05-04 21:45:42] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:43] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 16
+}
+]
+[2025-05-04 21:45:43] [INFO] Multimodal extraction successful for page 74
+[2025-05-04 21:45:43] [DEBUG] Multimodal extraction for page 74 took 0.72 seconds
+[2025-05-04 21:45:43] [INFO] Processing page 75 with multimodal extraction...
+[2025-05-04 21:45:43] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:43] [INFO] Rendered page 75 to temporary_dir\image_page_75_af2e7c8e.png
+[2025-05-04 21:45:43] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:43] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 16
+}
+]
+[2025-05-04 21:45:43] [INFO] Multimodal extraction successful for page 75
+[2025-05-04 21:45:43] [DEBUG] Multimodal extraction for page 75 took 0.77 seconds
+[2025-05-04 21:45:43] [INFO] Processing page 76 with multimodal extraction...
+[2025-05-04 21:45:43] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:44] [INFO] Rendered page 76 to temporary_dir\image_page_76_9c01e1b3.png
+[2025-05-04 21:45:44] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:44] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 15
+}
+]
+[2025-05-04 21:45:44] [INFO] Multimodal extraction successful for page 76
+[2025-05-04 21:45:44] [DEBUG] Multimodal extraction for page 76 took 0.68 seconds
+[2025-05-04 21:45:44] [INFO] Processing page 77 with multimodal extraction...
+[2025-05-04 21:45:44] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:44] [INFO] Rendered page 77 to temporary_dir\image_page_77_3d700ec2.png
+[2025-05-04 21:45:44] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:45] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 14
+}
+]
+[2025-05-04 21:45:45] [INFO] Multimodal extraction successful for page 77
+[2025-05-04 21:45:45] [DEBUG] Multimodal extraction for page 77 took 0.73 seconds
+[2025-05-04 21:45:45] [INFO] Processing page 78 with multimodal extraction...
+[2025-05-04 21:45:45] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:45] [INFO] Rendered page 78 to temporary_dir\image_page_78_23f995c2.png
+[2025-05-04 21:45:45] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:46] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 13
+}
+]
+[2025-05-04 21:45:46] [INFO] Multimodal extraction successful for page 78
+[2025-05-04 21:45:46] [DEBUG] Multimodal extraction for page 78 took 0.96 seconds
+[2025-05-04 21:45:46] [INFO] Processing page 79 with multimodal extraction...
+[2025-05-04 21:45:46] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:46] [INFO] Rendered page 79 to temporary_dir\image_page_79_ac43ce53.png
+[2025-05-04 21:45:46] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:47] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 12
+}
+]
+[2025-05-04 21:45:47] [INFO] Multimodal extraction successful for page 79
+[2025-05-04 21:45:47] [DEBUG] Multimodal extraction for page 79 took 0.82 seconds
+[2025-05-04 21:45:47] [INFO] Processing page 80 with multimodal extraction...
+[2025-05-04 21:45:47] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:47] [INFO] Rendered page 80 to temporary_dir\image_page_80_7191cdba.png
+[2025-05-04 21:45:47] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:47] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 12
+}
+]
+[2025-05-04 21:45:47] [INFO] Multimodal extraction successful for page 80
+[2025-05-04 21:45:47] [DEBUG] Multimodal extraction for page 80 took 0.81 seconds
+[2025-05-04 21:45:47] [INFO] Processing page 81 with multimodal extraction...
+[2025-05-04 21:45:47] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:48] [INFO] Rendered page 81 to temporary_dir\image_page_81_4ba671cd.png
+[2025-05-04 21:45:48] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:48] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 11
+}
+]
+[2025-05-04 21:45:48] [INFO] Multimodal extraction successful for page 81
+[2025-05-04 21:45:48] [DEBUG] Multimodal extraction for page 81 took 0.82 seconds
+[2025-05-04 21:45:48] [INFO] Processing page 82 with multimodal extraction...
+[2025-05-04 21:45:48] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:48] [INFO] Rendered page 82 to temporary_dir\image_page_82_e0c29dc6.png
+[2025-05-04 21:45:48] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:49] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 10
+}
+]
+[2025-05-04 21:45:49] [INFO] Multimodal extraction successful for page 82
+[2025-05-04 21:45:49] [DEBUG] Multimodal extraction for page 82 took 0.81 seconds
+[2025-05-04 21:45:49] [INFO] Processing page 83 with multimodal extraction...
+[2025-05-04 21:45:49] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:49] [INFO] Rendered page 83 to temporary_dir\image_page_83_c3f46ab9.png
+[2025-05-04 21:45:49] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:50] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 9
+}
+]
+[2025-05-04 21:45:50] [INFO] Multimodal extraction successful for page 83
+[2025-05-04 21:45:50] [DEBUG] Multimodal extraction for page 83 took 0.82 seconds
+[2025-05-04 21:45:50] [INFO] Processing page 84 with multimodal extraction...
+[2025-05-04 21:45:50] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:50] [INFO] Rendered page 84 to temporary_dir\image_page_84_b31df982.png
+[2025-05-04 21:45:50] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:51] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 8
+}
+]
+[2025-05-04 21:45:51] [INFO] Multimodal extraction successful for page 84
+[2025-05-04 21:45:51] [DEBUG] Multimodal extraction for page 84 took 0.80 seconds
+[2025-05-04 21:45:51] [INFO] Processing page 85 with multimodal extraction...
+[2025-05-04 21:45:51] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:51] [INFO] Rendered page 85 to temporary_dir\image_page_85_c50324c7.png
+[2025-05-04 21:45:51] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:51] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 8
+}
+]
+[2025-05-04 21:45:52] [INFO] Multimodal extraction successful for page 85
+[2025-05-04 21:45:52] [DEBUG] Multimodal extraction for page 85 took 0.77 seconds
+[2025-05-04 21:45:52] [INFO] Processing page 86 with multimodal extraction...
+[2025-05-04 21:45:52] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:52] [INFO] Rendered page 86 to temporary_dir\image_page_86_e4b40435.png
+[2025-05-04 21:45:52] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:52] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 7
+}
+]
+[2025-05-04 21:45:52] [INFO] Multimodal extraction successful for page 86
+[2025-05-04 21:45:52] [DEBUG] Multimodal extraction for page 86 took 0.71 seconds
+[2025-05-04 21:45:52] [INFO] Processing page 87 with multimodal extraction...
+[2025-05-04 21:45:52] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:52] [INFO] Rendered page 87 to temporary_dir\image_page_87_e1668259.png
+[2025-05-04 21:45:52] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:53] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 6
+}
+]
+[2025-05-04 21:45:53] [INFO] Multimodal extraction successful for page 87
+[2025-05-04 21:45:53] [DEBUG] Multimodal extraction for page 87 took 0.76 seconds
+[2025-05-04 21:45:53] [INFO] Processing page 88 with multimodal extraction...
+[2025-05-04 21:45:53] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:53] [INFO] Rendered page 88 to temporary_dir\image_page_88_0e8e3e4a.png
+[2025-05-04 21:45:53] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:54] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 5
+}
+]
+[2025-05-04 21:45:54] [INFO] Multimodal extraction successful for page 88
+[2025-05-04 21:45:54] [DEBUG] Multimodal extraction for page 88 took 0.70 seconds
+[2025-05-04 21:45:54] [INFO] Processing page 89 with multimodal extraction...
+[2025-05-04 21:45:54] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:54] [INFO] Rendered page 89 to temporary_dir\image_page_89_90a1d122.png
+[2025-05-04 21:45:54] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:54] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 5
+}
+]
+[2025-05-04 21:45:54] [INFO] Multimodal extraction successful for page 89
+[2025-05-04 21:45:54] [DEBUG] Multimodal extraction for page 89 took 0.76 seconds
+[2025-05-04 21:45:54] [INFO] Processing page 90 with multimodal extraction...
+[2025-05-04 21:45:54] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:55] [INFO] Rendered page 90 to temporary_dir\image_page_90_6d516411.png
+[2025-05-04 21:45:55] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:55] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 4
+}
+]
+[2025-05-04 21:45:55] [INFO] Multimodal extraction successful for page 90
+[2025-05-04 21:45:55] [DEBUG] Multimodal extraction for page 90 took 0.76 seconds
+[2025-05-04 21:45:55] [INFO] Processing page 91 with multimodal extraction...
+[2025-05-04 21:45:55] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:55] [INFO] Rendered page 91 to temporary_dir\image_page_91_89655fb4.png
+[2025-05-04 21:45:55] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:56] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 3
+}
+]
+[2025-05-04 21:45:56] [INFO] Multimodal extraction successful for page 91
+[2025-05-04 21:45:56] [DEBUG] Multimodal extraction for page 91 took 0.81 seconds
+[2025-05-04 21:45:56] [INFO] Processing page 92 with multimodal extraction...
+[2025-05-04 21:45:56] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:56] [INFO] Rendered page 92 to temporary_dir\image_page_92_f7fb318b.png
+[2025-05-04 21:45:56] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:57] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 2
+}
+]
+[2025-05-04 21:45:57] [INFO] Multimodal extraction successful for page 92
+[2025-05-04 21:45:57] [DEBUG] Multimodal extraction for page 92 took 0.85 seconds
+[2025-05-04 21:45:57] [INFO] Processing page 93 with multimodal extraction...
+[2025-05-04 21:45:57] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:57] [INFO] Rendered page 93 to temporary_dir\image_page_93_ae25ec0b.png
+[2025-05-04 21:45:57] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:58] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 1
+}
+]
+[2025-05-04 21:45:58] [INFO] Multimodal extraction successful for page 93
+[2025-05-04 21:45:58] [DEBUG] Multimodal extraction for page 93 took 0.78 seconds
+[2025-05-04 21:45:58] [INFO] Processing page 94 with multimodal extraction...
+[2025-05-04 21:45:58] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:58] [INFO] Rendered page 94 to temporary_dir\image_page_94_d2a5a49b.png
+[2025-05-04 21:45:58] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:58] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 1
+}
+]
+[2025-05-04 21:45:58] [INFO] Multimodal extraction successful for page 94
+[2025-05-04 21:45:58] [DEBUG] Multimodal extraction for page 94 took 0.77 seconds
+[2025-05-04 21:45:58] [INFO] Processing page 95 with multimodal extraction...
+[2025-05-04 21:45:58] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:59] [INFO] Rendered page 95 to temporary_dir\image_page_95_6d951d75.png
+[2025-05-04 21:45:59] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:45:59] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+}
+]
+[2025-05-04 21:45:59] [INFO] Multimodal extraction successful for page 95
+[2025-05-04 21:45:59] [DEBUG] Multimodal extraction for page 95 took 0.76 seconds
+[2025-05-04 21:45:59] [INFO] Processing page 96 with multimodal extraction...
+[2025-05-04 21:45:59] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:45:59] [INFO] Rendered page 96 to temporary_dir\image_page_96_a4a1ca39.png
+[2025-05-04 21:45:59] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:46:00] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 59
+}
+]
+[2025-05-04 21:46:00] [INFO] Multimodal extraction successful for page 96
+[2025-05-04 21:46:00] [DEBUG] Multimodal extraction for page 96 took 0.80 seconds
+[2025-05-04 21:46:00] [INFO] Processing page 97 with multimodal extraction...
+[2025-05-04 21:46:00] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:46:00] [INFO] Rendered page 97 to temporary_dir\image_page_97_1ea23b86.png
+[2025-05-04 21:46:00] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:46:01] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 58
+}
+]
+[2025-05-04 21:46:01] [INFO] Multimodal extraction successful for page 97
+[2025-05-04 21:46:01] [DEBUG] Multimodal extraction for page 97 took 0.82 seconds
+[2025-05-04 21:46:01] [INFO] Processing page 98 with multimodal extraction...
+[2025-05-04 21:46:01] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:46:01] [INFO] Rendered page 98 to temporary_dir\image_page_98_f697b370.png
+[2025-05-04 21:46:01] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:46:02] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 58
+}
+]
+[2025-05-04 21:46:02] [INFO] Multimodal extraction successful for page 98
+[2025-05-04 21:46:02] [DEBUG] Multimodal extraction for page 98 took 0.81 seconds
+[2025-05-04 21:46:02] [INFO] Processing page 99 with multimodal extraction...
+[2025-05-04 21:46:02] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:46:02] [INFO] Rendered page 99 to temporary_dir\image_page_99_db319a9e.png
+[2025-05-04 21:46:02] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:46:02] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 57
+}
+]
+[2025-05-04 21:46:02] [INFO] Multimodal extraction successful for page 99
+[2025-05-04 21:46:02] [DEBUG] Multimodal extraction for page 99 took 0.76 seconds
+[2025-05-04 21:46:02] [INFO] Processing page 100 with multimodal extraction...
+[2025-05-04 21:46:02] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:46:03] [INFO] Rendered page 100 to temporary_dir\image_page_100_4ae6e9fc.png
+[2025-05-04 21:46:03] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:46:03] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 56
+}
+]
+[2025-05-04 21:46:03] [INFO] Multimodal extraction successful for page 100
+[2025-05-04 21:46:03] [DEBUG] Multimodal extraction for page 100 took 0.76 seconds
+[2025-05-04 21:46:03] [INFO] Processing page 101 with multimodal extraction...
+[2025-05-04 21:46:03] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-04 21:46:03] [INFO] Rendered page 101 to temporary_dir\image_page_101_150e235a.png
+[2025-05-04 21:46:03] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-04 21:46:04] [ERROR] Error processing image with multimodal API: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 55
+}
+]
+[2025-05-04 21:46:04] [INFO] Multimodal extraction successful for page 101
+[2025-05-04 21:46:04] [DEBUG] Multimodal extraction for page 101 took 0.82 seconds
+[2025-05-04 21:46:04] [ERROR] Error cleaning temporary images: [WinError 32] The process cannot access the file because it is being used by another process: 'temporary_dir\\image_page_100_4ae6e9fc.png'
+[2025-05-04 21:46:04] [INFO] PDF processing completed. Total pages processed: 101
+[2025-05-04 21:46:04] [INFO] Direct: 5, OCR: 0, Multimodal: 96
+[2025-05-04 21:46:04] [INFO] Pemrosesan selesai untuk BRI Seruni Pasar Uang Syariah
