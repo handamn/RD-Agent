@@ -1,0 +1,19 @@
+project_folder/
+├── database/
+│   ├── folder_pdf/                 # 📂 PDF asli, bisa dijadikan sumber referensi
+│   ├── folder_json_extract/       # 📄 Output hasil ekstraksi dari PDF
+│   └── folder_embeddings/         # 🔢 Embedding vector (json/npz/npy)
+│
+├── qdrant_storage/                # 🧱 Folder volume Qdrant — JANGAN masuk Git
+│
+├── data/
+│   └── index.json                 # 📑 Metadata tracking dokumen (judul, id, status, dll)
+│
+├── scripts/
+│   ├── script_extract_pdf_to_json.py   # PDF → JSON
+│   ├── script_create_embedding.py      # JSON → Embedding
+│   └── insert_to_qdrant.py             # Embedding → Qdrant
+│
+├── docker-compose.yml            # ⚙️ Untuk jalankan Qdrant server
+├── requirements.txt              # 📦 Daftar dependensi Python
+└── .gitignore                    # 🚫 Abaikan folder tertentu

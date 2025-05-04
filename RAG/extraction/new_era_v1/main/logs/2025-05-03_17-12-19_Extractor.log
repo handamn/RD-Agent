@@ -1,0 +1,39 @@
+[2025-05-03 17:12:19] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-03 17:12:19] [INFO] Google Generative AI API berhasil dikonfigurasi
+[2025-05-03 17:12:19] [DEBUG] Memastikan direktori database/extracted_result ada
+[2025-05-03 17:12:19] [INFO] Memulai pemrosesan untuk BNI-AM IDX PEFINDO Prime Bank Kelas R1
+[2025-05-03 17:12:19] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-03 17:12:19] [INFO] Loading analysis data from database/classified_result\BNI-AM IDX PEFINDO Prime Bank Kelas R1_analisis.json
+[2025-05-03 17:12:19] [INFO] Initializing new output data structure
+[2025-05-03 17:12:19] [INFO] Initialized output data structure for BNI-AM IDX PEFINDO Prime Bank Kelas R1.pdf
+[2025-05-03 17:12:19] [INFO] Processing page 1 with multimodal extraction...
+[2025-05-03 17:12:19] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-03 17:12:20] [INFO] Rendered page 1 to temporary_dir\image_page_1_70f8aa6c.png
+[2025-05-03 17:12:20] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-03 17:12:21] [ERROR] Error processing image with multimodal API: 400 API key not valid. Please pass a valid API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key not valid. Please pass a valid API key."
+]
+[2025-05-03 17:12:21] [INFO] Multimodal extraction successful for page 1
+[2025-05-03 17:12:21] [DEBUG] Multimodal extraction for page 1 took 1.58 seconds
+[2025-05-03 17:12:21] [INFO] Processing page 2 with multimodal extraction...
+[2025-05-03 17:12:21] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-03 17:12:21] [INFO] Rendered page 2 to temporary_dir\image_page_2_76545da9.png
+[2025-05-03 17:12:21] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-03 17:12:22] [ERROR] Error processing image with multimodal API: 400 API key not valid. Please pass a valid API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key not valid. Please pass a valid API key."
+]
+[2025-05-03 17:12:22] [INFO] Multimodal extraction successful for page 2
+[2025-05-03 17:12:22] [DEBUG] Multimodal extraction for page 2 took 1.20 seconds
+[2025-05-03 17:12:22] [INFO] Processing page 3 with direct extraction...
