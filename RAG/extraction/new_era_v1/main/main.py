@@ -78,7 +78,7 @@ if __name__ == "__main__":
         # ['Majoris Pasar Uang Syariah Indonesia'],
         ['Majoris Saham Alokasi Dinamik Indonesia'],
         ['Majoris Sukuk Negara Indonesia'],
-        # ['Mandiri Indeks FTSE Indonesia ESG Kelas A'],
+        ['Mandiri Indeks FTSE Indonesia ESG Kelas A'],
         # ['Mandiri Investa Atraktif-Syariah'],
         # ['Mandiri Investa Dana Syariah Kelas A'],
         # ['Mandiri Investa Dana Utama Kelas D'],
