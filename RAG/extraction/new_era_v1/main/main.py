@@ -131,8 +131,8 @@ if __name__ == "__main__":
         # ['TRIM Kapital Plus'],
         # ['TRIM Kas 2 Kelas A'],
         # ['TRIM Syariah Saham'],
-        ['Trimegah Dana Tetap Syariah Kelas A'],
-        ['Trimegah FTSE Indonesia Low Volatility Factor Index'],
+        # ['Trimegah Dana Tetap Syariah Kelas A'],
+        # ['Trimegah FTSE Indonesia Low Volatility Factor Index'],
         
         # ['Trimegah Kas Syariah'],
         
