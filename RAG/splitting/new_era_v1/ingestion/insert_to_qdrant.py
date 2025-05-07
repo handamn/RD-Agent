@@ -1,14 +1,15 @@
-import json
 import os
+import json
+import hashlib
 from datetime import datetime
+from tqdm import tqdm
+from openai import OpenAI
 from qdrant_client import QdrantClient
-from qdrant_client.models import VectorParams, Distance, PointStruct
-import openai
+from qdrant_client.models import PointStruct, VectorParams, Distance
 
-
-# === Logger sesuai standar perusahaan ===
+# ===== Logger =====
 class Logger:
-    def __init__(self, log_dir="logs"):
+    def __init__(self, log_dir="log"):
         os.makedirs(log_dir, exist_ok=True)
         log_filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "_InsertQdrant.log"
         self.LOG_FILE = os.path.join(log_dir, log_filename)
@@ -20,101 +21,128 @@ class Logger:
             log_file.write(log_message)
         print(log_message.strip())
 
-
-# === Kelas utama untuk insert ke Qdrant ===
-class QdrantInserter:
-    def __init__(self, collection_name="my_collection", embedding_model="text-embedding-ada-002", embedding_dim=1536, log=None):
-        self.logger = log or Logger()
-        self.collection_name = collection_name
+# ===== Embedder =====
+class Embedder:
+    def __init__(self, api_key=None, embedding_model="text-embedding-3-small"):
+        # Use the provided API key or look for it in environment variables
+        self.client = OpenAI(api_key=api_key)
         self.embedding_model = embedding_model
-        self.embedding_dim = embedding_dim
 
-        # Proteksi jika OPENAI_API_KEY belum diset
-        openai.api_key = os.getenv("OPENAI_API_KEY")
-        if not openai.api_key:
-            raise RuntimeError("OPENAI_API_KEY belum diset di environment variable.")
+    def embed_text(self, text: str) -> list[float]:
+        response = self.client.embeddings.create(
+            input=[text],
+            model=self.embedding_model
+        )
+        return response.data[0].embedding
 
-        # Koneksi ke Qdrant lokal
-        self.client = QdrantClient(host="localhost", port=6333)
+# ===== QdrantInserter with index.json caching =====
+class QdrantInserter:
+    def __init__(self,
+                 collection_name: str,
+                 api_key=None,
+                 host="localhost",
+                 port=6333,
+                 index_path="database/index.json"):
+        self.qdrant = QdrantClient(host=host, port=port)
+        self.collection_name = collection_name
+        self.logger = Logger()
+        self.embedder = Embedder(api_key=api_key)
+        # prepare index file
+        self.index_path = index_path
+        os.makedirs(os.path.dirname(self.index_path), exist_ok=True)
+        self.inserted_ids = self._load_index()
+        self.ensure_collection()
 
-        # Inisialisasi collection jika belum ada
-        if not self.client.collection_exists(self.collection_name):
-            self.logger.log_info(f"Membuat collection baru: {self.collection_name}")
-            self.client.recreate_collection(
+    def _load_index(self) -> set:
+        if os.path.exists(self.index_path):
+            try:
+                with open(self.index_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    self.logger.log_info(f"Loaded index.json, {len(data)} IDs")
+                    return set(data)
+            except Exception as e:
+                self.logger.log_info(f"Failed to read index.json: {e}", status="WARNING")
+        return set()
+
+    def _save_index(self):
+        with open(self.index_path, "w", encoding="utf-8") as f:
+            json.dump(sorted(self.inserted_ids), f, indent=2)
+        self.logger.log_info(f"Saved index.json, total {len(self.inserted_ids)} IDs")
+
+    def ensure_collection(self):
+        if not self.qdrant.collection_exists(self.collection_name):
+            self.qdrant.recreate_collection(
                 collection_name=self.collection_name,
-                vectors_config=VectorParams(size=self.embedding_dim, distance=Distance.COSINE)
+                vectors_config=VectorParams(size=1536, distance=Distance.COSINE),
             )
+            self.logger.log_info(f"Created new collection: {self.collection_name}")
         else:
-            self.logger.log_info(f"Collection '{self.collection_name}' sudah ada")
+            self.logger.log_info(f"Collection '{self.collection_name}' exists")
 
-        # Ambil semua ID yang sudah ada
-        self.existing_ids = self._fetch_existing_ids()
+    def get_point_id(self, item_id: str) -> int:
+        # deterministic numeric ID from string
+        return int(hashlib.sha256(item_id.encode()).hexdigest(), 16) % (10**18)
 
-    def _fetch_existing_ids(self):
-        self.logger.log_info("Mengambil daftar ID yang sudah ada di Qdrant...")
-        existing_ids = set()
-        offset = None
-        while True:
-            scroll_result, offset = self.client.scroll(
-                collection_name=self.collection_name,
-                limit=1000,
-                offset=offset,
-                with_payload=False
-            )
-            if not scroll_result:
-                break
-            for point in scroll_result:
-                existing_ids.add(str(point.id))
-        self.logger.log_info(f"Total ID yang ditemukan: {len(existing_ids)}")
-        return existing_ids
-
-    def embed_text(self, text):
-        result = openai.Embedding.create(input=[text], model=self.embedding_model)
-        return result["data"][0]["embedding"]
-
-    def insert_from_json(self, json_path):
-        self.logger.log_info(f"Memuat file: {json_path}")
-        if not os.path.exists(json_path):
-            self.logger.log_info("File tidak ditemukan!", status="ERROR")
+    def insert_from_json(self, json_path: str):
+        if not os.path.isfile(json_path):
+            self.logger.log_info(f"File not found: {json_path}", status="ERROR")
             return
 
         with open(json_path, "r", encoding="utf-8") as f:
             try:
-                items = json.load(f)
+                data = json.load(f)
             except json.JSONDecodeError as e:
-                self.logger.log_info(f"Gagal membaca JSON: {e}", status="ERROR")
+                self.logger.log_info(f"Invalid JSON in {json_path}: {e}", status="ERROR")
                 return
 
-        inserted = 0
-        skipped = 0
+        total_inserted = 0
+        total_skipped = 0
 
-        for item in items:
-            if not isinstance(item, dict) or not all(k in item for k in ("id", "text", "metadata")):
-                self.logger.log_info(f"SKIP - Data tidak lengkap atau format salah: {item}", status="SKIP")
+        for item in tqdm(data, desc="Processing items"):
+            item_id = item.get("id")
+            if not item_id:
+                self.logger.log_info(f"SKIP: missing 'id' in item {item}", status="SKIP")
+                total_skipped += 1
                 continue
 
-            point_id = item["id"]
-            text = item["text"]
-            metadata = item["metadata"]
-
-            if str(point_id) in self.existing_ids:
-                self.logger.log_info(f"SKIP - ID {point_id} sudah ada di Qdrant", status="SKIP")
-                skipped += 1
+            if item_id in self.inserted_ids:
+                self.logger.log_info(f"SKIP: ID {item_id} already in index.json", status="SKIP")
+                total_skipped += 1
                 continue
+
+            text = item.get("text", "")
+            metadata = item.get("metadata", {})
+            point_id = self.get_point_id(item_id)
 
             try:
-                vector = self.embed_text(text)
-                point = PointStruct(id=point_id, vector=vector, payload=metadata)
-                self.client.upsert(collection_name=self.collection_name, points=[point])
-                self.logger.log_info(f"INSERT - ID {point_id} berhasil dimasukkan ke Qdrant")
-                inserted += 1
+                vector = self.embedder.embed_text(text)
+                payload = {
+                    "item_id": item_id,
+                    "text": text,
+                    "metadata": metadata,
+                }
+                point = PointStruct(id=point_id, vector=vector, payload=payload)
+                self.qdrant.upsert(collection_name=self.collection_name, points=[point])
+
+                # update index
+                self.inserted_ids.add(item_id)
+                total_inserted += 1
+                self.logger.log_info(f"INSERT: ID {item_id} succeeded")
+
             except Exception as e:
-                self.logger.log_info(f"ERROR saat proses ID {point_id}: {e}", status="ERROR")
+                self.logger.log_info(f"ERROR processing ID {item_id}: {e}", status="ERROR")
 
-        self.logger.log_info(f"Proses selesai: {inserted} inserted, {skipped} skipped")
+        # save index at end
+        self._save_index()
+        self.logger.log_info(f"Done: {total_inserted} inserted, {total_skipped} skipped")
 
-
-# === Contoh pemakaian ===
+# ===== Main =====
 if __name__ == "__main__":
-    inserter = QdrantInserter()
-    inserter.insert_from_json("database/folder_json_extract/extract_a.json")
+    # Your OpenAI API key
+    openai_api_key = "xxx"  # Replace with your actual API key
+    
+    json_file = "database/chunk_result/ABF Indonesia Bond Index Fund_chunk.json"  # sesuaikan path
+    collection = "try_first"  # ganti nama collection jika perlu
+
+    inserter = QdrantInserter(collection_name=collection, api_key=openai_api_key)
+    inserter.insert_from_json(json_file)
