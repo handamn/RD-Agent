@@ -1,0 +1,12 @@
+[2025-05-07 08:58:52] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-07 08:58:52] [INFO] Google Generative AI API berhasil dikonfigurasi
+[2025-05-07 08:58:52] [DEBUG] Memastikan direktori database/extracted_result ada
+[2025-05-07 08:58:52] [INFO] Memulai pemrosesan untuk Sucorinvest IDX30
+[2025-05-07 08:58:52] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-07 08:58:52] [INFO] Loading analysis data from database/classified_result\Sucorinvest IDX30_analisis.json
+[2025-05-07 08:58:52] [ERROR] Gagal memproses Sucorinvest IDX30: [Errno 2] No such file or directory: 'database/classified_result\\Sucorinvest IDX30_analisis.json'
+[2025-05-07 08:58:52] [DEBUG] Memastikan direktori database/extracted_result ada
+[2025-05-07 08:58:52] [INFO] Memulai pemrosesan untuk Sucorinvest Maxi Fund
+[2025-05-07 08:58:52] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-07 08:58:52] [INFO] Loading analysis data from database/classified_result\Sucorinvest Maxi Fund_analisis.json
+[2025-05-07 08:58:52] [ERROR] Gagal memproses Sucorinvest Maxi Fund: [Errno 2] No such file or directory: 'database/classified_result\\Sucorinvest Maxi Fund_analisis.json'
