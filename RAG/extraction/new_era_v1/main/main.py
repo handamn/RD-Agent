@@ -9,6 +9,7 @@ if __name__ == "__main__":
     # List file PDF [name]
     pdf_files = [
         # ['ABF Indonesia Bond Index Fund'],
+        # ['ABF Indonesia Bond Index Fund Update June 2024'],
         # ['Avrist Ada Kas Mutiara'],
         # ['Avrist Ada Saham Blue Safir Kelas A'],
         # ['Avrist IDX30'],
@@ -52,7 +53,7 @@ if __name__ == "__main__":
         # ['BNP Paribas Sukuk Negara Kelas RK1'],
         # ['BRI Indeks Syariah'],
         # ['BRI Mawar Konsumer 10 Kelas A'],
-        # ['BRI Melati Pendapatan Utama'],
+        # ['BRI Melati Pendapatan Utama'], ###############################
         # ['BRI MSCI Indonesia ESG Screened Kelas A'],
         # ['BRI Seruni Pasar Uang II Kelas A'],
         # ['BRI Seruni Pasar Uang III'],
@@ -91,23 +92,23 @@ if __name__ == "__main__":
         # ['Manulife Obligasi Negara Indonesia II Kelas A'],
         # ['Manulife Obligasi Unggulan Kelas A'],
         # ['Manulife Saham Andalan'],
-        # ['Manulife Syariah Sektoral Amanah Kelas A'],
-        # ['Manulife USD Fixed Income Kelas A'],
-        # ['Principal Cash Fund'],
-        # ['Principal Index IDX30 Kelas O'],
-        # ['Principal Islamic Equity Growth Syariah'],
+        ['Manulife Syariah Sektoral Amanah Kelas A'], #########################
+        ['Manulife USD Fixed Income Kelas A'], #######################
+        ['Principal Cash Fund'], ################
+        ['Principal Index IDX30 Kelas O'], ##################
+        ['Principal Islamic Equity Growth Syariah'], ##################
         # ['Schroder 90 Plus Equity Fund'],
         # ['Schroder Dana Andalan II'],
         # ['Schroder Dana Istimewa'],
         # ['Schroder Dana Likuid'],
         # ['Schroder Dana Likuid Syariah'],
-        ['Schroder Dana Mantap Plus II'],
-        ['Schroder Dana Prestasi'],
-        ['Schroder Dana Prestasi Plus'],
-        ['Schroder Dynamic Balanced Fund'],
-        ['Schroder Global Sharia Equity Fund USD'],
-        ['Schroder Syariah Balanced Fund'],
-        ['Schroder USD Bond Fund Kelas A'], #################
+        # ['Schroder Dana Mantap Plus II'],
+        # ['Schroder Dana Prestasi'],
+        # ['Schroder Dana Prestasi Plus'],
+        # ['Schroder Dynamic Balanced Fund'],
+        # ['Schroder Global Sharia Equity Fund USD'],
+        # ['Schroder Syariah Balanced Fund'],
+        # ['Schroder USD Bond Fund Kelas A'],
         # ['Simas Saham Unggulan'],
         # ['Simas Satu'],
         # ['Simas Syariah Unggulan'],
@@ -131,7 +132,6 @@ if __name__ == "__main__":
         # ['TRIM Syariah Saham'],
         # ['Trimegah Dana Tetap Syariah Kelas A'],
         # ['Trimegah FTSE Indonesia Low Volatility Factor Index'],
-        
         # ['Trimegah Kas Syariah'],
         
     ]

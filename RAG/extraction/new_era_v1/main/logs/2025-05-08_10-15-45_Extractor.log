@@ -1,0 +1,620 @@
+[2025-05-08 10:15:45] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:15:45] [INFO] Google Generative AI API berhasil dikonfigurasi
+[2025-05-08 10:16:57] [DEBUG] Memastikan direktori database/extracted_result ada
+[2025-05-08 10:16:57] [INFO] Memulai pemrosesan untuk ABF Indonesia Bond Index Fund Update June 2024
+[2025-05-08 10:16:57] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:16:57] [INFO] Loading analysis data from database/classified_result\ABF Indonesia Bond Index Fund Update June 2024_analisis.json
+[2025-05-08 10:16:57] [INFO] Initializing new output data structure
+[2025-05-08 10:16:57] [INFO] Initialized output data structure for ABF Indonesia Bond Index Fund Update June 2024.pdf
+[2025-05-08 10:16:57] [INFO] Processing page 1 with multimodal extraction...
+[2025-05-08 10:16:57] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:16:57] [INFO] Rendered page 1 to temporary_dir\image_page_1_86888868.png
+[2025-05-08 10:16:57] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:17:13] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:17:13] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:17:13] [INFO] Multimodal extraction successful for page 1
+[2025-05-08 10:17:13] [DEBUG] Multimodal extraction for page 1 took 16.21 seconds
+[2025-05-08 10:17:13] [INFO] Processing page 2 with direct extraction...
+[2025-05-08 10:17:13] [INFO] Direct extraction successful for page 2
+[2025-05-08 10:17:13] [DEBUG] Direct extraction for page 2 took 0.07 seconds
+[2025-05-08 10:17:13] [INFO] Processing page 3 with multimodal extraction...
+[2025-05-08 10:17:13] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:17:13] [INFO] Rendered page 3 to temporary_dir\image_page_3_6c2f7e73.png
+[2025-05-08 10:17:13] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:17:22] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:17:22] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:17:22] [INFO] Multimodal extraction successful for page 3
+[2025-05-08 10:17:22] [DEBUG] Multimodal extraction for page 3 took 8.73 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 4 with direct extraction...
+[2025-05-08 10:17:22] [INFO] Direct extraction successful for page 4
+[2025-05-08 10:17:22] [DEBUG] Direct extraction for page 4 took 0.05 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 5 with direct extraction...
+[2025-05-08 10:17:22] [INFO] Direct extraction successful for page 5
+[2025-05-08 10:17:22] [DEBUG] Direct extraction for page 5 took 0.05 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 6 with direct extraction...
+[2025-05-08 10:17:22] [INFO] Direct extraction successful for page 6
+[2025-05-08 10:17:22] [DEBUG] Direct extraction for page 6 took 0.05 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 7 with direct extraction...
+[2025-05-08 10:17:22] [INFO] Direct extraction successful for page 7
+[2025-05-08 10:17:22] [DEBUG] Direct extraction for page 7 took 0.05 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 8 with direct extraction...
+[2025-05-08 10:17:22] [INFO] Direct extraction successful for page 8
+[2025-05-08 10:17:22] [DEBUG] Direct extraction for page 8 took 0.05 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 9 with direct extraction...
+[2025-05-08 10:17:22] [INFO] Direct extraction successful for page 9
+[2025-05-08 10:17:22] [DEBUG] Direct extraction for page 9 took 0.09 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 10 with direct extraction...
+[2025-05-08 10:17:22] [INFO] Direct extraction successful for page 10
+[2025-05-08 10:17:22] [DEBUG] Direct extraction for page 10 took 0.05 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 11 with direct extraction...
+[2025-05-08 10:17:22] [INFO] Direct extraction successful for page 11
+[2025-05-08 10:17:22] [DEBUG] Direct extraction for page 11 took 0.04 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 12 with direct extraction...
+[2025-05-08 10:17:22] [INFO] Direct extraction successful for page 12
+[2025-05-08 10:17:22] [DEBUG] Direct extraction for page 12 took 0.04 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 13 with direct extraction...
+[2025-05-08 10:17:22] [INFO] Direct extraction successful for page 13
+[2025-05-08 10:17:22] [DEBUG] Direct extraction for page 13 took 0.04 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 14 with direct extraction...
+[2025-05-08 10:17:22] [INFO] Direct extraction successful for page 14
+[2025-05-08 10:17:22] [DEBUG] Direct extraction for page 14 took 0.05 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 15 with direct extraction...
+[2025-05-08 10:17:22] [INFO] Direct extraction successful for page 15
+[2025-05-08 10:17:22] [DEBUG] Direct extraction for page 15 took 0.08 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 16 with direct extraction...
+[2025-05-08 10:17:22] [INFO] Direct extraction successful for page 16
+[2025-05-08 10:17:22] [DEBUG] Direct extraction for page 16 took 0.03 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 17 with direct extraction...
+[2025-05-08 10:17:22] [INFO] Direct extraction successful for page 17
+[2025-05-08 10:17:22] [DEBUG] Direct extraction for page 17 took 0.04 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 18 with direct extraction...
+[2025-05-08 10:17:22] [INFO] Direct extraction successful for page 18
+[2025-05-08 10:17:22] [DEBUG] Direct extraction for page 18 took 0.05 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 19 with direct extraction...
+[2025-05-08 10:17:22] [INFO] Direct extraction successful for page 19
+[2025-05-08 10:17:22] [DEBUG] Direct extraction for page 19 took 0.04 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 20 with direct extraction...
+[2025-05-08 10:17:22] [INFO] Direct extraction successful for page 20
+[2025-05-08 10:17:22] [DEBUG] Direct extraction for page 20 took 0.05 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 21 with direct extraction...
+[2025-05-08 10:17:22] [INFO] Direct extraction successful for page 21
+[2025-05-08 10:17:22] [DEBUG] Direct extraction for page 21 took 0.04 seconds
+[2025-05-08 10:17:22] [INFO] Processing page 22 with multimodal extraction...
+[2025-05-08 10:17:22] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:17:23] [INFO] Rendered page 22 to temporary_dir\image_page_22_5590721f.png
+[2025-05-08 10:17:23] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:17:44] [WARNING] JSON parsing error on attempt 1: Expecting ',' delimiter: line 72 column 185 (char 3061) in content: ```json
+{
+  "content_blocks": [
+    {
+      "block_id": 1,
+      "type": "text",
+      "content": "B...
+[2025-05-08 10:17:44] [INFO] Retrying API call, attempt 2/5
+[2025-05-08 10:17:45] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:18:00] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:18:00] [INFO] Successfully parsed JSON from API response on attempt 2
+[2025-05-08 10:18:00] [INFO] Multimodal extraction successful for page 22
+[2025-05-08 10:18:00] [DEBUG] Multimodal extraction for page 22 took 37.36 seconds
+[2025-05-08 10:18:00] [INFO] Processing page 23 with direct extraction...
+[2025-05-08 10:18:00] [INFO] Direct extraction successful for page 23
+[2025-05-08 10:18:00] [DEBUG] Direct extraction for page 23 took 0.07 seconds
+[2025-05-08 10:18:00] [INFO] Processing page 24 with direct extraction...
+[2025-05-08 10:18:00] [INFO] Direct extraction successful for page 24
+[2025-05-08 10:18:00] [DEBUG] Direct extraction for page 24 took 0.04 seconds
+[2025-05-08 10:18:00] [INFO] Processing page 25 with direct extraction...
+[2025-05-08 10:18:00] [INFO] Direct extraction successful for page 25
+[2025-05-08 10:18:00] [DEBUG] Direct extraction for page 25 took 0.05 seconds
+[2025-05-08 10:18:00] [INFO] Processing page 26 with direct extraction...
+[2025-05-08 10:18:00] [INFO] Direct extraction successful for page 26
+[2025-05-08 10:18:00] [DEBUG] Direct extraction for page 26 took 0.03 seconds
+[2025-05-08 10:18:00] [INFO] Processing page 27 with direct extraction...
+[2025-05-08 10:18:00] [INFO] Direct extraction successful for page 27
+[2025-05-08 10:18:00] [DEBUG] Direct extraction for page 27 took 0.05 seconds
+[2025-05-08 10:18:00] [INFO] Processing page 28 with direct extraction...
+[2025-05-08 10:18:00] [INFO] Direct extraction successful for page 28
+[2025-05-08 10:18:00] [DEBUG] Direct extraction for page 28 took 0.04 seconds
+[2025-05-08 10:18:00] [INFO] Processing page 29 with direct extraction...
+[2025-05-08 10:18:00] [INFO] Direct extraction successful for page 29
+[2025-05-08 10:18:00] [DEBUG] Direct extraction for page 29 took 0.08 seconds
+[2025-05-08 10:18:00] [INFO] Processing page 30 with direct extraction...
+[2025-05-08 10:18:00] [INFO] Direct extraction successful for page 30
+[2025-05-08 10:18:00] [DEBUG] Direct extraction for page 30 took 0.03 seconds
+[2025-05-08 10:18:00] [INFO] Processing page 31 with direct extraction...
+[2025-05-08 10:18:00] [INFO] Direct extraction successful for page 31
+[2025-05-08 10:18:00] [DEBUG] Direct extraction for page 31 took 0.03 seconds
+[2025-05-08 10:18:00] [INFO] Processing page 32 with OCR extraction...
+[2025-05-08 10:18:01] [INFO] OCR extraction successful for page 32
+[2025-05-08 10:18:01] [DEBUG] OCR extraction for page 32 took 0.49 seconds
+[2025-05-08 10:18:01] [INFO] Processing page 33 with multimodal extraction...
+[2025-05-08 10:18:01] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:18:01] [INFO] Rendered page 33 to temporary_dir\image_page_33_d5c07c36.png
+[2025-05-08 10:18:01] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:18:14] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:18:14] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:18:14] [INFO] Multimodal extraction successful for page 33
+[2025-05-08 10:18:14] [DEBUG] Multimodal extraction for page 33 took 13.27 seconds
+[2025-05-08 10:18:14] [INFO] Processing page 34 with multimodal extraction...
+[2025-05-08 10:18:14] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:18:14] [INFO] Rendered page 34 to temporary_dir\image_page_34_51f388bd.png
+[2025-05-08 10:18:14] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:18:32] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:18:32] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:18:32] [INFO] Multimodal extraction successful for page 34
+[2025-05-08 10:18:32] [DEBUG] Multimodal extraction for page 34 took 18.29 seconds
+[2025-05-08 10:18:32] [INFO] Processing page 35 with multimodal extraction...
+[2025-05-08 10:18:32] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:18:33] [INFO] Rendered page 35 to temporary_dir\image_page_35_8baab064.png
+[2025-05-08 10:18:33] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:18:45] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:18:45] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:18:45] [INFO] Multimodal extraction successful for page 35
+[2025-05-08 10:18:45] [DEBUG] Multimodal extraction for page 35 took 13.09 seconds
+[2025-05-08 10:18:45] [INFO] Processing page 36 with OCR extraction...
+[2025-05-08 10:18:48] [INFO] OCR extraction successful for page 36
+[2025-05-08 10:18:48] [DEBUG] OCR extraction for page 36 took 2.33 seconds
+[2025-05-08 10:18:48] [INFO] Processing page 37 with OCR extraction...
+[2025-05-08 10:18:49] [INFO] OCR extraction successful for page 37
+[2025-05-08 10:18:49] [DEBUG] OCR extraction for page 37 took 1.70 seconds
+[2025-05-08 10:18:49] [INFO] Processing page 38 with OCR extraction...
+[2025-05-08 10:18:50] [INFO] OCR extraction successful for page 38
+[2025-05-08 10:18:50] [DEBUG] OCR extraction for page 38 took 1.00 seconds
+[2025-05-08 10:18:50] [INFO] Processing page 39 with multimodal extraction...
+[2025-05-08 10:18:50] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:18:51] [INFO] Rendered page 39 to temporary_dir\image_page_39_0f7e7edc.png
+[2025-05-08 10:18:51] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:19:08] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:19:08] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:19:08] [INFO] Multimodal extraction successful for page 39
+[2025-05-08 10:19:08] [DEBUG] Multimodal extraction for page 39 took 17.65 seconds
+[2025-05-08 10:19:08] [INFO] Processing page 40 with multimodal extraction...
+[2025-05-08 10:19:08] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:19:08] [INFO] Rendered page 40 to temporary_dir\image_page_40_76a26110.png
+[2025-05-08 10:19:08] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:19:18] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:19:18] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:19:18] [INFO] Multimodal extraction successful for page 40
+[2025-05-08 10:19:18] [DEBUG] Multimodal extraction for page 40 took 10.02 seconds
+[2025-05-08 10:19:18] [INFO] Processing page 41 with multimodal extraction...
+[2025-05-08 10:19:18] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:19:18] [INFO] Rendered page 41 to temporary_dir\image_page_41_fa5d1d6e.png
+[2025-05-08 10:19:18] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:19:35] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:19:35] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:19:35] [INFO] Multimodal extraction successful for page 41
+[2025-05-08 10:19:35] [DEBUG] Multimodal extraction for page 41 took 16.70 seconds
+[2025-05-08 10:19:35] [INFO] Processing page 42 with OCR extraction...
+[2025-05-08 10:19:36] [INFO] OCR extraction successful for page 42
+[2025-05-08 10:19:36] [DEBUG] OCR extraction for page 42 took 0.78 seconds
+[2025-05-08 10:19:36] [INFO] Processing page 43 with multimodal extraction...
+[2025-05-08 10:19:36] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:19:36] [INFO] Rendered page 43 to temporary_dir\image_page_43_b6678b2f.png
+[2025-05-08 10:19:36] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:19:55] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:19:55] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:19:55] [INFO] Multimodal extraction successful for page 43
+[2025-05-08 10:19:55] [DEBUG] Multimodal extraction for page 43 took 19.29 seconds
+[2025-05-08 10:19:55] [INFO] Processing page 44 with multimodal extraction...
+[2025-05-08 10:19:55] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:19:55] [INFO] Rendered page 44 to temporary_dir\image_page_44_78c1ea84.png
+[2025-05-08 10:19:55] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:20:13] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:20:13] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:20:13] [INFO] Multimodal extraction successful for page 44
+[2025-05-08 10:20:13] [DEBUG] Multimodal extraction for page 44 took 17.72 seconds
+[2025-05-08 10:20:13] [INFO] Processing page 45 with multimodal extraction...
+[2025-05-08 10:20:13] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:20:13] [INFO] Rendered page 45 to temporary_dir\image_page_45_2fbd843f.png
+[2025-05-08 10:20:13] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:20:34] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:20:34] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:20:34] [INFO] Multimodal extraction successful for page 45
+[2025-05-08 10:20:34] [DEBUG] Multimodal extraction for page 45 took 21.78 seconds
+[2025-05-08 10:20:34] [INFO] Processing page 46 with multimodal extraction...
+[2025-05-08 10:20:34] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:20:35] [INFO] Rendered page 46 to temporary_dir\image_page_46_650a956f.png
+[2025-05-08 10:20:35] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:21:00] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:21:00] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:21:00] [INFO] Multimodal extraction successful for page 46
+[2025-05-08 10:21:00] [DEBUG] Multimodal extraction for page 46 took 25.55 seconds
+[2025-05-08 10:21:00] [INFO] Processing page 47 with multimodal extraction...
+[2025-05-08 10:21:00] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:21:00] [INFO] Rendered page 47 to temporary_dir\image_page_47_cec08e11.png
+[2025-05-08 10:21:00] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:21:25] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:21:25] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:21:25] [INFO] Multimodal extraction successful for page 47
+[2025-05-08 10:21:25] [DEBUG] Multimodal extraction for page 47 took 25.41 seconds
+[2025-05-08 10:21:25] [INFO] Processing page 48 with multimodal extraction...
+[2025-05-08 10:21:25] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:21:26] [INFO] Rendered page 48 to temporary_dir\image_page_48_683fe51e.png
+[2025-05-08 10:21:26] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:21:38] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:21:38] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:21:38] [INFO] Multimodal extraction successful for page 48
+[2025-05-08 10:21:38] [DEBUG] Multimodal extraction for page 48 took 12.62 seconds
+[2025-05-08 10:21:38] [INFO] Processing page 49 with multimodal extraction...
+[2025-05-08 10:21:38] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:21:38] [INFO] Rendered page 49 to temporary_dir\image_page_49_b5d83d47.png
+[2025-05-08 10:21:38] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:21:55] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:21:55] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:21:55] [INFO] Multimodal extraction successful for page 49
+[2025-05-08 10:21:55] [DEBUG] Multimodal extraction for page 49 took 17.20 seconds
+[2025-05-08 10:21:55] [INFO] Processing page 50 with multimodal extraction...
+[2025-05-08 10:21:55] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:21:56] [INFO] Rendered page 50 to temporary_dir\image_page_50_7bc8481b.png
+[2025-05-08 10:21:56] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:22:09] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:22:09] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:22:09] [INFO] Multimodal extraction successful for page 50
+[2025-05-08 10:22:09] [DEBUG] Multimodal extraction for page 50 took 13.76 seconds
+[2025-05-08 10:22:09] [INFO] Processing page 51 with multimodal extraction...
+[2025-05-08 10:22:09] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:22:09] [INFO] Rendered page 51 to temporary_dir\image_page_51_eb147d55.png
+[2025-05-08 10:22:09] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:22:19] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:22:19] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:22:19] [INFO] Multimodal extraction successful for page 51
+[2025-05-08 10:22:19] [DEBUG] Multimodal extraction for page 51 took 9.88 seconds
+[2025-05-08 10:22:19] [INFO] Processing page 52 with multimodal extraction...
+[2025-05-08 10:22:19] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:22:19] [INFO] Rendered page 52 to temporary_dir\image_page_52_b85de12b.png
+[2025-05-08 10:22:19] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:22:54] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:22:54] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:22:54] [INFO] Multimodal extraction successful for page 52
+[2025-05-08 10:22:54] [DEBUG] Multimodal extraction for page 52 took 35.22 seconds
+[2025-05-08 10:22:54] [INFO] Processing page 53 with multimodal extraction...
+[2025-05-08 10:22:54] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:22:54] [INFO] Rendered page 53 to temporary_dir\image_page_53_01715c57.png
+[2025-05-08 10:22:54] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:23:07] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:23:07] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:23:07] [INFO] Multimodal extraction successful for page 53
+[2025-05-08 10:23:07] [DEBUG] Multimodal extraction for page 53 took 12.66 seconds
+[2025-05-08 10:23:07] [INFO] Processing page 54 with multimodal extraction...
+[2025-05-08 10:23:07] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:23:07] [INFO] Rendered page 54 to temporary_dir\image_page_54_69574483.png
+[2025-05-08 10:23:07] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:23:24] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:23:24] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:23:24] [INFO] Multimodal extraction successful for page 54
+[2025-05-08 10:23:24] [DEBUG] Multimodal extraction for page 54 took 17.11 seconds
+[2025-05-08 10:23:24] [INFO] Processing page 55 with multimodal extraction...
+[2025-05-08 10:23:24] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:23:24] [INFO] Rendered page 55 to temporary_dir\image_page_55_8f379b87.png
+[2025-05-08 10:23:24] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:23:36] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:23:36] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:23:36] [INFO] Multimodal extraction successful for page 55
+[2025-05-08 10:23:36] [DEBUG] Multimodal extraction for page 55 took 11.91 seconds
+[2025-05-08 10:23:36] [INFO] Processing page 56 with multimodal extraction...
+[2025-05-08 10:23:36] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:23:36] [INFO] Rendered page 56 to temporary_dir\image_page_56_36c18f35.png
+[2025-05-08 10:23:36] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:23:50] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:23:50] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:23:50] [INFO] Multimodal extraction successful for page 56
+[2025-05-08 10:23:50] [DEBUG] Multimodal extraction for page 56 took 13.86 seconds
+[2025-05-08 10:23:50] [INFO] Processing page 57 with multimodal extraction...
+[2025-05-08 10:23:50] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:23:50] [INFO] Rendered page 57 to temporary_dir\image_page_57_7045f5ac.png
+[2025-05-08 10:23:50] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:24:01] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:24:01] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:24:01] [INFO] Multimodal extraction successful for page 57
+[2025-05-08 10:24:01] [DEBUG] Multimodal extraction for page 57 took 11.21 seconds
+[2025-05-08 10:24:01] [INFO] Processing page 58 with multimodal extraction...
+[2025-05-08 10:24:01] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:24:01] [INFO] Rendered page 58 to temporary_dir\image_page_58_d5ce5e94.png
+[2025-05-08 10:24:01] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:24:12] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:24:12] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:24:12] [INFO] Multimodal extraction successful for page 58
+[2025-05-08 10:24:12] [DEBUG] Multimodal extraction for page 58 took 11.12 seconds
+[2025-05-08 10:24:12] [INFO] Processing page 59 with multimodal extraction...
+[2025-05-08 10:24:12] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:24:12] [INFO] Rendered page 59 to temporary_dir\image_page_59_3db6713a.png
+[2025-05-08 10:24:12] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:24:23] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:24:23] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:24:23] [INFO] Multimodal extraction successful for page 59
+[2025-05-08 10:24:23] [DEBUG] Multimodal extraction for page 59 took 11.48 seconds
+[2025-05-08 10:24:23] [INFO] Processing page 60 with multimodal extraction...
+[2025-05-08 10:24:23] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:24:24] [INFO] Rendered page 60 to temporary_dir\image_page_60_ceb937a2.png
+[2025-05-08 10:24:24] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:24:33] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:24:33] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:24:33] [INFO] Multimodal extraction successful for page 60
+[2025-05-08 10:24:33] [DEBUG] Multimodal extraction for page 60 took 9.87 seconds
+[2025-05-08 10:24:33] [INFO] Processing page 61 with multimodal extraction...
+[2025-05-08 10:24:33] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:24:34] [INFO] Rendered page 61 to temporary_dir\image_page_61_6a5a628a.png
+[2025-05-08 10:24:34] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:24:43] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:24:43] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:24:43] [INFO] Multimodal extraction successful for page 61
+[2025-05-08 10:24:43] [DEBUG] Multimodal extraction for page 61 took 10.10 seconds
+[2025-05-08 10:24:43] [INFO] Processing page 62 with multimodal extraction...
+[2025-05-08 10:24:43] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:24:44] [INFO] Rendered page 62 to temporary_dir\image_page_62_8f4100b7.png
+[2025-05-08 10:24:44] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:26:03] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:26:03] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:26:03] [INFO] Multimodal extraction successful for page 62
+[2025-05-08 10:26:03] [DEBUG] Multimodal extraction for page 62 took 79.79 seconds
+[2025-05-08 10:26:03] [INFO] Processing page 63 with multimodal extraction...
+[2025-05-08 10:26:03] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:26:04] [INFO] Rendered page 63 to temporary_dir\image_page_63_7b349448.png
+[2025-05-08 10:26:04] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:26:39] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:26:39] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:26:39] [INFO] Multimodal extraction successful for page 63
+[2025-05-08 10:26:39] [DEBUG] Multimodal extraction for page 63 took 36.26 seconds
+[2025-05-08 10:26:39] [INFO] Processing page 64 with multimodal extraction...
+[2025-05-08 10:26:39] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:26:40] [INFO] Rendered page 64 to temporary_dir\image_page_64_3b910e6b.png
+[2025-05-08 10:26:40] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:27:18] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:27:18] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:27:18] [INFO] Multimodal extraction successful for page 64
+[2025-05-08 10:27:18] [DEBUG] Multimodal extraction for page 64 took 38.30 seconds
+[2025-05-08 10:27:18] [INFO] Processing page 65 with multimodal extraction...
+[2025-05-08 10:27:18] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:27:18] [INFO] Rendered page 65 to temporary_dir\image_page_65_10aa9d3a.png
+[2025-05-08 10:27:18] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:27:31] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:27:31] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:27:31] [INFO] Multimodal extraction successful for page 65
+[2025-05-08 10:27:31] [DEBUG] Multimodal extraction for page 65 took 13.26 seconds
+[2025-05-08 10:27:31] [INFO] Processing page 66 with multimodal extraction...
+[2025-05-08 10:27:31] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:27:31] [INFO] Rendered page 66 to temporary_dir\image_page_66_46ad9602.png
+[2025-05-08 10:27:31] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:27:44] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:27:44] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:27:44] [INFO] Multimodal extraction successful for page 66
+[2025-05-08 10:27:44] [DEBUG] Multimodal extraction for page 66 took 12.87 seconds
+[2025-05-08 10:27:44] [INFO] Processing page 67 with multimodal extraction...
+[2025-05-08 10:27:44] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:27:44] [INFO] Rendered page 67 to temporary_dir\image_page_67_479e0b5a.png
+[2025-05-08 10:27:44] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:27:56] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:27:56] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:27:56] [INFO] Multimodal extraction successful for page 67
+[2025-05-08 10:27:56] [DEBUG] Multimodal extraction for page 67 took 11.90 seconds
+[2025-05-08 10:27:56] [INFO] Processing page 68 with multimodal extraction...
+[2025-05-08 10:27:56] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:27:56] [INFO] Rendered page 68 to temporary_dir\image_page_68_ef387b3b.png
+[2025-05-08 10:27:56] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:28:10] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:28:10] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:28:10] [INFO] Multimodal extraction successful for page 68
+[2025-05-08 10:28:10] [DEBUG] Multimodal extraction for page 68 took 13.79 seconds
+[2025-05-08 10:28:10] [INFO] Processing page 69 with multimodal extraction...
+[2025-05-08 10:28:10] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:28:10] [INFO] Rendered page 69 to temporary_dir\image_page_69_6dd28730.png
+[2025-05-08 10:28:10] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:28:21] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:28:21] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:28:21] [INFO] Multimodal extraction successful for page 69
+[2025-05-08 10:28:21] [DEBUG] Multimodal extraction for page 69 took 11.81 seconds
+[2025-05-08 10:28:21] [INFO] Processing page 70 with multimodal extraction...
+[2025-05-08 10:28:21] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:28:22] [INFO] Rendered page 70 to temporary_dir\image_page_70_8e3ee3f5.png
+[2025-05-08 10:28:22] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:28:51] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:28:51] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:28:51] [INFO] Multimodal extraction successful for page 70
+[2025-05-08 10:28:51] [DEBUG] Multimodal extraction for page 70 took 29.82 seconds
+[2025-05-08 10:28:51] [INFO] Processing page 71 with multimodal extraction...
+[2025-05-08 10:28:51] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:28:52] [INFO] Rendered page 71 to temporary_dir\image_page_71_b3b7ea10.png
+[2025-05-08 10:28:52] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:29:02] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:29:02] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:29:02] [INFO] Multimodal extraction successful for page 71
+[2025-05-08 10:29:02] [DEBUG] Multimodal extraction for page 71 took 11.00 seconds
+[2025-05-08 10:29:02] [INFO] Processing page 72 with multimodal extraction...
+[2025-05-08 10:29:02] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:29:03] [INFO] Rendered page 72 to temporary_dir\image_page_72_bb09b016.png
+[2025-05-08 10:29:03] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:29:13] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:29:13] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:29:13] [INFO] Multimodal extraction successful for page 72
+[2025-05-08 10:29:13] [DEBUG] Multimodal extraction for page 72 took 10.46 seconds
+[2025-05-08 10:29:13] [INFO] Processing page 73 with multimodal extraction...
+[2025-05-08 10:29:13] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:29:13] [INFO] Rendered page 73 to temporary_dir\image_page_73_a40705aa.png
+[2025-05-08 10:29:13] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:29:22] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:29:22] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:29:22] [INFO] Multimodal extraction successful for page 73
+[2025-05-08 10:29:22] [DEBUG] Multimodal extraction for page 73 took 9.59 seconds
+[2025-05-08 10:29:22] [INFO] Processing page 74 with multimodal extraction...
+[2025-05-08 10:29:22] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:29:23] [INFO] Rendered page 74 to temporary_dir\image_page_74_aed27210.png
+[2025-05-08 10:29:23] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:29:37] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:29:37] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:29:37] [INFO] Multimodal extraction successful for page 74
+[2025-05-08 10:29:37] [DEBUG] Multimodal extraction for page 74 took 15.09 seconds
+[2025-05-08 10:29:37] [INFO] Processing page 75 with multimodal extraction...
+[2025-05-08 10:29:37] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:29:38] [INFO] Rendered page 75 to temporary_dir\image_page_75_c7ca7ec1.png
+[2025-05-08 10:29:38] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:29:49] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:29:49] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:29:49] [INFO] Multimodal extraction successful for page 75
+[2025-05-08 10:29:49] [DEBUG] Multimodal extraction for page 75 took 11.74 seconds
+[2025-05-08 10:29:49] [INFO] Processing page 76 with multimodal extraction...
+[2025-05-08 10:29:49] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:29:49] [INFO] Rendered page 76 to temporary_dir\image_page_76_20758c82.png
+[2025-05-08 10:29:49] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:30:01] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:30:01] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:30:01] [INFO] Multimodal extraction successful for page 76
+[2025-05-08 10:30:01] [DEBUG] Multimodal extraction for page 76 took 11.47 seconds
+[2025-05-08 10:30:01] [INFO] Processing page 77 with multimodal extraction...
+[2025-05-08 10:30:01] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:30:01] [INFO] Rendered page 77 to temporary_dir\image_page_77_8587434d.png
+[2025-05-08 10:30:01] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:30:13] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:30:13] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:30:13] [INFO] Multimodal extraction successful for page 77
+[2025-05-08 10:30:13] [DEBUG] Multimodal extraction for page 77 took 12.40 seconds
+[2025-05-08 10:30:13] [INFO] Processing page 78 with multimodal extraction...
+[2025-05-08 10:30:13] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:30:13] [INFO] Rendered page 78 to temporary_dir\image_page_78_aa12ba0b.png
+[2025-05-08 10:30:13] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:30:40] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:30:40] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:30:40] [INFO] Multimodal extraction successful for page 78
+[2025-05-08 10:30:40] [DEBUG] Multimodal extraction for page 78 took 26.50 seconds
+[2025-05-08 10:30:40] [INFO] Processing page 79 with multimodal extraction...
+[2025-05-08 10:30:40] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:30:40] [INFO] Rendered page 79 to temporary_dir\image_page_79_b6acb3e1.png
+[2025-05-08 10:30:40] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:31:05] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:31:05] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:31:05] [INFO] Multimodal extraction successful for page 79
+[2025-05-08 10:31:05] [DEBUG] Multimodal extraction for page 79 took 25.09 seconds
+[2025-05-08 10:31:05] [INFO] Processing page 80 with multimodal extraction...
+[2025-05-08 10:31:05] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:31:05] [INFO] Rendered page 80 to temporary_dir\image_page_80_97150182.png
+[2025-05-08 10:31:05] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:31:21] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:31:21] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:31:21] [INFO] Multimodal extraction successful for page 80
+[2025-05-08 10:31:21] [DEBUG] Multimodal extraction for page 80 took 16.70 seconds
+[2025-05-08 10:31:21] [INFO] Processing page 81 with multimodal extraction...
+[2025-05-08 10:31:21] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:31:22] [INFO] Rendered page 81 to temporary_dir\image_page_81_4d064318.png
+[2025-05-08 10:31:22] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:31:28] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:31:28] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:31:28] [INFO] Multimodal extraction successful for page 81
+[2025-05-08 10:31:28] [DEBUG] Multimodal extraction for page 81 took 6.96 seconds
+[2025-05-08 10:31:28] [INFO] Processing page 82 with multimodal extraction...
+[2025-05-08 10:31:28] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:31:28] [INFO] Rendered page 82 to temporary_dir\image_page_82_b14a37db.png
+[2025-05-08 10:31:28] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:31:38] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:31:38] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:31:38] [INFO] Multimodal extraction successful for page 82
+[2025-05-08 10:31:38] [DEBUG] Multimodal extraction for page 82 took 9.44 seconds
+[2025-05-08 10:31:38] [INFO] Processing page 83 with direct extraction...
+[2025-05-08 10:31:38] [INFO] Direct extraction successful for page 83
+[2025-05-08 10:31:38] [DEBUG] Direct extraction for page 83 took 0.05 seconds
+[2025-05-08 10:31:38] [INFO] Processing page 84 with direct extraction...
+[2025-05-08 10:31:38] [INFO] Direct extraction successful for page 84
+[2025-05-08 10:31:38] [DEBUG] Direct extraction for page 84 took 0.05 seconds
+[2025-05-08 10:31:38] [INFO] Processing page 85 with direct extraction...
+[2025-05-08 10:31:38] [INFO] Direct extraction successful for page 85
+[2025-05-08 10:31:38] [DEBUG] Direct extraction for page 85 took 0.05 seconds
+[2025-05-08 10:31:38] [INFO] Processing page 86 with direct extraction...
+[2025-05-08 10:31:38] [INFO] Direct extraction successful for page 86
+[2025-05-08 10:31:38] [DEBUG] Direct extraction for page 86 took 0.09 seconds
+[2025-05-08 10:31:38] [INFO] Processing page 87 with direct extraction...
+[2025-05-08 10:31:38] [INFO] Direct extraction successful for page 87
+[2025-05-08 10:31:38] [DEBUG] Direct extraction for page 87 took 0.05 seconds
+[2025-05-08 10:31:38] [INFO] Processing page 88 with direct extraction...
+[2025-05-08 10:31:38] [INFO] Direct extraction successful for page 88
+[2025-05-08 10:31:38] [DEBUG] Direct extraction for page 88 took 0.04 seconds
+[2025-05-08 10:31:38] [INFO] Processing page 89 with direct extraction...
+[2025-05-08 10:31:38] [INFO] Direct extraction successful for page 89
+[2025-05-08 10:31:38] [DEBUG] Direct extraction for page 89 took 0.05 seconds
+[2025-05-08 10:31:38] [INFO] Processing page 90 with direct extraction...
+[2025-05-08 10:31:38] [INFO] Direct extraction successful for page 90
+[2025-05-08 10:31:38] [DEBUG] Direct extraction for page 90 took 0.05 seconds
+[2025-05-08 10:31:38] [INFO] Processing page 91 with direct extraction...
+[2025-05-08 10:31:38] [INFO] Direct extraction successful for page 91
+[2025-05-08 10:31:38] [DEBUG] Direct extraction for page 91 took 0.05 seconds
+[2025-05-08 10:31:38] [INFO] Processing page 92 with direct extraction...
+[2025-05-08 10:31:38] [INFO] Direct extraction successful for page 92
+[2025-05-08 10:31:38] [DEBUG] Direct extraction for page 92 took 0.09 seconds
+[2025-05-08 10:31:38] [INFO] Processing page 93 with direct extraction...
+[2025-05-08 10:31:38] [INFO] Direct extraction successful for page 93
+[2025-05-08 10:31:38] [DEBUG] Direct extraction for page 93 took 0.04 seconds
+[2025-05-08 10:31:38] [INFO] Processing page 94 with direct extraction...
+[2025-05-08 10:31:38] [INFO] Direct extraction successful for page 94
+[2025-05-08 10:31:38] [DEBUG] Direct extraction for page 94 took 0.04 seconds
+[2025-05-08 10:31:38] [INFO] Processing page 95 with direct extraction...
+[2025-05-08 10:31:38] [INFO] Direct extraction successful for page 95
+[2025-05-08 10:31:38] [DEBUG] Direct extraction for page 95 took 0.05 seconds
+[2025-05-08 10:31:38] [INFO] Processing page 96 with direct extraction...
+[2025-05-08 10:31:38] [INFO] Direct extraction successful for page 96
+[2025-05-08 10:31:38] [DEBUG] Direct extraction for page 96 took 0.03 seconds
+[2025-05-08 10:31:38] [INFO] Processing page 97 with direct extraction...
+[2025-05-08 10:31:39] [INFO] Direct extraction successful for page 97
+[2025-05-08 10:31:39] [DEBUG] Direct extraction for page 97 took 0.04 seconds
+[2025-05-08 10:31:39] [INFO] Processing page 98 with direct extraction...
+[2025-05-08 10:31:39] [INFO] Direct extraction successful for page 98
+[2025-05-08 10:31:39] [DEBUG] Direct extraction for page 98 took 0.03 seconds
+[2025-05-08 10:31:39] [INFO] Processing page 99 with multimodal extraction...
+[2025-05-08 10:31:39] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:31:39] [INFO] Rendered page 99 to temporary_dir\image_page_99_780e9b87.png
+[2025-05-08 10:31:39] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:31:47] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:31:47] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:31:47] [INFO] Multimodal extraction successful for page 99
+[2025-05-08 10:31:47] [DEBUG] Multimodal extraction for page 99 took 8.00 seconds
+[2025-05-08 10:31:47] [INFO] Processing page 100 with multimodal extraction...
+[2025-05-08 10:31:47] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:31:47] [INFO] Rendered page 100 to temporary_dir\image_page_100_8a435c25.png
+[2025-05-08 10:31:47] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:32:01] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:32:01] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:32:01] [INFO] Multimodal extraction successful for page 100
+[2025-05-08 10:32:01] [DEBUG] Multimodal extraction for page 100 took 14.44 seconds
+[2025-05-08 10:32:01] [INFO] Processing page 101 with multimodal extraction...
+[2025-05-08 10:32:01] [DEBUG] Memastikan direktori temporary_dir ada
+[2025-05-08 10:32:01] [INFO] Rendered page 101 to temporary_dir\image_page_101_2192aaee.png
+[2025-05-08 10:32:01] [INFO] Sending request with prompt: Dokumen perusahaan ini sedang dianalisis oleh tim ...
+[2025-05-08 10:32:09] [INFO] Successfully parsed JSON from API response: <class 'dict'>
+[2025-05-08 10:32:09] [INFO] Successfully parsed JSON from API response on attempt 1
+[2025-05-08 10:32:09] [INFO] Multimodal extraction successful for page 101
+[2025-05-08 10:32:09] [DEBUG] Multimodal extraction for page 101 took 8.24 seconds
+[2025-05-08 10:32:09] [INFO] Processing page 102 with direct extraction...
+[2025-05-08 10:32:09] [INFO] Direct extraction successful for page 102
+[2025-05-08 10:32:09] [DEBUG] Direct extraction for page 102 took 0.08 seconds
+[2025-05-08 10:32:09] [INFO] Processing page 103 with direct extraction...
+[2025-05-08 10:32:09] [INFO] Direct extraction successful for page 103
+[2025-05-08 10:32:09] [DEBUG] Direct extraction for page 103 took 0.05 seconds
+[2025-05-08 10:32:09] [INFO] Processing page 104 with direct extraction...
+[2025-05-08 10:32:09] [INFO] Direct extraction successful for page 104
+[2025-05-08 10:32:09] [DEBUG] Direct extraction for page 104 took 0.04 seconds
+[2025-05-08 10:32:09] [INFO] Processing page 105 with direct extraction...
+[2025-05-08 10:32:09] [INFO] Direct extraction successful for page 105
+[2025-05-08 10:32:09] [DEBUG] Direct extraction for page 105 took 0.05 seconds
+[2025-05-08 10:32:09] [INFO] Processing page 106 with direct extraction...
+[2025-05-08 10:32:09] [INFO] Direct extraction successful for page 106
+[2025-05-08 10:32:09] [DEBUG] Direct extraction for page 106 took 0.04 seconds
+[2025-05-08 10:32:09] [INFO] Processing page 107 with direct extraction...
+[2025-05-08 10:32:10] [INFO] Direct extraction successful for page 107
+[2025-05-08 10:32:10] [DEBUG] Direct extraction for page 107 took 0.03 seconds
+[2025-05-08 10:32:10] [INFO] Processing page 108 with direct extraction...
+[2025-05-08 10:32:10] [INFO] Direct extraction successful for page 108
+[2025-05-08 10:32:10] [DEBUG] Direct extraction for page 108 took 0.09 seconds
+[2025-05-08 10:32:10] [INFO] Processing page 109 with direct extraction...
+[2025-05-08 10:32:10] [INFO] Direct extraction successful for page 109
+[2025-05-08 10:32:10] [DEBUG] Direct extraction for page 109 took 0.05 seconds
+[2025-05-08 10:32:10] [INFO] Processing page 110 with direct extraction...
+[2025-05-08 10:32:10] [INFO] Direct extraction successful for page 110
+[2025-05-08 10:32:10] [DEBUG] Direct extraction for page 110 took 0.05 seconds
+[2025-05-08 10:32:10] [INFO] Processing page 111 with direct extraction...
+[2025-05-08 10:32:10] [INFO] Direct extraction successful for page 111
+[2025-05-08 10:32:10] [DEBUG] Direct extraction for page 111 took 0.05 seconds
+[2025-05-08 10:32:10] [INFO] Processing page 112 with direct extraction...
+[2025-05-08 10:32:10] [INFO] Direct extraction successful for page 112
+[2025-05-08 10:32:10] [DEBUG] Direct extraction for page 112 took 0.05 seconds
+[2025-05-08 10:32:10] [INFO] Processing page 113 with direct extraction...
+[2025-05-08 10:32:10] [INFO] Direct extraction successful for page 113
+[2025-05-08 10:32:10] [DEBUG] Direct extraction for page 113 took 0.04 seconds
+[2025-05-08 10:32:10] [INFO] Cleaned up 52 temporary image files from temporary_dir
+[2025-05-08 10:32:10] [INFO] PDF processing completed. Total pages processed: 113
+[2025-05-08 10:32:10] [INFO] Direct: 56, OCR: 5, Multimodal: 52
+[2025-05-08 10:32:10] [INFO] Pemrosesan selesai untuk ABF Indonesia Bond Index Fund Update June 2024
