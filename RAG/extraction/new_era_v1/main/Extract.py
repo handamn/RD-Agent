@@ -111,7 +111,6 @@ class IntegratedPdfExtractor:
         load_dotenv()
         self.google_api_key = os.getenv('GOOGLE_API_KEY')
         
-        
         # Configure Gemini API jika API key tersedia
         if self.google_api_key:
             genai.configure(api_key=self.google_api_key)
