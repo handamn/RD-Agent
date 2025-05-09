@@ -26,6 +26,11 @@
                         "block_id": 2,
                         "type": "text",
                         "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+                    },
+                    {
+                        "block_id": 3,
+                        "type": "text",
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
                     }
                 ]
             }
@@ -42,6 +47,11 @@
                 "content_blocks": [
                     {
                         "block_id": 1,
+                        "type": "text",
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+                    },
+                    {
+                        "block_id": 2,
                         "type": "text",
                         "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
                     }
