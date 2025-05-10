@@ -88,6 +88,7 @@ class QdrantInserter:
             self.logger.log_info(f"File not found: {json_path}", status="ERROR")
             return
 
+        # Load the JSON data
         with open(json_path, "r", encoding="utf-8") as f:
             try:
                 data = json.load(f)
@@ -95,46 +96,106 @@ class QdrantInserter:
                 self.logger.log_info(f"Invalid JSON in {json_path}: {e}", status="ERROR")
                 return
 
-        total_inserted = 0
+        # Check if data is in the new format (has "document_metadata" and "chunks")
+        is_new_format = "document_metadata" in data and "chunks" in data
+        
+        if is_new_format:
+            self.logger.log_info(f"Detected new JSON format with document metadata")
+            items = data["chunks"]
+            doc_metadata = data["document_metadata"]
+        else:
+            self.logger.log_info(f"Detected old JSON format (list of items)")
+            items = data
+            doc_metadata = {}
+        
+        total_embedded = 0
+        total_reused = 0
         total_skipped = 0
+        total_failed = 0
+        modified = False
+        
+        # Process each chunk/item
+        for item in tqdm(items, desc="Processing items"):
+            # Get chunk_id or id based on format
+            if is_new_format:
+                item_id = item.get("chunk_id")
+                content_field = "content"
+                metadata_field = "metadata"
+            else:
+                item_id = item.get("id")
+                content_field = "text"
+                metadata_field = "metadata"
 
-        for item in tqdm(data, desc="Processing items"):
-            item_id = item.get("id")
             if not item_id:
-                self.logger.log_info(f"SKIP: missing 'id' in item {item}", status="SKIP")
+                self.logger.log_info(f"SKIP: missing id in item", status="SKIP")
                 total_skipped += 1
                 continue
-
+                
             if item_id in self.inserted_ids:
                 self.logger.log_info(f"SKIP: ID {item_id} already in index.json", status="SKIP")
                 total_skipped += 1
                 continue
 
-            text = item.get("text", "")
-            metadata = item.get("metadata", {})
+            text = item.get(content_field, "")
+            metadata = item.get(metadata_field, {})
             point_id = self.get_point_id(item_id)
-
+            
             try:
-                vector = self.embedder.embed_text(text)
+                # Check if item already has embedding
+                if "embedding" in item and item["embedding"]:
+                    self.logger.log_info(f"REUSE: Using existing embedding for ID {item_id}")
+                    vector = item["embedding"]
+                    total_reused += 1
+                else:
+                    # Generate new embedding
+                    self.logger.log_info(f"EMBED: Generating new embedding for ID {item_id}")
+                    vector = self.embedder.embed_text(text)
+                    # Save embedding back to the JSON structure
+                    item["embedding"] = vector
+                    modified = True
+                    total_embedded += 1
+
+                # Prepare payload for Qdrant
                 payload = {
                     "item_id": item_id,
                     "text": text,
-                    "metadata": metadata,
+                    "metadata": metadata
                 }
+                
+                if is_new_format:
+                    # Add document metadata to the payload
+                    payload["document_metadata"] = {
+                        "filename": doc_metadata.get("filename", ""),
+                        "total_pages": doc_metadata.get("total_pages", 0),
+                        "extraction_date": doc_metadata.get("extraction_date", "")
+                    }
+                
+                # Create point and upsert to Qdrant
                 point = PointStruct(id=point_id, vector=vector, payload=payload)
                 self.qdrant.upsert(collection_name=self.collection_name, points=[point])
-
-                # update index
+                
+                # Update our index
                 self.inserted_ids.add(item_id)
-                total_inserted += 1
-                self.logger.log_info(f"INSERT: ID {item_id} succeeded")
-
+                self.logger.log_info(f"INSERT: ID {item_id} added to Qdrant")
+            
             except Exception as e:
                 self.logger.log_info(f"ERROR processing ID {item_id}: {e}", status="ERROR")
-
-        # save index at end
+                total_failed += 1
+        
+        # Save the updated JSON with embeddings back to file if modified
+        if modified:
+            self.logger.log_info(f"Saving updated JSON with embeddings back to {json_path}")
+            with open(json_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2)
+        
+        # Save the index at the end
         self._save_index()
-        self.logger.log_info(f"Done: {total_inserted} inserted, {total_skipped} skipped")
+        
+        # Log summary
+        self.logger.log_info(
+            f"Done: {total_embedded} newly embedded, {total_reused} reused embeddings, "
+            f"{total_skipped} skipped, {total_failed} failed"
+        )
 
 # ===== Main =====
 if __name__ == "__main__":
