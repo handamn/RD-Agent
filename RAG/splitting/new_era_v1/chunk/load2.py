@@ -22,7 +22,7 @@ class PdfExtractorLogger:
 
 # ====== Chunk Processor Class ======
 class PDFChunkProcessor:
-    def __init__(self, input_names, input_folder="data/input_json", output_folder="database/chunk_result",
+    def __init__(self, input_names, input_folder="database/extracted_result", output_folder="database/chunk_result",
                  max_tokens=1000, overlap_tokens=100):
         self.input_names = input_names  # List of lists e.g. [["Avrist IDX30"]]
         self.input_folder = input_folder
@@ -179,8 +179,8 @@ class PDFChunkProcessor:
 
 # ====== Contoh Penggunaan ======
 pdf_files = [
-    ["Avrist IDX30"],
-    ["Avrist Ada Saham Blue Safir Kelas A"]
+    ["extracted_b"],
+    # ["Avrist Ada Saham Blue Safir Kelas A"]
 ]
 
 processor = PDFChunkProcessor(input_names=pdf_files)
