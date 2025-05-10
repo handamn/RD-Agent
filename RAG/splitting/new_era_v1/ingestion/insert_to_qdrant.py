@@ -200,7 +200,7 @@ class QdrantInserter:
 # ===== Main =====
 if __name__ == "__main__":
     # Your OpenAI API key
-    openai_api_key = "xxx"  # Replace with your actual API key
+    openai_api_key = ""  # Replace with your actual API key
     
     json_file = "database/chunk_result/ABF Indonesia Bond Index Fund_chunk.json"  # sesuaikan path
     collection = "try_first"  # ganti nama collection jika perlu
