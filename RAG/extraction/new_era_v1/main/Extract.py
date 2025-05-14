@@ -110,7 +110,7 @@ class IntegratedPdfExtractor:
         """Setup API Google untuk metode multimodal."""
         load_dotenv()
         # self.google_api_key = os.getenv('GOOGLE_API_KEY')
-        self.google_api_key = "AIzaSyAFcQzd0w_J_ciKsWwgylTtYxd-mKSODc8"
+        self.google_api_key = ""
         
         # Configure Gemini API jika API key tersedia
         if self.google_api_key:
