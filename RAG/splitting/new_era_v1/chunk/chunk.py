@@ -185,3 +185,4 @@ pdf_files = [
 
 processor = PDFChunkProcessor(input_names=pdf_files)
 processor.process()
+ # type: ignore
