@@ -1,0 +1,29 @@
+[2025-05-15 22:18:12] [INFO] Memulai pemrosesan 1 file...
+[2025-05-15 22:18:12] [INFO] File 1/1: extracted_b
+[2025-05-15 22:18:12] [INFO] Memproses file: database/extracted_result\extracted_b.json
+[2025-05-15 22:18:12] [INFO] Dokumen: ABF Indonesia Bond Index Fund.pdf, Total halaman: 113
+[2025-05-15 22:18:12] [INFO] Membuat chunks dari database/extracted_result\extracted_b.json...
+[2025-05-15 22:18:30] [PROGRESS] Progress: [█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 5% (6/113) Halaman 6 (1 chunks)
+[2025-05-15 22:18:30] [PROGRESS] Progress: [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10% (12/113) Halaman 12 (1 chunks)
+[2025-05-15 22:18:30] [PROGRESS] Progress: [████░░░░░░░░░░░░░░░░░░░░░░░░░░] 15% (17/113) Halaman 17 (1 chunks)
+[2025-05-15 22:18:43] [PROGRESS] Progress: [██████░░░░░░░░░░░░░░░░░░░░░░░░] 20% (23/113) Halaman 23 (1 chunks)
+[2025-05-15 22:18:43] [PROGRESS] Progress: [███████░░░░░░░░░░░░░░░░░░░░░░░] 25% (29/113) Halaman 29 (1 chunks)
+[2025-05-15 22:18:55] [PROGRESS] Progress: [█████████░░░░░░░░░░░░░░░░░░░░░] 30% (34/113) Halaman 34 (22 chunks)
+[2025-05-15 22:18:55] [PROGRESS] Progress: [██████████░░░░░░░░░░░░░░░░░░░░] 35% (40/113) Halaman 40 (7 chunks)
+[2025-05-15 22:19:58] [PROGRESS] Progress: [████████████░░░░░░░░░░░░░░░░░░] 40% (46/113) Halaman 46 (6 chunks)
+[2025-05-15 22:19:58] [PROGRESS] Progress: [█████████████░░░░░░░░░░░░░░░░░] 45% (51/113) Halaman 51 (6 chunks)
+[2025-05-15 22:19:58] [PROGRESS] Progress: [███████████████░░░░░░░░░░░░░░░] 50% (57/113) Halaman 57 (21 chunks)
+[2025-05-15 22:20:57] [PROGRESS] Progress: [████████████████░░░░░░░░░░░░░░] 55% (63/113) Halaman 63 (9 chunks)
+[2025-05-15 22:23:46] [PROGRESS] Progress: [██████████████████░░░░░░░░░░░░] 60% (68/113) Halaman 68 (21 chunks)
+[2025-05-15 22:24:07] [PROGRESS] Progress: [███████████████████░░░░░░░░░░░] 65% (74/113) Halaman 74 (19 chunks)
+[2025-05-15 22:25:27] [PROGRESS] Progress: [█████████████████████░░░░░░░░░] 70% (80/113) Halaman 80 (17 chunks)
+[2025-05-15 22:25:38] [PROGRESS] Progress: [██████████████████████░░░░░░░░] 75% (85/113) Halaman 85 (1 chunks)
+[2025-05-15 22:25:38] [PROGRESS] Progress: [████████████████████████░░░░░░] 80% (91/113) Halaman 91 (1 chunks)
+[2025-05-15 22:25:38] [PROGRESS] Progress: [█████████████████████████░░░░░] 85% (97/113) Halaman 97 (1 chunks)
+[2025-05-15 22:25:38] [WARNING] ⚠️ Gagal generate narrative untuk flowchart: sequence item 0: expected str instance, NoneType found
+[2025-05-15 22:25:38] [WARNING] ⚠️ Gagal generate narrative untuk flowchart: sequence item 0: expected str instance, NoneType found
+[2025-05-15 22:25:53] [PROGRESS] Progress: [███████████████████████████░░░] 90% (102/113) Halaman 102 (1 chunks)
+[2025-05-15 22:25:53] [PROGRESS] Progress: [████████████████████████████░░] 95% (108/113) Halaman 108 (1 chunks)
+[2025-05-15 22:25:53] [PROGRESS] Progress: [██████████████████████████████] 100% (113/113) Halaman 113 (1 chunks)
+[2025-05-15 22:25:53] [SUCCESS] ✅ Berhasil: 692 chunk disimpan ke database/chunk_result\chunked_extracted_b.json
+[2025-05-15 22:25:53] [SUCCESS] ✅ Selesai! 1 berhasil, 0 gagal dalam 460.74 detik. Total 36 API requests
