@@ -9,19 +9,21 @@ from typing import List, Dict, Any, Optional, Tuple
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from tenacity import retry, stop_after_attempt, wait_exponential
+from dotenv import load_dotenv
 
 # ========== KONFIGURASI ==========
 class Config:
     # Konfigurasi Model
-    GEMINI_MODEL = "gemini-pro"
-    API_KEY_ENV_VAR = "GEMINI_API_KEY"
+    GEMINI_MODEL = "gemini-2.5-flash-preview-04-17"
+    load_dotenv()
+    API_KEY_ENV_VAR = os.getenv('GOOGLE_API_KEY')
     
     # Konfigurasi Chunking
     DEFAULT_MAX_TOKENS = 1000
     DEFAULT_OVERLAP_TOKENS = 100
     
     # Konfigurasi Teknis
-    MAX_WORKERS = 3  # Jumlah thread paralel untuk API calls
+    MAX_WORKERS = 1  # Jumlah thread paralel untuk API calls
     MAX_RETRIES = 3  # Jumlah retry jika API call gagal
     
     # Konfigurasi Path
@@ -65,7 +67,7 @@ class GeminiClient:
         self.logger = logger or Logger(verbose=False)
         
         # Inisialisasi API key
-        api_key = api_key or os.getenv(Config.API_KEY_ENV_VAR)
+        api_key = api_key or os.getenv('GOOGLE_API_KEY')
         if not api_key:
             self.logger.error(f"API Key tidak ditemukan. Set environment variable {Config.API_KEY_ENV_VAR}")
             raise ValueError(f"API Key tidak ditemukan. Set environment variable {Config.API_KEY_ENV_VAR}")
