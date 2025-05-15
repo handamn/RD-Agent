@@ -38,6 +38,7 @@ class Logger:
         os.makedirs(log_dir, exist_ok=True)
         log_filename = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "_Extractor.log"
         self.LOG_FILE = os.path.join(log_dir, log_filename)
+        self.last_progress = 0  # Untuk tracking progress terakhir yang ditampilkan
 
     def log(self, message, status="INFO"):
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -60,6 +61,52 @@ class Logger:
         
     def info(self, message):
         self.log(message, "INFO")
+    
+    def progress(self, current, total, message="", min_update=5):
+        """
+        Menampilkan dan mencatat progress
+        
+        Args:
+            current: Nilai saat ini
+            total: Nilai total
+            message: Pesan tambahan
+            min_update: Persentase minimal untuk update (mencegah terlalu banyak log)
+        """
+        if total <= 0:
+            return
+            
+        percent = int((current / total) * 100)
+        
+        # Hanya update jika ada perubahan signifikan atau sudah selesai
+        if percent - self.last_progress >= min_update or percent >= 100:
+            self.last_progress = percent
+            
+            # Buat progress bar
+            bar_length = 30
+            filled_length = int(bar_length * current // total)
+            bar = '█' * filled_length + '░' * (bar_length - filled_length)
+            
+            # Format pesan progress
+            prog_message = f"Progress: [{bar}] {percent}% ({current}/{total}) {message}"
+            
+            # Log ke file tanpa status khusus
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            log_message = f"[{timestamp}] [PROGRESS] {prog_message}\n"
+            
+            with open(self.LOG_FILE, "a", encoding="utf-8") as log_file:
+                log_file.write(log_message)
+            
+            # Tampilkan di terminal dengan carriage return untuk update in-place
+            if self.verbose:
+                print(f"\r{prog_message}", end="", flush=True)
+                if percent >= 100:
+                    print()  # Baris baru setelah selesai
+    
+    def reset_progress(self):
+        """Reset progress tracking untuk file baru"""
+        self.last_progress = 0
+        if self.verbose:
+            print()  # Baris baru untuk memastikan progress bar berikutnya tampil dengan benar
 
 # ========== GEMINI CLIENT ==========
 class GeminiClient:
@@ -102,9 +149,7 @@ class Prompts:
         return f"""Buatlah narasi ringkas dan profesional dari data tabel berikut. Narasi harus informatif, jelas, dan ditulis dalam bahasa Indonesia formal:
 
 Data:
-{json.dumps(row, indent=2, ensure_ascii=False)}
-
-Output:"""
+{json.dumps(row, indent=2, ensure_ascii=False)}"""
 
     @staticmethod
     def flowchart_narrative(elements: List[dict]) -> str:
@@ -113,9 +158,7 @@ Output:"""
         ])
         return f"""Berikut adalah elemen dan koneksi dari suatu flowchart. Buatlah narasi ringkas dan terstruktur dalam bahasa Indonesia formal yang menjelaskan alur proses tersebut:
 
-{desc}
-
-Output:"""
+{desc}"""
 
 # ========== CONTENT PROCESSOR ==========
 class ContentProcessor:
@@ -186,20 +229,33 @@ class ChunkCreator:
         """Membuat chunk dari data JSON dokumen"""
         chunks = []
         doc_meta = json_data.get("metadata", {})
+        pages = json_data.get("pages", {})
         
         # Validasi input
-        if not json_data.get("pages"):
+        if not pages:
             self.logger.warning("Tidak ada data halaman dalam dokumen")
             return []
+        
+        # Hitung total halaman dan blok untuk tracking progress    
+        total_pages = len(pages)
+        page_nums = sorted([int(pn) for pn in pages.keys()])
             
         # Iterasi melalui halaman
-        for page_num_str, page_data in sorted(json_data.get("pages", {}).items(), key=lambda x: int(x[0])):
+        for i, page_num in enumerate(page_nums):
             try:
-                page_num = int(page_num_str)
+                page_data = pages.get(str(page_num), {})
                 page_chunks = self._process_page(page_num, page_data, doc_meta)
                 chunks.extend(page_chunks)
+                
+                # Update progress
+                self.logger.progress(
+                    i + 1, 
+                    total_pages, 
+                    f"Halaman {page_num} ({len(page_chunks)} chunks)"
+                )
+                
             except Exception as e:
-                self.logger.error(f"Gagal memproses halaman {page_num_str}: {str(e)}")
+                self.logger.error(f"Gagal memproses halaman {page_num}: {str(e)}")
                 
         return chunks
         
@@ -210,6 +266,9 @@ class ChunkCreator:
         
         if not content_blocks:
             return []
+        
+        total_blocks = len(content_blocks)
+        processed_blocks = 0
         
         # Gunakan thread pool untuk memproses blok secara paralel
         with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
@@ -225,13 +284,17 @@ class ChunkCreator:
             for future in as_completed(futures):
                 try:
                     result = future.result()
+                    processed_blocks += 1
+                    
                     if result:
                         if isinstance(result, list):
                             page_chunks.extend(result)
                         else:
                             page_chunks.append(result)
+                            
                 except Exception as e:
                     self.logger.error(f"Error saat memproses blok: {str(e)}")
+                    processed_blocks += 1  # Tetap increment untuk progress tracking
                     
         return page_chunks
     
@@ -272,6 +335,8 @@ class ChunkCreator:
         # Jika tabel kosong
         if not structured_rows:
             return []
+        
+        total_rows = len(structured_rows)
             
         for i, row_struct in enumerate(structured_rows):
             narration = self.content_processor.generate_narrative(row_struct, "table")
@@ -438,12 +503,22 @@ class PDFChunkProcessor:
             
         success_count = 0
         failed_count = 0
+        total_files = len(self.input_names)
         start_time = time.time()
         
-        for name_list in self.input_names:
+        # Tampilkan progress keseluruhan
+        self.logger.info(f"Memulai pemrosesan {total_files} file...")
+        
+        for i, name_list in enumerate(self.input_names):
             name = name_list[0]
             input_path = os.path.join(self.input_folder, f"{name}.json")
             output_path = os.path.join(self.output_folder, f"chunked_{name}.json")
+            
+            # Reset progress untuk file baru
+            self.logger.reset_progress()
+            
+            # Update progress antar file
+            self.logger.info(f"File {i+1}/{total_files}: {name}")
             
             # Validasi dan pemeriksaan file
             if not self.validate_input_file(input_path):
@@ -478,6 +553,12 @@ class PDFChunkProcessor:
             with open(input_path, 'r', encoding='utf-8') as f:
                 pdf_data = json.load(f)
                 
+            # Ambil metadata untuk ditampilkan di progress
+            doc_name = pdf_data.get("metadata", {}).get("filename", Path(input_path).stem)
+            total_pages = len(pdf_data.get("pages", {}))
+            
+            self.logger.info(f"Dokumen: {doc_name}, Total halaman: {total_pages}")
+            
             # Buat chunks
             self.logger.info(f"Membuat chunks dari {input_path}...")
             chunks = self.chunk_creator.create_document_chunks(pdf_data)
