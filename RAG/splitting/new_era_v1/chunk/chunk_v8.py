@@ -702,7 +702,7 @@ class ChunkCreator:
                 metadata=metadata
             )
         
-    def _process_image_block(self, block: Dict, page_num: int, doc_meta: Dict, block_id: str) -> Optional[Dict]:
+    def _process_image_block(self, block: Dict, metadata: Dict) -> Optional[Dict]:
         """Memproses blok gambar"""
         desc = self.content_processor.clean_text(block.get("description_image", ""))
         
@@ -713,12 +713,7 @@ class ChunkCreator:
             content=desc,
             structured_repr=None,
             narrative_repr=desc,
-            metadata={
-                "document": doc_meta.get("filename", "unknown"),
-                "page": page_num,
-                "type": "image",
-                "block_id": block_id
-            }
+            metadata=metadata
         )
         
     def _create_chunk_object(self, content, structured_repr, narrative_repr, metadata):
@@ -761,11 +756,10 @@ class PDFChunkProcessor:
                  output_folder=Config.DEFAULT_OUTPUT_FOLDER,
                  max_tokens=Config.DEFAULT_MAX_TOKENS, 
                  overlap_tokens=Config.DEFAULT_OVERLAP_TOKENS,
-                 add_context=True,
-                 context_tokens=Config.DEFAULT_CONTEXT_TOKENS,
                  api_key=None,
                  continue_from_last=True,
                  max_workers=Config.MAX_WORKERS,
+                 use_structured_output=True,
                  verbose=True):
         
         self.input_names = input_names or []
@@ -773,10 +767,9 @@ class PDFChunkProcessor:
         self.output_folder = output_folder
         self.max_tokens = max_tokens
         self.overlap_tokens = overlap_tokens
-        self.add_context = add_context
-        self.context_tokens = context_tokens
         self.continue_from_last = continue_from_last
         self.max_workers = max_workers
+        self.use_structured_output = use_structured_output
         
         # Buat direktori output jika belum ada
         os.makedirs(self.output_folder, exist_ok=True)
@@ -784,13 +777,17 @@ class PDFChunkProcessor:
         # Inisialisasi komponen
         self.logger = Logger(verbose=verbose)
         self.gemini_client = GeminiClient(api_key=api_key, logger=self.logger)
-        self.content_processor = ContentProcessor(self.gemini_client, logger=self.logger)
+        self.content_processor = ContentProcessor(
+            self.gemini_client, 
+            logger=self.logger,
+            use_structured_output=use_structured_output
+        )
         self.chunk_creator = ChunkCreator(
             self.content_processor, 
             max_workers=self.max_workers, 
-            logger=self.logger,
-            add_context=self.add_context,
-            context_tokens=self.context_tokens
+            max_tokens=self.max_tokens,
+            overlap_tokens=self.overlap_tokens,
+            logger=self.logger
         )
     
     def validate_input_file(self, input_path):
@@ -936,10 +933,11 @@ if __name__ == "__main__":
     # Inisialisasi processor dengan konfigurasi default
     processor = PDFChunkProcessor(
         input_names=pdf_files,
-        continue_from_last=True,  # Lewati file yang sudah diproses
-        add_context=True,         # Tambahkan konteks dari chunk sebelumnya untuk tabel dan flowchart
-        context_tokens=100,       # Jumlah token konteks yang ditambahkan
-        verbose=True              # Tampilkan log
+        continue_from_last=True,         # Lewati file yang sudah diproses
+        max_tokens=Config.DEFAULT_MAX_TOKENS,
+        overlap_tokens=Config.DEFAULT_OVERLAP_TOKENS,
+        use_structured_output=True,      # Gunakan output terstruktur (JSON) dari Gemini
+        verbose=True                     # Tampilkan log
     )
     
     # Jalankan pemrosesan
