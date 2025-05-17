@@ -202,8 +202,8 @@ if __name__ == "__main__":
     # Your OpenAI API key
     openai_api_key = ""  # Replace with your actual API key
     
-    json_file = "database/chunk_result/ABF Indonesia Bond Index Fund_chunk.json"  # sesuaikan path
-    collection = "try_first"  # ganti nama collection jika perlu
+    json_file = "database/chunked_result/ABF Indonesia Bond Index Fund_chunked.json"  # sesuaikan path
+    collection = "tomoro_try"  # ganti nama collection jika perlu
 
     inserter = QdrantInserter(collection_name=collection, api_key=openai_api_key)
     inserter.insert_from_json(json_file)
