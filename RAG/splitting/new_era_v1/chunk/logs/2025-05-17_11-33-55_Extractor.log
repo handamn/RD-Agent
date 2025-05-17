@@ -1,0 +1,38 @@
+[2025-05-17 11:33:55] [INFO] Memulai pemrosesan 1 file...
+[2025-05-17 11:33:55] [INFO] File 1/1: extracted_b
+[2025-05-17 11:33:55] [INFO] Memproses file: database/extracted_result\extracted_b.json
+[2025-05-17 11:33:55] [INFO] Dokumen: ABF Indonesia Bond Index Fund.pdf, Total halaman: 113
+[2025-05-17 11:33:55] [INFO] Membuat chunks dari database/extracted_result\extracted_b.json...
+[2025-05-17 11:33:55] [PROGRESS] Progress: [█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 5% (6/113) Mengumpulkan blok halaman 6
+[2025-05-17 11:33:55] [PROGRESS] Progress: [███░░░░░░░░░░░░░░░░░░░░░░░░░░░] 10% (12/113) Mengumpulkan blok halaman 12
+[2025-05-17 11:33:55] [PROGRESS] Progress: [████░░░░░░░░░░░░░░░░░░░░░░░░░░] 15% (17/113) Mengumpulkan blok halaman 17
+[2025-05-17 11:33:55] [PROGRESS] Progress: [██████░░░░░░░░░░░░░░░░░░░░░░░░] 20% (23/113) Mengumpulkan blok halaman 23
+[2025-05-17 11:33:55] [PROGRESS] Progress: [███████░░░░░░░░░░░░░░░░░░░░░░░] 25% (29/113) Mengumpulkan blok halaman 29
+[2025-05-17 11:33:55] [PROGRESS] Progress: [█████████░░░░░░░░░░░░░░░░░░░░░] 30% (34/113) Mengumpulkan blok halaman 34
+[2025-05-17 11:33:55] [PROGRESS] Progress: [██████████░░░░░░░░░░░░░░░░░░░░] 35% (40/113) Mengumpulkan blok halaman 40
+[2025-05-17 11:33:55] [PROGRESS] Progress: [████████████░░░░░░░░░░░░░░░░░░] 40% (46/113) Mengumpulkan blok halaman 46
+[2025-05-17 11:33:55] [PROGRESS] Progress: [█████████████░░░░░░░░░░░░░░░░░] 45% (51/113) Mengumpulkan blok halaman 51
+[2025-05-17 11:33:55] [PROGRESS] Progress: [███████████████░░░░░░░░░░░░░░░] 50% (57/113) Mengumpulkan blok halaman 57
+[2025-05-17 11:33:55] [PROGRESS] Progress: [████████████████░░░░░░░░░░░░░░] 55% (63/113) Mengumpulkan blok halaman 63
+[2025-05-17 11:33:55] [PROGRESS] Progress: [██████████████████░░░░░░░░░░░░] 60% (68/113) Mengumpulkan blok halaman 68
+[2025-05-17 11:33:55] [PROGRESS] Progress: [███████████████████░░░░░░░░░░░] 65% (74/113) Mengumpulkan blok halaman 74
+[2025-05-17 11:33:55] [PROGRESS] Progress: [█████████████████████░░░░░░░░░] 70% (80/113) Mengumpulkan blok halaman 80
+[2025-05-17 11:33:55] [PROGRESS] Progress: [██████████████████████░░░░░░░░] 75% (85/113) Mengumpulkan blok halaman 85
+[2025-05-17 11:33:55] [PROGRESS] Progress: [████████████████████████░░░░░░] 80% (91/113) Mengumpulkan blok halaman 91
+[2025-05-17 11:33:55] [PROGRESS] Progress: [█████████████████████████░░░░░] 85% (97/113) Mengumpulkan blok halaman 97
+[2025-05-17 11:33:55] [PROGRESS] Progress: [███████████████████████████░░░] 90% (102/113) Mengumpulkan blok halaman 102
+[2025-05-17 11:33:55] [PROGRESS] Progress: [████████████████████████████░░] 95% (108/113) Mengumpulkan blok halaman 108
+[2025-05-17 11:33:55] [PROGRESS] Progress: [██████████████████████████████] 100% (113/113) Mengumpulkan blok halaman 113
+[2025-05-17 11:33:55] [INFO] Memproses 696 blok...
+[2025-05-17 11:38:49] [INFO] Generating narrative for flowchart with 8 elements...
+[2025-05-17 11:38:55] [INFO] Gemini API response type: <class 'dict'>
+[2025-05-17 11:38:55] [INFO] Narrative keys: dict_keys(['content', 'process_steps', 'process_name'])
+[2025-05-17 11:38:55] [INFO] Generating narrative for flowchart with 13 elements...
+[2025-05-17 11:39:03] [INFO] Gemini API response type: <class 'dict'>
+[2025-05-17 11:39:03] [INFO] Narrative keys: dict_keys(['content', 'process_steps', 'process_name'])
+[2025-05-17 11:39:03] [INFO] Generating narrative for flowchart with 10 elements...
+[2025-05-17 11:39:12] [INFO] Gemini API response type: <class 'dict'>
+[2025-05-17 11:39:12] [INFO] Narrative keys: dict_keys(['content', 'process_steps', 'process_name'])
+[2025-05-17 11:39:12] [PROGRESS] Progress: [██████████████████████████████] 100% (696/696) Memproses blok text
+[2025-05-17 11:39:12] [SUCCESS] ✅ Berhasil: 197 chunk disimpan ke database/chunk_result\chunked_extracted_b.json
+[2025-05-17 11:39:12] [SUCCESS] ✅ Selesai! 1 berhasil, 0 gagal dalam 316.94 detik. Total 38 API requests
