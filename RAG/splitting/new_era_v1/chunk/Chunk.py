@@ -40,11 +40,48 @@ class Logger:
         os.makedirs(log_dir, exist_ok=True)
         log_filename = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "_Extractor.log"
         self.LOG_FILE = os.path.join(log_dir, log_filename)
-        self.last_progress = 0  # Untuk tracking progress terakhir yang ditampilkan
+        self.current_stage = None
+        self.current_task = None
+        self.current_subtask = None
+
+    def set_stage(self, stage):
+        """Set the current high-level processing stage"""
+        self.current_stage = stage
+        self.current_task = None
+        self.current_subtask = None
+        self.log(f"STAGE: {stage}", "STAGE")
+
+    def set_task(self, task):
+        """Set the current task within the stage"""
+        self.current_task = task
+        self.current_subtask = None
+        self.log(f"TASK: {task}", "TASK")
+
+    def set_subtask(self, subtask):
+        """Set the current subtask within the task"""
+        self.current_subtask = subtask
+        self.log(f"SUBTASK: {subtask}", "SUBTASK")
 
     def log(self, message, status="INFO"):
+        """Log a message with the current context information"""
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        log_message = f"[{timestamp}] [{status}] {message}\n"
+        
+        # Create context string based on available context
+        context_parts = []
+        if self.current_stage:
+            context_parts.append(f"Stage: {self.current_stage}")
+        if self.current_task:
+            context_parts.append(f"Task: {self.current_task}")
+        if self.current_subtask:
+            context_parts.append(f"Subtask: {self.current_subtask}")
+        
+        context_str = " | ".join(context_parts)
+        
+        # Create the log message
+        if context_str:
+            log_message = f"[{timestamp}] [{status}] [{context_str}] {message}\n"
+        else:
+            log_message = f"[{timestamp}] [{status}] {message}\n"
         
         with open(self.LOG_FILE, "a", encoding="utf-8") as log_file:
             log_file.write(log_message)
@@ -63,53 +100,21 @@ class Logger:
         
     def info(self, message):
         self.log(message, "INFO")
-    
-    def progress(self, current, total, message="", min_update=5):
-        """
-        Menampilkan dan mencatat progress
         
-        Args:
-            current: Nilai saat ini
-            total: Nilai total
-            message: Pesan tambahan
-            min_update: Persentase minimal untuk update (mencegah terlalu banyak log)
-        """
-        if total <= 0:
-            return
-            
-        percent = int((current / total) * 100)
-        
-        # Hanya update jika ada perubahan signifikan atau sudah selesai
-        if percent - self.last_progress >= min_update or percent >= 100:
-            self.last_progress = percent
-            
-            # Buat progress bar
-            bar_length = 30
-            filled_length = int(bar_length * current // total)
-            bar = '█' * filled_length + '░' * (bar_length - filled_length)
-            
-            # Format pesan progress
-            prog_message = f"Progress: [{bar}] {percent}% ({current}/{total}) {message}"
-            
-            # Log ke file tanpa status khusus
-            timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            log_message = f"[{timestamp}] [PROGRESS] {prog_message}\n"
-            
-            with open(self.LOG_FILE, "a", encoding="utf-8") as log_file:
-                log_file.write(log_message)
-            
-            # Tampilkan di terminal dengan carriage return untuk update in-place
-            if self.verbose:
-                print(f"\r{prog_message}", end="", flush=True)
-                if percent >= 100:
-                    print()  # Baris baru setelah selesai
-    
-    def reset_progress(self):
-        """Reset progress tracking untuk file baru"""
-        self.last_progress = 0
-        if self.verbose:
-            print()  # Baris baru untuk memastikan progress bar berikutnya tampil dengan benar
+    def debug(self, message):
+        self.log(message, "DEBUG")
 
+    def start_file_processing(self, file_name, index=None, total=None):
+        """Log the start of processing a new file"""
+        if index is not None and total is not None:
+            self.set_stage(f"Processing file {index}/{total}: {file_name}")
+        else:
+            self.set_stage(f"Processing file: {file_name}")
+    
+    def start_page_processing(self, page_num, total_pages):
+        """Log the start of processing a new page"""
+        self.set_task(f"Processing page {page_num}/{total_pages}")
+        
 # ========== GEMINI CLIENT ==========
 class GeminiClient:
     def __init__(self, api_key=None, model=Config.GEMINI_MODEL, logger=None):
@@ -558,53 +563,61 @@ class ChunkCreator:
             self.logger.warning("Tidak ada data halaman dalam dokumen")
             return []
         
+        doc_name = doc_meta.get("filename", "unknown")
+        self.logger.set_task(f"Creating chunks for document: {doc_name}")
+        
         # Kumpulkan semua blok dengan urutan asli
+        self.logger.set_subtask("Collecting blocks from all pages")
         all_blocks = []
         
-        # Hitung total halaman untuk tracking progress
+        # Hitung total halaman untuk tracking
         total_pages = len(pages)
         page_nums = sorted([int(pn) for pn in pages.keys()])
         
         # Iterasi melalui halaman untuk mengumpulkan blok
         for i, page_num in enumerate(page_nums):
             try:
+                self.logger.info(f"Collecting blocks from page {page_num}/{total_pages}")
                 page_data = pages.get(str(page_num), {})
                 page_blocks = self._collect_page_blocks_with_order(page_num, page_data, doc_meta)
                 all_blocks.extend(page_blocks)
                 
-                # Update progress pengumpulan blok
-                self.logger.progress(
-                    i + 1, 
-                    total_pages, 
-                    f"Mengumpulkan blok halaman {page_num}"
-                )
-                
             except Exception as e:
                 self.logger.error(f"Gagal mengumpulkan blok halaman {page_num}: {str(e)}")
+        
+        # Proses blok-blok menjadi chunks
+        self.logger.set_subtask(f"Processing {len(all_blocks)} blocks")
+        self.logger.info(f"Processing blocks by type and creating chunks")
         
         # Kumpulkan chunks akhir
         final_chunks = []
         
-        # Pemrosesan blok secara berurutan dengan mempertahankan urutan
-        self.logger.info(f"Memproses {len(all_blocks)} blok...")
-        
         # Kumpulkan blok teks yang berdekatan untuk chunking
         current_text_blocks = []
         
-        # Jumlah total blok untuk progress tracking
+        # Jumlah total blok untuk info
         total_blocks = len(all_blocks)
         processed_blocks = 0
+        
+        # Group blok berdasarkan tipe untuk logging
+        block_types = {}
+        for block in all_blocks:
+            block_type = block.get("metadata", {}).get("type", "unknown")
+            if block_type not in block_types:
+                block_types[block_type] = 0
+            block_types[block_type] += 1
+        
+        self.logger.info(f"Block type distribution: {block_types}")
         
         for block_obj in all_blocks:
             block_type = block_obj.get("metadata", {}).get("type")
             
-            # Update progress
+            # Update processed count
             processed_blocks += 1
-            self.logger.progress(
-                processed_blocks,
-                total_blocks,
-                f"Memproses blok {block_type}"
-            )
+            
+            # Log every 10% of progress or for every 100 blocks
+            if processed_blocks % max(1, min(100, total_blocks // 10)) == 0:
+                self.logger.info(f"Processed {processed_blocks}/{total_blocks} blocks ({processed_blocks/total_blocks:.1%})")
             
             if block_type == "text":
                 # Tambahkan ke kumpulan blok teks yang sedang diproses
@@ -612,11 +625,13 @@ class ChunkCreator:
             else:
                 # Jika sebelumnya ada text blocks, proses dulu
                 if current_text_blocks:
+                    self.logger.debug(f"Creating text chunks from {len(current_text_blocks)} text blocks")
                     text_chunks = self.text_chunker.chunk_text(current_text_blocks)
                     final_chunks.extend(text_chunks)
                     current_text_blocks = []  # Reset
                 
                 # Proses non-text block
+                self.logger.debug(f"Processing {block_type} block")
                 chunk = self._process_non_text_block(block_obj)
                 if chunk:
                     if isinstance(chunk, list):
@@ -626,9 +641,11 @@ class ChunkCreator:
         
         # Jangan lupa memproses text blocks terakhir jika ada
         if current_text_blocks:
+            self.logger.debug(f"Creating text chunks from remaining {len(current_text_blocks)} text blocks")
             text_chunks = self.text_chunker.chunk_text(current_text_blocks)
             final_chunks.extend(text_chunks)
         
+        self.logger.success(f"Created {len(final_chunks)} total chunks from document")
         return final_chunks
     
     def _collect_page_blocks_with_order(self, page_num: int, page_data: Dict, doc_meta: Dict) -> List[Dict]:
@@ -688,17 +705,31 @@ class ChunkCreator:
     def _process_table_block(self, block: Dict, metadata: Dict) -> List[Dict]:
         """Memproses blok tabel"""
         chunks = []
+        
+        # Set subtask for this specific table
+        block_id = metadata.get("block_id", "unknown")
+        page_num = metadata.get("page", "unknown")
+        self.logger.set_subtask(f"Processing table block (ID: {block_id}, Page: {page_num})")
+        
+        # Convert table to structured format
+        self.logger.debug("Converting table data to structured format")
         structured_rows = self.content_processor.convert_table_to_structured(block.get("data", []))
         
         # Jika tabel kosong
         if not structured_rows:
+            self.logger.warning("Table is empty, skipping")
             return []
         
         # Buat satu representasi tabel lengkap (semua baris)
         table_struct = {"table_rows": structured_rows}
+        
+        # Generate narrative using Gemini API
+        self.logger.debug(f"Generating narrative for table with {len(structured_rows)} rows using Gemini API")
         narration = self.content_processor.generate_narrative(table_struct, "table")
         
+        # Process the response based on its type
         if isinstance(narration, dict):
+            self.logger.debug("Received structured response from Gemini API")
             content = self.content_processor.extract_text_content_from_structured_response(narration)
             chunks.append(self._create_chunk_object(
                 content=content,
@@ -711,6 +742,7 @@ class ChunkCreator:
                 }
             ))
         else:
+            self.logger.debug("Received plain text response from Gemini API")
             chunks.append(self._create_chunk_object(
                 content=narration,
                 structured_repr=table_struct,
@@ -721,34 +753,43 @@ class ChunkCreator:
                     "has_context": True
                 }
             ))
-                
-        return chunks
         
+        self.logger.debug(f"Created {len(chunks)} chunk(s) for table block")
+        return chunks
+
     def _process_flowchart_block(self, block: Dict, metadata: Dict) -> List[Dict]:
         """Memproses blok flowchart, dengan penanganan yang mirip dengan tabel"""
+        # Set subtask for this specific flowchart
+        block_id = metadata.get("block_id", "unknown")
+        page_num = metadata.get("page", "unknown")
+        self.logger.set_subtask(f"Processing flowchart block (ID: {block_id}, Page: {page_num})")
+        
+        # Convert to structured format
+        self.logger.debug("Converting flowchart elements to structured format")
         structured = self.content_processor.convert_flowchart_to_structured(block.get("elements", []))
         
         # Jika flowchart kosong
         if not structured:
+            self.logger.warning("Flowchart is empty, skipping")
             return []
         
         # Buat satu representasi flowchart lengkap
         flowchart_struct = {"flowchart_elements": structured}
         
-        # Tambahkan logging sebelum memanggil API
-        self.logger.info(f"Generating narrative for flowchart with {len(structured)} elements...")
+        # Generate narrative using Gemini API
+        self.logger.info(f"Generating narrative for flowchart with {len(structured)} elements using Gemini API")
         
         # Panggil API dengan lebih eksplisit menangkap hasilnya
         narration = self.content_processor.generate_narrative(flowchart_struct, "flowchart")
         
-        # Tambahkan logging setelah memanggil API
-        self.logger.info(f"Gemini API response type: {type(narration)}")
+        # Log API response type
+        self.logger.debug(f"Gemini API response type: {type(narration)}")
         if isinstance(narration, dict):
-            self.logger.info(f"Narrative keys: {narration.keys()}")
+            self.logger.debug(f"Structured response keys: {narration.keys()}")
         elif isinstance(narration, str):
-            self.logger.info(f"Narrative length: {len(narration)}")
+            self.logger.debug(f"Plain text response length: {len(narration)}")
         else:
-            self.logger.warning(f"Unexpected narrative type: {type(narration)}")
+            self.logger.warning(f"Unexpected response type: {type(narration)}")
         
         chunks = []
         
@@ -771,6 +812,7 @@ class ChunkCreator:
             return chunks
         
         if isinstance(narration, dict):
+            self.logger.debug("Processing structured response")
             content = self.content_processor.extract_text_content_from_structured_response(narration)
             if not content:  # Double check konten tidak kosong
                 self.logger.warning("Content extracted from structured response is empty!")
@@ -787,6 +829,7 @@ class ChunkCreator:
                 }
             ))
         else:
+            self.logger.debug("Processing plain text response")
             # Pastikan narration tidak kosong sebelum menyimpannya
             if isinstance(narration, str) and not narration.strip():
                 narration = f"Diagram alur yang menunjukkan proses dengan {len(structured)} langkah."
@@ -801,7 +844,8 @@ class ChunkCreator:
                     "has_context": True
                 }
             ))
-                
+        
+        self.logger.debug(f"Created {len(chunks)} chunk(s) for flowchart block")
         return chunks
         
     def _process_image_block(self, block: Dict, metadata: Dict) -> Optional[Dict]:
@@ -943,40 +987,45 @@ class PDFChunkProcessor:
         total_files = len(self.input_names)
         start_time = time.time()
         
-        # Tampilkan progress keseluruhan
-        self.logger.info(f"Memulai pemrosesan {total_files} file...")
+        # Log the start of the entire processing job
+        self.logger.set_stage(f"DOCUMENT PROCESSING JOB: {total_files} file(s)")
+        self.logger.info(f"Starting processing of {total_files} file(s) with max_tokens={self.max_tokens}, overlap_tokens={self.overlap_tokens}")
         
         for i, name_list in enumerate(self.input_names):
             name = name_list[0]
             input_path = os.path.join(self.input_folder, f"{name}_extracted.json")
             output_path = os.path.join(self.output_folder, f"{name}_chunked.json")
             
-            # Reset progress untuk file baru
-            self.logger.reset_progress()
-            
-            # Update progress antar file
-            self.logger.info(f"File {i+1}/{total_files}: {name}")
+            # Update current stage to this file (i+1 of total)
+            self.logger.start_file_processing(name, i+1, total_files)
             
             # Validasi dan pemeriksaan file
+            self.logger.set_task("Validating input file")
             if not self.validate_input_file(input_path):
+                self.logger.error(f"File validation failed: {input_path}")
                 failed_count += 1
                 continue
                 
             if not self.should_process_file(input_path, output_path):
-                self.logger.info(f"Melewati file: {input_path}")
+                self.logger.info(f"Skipping file (already processed): {input_path}")
                 continue
                 
-            # Proses file
+            # Process file
+            self.logger.set_task("Processing file content")
             if self.process_pdf_json(input_path, output_path):
                 success_count += 1
             else:
                 failed_count += 1
                 
-        # Laporan akhir
+        # Final report
         elapsed_time = time.time() - start_time
+        self.logger.set_stage("JOB COMPLETED")
         self.logger.success(
-            f"Selesai! {success_count} berhasil, {failed_count} gagal dalam {elapsed_time:.2f} detik. "
-            f"Total {self.gemini_client.get_request_count()} API requests"
+            f"Processing complete! Summary:\n"
+            f"- Files processed successfully: {success_count}\n"
+            f"- Files failed: {failed_count}\n"
+            f"- Total time: {elapsed_time:.2f} seconds\n"
+            f"- Total API requests: {self.gemini_client.get_request_count()}"
         )
         
         return success_count > 0
@@ -984,46 +1033,50 @@ class PDFChunkProcessor:
     def process_pdf_json(self, input_path, output_path):
         """Memproses satu file JSON"""
         try:
-            self.logger.info(f"Memproses file: {input_path}")
+            # Start file processing stage
+            self.logger.start_file_processing(Path(input_path).stem)
             
-            # Baca file input
+            # Read input file task
+            self.logger.set_task("Reading input file")
             with open(input_path, 'r', encoding='utf-8') as f:
                 pdf_data = json.load(f)
-                
-            # Ambil metadata untuk ditampilkan di progress
+                    
+            # Get metadata
             doc_name = pdf_data.get("metadata", {}).get("filename", Path(input_path).stem)
             total_pages = len(pdf_data.get("pages", {}))
             
             self.logger.info(f"Dokumen: {doc_name}, Total halaman: {total_pages}")
             
-            # Buat chunks
-            self.logger.info(f"Membuat chunks dari {input_path}...")
+            # Generate chunks task
+            self.logger.set_task("Generating document chunks")
             chunks = self.chunk_creator.create_document_chunks(pdf_data)
             
             if not chunks:
                 self.logger.warning(f"Tidak ada chunks yang dihasilkan dari {input_path}")
                 return False
-                
-            # Buat output data
+                    
+            # Create output data task
+            self.logger.set_task("Creating output data structure")
             output_data = {
                 "document_metadata": {
                     "filename": pdf_data.get("metadata", {}).get("filename", Path(input_path).stem),
                     "total_pages": pdf_data.get("metadata", {}).get("total_pages", 0),
                     "extraction_date": pdf_data.get("metadata", {}).get("extraction_date", 
-                                                                   datetime.datetime.now().isoformat()),
+                                                                datetime.datetime.now().isoformat()),
                     "processing_date": datetime.datetime.now().isoformat(),
                     "chunk_count": len(chunks)
                 },
                 "chunks": chunks
             }
             
-            # Simpan output
+            # Save output task
+            self.logger.set_task("Saving output file")
             with open(output_path, 'w', encoding='utf-8') as f:
                 json.dump(output_data, f, ensure_ascii=False, indent=2)
-                
+                    
             self.logger.success(f"Berhasil: {len(chunks)} chunk disimpan ke {output_path}")
             return True
-            
+                
         except Exception as e:
             self.logger.error(f"Gagal memproses {input_path}: {str(e)}")
             return False
@@ -1032,7 +1085,7 @@ class PDFChunkProcessor:
 if __name__ == "__main__":
     # Daftar file yang akan diproses
     pdf_files = [
-        ["ABF Indonesia Bond Index Fund Update June 2024_extracted"]
+        ["ABF Indonesia Bond Index Fund"]
     ]
     
     # Inisialisasi processor dengan konfigurasi default
