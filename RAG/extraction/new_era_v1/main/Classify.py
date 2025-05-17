@@ -95,7 +95,7 @@ class Classify:
         hasil_all = {}
         
         for pdf_name, pdf_path in pdf_paths:
-            output_file = os.path.join(self.output_dir, f"{pdf_name}_analyzed.json")
+            output_file = os.path.join(self.output_dir, f"{pdf_name}_classified.json")
             
             # Periksa apakah file hasil analisis sudah ada
             if self._file_exists(pdf_name):
