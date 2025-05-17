@@ -76,7 +76,7 @@ class Classify:
 
     def _file_exists(self, pdf_name):
         """Memeriksa apakah file hasil analisis sudah ada di direktori."""
-        expected_file = os.path.join(self.output_dir, f"{pdf_name}_analisis.json")
+        expected_file = os.path.join(self.output_dir, f"{pdf_name}_analyzed.json")
         return os.path.exists(expected_file)
 
     def analyze(self, pdf_paths, min_text_length=50, min_line_count=1, min_line_length_percent=20):
@@ -95,7 +95,7 @@ class Classify:
         hasil_all = {}
         
         for pdf_name, pdf_path in pdf_paths:
-            output_file = os.path.join(self.output_dir, f"{pdf_name}_analisis.json")
+            output_file = os.path.join(self.output_dir, f"{pdf_name}_analyzed.json")
             
             # Periksa apakah file hasil analisis sudah ada
             if self._file_exists(pdf_name):

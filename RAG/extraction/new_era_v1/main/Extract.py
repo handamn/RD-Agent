@@ -1187,8 +1187,8 @@ class IntegratedPdfExtractor:
                 self.log_info(f"Memulai pemrosesan untuk {pdf_name}")
                 
                 # Path untuk file analisis dan output
-                analysis_json_path = os.path.join(analysis_dir, f"{pdf_name}_analisis.json")
-                output_json_path = os.path.join(output_dir, f"{pdf_name}_ekstraksi.json")
+                analysis_json_path = os.path.join(analysis_dir, f"{pdf_name}_analyzed.json")
+                output_json_path = os.path.join(output_dir, f"{pdf_name}_extracted.json")
                 
                 # Proses PDF
                 result = self.process_pdf(pdf_path, analysis_json_path, output_json_path)

@@ -32,6 +32,34 @@ class Config:
     DEFAULT_OUTPUT_FOLDER = "database/chunk_result"
     DEFAULT_LOG_DIR = "logs"
 
+def generate_chunk_id(document_name="unknown"):
+        """
+        Helper function to generate a standardized chunk ID that includes:
+        - document name (sanitized)
+        - current date in YYYYMMDD format
+        - current time in HHMMSS format
+        - random UUID segment
+        
+        Args:
+            document_name: Name of the document, defaults to "unknown"
+        
+        Returns:
+            Formatted chunk ID string
+        """
+        # Sanitize document name by removing spaces and special characters
+        clean_document_name = "".join(c for c in document_name if c.isalnum())
+        
+        # Get current date and time
+        now = datetime.datetime.now()
+        date_str = now.strftime("%Y%m%d")
+        time_str = now.strftime("%H%M%S")
+        
+        # Generate random UUID segment
+        random_id = uuid.uuid4().hex[:8]
+        
+        # Combine all components
+        return f"chunk_{clean_document_name}_{date_str}_{time_str}_{random_id}"
+
 # ========== LOGGER ==========
 class Logger:
     def __init__(self, log_dir=Config.DEFAULT_LOG_DIR, verbose=True):
@@ -218,30 +246,31 @@ Elemen Flowchart:
 Narasi:"""
 
     @staticmethod
-    def structured_flowchart_narrative(elements: List[dict]) -> str:
+    def structured_flowchart_narrative(flowchart_elements: Dict) -> str:
+        elements = flowchart_elements.get("flowchart_elements", [])
         desc = "\n".join([
-            f"- ({el['type']}) {el['text']} → {', '.join(el.get('next', []) or [])}" for el in elements
+            f"- ({el['type']}) {el['text']} → {', '.join([str(n) for n in el.get('next', []) if n is not None])}" for el in elements
         ])
         return f"""Kamu akan menghasilkan representasi naratif dari flowchart dalam format JSON yang terstruktur.
 
-Elemen Flowchart:
-{desc}
+    Elemen Flowchart:
+    {desc}
 
-Berikan output dalam format JSON dengan struktur berikut:
-{{
-  "content": "Narasi lengkap dalam teks biasa tanpa format markdown",
-  "process_steps": ["langkah1", "langkah2", "langkah3"],
-  "process_name": "Nama proses yang digambarkan"
-}}
+    Berikan output dalam format JSON dengan struktur berikut:
+    {{
+    "content": "Narasi lengkap dalam teks biasa tanpa format markdown",
+    "process_steps": ["langkah1", "langkah2", "langkah3"],
+    "process_name": "Nama proses yang digambarkan"
+    }}
 
-INSTRUKSI PENTING:
-1. "content" harus berupa narasi lengkap dan informatif yang menjelaskan alur proses secara berurutan
-2. Narasi harus langsung ke intinya tanpa kata pengantar seperti "Berikut" atau "Flowchart ini"
-3. "process_steps" harus berisi urutan langkah-langkah utama dalam flowchart (3-7 langkah)
-4. "process_name" harus singkat dan menggambarkan keseluruhan proses dalam 3-5 kata
-5. Output harus berupa JSON valid
+    INSTRUKSI PENTING:
+    1. "content" harus berupa narasi lengkap dan informatif yang menjelaskan alur proses secara berurutan
+    2. Narasi harus langsung ke intinya tanpa kata pengantar seperti "Berikut" atau "Flowchart ini"
+    3. "process_steps" harus berisi urutan langkah-langkah utama dalam flowchart (3-7 langkah)
+    4. "process_name" harus singkat dan menggambarkan keseluruhan proses dalam 3-5 kata
+    5. Output harus berupa JSON valid
 
-JSON Output:"""
+    JSON Output:"""
 
 # ========== CONTENT PROCESSOR ==========
 class ContentProcessor:
@@ -474,18 +503,24 @@ class TextChunker:
         block_ids = []
         pages = set()
         
+        # Get document name for the chunk ID
+        document_name = "unknown"
+        
         for block in blocks:
             metadata = block.get("metadata", {})
             if "block_id" in metadata:
                 block_ids.append(metadata["block_id"])
             if "page" in metadata:
                 pages.add(metadata["page"])
+            # Extract document name if available
+            if "document" in metadata and metadata["document"] != "unknown":
+                document_name = metadata["document"]
         
         # Sortir pages dan convert ke list
         pages = sorted(list(pages))
         
         return {
-            "chunk_id": f"chunk_{uuid.uuid4().hex[:8]}",
+            "chunk_id": generate_chunk_id(document_name),
             "content": text,
             "structured_repr": None,
             "narrative_repr": text,
@@ -511,8 +546,7 @@ class ChunkCreator:
         )
         
     def create_document_chunks(self, json_data: Dict) -> List[Dict]:
-        """Membuat chunk dari data JSON dokumen"""
-        chunks = []
+        """Membuat chunk dari data JSON dokumen dengan mempertahankan urutan"""
         doc_meta = json_data.get("metadata", {})
         pages = json_data.get("pages", {})
         
@@ -521,9 +555,8 @@ class ChunkCreator:
             self.logger.warning("Tidak ada data halaman dalam dokumen")
             return []
         
-        # Kumpulkan semua blok terlebih dahulu
-        text_blocks = []
-        non_text_blocks = []
+        # Kumpulkan semua blok dengan urutan asli
+        all_blocks = []
         
         # Hitung total halaman untuk tracking progress
         total_pages = len(pages)
@@ -533,7 +566,8 @@ class ChunkCreator:
         for i, page_num in enumerate(page_nums):
             try:
                 page_data = pages.get(str(page_num), {})
-                self._collect_page_blocks(page_num, page_data, doc_meta, text_blocks, non_text_blocks)
+                page_blocks = self._collect_page_blocks_with_order(page_num, page_data, doc_meta)
+                all_blocks.extend(page_blocks)
                 
                 # Update progress pengumpulan blok
                 self.logger.progress(
@@ -545,46 +579,62 @@ class ChunkCreator:
             except Exception as e:
                 self.logger.error(f"Gagal mengumpulkan blok halaman {page_num}: {str(e)}")
         
-        # Proses blok teks secara khusus (gabungkan yang berurutan)
-        self.logger.info(f"Memproses {len(text_blocks)} blok teks dengan chunking...")
-        text_chunks = self.text_chunker.chunk_text(text_blocks)
-        chunks.extend(text_chunks)
+        # Kumpulkan chunks akhir
+        final_chunks = []
         
-        # Proses blok non-teks secara paralel
-        self.logger.info(f"Memproses {len(non_text_blocks)} blok non-teks...")
-        with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
-            futures = [
-                executor.submit(self._process_non_text_block, block)
-                for block in non_text_blocks
-            ]
+        # Pemrosesan blok secara berurutan dengan mempertahankan urutan
+        self.logger.info(f"Memproses {len(all_blocks)} blok...")
+        
+        # Kumpulkan blok teks yang berdekatan untuk chunking
+        current_text_blocks = []
+        
+        # Jumlah total blok untuk progress tracking
+        total_blocks = len(all_blocks)
+        processed_blocks = 0
+        
+        for block_obj in all_blocks:
+            block_type = block_obj.get("metadata", {}).get("type")
             
-            for i, future in enumerate(as_completed(futures)):
-                try:
-                    result = future.result()
-                    if result:
-                        if isinstance(result, list):
-                            chunks.extend(result)
-                        else:
-                            chunks.append(result)
-                except Exception as e:
-                    self.logger.error(f"Error saat memproses blok non-teks: {str(e)}")
-                    
-                # Update progress
-                self.logger.progress(
-                    i + 1, 
-                    len(futures), 
-                    "Memproses blok non-teks"
-                )
+            # Update progress
+            processed_blocks += 1
+            self.logger.progress(
+                processed_blocks,
+                total_blocks,
+                f"Memproses blok {block_type}"
+            )
+            
+            if block_type == "text":
+                # Tambahkan ke kumpulan blok teks yang sedang diproses
+                current_text_blocks.append(block_obj)
+            else:
+                # Jika sebelumnya ada text blocks, proses dulu
+                if current_text_blocks:
+                    text_chunks = self.text_chunker.chunk_text(current_text_blocks)
+                    final_chunks.extend(text_chunks)
+                    current_text_blocks = []  # Reset
                 
-        return chunks
+                # Proses non-text block
+                chunk = self._process_non_text_block(block_obj)
+                if chunk:
+                    if isinstance(chunk, list):
+                        final_chunks.extend(chunk)
+                    else:
+                        final_chunks.append(chunk)
         
-    def _collect_page_blocks(self, page_num: int, page_data: Dict, doc_meta: Dict, 
-                            text_blocks: List, non_text_blocks: List):
-        """Mengumpulkan blok dari halaman dan memisahkan antara teks dan non-teks"""
+        # Jangan lupa memproses text blocks terakhir jika ada
+        if current_text_blocks:
+            text_chunks = self.text_chunker.chunk_text(current_text_blocks)
+            final_chunks.extend(text_chunks)
+        
+        return final_chunks
+    
+    def _collect_page_blocks_with_order(self, page_num: int, page_data: Dict, doc_meta: Dict) -> List[Dict]:
+        """Mengumpulkan blok dari halaman dengan mempertahankan urutan asli"""
+        page_blocks = []
         content_blocks = page_data.get("extraction", {}).get("content_blocks", [])
         
         if not content_blocks:
-            return
+            return page_blocks
             
         # Tambahkan informasi posisi blok (untuk pengurutan)
         for i, block in enumerate(content_blocks):
@@ -602,14 +652,15 @@ class ChunkCreator:
                 }
             }
             
-            # Pisahkan berdasarkan tipe konten
+            # Tambahkan konten untuk blok teks
             if block_type == "text":
                 content = self.content_processor.clean_text(block.get("content", ""))
                 if content:
                     block_obj["content"] = content
-                    text_blocks.append(block_obj)
-            else:
-                non_text_blocks.append(block_obj)
+            
+            page_blocks.append(block_obj)
+            
+        return page_blocks
     
     def _process_non_text_block(self, block_obj: Dict) -> Optional[Dict]:
         """Memproses blok non-teks (tabel, flowchart, gambar)"""
@@ -670,37 +721,85 @@ class ChunkCreator:
                 
         return chunks
         
-    def _process_flowchart_block(self, block: Dict, metadata: Dict) -> Optional[Dict]:
-        """Memproses blok flowchart"""
+    def _process_flowchart_block(self, block: Dict, metadata: Dict) -> List[Dict]:
+        """Memproses blok flowchart, dengan penanganan yang mirip dengan tabel"""
         structured = self.content_processor.convert_flowchart_to_structured(block.get("elements", []))
         
+        # Jika flowchart kosong
         if not structured:
-            return None
+            return []
         
-        flowchart_struct = {"steps": structured}
+        # Buat satu representasi flowchart lengkap
+        flowchart_struct = {"flowchart_elements": structured}
+        
+        # Tambahkan logging sebelum memanggil API
+        self.logger.info(f"Generating narrative for flowchart with {len(structured)} elements...")
+        
+        # Panggil API dengan lebih eksplisit menangkap hasilnya
         narration = self.content_processor.generate_narrative(flowchart_struct, "flowchart")
         
-        if not narration:
-            return None
-            
+        # Tambahkan logging setelah memanggil API
+        self.logger.info(f"Gemini API response type: {type(narration)}")
         if isinstance(narration, dict):
-            content = self.content_processor.extract_text_content_from_structured_response(narration)
-            return self._create_chunk_object(
-                content=content,
+            self.logger.info(f"Narrative keys: {narration.keys()}")
+        elif isinstance(narration, str):
+            self.logger.info(f"Narrative length: {len(narration)}")
+        else:
+            self.logger.warning(f"Unexpected narrative type: {type(narration)}")
+        
+        chunks = []
+        
+        # Periksa apakah narasi kosong dan log warning jika iya
+        if not narration:
+            self.logger.warning("Narration is empty! Check API response and prompt.")
+            # Gunakan fallback text untuk konten
+            fallback_text = f"Diagram alur yang menunjukkan proses dengan {len(structured)} langkah."
+            chunks.append(self._create_chunk_object(
+                content=fallback_text,
                 structured_repr=flowchart_struct,
-                narrative_repr=narration,  # Simpan respons lengkap
+                narrative_repr=fallback_text,
                 metadata={
                     **metadata,
-                    "element_count": len(structured)
+                    "element_count": len(structured),
+                    "has_context": True,
+                    "generated_narrative": False  # Flag untuk menandai narasi tidak berhasil digenerate
                 }
-            )
+            ))
+            return chunks
+        
+        if isinstance(narration, dict):
+            content = self.content_processor.extract_text_content_from_structured_response(narration)
+            if not content:  # Double check konten tidak kosong
+                self.logger.warning("Content extracted from structured response is empty!")
+                content = f"Diagram alur yang menunjukkan proses dengan {len(structured)} langkah."
+                
+            chunks.append(self._create_chunk_object(
+                content=content,
+                structured_repr=flowchart_struct,
+                narrative_repr=narration,
+                metadata={
+                    **metadata,
+                    "element_count": len(structured),
+                    "has_context": True
+                }
+            ))
         else:
-            return self._create_chunk_object(
+            # Pastikan narration tidak kosong sebelum menyimpannya
+            if isinstance(narration, str) and not narration.strip():
+                narration = f"Diagram alur yang menunjukkan proses dengan {len(structured)} langkah."
+                
+            chunks.append(self._create_chunk_object(
                 content=narration,
                 structured_repr=flowchart_struct,
                 narrative_repr=narration,
-                metadata=metadata
-            )
+                metadata={
+                    **metadata,
+                    "element_count": len(structured),
+                    "has_context": True
+                }
+            ))
+                
+        return chunks
         
     def _process_image_block(self, block: Dict, metadata: Dict) -> Optional[Dict]:
         """Memproses blok gambar"""
@@ -729,8 +828,11 @@ class ChunkCreator:
         if structured_repr:
             structured_repr = self._clean_structured_data(structured_repr)
         
+        # Extract document name for chunk ID
+        document_name = metadata.get("document", "unknown")
+        
         return {
-            "chunk_id": f"chunk_{uuid.uuid4().hex[:8]}",
+            "chunk_id": generate_chunk_id(document_name),
             "content": content,
             "structured_repr": structured_repr,
             "narrative_repr": narrative_repr,
@@ -843,8 +945,8 @@ class PDFChunkProcessor:
         
         for i, name_list in enumerate(self.input_names):
             name = name_list[0]
-            input_path = os.path.join(self.input_folder, f"{name}.json")
-            output_path = os.path.join(self.output_folder, f"chunked_{name}.json")
+            input_path = os.path.join(self.input_folder, f"{name}_extracted.json")
+            output_path = os.path.join(self.output_folder, f"{name}_chunked.json")
             
             # Reset progress untuk file baru
             self.logger.reset_progress()
