@@ -24,41 +24,14 @@ class Config:
     DEFAULT_CONTEXT_TOKENS = 100
     
     # Konfigurasi Teknis
-    MAX_WORKERS = 1  # Jumlah thread paralel untuk API calls
-    MAX_RETRIES = 3  # Jumlah retry jika API call gagal
+    MAX_WORKERS = 2  # Jumlah thread paralel untuk API calls
+    MAX_RETRIES = 10  # Jumlah retry jika API call gagal
     
     # Konfigurasi Path
     DEFAULT_INPUT_FOLDER = "database/extracted_result"
-    DEFAULT_OUTPUT_FOLDER = "database/chunk_result"
+    DEFAULT_OUTPUT_FOLDER = "database/chunked_result"
     DEFAULT_LOG_DIR = "logs"
 
-def generate_chunk_id(document_name="unknown"):
-        """
-        Helper function to generate a standardized chunk ID that includes:
-        - document name (sanitized)
-        - current date in YYYYMMDD format
-        - current time in HHMMSS format
-        - random UUID segment
-        
-        Args:
-            document_name: Name of the document, defaults to "unknown"
-        
-        Returns:
-            Formatted chunk ID string
-        """
-        # Sanitize document name by removing spaces and special characters
-        clean_document_name = "".join(c for c in document_name if c.isalnum())
-        
-        # Get current date and time
-        now = datetime.datetime.now()
-        date_str = now.strftime("%Y%m%d")
-        time_str = now.strftime("%H%M%S")
-        
-        # Generate random UUID segment
-        random_id = uuid.uuid4().hex[:8]
-        
-        # Combine all components
-        return f"chunk_{clean_document_name}_{date_str}_{time_str}_{random_id}"
 
 # ========== LOGGER ==========
 class Logger:
@@ -355,6 +328,36 @@ class TextChunker:
         self.tokenizer = tokenizer
         self.max_tokens = max_tokens
         self.overlap_tokens = overlap_tokens
+    
+    # Tambahkan fungsi generate_chunk_id sebagai metode statis
+    @staticmethod
+    def generate_chunk_id(document_name="unknown"):
+        """
+        Helper function to generate a standardized chunk ID that includes:
+        - document name (sanitized)
+        - current date in YYYYMMDD format
+        - current time in HHMMSS format
+        - random UUID segment
+        
+        Args:
+            document_name: Name of the document, defaults to "unknown"
+        
+        Returns:
+            Formatted chunk ID string
+        """
+        # Sanitize document name by removing spaces and special characters
+        clean_document_name = "".join(c for c in document_name if c.isalnum())
+        
+        # Get current date and time
+        now = datetime.datetime.now()
+        date_str = now.strftime("%Y%m%d")
+        time_str = now.strftime("%H%M%S")
+        
+        # Generate random UUID segment
+        random_id = uuid.uuid4().hex[:8]
+        
+        # Combine all components
+        return f"chunk_{clean_document_name}_{date_str}_{time_str}_{random_id}"
         
     def chunk_text(self, text_blocks: List[Dict]) -> List[Dict]:
         """
@@ -520,7 +523,7 @@ class TextChunker:
         pages = sorted(list(pages))
         
         return {
-            "chunk_id": generate_chunk_id(document_name),
+            "chunk_id": self.generate_chunk_id(document_name),  # Panggil sebagai self.generate_chunk_id
             "content": text,
             "structured_repr": None,
             "narrative_repr": text,
@@ -832,7 +835,7 @@ class ChunkCreator:
         document_name = metadata.get("document", "unknown")
         
         return {
-            "chunk_id": generate_chunk_id(document_name),
+            "chunk_id": self.text_chunker.generate_chunk_id(document_name),  # Akses melalui self.text_chunker
             "content": content,
             "structured_repr": structured_repr,
             "narrative_repr": narrative_repr,
@@ -1029,7 +1032,7 @@ class PDFChunkProcessor:
 if __name__ == "__main__":
     # Daftar file yang akan diproses
     pdf_files = [
-        ["extracted_b"]
+        ["ABF Indonesia Bond Index Fund Update June 2024_extracted"]
     ]
     
     # Inisialisasi processor dengan konfigurasi default
