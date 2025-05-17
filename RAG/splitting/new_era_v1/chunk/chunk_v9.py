@@ -218,30 +218,31 @@ Elemen Flowchart:
 Narasi:"""
 
     @staticmethod
-    def structured_flowchart_narrative(elements: List[dict]) -> str:
+    def structured_flowchart_narrative(flowchart_elements: Dict) -> str:
+        elements = flowchart_elements.get("flowchart_elements", [])
         desc = "\n".join([
-            f"- ({el['type']}) {el['text']} → {', '.join(el.get('next', []) or [])}" for el in elements
+            f"- ({el['type']}) {el['text']} → {', '.join([str(n) for n in el.get('next', []) if n is not None])}" for el in elements
         ])
         return f"""Kamu akan menghasilkan representasi naratif dari flowchart dalam format JSON yang terstruktur.
 
-Elemen Flowchart:
-{desc}
+    Elemen Flowchart:
+    {desc}
 
-Berikan output dalam format JSON dengan struktur berikut:
-{{
-  "content": "Narasi lengkap dalam teks biasa tanpa format markdown",
-  "process_steps": ["langkah1", "langkah2", "langkah3"],
-  "process_name": "Nama proses yang digambarkan"
-}}
+    Berikan output dalam format JSON dengan struktur berikut:
+    {{
+    "content": "Narasi lengkap dalam teks biasa tanpa format markdown",
+    "process_steps": ["langkah1", "langkah2", "langkah3"],
+    "process_name": "Nama proses yang digambarkan"
+    }}
 
-INSTRUKSI PENTING:
-1. "content" harus berupa narasi lengkap dan informatif yang menjelaskan alur proses secara berurutan
-2. Narasi harus langsung ke intinya tanpa kata pengantar seperti "Berikut" atau "Flowchart ini"
-3. "process_steps" harus berisi urutan langkah-langkah utama dalam flowchart (3-7 langkah)
-4. "process_name" harus singkat dan menggambarkan keseluruhan proses dalam 3-5 kata
-5. Output harus berupa JSON valid
+    INSTRUKSI PENTING:
+    1. "content" harus berupa narasi lengkap dan informatif yang menjelaskan alur proses secara berurutan
+    2. Narasi harus langsung ke intinya tanpa kata pengantar seperti "Berikut" atau "Flowchart ini"
+    3. "process_steps" harus berisi urutan langkah-langkah utama dalam flowchart (3-7 langkah)
+    4. "process_name" harus singkat dan menggambarkan keseluruhan proses dalam 3-5 kata
+    5. Output harus berupa JSON valid
 
-JSON Output:"""
+    JSON Output:"""
 
 # ========== CONTENT PROCESSOR ==========
 class ContentProcessor:
@@ -686,37 +687,85 @@ class ChunkCreator:
                 
         return chunks
         
-    def _process_flowchart_block(self, block: Dict, metadata: Dict) -> Optional[Dict]:
-        """Memproses blok flowchart"""
+    def _process_flowchart_block(self, block: Dict, metadata: Dict) -> List[Dict]:
+        """Memproses blok flowchart, dengan penanganan yang mirip dengan tabel"""
         structured = self.content_processor.convert_flowchart_to_structured(block.get("elements", []))
         
+        # Jika flowchart kosong
         if not structured:
-            return None
+            return []
         
-        flowchart_struct = {"steps": structured}
+        # Buat satu representasi flowchart lengkap
+        flowchart_struct = {"flowchart_elements": structured}
+        
+        # Tambahkan logging sebelum memanggil API
+        self.logger.info(f"Generating narrative for flowchart with {len(structured)} elements...")
+        
+        # Panggil API dengan lebih eksplisit menangkap hasilnya
         narration = self.content_processor.generate_narrative(flowchart_struct, "flowchart")
         
-        if not narration:
-            return None
-            
+        # Tambahkan logging setelah memanggil API
+        self.logger.info(f"Gemini API response type: {type(narration)}")
         if isinstance(narration, dict):
-            content = self.content_processor.extract_text_content_from_structured_response(narration)
-            return self._create_chunk_object(
-                content=content,
+            self.logger.info(f"Narrative keys: {narration.keys()}")
+        elif isinstance(narration, str):
+            self.logger.info(f"Narrative length: {len(narration)}")
+        else:
+            self.logger.warning(f"Unexpected narrative type: {type(narration)}")
+        
+        chunks = []
+        
+        # Periksa apakah narasi kosong dan log warning jika iya
+        if not narration:
+            self.logger.warning("Narration is empty! Check API response and prompt.")
+            # Gunakan fallback text untuk konten
+            fallback_text = f"Diagram alur yang menunjukkan proses dengan {len(structured)} langkah."
+            chunks.append(self._create_chunk_object(
+                content=fallback_text,
                 structured_repr=flowchart_struct,
-                narrative_repr=narration,  # Simpan respons lengkap
+                narrative_repr=fallback_text,
                 metadata={
                     **metadata,
-                    "element_count": len(structured)
+                    "element_count": len(structured),
+                    "has_context": True,
+                    "generated_narrative": False  # Flag untuk menandai narasi tidak berhasil digenerate
                 }
-            )
+            ))
+            return chunks
+        
+        if isinstance(narration, dict):
+            content = self.content_processor.extract_text_content_from_structured_response(narration)
+            if not content:  # Double check konten tidak kosong
+                self.logger.warning("Content extracted from structured response is empty!")
+                content = f"Diagram alur yang menunjukkan proses dengan {len(structured)} langkah."
+                
+            chunks.append(self._create_chunk_object(
+                content=content,
+                structured_repr=flowchart_struct,
+                narrative_repr=narration,
+                metadata={
+                    **metadata,
+                    "element_count": len(structured),
+                    "has_context": True
+                }
+            ))
         else:
-            return self._create_chunk_object(
+            # Pastikan narration tidak kosong sebelum menyimpannya
+            if isinstance(narration, str) and not narration.strip():
+                narration = f"Diagram alur yang menunjukkan proses dengan {len(structured)} langkah."
+                
+            chunks.append(self._create_chunk_object(
                 content=narration,
                 structured_repr=flowchart_struct,
                 narrative_repr=narration,
-                metadata=metadata
-            )
+                metadata={
+                    **metadata,
+                    "element_count": len(structured),
+                    "has_context": True
+                }
+            ))
+                
+        return chunks
         
     def _process_image_block(self, block: Dict, metadata: Dict) -> Optional[Dict]:
         """Memproses blok gambar"""
