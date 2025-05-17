@@ -6,6 +6,7 @@ from tqdm import tqdm
 from openai import OpenAI
 from qdrant_client import QdrantClient
 from qdrant_client.models import PointStruct, VectorParams, Distance
+from dotenv import load_dotenv
 
 # ===== Logger =====
 class Logger:
@@ -200,7 +201,8 @@ class QdrantInserter:
 # ===== Main =====
 if __name__ == "__main__":
     # Your OpenAI API key
-    openai_api_key = ""  # Replace with your actual API key
+    load_dotenv()
+    openai_api_key = os.getenv('OPENAI_API_KEY')  # Replace with your actual API key
     
     json_file = "database/chunked_result/ABF Indonesia Bond Index Fund_chunked.json"  # sesuaikan path
     collection = "tomoro_try"  # ganti nama collection jika perlu
