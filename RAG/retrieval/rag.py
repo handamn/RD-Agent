@@ -1,66 +1,83 @@
 import os
-from dotenv import load_dotenv
+from typing import List
 from openai import OpenAI
 from qdrant_client import QdrantClient
+from qdrant_client.models import Filter, SearchParams, PointStruct
+from dotenv import load_dotenv
 
-# === Setup ===
+# ===== Load API Key and Setup =====
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
+assert openai_api_key, "Please set OPENAI_API_KEY in .env"
 
-client = OpenAI(api_key=openai_api_key)
-qdrant = QdrantClient(host="localhost", port=6333)
+# ===== Embedder =====
+class Embedder:
+    def __init__(self, api_key, model="text-embedding-3-small"):
+        self.client = OpenAI(api_key=api_key)
+        self.model = model
 
-EMBED_MODEL = "text-embedding-3-small"
-GPT_MODEL = "gpt-4o-mini"
-COLLECTION_NAME = "tomoro_try"
-TOP_K = 5
+    def embed(self, text: str) -> List[float]:
+        response = self.client.embeddings.create(
+            input=[text],
+            model=self.model
+        )
+        return response.data[0].embedding
 
-# === Langkah: Embedding query ===
-def embed_query(text: str) -> list[float]:
-    response = client.embeddings.create(
-        input=[text],
-        model=EMBED_MODEL
-    )
-    return response.data[0].embedding
+# ===== RAG Pipeline =====
+class RAG:
+    def __init__(self, collection_name: str, api_key: str, host="localhost", port=6333):
+        self.embedder = Embedder(api_key=api_key)
+        self.qdrant = QdrantClient(host=host, port=port)
+        self.collection = collection_name
+        self.client = OpenAI(api_key=api_key)
 
-# === Langkah: Ambil konteks dari Qdrant ===
-def retrieve_context(query: str, top_k=TOP_K) -> list[str]:
-    query_vector = embed_query(query)
-    results = qdrant.search(
-        collection_name=COLLECTION_NAME,
-        query_vector=query_vector,
-        limit=top_k
-    )
-    return [hit.payload["text"] for hit in results if "text" in hit.payload]
+    def retrieve(self, query: str, top_k=5) -> List[dict]:
+        vector = self.embedder.embed(query)
+        hits = self.qdrant.search(
+            collection_name=self.collection,
+            query_vector=vector,
+            limit=top_k,
+            search_params=SearchParams(hnsw_ef=128),
+        )
+        return hits
 
-# === Langkah: Prompt dan minta jawaban ke GPT ===
-def ask_with_context(question: str, contexts: list[str]) -> str:
-    context_block = "\n\n".join(contexts)
-    prompt = f"""Gunakan konteks berikut untuk menjawab pertanyaan.
+    def build_context(self, hits: List[dict]) -> str:
+        context = ""
+        for i, hit in enumerate(hits):
+            payload = hit.payload
+            filename = payload.get("document_metadata", {}).get("filename", "Unknown File")
+            page = payload.get("metadata", {}).get("page_number", "Unknown Page")
+            text = payload.get("text", "")
+            context += f"\n### Source {i+1}: {filename} (Page {page})\n{text.strip()}\n"
+        return context.strip()
 
-Konteks:
-{context_block}
+    def ask(self, query: str, top_k=5) -> str:
+        hits = self.retrieve(query, top_k=top_k)
+        context = self.build_context(hits)
+        prompt = (
+            f"Konteks berikut diambil dari beberapa dokumen perusahaan:\n\n"
+            f"{context}\n\n"
+            f"Pertanyaan: {query}\n"
+            f"Jawaban yang berdasarkan konteks di atas:"
+        )
+        response = self.client.chat.completions.create(
+            model="gpt-4o-mini",  # or "gpt-3.5-turbo" if more cost-efficient
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.2,
+        )
+        return response.choices[0].message.content.strip()
 
-Pertanyaan: {question}
-Jawaban:"""
-
-    response = client.chat.completions.create(
-        model=GPT_MODEL,
-        messages=[
-            {"role": "system", "content": "Kamu adalah asisten cerdas. Jawablah hanya berdasarkan konteks yang tersedia. Jika tidak ada cukup informasi, jawab 'Maaf, saya tidak tahu.'"},
-            {"role": "user", "content": prompt}
-        ],
-        temperature=0.3
-    )
-    return response.choices[0].message.content.strip()
-
-# === Main ===
+# ===== CLI Entry Point =====
 if __name__ == "__main__":
-    question = input("Masukkan pertanyaan: ")
-    context = retrieve_context(question)
+    import argparse
 
-    if not context:
-        print("Tidak ditemukan konteks relevan.")
-    else:
-        answer = ask_with_context(question, context)
-        print("\nJawaban:\n", answer)
+    parser = argparse.ArgumentParser(description="RAG System - Qdrant + OpenAI")
+    parser.add_argument("--query", "-q", type=str, required=True, help="Pertanyaan pengguna")
+    parser.add_argument("--collection", "-c", type=str, default="tomoro_try", help="Nama koleksi Qdrant")
+    parser.add_argument("--topk", "-k", type=int, default=5, help="Jumlah konteks yang diambil")
+    args = parser.parse_args()
+
+    rag = RAG(collection_name=args.collection, api_key=openai_api_key)
+    answer = rag.ask(query=args.query, top_k=args.topk)
+    print("\n========== JAWABAN ==========")
+    print(answer)
