@@ -1,0 +1,43 @@
+2025-05-18 11:43:02,439 - RAG - INFO - Connected to Qdrant collection: tomoro_try
+2025-05-18 11:43:03,153 - RAG - INFO - RAG system initialized
+2025-05-18 11:44:38,961 - RAG - INFO - Connected to Qdrant collection: tomoro_try
+2025-05-18 11:44:39,659 - RAG - INFO - RAG system initialized
+2025-05-18 11:44:51,215 - RAG - INFO - Processing query: siapa saja Anggota Komite Supervisi pada saat Prospektus ini diterbitkan
+2025-05-18 11:44:53,019 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 11:44:53,067 - RAG - INFO - Expanded queries: ['siapa saja Anggota Komite Supervisi pada saat Prospektus ini diterbitkan', 'daftar anggota Komite Supervisi yang terlibat dalam penerbitan Prospektus', 'informasi mengenai anggota Komite Supervisi saat Prospektus diterbitkan', 'struktur dan peran Anggota Komite Supervisi dalam konteks Prospektus yang diterbitkan']
+2025-05-18 11:44:53,735 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 11:44:53,735 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 11:44:54,045 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 11:44:54,045 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 11:44:54,561 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 11:44:54,561 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 11:44:55,268 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 11:44:55,270 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 11:44:56,065 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 11:44:56,065 - RAG - INFO - Query processed in 4.85 seconds
+2025-05-18 11:45:24,538 - RAG - INFO - Processing query: siapa itu Prof. Sidharta Utama
+2025-05-18 11:45:25,863 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 11:45:25,863 - RAG - INFO - Expanded queries: ['siapa itu Prof. Sidharta Utama', 'informasi tentang Prof. Sidharta Utama dalam konteks investasi dan keuangan', 'profil akademis dan kontribusi Prof. Sidharta Utama di bidang regulasi keuangan', 'peran Prof. Sidharta Utama dalam pengembangan kebijakan investasi di Indonesia']
+2025-05-18 11:45:26,707 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 11:45:26,707 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 11:45:27,568 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 11:45:27,568 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 11:45:28,313 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 11:45:28,313 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 11:45:28,820 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 11:45:28,820 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 11:45:29,994 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 11:45:29,994 - RAG - INFO - Query processed in 5.46 seconds
+2025-05-18 11:50:37,295 - RAG - INFO - Processing query: apa yang dibahas didalam dokumen ini
+2025-05-18 11:50:38,378 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 11:50:38,384 - RAG - INFO - Expanded queries: ['apa yang dibahas didalam dokumen ini', 'ringkasan isi dokumen keuangan ini', 'analisis topik yang terdapat dalam laporan investasi ini', 'informasi penting dalam dokumen regulasi finansial ini']
+2025-05-18 11:50:39,168 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 11:50:39,171 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 11:50:39,815 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 11:50:39,818 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 11:50:40,192 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 11:50:40,194 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 11:50:40,809 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 11:50:40,810 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 11:50:41,810 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 11:50:41,814 - RAG - INFO - Query processed in 4.52 seconds
