@@ -299,3 +299,59 @@
 2025-05-18 15:55:50,291 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2025-05-18 15:55:52,608 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2025-05-18 15:55:52,610 - RAG - INFO - Query processed in 7.51 seconds
+2025-05-18 16:08:23,428 - RAG - INFO - Connected to Qdrant collection: tomoro_try
+2025-05-18 16:08:24,314 - RAG - INFO - Enhanced RAG system initialized
+2025-05-18 16:09:22,119 - RAG - INFO - Processing query: ketika BTIM menerima FPK dari investor dan memeriksa kelengkapan pengisian FPK, apa yang dilakukan selanjutnya?
+2025-05-18 16:09:24,287 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 16:09:24,296 - RAG - INFO - Expanded queries: ['ketika BTIM menerima FPK dari investor dan memeriksa kelengkapan pengisian FPK, apa yang dilakukan selanjutnya?', 'Prosedur yang diikuti BTIM setelah menerima FPK dari investor dan verifikasi kelengkapan dokumen.', 'Langkah-langkah yang diambil BTIM setelah pemeriksaan FPK oleh investor dalam konteks investasi dan kepatuhan.', 'Tindakan lanjutan BTIM setelah evaluasi FPK dari investor dalam proses investasi dan regulasi.']
+2025-05-18 16:09:24,765 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 16:09:24,924 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 16:09:25,027 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/scroll "HTTP/1.1 200 OK"
+2025-05-18 16:09:25,428 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 16:09:25,478 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 16:09:25,516 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/scroll "HTTP/1.1 200 OK"
+2025-05-18 16:09:25,834 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 16:09:25,876 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 16:09:25,934 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/scroll "HTTP/1.1 200 OK"
+2025-05-18 16:09:26,543 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 16:09:26,599 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 16:09:26,662 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/scroll "HTTP/1.1 200 OK"
+2025-05-18 16:09:28,683 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 16:09:31,253 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 16:09:31,257 - RAG - INFO - Query processed in 9.14 seconds
+2025-05-18 16:09:50,082 - RAG - INFO - Processing query: siapa saja Anggota Komite Supervisi pada saat Prospektus ini diterbitkan
+2025-05-18 16:09:51,409 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 16:09:51,411 - RAG - INFO - Expanded queries: ['siapa saja Anggota Komite Supervisi pada saat Prospektus ini diterbitkan', 'daftar anggota Komite Supervisi saat penerbitan prospektus', 'informasi tentang anggota Komite Supervisi dalam prospektus yang diterbitkan', 'struktur dan peran anggota Komite Supervisi pada saat prospektus diterbitkan']
+2025-05-18 16:09:51,991 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 16:09:52,051 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 16:09:52,117 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/scroll "HTTP/1.1 200 OK"
+2025-05-18 16:09:52,763 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 16:09:52,809 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 16:09:52,883 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/scroll "HTTP/1.1 200 OK"
+2025-05-18 16:09:53,256 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 16:09:53,305 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 16:09:53,346 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/scroll "HTTP/1.1 200 OK"
+2025-05-18 16:09:53,758 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 16:09:53,794 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 16:09:53,820 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/scroll "HTTP/1.1 200 OK"
+2025-05-18 16:09:55,548 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 16:09:58,732 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 16:09:58,739 - RAG - INFO - Query processed in 8.66 seconds
+2025-05-18 16:10:56,633 - RAG - INFO - Processing query: apakah pada ABF Indonesia Bond Index Fund mengalokasikan pada bisnis syariah?
+2025-05-18 16:10:58,723 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 16:10:58,729 - RAG - INFO - Expanded queries: ['apakah pada ABF Indonesia Bond Index Fund mengalokasikan pada bisnis syariah?', 'Alokasi investasi ABF Indonesia Bond Index Fund dalam sektor syariah dan dampaknya terhadap kinerja.', 'Kesesuaian ABF Indonesia Bond Index Fund dengan prinsip investasi syariah dan regulasi terkait.', 'Analisis kontribusi bisnis syariah dalam portofolio ABF Indonesia Bond Index Fund.']
+2025-05-18 16:10:59,530 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 16:10:59,569 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 16:10:59,615 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/scroll "HTTP/1.1 200 OK"
+2025-05-18 16:10:59,983 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 16:10:59,999 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 16:11:00,173 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/scroll "HTTP/1.1 200 OK"
+2025-05-18 16:11:00,674 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 16:11:00,702 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 16:11:00,743 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/scroll "HTTP/1.1 200 OK"
+2025-05-18 16:11:01,062 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 16:11:01,092 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 16:11:01,129 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/scroll "HTTP/1.1 200 OK"
+2025-05-18 16:11:02,854 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 16:11:07,796 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 16:11:07,797 - RAG - INFO - Query processed in 11.16 seconds
