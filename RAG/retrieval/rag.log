@@ -41,3 +41,163 @@
 2025-05-18 11:50:40,810 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
 2025-05-18 11:50:41,810 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2025-05-18 11:50:41,814 - RAG - INFO - Query processed in 4.52 seconds
+2025-05-18 12:17:20,967 - RAG - INFO - Connected to Qdrant collection: tomoro_try
+2025-05-18 12:17:21,730 - RAG - INFO - RAG system initialized
+2025-05-18 12:17:32,102 - RAG - INFO - Processing query: siapa saja Anggota Komite Supervisi pada saat Prospektus ini diterbitkan
+2025-05-18 12:17:33,797 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:17:33,891 - RAG - INFO - Expanded queries: ['siapa saja Anggota Komite Supervisi pada saat Prospektus ini diterbitkan', 'Siapa saja anggota komite pengawasan yang tercantum dalam prospektus saat ini?', 'Siapa yang menjadi bagian dari komite supervisi ketika prospektus ini diumumkan?', 'Siapa yang termasuk dalam anggota Komite Supervisi pada saat penerbitan Prospektus ini?']
+2025-05-18 12:17:34,377 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:17:34,380 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 12:17:34,833 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:17:34,833 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 12:17:35,117 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:17:35,119 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 12:17:35,445 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:17:35,445 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 12:17:36,814 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:17:36,821 - RAG - INFO - Query processed in 4.72 seconds
+2025-05-18 12:19:16,021 - RAG - INFO - Connected to Qdrant collection: tomoro_try
+2025-05-18 12:19:16,760 - RAG - INFO - RAG system initialized
+2025-05-18 12:19:33,910 - RAG - INFO - Connected to Qdrant collection: tomoro_try
+2025-05-18 12:19:34,595 - RAG - INFO - RAG system initialized
+2025-05-18 12:19:38,875 - RAG - INFO - Processing query: siapa saja Anggota Komite Supervisi pada saat Prospektus ini diterbitkan
+2025-05-18 12:19:40,189 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:19:40,241 - RAG - INFO - Expanded queries: ['siapa saja Anggota Komite Supervisi pada saat Prospektus ini diterbitkan', 'daftar anggota Komite Supervisi saat penerbitan Prospektus', 'informasi mengenai anggota Komite Supervisi dalam Prospektus terbaru', 'struktur dan komposisi Komite Supervisi pada saat penerbitan Prospektus']
+2025-05-18 12:19:40,851 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:19:40,859 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 12:19:41,492 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:19:41,492 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 12:19:41,817 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:19:41,817 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 12:19:42,354 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:19:42,354 - RAG - ERROR - Error retrieving from Qdrant: Unknown arguments: ['filter']
+2025-05-18 12:19:43,137 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:19:43,137 - RAG - INFO - Query processed in 4.26 seconds
+2025-05-18 12:21:37,977 - RAG - INFO - Connected to Qdrant collection: tomoro_try
+2025-05-18 12:21:38,697 - RAG - INFO - RAG system initialized
+2025-05-18 12:21:44,770 - RAG - INFO - Processing query: siapa saja Anggota Komite Supervisi pada saat Prospektus ini diterbitkan
+2025-05-18 12:21:46,048 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:21:46,103 - RAG - INFO - Expanded queries: ['siapa saja Anggota Komite Supervisi pada saat Prospektus ini diterbitkan', 'daftar anggota Komite Supervisi saat penerbitan prospektus', 'informasi tentang anggota Komite Supervisi dalam prospektus terbaru', 'struktur dan profil anggota Komite Supervisi pada waktu prospektus diterbitkan']
+2025-05-18 12:21:46,688 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:21:46,805 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:21:47,359 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:21:47,395 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:21:47,701 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:21:47,744 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:21:48,045 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:21:48,082 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:21:49,080 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:21:50,086 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:21:50,090 - RAG - INFO - Query processed in 5.32 seconds
+2025-05-18 12:23:39,633 - RAG - INFO - Processing query: jelaskan Tugas Dan Wewenang Komite Supervisi
+2025-05-18 12:23:41,275 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:23:41,276 - RAG - INFO - Expanded queries: ['jelaskan Tugas Dan Wewenang Komite Supervisi', 'Tugas dan wewenang Komite Supervisi dalam pengawasan investasi dan regulasi keuangan', 'Peran Komite Supervisi dalam pengelolaan risiko dan kepatuhan di sektor keuangan', 'Fungsi dan tanggung jawab Komite Supervisi terhadap kebijakan investasi dan audit internal']
+2025-05-18 12:23:41,797 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:23:41,853 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:23:42,278 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:23:42,332 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:23:42,898 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:23:42,946 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:23:43,379 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:23:43,443 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:23:44,558 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:23:53,991 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:23:53,993 - RAG - INFO - Query processed in 14.36 seconds
+2025-05-18 12:26:13,851 - RAG - INFO - Processing query: siapa saja Anggota Komite Supervisi pada saat Prospektus ini diterbitkan
+2025-05-18 12:26:15,484 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:26:15,487 - RAG - INFO - Expanded queries: ['siapa saja Anggota Komite Supervisi pada saat Prospektus ini diterbitkan', 'daftar anggota Komite Supervisi yang terlibat dalam penerbitan prospektus', 'informasi mengenai anggota Komite Supervisi saat prospektus diterbitkan', 'struktur dan peran anggota Komite Supervisi dalam prospektus yang diterbitkan']
+2025-05-18 12:26:16,125 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:26:16,174 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:26:16,774 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:26:16,831 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:26:17,201 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:26:17,233 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:26:17,576 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:26:17,616 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:26:18,648 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:26:19,580 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:26:19,582 - RAG - INFO - Query processed in 5.73 seconds
+2025-05-18 12:26:27,884 - RAG - INFO - Processing query: siapa saja Anggota Komite Supervisi pada saat Prospektus ini diterbitkan
+2025-05-18 12:26:29,035 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:26:29,036 - RAG - INFO - Expanded queries: ['siapa saja Anggota Komite Supervisi pada saat Prospektus ini diterbitkan', 'daftar anggota Komite Supervisi saat penerbitan prospektus', 'struktur dan peran Anggota Komite Supervisi dalam prospektus investasi', 'informasi mengenai Komite Supervisi dan anggotanya pada saat prospektus diterbitkan']
+2025-05-18 12:26:29,707 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:26:29,747 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:26:30,545 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:26:30,594 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:26:31,181 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:26:31,227 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:26:31,894 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:26:31,923 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:26:32,830 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:26:34,103 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:26:34,111 - RAG - INFO - Query processed in 6.23 seconds
+2025-05-18 12:27:10,171 - RAG - INFO - Processing query: Kebijakan Investasi ABF IBI FUND adalah
+2025-05-18 12:27:11,319 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:27:11,324 - RAG - INFO - Expanded queries: ['Kebijakan Investasi ABF IBI FUND adalah', 'Kebijakan investasi dan strategi pengelolaan ABF IBI FUND', 'Analisis kebijakan investasi ABF IBI FUND dan dampaknya terhadap portofolio', 'Regulasi dan peraturan terkait kebijakan investasi ABF IBI FUND']
+2025-05-18 12:27:11,784 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:27:11,829 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:27:12,457 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:27:12,490 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:27:12,840 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:27:12,876 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:27:13,198 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:27:13,226 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:27:15,702 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:27:20,893 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:27:20,893 - RAG - INFO - Query processed in 10.72 seconds
+2025-05-18 12:28:13,216 - RAG - INFO - Processing query: Reksa dana ABF IBI  Fund adalah
+2025-05-18 12:28:14,489 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:28:14,489 - RAG - INFO - Expanded queries: ['Reksa dana ABF IBI  Fund adalah', 'Reksa dana ABF IBI Fund overview and performance analysis', 'Investasi dalam Reksa dana ABF IBI Fund: manfaat dan risiko', 'Regulasi dan kebijakan terkait Reksa dana ABF IBI Fund di Indonesia']
+2025-05-18 12:28:14,911 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:28:14,975 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:28:15,363 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:28:15,392 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:28:15,782 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:28:15,809 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:28:16,116 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:28:16,139 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:28:17,239 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:28:20,229 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:28:20,229 - RAG - INFO - Query processed in 7.01 seconds
+2025-05-18 12:29:16,466 - RAG - INFO - Processing query: pada bab 1 menjelaskan kata-kata khusus dalam prospektus ini. apa saja dan ada berapa?
+2025-05-18 12:29:18,119 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:29:18,119 - RAG - INFO - Expanded queries: ['pada bab 1 menjelaskan kata-kata khusus dalam prospektus ini. apa saja dan ada berapa?', 'istilah-istilah khusus dalam prospektus investasi dan jumlahnya', 'definisi terminologi keuangan dalam dokumen prospektus dan total istilah', 'analisis kata-kata kunci dalam prospektus dan jumlah terminologi yang digunakan']
+2025-05-18 12:29:18,497 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:29:18,531 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:29:18,912 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:29:18,949 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:29:19,251 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:29:19,289 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:29:19,607 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:29:19,644 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:29:21,005 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:29:25,548 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:29:25,562 - RAG - INFO - Query processed in 9.10 seconds
+2025-05-18 12:31:08,745 - RAG - INFO - Processing query: siapa saja tim manajemen investasi?
+2025-05-18 12:31:10,100 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:31:10,106 - RAG - INFO - Expanded queries: ['siapa saja tim manajemen investasi?', 'siapa yang termasuk dalam tim manajemen portofolio investasi?', 'siapa anggota tim pengelola investasi di perusahaan keuangan?', 'struktur dan peran tim manajemen aset dalam investasi finansial?']
+2025-05-18 12:31:10,516 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:31:10,554 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:31:10,879 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:31:10,903 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:31:11,273 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:31:11,302 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:31:11,941 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:31:11,959 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:31:13,076 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:31:15,734 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:31:15,734 - RAG - INFO - Query processed in 6.99 seconds
+2025-05-18 12:32:21,441 - RAG - INFO - Processing query: pihak apa saja yang terafiliasi dengan manajer investasi?
+2025-05-18 12:32:22,936 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:32:22,936 - RAG - INFO - Expanded queries: ['pihak apa saja yang terafiliasi dengan manajer investasi?', 'pihak-pihak yang berhubungan dengan manajer investasi dan dampaknya terhadap portofolio', 'entitas yang berafiliasi dengan manajer investasi dalam konteks regulasi dan kepatuhan', 'hubungan antara manajer investasi dan pemangku kepentingan lainnya dalam industri keuangan']
+2025-05-18 12:32:23,307 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:32:23,337 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:32:23,680 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:32:23,718 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:32:24,368 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:32:24,388 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:32:24,689 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 12:32:24,725 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 12:32:26,130 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:32:30,776 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 12:32:30,776 - RAG - INFO - Query processed in 9.34 seconds
