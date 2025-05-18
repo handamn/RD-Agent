@@ -201,3 +201,101 @@
 2025-05-18 12:32:26,130 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2025-05-18 12:32:30,776 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2025-05-18 12:32:30,776 - RAG - INFO - Query processed in 9.34 seconds
+2025-05-18 15:41:40,327 - RAG - INFO - Connected to Qdrant collection: tomoro_try
+2025-05-18 15:41:41,050 - RAG - INFO - RAG system initialized
+2025-05-18 15:42:19,053 - RAG - INFO - Processing query: hak apa saja yang dimiliki dealer partisipan
+2025-05-18 15:42:20,908 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:42:20,971 - RAG - INFO - Expanded queries: ['hak apa saja yang dimiliki dealer partisipan', 'hak dan kewajiban dealer partisipan dalam pasar modal', 'peran dan tanggung jawab dealer partisipan di bursa efek', 'regulasi dan hak akses dealer partisipan dalam perdagangan sekuritas']
+2025-05-18 15:42:21,644 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:42:25,703 - RAG - ERROR - Error retrieving from Qdrant: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-05-18 15:42:26,211 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:42:30,293 - RAG - ERROR - Error retrieving from Qdrant: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-05-18 15:42:31,015 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:42:35,154 - RAG - ERROR - Error retrieving from Qdrant: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-05-18 15:42:35,779 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:42:39,860 - RAG - ERROR - Error retrieving from Qdrant: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-05-18 15:42:41,692 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:42:41,707 - RAG - INFO - Query processed in 22.65 seconds
+2025-05-18 15:47:12,373 - RAG - INFO - Processing query: hak apa saja yang dimiliki dealer partisipan
+2025-05-18 15:47:13,788 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:47:13,799 - RAG - INFO - Expanded queries: ['hak apa saja yang dimiliki dealer partisipan', 'hak dan kewajiban dealer partisipan dalam pasar modal', 'peran dan tanggung jawab dealer partisipan di sektor investasi', 'regulasi dan hak akses dealer partisipan dalam transaksi keuangan']
+2025-05-18 15:47:14,183 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:47:18,296 - RAG - ERROR - Error retrieving from Qdrant: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-05-18 15:47:18,910 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:47:22,992 - RAG - ERROR - Error retrieving from Qdrant: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-05-18 15:47:23,730 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:47:27,771 - RAG - ERROR - Error retrieving from Qdrant: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-05-18 15:47:28,349 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:47:32,420 - RAG - ERROR - Error retrieving from Qdrant: [WinError 10061] No connection could be made because the target machine actively refused it
+2025-05-18 15:47:34,303 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:47:34,305 - RAG - INFO - Query processed in 21.94 seconds
+2025-05-18 15:48:22,125 - RAG - INFO - Processing query: hak apa saja yang dimiliki dealer partisipan
+2025-05-18 15:48:23,857 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:48:23,861 - RAG - INFO - Expanded queries: ['hak apa saja yang dimiliki dealer partisipan', 'hak dan kewajiban dealer partisipan dalam pasar modal', 'peran dealer partisipan dalam transaksi sekuritas dan hak aksesnya', 'regulasi dan hak-hak dealer partisipan di industri keuangan']
+2025-05-18 15:48:24,955 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:48:25,002 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:48:25,455 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:48:25,488 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:48:25,958 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:48:25,986 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:48:26,326 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:48:26,369 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:48:27,736 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:48:36,736 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:48:36,741 - RAG - INFO - Query processed in 14.62 seconds
+2025-05-18 15:51:01,188 - RAG - INFO - Processing query: berapa beban pengelolaan investasi pada tahun 2023
+2025-05-18 15:51:02,465 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:51:02,467 - RAG - INFO - Expanded queries: ['berapa beban pengelolaan investasi pada tahun 2023', 'apa saja biaya manajemen investasi di tahun 2023', 'analisis biaya pengelolaan portofolio investasi 2023', 'komponen biaya investasi dan pengelolaan aset tahun 2023']
+2025-05-18 15:51:03,188 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:51:03,241 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:51:03,627 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:51:03,666 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:51:04,334 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:51:04,369 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:51:04,781 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:51:04,814 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:51:05,980 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:51:08,775 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:51:08,777 - RAG - INFO - Query processed in 7.59 seconds
+2025-05-18 15:52:55,494 - RAG - INFO - Processing query: pada arus kas dari aktib=vitas operasi pada tahun 2023, berapa penerimaan bunga dan bag hasil bersih?
+2025-05-18 15:52:59,760 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:52:59,763 - RAG - INFO - Expanded queries: ['pada arus kas dari aktib=vitas operasi pada tahun 2023, berapa penerimaan bunga dan bag hasil bersih?', 'arus kas dari aktivitas operasi tahun 2023, analisis penerimaan bunga dan laba bersih', 'laporan arus kas aktivitas operasi 2023, perhitungan pendapatan bunga dan hasil bersih', 'evaluasi arus kas operasi 2023, dampak penerimaan bunga dan profitabilitas bersih']
+2025-05-18 15:53:00,185 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:53:00,215 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:53:00,891 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:53:00,919 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:53:01,860 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:53:01,892 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:53:02,230 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:53:02,251 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:53:03,339 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:53:06,679 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:53:06,680 - RAG - INFO - Query processed in 11.19 seconds
+2025-05-18 15:54:08,938 - RAG - INFO - Processing query: bagaiimana skema proses pembelian unit penyertaan ABF IBI FUND
+2025-05-18 15:54:10,737 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:54:10,739 - RAG - INFO - Expanded queries: ['bagaiimana skema proses pembelian unit penyertaan ABF IBI FUND', 'skema investasi dan prosedur pembelian unit penyertaan ABF IBI FUND', 'langkah-langkah untuk membeli unit penyertaan di ABF IBI FUND', 'panduan proses akuisisi unit penyertaan pada ABF IBI FUND']
+2025-05-18 15:54:11,062 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:54:11,092 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:54:11,533 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:54:11,570 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:54:11,861 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:54:11,890 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:54:12,211 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:54:12,231 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:54:13,532 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:54:21,754 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:54:21,760 - RAG - INFO - Query processed in 12.82 seconds
+2025-05-18 15:55:45,097 - RAG - INFO - Processing query: ketika BTIM menerima FPK dari investor dan memeriksa kelengkapan pengisian FPK, apa yang dilakukan selanjutnya?
+2025-05-18 15:55:46,925 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:55:46,930 - RAG - INFO - Expanded queries: ['ketika BTIM menerima FPK dari investor dan memeriksa kelengkapan pengisian FPK, apa yang dilakukan selanjutnya?', 'Prosedur lanjutan setelah BTIM menerima dan memverifikasi FPK dari investor.', 'Tindakan yang diambil BTIM setelah pemeriksaan kelengkapan FPK oleh investor.', 'Langkah-langkah yang diambil BTIM setelah penerimaan dan validasi FPK dari investor.']
+2025-05-18 15:55:47,548 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:55:47,580 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:55:48,370 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:55:48,390 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:55:48,700 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:55:48,723 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:55:49,120 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-18 15:55:49,146 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tomoro_try/points/search "HTTP/1.1 200 OK"
+2025-05-18 15:55:50,291 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:55:52,608 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-18 15:55:52,610 - RAG - INFO - Query processed in 7.51 seconds
