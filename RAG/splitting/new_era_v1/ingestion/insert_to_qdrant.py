@@ -43,14 +43,17 @@ class QdrantInserter:
                  api_key=None,
                  host="localhost",
                  port=6333,
-                 index_path="database/index.json"):
+                 index_path="database/index.json",
+                 json_dir="database/chunked_result"):
         self.qdrant = QdrantClient(host=host, port=port)
         self.collection_name = collection_name
         self.logger = Logger()
         self.embedder = Embedder(api_key=api_key)
         # prepare index file
         self.index_path = index_path
+        self.json_dir = json_dir
         os.makedirs(os.path.dirname(self.index_path), exist_ok=True)
+        os.makedirs(self.json_dir, exist_ok=True)
         self.inserted_ids = self._load_index()
         self.ensure_collection()
 
@@ -198,14 +201,67 @@ class QdrantInserter:
             f"{total_skipped} skipped, {total_failed} failed"
         )
 
+    def process_files(self, file_list):
+        """Process a list of file names, looking for their chunked JSON files"""
+        self.logger.log_info(f"Starting to process {len(file_list)} files")
+        
+        processed_count = 0
+        failed_count = 0
+        
+        for file_name in file_list:
+            # Get just the name if it's in a list format like your example
+            if isinstance(file_name, list):
+                file_name = file_name[0]
+                
+            # Construct the path to the chunked JSON file
+            json_path = os.path.join(self.json_dir, f"{file_name}_chunked.json")
+            
+            self.logger.log_info(f"\n--- Processing: {file_name} ---")
+            
+            try:
+                if os.path.exists(json_path):
+                    self.insert_from_json(json_path)
+                    self.logger.log_info(f"✓ Successfully processed: {file_name}")
+                    processed_count += 1
+                else:
+                    self.logger.log_info(f"✗ JSON file not found: {json_path}", status="ERROR")
+                    failed_count += 1
+            except Exception as e:
+                self.logger.log_info(f"✗ Failed to process {file_name}: {e}", status="ERROR")
+                failed_count += 1
+        
+        self.logger.log_info(f"\nProcessing complete: {processed_count} successful, {failed_count} failed")
+        return processed_count, failed_count
+
 # ===== Main =====
 if __name__ == "__main__":
-    # Your OpenAI API key
+    # Load environment variables
     load_dotenv()
-    openai_api_key = os.getenv('OPENAI_API_KEY')  # Replace with your actual API key
+    openai_api_key = os.getenv('OPENAI_API_KEY')
     
-    json_file = "database/chunked_result/ABF Indonesia Bond Index Fund_chunked.json"  # sesuaikan path
+    # Collection name
     collection = "tomoro_try"  # ganti nama collection jika perlu
-
-    inserter = QdrantInserter(collection_name=collection, api_key=openai_api_key)
-    inserter.insert_from_json(json_file)
+    
+    # List file untuk diproses [name]
+    files_to_process = [
+        # ['ABF Indonesia Bond Index Fund'],
+        # ['ABF Indonesia Bond Index Fund Update June 2024'],
+        # ['Avrist Ada Kas Mutiara'],
+        # Banyak file lainnya yang dikomentari...
+        ['Manulife Syariah Sektoral Amanah Kelas A'],
+        ['Manulife USD Fixed Income Kelas A'],
+        ['Principal Cash Fund'],
+        ['Principal Index IDX30 Kelas O'],
+        ['Principal Islamic Equity Growth Syariah'],
+    ]
+    
+    # Inisialisasi QdrantInserter
+    inserter = QdrantInserter(
+        collection_name=collection, 
+        api_key=openai_api_key,
+        json_dir="database/chunked_result"  # Sesuaikan dengan direktori Anda
+    )
+    
+    # Proses semua file dalam daftar
+    print("\nMemulai proses memasukkan data ke Qdrant...\n")
+    inserter.process_files(files_to_process)
