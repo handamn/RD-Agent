@@ -7,6 +7,7 @@ from openai import OpenAI
 from qdrant_client import QdrantClient
 from qdrant_client.models import PointStruct, VectorParams, Distance
 from dotenv import load_dotenv
+import shutil
 
 # ===== Logger =====
 class Logger:
@@ -36,7 +37,7 @@ class Embedder:
         )
         return response.data[0].embedding
 
-# ===== QdrantInserter with index.json caching =====
+# ===== QdrantInserter with separate output files =====
 class QdrantInserter:
     def __init__(self,
                  collection_name: str,
@@ -44,7 +45,8 @@ class QdrantInserter:
                  host="localhost",
                  port=6333,
                  index_path="database/index.json",
-                 json_dir="database/chunked_result"):
+                 json_dir="database/chunked_result",
+                 output_dir="database/yuhuu"):
         self.qdrant = QdrantClient(host=host, port=port)
         self.collection_name = collection_name
         self.logger = Logger()
@@ -52,8 +54,10 @@ class QdrantInserter:
         # prepare index file
         self.index_path = index_path
         self.json_dir = json_dir
+        self.output_dir = output_dir
         os.makedirs(os.path.dirname(self.index_path), exist_ok=True)
         os.makedirs(self.json_dir, exist_ok=True)
+        os.makedirs(self.output_dir, exist_ok=True)
         self.inserted_ids = self._load_index()
         self.ensure_collection()
 
@@ -87,6 +91,31 @@ class QdrantInserter:
         # deterministic numeric ID from string
         return int(hashlib.sha256(item_id.encode()).hexdigest(), 16) % (10**18)
 
+    def check_existing_embedding(self, item_id, json_filename):
+        """Check if item has embedding in output directory"""
+        output_json_path = os.path.join(self.output_dir, os.path.basename(json_filename))
+        
+        if os.path.exists(output_json_path):
+            try:
+                with open(output_json_path, "r", encoding="utf-8") as f:
+                    output_data = json.load(f)
+                
+                # Check if data is in the new format or old format
+                if "chunks" in output_data:
+                    items = output_data["chunks"]
+                    for item in items:
+                        if item.get("chunk_id") == item_id and "embedding" in item and item["embedding"]:
+                            return True, item["embedding"]
+                else:
+                    # Old format (list of items)
+                    for item in output_data:
+                        if item.get("id") == item_id and "embedding" in item and item["embedding"]:
+                            return True, item["embedding"]
+            except Exception as e:
+                self.logger.log_info(f"Error checking existing embedding: {e}", status="WARNING")
+        
+        return False, None
+
     def insert_from_json(self, json_path: str):
         if not os.path.isfile(json_path):
             self.logger.log_info(f"File not found: {json_path}", status="ERROR")
@@ -112,6 +141,24 @@ class QdrantInserter:
             items = data
             doc_metadata = {}
         
+        # Create a copy of the data for the output file
+        output_data = data.copy() if not is_new_format else {
+            "document_metadata": doc_metadata.copy(),
+            "chunks": [item.copy() for item in items]
+        }
+        
+        # Get the filename for the output file
+        output_json_path = os.path.join(self.output_dir, os.path.basename(json_path))
+        
+        # If output file exists, load it instead of creating a new one
+        if os.path.exists(output_json_path):
+            try:
+                with open(output_json_path, "r", encoding="utf-8") as f:
+                    output_data = json.load(f)
+                self.logger.log_info(f"Loaded existing output file: {output_json_path}")
+            except Exception as e:
+                self.logger.log_info(f"Error loading existing output file: {e}. Creating new one.", status="WARNING")
+        
         total_embedded = 0
         total_reused = 0
         total_skipped = 0
@@ -119,7 +166,7 @@ class QdrantInserter:
         modified = False
         
         # Process each chunk/item
-        for item in tqdm(items, desc="Processing items"):
+        for item_index, item in enumerate(tqdm(items, desc="Processing items")):
             # Get chunk_id or id based on format
             if is_new_format:
                 item_id = item.get("chunk_id")
@@ -145,19 +192,30 @@ class QdrantInserter:
             point_id = self.get_point_id(item_id)
             
             try:
-                # Check if item already has embedding
-                if "embedding" in item and item["embedding"]:
+                # Check if item already has embedding in source file
+                has_embedding_in_source = "embedding" in item and item["embedding"]
+                
+                # Check if item has embedding in output directory
+                has_embedding_in_output, existing_embedding = self.check_existing_embedding(item_id, json_path)
+                
+                if has_embedding_in_source or has_embedding_in_output:
+                    # Use existing embedding
+                    vector = item["embedding"] if has_embedding_in_source else existing_embedding
                     self.logger.log_info(f"REUSE: Using existing embedding for ID {item_id}")
-                    vector = item["embedding"]
                     total_reused += 1
                 else:
                     # Generate new embedding
                     self.logger.log_info(f"EMBED: Generating new embedding for ID {item_id}")
                     vector = self.embedder.embed_text(text)
-                    # Save embedding back to the JSON structure
-                    item["embedding"] = vector
-                    modified = True
                     total_embedded += 1
+                
+                # Update the embedding in output_data
+                if is_new_format:
+                    output_data["chunks"][item_index]["embedding"] = vector
+                else:
+                    output_data[item_index]["embedding"] = vector
+                
+                modified = True
 
                 # Prepare payload for Qdrant
                 payload = {
@@ -186,11 +244,11 @@ class QdrantInserter:
                 self.logger.log_info(f"ERROR processing ID {item_id}: {e}", status="ERROR")
                 total_failed += 1
         
-        # Save the updated JSON with embeddings back to file if modified
+        # Save the output file with embeddings
         if modified:
-            self.logger.log_info(f"Saving updated JSON with embeddings back to {json_path}")
-            with open(json_path, "w", encoding="utf-8") as f:
-                json.dump(data, f, indent=2)
+            self.logger.log_info(f"Saving JSON with embeddings to: {output_json_path}")
+            with open(output_json_path, "w", encoding="utf-8") as f:
+                json.dump(output_data, f, indent=2)
         
         # Save the index at the end
         self._save_index()
@@ -245,138 +303,15 @@ if __name__ == "__main__":
     # List file untuk diproses [name]
     files_to_process = [
         ['ABF Indonesia Bond Index Fund'],
-        ['ABF Indonesia Bond Index Fund Update June 2024'],
-        ['Avrist Ada Kas Mutiara'],
-        ['Avrist Ada Saham Blue Safir Kelas A'],
-        ['Avrist IDX30'],
-        ['Avrist Prime Bond Fund'],
-        ['Bahana Dana Likuid Kelas G'],
-        ['Bahana Likuid Plus'],
-        ['Bahana Likuid Syariah Kelas G'],
-        ['Bahana MES Syariah Fund Kelas G'],
-        ['Bahana Pendapatan Tetap Makara Prima kelas G'],
-        ['Bahana Primavera 99 Kelas G'],
-        ['Batavia Dana Kas Maxima'],
-        ['Batavia Dana Likuid'],
-        ['Batavia Dana Obligasi Ultima'],
-        ['Batavia Dana Saham'],
-        ['Batavia Dana Saham Syariah'],
-        ['Batavia Index PEFINDO I-Grade'],
-        ['Batavia Obligasi Platinum Plus'],
-        ['Batavia Technology Sharia Equity USD'],
-        ['BNI-AM Dana Lancar Syariah'],
-        ['BNI-AM Dana Likuid Kelas A'],
-        ['BNI-AM Dana Pendapatan Tetap Makara Investasi'],
-        ['BNI-AM Dana Pendapatan Tetap Syariah Ardhani'],
-        ['BNI-AM Dana Saham Inspiring Equity Fund'],
-        ['BNI-AM IDX PEFINDO Prime Bank Kelas R1'],
-        ['BNI-AM Indeks IDX30'],
-        ['BNI-AM ITB Harmoni'],
-        ['BNI-AM PEFINDO I-Grade Kelas R1'],
-        ['BNI-AM Short Duration Bonds Index Kelas R1'],
-        ['BNI-AM SRI KEHATI Kelas R1'],
-        ['BNP Paribas Cakra Syariah USD Kelas RK1'],
-        ['BNP Paribas Ekuitas'],
-        ['BNP Paribas Greater China Equity Syariah USD'],
-        ['BNP Paribas Infrastruktur Plus'],
-        # ['BNP Paribas Pesona'],
-        # ['BNP Paribas Pesona Syariah'],
-        # ['BNP Paribas Prima II Kelas RK1'],
-        # ['BNP Paribas Prima USD Kelas RK1'],
-        # ['BNP Paribas Rupiah Plus'],
-        # ['BNP Paribas Solaris'],
-        # ['BNP Paribas SRI KEHATI'],
-        # ['BNP Paribas Sukuk Negara Kelas RK1'],
-        # ['BRI Indeks Syariah'],
-        # ['BRI Mawar Konsumer 10 Kelas A'],
-        # ['BRI Melati Pendapatan Utama'], ###############################
-        # ['BRI MSCI Indonesia ESG Screened Kelas A'],
-        # ['BRI Seruni Pasar Uang II Kelas A'],
-        # ['BRI Seruni Pasar Uang III'],
-        # ['BRI Seruni Pasar Uang Syariah'],
-        # ['Danamas Pasti'],
-        # ['Danamas Rupiah Plus'],
-        # ['Danamas Stabil'],
-        # ['Eastspring IDR Fixed Income Fund Kelas A'],
-        # ['Eastspring IDX ESG Leaders Plus Kelas A'],
-        # ['Eastspring Investments Cash Reserve Kelas A'],
-        # ['Eastspring Investments Value Discovery Kelas A'],
-        # ['Eastspring Investments Yield Discovery Kelas A'],
-        # ['Eastspring Syariah Fixed Income Amanah Kelas A'],
-        # ['Eastspring Syariah Greater China Equity USD Kelas A'],
-        # ['Eastspring Syariah Money Market Khazanah Kelas A'],
-        # ['Grow Dana Optima Kas Utama'],
-        # ['Grow Obligasi Optima Dinamis Kelas O'],
-        # ['Grow Saham Indonesia Plus Kelas O'],
-        # ['Grow SRI KEHATI Kelas O'],
-        # ['Jarvis Balanced Fund'],
-        # ['Jarvis Money Market Fund'],
-        # ['Majoris Pasar Uang Indonesia'],
-        # ['Majoris Pasar Uang Syariah Indonesia'],
-        # ['Majoris Saham Alokasi Dinamik Indonesia'],
-        # ['Majoris Sukuk Negara Indonesia'],
-        # ['Mandiri Indeks FTSE Indonesia ESG Kelas A'],
-        # ['Mandiri Investa Atraktif-Syariah'],
-        # ['Mandiri Investa Dana Syariah Kelas A'],
-        # ['Mandiri Investa Dana Utama Kelas D'],
-        # ['Mandiri Investa Pasar Uang Kelas A'],
-        # ['Mandiri Investa Syariah Berimbang'],
-        # ['Mandiri Pasar Uang Syariah Ekstra'],
-        # ['Manulife Dana Kas II Kelas A'],
-        # ['Manulife Dana Kas Syariah'],
-        # ['Manulife Dana Saham Kelas A'],
-        # ['Manulife Obligasi Negara Indonesia II Kelas A'],
-        # ['Manulife Obligasi Unggulan Kelas A'],
-        # ['Manulife Saham Andalan'],
-        # ['Manulife Syariah Sektoral Amanah Kelas A'], #########################
-        # ['Manulife USD Fixed Income Kelas A'], #######################
-        # ['Principal Cash Fund'], ################
-        # ['Principal Index IDX30 Kelas O'], ##################
-        # ['Principal Islamic Equity Growth Syariah'], ##################
-        # ['Schroder 90 Plus Equity Fund'],
-        # ['Schroder Dana Andalan II'],
-        # ['Schroder Dana Istimewa'],
-        # ['Schroder Dana Likuid'],
-        # ['Schroder Dana Likuid Syariah'],
-        # ['Schroder Dana Mantap Plus II'],
-        # ['Schroder Dana Prestasi'],
-        # ['Schroder Dana Prestasi Plus'],
-        # ['Schroder Dynamic Balanced Fund'],
-        # ['Schroder Global Sharia Equity Fund USD'],
-        # ['Schroder Syariah Balanced Fund'],
-        # ['Schroder USD Bond Fund Kelas A'],
-        # ['Simas Saham Unggulan'],
-        # ['Simas Satu'],
-        # ['Simas Syariah Unggulan'],
-        # ['Sucorinvest Bond Fund'],
-        # ['Sucorinvest Citra Dana Berimbang'],
-        # ['Sucorinvest Equity Fund'],
-        # ['Sucorinvest Flexi Fund'],
-        # ['Sucorinvest Money Market Fund'],
-        # ['Sucorinvest Premium Fund'],
-        # ['Sucorinvest Sharia Balanced Fund'],
-        # ['Sucorinvest Sharia Equity Fund'],
-        # ['Sucorinvest Sharia Money Market Fund'],
-        # ['Sucorinvest Sharia Sukuk Fund'],
-        # ['Sucorinvest Stable Fund'],
-        # ['TRAM Consumption Plus Kelas A'],
-        # ['TRAM Strategic Plus Kelas A'],
-        # ['TRIM Dana Tetap 2 Kelas A'],
-        # ['TRIM Kapital'],
-        # ['TRIM Kapital Plus'],
-        # ['TRIM Kas 2 Kelas A'],
-        # ['TRIM Syariah Saham'],
-        # ['Trimegah Dana Tetap Syariah Kelas A'],
-        # ['Trimegah FTSE Indonesia Low Volatility Factor Index'],
-        # ['Trimegah Kas Syariah'],
-        
+        # ['ABF Indonesia Bond Index Fund Update June 2024']
     ]
     
     # Inisialisasi QdrantInserter
     inserter = QdrantInserter(
         collection_name=collection, 
         api_key=openai_api_key,
-        json_dir="database/chunked_result"  # Sesuaikan dengan direktori Anda
+        json_dir="database/chunked_result",  # Direktori input
+        output_dir="database/embedded_result"  # Direktori output untuk file dengan embedding
     )
     
     # Proses semua file dalam daftar
