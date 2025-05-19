@@ -1,0 +1,22 @@
+[2025-05-19 22:19:54] [INFO] Inisialisasi Comparison_Data_Scrapper dengan 2 URL
+[2025-05-19 22:20:00] [INFO] Browser Chrome berhasil diinisialisasi
+[2025-05-19 22:20:00] [INFO] ===== Memulai proses scraping =====
+[2025-05-19 22:20:00] [INFO] Memulai scraping untuk IHSG dari https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE
+[2025-05-19 22:20:00] [INFO] Mengakses URL: https://finance.yahoo.com/quote/%5EJKSE/history/?p=%5EJKSE
+[2025-05-19 22:20:11] [INFO] Mengekstrak data tabel
+[2025-05-19 22:20:30] [INFO] Memperbarui file CSV yang ada: database/comparison/IHSG.csv
+[2025-05-19 22:20:31] [INFO] Data CSV diperbarui. 24 baris baru ditambahkan
+[2025-05-19 22:20:31] [INFO] Memproses data untuk format JSON: database/comparison/IHSG.json
+[2025-05-19 22:20:31] [INFO] Memperbarui file JSON yang ada
+[2025-05-19 22:20:31] [INFO] Data JSON diperbarui dengan total 8552 records
+[2025-05-19 22:20:31] [INFO] Scraping selesai untuk IHSG
+[2025-05-19 22:20:31] [INFO] Memulai scraping untuk LQ45 dari https://finance.yahoo.com/quote/%5EJKLQ45/history/
+[2025-05-19 22:20:31] [INFO] Mengakses URL: https://finance.yahoo.com/quote/%5EJKLQ45/history/
+[2025-05-19 22:21:04] [INFO] Mengekstrak data tabel
+[2025-05-19 22:21:21] [INFO] Memperbarui file CSV yang ada: database/comparison/LQ45.csv
+[2025-05-19 22:21:21] [INFO] Data CSV diperbarui. 24 baris baru ditambahkan
+[2025-05-19 22:21:21] [INFO] Memproses data untuk format JSON: database/comparison/LQ45.json
+[2025-05-19 22:21:21] [INFO] Memperbarui file JSON yang ada
+[2025-05-19 22:21:22] [INFO] Data JSON diperbarui dengan total 6860 records
+[2025-05-19 22:21:22] [INFO] Scraping selesai untuk LQ45
+[2025-05-19 22:21:24] [INFO] ===== Proses scraping selesai dalam 84.12 detik =====
