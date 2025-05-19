@@ -303,7 +303,7 @@ if __name__ == "__main__":
     # List file untuk diproses [name]
     files_to_process = [
         ['ABF Indonesia Bond Index Fund'],
-        ['ABF Indonesia Bond Index Fund Update June 2024']
+        # ['ABF Indonesia Bond Index Fund Update June 2024']
     ]
     
     # Inisialisasi QdrantInserter
