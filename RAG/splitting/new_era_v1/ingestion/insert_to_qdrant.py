@@ -303,6 +303,7 @@ if __name__ == "__main__":
     # List file untuk diproses [name]
     files_to_process = [
         ['ABF Indonesia Bond Index Fund'],
+        ['ABF Indonesia Bond Index Fund Update June 2024']
     ]
     
     # Inisialisasi QdrantInserter
@@ -310,7 +311,7 @@ if __name__ == "__main__":
         collection_name=collection, 
         api_key=openai_api_key,
         json_dir="database/chunked_result",  # Direktori input
-        output_dir="database/yuhuu"  # Direktori output untuk file dengan embedding
+        output_dir="database/embedded_result"  # Direktori output untuk file dengan embedding
     )
     
     # Proses semua file dalam daftar
