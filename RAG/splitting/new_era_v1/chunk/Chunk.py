@@ -1202,14 +1202,14 @@ if __name__ == "__main__":
         ['Sucorinvest Stable Fund'],
         # ['TRAM Consumption Plus Kelas A'],
         # ['TRAM Strategic Plus Kelas A'],
-        # ['TRIM Dana Tetap 2 Kelas A'],
-        # ['TRIM Kapital'],
-        # ['TRIM Kapital Plus'],
-        # ['TRIM Kas 2 Kelas A'],
-        # ['TRIM Syariah Saham'],
-        # ['Trimegah Dana Tetap Syariah Kelas A'],
-        # ['Trimegah FTSE Indonesia Low Volatility Factor Index'],
-        # ['Trimegah Kas Syariah'],
+        ['TRIM Dana Tetap 2 Kelas A'],
+        ['TRIM Kapital'],
+        ['TRIM Kapital Plus'],
+        ['TRIM Kas 2 Kelas A'],
+        ['TRIM Syariah Saham'],
+        ['Trimegah Dana Tetap Syariah Kelas A'],
+        ['Trimegah FTSE Indonesia Low Volatility Factor Index'],
+        ['Trimegah Kas Syariah'],
         
     ]
     
