@@ -52,7 +52,7 @@ if __name__ == "__main__":
     print("\nMemulai proses bergantian antara Classify dan Extractor...\n")
     for pdf_name in files_to_process:
         pdf_name = pdf_name[0]
-        pdf_path = f"database/prospectus/{pdf_name}.pdf"
+        pdf_path = f"database/pdf_file/{pdf_name}.pdf"
         print(f"\n--- Memproses: {pdf_name} ---")
 
         # Jalankan Classify hanya untuk file ini
