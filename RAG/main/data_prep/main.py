@@ -2,12 +2,22 @@ from Classify import Classify
 from Extract import IntegratedPdfExtractor
 from Chunk import PDFChunkProcessor
 from Chunk import Config as config_chunk
+from InsertVDB import QdrantInserter
+
+from dotenv import load_dotenv
+import os
 
 if __name__ == "__main__":
 
+    load_dotenv()
+    openai_api_key = os.getenv('OPENAI_API_KEY')
+
+    # Collection name
+    collection = "openai_db"
+
     # List file PDF [name]
-    pdf_files = [
-        # ['ABF Indonesia Bond Index Fund'],
+    files_to_process = [
+        ['Batavia Technology Sharia Equity USD'],
     ]
 
     # Inisialisasi class
@@ -21,18 +31,26 @@ if __name__ == "__main__":
         )
     
     processor = PDFChunkProcessor(
-        input_names=pdf_files,
+        input_names=files_to_process,
         continue_from_last=True,         # Lewati file yang sudah diproses
         max_tokens=config_chunk.DEFAULT_MAX_TOKENS,
         overlap_tokens=config_chunk.DEFAULT_OVERLAP_TOKENS,
         use_structured_output=True,      # Gunakan output terstruktur (JSON) dari Gemini
         verbose=True                     # Tampilkan log
+        )
+    
+    inserter = QdrantInserter(
+        collection_name=collection, 
+        api_key=openai_api_key,
+        json_dir="database/chunked_result",  # Direktori input
+        output_dir="database/embedded_result"  # Direktori output untuk file dengan embedding
     )
+
     
     
 
     print("\nMemulai proses bergantian antara Classify dan Extractor...\n")
-    for pdf_name in pdf_files:
+    for pdf_name in files_to_process:
         pdf_name = pdf_name[0]
         pdf_path = f"database/prospectus/{pdf_name}.pdf"
         print(f"\n--- Memproses: {pdf_name} ---")
@@ -56,6 +74,9 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"✗ Gagal ekstraksi {pdf_name}: {e}")
     
+    print("\nMemulai proses Chunk\n")
     processor.process()
 
-    
+    print("\nMemulai proses memasukkan data ke Qdrant...\n")
+    inserter.process_files(files_to_process)
+
