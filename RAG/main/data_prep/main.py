@@ -1,15 +1,35 @@
 from Classify import Classify
 from Extract import IntegratedPdfExtractor
+from Chunk import PDFChunkProcessor
+from Chunk import Config as config_chunk
 
 if __name__ == "__main__":
-    # Inisialisasi class
-    analyzer = Classify(output_dir="database/classified_result")
-    extractor = IntegratedPdfExtractor(temp_dir="temporary_dir", dpi=300)
-    
+
     # List file PDF [name]
     pdf_files = [
         # ['ABF Indonesia Bond Index Fund'],
     ]
+
+    # Inisialisasi class
+    analyzer = Classify(
+        output_dir="database/classified_result"
+        )
+    
+    extractor = IntegratedPdfExtractor(
+        temp_dir="temporary_dir",
+        dpi=300
+        )
+    
+    processor = PDFChunkProcessor(
+        input_names=pdf_files,
+        continue_from_last=True,         # Lewati file yang sudah diproses
+        max_tokens=config_chunk.DEFAULT_MAX_TOKENS,
+        overlap_tokens=config_chunk.DEFAULT_OVERLAP_TOKENS,
+        use_structured_output=True,      # Gunakan output terstruktur (JSON) dari Gemini
+        verbose=True                     # Tampilkan log
+    )
+    
+    
 
     print("\nMemulai proses bergantian antara Classify dan Extractor...\n")
     for pdf_name in pdf_files:
@@ -35,3 +55,7 @@ if __name__ == "__main__":
             print(f"✓ Ekstraksi selesai: {pdf_name}")
         except Exception as e:
             print(f"✗ Gagal ekstraksi {pdf_name}: {e}")
+    
+    processor.process()
+
+    
