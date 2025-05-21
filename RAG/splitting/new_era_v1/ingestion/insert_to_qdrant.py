@@ -298,7 +298,7 @@ if __name__ == "__main__":
     openai_api_key = os.getenv('OPENAI_API_KEY')
     
     # Collection name
-    collection = "home_try"  # ganti nama collection jika perlu
+    collection = "openai_db"  # ganti nama collection jika perlu
     
     # List file untuk diproses [name]
     files_to_process = [
