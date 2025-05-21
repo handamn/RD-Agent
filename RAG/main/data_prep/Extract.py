@@ -46,7 +46,7 @@ class IntegratedPdfExtractor:
     3. Multimodal AI untuk halaman dengan struktur kompleks
     """
     
-    def __init__(self, temp_dir="temporary_dir", dpi=300, log_dir="logs"):
+    def __init__(self, temp_dir="temporary_dir", dpi=300, log_dir="log"):
         """
         Inisialisasi PDF Extractor
         
