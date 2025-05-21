@@ -1,0 +1,12 @@
+[2025-05-21 21:44:05] [STAGE] [Stage: DOCUMENT PROCESSING JOB: 1 file(s)] STAGE: DOCUMENT PROCESSING JOB: 1 file(s)
+[2025-05-21 21:44:05] [INFO] [Stage: DOCUMENT PROCESSING JOB: 1 file(s)] Starting processing of 1 file(s) with max_tokens=1000, overlap_tokens=100
+[2025-05-21 21:44:05] [STAGE] [Stage: Processing file 1/1: Batavia Technology Sharia Equity USD] STAGE: Processing file 1/1: Batavia Technology Sharia Equity USD
+[2025-05-21 21:44:05] [TASK] [Stage: Processing file 1/1: Batavia Technology Sharia Equity USD | Task: Validating input file] TASK: Validating input file
+[2025-05-21 21:44:05] [ERROR] [Stage: Processing file 1/1: Batavia Technology Sharia Equity USD | Task: Validating input file] ❌ File tidak ditemukan: database/extracted_result\Batavia Technology Sharia Equity USD_extracted.json
+[2025-05-21 21:44:05] [ERROR] [Stage: Processing file 1/1: Batavia Technology Sharia Equity USD | Task: Validating input file] ❌ File validation failed: database/extracted_result\Batavia Technology Sharia Equity USD_extracted.json
+[2025-05-21 21:44:05] [STAGE] [Stage: JOB COMPLETED] STAGE: JOB COMPLETED
+[2025-05-21 21:44:05] [SUCCESS] [Stage: JOB COMPLETED] ✅ Processing complete! Summary:
+- Files processed successfully: 0
+- Files failed: 1
+- Total time: 0.00 seconds
+- Total API requests: 0

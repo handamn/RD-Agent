@@ -1,0 +1,5 @@
+[2025-05-21 21:41:07] [INFO] PDF Analyzer diinisialisasi
+[2025-05-21 21:41:08] [INFO] Mulai analisis file database/prospectus/Batavia Technology Sharia Equity USD.pdf
+[2025-05-21 21:41:08] [INFO] Parameter: min_text_length=50, min_line_count=1, min_line_length_percent=20
+[2025-05-21 21:41:08] [ERROR] Error menganalisis PDF: [Errno 2] No such file or directory: 'database/prospectus/Batavia Technology Sharia Equity USD.pdf'
+[2025-05-21 21:41:08] [ERROR] Error menganalisis Batavia Technology Sharia Equity USD: [Errno 2] No such file or directory: 'database/prospectus/Batavia Technology Sharia Equity USD.pdf'

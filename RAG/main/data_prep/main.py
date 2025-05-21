@@ -13,7 +13,7 @@ if __name__ == "__main__":
     openai_api_key = os.getenv('OPENAI_API_KEY')
 
     # Collection name
-    collection = "openai_db"
+    collection = "tes_combine"
 
     # List file PDF [name]
     files_to_process = [
