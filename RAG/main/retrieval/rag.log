@@ -1,0 +1,57 @@
+2025-05-23 20:34:02,727 - RAG - INFO - Connected to Qdrant collection: tes_combine
+2025-05-23 20:34:03,852 - RAG - INFO - Enhanced RAG system initialized
+2025-05-23 20:35:04,549 - RAG - INFO - Processing query: apa itu AHLI SYARIAH PASAR MODAL
+2025-05-23 20:35:06,214 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-23 20:35:06,339 - RAG - INFO - Expanded queries: ['apa itu AHLI SYARIAH PASAR MODAL', 'definisi dan peran ahli syariah dalam pasar modal', 'fungsi dan tanggung jawab ahli syariah di industri keuangan syariah', 'regulasi dan standar yang mengatur ahli syariah di pasar modal Indonesia']
+2025-05-23 20:35:07,230 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-23 20:35:07,283 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-23 20:35:07,303 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-23 20:35:08,124 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-23 20:35:08,138 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-23 20:35:08,155 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-23 20:35:08,929 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-23 20:35:08,955 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-23 20:35:08,970 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-23 20:35:09,805 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-23 20:35:09,824 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-23 20:35:09,843 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-23 20:35:11,539 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-23 20:35:14,290 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-23 20:35:14,290 - RAG - INFO - Query processed in 9.74 seconds
+2025-05-23 20:36:27,318 - RAG - INFO - Processing query: siapa itu Rinaldi Lukita Handaya
+2025-05-23 20:36:29,324 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-23 20:36:29,333 - RAG - INFO - Expanded queries: ['siapa itu Rinaldi Lukita Handaya', 'profil Rinaldi Lukita Handaya dalam industri keuangan', 'kontribusi Rinaldi Lukita Handaya terhadap investasi di Indonesia', 'latar belakang dan pengalaman Rinaldi Lukita Handaya di sektor investasi']
+2025-05-23 20:36:30,108 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-23 20:36:30,170 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-23 20:36:30,234 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-23 20:36:30,848 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-23 20:36:30,902 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-23 20:36:30,957 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-23 20:36:31,665 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-23 20:36:31,692 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-23 20:36:31,721 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-23 20:36:32,553 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-23 20:36:32,584 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-23 20:36:32,597 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-23 20:36:35,088 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-23 20:36:37,640 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-23 20:36:37,642 - RAG - INFO - Query processed in 10.32 seconds
+2025-05-23 20:37:33,990 - RAG - INFO - Processing query: setting
+2025-05-23 20:37:34,983 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-23 20:37:35,131 - RAG - INFO - Expanded queries: ['setting', 'investment strategy formulation', 'financial planning and allocation', 'regulatory compliance framework']
+2025-05-23 20:37:35,950 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-23 20:37:35,976 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-23 20:37:36,003 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-23 20:37:37,718 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-23 20:37:37,729 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-23 20:37:37,756 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-23 20:37:39,663 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-23 20:37:39,687 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-23 20:37:39,703 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-23 20:37:41,147 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-23 20:37:41,170 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-23 20:37:41,211 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-23 20:37:44,236 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-23 20:37:44,237 - RAG - WARNING - Reranking returned 37 scores for 36 documents
+2025-05-23 20:37:55,069 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-23 20:37:55,070 - RAG - INFO - Query processed in 21.08 seconds
