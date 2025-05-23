@@ -5,6 +5,7 @@ import math
 import logging
 import argparse
 import numpy as np
+import re
 from typing import List, Dict, Any, Tuple, Optional, Union
 
 from dotenv import load_dotenv
@@ -565,8 +566,6 @@ class SelfEvaluator:
                 "hallucination": -1,
                 "error": str(e)
             }
-
-import re
 
 class ImprovedRAGSystem:
     """Enhanced RAG system with multiple retrieval techniques"""
