@@ -9,6 +9,7 @@ import re
 from typing import List, Dict, Any, Tuple, Optional, Union
 
 from dotenv import load_dotenv
+from datetime import datetime
 from rich.console import Console
 from rich.markdown import Markdown
 from openai import OpenAI
@@ -28,10 +29,24 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[logging.FileHandler("rag.log"), logging.StreamHandler()]
 )
-logger = logging.getLogger("RAG")
+# logger = logging.getLogger("RAG")
+
+class Logger:
+    def __init__(self, log_dir="log"):
+        os.makedirs(log_dir, exist_ok=True)
+        log_filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "_RAG.log"
+        self.LOG_FILE = os.path.join(log_dir, log_filename)
+        
+    def log_info(self, message, status="INFO"):
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        log_message = f"[{timestamp}] [{status}] {message}\n"
+        with open(self.LOG_FILE, "a", encoding="utf-8") as log_file:
+            log_file.write(log_message)
+        print(log_message.strip())
 
 # Rich console for pretty output
 console = Console()
+logger = Logger()
 
 class EmbeddingGenerator:
     """Class to generate embeddings using OpenAI"""
@@ -51,7 +66,8 @@ class EmbeddingGenerator:
             )
             return response.data[0].embedding
         except Exception as e:
-            logger.error(f"Error generating embedding: {e}")
+            # logger.error(f"Error generating embedding: {e}")
+            logger.log_info(f"Error generating embedding: {e}", status="ERROR")
             raise
 
 class TextChunker:
@@ -65,6 +81,7 @@ class TextChunker:
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
         self.strategy = strategy
+        
     
     def chunk_text(self, text: str, metadata: Dict = None) -> List[Dict]:
         """Chunk text based on selected strategy"""
@@ -73,7 +90,8 @@ class TextChunker:
         elif self.strategy == "paragraph":
             return self._paragraph_chunking(text, metadata)
         else:
-            logger.warning(f"Unknown chunking strategy: {self.strategy}. Falling back to sliding window.")
+            # logger.warning(f"Unknown chunking strategy: {self.strategy}. Falling back to sliding window.")
+            logger.log_info(f"Unknown chunking strategy: {self.strategy}. Falling back to sliding window.", status="WARNING")
             return self._sliding_window_chunking(text, metadata)
     
     def _sliding_window_chunking(self, text: str, metadata: Dict = None) -> List[Dict]:
@@ -164,7 +182,10 @@ class QdrantRetriever:
         """Initialize connection to Qdrant"""
         self.client = QdrantClient(host=host, port=port)
         self.collection_name = collection_name
-        logger.info(f"Connected to Qdrant collection: {collection_name}")
+        
+        # logger.info(f"Connected to Qdrant collection: {collection_name}")
+        logger.log_info(f"Connected to Qdrant collection: {collection_name}")
+
     
     def retrieve(self, 
                  query_vector: List[float], 
@@ -192,7 +213,8 @@ class QdrantRetriever:
                 for hit in results
             ]
         except Exception as e:
-            logger.error(f"Error retrieving from Qdrant: {e}")
+            # logger.error(f"Error retrieving from Qdrant: {e}")
+            logger.log_info(f"Error retrieving from Qdrant: {e}",status="ERROR")
             return []
     
     def keyword_search(self, 
@@ -238,7 +260,8 @@ class QdrantRetriever:
                 for hit in results[0]  # results[0] contains the points
             ]
         except Exception as e:
-            logger.error(f"Error performing keyword search: {e}")
+            # logger.error(f"Error performing keyword search: {e}")
+            logger.log_info(f"Error performing keyword search: {e}",status="ERROR")
             return []
     
     def hybrid_search(self,
@@ -315,6 +338,7 @@ class QueryExpander:
         load_dotenv()
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
     
+    
     def expand_query(self, original_query: str) -> List[str]:
         """Expand the original query into multiple search queries"""
         try:
@@ -352,7 +376,8 @@ class QueryExpander:
                 
             return expanded_queries
         except Exception as e:
-            logger.error(f"Error expanding query: {e}")
+            # logger.error(f"Error expanding query: {e}")
+            logger.log_info(f"Error expanding query: {e}",status="ERROR")
             # Return original query if expansion fails
             return [original_query]
 
@@ -366,6 +391,7 @@ class BM25Retriever:
         self.tokenized_corpus = []
         self.bm25 = None
         self.initialized = False
+        
     
     def initialize(self, documents: List[Dict]):
         """Initialize the BM25 model with documents"""
@@ -378,12 +404,14 @@ class BM25Retriever:
         # Create BM25 model
         self.bm25 = BM25Okapi(self.tokenized_corpus)
         self.initialized = True
-        logger.info(f"BM25 initialized with {len(self.corpus)} documents")
+        # logger.info(f"BM25 initialized with {len(self.corpus)} documents")
+        logger.log_info(f"BM25 initialized with {len(self.corpus)} documents")
     
     def retrieve(self, query: str, limit: int = 5) -> List[Dict]:
         """Retrieve documents based on BM25 scoring"""
         if not self.initialized:
-            logger.warning("BM25 retriever not initialized")
+            # logger.warning("BM25 retriever not initialized")
+            logger.log_info("BM25 retriever not initialized", status="INFO")
             return []
         
         try:
@@ -406,7 +434,8 @@ class BM25Retriever:
             
             return results
         except Exception as e:
-            logger.error(f"Error retrieving with BM25: {e}")
+            # logger.error(f"Error retrieving with BM25: {e}")
+            logger.log_info(f"Error retrieving with BM25: {e}", status="ERROR")
             return []
 
 class RankFusion:
@@ -463,6 +492,7 @@ class Reranker:
         """Initialize the reranker with OpenAI client"""
         load_dotenv()
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.logger=Logger()
     
     def rerank(self, query: str, documents: List[Dict]) -> List[Dict]:
         """Rerank documents based on their relevance to the query"""
@@ -498,7 +528,8 @@ class Reranker:
             
             # If scores don't match documents length, use original scores
             if len(scores) != len(documents):
-                logger.warning(f"Reranking returned {len(scores)} scores for {len(documents)} documents")
+                # logger.warning(f"Reranking returned {len(scores)} scores for {len(documents)} documents")
+                logger.log_info(f"Reranking returned {len(scores)} scores for {len(documents)} documents", status="WARNING")
                 return documents
             
             # Create new list with updated scores
@@ -514,7 +545,8 @@ class Reranker:
             return reranked_docs
             
         except Exception as e:
-            logger.error(f"Error reranking documents: {e}")
+            # logger.error(f"Error reranking documents: {e}")
+            logger.log_info(f"Error reranking documents: {e}",status="ERROR")
             # Return original documents if reranking fails
             return documents
 
@@ -525,6 +557,7 @@ class SelfEvaluator:
         """Initialize the self-evaluator with OpenAI client"""
         load_dotenv()
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.logger=Logger()
     
     def evaluate_response(self, query: str, response: str, contexts: List[str]) -> Dict:
         """Evaluate the response quality and factuality"""
@@ -558,7 +591,8 @@ class SelfEvaluator:
             return result
             
         except Exception as e:
-            logger.error(f"Error evaluating response: {e}")
+            # logger.error(f"Error evaluating response: {e}")
+            logger.log_info(f"Error evaluating response: {e}",status="ERROR")
             return {
                 "relevance": -1,
                 "factual_accuracy": -1,
@@ -581,7 +615,8 @@ class ImprovedRAGSystem:
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         # BM25 retriever will be initialized when needed with the document set
         self.bm25_retriever = BM25Retriever()
-        logger.info("Enhanced RAG system initialized")
+        # logger.info("Enhanced RAG system initialized")
+        logger.log_info("Enhanced RAG system initialized")
     
     def process_query(self, 
                       query: str, 
@@ -593,12 +628,14 @@ class ImprovedRAGSystem:
                       evaluate_response: bool = False) -> Dict:
         """Process a query through the enhanced RAG pipeline"""
         start_time = time.time()
-        logger.info(f"Processing query: {query}")
+        # logger.info(f"Processing query: {query}")
+        logger.log_info(f"Processing query: {query}")
         
         # Step 1: Query Expansion (optional)
         if use_query_expansion:
             expanded_queries = self.query_expander.expand_query(query)
-            logger.info(f"Expanded queries: {expanded_queries}")
+            # logger.info(f"Expanded queries: {expanded_queries}")
+            logger.log_info(f"Expanded queries: {expanded_queries}")
         else:
             expanded_queries = [query]
         
@@ -651,7 +688,8 @@ class ImprovedRAGSystem:
             evaluation = self.self_evaluator.evaluate_response(query, answer, context_texts)
         
         execution_time = time.time() - start_time
-        logger.info(f"Query processed in {execution_time:.2f} seconds")
+        # logger.info(f"Query processed in {execution_time:.2f} seconds")
+        logger.log_info(f"Query processed in {execution_time:.2f} seconds")
         
         # Return complete result
         result = {
@@ -733,14 +771,16 @@ class ImprovedRAGSystem:
             return answer
             
         except Exception as e:
-            logger.error(f"Error generating answer: {e}")
+            # logger.error(f"Error generating answer: {e}")
+            logger.log_info(f"Error generating answer: {e}")
             return f"Maaf, terjadi kesalahan dalam menghasilkan jawaban: {str(e)}"
 
 def chat_loop(rag_system):
     """Interactive chat loop with enhanced settings"""
     console.print("\n[bold green]Enhanced RAG Chat System[/bold green]")
     console.print("Ketik 'exit' untuk keluar, 'settings' untuk mengubah pengaturan RAG\n")
-    
+    logger = Logger()
+
     # Default settings
     settings = {
         "use_query_expansion": True,
@@ -829,7 +869,8 @@ def chat_loop(rag_system):
         except KeyboardInterrupt:
             break
         except Exception as e:
-            logger.error(f"Error in chat loop: {e}")
+            # logger.error(f"Error in chat loop: {e}")
+            logger.log_info(f"Error in chat loop: {e}")
             console.print(f"[bold red]Error:[/bold red] {str(e)}")
 
 if __name__ == "__main__":
