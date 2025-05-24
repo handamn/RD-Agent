@@ -409,3 +409,73 @@ justification
 2025-05-24 10:54:01,882 - RAG - INFO - Query processed in 5.34 seconds
 2025-05-24 10:54:01,883 - RAG_API - INFO - Query processed successfully in 5.34 seconds
 2025-05-24 10:56:57,884 - RAG_API - INFO - Shutting down RAG API
+2025-05-24 11:01:52,649 - root - INFO - Initializing RAG system...
+2025-05-24 11:01:53,447 - RAG - INFO - Connected to Qdrant collection: tes_combine
+2025-05-24 11:01:54,352 - RAG - INFO - Enhanced RAG system initialized
+2025-05-24 11:01:54,353 - root - INFO - RAG system initialized successfully
+2025-05-24 11:04:37,347 - RAG - INFO - Processing query: Bagaimana cara investasi saham untuk pemula?
+2025-05-24 11:04:39,313 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 11:04:39,322 - RAG - INFO - Expanded queries: ['Bagaimana cara investasi saham untuk pemula?', 'Strategi investasi saham untuk pemula di pasar modal.', 'Panduan langkah demi langkah untuk memulai investasi saham bagi pemula.', 'Tips dan trik investasi saham yang aman untuk investor baru.']
+2025-05-24 11:04:40,501 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 11:04:40,645 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 11:04:40,724 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 11:04:41,239 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 11:04:41,273 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 11:04:41,318 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 11:04:41,792 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 11:04:41,827 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 11:04:41,879 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 11:04:42,240 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 11:04:42,283 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 11:04:42,332 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 11:04:44,388 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 11:04:51,665 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 11:04:51,667 - RAG - INFO - Query processed in 14.32 seconds
+2025-05-24 11:06:00,287 - RAG - INFO - Processing query: apa bedanya efek syariah dengan efek syariah luar negeri
+2025-05-24 11:06:02,162 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 11:06:02,166 - RAG - INFO - Expanded queries: ['apa bedanya efek syariah dengan efek syariah luar negeri', 'Apa perbedaan antara instrumen keuangan syariah domestik dan internasional?', 'Bagaimana karakteristik efek syariah di pasar lokal dibandingkan dengan pasar global?', 'Apa saja regulasi yang membedakan efek syariah dalam negeri dan luar negeri?']
+2025-05-24 11:06:02,788 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 11:06:02,878 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 11:06:02,938 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 11:06:03,976 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 11:06:04,043 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 11:06:04,095 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 11:06:04,397 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 11:06:04,456 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 11:06:04,516 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 11:06:04,897 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 11:06:04,940 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 11:06:04,987 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 11:06:07,494 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 11:06:13,100 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 11:06:13,104 - RAG - INFO - Query processed in 12.82 seconds
+2025-05-24 11:08:40,105 - root - INFO - Shutting down RAG system...
+2025-05-24 11:08:47,680 - root - INFO - Initializing RAG system...
+2025-05-24 11:08:48,401 - RAG - INFO - Connected to Qdrant collection: tes_combine
+2025-05-24 11:08:49,373 - RAG - INFO - Enhanced RAG system initialized
+2025-05-24 11:08:49,374 - root - INFO - RAG system initialized successfully
+2025-05-24 11:09:19,792 - root - INFO - Shutting down RAG system...
+2025-05-24 11:09:25,865 - root - INFO - Initializing RAG system...
+2025-05-24 11:09:26,576 - RAG - INFO - Connected to Qdrant collection: tes_combine
+2025-05-24 11:09:27,511 - RAG - INFO - Enhanced RAG system initialized
+2025-05-24 11:09:27,512 - root - INFO - RAG system initialized successfully
+2025-05-24 11:11:55,962 - RAG - INFO - Processing query: apa bedanya efek syariah dengan efek syariah luar negeri
+2025-05-24 11:11:57,873 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 11:11:57,881 - RAG - INFO - Expanded queries: ['apa bedanya efek syariah dengan efek syariah luar negeri', 'Apa perbedaan antara instrumen keuangan syariah domestik dan internasional?', 'Bagaimana karakteristik efek syariah di pasar lokal dibandingkan dengan pasar global?', 'Apa saja regulasi yang membedakan efek syariah dalam negeri dan luar negeri?']
+2025-05-24 11:11:58,416 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 11:11:58,472 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 11:11:58,523 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 11:11:59,200 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 11:11:59,237 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 11:11:59,268 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 11:11:59,744 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 11:11:59,785 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 11:11:59,824 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 11:12:00,380 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 11:12:00,407 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 11:12:00,450 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 11:12:02,239 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 11:12:07,995 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 11:12:07,999 - RAG - INFO - Query processed in 12.04 seconds
+2025-05-24 11:15:33,114 - root - INFO - Shutting down RAG system...
+2025-05-24 11:15:39,691 - root - INFO - Initializing RAG system...

@@ -1,3 +1,7 @@
+## How to use
+## uvicorn rag_api:app --host 0.0.0.0 --port 8000 --reload
+
+
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from typing import Optional, Dict, List, Any
@@ -221,3 +225,60 @@ if __name__ == "__main__":
         reload=True,
         log_level="info"
     )
+
+
+## example use
+"""
+# Health Check (GET)
+
+URL: http://localhost:8000/health
+Method: GET
+Expected Response:
+
+json{
+    "status": "healthy",
+    "timestamp": "2024-01-01 12:00:00",
+    "collection_name": "tes_combine"
+}
+
+
+# Simple Query (POST)
+
+URL: http://localhost:8000/query-simple
+Method: POST
+Body: Form-data atau x-www-form-urlencoded
+
+Key: query
+Value: "Apa itu investasi saham?"
+
+
+
+# Advanced Query (POST)
+
+URL: http://localhost:8000/query
+Method: POST
+Headers: Content-Type: application/json
+Body (JSON):
+
+json{
+    "query": "Bagaimana cara investasi saham untuk pemula?",
+    "use_query_expansion": true,
+    "use_hybrid_search": true,
+    "use_reranking": true,
+    "evaluate_response": false,
+    "limit": 5,
+    "filter_params": null
+}
+Query dengan Filter (POST)
+json{
+    "query": "Risiko investasi",
+    "use_query_expansion": true,
+    "use_hybrid_search": true,
+    "use_reranking": true,
+    "evaluate_response": true,
+    "limit": 3,
+    "filter_params": {
+        "document_metadata.filename": "panduan_investasi.pdf"
+    }
+}
+"""
