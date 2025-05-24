@@ -279,3 +279,133 @@ justification
   Input should be a valid string [type=string_type, input_value={'relevance': 'The answer...he retrieved contexts.'}, input_type=dict]
     For further information visit https://errors.pydantic.dev/2.9/v/string_type
 2025-05-23 21:50:50,306 - RAG_API - ERROR - Unhandled exception: 'ErrorResponse' object is not callable
+2025-05-24 10:50:34,720 - RAG_API - INFO - Initializing RAG system...
+2025-05-24 10:50:35,587 - RAG - INFO - Connected to Qdrant collection: tes_combine
+2025-05-24 10:50:36,500 - RAG - INFO - Enhanced RAG system initialized
+2025-05-24 10:50:36,501 - RAG_API - INFO - RAG system initialized successfully
+2025-05-24 10:50:38,945 - RAG_API - INFO - Processing query: Apa itu diversifikasi?
+2025-05-24 10:50:38,946 - RAG - INFO - Processing query: Apa itu diversifikasi?
+2025-05-24 10:50:40,729 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 10:50:40,744 - RAG - INFO - Expanded queries: ['Apa itu diversifikasi?', 'Apa pengertian diversifikasi dalam investasi dan manajemen risiko?', 'Bagaimana strategi diversifikasi dapat mempengaruhi portofolio investasi?', 'Apa saja jenis-jenis diversifikasi dalam pasar keuangan?']
+2025-05-24 10:50:41,555 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:50:41,640 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:50:41,667 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:50:42,420 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:50:42,438 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:50:42,468 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:50:42,970 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:50:42,993 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:50:43,014 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:50:44,073 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:50:44,098 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:50:44,149 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:50:46,395 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 10:50:50,423 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 10:50:54,879 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 10:50:54,881 - RAG - INFO - Query processed in 15.94 seconds
+2025-05-24 10:50:54,887 - RAG_API - ERROR - Error processing query: 1 validation error for ResponseEvaluation
+justification
+  Input should be a valid string [type=string_type, input_value={'relevance': 'The answer...the provided contexts.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.9/v/string_type
+2025-05-24 10:50:54,888 - RAG_API - ERROR - Unhandled exception: 'ErrorResponse' object is not callable
+2025-05-24 10:51:13,420 - RAG_API - INFO - Shutting down RAG API
+2025-05-24 10:51:51,252 - RAG_API - INFO - Initializing RAG system...
+2025-05-24 10:51:52,174 - RAG - INFO - Connected to Qdrant collection: tes_combine
+2025-05-24 10:51:53,290 - RAG - INFO - Enhanced RAG system initialized
+2025-05-24 10:51:53,290 - RAG_API - INFO - RAG system initialized successfully
+2025-05-24 10:52:59,615 - httpx - INFO - HTTP Request: GET http://localhost:6333/collections/tes_combine "HTTP/1.1 200 OK"
+2025-05-24 10:52:59,829 - RAG_API - INFO - Processing query: Apa itu investasi reksa dana?
+2025-05-24 10:52:59,829 - RAG - INFO - Processing query: Apa itu investasi reksa dana?
+2025-05-24 10:53:01,158 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 10:53:01,165 - RAG - INFO - Expanded queries: ['Apa itu investasi reksa dana?', 'Apa pengertian dan jenis-jenis investasi reksa dana?', 'Bagaimana cara kerja investasi reksa dana dan manfaatnya?', 'Apa saja risiko dan keuntungan dalam investasi reksa dana?']
+2025-05-24 10:53:01,949 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:53:01,996 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:53:02,025 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:53:02,390 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:53:02,422 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:53:02,442 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:53:03,335 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:53:03,352 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:53:03,374 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:53:03,883 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:53:03,908 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:53:03,943 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:53:05,728 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 10:53:08,561 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 10:53:14,300 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 10:53:14,311 - RAG - INFO - Query processed in 14.48 seconds
+2025-05-24 10:53:14,319 - RAG_API - ERROR - Error processing query: 1 validation error for ResponseEvaluation
+justification
+  Input should be a valid string [type=string_type, input_value={'relevance': 'The answer...the provided contexts.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.9/v/string_type
+2025-05-24 10:53:14,320 - RAG_API - ERROR - Unhandled exception: 'ErrorResponse' object is not callable
+2025-05-24 10:53:16,379 - RAG_API - INFO - Processing query: Bagaimana cara menghitung return investasi?
+2025-05-24 10:53:16,380 - RAG - INFO - Processing query: Bagaimana cara menghitung return investasi?
+2025-05-24 10:53:17,588 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 10:53:17,591 - RAG - INFO - Expanded queries: ['Bagaimana cara menghitung return investasi?', 'Metode perhitungan imbal hasil investasi yang efektif', 'Cara analisis return on investment (ROI) dalam investasi', 'Teknik evaluasi kinerja investasi dan pengukuran return']
+2025-05-24 10:53:18,289 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:53:18,306 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:53:18,318 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:53:19,289 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:53:19,316 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:53:19,344 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:53:19,799 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:53:19,832 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:53:19,857 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:53:20,182 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:53:20,207 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:53:20,221 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:53:21,686 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 10:53:24,964 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 10:53:28,257 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 10:53:28,258 - RAG - INFO - Query processed in 11.88 seconds
+2025-05-24 10:53:28,259 - RAG_API - ERROR - Error processing query: 1 validation error for ResponseEvaluation
+justification
+  Input should be a valid string [type=string_type, input_value={'relevance': 'The answer...etails is appropriate.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.9/v/string_type
+2025-05-24 10:53:28,261 - RAG_API - ERROR - Unhandled exception: 'ErrorResponse' object is not callable
+2025-05-24 10:53:31,258 - RAG_API - INFO - Processing query: Apa perbedaan saham dan obligasi?
+2025-05-24 10:53:31,258 - RAG - INFO - Processing query: Apa perbedaan saham dan obligasi?
+2025-05-24 10:53:32,664 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 10:53:32,674 - RAG - INFO - Expanded queries: ['Apa perbedaan saham dan obligasi?', 'Apa yang membedakan antara investasi saham dan obligasi dalam pasar modal?', 'Perbandingan risiko dan imbal hasil antara saham dan obligasi dalam portofolio investasi.', 'Bagaimana karakteristik dan fungsi saham dibandingkan dengan obligasi dalam strategi investasi?']
+2025-05-24 10:53:33,425 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:53:33,450 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:53:33,486 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:53:33,822 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:53:33,850 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:53:33,895 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:53:34,243 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:53:34,261 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:53:34,286 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:53:34,703 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:53:34,736 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:53:34,759 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:53:41,974 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 10:53:49,910 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 10:53:54,488 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 10:53:54,490 - RAG - INFO - Query processed in 23.23 seconds
+2025-05-24 10:53:54,491 - RAG_API - ERROR - Error processing query: 1 validation error for ResponseEvaluation
+justification
+  Input should be a valid string [type=string_type, input_value={'relevance': 'The answer... the provided sources.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.9/v/string_type
+2025-05-24 10:53:54,492 - RAG_API - ERROR - Unhandled exception: 'ErrorResponse' object is not callable
+2025-05-24 10:53:56,539 - RAG_API - INFO - Processing query: Apa itu diversifikasi investasi?
+2025-05-24 10:53:56,539 - RAG - INFO - Processing query: Apa itu diversifikasi investasi?
+2025-05-24 10:53:57,788 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 10:53:57,791 - RAG - INFO - Expanded queries: ['Apa itu diversifikasi investasi?', 'Apa pengertian dan manfaat diversifikasi portofolio investasi?', 'Bagaimana strategi diversifikasi dalam manajemen risiko investasi?', 'Apa saja jenis-jenis diversifikasi dalam investasi dan dampaknya terhadap return?']
+2025-05-24 10:53:58,200 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:53:58,229 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:53:58,271 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:53:58,626 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:53:58,649 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:53:58,696 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:53:59,050 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:53:59,090 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:53:59,130 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:53:59,670 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-24 10:53:59,710 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/search "HTTP/1.1 200 OK"
+2025-05-24 10:53:59,718 - httpx - INFO - HTTP Request: POST http://localhost:6333/collections/tes_combine/points/scroll "HTTP/1.1 200 OK"
+2025-05-24 10:54:01,881 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 10:54:01,882 - RAG - INFO - Query processed in 5.34 seconds
+2025-05-24 10:54:01,883 - RAG_API - INFO - Query processed successfully in 5.34 seconds
+2025-05-24 10:56:57,884 - RAG_API - INFO - Shutting down RAG API
